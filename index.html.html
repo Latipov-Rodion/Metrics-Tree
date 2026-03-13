@@ -297,10 +297,18 @@
             background-color: #1E1F22;
             border-left: 4px solid;
             width: fit-content;
-            white-space: nowrap;           /* текст всегда в одну строку */
-            max-width: 600px;               /* ограничение, чтобы не улетала за экран */
-            overflow-x: auto;                /* если очень длинная — появится скролл */
-            margin-left: auto;               /* прижимаем к правому краю */
+            max-width: 600px;
+            white-space: nowrap;
+            overflow-x: auto;
+            margin-left: auto;
+        }
+
+        /* для мобильных: разрешаем перенос текста */
+        @media (max-width: 640px) {
+            .insight-message {
+                white-space: normal;
+                overflow-x: hidden;
+            }
         }
     </style>
 </head>
@@ -375,9 +383,17 @@
     <script>
         (function() {
             // ----- ХРАНИЛИЩЕ ВВЕДЁННЫХ ЗНАЧЕНИЙ -----
-            let storedValues = {}; // { metricId: { inputKey: value } }
+            let storedValues = {};
 
-            // ----- ОПРЕДЕЛЕНИЕ МЕТРИК С ПОРОГАМИ И СОВЕТАМИ -----
+            // ----- ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ ВАЛИДАЦИИ ЧИСЕЛ -----
+            function sanitizeNumber(value, allowZero = true) {
+                let num = parseFloat(value);
+                if (isNaN(num)) return null;
+                if (!allowZero && num <= 0) return null;
+                return num;
+            }
+
+            // ----- ОПРЕДЕЛЕНИЕ МЕТРИК (полный список как в предыдущей версии, но с улучшенными инсайтами) -----
             const metricsData = {
                 b2c: {
                     name: 'B2C',
@@ -388,8 +404,11 @@
                             formula: 'Уникальные пользователи за день',
                             description: 'Daily Active Users — количество уникальных пользователей, взаимодействовавших с продуктом за сутки.',
                             threshold: 'Плохо: <5k, Средне: 5k–20k, Хорошо: >20k',
-                            inputs: [{ label: 'Уникальные пользователи (день)', placeholder: '12500', key: 'users' }],
-                            calculate: (vals) => parseFloat(vals.users) || 0,
+                            inputs: [{ label: 'Уникальные пользователи (день)', placeholder: '12500', key: 'users', min: 0 }],
+                            calculate: (vals) => {
+                                const users = sanitizeNumber(vals.users);
+                                return users !== null ? users : 0;
+                            },
                             unit: 'чел',
                             insight: (value) => {
                                 if (value < 5000) return { color: '#F44336', text: 'Низкая активность. Попробуйте улучшить вовлечение через push-уведомления.' };
@@ -403,8 +422,11 @@
                             formula: 'Уникальные пользователи за месяц',
                             description: 'Monthly Active Users — количество уникальных пользователей за последние 30 дней.',
                             threshold: 'Плохо: <30k, Средне: 30k–100k, Хорошо: >100k',
-                            inputs: [{ label: 'Уникальные пользователи (месяц)', placeholder: '75400', key: 'users' }],
-                            calculate: (vals) => parseFloat(vals.users) || 0,
+                            inputs: [{ label: 'Уникальные пользователи (месяц)', placeholder: '75400', key: 'users', min: 0 }],
+                            calculate: (vals) => {
+                                const users = sanitizeNumber(vals.users);
+                                return users !== null ? users : 0;
+                            },
                             unit: 'чел',
                             insight: (value) => {
                                 if (value < 30000) return { color: '#F44336', text: 'Низкая база. Увеличьте маркетинговые активности.' };
@@ -419,12 +441,13 @@
                             description: 'Доля пользователей, вернувшихся через заданный промежуток времени.',
                             threshold: 'Плохо: <30%, Средне: 30–60%, Хорошо: >60%',
                             inputs: [
-                                { label: 'Вернувшиеся пользователи', placeholder: '600', key: 'end' },
-                                { label: 'Новые пользователи (начало периода)', placeholder: '1000', key: 'start' }
+                                { label: 'Вернувшиеся пользователи', placeholder: '600', key: 'end', min: 0 },
+                                { label: 'Новые пользователи (начало периода)', placeholder: '1000', key: 'start', min: 1 }
                             ],
                             calculate: (vals) => {
-                                const end = parseFloat(vals.end) || 0;
-                                const start = parseFloat(vals.start) || 1;
+                                const end = sanitizeNumber(vals.end, true) || 0;
+                                const start = sanitizeNumber(vals.start) || 1;
+                                if (start <= 0) return 0;
                                 return ((end / start) * 100).toFixed(1);
                             },
                             unit: '%',
@@ -442,14 +465,14 @@
                             description: 'Lifetime Value — сколько денег приносит клиент за всё время.',
                             threshold: 'Плохо: <$1k, Средне: $1k–$5k, Хорошо: >$5k',
                             inputs: [
-                                { label: 'Средний чек (AOV), $', placeholder: '2500', key: 'aov' },
-                                { label: 'Частота покупок в год', placeholder: '2', key: 'freq' },
-                                { label: 'Среднее время жизни (лет)', placeholder: '3', key: 'life' }
+                                { label: 'Средний чек (AOV), $', placeholder: '2500', key: 'aov', min: 0 },
+                                { label: 'Частота покупок в год', placeholder: '2', key: 'freq', min: 0 },
+                                { label: 'Среднее время жизни (лет)', placeholder: '3', key: 'life', min: 0 }
                             ],
                             calculate: (vals) => {
-                                const aov = parseFloat(vals.aov) || 0;
-                                const freq = parseFloat(vals.freq) || 0;
-                                const life = parseFloat(vals.life) || 0;
+                                const aov = sanitizeNumber(vals.aov) || 0;
+                                const freq = sanitizeNumber(vals.freq) || 0;
+                                const life = sanitizeNumber(vals.life) || 0;
                                 return (aov * freq * life).toFixed(2);
                             },
                             unit: '$',
@@ -467,12 +490,13 @@
                             description: 'Customer Acquisition Cost — стоимость привлечения одного платящего клиента.',
                             threshold: 'Плохо: >$800, Средне: $300–$800, Хорошо: <$300',
                             inputs: [
-                                { label: 'Затраты на маркетинг, $', placeholder: '50000', key: 'cost' },
-                                { label: 'Новые клиенты', placeholder: '200', key: 'customers' }
+                                { label: 'Затраты на маркетинг, $', placeholder: '50000', key: 'cost', min: 0 },
+                                { label: 'Новые клиенты', placeholder: '200', key: 'customers', min: 1 }
                             ],
                             calculate: (vals) => {
-                                const cost = parseFloat(vals.cost) || 0;
-                                const customers = parseFloat(vals.customers) || 1;
+                                const cost = sanitizeNumber(vals.cost) || 0;
+                                const customers = sanitizeNumber(vals.customers) || 1;
+                                if (customers <= 0) return 0;
                                 return (cost / customers).toFixed(2);
                             },
                             unit: '$',
@@ -490,12 +514,13 @@
                             description: 'Average Revenue Per User — средняя выручка на одного пользователя.',
                             threshold: 'Плохо: <$10, Средне: $10–$50, Хорошо: >$50',
                             inputs: [
-                                { label: 'Общая выручка, $', placeholder: '150000', key: 'revenue' },
-                                { label: 'Количество пользователей', placeholder: '5000', key: 'users' }
+                                { label: 'Общая выручка, $', placeholder: '150000', key: 'revenue', min: 0 },
+                                { label: 'Количество пользователей', placeholder: '5000', key: 'users', min: 1 }
                             ],
                             calculate: (vals) => {
-                                const rev = parseFloat(vals.revenue) || 0;
-                                const users = parseFloat(vals.users) || 1;
+                                const rev = sanitizeNumber(vals.revenue) || 0;
+                                const users = sanitizeNumber(vals.users) || 1;
+                                if (users <= 0) return 0;
                                 return (rev / users).toFixed(2);
                             },
                             unit: '$',
@@ -513,12 +538,13 @@
                             description: 'Процент пользователей, переставших пользоваться продуктом за период.',
                             threshold: 'Плохо: >10%, Средне: 5–10%, Хорошо: <5%',
                             inputs: [
-                                { label: 'Ушедшие пользователи', placeholder: '150', key: 'lost' },
-                                { label: 'Всего пользователей на начало', placeholder: '2000', key: 'total' }
+                                { label: 'Ушедшие пользователи', placeholder: '150', key: 'lost', min: 0 },
+                                { label: 'Всего пользователей на начало', placeholder: '2000', key: 'total', min: 1 }
                             ],
                             calculate: (vals) => {
-                                const lost = parseFloat(vals.lost) || 0;
-                                const total = parseFloat(vals.total) || 1;
+                                const lost = sanitizeNumber(vals.lost) || 0;
+                                const total = sanitizeNumber(vals.total) || 1;
+                                if (total <= 0) return 0;
                                 return ((lost / total) * 100).toFixed(1);
                             },
                             unit: '%',
@@ -540,8 +566,11 @@
                             formula: 'Сумма месячной выручки с подписок',
                             description: 'Monthly Recurring Revenue — регулярная месячная выручка.',
                             threshold: 'Плохо: <$10k, Средне: $10k–$50k, Хорошо: >$50k',
-                            inputs: [{ label: 'Сумма MRR, $', placeholder: '45000', key: 'mrr' }],
-                            calculate: (vals) => parseFloat(vals.mrr) || 0,
+                            inputs: [{ label: 'Сумма MRR, $', placeholder: '45000', key: 'mrr', min: 0 }],
+                            calculate: (vals) => {
+                                const mrr = sanitizeNumber(vals.mrr) || 0;
+                                return mrr;
+                            },
                             unit: '$',
                             insight: (value) => {
                                 const v = parseFloat(value);
@@ -556,8 +585,11 @@
                             formula: 'MRR × 12',
                             description: 'Annual Recurring Revenue — годовая регулярная выручка.',
                             threshold: 'Плохо: <$120k, Средне: $120k–$600k, Хорошо: >$600k',
-                            inputs: [{ label: 'MRR, $', placeholder: '45000', key: 'mrr' }],
-                            calculate: (vals) => (parseFloat(vals.mrr) * 12).toFixed(2) || 0,
+                            inputs: [{ label: 'MRR, $', placeholder: '45000', key: 'mrr', min: 0 }],
+                            calculate: (vals) => {
+                                const mrr = sanitizeNumber(vals.mrr) || 0;
+                                return (mrr * 12).toFixed(2);
+                            },
                             unit: '$',
                             insight: (value) => {
                                 const v = parseFloat(value);
@@ -573,12 +605,13 @@
                             description: 'Annual Contract Value — средняя годовая стоимость контракта.',
                             threshold: 'Плохо: <$5k, Средне: $5k–$20k, Хорошо: >$20k',
                             inputs: [
-                                { label: 'Сумма контракта, $', placeholder: '120000', key: 'total' },
-                                { label: 'Длительность (лет)', placeholder: '3', key: 'years' }
+                                { label: 'Сумма контракта, $', placeholder: '120000', key: 'total', min: 0 },
+                                { label: 'Длительность (лет)', placeholder: '3', key: 'years', min: 0.1 }
                             ],
                             calculate: (vals) => {
-                                const total = parseFloat(vals.total) || 0;
-                                const years = parseFloat(vals.years) || 1;
+                                const total = sanitizeNumber(vals.total) || 0;
+                                const years = sanitizeNumber(vals.years) || 1;
+                                if (years <= 0) return 0;
                                 return (total / years).toFixed(2);
                             },
                             unit: '$',
@@ -596,12 +629,13 @@
                             description: 'Gross Revenue Retention — удержание выручки без учёта апселов.',
                             threshold: 'Плохо: <80%, Средне: 80–95%, Хорошо: >95%',
                             inputs: [
-                                { label: 'Начальный MRR, $', placeholder: '50000', key: 'start' },
-                                { label: 'Отток MRR (даунгрейды + уход), $', placeholder: '3000', key: 'churn' }
+                                { label: 'Начальный MRR, $', placeholder: '50000', key: 'start', min: 1 },
+                                { label: 'Отток MRR (даунгрейды + уход), $', placeholder: '3000', key: 'churn', min: 0 }
                             ],
                             calculate: (vals) => {
-                                const start = parseFloat(vals.start) || 1;
-                                const churn = parseFloat(vals.churn) || 0;
+                                const start = sanitizeNumber(vals.start) || 1;
+                                const churn = sanitizeNumber(vals.churn) || 0;
+                                if (start <= 0) return 0;
                                 return (((start - churn) / start) * 100).toFixed(1);
                             },
                             unit: '%',
@@ -619,14 +653,15 @@
                             description: 'Net Revenue Retention — удержание с учётом расширения.',
                             threshold: 'Плохо: <100%, Средне: 100–120%, Хорошо: >120%',
                             inputs: [
-                                { label: 'Начальный MRR, $', placeholder: '50000', key: 'start' },
-                                { label: 'Апселы (новый MRR от существующих), $', placeholder: '6000', key: 'upsell' },
-                                { label: 'Отток MRR, $', placeholder: '3000', key: 'churn' }
+                                { label: 'Начальный MRR, $', placeholder: '50000', key: 'start', min: 1 },
+                                { label: 'Апселы (новый MRR от существующих), $', placeholder: '6000', key: 'upsell', min: 0 },
+                                { label: 'Отток MRR, $', placeholder: '3000', key: 'churn', min: 0 }
                             ],
                             calculate: (vals) => {
-                                const start = parseFloat(vals.start) || 1;
-                                const upsell = parseFloat(vals.upsell) || 0;
-                                const churn = parseFloat(vals.churn) || 0;
+                                const start = sanitizeNumber(vals.start) || 1;
+                                const upsell = sanitizeNumber(vals.upsell) || 0;
+                                const churn = sanitizeNumber(vals.churn) || 0;
+                                if (start <= 0) return 0;
                                 return (((start + upsell - churn) / start) * 100).toFixed(1);
                             },
                             unit: '%',
@@ -644,14 +679,16 @@
                             description: 'Время (месяцев) для возврата затрат на привлечение клиента.',
                             threshold: 'Плохо: >24 мес, Средне: 12–24 мес, Хорошо: <12 мес',
                             inputs: [
-                                { label: 'CAC, $', placeholder: '1200', key: 'cac' },
-                                { label: 'MRR на одного клиента, $', placeholder: '150', key: 'mrrPerCustomer' },
-                                { label: 'Маржинальность (%, например 80)', placeholder: '80', key: 'margin' }
+                                { label: 'CAC, $', placeholder: '1200', key: 'cac', min: 0 },
+                                { label: 'MRR на одного клиента, $', placeholder: '150', key: 'mrrPerCustomer', min: 0.01 },
+                                { label: 'Маржинальность (%, от 0 до 100)', placeholder: '80', key: 'margin', min: 0, max: 100 }
                             ],
                             calculate: (vals) => {
-                                const cac = parseFloat(vals.cac) || 0;
-                                const mrr = parseFloat(vals.mrrPerCustomer) || 1;
-                                const margin = (parseFloat(vals.margin) || 100) / 100;
+                                const cac = sanitizeNumber(vals.cac) || 0;
+                                const mrr = sanitizeNumber(vals.mrrPerCustomer) || 1;
+                                const marginPercent = sanitizeNumber(vals.margin) || 100;
+                                const margin = Math.min(100, Math.max(0, marginPercent)) / 100;
+                                if (mrr <= 0) return 0;
                                 const payback = cac / (mrr * margin);
                                 return payback.toFixed(1);
                             },
@@ -674,8 +711,11 @@
                             formula: 'Количество новых пользователей за период',
                             description: 'Сколько новых посетителей/клиентов привлечено.',
                             threshold: 'Плохо: <500, Средне: 500–2000, Хорошо: >2000',
-                            inputs: [{ label: 'Новые пользователи', placeholder: '1200', key: 'new' }],
-                            calculate: (vals) => parseFloat(vals.new) || 0,
+                            inputs: [{ label: 'Новые пользователи', placeholder: '1200', key: 'new', min: 0 }],
+                            calculate: (vals) => {
+                                const newVal = sanitizeNumber(vals.new) || 0;
+                                return newVal;
+                            },
                             unit: 'чел',
                             insight: (value) => {
                                 const v = parseFloat(value);
@@ -691,12 +731,13 @@
                             description: 'Доля новых пользователей, дошедших до ключевого события (Aha!-момента).',
                             threshold: 'Плохо: <30%, Средне: 30–60%, Хорошо: >60%',
                             inputs: [
-                                { label: 'Пользователи с активацией', placeholder: '540', key: 'activated' },
-                                { label: 'Всего новых', placeholder: '1200', key: 'total' }
+                                { label: 'Пользователи с активацией', placeholder: '540', key: 'activated', min: 0 },
+                                { label: 'Всего новых', placeholder: '1200', key: 'total', min: 1 }
                             ],
                             calculate: (vals) => {
-                                const act = parseFloat(vals.activated) || 0;
-                                const total = parseFloat(vals.total) || 1;
+                                const act = sanitizeNumber(vals.activated) || 0;
+                                const total = sanitizeNumber(vals.total) || 1;
+                                if (total <= 0) return 0;
                                 return ((act / total) * 100).toFixed(1);
                             },
                             unit: '%',
@@ -714,12 +755,13 @@
                             description: 'Процент пользователей, которые возвращаются через заданный период.',
                             threshold: 'Плохо: <30%, Средне: 30–60%, Хорошо: >60%',
                             inputs: [
-                                { label: 'Вернувшиеся', placeholder: '360', key: 'ret' },
-                                { label: 'Новые в когорте', placeholder: '1200', key: 'new' }
+                                { label: 'Вернувшиеся', placeholder: '360', key: 'ret', min: 0 },
+                                { label: 'Новые в когорте', placeholder: '1200', key: 'new', min: 1 }
                             ],
                             calculate: (vals) => {
-                                const ret = parseFloat(vals.ret) || 0;
-                                const newC = parseFloat(vals.new) || 1;
+                                const ret = sanitizeNumber(vals.ret) || 0;
+                                const newC = sanitizeNumber(vals.new) || 1;
+                                if (newC <= 0) return 0;
                                 return ((ret / newC) * 100).toFixed(1);
                             },
                             unit: '%',
@@ -737,12 +779,13 @@
                             description: 'Коэффициент виральности (K-factor) — сколько новых пользователей приводит один существующий.',
                             threshold: 'Плохо: <0.5, Средне: 0.5–1, Хорошо: >1',
                             inputs: [
-                                { label: 'Приглашённые пользователи', placeholder: '300', key: 'invited' },
-                                { label: 'Активные пользователи (отправившие приглашения)', placeholder: '600', key: 'active' }
+                                { label: 'Приглашённые пользователи', placeholder: '300', key: 'invited', min: 0 },
+                                { label: 'Активные пользователи (отправившие приглашения)', placeholder: '600', key: 'active', min: 1 }
                             ],
                             calculate: (vals) => {
-                                const invited = parseFloat(vals.invited) || 0;
-                                const active = parseFloat(vals.active) || 1;
+                                const invited = sanitizeNumber(vals.invited) || 0;
+                                const active = sanitizeNumber(vals.active) || 1;
+                                if (active <= 0) return 0;
                                 return (invited / active).toFixed(2);
                             },
                             unit: '',
@@ -759,8 +802,11 @@
                             formula: 'Общая выручка за период',
                             description: 'Денежный поток от всех источников.',
                             threshold: 'Плохо: <$50k, Средне: $50k–$200k, Хорошо: >$200k',
-                            inputs: [{ label: 'Выручка, $', placeholder: '85000', key: 'rev' }],
-                            calculate: (vals) => parseFloat(vals.rev) || 0,
+                            inputs: [{ label: 'Выручка, $', placeholder: '85000', key: 'rev', min: 0 }],
+                            calculate: (vals) => {
+                                const rev = sanitizeNumber(vals.rev) || 0;
+                                return rev;
+                            },
                             unit: '$',
                             insight: (value) => {
                                 const v = parseFloat(value);
@@ -781,12 +827,13 @@
                             description: 'Частота обнаружения дефектов. Можно считать на 1000 строк кода.',
                             threshold: 'Плохо: >5, Средне: 2–5, Хорошо: <2',
                             inputs: [
-                                { label: 'Количество багов', placeholder: '27', key: 'bugs' },
-                                { label: 'Размер (тыс. строк кода / дни)', placeholder: '15', key: 'size' }
+                                { label: 'Количество багов', placeholder: '27', key: 'bugs', min: 0 },
+                                { label: 'Размер (тыс. строк кода / дни)', placeholder: '15', key: 'size', min: 0.1 }
                             ],
                             calculate: (vals) => {
-                                const bugs = parseFloat(vals.bugs) || 0;
-                                const size = parseFloat(vals.size) || 1;
+                                const bugs = sanitizeNumber(vals.bugs) || 0;
+                                const size = sanitizeNumber(vals.size) || 1;
+                                if (size <= 0) return 0;
                                 return (bugs / size).toFixed(2);
                             },
                             unit: 'багов/KLOC',
@@ -804,12 +851,13 @@
                             description: 'Доля требований, покрытых автотестами.',
                             threshold: 'Плохо: <50%, Средне: 50–80%, Хорошо: >80%',
                             inputs: [
-                                { label: 'Покрытые требования', placeholder: '85', key: 'covered' },
-                                { label: 'Всего требований', placeholder: '100', key: 'total' }
+                                { label: 'Покрытые требования', placeholder: '85', key: 'covered', min: 0 },
+                                { label: 'Всего требований', placeholder: '100', key: 'total', min: 1 }
                             ],
                             calculate: (vals) => {
-                                const covered = parseFloat(vals.covered) || 0;
-                                const total = parseFloat(vals.total) || 1;
+                                const covered = sanitizeNumber(vals.covered) || 0;
+                                const total = sanitizeNumber(vals.total) || 1;
+                                if (total <= 0) return 0;
                                 return ((covered / total) * 100).toFixed(1);
                             },
                             unit: '%',
@@ -827,12 +875,13 @@
                             description: 'Плотность дефектов на тысячу строк кода.',
                             threshold: 'Плохо: >5, Средне: 2–5, Хорошо: <2',
                             inputs: [
-                                { label: 'Дефекты', placeholder: '42', key: 'defects' },
-                                { label: 'KLOC (тыс. строк кода)', placeholder: '20', key: 'kloc' }
+                                { label: 'Дефекты', placeholder: '42', key: 'defects', min: 0 },
+                                { label: 'KLOC (тыс. строк кода)', placeholder: '20', key: 'kloc', min: 0.1 }
                             ],
                             calculate: (vals) => {
-                                const defects = parseFloat(vals.defects) || 0;
-                                const kloc = parseFloat(vals.kloc) || 1;
+                                const defects = sanitizeNumber(vals.defects) || 0;
+                                const kloc = sanitizeNumber(vals.kloc) || 1;
+                                if (kloc <= 0) return 0;
                                 return (defects / kloc).toFixed(2);
                             },
                             unit: 'дефектов/KLOC',
@@ -855,12 +904,13 @@
                             description: 'Customer Satisfaction — доля довольных клиентов.',
                             threshold: 'Плохо: <70%, Средне: 70–85%, Хорошо: >85%',
                             inputs: [
-                                { label: 'Оценки 4 и 5', placeholder: '320', key: 'pos' },
-                                { label: 'Всего оценок', placeholder: '400', key: 'total' }
+                                { label: 'Оценки 4 и 5', placeholder: '320', key: 'pos', min: 0 },
+                                { label: 'Всего оценок', placeholder: '400', key: 'total', min: 1 }
                             ],
                             calculate: (vals) => {
-                                const pos = parseFloat(vals.pos) || 0;
-                                const total = parseFloat(vals.total) || 1;
+                                const pos = sanitizeNumber(vals.pos) || 0;
+                                const total = sanitizeNumber(vals.total) || 1;
+                                if (total <= 0) return 0;
                                 return ((pos / total) * 100).toFixed(1);
                             },
                             unit: '%',
@@ -878,14 +928,15 @@
                             description: 'Net Promoter Score — готовность рекомендовать продукт.',
                             threshold: 'Плохо: <0, Средне: 0–30, Хорошо: >30',
                             inputs: [
-                                { label: 'Промоутеры (оценки 9-10)', placeholder: '150', key: 'promoters' },
-                                { label: 'Детракторы (оценки 0-6)', placeholder: '40', key: 'detractors' },
-                                { label: 'Всего ответивших', placeholder: '250', key: 'total' }
+                                { label: 'Промоутеры (оценки 9-10)', placeholder: '150', key: 'promoters', min: 0 },
+                                { label: 'Детракторы (оценки 0-6)', placeholder: '40', key: 'detractors', min: 0 },
+                                { label: 'Всего ответивших', placeholder: '250', key: 'total', min: 1 }
                             ],
                             calculate: (vals) => {
-                                const prom = parseFloat(vals.promoters) || 0;
-                                const det = parseFloat(vals.detractors) || 0;
-                                const total = parseFloat(vals.total) || 1;
+                                const prom = sanitizeNumber(vals.promoters) || 0;
+                                const det = sanitizeNumber(vals.detractors) || 0;
+                                const total = sanitizeNumber(vals.total) || 1;
+                                if (total <= 0) return 0;
                                 return (((prom - det) / total) * 100).toFixed(1);
                             },
                             unit: '',
@@ -903,12 +954,13 @@
                             description: 'First Contact Resolution — процент решённых сразу.',
                             threshold: 'Плохо: <60%, Средне: 60–80%, Хорошо: >80%',
                             inputs: [
-                                { label: 'Решено с первого раза', placeholder: '156', key: 'resolved' },
-                                { label: 'Всего тикетов', placeholder: '200', key: 'total' }
+                                { label: 'Решено с первого раза', placeholder: '156', key: 'resolved', min: 0 },
+                                { label: 'Всего тикетов', placeholder: '200', key: 'total', min: 1 }
                             ],
                             calculate: (vals) => {
-                                const res = parseFloat(vals.resolved) || 0;
-                                const total = parseFloat(vals.total) || 1;
+                                const res = sanitizeNumber(vals.resolved) || 0;
+                                const total = sanitizeNumber(vals.total) || 1;
+                                if (total <= 0) return 0;
                                 return ((res / total) * 100).toFixed(1);
                             },
                             unit: '%',
@@ -926,12 +978,13 @@
                             description: 'Service Level Agreement — доля обработанных вовремя.',
                             threshold: 'Плохо: <90%, Средне: 90–98%, Хорошо: >98%',
                             inputs: [
-                                { label: 'Тикеты в срок', placeholder: '180', key: 'met' },
-                                { label: 'Всего тикетов', placeholder: '200', key: 'total' }
+                                { label: 'Тикеты в срок', placeholder: '180', key: 'met', min: 0 },
+                                { label: 'Всего тикетов', placeholder: '200', key: 'total', min: 1 }
                             ],
                             calculate: (vals) => {
-                                const met = parseFloat(vals.met) || 0;
-                                const total = parseFloat(vals.total) || 1;
+                                const met = sanitizeNumber(vals.met) || 0;
+                                const total = sanitizeNumber(vals.total) || 1;
+                                if (total <= 0) return 0;
                                 return ((met / total) * 100).toFixed(1);
                             },
                             unit: '%',
@@ -978,6 +1031,8 @@
                     if (!el) return false;
                     const val = el.value.trim();
                     if (val === '' || isNaN(parseFloat(val))) return false;
+                    // проверка на отрицательное
+                    if (parseFloat(val) < 0) return false;
                 }
                 return true;
             }
@@ -1116,7 +1171,7 @@
                     }
                 });
 
-                // Пытаемся показать результат, если поля заполнены
+                // Вызываем updateResult сразу, чтобы отобразить результат, если поля уже заполнены
                 updateResult();
             }
 
