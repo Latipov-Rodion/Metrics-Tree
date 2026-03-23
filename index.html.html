@@ -92,7 +92,7 @@
             line-height: 1.2;
         }
         .header-left .subtitle {
-            font-size: 0.88rem;
+            font-size: 0.95rem;
             color: var(--text-2);
             display: flex;
             flex-wrap: wrap;
@@ -215,7 +215,7 @@
         .section-card h3 { font-size: 1rem; font-weight: 700; color: var(--text-1); margin-bottom: 0.2rem; position: relative; }
         .section-card p {
             color: var(--text-3);
-            font-size: 0.7rem;
+            font-size: 0.78rem;
             line-height: 1.4;
             position: relative;
             word-break: break-word;
@@ -441,9 +441,11 @@
         .result-right {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            flex: 1 1 0;
+            justify-content: flex-end;
+            gap: 0.6rem;
+            flex: 1 1 auto;
             min-width: 0;
+            flex-wrap: wrap;
         }
         .insight-message {
             font-size: 0.87rem;
@@ -454,8 +456,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            min-width: 0;
-            flex: 1 1 0;
+            max-width: 420px;
         }
         .copy-btn {
             background: var(--accent);
@@ -538,25 +539,6 @@
         .result-block { transform-origin: top; }
         .result-block.result-animate { animation: resultIn 0.18s ease forwards; }
 
-        /* ===================== KBD HINT ===================== */
-        .search-kbd {
-            position: absolute; right: 0.6rem; top: 50%;
-            transform: translateY(-50%);
-            display: flex; align-items: center; gap: 0.1rem;
-            pointer-events: none;
-        }
-        .search-kbd kbd {
-            font-family: inherit;
-            font-size: 0.68rem;
-            font-weight: 600;
-            color: var(--text-3);
-            background: var(--bg-hover);
-            border: 1px solid var(--border);
-            border-radius: 0.3rem;
-            padding: 0.05rem 0.3rem;
-            line-height: 1.5;
-        }
-        .search-kbd.hidden { display: none; }
 
         /* ===================== VALIDATION ERROR ===================== */
         .validation-error {
@@ -692,7 +674,6 @@
                 <span class="search-icon">🔍</span>
                 <input type="text" class="search-input" id="searchInput" placeholder="Поиск метрики…" autocomplete="off">
                 <button class="search-clear" id="searchClear" title="Очистить поиск" aria-label="Очистить">×</button>
-                <span class="search-kbd" id="searchKbd"><kbd>Ctrl</kbd><kbd>K</kbd></span>
             </div>
             <button class="clear-btn" id="clearAllBtn">Очистить всё</button>
         </div>
@@ -1523,7 +1504,6 @@
     const copyBtn = document.getElementById('copyBtn');
     const searchInput = document.getElementById('searchInput');
     const searchClear = document.getElementById('searchClear');
-    const searchKbd = document.getElementById('searchKbd');
     const noResults = document.getElementById('noResults');
     const benchmarksEl = document.getElementById('benchmarks');
     const emptyHint = document.getElementById('emptyHint');
@@ -1833,30 +1813,10 @@
     searchInput.addEventListener('input', () => {
         const val = searchInput.value.trim();
         searchClear.classList.toggle('visible', val.length > 0);
-        searchKbd.classList.toggle('hidden', val.length > 0);
 
         clearTimeout(searchTimeout);
         searchTimeout = setTimeout(() => {
             searchQuery = val;
-            if (searchQuery) {
-                for (const sectionId of Object.keys(metricsData)) {
-                    const section = metricsData[sectionId];
-                    const q = searchQuery.toLowerCase();
-                    const found = section.metrics.find(m =>
-                        m.name.toLowerCase().includes(q) || m.description.toLowerCase().includes(q)
-                    );
-                    if (found) {
-                        if (currentSection !== sectionId) {
-                            saveCurrentValues();
-                            currentSection = sectionId;
-                            sectionCards.forEach(c => c.classList.toggle('active', c.dataset.section === sectionId));
-                        }
-                        currentMetricId = found.id;
-                        renderMetricCard();
-                        break;
-                    }
-                }
-            }
             renderMetricsList();
         }, 200);
     });
@@ -1865,7 +1825,6 @@
         searchInput.value = '';
         searchQuery = '';
         searchClear.classList.remove('visible');
-        searchKbd.classList.remove('hidden');
         renderMetricsList();
     });
 
@@ -1879,7 +1838,7 @@
     sectionCards.forEach(card => {
         card.addEventListener('click', () => {
             const sectionId = card.dataset.section;
-            if (sectionId) { searchInput.value = ''; searchQuery = ''; searchClear.classList.remove('visible'); searchKbd.classList.remove('hidden'); setActiveSection(sectionId); }
+            if (sectionId) { searchInput.value = ''; searchQuery = ''; searchClear.classList.remove('visible'); setActiveSection(sectionId); }
         });
     });
 
@@ -1901,12 +1860,6 @@
     }
 
     document.addEventListener('keydown', e => {
-        // Ctrl+K / Cmd+K → фокус поиска
-        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-            e.preventDefault();
-            searchInput.focus();
-            searchInput.select();
-        }
         // Esc → снять фокус с поиска
         if (e.key === 'Escape') {
             if (document.activeElement === searchInput) searchInput.blur();
