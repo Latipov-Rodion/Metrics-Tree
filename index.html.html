@@ -162,6 +162,48 @@
         .search-clear.visible { display: block; }
         .search-clear:hover { color: var(--text-1); }
 
+        /* ===================== SEARCH DROPDOWN ===================== */
+        .search-dropdown {
+            display: none;
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            right: 0;
+            min-width: 280px;
+            max-height: 340px;
+            overflow-y: auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+        }
+        .search-dropdown.open { display: block; }
+        .search-dropdown-group:not(:last-child) { border-bottom: 1px solid var(--border); }
+        .search-dropdown-section {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--text-3);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 0.5rem 0.9rem 0.2rem;
+        }
+        .search-dropdown-item {
+            padding: 0.45rem 0.9rem 0.45rem 1.2rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            color: var(--text-1);
+            transition: background var(--transition), color var(--transition);
+        }
+        .search-dropdown-item:hover { background: var(--bg-hover); color: var(--accent); }
+        .search-dropdown-item.active { color: var(--accent); font-weight: 600; }
+        .search-dropdown-empty {
+            padding: 0.85rem 0.9rem;
+            font-size: 0.85rem;
+            color: var(--text-3);
+            text-align: center;
+        }
+
         /* ===================== CLEAR BTN ===================== */
         .clear-btn {
             background: transparent;
@@ -674,6 +716,7 @@
                 <span class="search-icon">🔍</span>
                 <input type="text" class="search-input" id="searchInput" placeholder="Поиск метрики…" autocomplete="off">
                 <button class="search-clear" id="searchClear" title="Очистить поиск" aria-label="Очистить">×</button>
+                <div class="search-dropdown" id="searchDropdown"></div>
             </div>
             <button class="clear-btn" id="clearAllBtn">Очистить всё</button>
         </div>
@@ -777,6 +820,12 @@
     function sanitizeNumber(value) {
         const num = parseFloat(value);
         return isNaN(num) ? null : num;
+    }
+
+    function formatNum(str) {
+        const parts = String(str).split('.');
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0');
+        return parts.join('.');
     }
 
     // ---- ДАННЫЕ МЕТРИК ----
@@ -1504,6 +1553,7 @@
     const copyBtn = document.getElementById('copyBtn');
     const searchInput = document.getElementById('searchInput');
     const searchClear = document.getElementById('searchClear');
+    const searchDropdown = document.getElementById('searchDropdown');
     const noResults = document.getElementById('noResults');
     const benchmarksEl = document.getElementById('benchmarks');
     const emptyHint = document.getElementById('emptyHint');
@@ -1611,7 +1661,7 @@
         }
 
         const numericResult = parseFloat(rawResult);
-        let displayHtml = String(rawResult);
+        let displayHtml = formatNum(String(rawResult));
         if (metric.unit) displayHtml += ` <small>${metric.unit}</small>`;
         resultValue.innerHTML = displayHtml;
 
@@ -1809,6 +1859,45 @@
     });
 
     // ---- ПОИСК ----
+    function renderSearchDropdown(q) {
+        if (!q) { searchDropdown.classList.remove('open'); return; }
+        const ql = q.toLowerCase();
+        let html = '';
+        let total = 0;
+        for (const [sid, section] of Object.entries(metricsData)) {
+            const matches = section.metrics.filter(m =>
+                m.name.toLowerCase().includes(ql) || m.description.toLowerCase().includes(ql)
+            );
+            if (!matches.length) continue;
+            total += matches.length;
+            html += `<div class="search-dropdown-group"><div class="search-dropdown-section">${section.name}</div>`;
+            matches.forEach(m => {
+                const act = m.id === currentMetricId && sid === currentSection ? ' active' : '';
+                html += `<div class="search-dropdown-item${act}" data-sid="${sid}" data-mid="${m.id}">${m.name}</div>`;
+            });
+            html += '</div>';
+        }
+        if (!total) html = '<div class="search-dropdown-empty">Ничего не найдено</div>';
+        searchDropdown.innerHTML = html;
+        searchDropdown.classList.add('open');
+        searchDropdown.querySelectorAll('.search-dropdown-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const sid = item.dataset.sid;
+                const mid = item.dataset.mid;
+                searchInput.value = '';
+                searchQuery = '';
+                searchClear.classList.remove('visible');
+                searchDropdown.classList.remove('open');
+                saveCurrentValues();
+                currentSection = sid;
+                sectionCards.forEach(c => c.classList.toggle('active', c.dataset.section === sid));
+                currentMetricId = mid;
+                renderMetricsList();
+                renderMetricCard();
+            });
+        });
+    }
+
     let searchTimeout;
     searchInput.addEventListener('input', () => {
         const val = searchInput.value.trim();
@@ -1818,13 +1907,25 @@
         searchTimeout = setTimeout(() => {
             searchQuery = val;
             renderMetricsList();
-        }, 200);
+            renderSearchDropdown(val);
+        }, 150);
+    });
+
+    searchInput.addEventListener('focus', () => {
+        if (searchQuery) renderSearchDropdown(searchQuery);
+    });
+
+    document.addEventListener('click', e => {
+        if (!searchDropdown.contains(e.target) && e.target !== searchInput) {
+            searchDropdown.classList.remove('open');
+        }
     });
 
     searchClear.addEventListener('click', () => {
         searchInput.value = '';
         searchQuery = '';
         searchClear.classList.remove('visible');
+        searchDropdown.classList.remove('open');
         renderMetricsList();
     });
 
