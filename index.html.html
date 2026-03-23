@@ -1,113 +1,592 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Интерактивный справочник продуктовых метрик</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
-        body { background-color: #0A0C0E; color: #E4E6EB; line-height: 1.4; padding: 1rem 1rem 1.5rem; min-height: 100vh; }
-        .container { max-width: 1400px; margin: 0 auto; }
+        /* ===================== CSS VARIABLES ===================== */
+        :root {
+            --bg:           #0A0C0E;
+            --bg-card:      #1A1C1F;
+            --bg-input:     #0A0C0E;
+            --bg-hover:     #252830;
+            --bg-active:    #162040;
+            --border:       #2C2F33;
+            --border-input: #353a40;
+            --text-1:       #E8EAED;
+            --text-2:       #B0B3B8;
+            --text-3:       #6b6f75;
+            --accent:       #2A6DF4;
+            --accent-dim:   rgba(42,109,244,0.15);
+            --accent-glow:  rgba(42,109,244,0.25);
+            --red:          #F44336;
+            --red-bg:       rgba(244,67,54,0.1);
+            --red-border:   rgba(244,67,54,0.35);
+            --green:        #4CAF50;
+            --yellow:       #FFC107;
+            --shadow-sm:    0 1px 4px rgba(0,0,0,0.4);
+            --shadow-md:    0 4px 16px rgba(0,0,0,0.5);
+            --radius-sm:    0.5rem;
+            --radius-md:    0.75rem;
+            --radius-lg:    1rem;
+            --radius-xl:    1.2rem;
+            --transition:   0.18s ease;
+        }
+        html[data-theme="light"] {
+            --bg:           #F0F2F5;
+            --bg-card:      #FFFFFF;
+            --bg-input:     #F7F8FA;
+            --bg-hover:     #EEF0F4;
+            --bg-active:    #E0EAFF;
+            --border:       #DDE0E6;
+            --border-input: #C8CBD2;
+            --text-1:       #14171C;
+            --text-2:       #4A5060;
+            --text-3:       #9299A6;
+            --accent:       #1A56DB;
+            --accent-dim:   rgba(26,86,219,0.1);
+            --accent-glow:  rgba(26,86,219,0.2);
+            --red:          #D32F2F;
+            --red-bg:       rgba(211,47,47,0.08);
+            --red-border:   rgba(211,47,47,0.3);
+            --green:        #2E7D32;
+            --yellow:       #E65100;
+            --shadow-sm:    0 1px 4px rgba(0,0,0,0.08);
+            --shadow-md:    0 4px 16px rgba(0,0,0,0.12);
+        }
 
-        /* шапка */
-        .header { margin-bottom: 1.5rem; border-bottom: 1px solid #2C2F33; padding-bottom: 1rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 0.8rem; }
-        .header-left h1 { font-size: 1.8rem; font-weight: 600; letter-spacing: -0.01em; color: #fff; margin-bottom: 0.5rem; }
-        .header-left .subtitle { font-size: 1rem; color: #DDD; display: flex; flex-wrap: wrap; gap: 0.3rem 0.8rem; }
-        .header-left .subtitle a { color: #2A6DF4; text-decoration: none; border-bottom: 1px dashed #2A6DF4; }
-        .header-right { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; }
-        .clear-btn { background-color: transparent; border: 1px solid #F44336; color: #F44336; font-size: 0.9rem; padding: 0.45rem 1rem; border-radius: 2rem; cursor: pointer; transition: all 0.2s; font-weight: 500; }
-        .clear-btn:hover { background-color: #F44336; color: #fff; }
+        /* ===================== RESET & BASE ===================== */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { overflow-x: hidden; scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text-1);
+            line-height: 1.45;
+            padding: 1rem 1rem 2rem;
+            min-height: 100vh;
+            overflow-x: hidden;
+            transition: background var(--transition), color var(--transition);
+        }
+        .container { max-width: 1440px; margin: 0 auto; }
 
-        /* поиск */
+        /* ===================== HEADER ===================== */
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .header-left { flex: 1 1 280px; min-width: 0; }
+        .header-left h1 {
+            font-size: clamp(1.1rem, 3vw, 1.7rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-1);
+            margin-bottom: 0.35rem;
+            line-height: 1.2;
+        }
+        .header-left .subtitle {
+            font-size: 0.88rem;
+            color: var(--text-2);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem 0.6rem;
+            align-items: center;
+        }
+        .header-left .subtitle a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--accent);
+            transition: opacity var(--transition);
+        }
+        .header-left .subtitle a:hover { opacity: 0.75; }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+
+        /* ===================== THEME TOGGLE ===================== */
+        .theme-toggle {
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-2);
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all var(--transition);
+            flex-shrink: 0;
+        }
+        .theme-toggle:hover { border-color: var(--accent); color: var(--accent); transform: scale(1.08); }
+
+        /* ===================== SEARCH ===================== */
         .search-wrap { position: relative; }
-        .search-input { background: #1E1F22; border: 1px solid #3a3f44; border-radius: 2rem; color: #E4E6EB; font-size: 0.9rem; padding: 0.45rem 1rem 0.45rem 2.2rem; width: 220px; transition: border-color 0.2s; }
-        .search-input::placeholder { color: #6b6f75; }
-        .search-input:focus { outline: none; border-color: #2A6DF4; }
-        .search-icon { position: absolute; left: 0.7rem; top: 50%; transform: translateY(-50%); color: #6b6f75; font-size: 0.85rem; pointer-events: none; }
+        .search-input {
+            background: var(--bg-card);
+            border: 1px solid var(--border-input);
+            border-radius: 2rem;
+            color: var(--text-1);
+            font-size: 0.88rem;
+            padding: 0.5rem 2.2rem 0.5rem 2.2rem;
+            width: 210px;
+            min-height: 38px;
+            transition: border-color var(--transition), box-shadow var(--transition);
+        }
+        .search-input::placeholder { color: var(--text-3); }
+        .search-input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+        .search-icon {
+            position: absolute; left: 0.65rem; top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-3); font-size: 0.82rem; pointer-events: none;
+        }
+        .search-clear {
+            position: absolute; right: 0.65rem; top: 50%;
+            transform: translateY(-50%);
+            background: none; border: none;
+            color: var(--text-3); font-size: 1rem;
+            cursor: pointer; line-height: 1;
+            padding: 0; display: none;
+            transition: color var(--transition);
+        }
+        .search-clear.visible { display: block; }
+        .search-clear:hover { color: var(--text-1); }
 
-        /* навигация по разделам */
-        .sections-nav { display: flex; gap: 0.6rem; margin-bottom: 1.5rem; overflow-x: auto; padding-bottom: 0.3rem; scrollbar-width: thin; scrollbar-color: #2C2F33 transparent; }
-        .sections-nav::-webkit-scrollbar { height: 4px; }
+        /* ===================== CLEAR BTN ===================== */
+        .clear-btn {
+            background: transparent;
+            border: 1px solid var(--red);
+            color: var(--red);
+            font-size: 0.85rem;
+            padding: 0.5rem 1rem;
+            min-height: 38px;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .clear-btn:hover { background: var(--red); color: #fff; }
+
+        /* ===================== SECTIONS NAV ===================== */
+        .sections-nav-wrap { position: relative; margin-bottom: 1.25rem; }
+        .sections-nav-wrap::after {
+            content: '';
+            position: absolute; right: 0; top: 0; bottom: 8px;
+            width: 40px;
+            background: linear-gradient(to right, transparent, var(--bg));
+            pointer-events: none;
+            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+        }
+        .sections-nav {
+            display: flex;
+            gap: 0.6rem;
+            overflow-x: auto;
+            padding-bottom: 0.4rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) transparent;
+        }
+        .sections-nav::-webkit-scrollbar { height: 3px; }
         .sections-nav::-webkit-scrollbar-track { background: transparent; }
-        .sections-nav::-webkit-scrollbar-thumb { background: #2C2F33; border-radius: 2px; }
-        .section-card { background-color: #1E1F22; border: 1px solid #2C2F33; border-radius: 1rem; padding: 0.9rem 1.3rem; flex: 0 0 auto; min-width: 140px; cursor: pointer; transition: all 0.15s ease; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
-        .section-card:hover { border-color: #2A6DF4; transform: translateY(-1px); background-color: #2a2c30; }
-        .section-card.active { border-color: #2A6DF4; box-shadow: 0 0 0 2px rgba(42,109,244,0.3); }
-        .section-card h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.2rem; color: #fff; }
-        .section-card p { color: #B0B3B8; font-size: 0.75rem; line-height: 1.3; }
+        .sections-nav::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-        /* основная область */
-        .metrics-area { display: grid; grid-template-columns: 220px 1fr; gap: 1.2rem; }
-        .metrics-list { background-color: #1E1F22; border: 1px solid #2C2F33; border-radius: 1rem; padding: 1rem 0.3rem; height: fit-content; max-height: 72vh; overflow-y: auto; }
-        .metrics-list h4 { padding: 0 0.8rem 0.6rem 0.8rem; font-size: 0.8rem; font-weight: 500; color: #B0B3B8; text-transform: uppercase; letter-spacing: 0.03em; border-bottom: 1px solid #2C2F33; margin-bottom: 0.5rem; }
-        .metric-item { padding: 0.5rem 0.8rem; margin: 0.1rem 0.3rem; border-radius: 0.6rem; cursor: pointer; transition: background 0.1s; color: #E4E6EB; font-weight: 500; font-size: 0.85rem; border-left: 3px solid transparent; }
-        .metric-item:hover { background-color: #2C2F33; }
-        .metric-item.active { background-color: #1a2b45; border-left-color: #2A6DF4; color: #fff; }
+        .section-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 0.85rem 1.2rem;
+            flex: 0 0 auto;
+            min-width: 130px;
+            cursor: pointer;
+            transition: all var(--transition);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+            overflow: hidden;
+        }
+        .section-card::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: var(--accent-dim);
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+        .section-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .section-card:hover::before { opacity: 1; }
+        .section-card.active {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px var(--accent-glow), var(--shadow-md);
+        }
+        .section-card.active::before { opacity: 1; }
+        .section-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--text-1); margin-bottom: 0.15rem; position: relative; }
+        .section-card p { color: var(--text-3); font-size: 0.72rem; line-height: 1.35; position: relative; }
+
+        /* ===================== METRICS AREA ===================== */
+        .metrics-area {
+            display: grid;
+            grid-template-columns: 215px 1fr;
+            gap: 1rem;
+            align-items: start;
+        }
+
+        /* ===================== METRICS LIST SIDEBAR ===================== */
+        .metrics-list {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 0.75rem 0.25rem;
+            height: fit-content;
+            max-height: 75vh;
+            overflow-y: auto;
+            position: sticky;
+            top: 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border) transparent;
+        }
+        .metrics-list::-webkit-scrollbar { width: 3px; }
+        .metrics-list::-webkit-scrollbar-track { background: transparent; }
+        .metrics-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+        .metrics-list h4 {
+            padding: 0 0.75rem 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-3);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 0.4rem;
+        }
+        .metric-item {
+            padding: 0.55rem 0.75rem;
+            margin: 0.1rem 0.25rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: background var(--transition), color var(--transition), border-color var(--transition);
+            color: var(--text-2);
+            font-weight: 500;
+            font-size: 0.85rem;
+            border-left: 3px solid transparent;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            min-height: 36px;
+            display: flex;
+            align-items: center;
+        }
+        .metric-item:hover { background: var(--bg-hover); color: var(--text-1); }
+        .metric-item.active {
+            background: var(--bg-active);
+            border-left-color: var(--accent);
+            color: var(--text-1);
+            font-weight: 600;
+        }
         .metric-item.hidden { display: none; }
 
-        /* карточка метрики */
-        .metric-card { background-color: #1E1F22; border: 1px solid #2C2F33; border-radius: 1.2rem; padding: 1.5rem; }
-        .metric-header { display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.3rem; }
-        .metric-header h2 { font-size: 1.8rem; font-weight: 600; color: #fff; line-height: 1.2; margin: 0; }
-        .metric-formula-inline { font-family: 'Menlo', monospace; font-size: 0.85rem; color: #2A6DF4; background-color: #2C2F33; padding: 0.1rem 0.8rem; border-radius: 2rem; border: 1px solid #3a3f44; white-space: nowrap; line-height: 1.5; display: inline-block; vertical-align: middle; }
-        .metric-description { color: #B0B3B8; font-size: 0.9rem; margin-bottom: 0.5rem; }
-        .threshold-hint { font-size: 0.85rem; color: #aaa; margin-bottom: 1.2rem; font-style: italic; border-bottom: 1px dashed #2C2F33; padding-bottom: 0.8rem; }
-        .input-group { margin-bottom: 0.9rem; }
-        .input-group label { display: block; margin-bottom: 0.2rem; font-weight: 500; color: #ccc; font-size: 0.85rem; }
-        .input-group input { width: 100%; padding: 0.6rem 1rem; background-color: #0A0C0E; border: 1px solid #3a3f44; border-radius: 0.6rem; color: #fff; font-size: 0.9rem; transition: border-color 0.2s; }
-        .input-group input:focus { outline: none; border-color: #2A6DF4; }
-        .input-group input.error { border-color: #F44336; }
-        .input-error-msg { font-size: 0.78rem; color: #F44336; margin-top: 0.3rem; display: none; }
+        /* ===================== METRIC CHIPS (mobile) ===================== */
+        .metric-chips {
+            display: none;
+            gap: 0.4rem;
+            overflow-x: auto;
+            padding-bottom: 0.4rem;
+            scrollbar-width: none;
+            margin-bottom: 0.75rem;
+        }
+        .metric-chips::-webkit-scrollbar { display: none; }
+        .metric-chip {
+            flex: 0 0 auto;
+            padding: 0.45rem 0.9rem;
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-2);
+            background: var(--bg-card);
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+            min-height: 36px;
+            display: flex; align-items: center;
+        }
+        .metric-chip:hover { border-color: var(--accent); color: var(--accent); }
+        .metric-chip.active {
+            border-color: var(--accent);
+            background: var(--accent);
+            color: #fff;
+            font-weight: 600;
+        }
+        .metric-chip.hidden { display: none; }
+
+        /* ===================== METRIC CARD ===================== */
+        .metric-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            min-width: 0;
+        }
+        .metric-header {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.4rem;
+        }
+        .metric-header h2 {
+            font-size: clamp(1.4rem, 4vw, 1.9rem);
+            font-weight: 700;
+            color: var(--text-1);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+        .metric-formula-inline {
+            font-family: 'Menlo', 'SF Mono', 'Cascadia Code', monospace;
+            font-size: 0.82rem;
+            color: var(--accent);
+            background: var(--accent-dim);
+            padding: 0.15rem 0.75rem;
+            border-radius: 2rem;
+            border: 1px solid var(--accent-glow);
+            white-space: nowrap;
+            line-height: 1.6;
+            display: inline-block;
+        }
+        .metric-description { color: var(--text-2); font-size: 0.9rem; margin-bottom: 0.4rem; line-height: 1.5; }
+        .threshold-hint {
+            font-size: 0.83rem;
+            color: var(--text-3);
+            margin-bottom: 1.2rem;
+            font-style: italic;
+            border-bottom: 1px dashed var(--border);
+            padding-bottom: 0.75rem;
+        }
+
+        /* ===================== INPUTS ===================== */
+        .input-group { margin-bottom: 0.85rem; }
+        .input-group label {
+            display: block;
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+            color: var(--text-2);
+            font-size: 0.84rem;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 0.6rem 0.9rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border-input);
+            border-radius: var(--radius-sm);
+            color: var(--text-1);
+            font-size: 0.92rem;
+            transition: border-color var(--transition), box-shadow var(--transition);
+            min-height: 44px;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+        .input-group input.error { border-color: var(--red); }
+        .input-group input.error:focus { box-shadow: 0 0 0 3px var(--red-bg); }
+        .input-error-msg {
+            font-size: 0.77rem;
+            color: var(--red);
+            margin-top: 0.3rem;
+            display: none;
+        }
         .input-error-msg.show { display: block; }
 
-        /* блок результата */
-        .result-block { background-color: #0A0C0E; border-radius: 0.8rem; padding: 1rem; margin-top: 1rem; border: 1px solid #2C2F33; }
-        .result-main { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; justify-content: space-between; }
-        .result-left { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; }
-        .result-label { font-size: 1.1rem; font-weight: 500; color: #B0B3B8; text-transform: uppercase; }
-        .result-value { font-size: 2.2rem; font-weight: 700; line-height: 1.2; word-break: break-word; }
-        .result-value small { font-size: 1rem; font-weight: 400; color: #B0B3B8; margin-left: 0.4rem; }
-        .result-right { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
-        .insight-message { font-size: 0.9rem; padding: 0.5rem 0.8rem; border-radius: 0.6rem; background-color: #1E1F22; border-left: 4px solid; width: fit-content; max-width: 500px; }
-        .copy-btn { background: transparent; border: 1px solid #3a3f44; color: #B0B3B8; font-size: 0.8rem; padding: 0.35rem 0.7rem; border-radius: 0.5rem; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
-        .copy-btn:hover { border-color: #2A6DF4; color: #2A6DF4; }
-        .copy-btn.copied { border-color: #4CAF50; color: #4CAF50; }
+        /* ===================== RESULT BLOCK ===================== */
+        .result-block {
+            background: var(--bg-input);
+            border-radius: var(--radius-md);
+            padding: 1rem 1.1rem;
+            margin-top: 1rem;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        .result-block::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+        .result-main {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            gap: 0.75rem;
+            justify-content: space-between;
+        }
+        .result-left { display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; min-width: 0; }
+        .result-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-3);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+        .result-value {
+            font-size: clamp(1.8rem, 5vw, 2.4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            word-break: break-word;
+            letter-spacing: -0.02em;
+        }
+        .result-value small { font-size: 0.95rem; font-weight: 400; color: var(--text-2); margin-left: 0.3rem; letter-spacing: 0; }
+        .result-right {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .insight-message {
+            font-size: 0.87rem;
+            padding: 0.45rem 0.8rem;
+            border-radius: var(--radius-sm);
+            background: var(--bg-card);
+            border-left: 3px solid;
+            max-width: 420px;
+            line-height: 1.4;
+        }
+        .copy-btn {
+            background: transparent;
+            border: 1px solid var(--border-input);
+            color: var(--text-3);
+            font-size: 0.8rem;
+            padding: 0.4rem 0.75rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+            min-height: 34px;
+        }
+        .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .copy-btn.copied { border-color: var(--green); color: var(--green); }
 
-        /* блок ошибки валидации */
-        .validation-error { background-color: rgba(244,67,54,0.1); border: 1px solid rgba(244,67,54,0.4); border-radius: 0.8rem; padding: 0.8rem 1rem; margin-top: 1rem; color: #F44336; font-size: 0.9rem; display: none; }
+        /* ===================== VALIDATION ERROR ===================== */
+        .validation-error {
+            background: var(--red-bg);
+            border: 1px solid var(--red-border);
+            border-radius: var(--radius-md);
+            padding: 0.75rem 1rem;
+            margin-top: 1rem;
+            color: var(--red);
+            font-size: 0.88rem;
+            display: none;
+            line-height: 1.4;
+        }
         .validation-error.show { display: block; }
 
-        /* поиск — нет результатов */
-        .no-results { padding: 0.8rem; color: #6b6f75; font-size: 0.85rem; text-align: center; display: none; }
+        /* ===================== NO RESULTS ===================== */
+        .no-results {
+            padding: 0.75rem;
+            color: var(--text-3);
+            font-size: 0.84rem;
+            text-align: center;
+            display: none;
+        }
         .no-results.show { display: block; }
 
-        /* модалка подтверждения */
-        .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100; display: none; align-items: center; justify-content: center; }
-        .modal-overlay.show { display: flex; }
-        .modal { background: #1E1F22; border: 1px solid #3a3f44; border-radius: 1rem; padding: 1.5rem; max-width: 380px; width: 90%; }
-        .modal h3 { color: #fff; margin-bottom: 0.5rem; font-size: 1.1rem; }
-        .modal p { color: #B0B3B8; font-size: 0.9rem; margin-bottom: 1.2rem; }
-        .modal-btns { display: flex; gap: 0.6rem; justify-content: flex-end; }
-        .modal-cancel { background: transparent; border: 1px solid #3a3f44; color: #B0B3B8; padding: 0.5rem 1rem; border-radius: 0.6rem; cursor: pointer; font-size: 0.9rem; }
-        .modal-cancel:hover { border-color: #B0B3B8; color: #fff; }
-        .modal-confirm { background: #F44336; border: none; color: #fff; padding: 0.5rem 1rem; border-radius: 0.6rem; cursor: pointer; font-size: 0.9rem; font-weight: 500; }
-        .modal-confirm:hover { background: #d32f2f; }
-
-        /* мобильная версия */
-        @media (max-width: 700px) {
-            .header-left h1 { font-size: 1.3rem; }
-            .search-input { width: 160px; }
-            .metrics-area { grid-template-columns: 1fr; }
-            .metrics-list { max-height: 40vh; }
-            .insight-message { white-space: normal; max-width: 100%; }
-            .result-main { flex-direction: column; align-items: flex-start; }
-            .result-right { width: 100%; }
+        /* ===================== CONFIRM MODAL ===================== */
+        .modal-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.65);
+            backdrop-filter: blur(4px);
+            z-index: 999;
+            display: none; align-items: center; justify-content: center;
         }
+        .modal-overlay.show { display: flex; }
+        .modal {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            max-width: 360px;
+            width: 90%;
+            box-shadow: var(--shadow-md);
+            animation: slideUp 0.18s ease;
+        }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        .modal h3 { color: var(--text-1); margin-bottom: 0.5rem; font-size: 1.05rem; }
+        .modal p { color: var(--text-2); font-size: 0.88rem; margin-bottom: 1.2rem; line-height: 1.45; }
+        .modal-btns { display: flex; gap: 0.5rem; justify-content: flex-end; }
+        .modal-cancel {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-2);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 0.88rem;
+            min-height: 40px;
+            transition: all var(--transition);
+        }
+        .modal-cancel:hover { border-color: var(--text-2); color: var(--text-1); }
+        .modal-confirm {
+            background: var(--red);
+            border: none;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 0.88rem;
+            font-weight: 600;
+            min-height: 40px;
+            transition: filter var(--transition);
+        }
+        .modal-confirm:hover { filter: brightness(1.15); }
+
+        /* ===================== MOBILE ≤768px ===================== */
+        @media (max-width: 768px) {
+            body { padding: 0.75rem 0.75rem 1.5rem; }
+
+            .header { flex-direction: column; align-items: stretch; gap: 0.6rem; }
+            .header-left { flex: none; }
+            .header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .search-wrap { flex: 1 1 auto; }
+            .search-input { width: 100%; }
+
+            .sections-nav-wrap::after { display: none; }
+
+            .section-card { min-width: 120px; padding: 0.7rem 1rem; }
+            .section-card h3 { font-size: 1rem; }
+            .section-card p { display: none; }
+
+            /* Switch to chips layout on mobile */
+            .metrics-area { grid-template-columns: 1fr; gap: 0; }
+            .metrics-list { display: none; } /* hide sidebar */
+            .metric-chips { display: flex; } /* show chips */
+
+            .metric-card { padding: 1.2rem 1rem; }
+            .metric-formula-inline { font-size: 0.78rem; padding: 0.1rem 0.6rem; max-width: 100%; white-space: normal; line-height: 1.5; }
+
+            .result-main { flex-direction: column; align-items: stretch; gap: 0.6rem; }
+            .result-right { width: 100%; }
+            .insight-message { max-width: 100%; }
+            .copy-btn { align-self: flex-start; }
+        }
+
+        /* ===================== MOBILE ≤480px ===================== */
         @media (max-width: 480px) {
-            body { padding: 0.6rem 0.6rem 1rem; }
-            .header-left h1 { font-size: 1.1rem; }
-            .search-input { width: 130px; }
-            .metric-card { padding: 1rem; }
+            body { padding: 0.6rem 0.6rem 1.2rem; }
+            .header-left h1 { font-size: 1.05rem; }
+            .section-card { min-width: 100px; padding: 0.6rem 0.8rem; }
+            .metric-card { padding: 1rem 0.85rem; }
+            .result-value { font-size: 1.9rem; }
+            .threshold-hint { font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -117,28 +596,35 @@
         <div class="header-left">
             <h1>Интерактивный справочник с расчётом продуктовых метрик</h1>
             <div class="subtitle">
-                <span>Создатель продукта:</span>
+                <span>Создатель:</span>
                 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank" rel="noopener">Родион Латыпов</a>
                 <span>· BizDev, Sales, Product, Troubleshooter, Advisor, Consultant</span>
             </div>
         </div>
         <div class="header-right">
+            <button class="theme-toggle" id="themeToggle" title="Переключить тему" aria-label="Переключить тему">🌙</button>
             <div class="search-wrap">
                 <span class="search-icon">🔍</span>
-                <input type="text" class="search-input" id="searchInput" placeholder="Поиск метрики…">
+                <input type="text" class="search-input" id="searchInput" placeholder="Поиск метрики…" autocomplete="off">
+                <button class="search-clear" id="searchClear" title="Очистить поиск" aria-label="Очистить">×</button>
             </div>
             <button class="clear-btn" id="clearAllBtn">Очистить всё</button>
         </div>
     </div>
 
-    <div class="sections-nav" id="sectionsNav">
-        <div class="section-card active" data-section="b2c"><h3>B2C</h3><p>DAU, MAU, LTV, CAC, ARPU, Churn, Stickiness, LTV:CAC</p></div>
-        <div class="section-card" data-section="b2b"><h3>B2B</h3><p>MRR, ARR, ACV, GRR, NRR, CAC Payback</p></div>
-        <div class="section-card" data-section="sales"><h3>AAARR</h3><p>Acquisition · Activation · Retention · Referral · Revenue</p></div>
-        <div class="section-card" data-section="growth"><h3>Growth</h3><p>CR · ROAS · CPC · Bounce Rate · CTR</p></div>
-        <div class="section-card" data-section="qa"><h3>QA</h3><p>Bug Rate · Test Coverage · Defect Density</p></div>
-        <div class="section-card" data-section="support"><h3>Support</h3><p>CSAT · NPS · FCR · SLA</p></div>
+    <div class="sections-nav-wrap">
+        <div class="sections-nav" id="sectionsNav">
+            <div class="section-card active" data-section="b2c"><h3>B2C</h3><p>DAU, MAU, LTV, CAC, ARPU, Churn, Stickiness, LTV:CAC</p></div>
+            <div class="section-card" data-section="b2b"><h3>B2B</h3><p>MRR, ARR, ACV, GRR, NRR, CAC Payback</p></div>
+            <div class="section-card" data-section="sales"><h3>AAARR</h3><p>Acquisition · Activation · Retention · Referral · Revenue</p></div>
+            <div class="section-card" data-section="growth"><h3>Growth</h3><p>CR · ROAS · CPC · Bounce Rate · CTR</p></div>
+            <div class="section-card" data-section="qa"><h3>QA</h3><p>Bug Rate · Test Coverage · Defect Density</p></div>
+            <div class="section-card" data-section="support"><h3>Support</h3><p>CSAT · NPS · FCR · SLA</p></div>
+        </div>
     </div>
+
+    <!-- Mobile metric chips (shown instead of sidebar on mobile) -->
+    <div class="metric-chips" id="metricChips"></div>
 
     <div class="metrics-area">
         <div class="metrics-list" id="metricsList">
@@ -186,6 +672,22 @@
 <script>
 (function() {
     const LS_KEY = 'metricsTree_v2';
+    const LS_THEME = 'metricsTree_theme';
+
+    // ---- Тема ----
+    (function initTheme() {
+        const saved = localStorage.getItem(LS_THEME) || 'dark';
+        document.documentElement.setAttribute('data-theme', saved);
+        document.getElementById('themeToggle').textContent = saved === 'dark' ? '🌙' : '☀️';
+    })();
+
+    document.getElementById('themeToggle').addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme');
+        const next = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        document.getElementById('themeToggle').textContent = next === 'dark' ? '🌙' : '☀️';
+        try { localStorage.setItem(LS_THEME, next); } catch {}
+    });
 
     // ---- Загрузка/сохранение из localStorage ----
     function loadFromLS() {
@@ -282,7 +784,7 @@
                 },
                 {
                     id: 'ltv', name: 'LTV',
-                    formula: 'Средний чек (AOV) × Частота покупок в год × Время жизни (лет)',
+                    formula: 'AOV × Частота покупок в год × Время жизни (лет)',
                     description: 'Lifetime Value — сколько денег приносит клиент за всё время.',
                     threshold: 'Плохо: <$1k, Средне: $1k–$5k, Хорошо: >$5k',
                     inputs: [
@@ -373,7 +875,7 @@
                 },
                 {
                     id: 'churn', name: 'Churn Rate',
-                    formula: '(Ушедшие пользователи / Всего пользователей) × 100%',
+                    formula: '(Ушедшие / Всего пользователей) × 100%',
                     description: 'Процент пользователей, переставших пользоваться продуктом за период.',
                     threshold: 'Плохо: >10%, Средне: 5–10%, Хорошо: <5%',
                     inputs: [
@@ -586,7 +1088,7 @@
                 {
                     id: 'referral', name: 'Referral (K-factor)',
                     formula: 'Приглашённые пользователи / Активные (отправившие приглашения)',
-                    description: 'Коэффициент виральности — сколько новых пользователей в среднем приводит один существующий. >1 = вирусный рост.',
+                    description: 'Коэффициент виральности — сколько новых пользователей приводит один существующий. >1 = вирусный рост.',
                     threshold: 'Плохо: <0.5, Средне: 0.5–1, Хорошо: >1',
                     inputs: [
                         { label: 'Приглашённые (зарегистрировались по инвайту)', placeholder: '300', key: 'invited', min: 0 },
@@ -649,7 +1151,7 @@
                 {
                     id: 'roas', name: 'ROAS',
                     formula: 'Выручка от рекламы / Затраты на рекламу',
-                    description: 'Return on Ad Spend — возврат с рекламных расходов. Показывает, сколько выручки приносит каждый вложенный рубль/доллар.',
+                    description: 'Return on Ad Spend — возврат с рекламных расходов. Сколько выручки приносит каждый вложенный рубль/доллар.',
                     threshold: 'Плохо: <2x, Средне: 2–4x, Хорошо: >4x',
                     inputs: [
                         { label: 'Выручка от рекламы, $', placeholder: '120000', key: 'revenue', min: 0 },
@@ -672,7 +1174,7 @@
                     id: 'cpc', name: 'CPC',
                     formula: 'Затраты на рекламу / Количество кликов',
                     description: 'Cost Per Click — стоимость одного клика по рекламному объявлению.',
-                    threshold: 'Зависит от индустрии. SaaS: <$5 хорошо, e-com: <$1 хорошо',
+                    threshold: 'SaaS: <$5 хорошо, e-com: <$1 хорошо',
                     inputs: [
                         { label: 'Затраты на рекламу, $', placeholder: '5000', key: 'spend', min: 0 },
                         { label: 'Количество кликов', placeholder: '10000', key: 'clicks', min: 1 }
@@ -834,7 +1336,7 @@
                 },
                 {
                     id: 'nps', name: 'NPS',
-                    formula: '(% Промоутеров − % Детракторов) = (Промоутеры − Детракторы) / Всего × 100',
+                    formula: '(% Промоутеров − % Детракторов) = (Пром. − Детр.) / Всего × 100',
                     description: 'Net Promoter Score — готовность рекомендовать продукт. Диапазон: −100 до +100.',
                     threshold: 'Плохо: <0, Средне: 0–30, Хорошо: >30, Отлично: >50',
                     inputs: [
@@ -913,6 +1415,7 @@
     // ---- DOM ----
     const sectionCards = document.querySelectorAll('.section-card');
     const metricsListDiv = document.getElementById('metricsListItems');
+    const metricChipsDiv = document.getElementById('metricChips');
     const sectionTitleEl = document.getElementById('sectionTitle');
     const metricNameEl = document.getElementById('metricName');
     const formulaInlineEl = document.getElementById('formulaInline');
@@ -926,6 +1429,7 @@
     const clearBtn = document.getElementById('clearAllBtn');
     const copyBtn = document.getElementById('copyBtn');
     const searchInput = document.getElementById('searchInput');
+    const searchClear = document.getElementById('searchClear');
     const noResults = document.getElementById('noResults');
     const modalOverlay = document.getElementById('modalOverlay');
     const modalCancel = document.getElementById('modalCancel');
@@ -940,11 +1444,11 @@
 
     function getFieldErrorMessage(inp, val) {
         const num = parseFloat(val);
-        if (val.trim() === '') return null; // пустое поле — просто нет результата
-        if (isNaN(num)) return `Введите числовое значение`;
-        if (num < 0) return `Значение не может быть отрицательным`;
+        if (val.trim() === '') return null;
+        if (isNaN(num)) return 'Введите числовое значение';
+        if (num < 0) return 'Значение не может быть отрицательным';
         if (inp.min !== undefined && num < inp.min) {
-            if (inp.min === 1) return `Значение должно быть больше 0 (деление на ноль недопустимо)`;
+            if (inp.min === 1 || inp.min === 0.01) return 'Значение должно быть больше 0 (деление на ноль недопустимо)';
             return `Минимальное значение: ${inp.min}`;
         }
         if (inp.max !== undefined && num > inp.max) return `Максимальное значение: ${inp.max}`;
@@ -1026,9 +1530,11 @@
             resultValue.style.color = ins.color;
             insightMessage.textContent = ins.text;
             insightMessage.style.borderLeftColor = ins.color;
+            insightMessage.style.display = '';
         } else {
-            resultValue.style.color = '#2A6DF4';
+            resultValue.style.color = 'var(--accent)';
             insightMessage.textContent = '';
+            insightMessage.style.display = 'none';
         }
 
         resultBlock.style.display = 'block';
@@ -1079,21 +1585,30 @@
         if (!section) return;
         sectionTitleEl.textContent = `Метрики ${section.name}`;
 
-        let html = '';
+        const q = searchQuery.toLowerCase();
+        let listHtml = '';
+        let chipsHtml = '';
         let visibleCount = 0;
+
         section.metrics.forEach(metric => {
             const activeClass = metric.id === currentMetricId ? ' active' : '';
-            const q = searchQuery.toLowerCase();
             const match = !q || metric.name.toLowerCase().includes(q) || metric.description.toLowerCase().includes(q);
             const hiddenClass = match ? '' : ' hidden';
             if (match) visibleCount++;
-            html += `<div class="metric-item${activeClass}${hiddenClass}" data-metric-id="${metric.id}">${metric.name}</div>`;
+            listHtml += `<div class="metric-item${activeClass}${hiddenClass}" data-metric-id="${metric.id}">${metric.name}</div>`;
+            chipsHtml += `<div class="metric-chip${activeClass}${hiddenClass}" data-metric-id="${metric.id}">${metric.name}</div>`;
         });
-        metricsListDiv.innerHTML = html;
 
+        metricsListDiv.innerHTML = listHtml;
+        metricChipsDiv.innerHTML = chipsHtml;
         noResults.classList.toggle('show', visibleCount === 0);
 
-        document.querySelectorAll('.metric-item').forEach(item => {
+        // Scroll active chip into view
+        const activeChip = metricChipsDiv.querySelector('.metric-chip.active');
+        if (activeChip) activeChip.scrollIntoView({ inline: 'nearest', behavior: 'smooth' });
+
+        // Bind clicks on both list items and chips
+        document.querySelectorAll('.metric-item, .metric-chip').forEach(item => {
             item.addEventListener('click', () => {
                 const metricId = item.dataset.metricId;
                 if (metricId && metricId !== currentMetricId) {
@@ -1120,7 +1635,7 @@
             inputsHtml += `
                 <div class="input-group">
                     <label for="input-${inp.key}">${inp.label}</label>
-                    <input type="number" id="input-${inp.key}" placeholder="${inp.placeholder}" step="any" value="" autocomplete="off">
+                    <input type="number" id="input-${inp.key}" placeholder="${inp.placeholder}" step="any" value="" autocomplete="off" inputmode="decimal">
                     <div class="input-error-msg" id="err-${inp.key}"></div>
                 </div>`;
         });
@@ -1151,8 +1666,6 @@
 
         const section = metricsData[sectionId];
         if (section && section.metrics.length > 0) {
-            currentSection = sectionId;
-            // выбрать первую видимую или просто первую
             const q = searchQuery.toLowerCase();
             const visible = section.metrics.filter(m =>
                 !q || m.name.toLowerCase().includes(q) || m.description.toLowerCase().includes(q)
@@ -1169,20 +1682,19 @@
         const metric = getCurrentMetric();
         const rawText = resultValue.textContent || resultValue.innerText || '';
         const insightText = insightMessage.textContent;
-        const textToCopy = metric ? `${metric.name}: ${rawText.trim()} | ${insightText}` : rawText.trim();
+        const textToCopy = metric ? `${metric.name}: ${rawText.trim()}${insightText ? ' | ' + insightText : ''}` : rawText.trim();
         navigator.clipboard.writeText(textToCopy).then(() => {
-            copyBtn.textContent = 'Скопировано!';
+            copyBtn.textContent = '✓ Скопировано';
             copyBtn.classList.add('copied');
             setTimeout(() => { copyBtn.textContent = 'Копировать'; copyBtn.classList.remove('copied'); }, 2000);
         }).catch(() => {
-            // fallback для браузеров без clipboard API
             const ta = document.createElement('textarea');
             ta.value = textToCopy;
-            ta.style.position = 'fixed'; ta.style.opacity = '0';
+            ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
             document.body.appendChild(ta); ta.select();
             document.execCommand('copy');
             document.body.removeChild(ta);
-            copyBtn.textContent = 'Скопировано!';
+            copyBtn.textContent = '✓ Скопировано';
             copyBtn.classList.add('copied');
             setTimeout(() => { copyBtn.textContent = 'Копировать'; copyBtn.classList.remove('copied'); }, 2000);
         });
@@ -1191,10 +1703,12 @@
     // ---- ПОИСК ----
     let searchTimeout;
     searchInput.addEventListener('input', () => {
+        const val = searchInput.value.trim();
+        searchClear.classList.toggle('visible', val.length > 0);
+
         clearTimeout(searchTimeout);
         searchTimeout = setTimeout(() => {
-            searchQuery = searchInput.value.trim();
-            // Если поиск — искать по всем секциям, показывать первую найденную
+            searchQuery = val;
             if (searchQuery) {
                 for (const sectionId of Object.keys(metricsData)) {
                     const section = metricsData[sectionId];
@@ -1209,35 +1723,33 @@
                             sectionCards.forEach(c => c.classList.toggle('active', c.dataset.section === sectionId));
                         }
                         currentMetricId = found.id;
+                        renderMetricCard();
                         break;
                     }
                 }
             }
             renderMetricsList();
-            if (!searchQuery) renderMetricCard();
         }, 200);
     });
 
+    searchClear.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        searchClear.classList.remove('visible');
+        renderMetricsList();
+    });
+
     // ---- МОДАЛКА ОЧИСТКИ ----
-    clearBtn.addEventListener('click', () => {
-        modalOverlay.classList.add('show');
-    });
-    modalCancel.addEventListener('click', () => {
-        modalOverlay.classList.remove('show');
-    });
-    modalConfirm.addEventListener('click', () => {
-        modalOverlay.classList.remove('show');
-        clearAll();
-    });
-    modalOverlay.addEventListener('click', e => {
-        if (e.target === modalOverlay) modalOverlay.classList.remove('show');
-    });
+    clearBtn.addEventListener('click', () => { modalOverlay.classList.add('show'); });
+    modalCancel.addEventListener('click', () => { modalOverlay.classList.remove('show'); });
+    modalConfirm.addEventListener('click', () => { modalOverlay.classList.remove('show'); clearAll(); });
+    modalOverlay.addEventListener('click', e => { if (e.target === modalOverlay) modalOverlay.classList.remove('show'); });
 
     // ---- СЕКЦИИ ----
     sectionCards.forEach(card => {
         card.addEventListener('click', () => {
             const sectionId = card.dataset.section;
-            if (sectionId) { searchInput.value = ''; searchQuery = ''; setActiveSection(sectionId); }
+            if (sectionId) { searchInput.value = ''; searchQuery = ''; searchClear.classList.remove('visible'); setActiveSection(sectionId); }
         });
     });
 
