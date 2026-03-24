@@ -1786,7 +1786,7 @@
             inputsHtml += `
                 <div class="input-group">
                     <label for="input-${inp.key}">${inp.label}</label>
-                    <input type="number" id="input-${inp.key}" placeholder="${inp.placeholder}" step="any" value="" autocomplete="off" inputmode="decimal">
+                    <input type="number" id="input-${inp.key}" placeholder="${formatNum(inp.placeholder)}" step="any" value="" autocomplete="off" inputmode="decimal">
                     <div class="input-error-msg" id="err-${inp.key}"></div>
                 </div>`;
         });
