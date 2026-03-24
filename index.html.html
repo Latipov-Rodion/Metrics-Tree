@@ -372,10 +372,18 @@
         }
         .metric-header {
             display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-bottom: 0.4rem;
+        }
+        .metric-header-left {
+            display: flex;
             align-items: center;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-bottom: 0.4rem;
+            flex: 1 1 auto;
+            min-width: 0;
         }
         .metric-header h2 {
             font-size: clamp(1.4rem, 4vw, 1.9rem);
@@ -526,9 +534,10 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.35rem;
-            margin-bottom: 1.2rem;
-            padding-bottom: 0.8rem;
-            border-bottom: 1px solid var(--border);
+            justify-content: flex-end;
+            flex-shrink: 0;
+            max-width: 200px;
+            padding-top: 0.25rem;
         }
         .bench {
             font-size: 0.74rem;
@@ -543,17 +552,6 @@
         .bench-good { background: rgba(76,175,80,0.1);          color: var(--green); border: 1px solid rgba(76,175,80,0.3); }
         html[data-theme="light"] .bench-mid { color: #7a4f00; }
 
-        /* ===================== EMPTY STATE ===================== */
-        .empty-hint {
-            display: none;
-            text-align: center;
-            padding: 1.2rem 0 0.2rem;
-            color: var(--text-3);
-            font-size: 0.88rem;
-            gap: 0.4rem;
-        }
-        .empty-hint.show { display: flex; flex-direction: column; align-items: center; }
-        .empty-hint-icon { font-size: 1.6rem; opacity: 0.4; }
 
         /* ===================== METRIC DOT ===================== */
         .metric-item-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
@@ -744,16 +742,14 @@
         </div>
         <div class="metric-card" id="metricCard">
             <div class="metric-header">
-                <h2 id="metricName"></h2>
-                <span class="metric-formula-inline" id="formulaInline"></span>
+                <div class="metric-header-left">
+                    <h2 id="metricName"></h2>
+                    <span class="metric-formula-inline" id="formulaInline"></span>
+                </div>
+                <div class="benchmarks" id="benchmarks"></div>
             </div>
             <div class="metric-description" id="metricDesc"></div>
-            <div class="benchmarks" id="benchmarks"></div>
             <div id="inputFields"></div>
-            <div class="empty-hint" id="emptyHint">
-                <span class="empty-hint-icon">📊</span>
-                <span>Введите значения выше, чтобы получить результат</span>
-            </div>
             <div class="validation-error" id="validationError"></div>
             <div class="result-block" id="resultBlock" style="display:none;">
                 <div class="result-main">
@@ -1576,7 +1572,6 @@
     const searchDropdown = document.getElementById('searchDropdown');
     const noResults = document.getElementById('noResults');
     const benchmarksEl = document.getElementById('benchmarks');
-    const emptyHint = document.getElementById('emptyHint');
     const metricCard = document.getElementById('metricCard');
     const modalOverlay = document.getElementById('modalOverlay');
     const modalCancel = document.getElementById('modalCancel');
@@ -1658,10 +1653,8 @@
 
         if (!hasAnyValue) {
             resultBlock.style.display = 'none';
-            emptyHint.classList.add('show');
             return;
         }
-        emptyHint.classList.remove('show');
 
         if (!allValid) {
             resultBlock.style.display = 'none';
@@ -1814,7 +1807,6 @@
         });
         inputFieldsDiv.innerHTML = inputsHtml;
 
-        emptyHint.classList.remove('show');
         validationError.classList.remove('show');
         resultBlock.style.display = 'none';
 
