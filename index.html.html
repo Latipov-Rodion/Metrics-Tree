@@ -818,7 +818,8 @@
 
     // ---- Валидация числа ----
     function sanitizeNumber(value) {
-        const num = parseFloat(value);
+        const clean = String(value).replace(/[\u00A0 ]/g, '');
+        const num = parseFloat(clean);
         return isNaN(num) ? null : num;
     }
 
@@ -826,6 +827,25 @@
         const parts = String(str).split('.');
         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0');
         return parts.join('.');
+    }
+
+    function formatInputEl(el) {
+        const raw = el.value;
+        const pos = el.selectionStart;
+        const digitsBefore = raw.slice(0, pos).replace(/\D/g, '').length;
+        const clean = raw.replace(/[\u00A0 ]/g, '');
+        if (!clean) return;
+        const formatted = formatNum(clean);
+        if (formatted === raw) return;
+        el.value = formatted;
+        // Restore cursor: place it after the same number of digits as before
+        let count = 0, newPos = formatted.length;
+        for (let i = 0; i < formatted.length; i++) {
+            if (/\d/.test(formatted[i])) count++;
+            if (count === digitsBefore && digitsBefore > 0) { newPos = i + 1; break; }
+        }
+        if (digitsBefore === 0) newPos = 0;
+        el.setSelectionRange(newPos, newPos);
     }
 
     // ---- ДАННЫЕ МЕТРИК ----
@@ -1581,8 +1601,9 @@
     }
 
     function getFieldErrorMessage(inp, val) {
-        const num = parseFloat(val);
-        if (val.trim() === '') return null;
+        const clean = val.replace(/[\u00A0 ]/g, '');
+        const num = parseFloat(clean);
+        if (clean === '') return null;
         if (isNaN(num)) return 'Введите числовое значение';
         if (num < 0) return 'Значение не может быть отрицательным';
         if (inp.min !== undefined && num < inp.min) {
@@ -1604,7 +1625,7 @@
             const errEl = document.getElementById(`err-${inp.key}`);
             if (!el) return;
 
-            const val = el.value.trim();
+            const val = el.value.replace(/[\u00A0 ]/g, '');
             const errMsg = getFieldErrorMessage(inp, val);
 
             if (val !== '') hasAnyValue = true;
@@ -1689,7 +1710,7 @@
         const values = {};
         metric.inputs.forEach(inp => {
             const el = document.getElementById(`input-${inp.key}`);
-            if (el) values[inp.key] = el.value;
+            if (el) values[inp.key] = el.value.replace(/[\u00A0 ]/g, '');
         });
         storedValues[currentMetricId] = values;
         saveToLS(storedValues);
@@ -1702,7 +1723,8 @@
         metric.inputs.forEach(inp => {
             const el = document.getElementById(`input-${inp.key}`);
             if (!el) return;
-            el.value = (saved && saved[inp.key] !== undefined) ? saved[inp.key] : '';
+            const raw = (saved && saved[inp.key] !== undefined) ? saved[inp.key] : '';
+            el.value = raw ? formatNum(raw) : '';
         });
     }
 
@@ -1786,7 +1808,7 @@
             inputsHtml += `
                 <div class="input-group">
                     <label for="input-${inp.key}">${inp.label}</label>
-                    <input type="number" id="input-${inp.key}" placeholder="${formatNum(inp.placeholder)}" step="any" value="" autocomplete="off" inputmode="decimal">
+                    <input type="text" id="input-${inp.key}" placeholder="${formatNum(inp.placeholder)}" value="" autocomplete="off" inputmode="decimal">
                     <div class="input-error-msg" id="err-${inp.key}"></div>
                 </div>`;
         });
@@ -1801,7 +1823,7 @@
         metric.inputs.forEach(inp => {
             const el = document.getElementById(`input-${inp.key}`);
             if (el) {
-                el.addEventListener('input', () => { saveCurrentValues(); updateResult(); renderMetricsList(); });
+                el.addEventListener('input', () => { formatInputEl(el); saveCurrentValues(); updateResult(); renderMetricsList(); });
             }
         });
 
