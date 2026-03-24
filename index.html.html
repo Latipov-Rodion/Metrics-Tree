@@ -880,7 +880,7 @@
                     id: 'stickiness', name: 'Stickiness (DAU/MAU)',
                     formula: '(DAU / MAU) × 100%',
                     description: 'Показывает, какая доля месячной аудитории возвращается ежедневно. Чем выше — тем более «липкий» продукт.',
-                    threshold: 'Плохо: <10%, Средне: 10–25%, Хорошо: >25% (Facebook ~50%)',
+                    threshold: 'Плохо: <10%, Средне: 10–25%, Хорошо: >25%',
                     inputs: [
                         { label: 'DAU (дневные активные)', placeholder: '15000', key: 'dau', min: 0 },
                         { label: 'MAU (месячные активные)', placeholder: '100000', key: 'mau', min: 1 }
@@ -970,7 +970,7 @@
                     id: 'ltv_cac', name: 'LTV:CAC Ratio',
                     formula: 'LTV / CAC',
                     description: 'Соотношение ценности клиента к стоимости его привлечения. Норма >3:1. При <1:1 бизнес убыточен.',
-                    threshold: 'Плохо: <1, Средне: 1–3, Хорошо: >3 (оптимум 3–5)',
+                    threshold: 'Плохо: <1, Средне: 1–3, Хорошо: >3',
                     inputs: [
                         { label: 'LTV (ценность клиента), $', placeholder: '15000', key: 'ltv', min: 0 },
                         { label: 'CAC (стоимость привлечения), $', placeholder: '1000', key: 'cac', min: 1 }
@@ -1268,7 +1268,7 @@
                     id: 'cr', name: 'CR (Conversion Rate)',
                     formula: '(Конверсии / Посетители) × 100%',
                     description: 'Коэффициент конверсии — доля посетителей, совершивших целевое действие.',
-                    threshold: 'Плохо: <1%, Средне: 1–3%, Хорошо: >3% (e-commerce: норма 2–4%)',
+                    threshold: 'Плохо: <1%, Средне: 1–3%, Хорошо: >3%',
                     inputs: [
                         { label: 'Целевые действия (конверсии)', placeholder: '250', key: 'conversions', min: 0 },
                         { label: 'Всего посетителей', placeholder: '10000', key: 'visitors', min: 1 }
@@ -1585,7 +1585,7 @@
             if (low.startsWith('плохо')) cls = 'bench-bad';
             else if (low.startsWith('хорошо') || low.startsWith('отлично')) cls = 'bench-good';
             const label = part.split(':')[0].trim();
-            return `<span class="bench ${cls}" title="${part}">${label}</span>`;
+            return `<span class="bench ${cls}">${part}</span>`;
         }).join('');
     }
 
