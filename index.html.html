@@ -532,11 +532,10 @@
         /* ===================== BENCHMARKS PILLS ===================== */
         .benchmarks {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             gap: 0.35rem;
             justify-content: flex-end;
             flex-shrink: 0;
-            max-width: 200px;
             padding-top: 0.25rem;
         }
         .bench {
@@ -1585,7 +1584,8 @@
             let cls = 'bench-mid';
             if (low.startsWith('плохо')) cls = 'bench-bad';
             else if (low.startsWith('хорошо') || low.startsWith('отлично')) cls = 'bench-good';
-            return `<span class="bench ${cls}">${part}</span>`;
+            const label = part.split(':')[0].trim();
+            return `<span class="bench ${cls}" title="${part}">${label}</span>`;
         }).join('');
     }
 
