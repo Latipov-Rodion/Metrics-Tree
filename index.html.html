@@ -3,7 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Интерактивный справочник продуктовых метрик</title>
+    <title>Калькулятор продуктовых метрик — LTV, CAC, MRR, NPS, DAU и 35+</title>
+    <meta name="description" content="Бесплатный онлайн-калькулятор продуктовых метрик: LTV, CAC, MRR, ARR, NRR, DAU, MAU, Churn Rate, ROAS, NPS и ещё 25+ метрик с формулами, порогами и интерпретацией результата.">
+    <meta name="keywords" content="калькулятор LTV, расчёт CAC, MRR ARR калькулятор, NRR, DAU MAU stickiness, churn rate, ROAS, NPS CSAT, продуктовые метрики онлайн, product metrics calculator">
+    <meta name="author" content="Родион Латыпов">
+    <meta property="og:title" content="Калькулятор продуктовых метрик — LTV, CAC, MRR, NPS и 35+">
+    <meta property="og:description" content="Рассчитайте 35 метрик: B2C, B2B, Growth, AARRR, QA, Support. Формулы, пороги, инсайты. Бесплатно.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Калькулятор продуктовых метрик — 35+ формул">
+    <meta name="twitter:description" content="LTV, CAC, MRR, ARR, NRR, DAU, Churn Rate, ROAS, NPS и другие. Формулы, пороги, инсайты. Бесплатно.">
     <style>
         /* ===================== CSS VARIABLES ===================== */
         :root {
@@ -219,6 +228,48 @@
             white-space: nowrap;
         }
         .clear-btn:hover { background: var(--red); color: #fff; }
+
+        /* ===================== SHARE BUTTON ===================== */
+        .share-btn {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-size: 0.85rem;
+            padding: 0.5rem 1rem;
+            min-height: 38px;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all var(--transition);
+            font-weight: 500;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            flex-shrink: 0;
+        }
+        .share-btn:hover { background: var(--accent); color: #fff; }
+        .share-btn.shared { background: var(--green); border-color: var(--green); color: #fff; }
+        .share-btn-text { display: inline; }
+
+        /* ===================== EXPORT PNG BUTTON ===================== */
+        .export-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-2);
+            font-size: 0.82rem;
+            font-weight: 500;
+            padding: 0.45rem 0.85rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+            min-height: 36px;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            flex-shrink: 0;
+        }
+        .export-btn:hover { border-color: var(--accent); color: var(--accent); }
 
         /* ===================== SECTIONS NAV ===================== */
         .sections-nav-wrap { position: relative; margin-bottom: 1.25rem; }
@@ -707,6 +758,10 @@
             .bench { font-size: 0.68rem; padding: 0.12rem 0.5rem; }
             .copy-btn { font-size: 0.8rem; padding: 0.42rem 0.85rem; }
             .clear-btn { font-size: 0.8rem; padding: 0.42rem 0.75rem; }
+            /* Share button: icon-only on small screens */
+            .share-btn { padding: 0 0.6rem; width: 38px; justify-content: center; }
+            .share-btn-text { display: none; }
+            .export-btn { font-size: 0.78rem; padding: 0.4rem 0.7rem; }
         }
 
         /* ===================== MOBILE ≤360px (small Android) ===================== */
@@ -758,6 +813,10 @@
                 <button class="search-clear" id="searchClear" title="Очистить поиск" aria-label="Очистить">×</button>
                 <div class="search-dropdown" id="searchDropdown"></div>
             </div>
+            <button class="share-btn" id="shareLinkBtn" title="Поделиться ссылкой на эту метрику">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                <span class="share-btn-text">Поделиться</span>
+            </button>
             <button class="clear-btn" id="clearAllBtn">Очистить всё</button>
         </div>
     </div>
@@ -804,6 +863,10 @@
                         <button class="copy-btn" id="copyBtn" title="Копировать результат (Ctrl+C)">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                             Копировать
+                        </button>
+                        <button class="export-btn" id="exportPngBtn" title="Скачать карточку как PNG">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            PNG
                         </button>
                     </div>
                 </div>
@@ -1869,6 +1932,7 @@
         }
 
         updateResult();
+        updatePageTitle();
     }
 
     function setActiveSection(sectionId) {
@@ -2031,8 +2095,173 @@
         }
     });
 
+    // ---- URL SHARING ----
+    function buildShareURL() {
+        const metric = getCurrentMetric();
+        const params = new URLSearchParams();
+        params.set('s', currentSection);
+        params.set('m', currentMetricId);
+        if (metric) {
+            metric.inputs.forEach(inp => {
+                const el = document.getElementById(`input-${inp.key}`);
+                const raw = el ? el.value.replace(/[\u00A0\s]/g, '') : '';
+                if (raw) params.set(inp.key, raw);
+            });
+        }
+        const base = window.location.href.split('?')[0];
+        return `${base}?${params.toString()}`;
+    }
+
+    function restoreFromURL() {
+        const params = new URLSearchParams(window.location.search);
+        if (!params.has('s') && !params.has('m')) return false;
+        const s = params.get('s');
+        const m = params.get('m');
+        if (s && metricsData[s]) {
+            currentSection = s;
+            sectionCards.forEach(c => c.classList.toggle('active', c.dataset.section === s));
+        }
+        if (m && metricsData[currentSection]) {
+            const found = metricsData[currentSection].metrics.find(mx => mx.id === m);
+            if (found) currentMetricId = m;
+        }
+        const urlMetric = getCurrentMetric();
+        if (urlMetric) {
+            const urlVals = {};
+            urlMetric.inputs.forEach(inp => {
+                if (params.has(inp.key)) urlVals[inp.key] = params.get(inp.key);
+            });
+            if (Object.keys(urlVals).length > 0) {
+                storedValues[currentMetricId] = Object.assign({}, storedValues[currentMetricId], urlVals);
+            }
+        }
+        return true;
+    }
+
+    document.getElementById('shareLinkBtn').addEventListener('click', () => {
+        const url = buildShareURL();
+        const btn = document.getElementById('shareLinkBtn');
+        const textEl = btn.querySelector('.share-btn-text');
+        const origText = textEl ? textEl.textContent : '';
+        function onCopied() {
+            btn.classList.add('shared');
+            if (textEl) textEl.textContent = 'Скопировано!';
+            setTimeout(() => { btn.classList.remove('shared'); if (textEl) textEl.textContent = origText; }, 2000);
+        }
+        navigator.clipboard.writeText(url).then(onCopied).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = url; ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
+            document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+            onCopied();
+        });
+    });
+
+    // ---- PNG EXPORT ----
+    function _rrect(ctx, x, y, w, h, r) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y); ctx.lineTo(x + w - r, y);
+        ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+        ctx.lineTo(x + w, y + h - r);
+        ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+        ctx.lineTo(x + r, y + h);
+        ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+        ctx.lineTo(x, y + r);
+        ctx.quadraticCurveTo(x, y, x + r, y);
+        ctx.closePath();
+    }
+
+    function exportToPNG() {
+        const metric = getCurrentMetric();
+        if (!metric) return;
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        const W = 800, H = 440, P = 48;
+        const canvas = document.createElement('canvas');
+        canvas.width = W; canvas.height = H;
+        const ctx = canvas.getContext('2d');
+        const sans = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+        const mono = 'Menlo, "SF Mono", "Cascadia Code", monospace';
+
+        // Background
+        ctx.fillStyle = isDark ? '#1A1C1F' : '#FFFFFF';
+        ctx.fillRect(0, 0, W, H);
+
+        // Top accent bar
+        const grad = ctx.createLinearGradient(0, 0, W * 0.65, 0);
+        grad.addColorStop(0, isDark ? '#2A6DF4' : '#1A56DB');
+        grad.addColorStop(1, 'transparent');
+        ctx.fillStyle = grad; ctx.fillRect(0, 0, W, 4);
+
+        // Section label
+        ctx.font = `600 13px ${sans}`; ctx.fillStyle = isDark ? '#6b6f75' : '#9299A6';
+        ctx.fillText((metricsData[currentSection]?.name || currentSection).toUpperCase(), P, 52);
+
+        // Metric name
+        ctx.font = `700 44px ${sans}`; ctx.fillStyle = isDark ? '#E8EAED' : '#14171C';
+        ctx.fillText(metric.name, P, 110);
+
+        // Formula badge
+        ctx.font = `500 15px ${mono}`;
+        const fW = ctx.measureText(metric.formula).width + 24;
+        ctx.fillStyle = isDark ? 'rgba(42,109,244,0.15)' : 'rgba(26,86,219,0.1)';
+        _rrect(ctx, P, 122, fW, 32, 16); ctx.fill();
+        ctx.fillStyle = isDark ? '#2A6DF4' : '#1A56DB';
+        ctx.fillText(metric.formula, P + 12, 143);
+
+        // Divider
+        ctx.strokeStyle = isDark ? '#2C2F33' : '#DDE0E6'; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(P, 172); ctx.lineTo(W - P, 172); ctx.stroke();
+
+        // Result label
+        ctx.font = `600 11px ${sans}`; ctx.fillStyle = isDark ? '#6b6f75' : '#9299A6';
+        ctx.fillText('РЕЗУЛЬТАТ', P, 208);
+
+        // Result value
+        const rawText = (resultValue.textContent || '').trim();
+        const insightColor = resultValue.style.color || (isDark ? '#E8EAED' : '#14171C');
+        ctx.font = `800 68px ${sans}`; ctx.fillStyle = insightColor;
+        ctx.fillText(rawText, P, 290);
+
+        // Insight pill
+        const insightText = insightMessage.textContent;
+        if (insightText) {
+            ctx.font = `500 15px ${sans}`;
+            const iW = ctx.measureText(insightText).width + 36;
+            ctx.fillStyle = insightColor + '22';
+            _rrect(ctx, P, 308, iW, 40, 8); ctx.fill();
+            ctx.fillStyle = insightColor;
+            _rrect(ctx, P, 308, 4, 40, 2); ctx.fill();
+            ctx.fillStyle = isDark ? '#E8EAED' : '#14171C';
+            ctx.fillText(insightText, P + 18, 334);
+        }
+
+        // Branding
+        ctx.font = `400 12px ${sans}`; ctx.fillStyle = isDark ? '#3a3d42' : '#C8CBD2';
+        ctx.fillText('metrics-tree  ·  Родион Латыпов', P, H - 22);
+
+        const link = document.createElement('a');
+        link.download = `${metric.id.replace(/[^a-z0-9]/gi, '-')}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+    }
+
+    document.getElementById('exportPngBtn').addEventListener('click', exportToPNG);
+
+    // ---- DYNAMIC TITLE ----
+    function updatePageTitle() {
+        const metric = getCurrentMetric();
+        if (metric) document.title = `${metric.name} — калькулятор продуктовых метрик`;
+    }
+
     // ---- INIT ----
-    setActiveSection('b2c');
+    const _restoredFromURL = restoreFromURL();
+    if (_restoredFromURL) {
+        // Состояние уже восстановлено из URL — рендерим напрямую, не сбрасывая currentMetricId
+        renderMetricsList();
+        renderMetricCard();
+    } else {
+        setActiveSection('b2c');
+    }
+    updatePageTitle();
 })();
 </script>
 </body>
