@@ -271,6 +271,39 @@
         }
         .export-btn:hover { border-color: var(--accent); color: var(--accent); }
 
+        /* ===================== RELATED METRICS ===================== */
+        .related-block {
+            margin-top: 1rem;
+            padding-top: 0.85rem;
+            border-top: 1px dashed var(--border);
+        }
+        .related-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-3);
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            margin-bottom: 0.5rem;
+        }
+        .related-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .related-chip {
+            padding: 0.35rem 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-2);
+            background: var(--bg-card);
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        .related-chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+        .related-chip-arrow { font-size: 0.7rem; opacity: 0.55; }
+
         /* ===================== SECTIONS NAV ===================== */
         .sections-nav-wrap { position: relative; margin-bottom: 1.25rem; }
         .sections-nav {
@@ -871,6 +904,7 @@
                     </div>
                 </div>
             </div>
+            <div class="related-block" id="relatedBlock" style="display:none;"></div>
         </div>
     </div>
 </div>
@@ -1933,6 +1967,7 @@
 
         updateResult();
         updatePageTitle();
+        renderRelated(metric.id);
     }
 
     function setActiveSection(sectionId) {
@@ -2094,6 +2129,109 @@
             navigateMetrics(e.key === 'ArrowDown' ? 1 : -1);
         }
     });
+
+    // ---- RELATED METRICS ----
+    const RELATED = {
+        dau:          [{ s:'b2c', id:'mau',       note:'Нужен для расчёта Stickiness' },
+                       { s:'b2c', id:'stickiness', note:'Stickiness = DAU / MAU' }],
+        mau:          [{ s:'b2c', id:'stickiness', note:'Stickiness = DAU / MAU' },
+                       { s:'b2c', id:'arpu',       note:'ARPU считается по активным' }],
+        stickiness:   [{ s:'b2c', id:'dau',       note:'Числитель формулы' },
+                       { s:'b2c', id:'mau',        note:'Знаменатель формулы' },
+                       { s:'b2c', id:'retention',  note:'Связана с удержанием' }],
+        retention:    [{ s:'b2c', id:'churn',     note:'Churn = 1 − Retention' },
+                       { s:'b2c', id:'ltv',        note:'Retention напрямую влияет на LTV' }],
+        ltv:          [{ s:'b2c', id:'cac',       note:'LTV должен быть > 3× CAC' },
+                       { s:'b2c', id:'ltv_cac',   note:'LTV:CAC — ключевое соотношение' },
+                       { s:'b2c', id:'arpu',       note:'ARPU — компонент LTV' }],
+        cac:          [{ s:'b2c', id:'ltv',       note:'LTV должен быть > 3× CAC' },
+                       { s:'b2c', id:'ltv_cac',   note:'LTV:CAC — ключевое соотношение' },
+                       { s:'b2b', id:'cacPayback', note:'Payback Period по этому CAC' }],
+        ltv_cac:      [{ s:'b2c', id:'ltv',       note:'Числитель соотношения' },
+                       { s:'b2c', id:'cac',        note:'Знаменатель соотношения' }],
+        arpu:         [{ s:'b2c', id:'ltv',       note:'ARPU × частота × срок = LTV' },
+                       { s:'b2b', id:'mrr',        note:'MRR — B2B-аналог ARPU' }],
+        churn:        [{ s:'b2c', id:'retention', note:'Retention = 1 − Churn' },
+                       { s:'b2b', id:'nrr',        note:'Высокий Churn снижает NRR' },
+                       { s:'b2c', id:'ltv',        note:'Churn сокращает LTV' }],
+        mrr:          [{ s:'b2b', id:'arr',        note:'ARR = MRR × 12' },
+                       { s:'b2b', id:'nrr',        note:'NRR показывает рост MRR' },
+                       { s:'b2b', id:'grr',        note:'GRR — удержание без роста' }],
+        arr:          [{ s:'b2b', id:'mrr',        note:'MRR — ежемесячный источник' },
+                       { s:'b2b', id:'nrr',        note:'NRR определяет рост ARR' }],
+        acv:          [{ s:'b2b', id:'mrr',        note:'MRR vs ACV: разные модели' },
+                       { s:'b2b', id:'cacPayback', note:'ACV определяет Payback Period' }],
+        grr:          [{ s:'b2b', id:'nrr',        note:'NRR = GRR + апселы' },
+                       { s:'b2b', id:'mrr',        note:'GRR считается от MRR' },
+                       { s:'b2c', id:'churn',      note:'Churn — обратная сторона GRR' }],
+        nrr:          [{ s:'b2b', id:'grr',        note:'GRR без учёта апселов' },
+                       { s:'b2b', id:'mrr',        note:'NRR считается от MRR' },
+                       { s:'b2c', id:'churn',      note:'Churn снижает NRR' }],
+        cacPayback:   [{ s:'b2c', id:'cac',        note:'CAC — числитель Payback' },
+                       { s:'b2b', id:'mrr',        note:'MRR на клиента — знаменатель' }],
+        acquisition:  [{ s:'sales', id:'activation', note:'Activation Rate из пришедших' },
+                       { s:'growth', id:'cr',        note:'CR влияет на Acquisition' }],
+        activation:   [{ s:'sales', id:'acquisition',    note:'Acquisition даёт базу' },
+                       { s:'sales', id:'retention_aarrr', note:'Следующий шаг воронки' }],
+        retention_aarrr:[{ s:'b2c', id:'retention',      note:'Retention в B2C-модели' },
+                         { s:'sales', id:'activation',    note:'Activation предшествует' }],
+        referral:     [{ s:'sales', id:'acquisition', note:'Referral усиливает Acquisition' }],
+        revenue:      [{ s:'b2c', id:'arpu',   note:'ARPU = Revenue / Users' },
+                       { s:'b2b', id:'mrr',    note:'MRR — основной B2B-аналог' }],
+        cr:           [{ s:'growth', id:'roas',      note:'CR влияет на итоговый ROAS' },
+                       { s:'growth', id:'cpc',       note:'CPC × CR = стоимость клиента' },
+                       { s:'growth', id:'bounceRate', note:'Высокий Bounce снижает CR' }],
+        roas:         [{ s:'growth', id:'cr',  note:'CR — компонент ROAS' },
+                       { s:'growth', id:'cpc', note:'CPC влияет на ROAS' },
+                       { s:'b2c',   id:'cac',  note:'CAC = CPC / CR' }],
+        cpc:          [{ s:'growth', id:'ctr',  note:'CTR определяет CPC' },
+                       { s:'growth', id:'roas', note:'CPC влияет на ROAS' }],
+        ctr:          [{ s:'growth', id:'cpc',       note:'CTR определяет CPC' },
+                       { s:'growth', id:'bounceRate', note:'CTR и Bounce — пара' }],
+        bounceRate:   [{ s:'growth', id:'cr',  note:'Bounce влияет на CR' },
+                       { s:'growth', id:'ctr', note:'CTR и Bounce — пара' }],
+        bugRate:      [{ s:'qa', id:'testCoverage',  note:'Coverage снижает Bug Rate' },
+                       { s:'qa', id:'defectDensity',  note:'Defect Density — схожая метрика' }],
+        testCoverage: [{ s:'qa', id:'bugRate',      note:'Coverage снижает Bug Rate' },
+                       { s:'qa', id:'defectDensity', note:'Coverage снижает дефекты' }],
+        defectDensity:[{ s:'qa', id:'testCoverage', note:'Coverage снижает дефекты' },
+                       { s:'qa', id:'bugRate',      note:'Bug Rate — схожая метрика' }],
+        csat:         [{ s:'support', id:'nps', note:'NPS — долгосрочный CSAT' },
+                       { s:'support', id:'fcr', note:'FCR напрямую влияет на CSAT' }],
+        nps:          [{ s:'support', id:'csat', note:'CSAT — краткосрочный аналог' },
+                       { s:'b2c',    id:'churn', note:'Низкий NPS предсказывает Churn' }],
+        fcr:          [{ s:'support', id:'csat', note:'FCR определяет CSAT' },
+                       { s:'support', id:'sla',  note:'SLA и FCR — пара' }],
+        sla:          [{ s:'support', id:'fcr',  note:'FCR и SLA — пара' },
+                       { s:'support', id:'csat', note:'SLA влияет на CSAT' }]
+    };
+
+    const relatedBlockEl = document.getElementById('relatedBlock');
+
+    function renderRelated(metricId) {
+        const rels = RELATED[metricId];
+        if (!rels || !rels.length) { relatedBlockEl.style.display = 'none'; return; }
+        let chips = '';
+        rels.forEach(r => {
+            const sec = metricsData[r.s];
+            const m = sec && sec.metrics.find(x => x.id === r.id);
+            if (!m) return;
+            chips += `<button class="related-chip" data-sid="${r.s}" data-mid="${r.id}" title="${r.note}">${m.name}<span class="related-chip-arrow">→</span></button>`;
+        });
+        if (!chips) { relatedBlockEl.style.display = 'none'; return; }
+        relatedBlockEl.innerHTML = `<div class="related-label">Смотрите также</div><div class="related-chips">${chips}</div>`;
+        relatedBlockEl.style.display = 'block';
+        relatedBlockEl.querySelectorAll('.related-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                saveCurrentValues();
+                currentSection = chip.dataset.sid;
+                currentMetricId = chip.dataset.mid;
+                sectionCards.forEach(c => c.classList.toggle('active', c.dataset.section === currentSection));
+                renderMetricsList();
+                renderMetricCard();
+            });
+        });
+    }
 
     // ---- URL SHARING ----
     function buildShareURL() {
