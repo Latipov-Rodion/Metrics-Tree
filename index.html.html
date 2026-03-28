@@ -335,6 +335,123 @@
         .industry-pill:hover { border-color: var(--accent); color: var(--accent); }
         .industry-pill.active { border-color: var(--accent); background: var(--accent); color: #fff; font-weight: 600; }
 
+        /* ===================== SCENARIO TEMPLATES ===================== */
+        .templates-btn {
+            display: inline-flex; align-items: center; gap: 0.3rem;
+            padding: 0.22rem 0.65rem; border: 1px dashed var(--border);
+            color: var(--text-3); border-radius: 2rem; font-size: 0.76rem;
+            font-weight: 600; cursor: pointer; background: transparent;
+            transition: all var(--transition); white-space: nowrap;
+        }
+        .templates-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .templates-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+            z-index: 200; display: flex; align-items: center; justify-content: center;
+            padding: 1rem;
+        }
+        .templates-modal {
+            background: var(--bg-card); border-radius: var(--radius-xl);
+            border: 1px solid var(--border); padding: 1.5rem;
+            max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto;
+            box-shadow: var(--shadow-md);
+        }
+        .templates-modal-title {
+            font-size: 1rem; font-weight: 700; margin-bottom: 0.35rem;
+        }
+        .templates-modal-sub {
+            font-size: 0.78rem; color: var(--text-3); margin-bottom: 1rem;
+        }
+        .templates-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 0.65rem; margin-bottom: 1rem;
+        }
+        .template-card {
+            background: var(--bg); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 0.85rem 1rem;
+            cursor: pointer; transition: border-color var(--transition), background var(--transition);
+        }
+        .template-card:hover { border-color: var(--accent); background: var(--accent-dim); }
+        .template-icon { font-size: 1.4rem; margin-bottom: 0.35rem; }
+        .template-name { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.15rem; }
+        .template-desc { font-size: 0.72rem; color: var(--text-3); margin-bottom: 0.5rem; }
+        .template-metrics-count { font-size: 0.68rem; color: var(--accent); font-weight: 600; }
+        .templates-close {
+            background: none; border: 1px solid var(--border); color: var(--text-2);
+            border-radius: var(--radius-sm); padding: 0.4rem 1rem;
+            cursor: pointer; font-size: 0.8rem;
+            transition: all var(--transition);
+        }
+        .templates-close:hover { border-color: var(--red); color: var(--red); }
+
+        /* ===================== DASHBOARD ===================== */
+        .dashboard-btn {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            padding: 0.3rem 0.75rem; background: transparent;
+            border: 1px solid var(--border); color: var(--text-2);
+            border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 600;
+            cursor: pointer; transition: all var(--transition); white-space: nowrap;
+        }
+        .dashboard-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .dashboard-overlay {
+            position: fixed; inset: 0; background: var(--bg);
+            z-index: 150; overflow-y: auto; padding: 1.25rem;
+            display: none;
+        }
+        .dashboard-overlay.open { display: block; }
+        .dashboard-header {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 1.25rem; gap: 1rem; flex-wrap: wrap;
+        }
+        .dashboard-title { font-size: 1.15rem; font-weight: 700; }
+        .dashboard-close {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            padding: 0.4rem 0.9rem; background: transparent;
+            border: 1px solid var(--border); color: var(--text-2);
+            border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600;
+            cursor: pointer; transition: all var(--transition);
+        }
+        .dashboard-close:hover { border-color: var(--red); color: var(--red); }
+        .dashboard-section { margin-bottom: 1.5rem; }
+        .dashboard-section-title {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em;
+            text-transform: uppercase; color: var(--text-3);
+            margin-bottom: 0.6rem; padding-bottom: 0.4rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 0.6rem;
+        }
+        .dash-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 0.75rem 0.85rem;
+            cursor: pointer; transition: border-color var(--transition);
+            position: relative; overflow: hidden;
+        }
+        .dash-card:hover { border-color: var(--accent); }
+        .dash-card-accent { position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+        .dash-card-name { font-size: 0.72rem; color: var(--text-3); margin-bottom: 0.25rem; font-weight: 600; }
+        .dash-card-val { font-size: 1.1rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+        .dash-card-insight { font-size: 0.68rem; color: var(--text-2); margin-top: 0.2rem; line-height: 1.3; }
+        .dash-card-empty {
+            background: var(--bg-card); border: 1px dashed var(--border);
+            border-radius: var(--radius-md); padding: 0.75rem 0.85rem;
+            cursor: pointer; opacity: 0.5; transition: opacity var(--transition);
+        }
+        .dash-card-empty:hover { opacity: 0.85; }
+        .dash-card-empty .dash-card-name { font-size: 0.72rem; color: var(--text-3); margin-bottom: 0.25rem; }
+        .dash-card-empty-hint { font-size: 0.68rem; color: var(--text-3); }
+        .dashboard-empty-state {
+            text-align: center; padding: 3rem 1rem; color: var(--text-3);
+        }
+        .dashboard-empty-state p { font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .dashboard-empty-state small { font-size: 0.78rem; }
+        @media (max-width: 480px) {
+            .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
+            .templates-grid { grid-template-columns: 1fr; }
+        }
+
         /* ===================== SECTIONS NAV ===================== */
         .sections-nav-wrap { position: relative; margin-bottom: 1.25rem; }
         .sections-nav {
@@ -996,7 +1113,11 @@
             </div>
         </div>
         <div class="header-right">
-            <button class="theme-toggle" id="themeToggle" title="Переключить тему" aria-label="Переключить тему">🌙</button>
+            <button class="dashboard-btn" id="dashboardBtn" title="Unit-economics дашборд">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Дашборд
+        </button>
+        <button class="theme-toggle" id="themeToggle" title="Переключить тему" aria-label="Переключить тему">🌙</button>
             <div class="search-wrap">
                 <span class="search-icon">🔍</span>
                 <input type="text" class="search-input" id="searchInput" placeholder="Поиск метрики…" autocomplete="off">
@@ -1022,10 +1143,38 @@
         </div>
     </div>
 
+    <!-- Dashboard overlay -->
+    <div class="dashboard-overlay" id="dashboardOverlay">
+        <div class="container">
+            <div class="dashboard-header">
+                <div class="dashboard-title">Unit-economics дашборд</div>
+                <button class="dashboard-close" id="dashboardClose">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    Закрыть
+                </button>
+            </div>
+            <div id="dashboardContent"></div>
+        </div>
+    </div>
+
+    <!-- Templates modal -->
+    <div class="templates-overlay" id="templatesOverlay" style="display:none;">
+        <div class="templates-modal">
+            <div class="templates-modal-title">Шаблоны сценариев</div>
+            <div class="templates-modal-sub">Выберите шаблон — все метрики заполнятся реалистичными значениями для анализа</div>
+            <div class="templates-grid" id="templatesGrid"></div>
+            <button class="templates-close" id="templatesClose">Отмена</button>
+        </div>
+    </div>
+
     <!-- Industry selector -->
     <div class="industry-bar" id="industryBar">
         <span class="industry-label">Отрасль:</span>
         <div class="industry-pills" id="industryPills">
+            <button class="templates-btn" id="templatesBtn">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                Шаблоны
+            </button>
             <button class="industry-pill active" data-industry="universal">Универсальные</button>
             <button class="industry-pill" data-industry="saas">SaaS</button>
             <button class="industry-pill" data-industry="ecom">E-commerce</button>
@@ -2829,6 +2978,287 @@
         renderSnapshotsBlock();
     });
 
+    // ---- SCENARIO TEMPLATES ----
+    const SCENARIO_TEMPLATES = [
+        {
+            id: 'startup_saas', name: 'Стартап SaaS', icon: '🚀',
+            desc: 'B2B SaaS, ARR ~$600K, активный рост',
+            values: {
+                dau:{ users:800 }, mau:{ users:6000 },
+                stickiness:{ dau:800, mau:6000 }, retention:{ end:600, start:1000 },
+                ltv:{ aov:400, freq:12, life:2 }, cac:{ cost:45000, customers:100 },
+                ltv_cac:{ ltv:9600, cac:450 }, arpu:{ revenue:50000, users:6000 },
+                churn:{ lost:180, total:6000 },
+                mrr:{ mrr:50000 }, arr:{ mrr:50000 },
+                acv:{ total:6000, years:1 }, grr:{ start:50000, churn:2500 },
+                nrr:{ start:50000, upsell:4000, churn:2500 },
+                cacPayback:{ cac:450, mrrPerCustomer:80, margin:75 },
+                acquisition:{ new:400 }, activation:{ activated:160, total:400 },
+                retention_aarrr:{ ret:120, new:400 }, referral:{ invited:40, active:200 },
+                revenue:{ rev:50000 },
+                cr:{ conversions:40, visitors:2000 }, roas:{ revenue:80000, spend:45000 },
+                cpc:{ spend:45000, clicks:9000 }, ctr:{ clicks:360, impressions:18000 },
+                bounceRate:{ bounced:4800, total:10000 },
+                bugRate:{ bugs:18, size:8 }, testCoverage:{ covered:65, total:100 },
+                defectDensity:{ defects:25, kloc:8 },
+                csat:{ pos:160, total:200 }, nps:{ promoters:50, detractors:35, total:180 },
+                fcr:{ resolved:140, total:200 }, sla:{ met:155, total:200 }
+            }
+        },
+        {
+            id: 'mature_saas', name: 'Зрелый SaaS', icon: '🏢',
+            desc: 'B2B SaaS, ARR ~$24M, стабильный рост',
+            values: {
+                dau:{ users:18000 }, mau:{ users:65000 },
+                stickiness:{ dau:18000, mau:65000 }, retention:{ end:850, start:1000 },
+                ltv:{ aov:800, freq:12, life:5 }, cac:{ cost:500000, customers:100 },
+                ltv_cac:{ ltv:48000, cac:5000 }, arpu:{ revenue:2000000, users:65000 },
+                churn:{ lost:520, total:65000 },
+                mrr:{ mrr:2000000 }, arr:{ mrr:2000000 },
+                acv:{ total:24000, years:1 }, grr:{ start:2000000, churn:30000 },
+                nrr:{ start:2000000, upsell:250000, churn:30000 },
+                cacPayback:{ cac:5000, mrrPerCustomer:350, margin:82 },
+                acquisition:{ new:2000 }, activation:{ activated:1400, total:2000 },
+                retention_aarrr:{ ret:1600, new:2000 }, referral:{ invited:400, active:1000 },
+                revenue:{ rev:2000000 },
+                cr:{ conversions:300, visitors:5000 }, roas:{ revenue:3000000, spend:750000 },
+                cpc:{ spend:750000, clicks:120000 }, ctr:{ clicks:6000, impressions:150000 },
+                bounceRate:{ bounced:3200, total:10000 },
+                bugRate:{ bugs:8, size:40 }, testCoverage:{ covered:88, total:100 },
+                defectDensity:{ defects:12, kloc:40 },
+                csat:{ pos:185, total:200 }, nps:{ promoters:90, detractors:15, total:200 },
+                fcr:{ resolved:185, total:200 }, sla:{ met:196, total:200 }
+            }
+        },
+        {
+            id: 'ecom', name: 'E-commerce', icon: '🛒',
+            desc: 'Интернет-магазин, средний сегмент',
+            values: {
+                dau:{ users:12000 }, mau:{ users:80000 },
+                stickiness:{ dau:12000, mau:80000 }, retention:{ end:450, start:1000 },
+                ltv:{ aov:3500, freq:4, life:3 }, cac:{ cost:80000, customers:100 },
+                ltv_cac:{ ltv:42000, cac:800 }, arpu:{ revenue:280000, users:80000 },
+                churn:{ lost:5600, total:80000 },
+                mrr:{ mrr:280000 }, arr:{ mrr:280000 },
+                acv:{ total:3360, years:1 }, grr:{ start:280000, churn:14000 },
+                nrr:{ start:280000, upsell:20000, churn:14000 },
+                cacPayback:{ cac:800, mrrPerCustomer:280, margin:45 },
+                acquisition:{ new:5000 }, activation:{ activated:2500, total:5000 },
+                retention_aarrr:{ ret:1500, new:5000 }, referral:{ invited:500, active:2500 },
+                revenue:{ rev:280000 },
+                cr:{ conversions:300, visitors:10000 }, roas:{ revenue:1120000, spend:280000 },
+                cpc:{ spend:280000, clicks:140000 }, ctr:{ clicks:7000, impressions:350000 },
+                bounceRate:{ bounced:3200, total:10000 },
+                bugRate:{ bugs:10, size:15 }, testCoverage:{ covered:72, total:100 },
+                defectDensity:{ defects:15, kloc:15 },
+                csat:{ pos:170, total:200 }, nps:{ promoters:70, detractors:25, total:200 },
+                fcr:{ resolved:165, total:200 }, sla:{ met:180, total:200 }
+            }
+        },
+        {
+            id: 'mobile', name: 'Мобайл App', icon: '📱',
+            desc: 'Мобильное приложение, freemium',
+            values: {
+                dau:{ users:80000 }, mau:{ users:250000 },
+                stickiness:{ dau:80000, mau:250000 }, retention:{ end:350, start:1000 },
+                ltv:{ aov:350, freq:6, life:2 }, cac:{ cost:15000, customers:100 },
+                ltv_cac:{ ltv:4200, cac:150 }, arpu:{ revenue:750000, users:250000 },
+                churn:{ lost:20000, total:250000 },
+                mrr:{ mrr:750000 }, arr:{ mrr:750000 },
+                acv:{ total:1800, years:1 }, grr:{ start:750000, churn:60000 },
+                nrr:{ start:750000, upsell:50000, churn:60000 },
+                cacPayback:{ cac:150, mrrPerCustomer:50, margin:70 },
+                acquisition:{ new:30000 }, activation:{ activated:18000, total:30000 },
+                retention_aarrr:{ ret:9000, new:30000 }, referral:{ invited:9000, active:15000 },
+                revenue:{ rev:750000 },
+                cr:{ conversions:1500, visitors:30000 }, roas:{ revenue:1500000, spend:375000 },
+                cpc:{ spend:375000, clicks:250000 }, ctr:{ clicks:12500, impressions:500000 },
+                bounceRate:{ bounced:4000, total:10000 },
+                bugRate:{ bugs:22, size:20 }, testCoverage:{ covered:78, total:100 },
+                defectDensity:{ defects:30, kloc:20 },
+                csat:{ pos:155, total:200 }, nps:{ promoters:60, detractors:40, total:200 },
+                fcr:{ resolved:150, total:200 }, sla:{ met:170, total:200 }
+            }
+        },
+        {
+            id: 'media', name: 'Медиа', icon: '📰',
+            desc: 'Контентный сайт / издание',
+            values: {
+                dau:{ users:350000 }, mau:{ users:2000000 },
+                stickiness:{ dau:350000, mau:2000000 }, retention:{ end:400, start:1000 },
+                ltv:{ aov:200, freq:12, life:4 }, cac:{ cost:30000, customers:100 },
+                ltv_cac:{ ltv:9600, cac:300 }, arpu:{ revenue:2000000, users:2000000 },
+                churn:{ lost:100000, total:2000000 },
+                mrr:{ mrr:200000 }, arr:{ mrr:200000 },
+                acv:{ total:2400, years:1 }, grr:{ start:200000, churn:12000 },
+                nrr:{ start:200000, upsell:10000, churn:12000 },
+                cacPayback:{ cac:300, mrrPerCustomer:50, margin:60 },
+                acquisition:{ new:50000 }, activation:{ activated:15000, total:50000 },
+                retention_aarrr:{ ret:10000, new:50000 }, referral:{ invited:5000, active:25000 },
+                revenue:{ rev:200000 },
+                cr:{ conversions:2000, visitors:50000 }, roas:{ revenue:600000, spend:200000 },
+                cpc:{ spend:200000, clicks:200000 }, ctr:{ clicks:20000, impressions:500000 },
+                bounceRate:{ bounced:6500, total:10000 },
+                bugRate:{ bugs:5, size:12 }, testCoverage:{ covered:55, total:100 },
+                defectDensity:{ defects:8, kloc:12 },
+                csat:{ pos:145, total:200 }, nps:{ promoters:40, detractors:50, total:200 },
+                fcr:{ resolved:155, total:200 }, sla:{ met:175, total:200 }
+            }
+        }
+    ];
+
+    function countTemplateMetrics(tpl) {
+        return Object.keys(tpl.values).length;
+    }
+
+    function applyTemplate(tpl) {
+        // Merge template values into storedValues, overwriting existing
+        Object.entries(tpl.values).forEach(([metricId, vals]) => {
+            storedValues[metricId] = Object.assign({}, storedValues[metricId], vals);
+        });
+        saveToLS(storedValues);
+        // Re-render current metric card
+        renderMetricCard();
+        // Flash confirmation
+        const toast = document.createElement('div');
+        toast.style.cssText = 'position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;padding:0.55rem 1.2rem;border-radius:2rem;font-size:0.82rem;font-weight:600;z-index:300;pointer-events:none;box-shadow:0 4px 16px rgba(0,0,0,0.3);';
+        toast.textContent = `✓ Шаблон «${tpl.name}» применён — заполнено ${countTemplateMetrics(tpl)} метрик`;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    function initTemplates() {
+        const grid = document.getElementById('templatesGrid');
+        if (!grid) return;
+        grid.innerHTML = SCENARIO_TEMPLATES.map(tpl => `
+            <div class="template-card" data-tpl="${tpl.id}">
+                <div class="template-icon">${tpl.icon}</div>
+                <div class="template-name">${tpl.name}</div>
+                <div class="template-desc">${tpl.desc}</div>
+                <div class="template-metrics-count">Заполняет ${countTemplateMetrics(tpl)} метрик</div>
+            </div>`).join('');
+
+        grid.querySelectorAll('.template-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const tpl = SCENARIO_TEMPLATES.find(t => t.id === card.dataset.tpl);
+                if (tpl) {
+                    applyTemplate(tpl);
+                    document.getElementById('templatesOverlay').style.display = 'none';
+                }
+            });
+        });
+
+        document.getElementById('templatesBtn').addEventListener('click', () => {
+            document.getElementById('templatesOverlay').style.display = 'flex';
+        });
+        document.getElementById('templatesClose').addEventListener('click', () => {
+            document.getElementById('templatesOverlay').style.display = 'none';
+        });
+        document.getElementById('templatesOverlay').addEventListener('click', e => {
+            if (e.target === e.currentTarget) e.currentTarget.style.display = 'none';
+        });
+    }
+
+    // ---- DASHBOARD ----
+    function openDashboard() {
+        const overlay = document.getElementById('dashboardOverlay');
+        const content = document.getElementById('dashboardContent');
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+
+        let hasAny = false;
+        let html = '';
+
+        Object.entries(metricsData).forEach(([sid, section]) => {
+            let sectionHtml = '';
+            section.metrics.forEach(metric => {
+                const saved = storedValues[metric.id] || {};
+                const vals = {};
+                let allFilled = true;
+                metric.inputs.forEach(inp => {
+                    const raw = saved[inp.key];
+                    const num = raw !== undefined && raw !== '' ? parseFloat(String(raw).replace(/[\u00A0 ]/g, '')) : null;
+                    if (num === null || isNaN(num)) allFilled = false;
+                    vals[inp.key] = num;
+                });
+
+                if (allFilled && metric.inputs.length > 0) {
+                    try {
+                        const result = metric.calculate(vals);
+                        const num = parseFloat(result);
+                        if (result !== null && !isNaN(num)) {
+                            hasAny = true;
+                            let color = 'var(--accent)';
+                            let insightText = '';
+                            if (metric.insight) {
+                                const ins = metric.insight(num);
+                                color = ins.color;
+                                insightText = ins.text;
+                            }
+                            const unit = metric.unit ? ` ${metric.unit}` : '';
+                            const displayVal = Math.abs(num) >= 1e6
+                                ? (num/1e6).toFixed(2)+'M'
+                                : Math.abs(num) >= 1e3
+                                ? (num/1e3).toFixed(1)+'K'
+                                : String(result).length > 8 ? parseFloat(num.toFixed(2)) : result;
+                            sectionHtml += `
+                                <div class="dash-card" data-sid="${sid}" data-mid="${metric.id}" title="${metric.name}: нажмите для расчёта">
+                                    <div class="dash-card-accent" style="background:${color}"></div>
+                                    <div class="dash-card-name">${metric.name}</div>
+                                    <div class="dash-card-val" style="color:${color}">${displayVal}${unit}</div>
+                                    ${insightText ? `<div class="dash-card-insight">${insightText}</div>` : ''}
+                                </div>`;
+                        }
+                    } catch(e) {}
+                } else {
+                    sectionHtml += `
+                        <div class="dash-card-empty" data-sid="${sid}" data-mid="${metric.id}" title="Перейти к ${metric.name}">
+                            <div class="dash-card-name">${metric.name}</div>
+                            <div class="dash-card-empty-hint">Нет данных</div>
+                        </div>`;
+                }
+            });
+
+            if (sectionHtml) {
+                html += `<div class="dashboard-section">
+                    <div class="dashboard-section-title">${section.name}</div>
+                    <div class="dashboard-grid">${sectionHtml}</div>
+                </div>`;
+            }
+        });
+
+        if (!hasAny) {
+            content.innerHTML = `<div class="dashboard-empty-state">
+                <p>Пока нет рассчитанных метрик</p>
+                <small>Заполните значения в калькуляторе или примените шаблон сценария</small>
+            </div>`;
+        } else {
+            content.innerHTML = html;
+        }
+
+        // Click on dash card → open that metric
+        content.querySelectorAll('[data-sid][data-mid]').forEach(card => {
+            card.addEventListener('click', () => {
+                closeDashboard();
+                saveCurrentValues();
+                currentSection = card.dataset.sid;
+                sectionCards.forEach(c => c.classList.toggle('active', c.dataset.section === currentSection));
+                currentMetricId = card.dataset.mid;
+                renderMetricsList();
+                renderMetricCard();
+            });
+        });
+    }
+
+    function closeDashboard() {
+        document.getElementById('dashboardOverlay').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('dashboardBtn').addEventListener('click', openDashboard);
+    document.getElementById('dashboardClose').addEventListener('click', closeDashboard);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDashboard(); });
+
     // ---- WHAT-IF ANALYSIS ----
     const whatifBtn = document.getElementById('whatifBtn');
     const whatifPanel = document.getElementById('whatifPanel');
@@ -2954,6 +3384,7 @@
     }
 
     // ---- INIT ----
+    initTemplates();
     initIndustry();
     const _restoredFromURL = restoreFromURL();
     if (_restoredFromURL) {
