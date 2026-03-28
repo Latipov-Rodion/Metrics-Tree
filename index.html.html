@@ -304,6 +304,37 @@
         .related-chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
         .related-chip-arrow { font-size: 0.7rem; opacity: 0.55; }
 
+        /* ===================== INDUSTRY SELECTOR ===================== */
+        .industry-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .industry-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-3);
+            white-space: nowrap;
+            letter-spacing: 0.02em;
+        }
+        .industry-pills { display: flex; gap: 0.3rem; flex-wrap: wrap; }
+        .industry-pill {
+            padding: 0.22rem 0.65rem;
+            border: 1px solid var(--border);
+            border-radius: 2rem;
+            font-size: 0.76rem;
+            font-weight: 500;
+            color: var(--text-3);
+            background: transparent;
+            cursor: pointer;
+            transition: all var(--transition);
+            white-space: nowrap;
+        }
+        .industry-pill:hover { border-color: var(--accent); color: var(--accent); }
+        .industry-pill.active { border-color: var(--accent); background: var(--accent); color: #fff; font-weight: 600; }
+
         /* ===================== SECTIONS NAV ===================== */
         .sections-nav-wrap { position: relative; margin-bottom: 1.25rem; }
         .sections-nav {
@@ -663,6 +694,132 @@
         .result-block.result-animate { animation: resultIn 0.18s ease forwards; }
 
 
+        /* ===================== SNAPSHOTS ===================== */
+        .snapshot-btn {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            padding: 0.3rem 0.75rem;
+            background: transparent; border: 1px solid var(--border);
+            color: var(--text-2); border-radius: var(--radius-sm);
+            font-size: 0.75rem; font-weight: 600; cursor: pointer;
+            transition: all var(--transition); white-space: nowrap; flex-shrink: 0;
+        }
+        .snapshot-btn:hover { border-color: var(--green); color: var(--green); }
+        .snapshot-btn.saved { border-color: var(--green); color: var(--green); background: rgba(76,175,80,0.1); }
+        .snapshots-block {
+            margin-top: 0.75rem; padding-top: 0.75rem;
+            border-top: 1px solid var(--border);
+        }
+        .snapshots-block-title {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
+            text-transform: uppercase; color: var(--text-3); margin-bottom: 0.5rem;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .snapshots-clear-all {
+            font-size: 0.68rem; color: var(--text-3); cursor: pointer;
+            background: none; border: none; text-decoration: underline;
+            text-underline-offset: 2px; padding: 0;
+        }
+        .snapshots-clear-all:hover { color: var(--red); }
+        .snapshot-item {
+            display: grid; grid-template-columns: 1fr auto;
+            align-items: start; gap: 0.5rem;
+            padding: 0.55rem 0.65rem; margin-bottom: 0.35rem;
+            background: var(--bg-hover); border-radius: var(--radius-sm);
+            border: 1px solid var(--border);
+            transition: border-color var(--transition);
+        }
+        .snapshot-item:hover { border-color: var(--accent); }
+        .snapshot-meta { font-size: 0.68rem; color: var(--text-3); margin-bottom: 0.2rem; }
+        .snapshot-inputs-summary { font-size: 0.72rem; color: var(--text-2); margin-bottom: 0.25rem; line-height: 1.4; }
+        .snapshot-result-val { font-size: 0.88rem; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+        .snapshot-delta { font-size: 0.7rem; font-weight: 600; margin-left: 0.4rem; }
+        .snapshot-delta.pos { color: var(--green); }
+        .snapshot-delta.neg { color: var(--red); }
+        .snapshot-del {
+            background: none; border: none; cursor: pointer; color: var(--text-3);
+            padding: 0.1rem 0.2rem; font-size: 0.85rem; line-height: 1;
+            border-radius: 3px; transition: color var(--transition);
+        }
+        .snapshot-del:hover { color: var(--red); }
+
+        /* ===================== WHAT-IF PANEL ===================== */
+        .whatif-btn {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            padding: 0.3rem 0.75rem;
+            background: var(--accent-dim); border: 1px solid var(--accent);
+            color: var(--accent); border-radius: var(--radius-sm);
+            font-size: 0.75rem; font-weight: 600; cursor: pointer;
+            transition: background var(--transition), color var(--transition);
+            white-space: nowrap; flex-shrink: 0;
+        }
+        .whatif-btn:hover { background: var(--accent); color: #fff; }
+        .whatif-btn.open { background: var(--accent); color: #fff; }
+        .whatif-panel {
+            margin-top: 0.85rem;
+            padding-top: 0.85rem;
+            border-top: 1px solid var(--border);
+            display: none;
+        }
+        .whatif-panel.open { display: block; }
+        .whatif-title {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
+            text-transform: uppercase; color: var(--text-3); margin-bottom: 0.6rem;
+        }
+        .whatif-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto auto;
+            align-items: center; gap: 0.5rem;
+            margin-bottom: 0.55rem;
+        }
+        .whatif-lbl {
+            font-size: 0.78rem; color: var(--text-2);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .whatif-slider {
+            -webkit-appearance: none; appearance: none;
+            width: 100%; height: 4px;
+            background: var(--border); border-radius: 2px; outline: none;
+            cursor: pointer; accent-color: var(--accent);
+        }
+        .whatif-slider::-webkit-slider-thumb {
+            -webkit-appearance: none; width: 14px; height: 14px;
+            border-radius: 50%; background: var(--accent); cursor: pointer;
+            box-shadow: 0 0 0 3px var(--accent-dim);
+        }
+        .whatif-val {
+            font-size: 0.76rem; font-weight: 600; color: var(--text-1);
+            min-width: 4rem; text-align: right; font-variant-numeric: tabular-nums;
+        }
+        .whatif-result-row {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-top: 0.75rem; padding: 0.55rem 0.75rem;
+            background: var(--bg-hover); border-radius: var(--radius-sm);
+            gap: 0.75rem;
+        }
+        .whatif-result-lbl { font-size: 0.75rem; color: var(--text-3); }
+        .whatif-result-val {
+            font-size: 1rem; font-weight: 700; color: var(--accent);
+            font-variant-numeric: tabular-nums;
+        }
+        .whatif-delta {
+            font-size: 0.75rem; font-weight: 600; padding: 0.15rem 0.5rem;
+            border-radius: 2rem; background: var(--bg-card);
+        }
+        .whatif-delta.pos { color: var(--green); }
+        .whatif-delta.neg { color: var(--red); }
+        .whatif-delta.neu { color: var(--text-3); }
+        .whatif-reset {
+            font-size: 0.71rem; color: var(--text-3); cursor: pointer;
+            text-decoration: underline; text-underline-offset: 2px;
+            background: none; border: none; padding: 0; margin-top: 0.3rem;
+            display: block;
+        }
+        .whatif-reset:hover { color: var(--accent); }
+        @media (max-width: 480px) {
+            .whatif-row { grid-template-columns: minmax(0, 1fr) auto; }
+            .whatif-val { min-width: 3rem; }
+        }
+
         /* ===================== VALIDATION ERROR ===================== */
         .validation-error {
             background: var(--red-bg);
@@ -865,6 +1022,18 @@
         </div>
     </div>
 
+    <!-- Industry selector -->
+    <div class="industry-bar" id="industryBar">
+        <span class="industry-label">Отрасль:</span>
+        <div class="industry-pills" id="industryPills">
+            <button class="industry-pill active" data-industry="universal">Универсальные</button>
+            <button class="industry-pill" data-industry="saas">SaaS</button>
+            <button class="industry-pill" data-industry="ecom">E-commerce</button>
+            <button class="industry-pill" data-industry="mobile">Мобайл</button>
+            <button class="industry-pill" data-industry="media">Медиа</button>
+        </div>
+    </div>
+
     <!-- Mobile metric chips (shown instead of sidebar on mobile) -->
     <div class="metric-chips" id="metricChips"></div>
 
@@ -901,9 +1070,19 @@
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                             PNG
                         </button>
+                        <button class="snapshot-btn" id="snapshotBtn" title="Сохранить снимок расчёта">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                            Сохранить
+                        </button>
+                        <button class="whatif-btn" id="whatifBtn" title="Анализ Что если?">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+                            Что если?
+                        </button>
                     </div>
                 </div>
+                <div class="whatif-panel" id="whatifPanel"></div>
             </div>
+            <div class="snapshots-block" id="snapshotsBlock" style="display:none;"></div>
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
         </div>
     </div>
@@ -1689,6 +1868,127 @@
     let currentSection = 'b2c';
     let currentMetricId = 'dau';
     let searchQuery = '';
+    let currentIndustry = 'universal';
+
+    // ---- ОТРАСЛЕВЫЕ ПОРОГИ ----
+    // Для метрик, где пороги сильно зависят от отрасли.
+    // Формат: { metricId: { industry: 'строка для renderBenchmarks' } }
+    const INDUSTRY_THRESHOLDS = {
+        ctr: {
+            universal: 'Плохо: <1%, Норма: 1–3%, Хорошо: >3%',
+            saas:      'Плохо: <1%, Норма: 2–5%, Хорошо: >5%',
+            ecom:      'Плохо: <0.5%, Норма: 1–2%, Хорошо: >2%',
+            mobile:    'Плохо: <0.5%, Норма: 1–3%, Хорошо: >3%',
+            media:     'Плохо: <2%, Норма: 3–8%, Хорошо: >8%',
+        },
+        cpc: {
+            universal: 'Отлично: <30₽, Норма: 30–100₽, Плохо: >100₽',
+            saas:      'Отлично: <100₽, Норма: 100–400₽, Плохо: >400₽',
+            ecom:      'Отлично: <20₽, Норма: 20–80₽, Плохо: >80₽',
+            mobile:    'Отлично: <15₽, Норма: 15–60₽, Плохо: >60₽',
+            media:     'Отлично: <10₽, Норма: 10–40₽, Плохо: >40₽',
+        },
+        roas: {
+            universal: 'Плохо: <100%, Норма: 100–200%, Хорошо: >300%',
+            saas:      'Плохо: <150%, Норма: 150–400%, Хорошо: >400%',
+            ecom:      'Плохо: <200%, Норма: 200–500%, Хорошо: >500%',
+            mobile:    'Плохо: <100%, Норма: 100–250%, Хорошо: >250%',
+            media:     'Плохо: <120%, Норма: 120–300%, Хорошо: >300%',
+        },
+        cr: {
+            universal: 'Плохо: <1%, Норма: 1–3%, Хорошо: >3%',
+            saas:      'Плохо: <2%, Норма: 2–8%, Хорошо: >8%',
+            ecom:      'Плохо: <1%, Норма: 1–4%, Хорошо: >4%',
+            mobile:    'Плохо: <1%, Норма: 1–5%, Хорошо: >5%',
+            media:     'Плохо: <0.5%, Норма: 0.5–2%, Хорошо: >2%',
+        },
+        bounce: {
+            universal: 'Хорошо: <40%, Норма: 40–70%, Плохо: >70%',
+            saas:      'Хорошо: <35%, Норма: 35–60%, Плохо: >60%',
+            ecom:      'Хорошо: <30%, Норма: 30–55%, Плохо: >55%',
+            mobile:    'Хорошо: <40%, Норма: 40–65%, Плохо: >65%',
+            media:     'Хорошо: <55%, Норма: 55–80%, Плохо: >80%',
+        },
+        churn: {
+            universal: 'Отлично: <1%/мес, Норма: 1–5%/мес, Плохо: >5%/мес',
+            saas:      'Отлично: <0.5%/мес, Норма: 0.5–2%/мес, Плохо: >2%/мес',
+            ecom:      'Отлично: <3%/мес, Норма: 3–8%/мес, Плохо: >8%/мес',
+            mobile:    'Отлично: <5%/мес, Норма: 5–15%/мес, Плохо: >15%/мес',
+            media:     'Отлично: <2%/мес, Норма: 2–7%/мес, Плохо: >7%/мес',
+        },
+        ltv: {
+            universal: 'Хорошо: LTV > 3×CAC, Отлично: LTV > 5×CAC',
+            saas:      'Норма: LTV > 3×CAC, Хорошо: LTV > 5×CAC, Отлично: LTV > 8×CAC',
+            ecom:      'Норма: LTV > 2×CAC, Хорошо: LTV > 3×CAC',
+            mobile:    'Норма: LTV > 1.5×CAC, Хорошо: LTV > 3×CAC',
+            media:     'Норма: LTV > 2×CAC, Хорошо: LTV > 4×CAC',
+        },
+        cac: {
+            universal: 'Отлично: CAC < LTV/3, Норма: CAC < LTV/2, Плохо: CAC > LTV/2',
+            saas:      'Отлично: Окупаемость <6 мес, Норма: 6–18 мес, Плохо: >18 мес',
+            ecom:      'Отлично: CAC < 500₽, Норма: 500–2000₽, Плохо: >2000₽',
+            mobile:    'Отлично: CAC < 100₽, Норма: 100–500₽, Плохо: >500₽',
+            media:     'Отлично: CAC < 200₽, Норма: 200–1000₽, Плохо: >1000₽',
+        },
+        dau: {
+            universal: 'Норма: Stickiness >20%, Хорошо: >40%',
+            saas:      'Норма: Stickiness >30%, Хорошо: >50%, Отлично: >70%',
+            ecom:      'Норма: Stickiness >5%, Хорошо: >15%',
+            mobile:    'Норма: Stickiness >20%, Хорошо: >40%, Отлично: >60%',
+            media:     'Норма: Stickiness >25%, Хорошо: >50%',
+        },
+        nps: {
+            universal: 'Плохо: <0, Норма: 0–30, Хорошо: 30–70, Отлично: >70',
+            saas:      'Плохо: <20, Норма: 20–40, Хорошо: 40–60, Отлично: >60',
+            ecom:      'Плохо: <10, Норма: 10–40, Хорошо: 40–65, Отлично: >65',
+            mobile:    'Плохо: <0, Норма: 0–25, Хорошо: 25–50, Отлично: >50',
+            media:     'Плохо: <0, Норма: 0–20, Хорошо: 20–45, Отлично: >45',
+        },
+        mrr: {
+            universal: 'Норма: MoM рост >5%, Хорошо: >10%, Отлично: >20%',
+            saas:      'Норма: MoM рост >5%, Хорошо: >15%, Отлично: >25%',
+            ecom:      'Норма: YoY рост >20%, Хорошо: >50%',
+            mobile:    'Норма: MoM рост >8%, Хорошо: >20%',
+            media:     'Норма: MoM рост >3%, Хорошо: >10%',
+        },
+        nrr: {
+            universal: 'Плохо: <80%, Норма: 80–100%, Хорошо: 100–120%, Отлично: >120%',
+            saas:      'Плохо: <90%, Норма: 90–100%, Хорошо: 100–120%, Отлично: >130%',
+            ecom:      'Плохо: <70%, Норма: 70–90%, Хорошо: >100%',
+            mobile:    'Плохо: <75%, Норма: 75–95%, Хорошо: >100%',
+            media:     'Плохо: <80%, Норма: 80–100%, Хорошо: >110%',
+        },
+        csat: {
+            universal: 'Плохо: <60%, Норма: 60–80%, Хорошо: >80%',
+            saas:      'Плохо: <70%, Норма: 70–85%, Хорошо: >85%',
+            ecom:      'Плохо: <65%, Норма: 65–85%, Хорошо: >85%',
+            mobile:    'Плохо: <60%, Норма: 60–80%, Хорошо: >80%',
+            media:     'Плохо: <55%, Норма: 55–75%, Хорошо: >75%',
+        },
+    };
+
+    function getThreshold(metric) {
+        const ind = INDUSTRY_THRESHOLDS[metric.id];
+        if (!ind) return metric.threshold; // нет отраслевых данных — используем дефолтный
+        return ind[currentIndustry] || metric.threshold;
+    }
+
+    function initIndustry() {
+        const pillsContainer = document.getElementById('industryPills');
+        if (!pillsContainer) return;
+        pillsContainer.querySelectorAll('.industry-pill').forEach(btn => {
+            btn.addEventListener('click', () => {
+                currentIndustry = btn.dataset.industry;
+                pillsContainer.querySelectorAll('.industry-pill').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // Обновить пороги на текущей метрике
+                const metric = getCurrentMetric();
+                if (metric && benchmarksEl) {
+                    benchmarksEl.innerHTML = renderBenchmarks(getThreshold(metric));
+                }
+            });
+        });
+    }
 
     // ---- DOM ----
     const sectionCards = document.querySelectorAll('.section-card');
@@ -1835,6 +2135,7 @@
         resultBlock.classList.remove('result-animate');
         void resultBlock.offsetWidth;
         resultBlock.classList.add('result-animate');
+        renderSnapshotsBlock();
     }
 
     function saveCurrentValues() {
@@ -1934,7 +2235,7 @@
         metricNameEl.textContent = metric.name;
         formulaInlineEl.textContent = metric.formula;
         metricDescEl.textContent = metric.description;
-        benchmarksEl.innerHTML = renderBenchmarks(metric.threshold);
+        benchmarksEl.innerHTML = renderBenchmarks(getThreshold(metric));
 
         let inputsHtml = '';
         metric.inputs.forEach(inp => {
@@ -1965,9 +2266,15 @@
             setTimeout(() => firstInput.focus(), 50);
         }
 
+        // Закрываем What-If при смене метрики
+        whatifOpen = false;
+        if (whatifBtn) { whatifBtn.classList.remove('open'); }
+        if (whatifPanel) { whatifPanel.classList.remove('open'); whatifPanel.innerHTML = ''; }
+
         updateResult();
         updatePageTitle();
         renderRelated(metric.id);
+        renderSnapshotsBlock();
     }
 
     function setActiveSection(sectionId) {
@@ -2384,6 +2691,262 @@
 
     document.getElementById('exportPngBtn').addEventListener('click', exportToPNG);
 
+    // ---- ИСТОРИЯ СНИМКОВ ----
+    const LS_SNAPS = 'metricsTree_snapshots';
+    const MAX_SNAPS_PER_METRIC = 8;
+    const snapshotBtn = document.getElementById('snapshotBtn');
+    const snapshotsBlock = document.getElementById('snapshotsBlock');
+
+    function loadSnaps() {
+        try { return JSON.parse(localStorage.getItem(LS_SNAPS) || '{}'); } catch(e) { return {}; }
+    }
+    function saveSnaps(data) {
+        try { localStorage.setItem(LS_SNAPS, JSON.stringify(data)); } catch(e) {}
+    }
+
+    function formatSnapDate(ts) {
+        const d = new Date(ts);
+        return d.toLocaleDateString('ru-RU', { day:'2-digit', month:'2-digit' }) +
+               ' ' + d.toLocaleTimeString('ru-RU', { hour:'2-digit', minute:'2-digit' });
+    }
+
+    function renderSnapshotsBlock() {
+        const metric = getCurrentMetric();
+        if (!metric) return;
+        const snaps = loadSnaps();
+        const list = snaps[metric.id] || [];
+        if (list.length === 0) {
+            snapshotsBlock.style.display = 'none';
+            return;
+        }
+
+        // Current result for comparison
+        let curNum = null;
+        const rawCur = resultValue?.textContent?.replace(/[^\d.,\-]/g, '').replace(',', '.');
+        if (rawCur) curNum = parseFloat(rawCur);
+
+        let html = `<div class="snapshots-block-title">
+            <span>История (${list.length})</span>
+            <button class="snapshots-clear-all" id="snapsClearAll">Удалить все</button>
+        </div>`;
+
+        [...list].reverse().forEach((snap, revIdx) => {
+            const origIdx = list.length - 1 - revIdx;
+            const inputsSummary = snap.inputs.map(({ label, val }) => `${label}: ${val}`).join(' · ');
+
+            let deltaHtml = '';
+            if (curNum !== null && !isNaN(snap.result) && snap.result !== 0) {
+                const pct = ((curNum - snap.result) / Math.abs(snap.result)) * 100;
+                if (Math.abs(pct) > 0.5) {
+                    const sign = pct > 0 ? '+' : '';
+                    const cls = pct > 0 ? 'pos' : 'neg';
+                    deltaHtml = `<span class="snapshot-delta ${cls}">${sign}${pct.toFixed(1)}% vs сейчас</span>`;
+                }
+            }
+
+            html += `
+                <div class="snapshot-item">
+                    <div>
+                        <div class="snapshot-meta">${formatSnapDate(snap.ts)}</div>
+                        <div class="snapshot-inputs-summary">${inputsSummary}</div>
+                        <div>
+                            <span class="snapshot-result-val">${snap.displayResult}</span>
+                            ${deltaHtml}
+                        </div>
+                    </div>
+                    <button class="snapshot-del" data-idx="${origIdx}" title="Удалить снимок">×</button>
+                </div>`;
+        });
+
+        snapshotsBlock.innerHTML = html;
+        snapshotsBlock.style.display = 'block';
+
+        // Delete single
+        snapshotsBlock.querySelectorAll('.snapshot-del').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const idx = parseInt(btn.dataset.idx);
+                const all = loadSnaps();
+                if (all[metric.id]) {
+                    all[metric.id].splice(idx, 1);
+                    if (all[metric.id].length === 0) delete all[metric.id];
+                    saveSnaps(all);
+                    renderSnapshotsBlock();
+                }
+            });
+        });
+
+        // Clear all for this metric
+        const clearAllBtn = document.getElementById('snapsClearAll');
+        if (clearAllBtn) {
+            clearAllBtn.addEventListener('click', () => {
+                const all = loadSnaps();
+                delete all[metric.id];
+                saveSnaps(all);
+                renderSnapshotsBlock();
+            });
+        }
+    }
+
+    snapshotBtn.addEventListener('click', () => {
+        const metric = getCurrentMetric();
+        if (!metric) return;
+
+        const rawResult = resultValue?.textContent?.trim();
+        if (!rawResult || resultBlock.style.display === 'none') return;
+
+        const numStr = rawResult.replace(/[^\d.,\-MKB]/g, '').replace(',', '.');
+        const numResult = parseFloat(numStr) || 0;
+
+        const inputs = metric.inputs.map(inp => {
+            const el = document.getElementById(`input-${inp.key}`);
+            return { label: inp.label.split(',')[0].trim(), val: el ? el.value : '' };
+        }).filter(i => i.val);
+
+        const snap = {
+            ts: Date.now(),
+            result: numResult,
+            displayResult: rawResult,
+            inputs
+        };
+
+        const all = loadSnaps();
+        if (!all[metric.id]) all[metric.id] = [];
+        all[metric.id].push(snap);
+        if (all[metric.id].length > MAX_SNAPS_PER_METRIC) {
+            all[metric.id] = all[metric.id].slice(-MAX_SNAPS_PER_METRIC);
+        }
+        saveSnaps(all);
+
+        // Flash feedback
+        snapshotBtn.classList.add('saved');
+        const origText = snapshotBtn.childNodes[snapshotBtn.childNodes.length - 1].textContent;
+        snapshotBtn.childNodes[snapshotBtn.childNodes.length - 1].textContent = ' Сохранено!';
+        setTimeout(() => {
+            snapshotBtn.classList.remove('saved');
+            snapshotBtn.childNodes[snapshotBtn.childNodes.length - 1].textContent = origText;
+        }, 1800);
+
+        renderSnapshotsBlock();
+    });
+
+    // ---- WHAT-IF ANALYSIS ----
+    const whatifBtn = document.getElementById('whatifBtn');
+    const whatifPanel = document.getElementById('whatifPanel');
+    let whatifOpen = false;
+
+    function formatWhatIfVal(num) {
+        if (Math.abs(num) >= 1e6) return (num / 1e6).toFixed(2) + 'M';
+        if (Math.abs(num) >= 1e3) return (num / 1e3).toFixed(1) + 'K';
+        if (!Number.isInteger(num)) return parseFloat(num.toFixed(2)).toString();
+        return num.toString();
+    }
+
+    function buildWhatIfPanel(metric) {
+        if (!metric) return;
+        // Gather current input values
+        const baseValues = {};
+        metric.inputs.forEach(inp => {
+            const el = document.getElementById(`input-${inp.key}`);
+            const raw = el ? el.value.replace(/[\u00A0 ]/g, '') : '';
+            baseValues[inp.key] = parseFloat(raw) || 0;
+        });
+
+        const baseResult = metric.calculate(Object.assign({}, baseValues));
+        const baseNum = parseFloat(baseResult);
+        if (isNaN(baseNum)) return;
+
+        let html = `<div class="whatif-title">Анализ «Что если?»</div>`;
+
+        metric.inputs.forEach(inp => {
+            const cur = baseValues[inp.key];
+            const minV = inp.min !== undefined ? inp.min : (cur > 0 ? cur * 0.1 : 0);
+            const maxV = cur > 0 ? cur * 3 : (inp.placeholder || 100);
+            const step = cur > 0 ? parseFloat((cur * 0.01).toFixed(6)) : 1;
+
+            html += `
+                <div class="whatif-row" data-key="${inp.key}">
+                    <span class="whatif-lbl">${inp.label}</span>
+                    <input type="range" class="whatif-slider"
+                        data-key="${inp.key}"
+                        data-base="${cur}"
+                        min="${minV}" max="${maxV}" step="${step}"
+                        value="${cur}">
+                    <span class="whatif-val" id="wival-${inp.key}">${formatWhatIfVal(cur)}</span>
+                </div>`;
+        });
+
+        const unit = metric.unit ? ` ${metric.unit}` : '';
+        html += `
+            <div class="whatif-result-row">
+                <span class="whatif-result-lbl">Результат:</span>
+                <span class="whatif-result-val" id="wiResult">${formatWhatIfVal(baseNum)}${unit}</span>
+                <span class="whatif-delta neu" id="wiDelta">= базовый</span>
+            </div>
+            <button class="whatif-reset" id="wiResetBtn">Сбросить к текущим значениям</button>`;
+
+        whatifPanel.innerHTML = html;
+
+        // Attach slider listeners
+        whatifPanel.querySelectorAll('.whatif-slider').forEach(slider => {
+            slider.addEventListener('input', () => {
+                const key = slider.dataset.key;
+                const valEl = document.getElementById(`wival-${key}`);
+                const sliderVal = parseFloat(slider.value);
+                if (valEl) valEl.textContent = formatWhatIfVal(sliderVal);
+
+                // Collect all current slider values
+                const testValues = {};
+                metric.inputs.forEach(inp => {
+                    const s = whatifPanel.querySelector(`.whatif-slider[data-key="${inp.key}"]`);
+                    testValues[inp.key] = s ? parseFloat(s.value) : baseValues[inp.key];
+                });
+
+                const newResult = metric.calculate(Object.assign({}, testValues));
+                const newNum = parseFloat(newResult);
+                const wiResultEl = document.getElementById('wiResult');
+                const wiDeltaEl = document.getElementById('wiDelta');
+                if (wiResultEl && !isNaN(newNum)) {
+                    wiResultEl.textContent = `${formatWhatIfVal(newNum)}${unit}`;
+                    if (baseNum !== 0) {
+                        const pct = ((newNum - baseNum) / Math.abs(baseNum)) * 100;
+                        const sign = pct > 0 ? '+' : '';
+                        const cls = pct > 0.5 ? 'pos' : pct < -0.5 ? 'neg' : 'neu';
+                        const label = Math.abs(pct) < 0.5 ? '= базовый' : `${sign}${pct.toFixed(1)}%`;
+                        wiDeltaEl.textContent = label;
+                        wiDeltaEl.className = `whatif-delta ${cls}`;
+                    }
+                }
+            });
+        });
+
+        // Reset button
+        const resetBtn = document.getElementById('wiResetBtn');
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+                metric.inputs.forEach(inp => {
+                    const s = whatifPanel.querySelector(`.whatif-slider[data-key="${inp.key}"]`);
+                    const valEl = document.getElementById(`wival-${inp.key}`);
+                    if (s) s.value = baseValues[inp.key];
+                    if (valEl) valEl.textContent = formatWhatIfVal(baseValues[inp.key]);
+                });
+                const wiResultEl = document.getElementById('wiResult');
+                const wiDeltaEl = document.getElementById('wiDelta');
+                if (wiResultEl) wiResultEl.textContent = `${formatWhatIfVal(baseNum)}${unit}`;
+                if (wiDeltaEl) { wiDeltaEl.textContent = '= базовый'; wiDeltaEl.className = 'whatif-delta neu'; }
+            });
+        }
+    }
+
+    whatifBtn.addEventListener('click', () => {
+        whatifOpen = !whatifOpen;
+        whatifBtn.classList.toggle('open', whatifOpen);
+        whatifPanel.classList.toggle('open', whatifOpen);
+        if (whatifOpen) {
+            const metric = getCurrentMetric();
+            buildWhatIfPanel(metric);
+        }
+    });
+
     // ---- DYNAMIC TITLE ----
     function updatePageTitle() {
         const metric = getCurrentMetric();
@@ -2391,6 +2954,7 @@
     }
 
     // ---- INIT ----
+    initIndustry();
     const _restoredFromURL = restoreFromURL();
     if (_restoredFromURL) {
         // Состояние уже восстановлено из URL — рендерим напрямую, не сбрасывая currentMetricId
