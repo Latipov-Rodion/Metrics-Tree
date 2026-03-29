@@ -452,6 +452,44 @@
             .templates-grid { grid-template-columns: 1fr; }
         }
 
+        /* ===================== ONBOARDING ===================== */
+        .onboarding-bar {
+            display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+            background: var(--accent-dim); border: 1px solid var(--accent);
+            border-radius: var(--radius-md); padding: 0.65rem 1rem;
+            margin-bottom: 1rem; font-size: 0.8rem;
+        }
+        .onboarding-steps {
+            display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; flex: 1;
+        }
+        .onboarding-step {
+            display: inline-flex; align-items: center; gap: 0.3rem; color: var(--text-2);
+        }
+        .onboarding-step-num {
+            width: 18px; height: 18px; border-radius: 50%; background: var(--accent);
+            color: #fff; font-size: 0.65rem; font-weight: 700;
+            display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .onboarding-sep { color: var(--text-3); font-size: 0.7rem; }
+        .onboarding-dismiss {
+            background: none; border: 1px solid var(--accent); color: var(--accent);
+            border-radius: var(--radius-sm); padding: 0.2rem 0.6rem;
+            font-size: 0.72rem; font-weight: 600; cursor: pointer; white-space: nowrap;
+            transition: all var(--transition);
+        }
+        .onboarding-dismiss:hover { background: var(--accent); color: #fff; }
+
+        /* ===================== SECTION FILL BADGE ===================== */
+        .section-fill-badge {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 16px; height: 16px; border-radius: 50%;
+            font-size: 0.58rem; font-weight: 700; margin-left: 0.3rem;
+            vertical-align: middle; line-height: 1; flex-shrink: 0;
+        }
+        .section-fill-badge.none { background: var(--border); color: var(--text-3); }
+        .section-fill-badge.partial { background: rgba(255,193,7,0.2); color: var(--yellow); border: 1px solid var(--yellow); }
+        .section-fill-badge.full { background: rgba(76,175,80,0.15); color: var(--green); border: 1px solid var(--green); }
+
         /* ===================== SECTIONS NAV ===================== */
         .sections-nav-wrap { position: relative; margin-bottom: 1.25rem; }
         .sections-nav {
@@ -1199,6 +1237,20 @@
             </button>
             <button class="clear-btn" id="clearAllBtn">Очистить всё</button>
         </div>
+    </div>
+
+    <!-- Onboarding bar (first visit) -->
+    <div class="onboarding-bar" id="onboardingBar" style="display:none;">
+        <div class="onboarding-steps">
+            <span class="onboarding-step"><span class="onboarding-step-num">1</span> Выберите метрику</span>
+            <span class="onboarding-sep">→</span>
+            <span class="onboarding-step"><span class="onboarding-step-num">2</span> Введите значения</span>
+            <span class="onboarding-sep">→</span>
+            <span class="onboarding-step"><span class="onboarding-step-num">3</span> Получите инсайт и сравнение</span>
+            <span class="onboarding-sep">·</span>
+            <span class="onboarding-step" style="color:var(--text-3);font-size:0.72rem;">Шаблоны → быстрый старт</span>
+        </div>
+        <button class="onboarding-dismiss" id="onboardingDismiss">Понятно</button>
     </div>
 
     <div class="sections-nav-wrap">
@@ -2488,7 +2540,7 @@
         metric.inputs.forEach(inp => {
             const el = document.getElementById(`input-${inp.key}`);
             if (el) {
-                el.addEventListener('input', () => { formatInputEl(el); saveCurrentValues(); updateResult(); renderMetricsList(); });
+                el.addEventListener('input', () => { formatInputEl(el); saveCurrentValues(); updateResult(); renderMetricsList(); updateSectionBadges(); });
             }
         });
 
@@ -2507,6 +2559,7 @@
         updatePageTitle();
         renderRelated(metric.id);
         renderSnapshotsBlock();
+        updateSectionBadges();
     }
 
     function setActiveSection(sectionId) {
@@ -3272,6 +3325,60 @@
 
     document.getElementById('compareClose').addEventListener('click', closeCompare);
 
+    // ---- ONBOARDING ----
+    const LS_ONBOARD = 'metricsTree_onboarded';
+    (function initOnboarding() {
+        const bar = document.getElementById('onboardingBar');
+        if (!bar) return;
+        if (!localStorage.getItem(LS_ONBOARD)) {
+            bar.style.display = 'flex';
+        }
+        document.getElementById('onboardingDismiss').addEventListener('click', () => {
+            bar.style.display = 'none';
+            localStorage.setItem(LS_ONBOARD, '1');
+        });
+    })();
+
+    // ---- SECTION FILL BADGES ----
+    function getFilledCount(sectionId) {
+        const section = metricsData[sectionId];
+        if (!section) return { filled: 0, total: 0 };
+        let filled = 0;
+        section.metrics.forEach(metric => {
+            const saved = storedValues[metric.id] || {};
+            const allFilled = metric.inputs.length > 0 && metric.inputs.every(inp => {
+                const v = saved[inp.key];
+                return v !== undefined && v !== '' && !isNaN(parseFloat(String(v).replace(/[\u00A0 ]/g, '')));
+            });
+            if (allFilled) filled++;
+        });
+        return { filled, total: section.metrics.length };
+    }
+
+    function updateSectionBadges() {
+        document.querySelectorAll('.section-card').forEach(card => {
+            const sid = card.dataset.section;
+            const { filled, total } = getFilledCount(sid);
+            let badge = card.querySelector('.section-fill-badge');
+            if (!badge) {
+                badge = document.createElement('span');
+                badge.className = 'section-fill-badge';
+                const h3 = card.querySelector('h3');
+                if (h3) h3.appendChild(badge);
+            }
+            if (filled === 0) {
+                badge.className = 'section-fill-badge none';
+                badge.textContent = total;
+            } else if (filled < total) {
+                badge.className = 'section-fill-badge partial';
+                badge.textContent = filled;
+            } else {
+                badge.className = 'section-fill-badge full';
+                badge.textContent = '✓';
+            }
+        });
+    }
+
     // ---- SCENARIO TEMPLATES ----
     const SCENARIO_TEMPLATES = [
         {
@@ -3680,6 +3787,7 @@
     // ---- INIT ----
     initTemplates();
     initIndustry();
+    updateSectionBadges();
     const _restoredFromURL = restoreFromURL();
     if (_restoredFromURL) {
         // Состояние уже восстановлено из URL — рендерим напрямую, не сбрасывая currentMetricId
