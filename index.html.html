@@ -811,6 +811,71 @@
         .result-block.result-animate { animation: resultIn 0.18s ease forwards; }
 
 
+        /* ===================== CSV EXPORT ===================== */
+        .csv-btn {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            padding: 0.3rem 0.75rem; background: transparent;
+            border: 1px solid var(--border); color: var(--text-2);
+            border-radius: var(--radius-sm); font-size: 0.75rem; font-weight: 600;
+            cursor: pointer; transition: all var(--transition); white-space: nowrap;
+        }
+        .csv-btn:hover { border-color: var(--green); color: var(--green); }
+
+        /* ===================== COMPARE SNAPSHOTS ===================== */
+        .snap-compare-btn {
+            font-size: 0.68rem; color: var(--accent); cursor: pointer;
+            background: none; border: none; padding: 0 0 0 0.4rem;
+            text-decoration: underline; text-underline-offset: 2px;
+        }
+        .snap-compare-btn:hover { opacity: 0.75; }
+        .compare-overlay {
+            position: fixed; inset: 0; background: var(--bg);
+            z-index: 160; overflow-y: auto; padding: 1.25rem; display: none;
+        }
+        .compare-overlay.open { display: block; }
+        .compare-header {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 1.25rem; gap: 1rem; flex-wrap: wrap;
+        }
+        .compare-title { font-size: 1rem; font-weight: 700; }
+        .compare-close {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            padding: 0.4rem 0.9rem; background: transparent;
+            border: 1px solid var(--border); color: var(--text-2);
+            border-radius: var(--radius-sm); font-size: 0.8rem; font-weight: 600;
+            cursor: pointer; transition: all var(--transition);
+        }
+        .compare-close:hover { border-color: var(--red); color: var(--red); }
+        .compare-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 1rem; margin-bottom: 1.5rem;
+        }
+        .compare-col { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1rem; }
+        .compare-col-title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-3); margin-bottom: 0.75rem; }
+        .compare-result-val { font-size: 1.5rem; font-weight: 700; font-variant-numeric: tabular-nums; margin-bottom: 0.5rem; }
+        .compare-row { display: flex; justify-content: space-between; align-items: center; padding: 0.3rem 0; border-bottom: 1px solid var(--border); font-size: 0.8rem; }
+        .compare-row:last-child { border-bottom: none; }
+        .compare-row-label { color: var(--text-3); }
+        .compare-row-val { font-weight: 600; font-variant-numeric: tabular-nums; }
+        .compare-diff-row {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md);
+            padding: 0.75rem 1rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+        }
+        .compare-diff-label { font-size: 0.78rem; color: var(--text-3); }
+        .compare-diff-val { font-size: 1.1rem; font-weight: 700; }
+        .compare-diff-val.pos { color: var(--green); }
+        .compare-diff-val.neg { color: var(--red); }
+        .compare-diff-val.neu { color: var(--text-3); }
+        .compare-select-wrap { margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .compare-select {
+            background: var(--bg-card); border: 1px solid var(--border); color: var(--text-1);
+            border-radius: var(--radius-sm); padding: 0.35rem 0.6rem; font-size: 0.78rem;
+            cursor: pointer;
+        }
+        @media (max-width: 600px) {
+            .compare-grid { grid-template-columns: 1fr; }
+        }
+
         /* ===================== SNAPSHOTS ===================== */
         .snapshot-btn {
             display: inline-flex; align-items: center; gap: 0.35rem;
@@ -1113,7 +1178,11 @@
             </div>
         </div>
         <div class="header-right">
-            <button class="dashboard-btn" id="dashboardBtn" title="Unit-economics дашборд">
+            <button class="csv-btn" id="csvExportBtn" title="Экспорт всех метрик в CSV">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            CSV
+        </button>
+        <button class="dashboard-btn" id="dashboardBtn" title="Unit-economics дашборд">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
             Дашборд
         </button>
@@ -1140,6 +1209,20 @@
             <div class="section-card" data-section="growth"><h3>Growth</h3><p>CR · ROAS · CPC · Bounce Rate · CTR</p></div>
             <div class="section-card" data-section="qa"><h3>QA</h3><p>Bug Rate · Test Coverage · Defect Density</p></div>
             <div class="section-card" data-section="support"><h3>Support</h3><p>CSAT · NPS · FCR · SLA</p></div>
+        </div>
+    </div>
+
+    <!-- Compare snapshots overlay -->
+    <div class="compare-overlay" id="compareOverlay">
+        <div class="container">
+            <div class="compare-header">
+                <div class="compare-title" id="compareTitle">Сравнение снимков</div>
+                <button class="compare-close" id="compareClose">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    Закрыть
+                </button>
+            </div>
+            <div id="compareContent"></div>
         </div>
     </div>
 
@@ -2573,16 +2656,55 @@
     }
 
     document.addEventListener('keydown', e => {
-        // Esc → снять фокус с поиска
+        const inInput = document.activeElement && (document.activeElement.tagName === 'INPUT' || document.activeElement.tagName === 'TEXTAREA');
+
+        // Esc → снять фокус / закрыть модалки
         if (e.key === 'Escape') {
             if (document.activeElement === searchInput) searchInput.blur();
             if (modalOverlay.classList.contains('show')) modalOverlay.classList.remove('show');
+            document.getElementById('templatesOverlay').style.display = 'none';
+            closeCompare();
+            return;
         }
-        // ↑/↓ → навигация по метрикам (не в input)
+
+        if (inInput) return; // дальнейшие хоткеи не работают внутри полей ввода
+
+        // ↑/↓ → навигация по метрикам в текущем разделе
         if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-            if (document.activeElement && document.activeElement.tagName === 'INPUT') return;
             e.preventDefault();
             navigateMetrics(e.key === 'ArrowDown' ? 1 : -1);
+        }
+
+        // ←/→ → переключение между разделами
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+            e.preventDefault();
+            const sectionIds = Object.keys(metricsData);
+            const idx = sectionIds.indexOf(currentSection);
+            const next = sectionIds[e.key === 'ArrowRight'
+                ? Math.min(idx + 1, sectionIds.length - 1)
+                : Math.max(idx - 1, 0)];
+            if (next && next !== currentSection) setActiveSection(next);
+        }
+
+        // Ctrl+S / Cmd+S → сохранить снимок
+        if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+            e.preventDefault();
+            const btn = document.getElementById('snapshotBtn');
+            if (btn && resultBlock.style.display !== 'none') btn.click();
+        }
+
+        // Ctrl+D / Cmd+D → открыть дашборд
+        if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
+            e.preventDefault();
+            const dash = document.getElementById('dashboardOverlay');
+            if (dash.classList.contains('open')) closeDashboard();
+            else openDashboard();
+        }
+
+        // / → фокус на поиск
+        if (e.key === '/') {
+            e.preventDefault();
+            searchInput.focus();
         }
     });
 
@@ -2874,9 +2996,13 @@
         const rawCur = resultValue?.textContent?.replace(/[^\d.,\-]/g, '').replace(',', '.');
         if (rawCur) curNum = parseFloat(rawCur);
 
+        const canCompare = list.length >= 2;
         let html = `<div class="snapshots-block-title">
             <span>История (${list.length})</span>
-            <button class="snapshots-clear-all" id="snapsClearAll">Удалить все</button>
+            <div style="display:flex;gap:0.5rem;align-items:center;">
+                ${canCompare ? `<button class="snap-compare-btn" id="snapsCompareBtn">Сравнить</button>` : ''}
+                <button class="snapshots-clear-all" id="snapsClearAll">Удалить все</button>
+            </div>
         </div>`;
 
         [...list].reverse().forEach((snap, revIdx) => {
@@ -2934,6 +3060,12 @@
                 renderSnapshotsBlock();
             });
         }
+
+        // Compare button
+        const compareBtn = document.getElementById('snapsCompareBtn');
+        if (compareBtn) {
+            compareBtn.addEventListener('click', () => openCompare(metric.id));
+        }
     }
 
     snapshotBtn.addEventListener('click', () => {
@@ -2977,6 +3109,168 @@
 
         renderSnapshotsBlock();
     });
+
+    // ---- CSV EXPORT ----
+    document.getElementById('csvExportBtn').addEventListener('click', () => {
+        const rows = [['Раздел', 'Метрика', 'Формула', 'Результат', 'Единица', ...Array.from({length:6}, (_,i) => `Поле ${i+1}`), ...Array.from({length:6}, (_,i) => `Значение ${i+1}`)]];
+
+        Object.entries(metricsData).forEach(([, section]) => {
+            section.metrics.forEach(metric => {
+                const saved = storedValues[metric.id] || {};
+                const vals = {};
+                let allFilled = true;
+                metric.inputs.forEach(inp => {
+                    const raw = saved[inp.key];
+                    const num = raw !== undefined && raw !== '' ? parseFloat(String(raw).replace(/[\u00A0 ]/g, '')) : null;
+                    if (num === null || isNaN(num)) allFilled = false;
+                    vals[inp.key] = num;
+                });
+
+                let resultStr = '';
+                if (allFilled && metric.inputs.length > 0) {
+                    try {
+                        const r = metric.calculate(vals);
+                        if (r !== null && r !== undefined) resultStr = String(r);
+                    } catch(e) {}
+                }
+
+                const fieldLabels = metric.inputs.map(i => i.label).concat(Array(6).fill('')).slice(0,6);
+                const fieldVals = metric.inputs.map(i => saved[i.key] || '').concat(Array(6).fill('')).slice(0,6);
+
+                rows.push([
+                    section.name,
+                    metric.name,
+                    metric.formula,
+                    resultStr,
+                    metric.unit || '',
+                    ...fieldLabels,
+                    ...fieldVals
+                ]);
+            });
+        });
+
+        const csv = rows.map(r => r.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')).join('\n');
+        const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `metrics-tree-${new Date().toISOString().slice(0,10)}.csv`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    });
+
+    // ---- COMPARE SNAPSHOTS ----
+    let compareMetricId = null;
+
+    function openCompare(metricId) {
+        const metric = Object.values(metricsData).flatMap(s => s.metrics).find(m => m.id === metricId);
+        if (!metric) return;
+        const snaps = loadSnaps()[metricId] || [];
+        if (snaps.length < 1) return;
+
+        compareMetricId = metricId;
+        const overlay = document.getElementById('compareOverlay');
+        const content = document.getElementById('compareContent');
+        document.getElementById('compareTitle').textContent = `Сравнение: ${metric.name}`;
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+
+        function renderCompare(idxA, idxB) {
+            const snapA = snaps[idxA];
+            const snapB = idxB !== null ? snaps[idxB] : null; // null = текущие значения
+
+            const unit = metric.unit ? ` ${metric.unit}` : '';
+
+            function snapCard(snap, label) {
+                const inputRows = snap.inputs.map(i =>
+                    `<div class="compare-row"><span class="compare-row-label">${i.label}</span><span class="compare-row-val">${i.val}</span></div>`
+                ).join('');
+                return `<div class="compare-col">
+                    <div class="compare-col-title">${label}</div>
+                    <div class="compare-result-val" style="color:var(--accent)">${snap.displayResult}${unit.trim() && !snap.displayResult.includes(unit.trim()) ? unit : ''}</div>
+                    <div class="snapshot-meta">${formatSnapDate(snap.ts)}</div>
+                    <div style="margin-top:0.6rem">${inputRows}</div>
+                </div>`;
+            }
+
+            // Get current calc values for "current" option
+            function getCurrentSnap() {
+                const vals = {};
+                const inputs = [];
+                metric.inputs.forEach(inp => {
+                    const el = document.getElementById(`input-${inp.key}`);
+                    const v = el ? el.value.replace(/[\u00A0 ]/g, '') : '';
+                    vals[inp.key] = parseFloat(v) || 0;
+                    inputs.push({ label: inp.label.split(',')[0], val: v || '—' });
+                });
+                let displayResult = '—';
+                try {
+                    const r = metric.calculate(vals);
+                    if (r !== null) displayResult = String(r);
+                } catch(e) {}
+                return { ts: Date.now(), displayResult, inputs, result: parseFloat(displayResult) || 0 };
+            }
+
+            const effectiveB = snapB || getCurrentSnap();
+            const labelA = `Снимок ${idxA + 1} (${formatSnapDate(snapA.ts)})`;
+            const labelB = snapB ? `Снимок ${idxB + 1} (${formatSnapDate(snapB.ts)})` : 'Текущие значения';
+
+            const numA = snapA.result;
+            const numB = effectiveB.result;
+            let diffHtml = '';
+            if (numA !== 0 && !isNaN(numA) && !isNaN(numB)) {
+                const pct = ((numB - numA) / Math.abs(numA)) * 100;
+                const sign = pct > 0 ? '+' : '';
+                const cls = Math.abs(pct) < 0.5 ? 'neu' : pct > 0 ? 'pos' : 'neg';
+                const absStr = Math.abs(numB - numA) >= 1e3
+                    ? (Math.abs(numB - numA) / 1e3).toFixed(1) + 'K'
+                    : Math.abs(numB - numA).toFixed(2);
+                diffHtml = `<div class="compare-diff-row">
+                    <span class="compare-diff-label">${labelB} относительно ${labelA}:</span>
+                    <span class="compare-diff-val ${cls}">${sign}${pct.toFixed(1)}% (${pct > 0 ? '+' : ''}${absStr}${unit})</span>
+                </div>`;
+            }
+
+            // Build snapshot selectors
+            const snapOptions = snaps.map((s, i) => `<option value="${i}" ${i === idxA ? 'selected' : ''}>Снимок ${i+1}: ${s.displayResult} (${formatSnapDate(s.ts)})</option>`).join('');
+            const snapOptionsB = [`<option value="current" ${idxB === null ? 'selected' : ''}>Текущие значения</option>`,
+                ...snaps.map((s, i) => `<option value="${i}" ${i === idxB ? 'selected' : ''}>Снимок ${i+1}: ${s.displayResult} (${formatSnapDate(s.ts)})</option>`)
+            ].join('');
+
+            content.innerHTML = `
+                <div class="compare-select-wrap">
+                    <span style="font-size:0.78rem;color:var(--text-3)">Сравниваем:</span>
+                    <select class="compare-select" id="cmpSelA">${snapOptions}</select>
+                    <span style="font-size:0.78rem;color:var(--text-3)">vs</span>
+                    <select class="compare-select" id="cmpSelB">${snapOptionsB}</select>
+                </div>
+                <div class="compare-grid">
+                    ${snapCard(snapA, labelA)}
+                    ${snapCard(effectiveB, labelB)}
+                </div>
+                ${diffHtml}`;
+
+            document.getElementById('cmpSelA').addEventListener('change', e => {
+                const bSel = document.getElementById('cmpSelB').value;
+                renderCompare(parseInt(e.target.value), bSel === 'current' ? null : parseInt(bSel));
+            });
+            document.getElementById('cmpSelB').addEventListener('change', e => {
+                const aSel = document.getElementById('cmpSelA').value;
+                renderCompare(parseInt(aSel), e.target.value === 'current' ? null : parseInt(e.target.value));
+            });
+        }
+
+        renderCompare(0, snaps.length > 1 ? 1 : null);
+    }
+
+    function closeCompare() {
+        document.getElementById('compareOverlay').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('compareClose').addEventListener('click', closeCompare);
 
     // ---- SCENARIO TEMPLATES ----
     const SCENARIO_TEMPLATES = [
