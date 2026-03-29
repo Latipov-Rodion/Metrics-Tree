@@ -3,16 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Калькулятор продуктовых метрик — LTV, CAC, MRR, NPS, DAU и 35+</title>
-    <meta name="description" content="Бесплатный онлайн-калькулятор продуктовых метрик: LTV, CAC, MRR, ARR, NRR, DAU, MAU, Churn Rate, ROAS, NPS и ещё 25+ метрик с формулами, порогами и интерпретацией результата.">
-    <meta name="keywords" content="калькулятор LTV, расчёт CAC, MRR ARR калькулятор, NRR, DAU MAU stickiness, churn rate, ROAS, NPS CSAT, продуктовые метрики онлайн, product metrics calculator">
+    <title>MetricTree — Калькулятор продуктовых метрик: LTV, CAC, MRR, Churn, NPS и 35+</title>
+    <meta name="description" content="Бесплатный калькулятор 35 продуктовых метрик онлайн: рассчитайте LTV, CAC, MRR, ARR, Churn Rate, DAU, ROAS, NPS с формулами, отраслевыми порогами и интерпретацией. Для продактов, маркетологов и аналитиков.">
+    <meta name="keywords" content="калькулятор LTV онлайн, как рассчитать CAC, формула MRR ARR, что такое Churn Rate, NPS калькулятор, DAU MAU stickiness, ROAS формула, продуктовые метрики, unit economics калькулятор, MetricTree">
     <meta name="author" content="Родион Латыпов">
-    <meta property="og:title" content="Калькулятор продуктовых метрик — LTV, CAC, MRR, NPS и 35+">
-    <meta property="og:description" content="Рассчитайте 35 метрик: B2C, B2B, Growth, AARRR, QA, Support. Формулы, пороги, инсайты. Бесплатно.">
+    <link rel="canonical" href="https://latipov-rodion.github.io/Metrics-Tree/">
+    <meta property="og:title" content="MetricTree — Калькулятор 35 продуктовых метрик: LTV, CAC, MRR, NPS">
+    <meta property="og:description" content="Рассчитайте LTV, CAC, MRR, Churn Rate, ROAS, NPS и 30+ метрик. Формулы, отраслевые пороги, What-If анализ, шаблоны сценариев. Бесплатно.">
     <meta property="og:type" content="website">
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Калькулятор продуктовых метрик — 35+ формул">
-    <meta name="twitter:description" content="LTV, CAC, MRR, ARR, NRR, DAU, Churn Rate, ROAS, NPS и другие. Формулы, пороги, инсайты. Бесплатно.">
+    <meta property="og:url" content="https://latipov-rodion.github.io/Metrics-Tree/">
+    <meta property="og:site_name" content="MetricTree">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MetricTree — Калькулятор продуктовых метрик">
+    <meta name="twitter:description" content="LTV, CAC, MRR, Churn, ROAS, NPS и 30+ метрик с формулами и инсайтами. Бесплатно.">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "MetricTree",
+      "alternateName": "Калькулятор продуктовых метрик",
+      "url": "https://latipov-rodion.github.io/Metrics-Tree/",
+      "description": "Бесплатный онлайн-калькулятор 35 продуктовых метрик: LTV, CAC, MRR, ARR, Churn Rate, DAU, ROAS, NPS с формулами и интерпретацией результатов.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RUB" },
+      "author": { "@type": "Person", "name": "Родион Латыпов", "url": "https://www.linkedin.com/in/rodion-latipov" },
+      "inLanguage": "ru",
+      "keywords": "LTV, CAC, MRR, ARR, Churn Rate, DAU, MAU, ROAS, NPS, CSAT, продуктовые метрики"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Как рассчитать LTV (Lifetime Value)?", "acceptedAnswer": { "@type": "Answer", "text": "LTV = AOV × Частота покупок в год × Среднее время жизни клиента (лет). Например: AOV 2500₽ × 4 покупки × 3 года = 30 000₽." } },
+        { "@type": "Question", "name": "Как рассчитать CAC (Customer Acquisition Cost)?", "acceptedAnswer": { "@type": "Answer", "text": "CAC = Затраты на маркетинг / Количество новых клиентов. Норма: LTV должен быть минимум в 3 раза больше CAC." } },
+        { "@type": "Question", "name": "Как рассчитать MRR (Monthly Recurring Revenue)?", "acceptedAnswer": { "@type": "Answer", "text": "MRR — сумма всех ежемесячных подписок. ARR = MRR × 12. Хороший рост MoM рост MRR для SaaS — более 10% в месяц." } },
+        { "@type": "Question", "name": "Что такое Churn Rate и как его считать?", "acceptedAnswer": { "@type": "Answer", "text": "Churn Rate = Ушедшие пользователи / Всего пользователей на начало периода × 100%. Норма для SaaS — менее 2% в месяц." } },
+        { "@type": "Question", "name": "Как рассчитать NPS (Net Promoter Score)?", "acceptedAnswer": { "@type": "Answer", "text": "NPS = % Промоутеров (оценки 9–10) − % Детракторов (оценки 0–6). Хороший NPS — выше 30, отличный — выше 70." } },
+        { "@type": "Question", "name": "Что такое ROAS и как его посчитать?", "acceptedAnswer": { "@type": "Answer", "text": "ROAS = Выручка от рекламы / Затраты на рекламу × 100%. Норма для e-commerce — более 300%." } }
+      ]
+    }
+    </script>
     <style>
         /* ===================== CSS VARIABLES ===================== */
         :root {
@@ -1208,7 +1241,7 @@
 <div class="container">
     <div class="header">
         <div class="header-left">
-            <h1>Интерактивный справочник с расчётом продуктовых метрик</h1>
+            <h1>MetricTree — Калькулятор продуктовых метрик</h1>
             <div class="subtitle">
                 <span>Создатель:</span>
                 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank" rel="noopener">Родион Латыпов</a>
@@ -3799,5 +3832,25 @@
     updatePageTitle();
 })();
 </script>
+
+<!-- SEO: статичный текстовый контент для индексации -->
+<section style="max-width:900px;margin:3rem auto 0;padding:0 1rem 3rem;color:var(--text-3);font-size:0.82rem;line-height:1.7;">
+    <h2 style="font-size:1rem;font-weight:700;color:var(--text-2);margin-bottom:0.75rem;">О калькуляторе MetricTree</h2>
+    <p>MetricTree — бесплатный онлайн-калькулятор 35 продуктовых метрик для продакт-менеджеров, маркетологов и аналитиков. Рассчитайте LTV, CAC, MRR, ARR, Churn Rate, DAU, MAU, Stickiness, ROAS, NPS, CSAT и другие метрики с формулами, отраслевыми порогами и интерпретацией результата.</p>
+
+    <h2 style="font-size:1rem;font-weight:700;color:var(--text-2);margin:1.25rem 0 0.5rem;">Метрики по разделам</h2>
+    <p><strong>B2C-метрики:</strong> DAU (Daily Active Users), MAU (Monthly Active Users), Stickiness (DAU/MAU), Retention Rate, LTV (Lifetime Value), CAC (Customer Acquisition Cost), LTV:CAC Ratio, ARPU, Churn Rate.</p>
+    <p><strong>B2B SaaS-метрики:</strong> MRR (Monthly Recurring Revenue), ARR (Annual Recurring Revenue), ACV (Annual Contract Value), GRR (Gross Revenue Retention), NRR (Net Revenue Retention), CAC Payback Period.</p>
+    <p><strong>AARRR / Пиратские метрики:</strong> Acquisition, Activation Rate, Retention, Referral (K-factor), Revenue.</p>
+    <p><strong>Growth-метрики:</strong> CR (Conversion Rate), ROAS, CPC, CTR, Bounce Rate.</p>
+    <p><strong>QA-метрики:</strong> Bug Rate, Test Coverage, Defect Density.</p>
+    <p><strong>Support-метрики:</strong> CSAT, NPS (Net Promoter Score), FCR (First Contact Resolution), SLA.</p>
+
+    <h2 style="font-size:1rem;font-weight:700;color:var(--text-2);margin:1.25rem 0 0.5rem;">Часто задаваемые вопросы</h2>
+    <p><strong>Как рассчитать LTV?</strong> LTV = AOV × Частота покупок в год × Время жизни клиента (лет). LTV должен быть минимум в 3 раза больше CAC.</p>
+    <p><strong>Как рассчитать CAC?</strong> CAC = Маркетинговые затраты / Количество новых клиентов. Норма окупаемости CAC для SaaS — до 12–18 месяцев.</p>
+    <p><strong>Что такое NRR (Net Revenue Retention)?</strong> NRR показывает рост выручки от существующих клиентов с учётом апселов и оттока. NRR выше 100% означает рост без новых клиентов. Отличный NRR для SaaS — выше 120%.</p>
+    <p><strong>Что такое Churn Rate?</strong> Churn Rate — процент клиентов, покинувших продукт за период. Для SaaS норма — менее 2% в месяц, для мобильных приложений — до 10%.</p>
+</section>
 </body>
 </html>
