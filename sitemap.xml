@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://metricstree.vercel.app/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- B2C -->
+  <url><loc>https://metricstree.vercel.app/dau</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://metricstree.vercel.app/mau</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://metricstree.vercel.app/stickiness</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://metricstree.vercel.app/retention</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://metricstree.vercel.app/ltv</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://metricstree.vercel.app/cac</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://metricstree.vercel.app/ltv_cac</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://metricstree.vercel.app/arpu</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://metricstree.vercel.app/churn</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <!-- B2B SaaS -->
+  <url><loc>https://metricstree.vercel.app/mrr</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://metricstree.vercel.app/arr</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://metricstree.vercel.app/acv</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://metricstree.vercel.app/grr</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://metricstree.vercel.app/nrr</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://metricstree.vercel.app/cacPayback</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://metricstree.vercel.app/burnMultiple</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://metricstree.vercel.app/magicNumber</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://metricstree.vercel.app/ruleOf40</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://metricstree.vercel.app/quickRatio</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <!-- AARRR -->
+  <url><loc>https://metricstree.vercel.app/acquisition</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://metricstree.vercel.app/activation</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://metricstree.vercel.app/retention_aarrr</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://metricstree.vercel.app/referral</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://metricstree.vercel.app/revenue</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- Growth -->
+  <url><loc>https://metricstree.vercel.app/cr</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://metricstree.vercel.app/roas</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://metricstree.vercel.app/cpc</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://metricstree.vercel.app/ctr</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://metricstree.vercel.app/bounceRate</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- QA -->
+  <url><loc>https://metricstree.vercel.app/bugRate</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://metricstree.vercel.app/testCoverage</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://metricstree.vercel.app/defectDensity</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <!-- Support -->
+  <url><loc>https://metricstree.vercel.app/csat</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://metricstree.vercel.app/nps</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://metricstree.vercel.app/fcr</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://metricstree.vercel.app/sla</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+</urlset>

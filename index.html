@@ -2,34 +2,46 @@
 <html lang="ru" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MetricTree — Калькулятор продуктовых метрик: LTV, CAC, MRR, Churn, NPS и 35+</title>
-    <meta name="description" content="Бесплатный калькулятор 35 продуктовых метрик онлайн: рассчитайте LTV, CAC, MRR, ARR, Churn Rate, DAU, ROAS, NPS с формулами, отраслевыми порогами и интерпретацией. Для продактов, маркетологов и аналитиков.">
-    <meta name="keywords" content="калькулятор LTV онлайн, как рассчитать CAC, формула MRR ARR, что такое Churn Rate, NPS калькулятор, DAU MAU stickiness, ROAS формула, продуктовые метрики, unit economics калькулятор, MetricTree">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>MetricTree — Калькулятор продуктовых метрик: LTV, CAC, MRR, Churn, NPS, Burn Multiple и 39+</title>
+    <meta name="description" content="Бесплатный калькулятор 39 продуктовых метрик онлайн: рассчитайте LTV, CAC, MRR, ARR, Churn Rate, DAU, ROAS, NPS, Burn Multiple, Magic Number, Rule of 40, Quick Ratio с формулами, отраслевыми порогами и интерпретацией. Для продактов, маркетологов и SaaS-аналитиков.">
+    <meta name="keywords" content="калькулятор LTV онлайн, как рассчитать CAC, формула MRR ARR, что такое Churn Rate, NPS калькулятор, DAU MAU stickiness, ROAS формула, Burn Multiple калькулятор, Magic Number SaaS, Rule of 40, Quick Ratio SaaS, продуктовые метрики, unit economics, MetricTree">
     <meta name="author" content="Родион Латыпов">
-    <link rel="canonical" href="https://latipov-rodion.github.io/Metrics-Tree/">
+    <meta name="theme-color" content="#0A0C0E" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#F0F2F5" media="(prefers-color-scheme: light)">
+    <link rel="canonical" href="https://metricstree.vercel.app/">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.ico">
+    <link rel="manifest" href="/manifest.webmanifest">
     <meta property="og:title" content="MetricTree — Калькулятор 35 продуктовых метрик: LTV, CAC, MRR, NPS">
     <meta property="og:description" content="Рассчитайте LTV, CAC, MRR, Churn Rate, ROAS, NPS и 30+ метрик. Формулы, отраслевые пороги, What-If анализ, шаблоны сценариев. Бесплатно.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://latipov-rodion.github.io/Metrics-Tree/">
+    <meta property="og:url" content="https://metricstree.vercel.app/">
     <meta property="og:site_name" content="MetricTree">
+    <meta property="og:image" content="https://metricstree.vercel.app/og-image.svg">
+    <meta property="og:image:type" content="image/svg+xml">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="MetricTree — калькулятор продуктовых метрик: LTV, CAC, MRR, NPS, Churn">
+    <meta property="og:locale" content="ru_RU">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="MetricTree — Калькулятор продуктовых метрик">
     <meta name="twitter:description" content="LTV, CAC, MRR, Churn, ROAS, NPS и 30+ метрик с формулами и инсайтами. Бесплатно.">
+    <meta name="twitter:image" content="https://metricstree.vercel.app/og-image.svg">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
       "name": "MetricTree",
       "alternateName": "Калькулятор продуктовых метрик",
-      "url": "https://latipov-rodion.github.io/Metrics-Tree/",
-      "description": "Бесплатный онлайн-калькулятор 35 продуктовых метрик: LTV, CAC, MRR, ARR, Churn Rate, DAU, ROAS, NPS с формулами и интерпретацией результатов.",
+      "url": "https://metricstree.vercel.app/",
+      "description": "Бесплатный онлайн-калькулятор 39 продуктовых метрик: LTV, CAC, MRR, ARR, Churn Rate, DAU, ROAS, NPS, Burn Multiple, Magic Number, Rule of 40, Quick Ratio с формулами и интерпретацией результатов.",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Any",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RUB" },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "author": { "@type": "Person", "name": "Родион Латыпов", "url": "https://www.linkedin.com/in/rodion-latipov" },
       "inLanguage": "ru",
-      "keywords": "LTV, CAC, MRR, ARR, Churn Rate, DAU, MAU, ROAS, NPS, CSAT, продуктовые метрики"
+      "keywords": "LTV, CAC, MRR, ARR, Churn Rate, DAU, MAU, ROAS, NPS, CSAT, Burn Multiple, Magic Number, Rule of 40, Quick Ratio, SaaS метрики, продуктовые метрики"
     }
     </script>
     <script type="application/ld+json">
@@ -37,12 +49,19 @@
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
-        { "@type": "Question", "name": "Как рассчитать LTV (Lifetime Value)?", "acceptedAnswer": { "@type": "Answer", "text": "LTV = AOV × Частота покупок в год × Среднее время жизни клиента (лет). Например: AOV 2500₽ × 4 покупки × 3 года = 30 000₽." } },
-        { "@type": "Question", "name": "Как рассчитать CAC (Customer Acquisition Cost)?", "acceptedAnswer": { "@type": "Answer", "text": "CAC = Затраты на маркетинг / Количество новых клиентов. Норма: LTV должен быть минимум в 3 раза больше CAC." } },
-        { "@type": "Question", "name": "Как рассчитать MRR (Monthly Recurring Revenue)?", "acceptedAnswer": { "@type": "Answer", "text": "MRR — сумма всех ежемесячных подписок. ARR = MRR × 12. Хороший рост MoM рост MRR для SaaS — более 10% в месяц." } },
-        { "@type": "Question", "name": "Что такое Churn Rate и как его считать?", "acceptedAnswer": { "@type": "Answer", "text": "Churn Rate = Ушедшие пользователи / Всего пользователей на начало периода × 100%. Норма для SaaS — менее 2% в месяц." } },
-        { "@type": "Question", "name": "Как рассчитать NPS (Net Promoter Score)?", "acceptedAnswer": { "@type": "Answer", "text": "NPS = % Промоутеров (оценки 9–10) − % Детракторов (оценки 0–6). Хороший NPS — выше 30, отличный — выше 70." } },
-        { "@type": "Question", "name": "Что такое ROAS и как его посчитать?", "acceptedAnswer": { "@type": "Answer", "text": "ROAS = Выручка от рекламы / Затраты на рекламу × 100%. Норма для e-commerce — более 300%." } }
+        { "@type": "Question", "name": "Как рассчитать LTV (Lifetime Value)?", "acceptedAnswer": { "@type": "Answer", "text": "LTV = AOV × Частота покупок в год × Среднее время жизни клиента (лет). Например: AOV $2 500 × 4 покупки × 3 года = $30 000. Главное — соотношение LTV : CAC ≥ 3 : 1." } },
+        { "@type": "Question", "name": "Как рассчитать CAC (Customer Acquisition Cost)?", "acceptedAnswer": { "@type": "Answer", "text": "CAC = Затраты на маркетинг и продажи / Количество новых платящих клиентов за период. Норма: LTV должен быть минимум в 3 раза больше CAC, окупаемость CAC для SaaS — до 12–18 месяцев." } },
+        { "@type": "Question", "name": "Как рассчитать MRR (Monthly Recurring Revenue)?", "acceptedAnswer": { "@type": "Answer", "text": "MRR — сумма всех ежемесячных подписок. ARR = MRR × 12. Здоровый MoM-рост MRR для растущего SaaS — 10–20% в месяц." } },
+        { "@type": "Question", "name": "Что такое Churn Rate и как его считать?", "acceptedAnswer": { "@type": "Answer", "text": "Churn Rate = Ушедшие пользователи / Всего пользователей на начало периода × 100%. Норма для B2B SaaS — <2% в месяц, для мобильных приложений — до 10%." } },
+        { "@type": "Question", "name": "Как рассчитать NPS (Net Promoter Score)?", "acceptedAnswer": { "@type": "Answer", "text": "NPS = % Промоутеров (оценки 9–10) − % Детракторов (оценки 0–6). Хороший NPS — выше 30, очень высокий — выше 50, мирового уровня — выше 70." } },
+        { "@type": "Question", "name": "Что такое ROAS и как его посчитать?", "acceptedAnswer": { "@type": "Answer", "text": "ROAS = Выручка от рекламы / Затраты на рекламу. Норма для e-commerce — более 4× (400%), для SaaS — более 3× (300%)." } },
+        { "@type": "Question", "name": "Что такое Burn Multiple и как его считать?", "acceptedAnswer": { "@type": "Answer", "text": "Burn Multiple = Net Burn / Net New ARR (David Sacks). Показывает, сколько $ сжигаем, чтобы сгенерировать $1 нового годового дохода. <1 — отлично, 1–1.5 — хорошо, 1.5–2 — приемлемо, >2 — нужно оптимизировать unit-economics." } },
+        { "@type": "Question", "name": "Что такое Magic Number в SaaS?", "acceptedAnswer": { "@type": "Answer", "text": "Magic Number = (Net New ARR за квартал × 4) / S&M расходы за квартал. Показывает эффективность Sales & Marketing. Хорошо: >1, отлично: >1.5. Меньше 0.5 — пересмотрите воронку." } },
+        { "@type": "Question", "name": "Что такое Rule of 40?", "acceptedAnswer": { "@type": "Answer", "text": "Rule of 40 = Темп роста выручки YoY (%) + Маржа EBITDA или FCF (%). Здоровый SaaS поддерживает сумму ≥ 40% независимо от баланса роста и прибыльности. Выше 60% — top decile." } },
+        { "@type": "Question", "name": "Что такое SaaS Quick Ratio?", "acceptedAnswer": { "@type": "Answer", "text": "Quick Ratio (Mamoon Hamid) = (New MRR + Expansion MRR) / (Churned MRR + Contraction MRR). Показывает устойчивость роста: на каждый $ потерянной выручки — сколько $ новой. Хорошо: 2–4, отлично для SaaS: >4." } },
+        { "@type": "Question", "name": "Что такое LTV : CAC и какая норма?", "acceptedAnswer": { "@type": "Answer", "text": "LTV : CAC = LTV / CAC. <1 — бизнес убыточен; 1–3 — ниже нормы; ≥3 — здоровая unit-экономика; >5 — отлично, но возможно недоинвестируете в рост." } },
+        { "@type": "Question", "name": "Как рассчитать Stickiness?", "acceptedAnswer": { "@type": "Answer", "text": "Stickiness = DAU / MAU × 100%. Доля месячной аудитории, возвращающейся ежедневно. Норма: >20%, хорошо: >40%, для SaaS отлично: >50%." } },
+        { "@type": "Question", "name": "Как считать NRR (Net Revenue Retention)?", "acceptedAnswer": { "@type": "Answer", "text": "NRR = (Начальный MRR + Апселы − Отток) / Начальный MRR × 100%. NRR > 100% означает рост за счёт существующих клиентов без учёта новых. Отличный SaaS: >120%." } }
       ]
     }
     </script>
@@ -101,6 +120,31 @@
         /* ===================== RESET & BASE ===================== */
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* ===================== A11Y: SKIP LINK + SR-ONLY ===================== */
+        .skip-link {
+            position: absolute; top: -100px; left: 1rem; z-index: 1000;
+            background: var(--accent); color: #fff; padding: 0.6rem 1rem;
+            border-radius: 0.5rem; font-weight: 600; text-decoration: none;
+            transition: top 0.2s ease;
+        }
+        .skip-link:focus { top: 1rem; outline: 2px solid #fff; outline-offset: 2px; }
+        .visually-hidden {
+            position: absolute !important; width: 1px; height: 1px;
+            padding: 0; margin: -1px; overflow: hidden;
+            clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+        }
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+        button:focus-visible, .section-card:focus-visible, .industry-pill:focus-visible,
+        .metric-item:focus-visible, .metric-chip:focus-visible { outline-offset: 3px; }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background: var(--bg);
@@ -156,6 +200,17 @@
             flex-wrap: wrap;
             flex-shrink: 0;
         }
+
+        /* ===================== CURRENCY TOGGLE ===================== */
+        .currency-toggle { display: inline-flex; gap: 2px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 2px; }
+        .currency-btn {
+            background: transparent; color: var(--text-2); border: none;
+            min-width: 30px; height: 28px; padding: 0 6px;
+            font-size: 0.85rem; font-weight: 600; cursor: pointer;
+            border-radius: 4px; transition: background var(--transition), color var(--transition);
+        }
+        .currency-btn:hover { background: var(--bg-hover); color: var(--text-1); }
+        .currency-btn.active { background: var(--accent-dim); color: var(--accent); }
 
         /* ===================== THEME TOGGLE ===================== */
         .theme-toggle {
@@ -1244,8 +1299,9 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
+<a href="#metricCard" class="skip-link">Перейти к калькулятору</a>
 <div class="container">
-    <div class="header">
+    <header class="header" role="banner">
         <div class="header-left">
             <h1>MetricTree — Калькулятор продуктовых метрик</h1>
             <div class="subtitle">
@@ -1263,12 +1319,19 @@
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
             Дашборд
         </button>
+        <div class="currency-toggle" role="group" aria-label="Валюта отображения">
+            <button class="currency-btn active" data-currency="$" title="Доллар США" aria-label="Установить валюту: доллар">$</button>
+            <button class="currency-btn" data-currency="€" title="Евро" aria-label="Установить валюту: евро">€</button>
+            <button class="currency-btn" data-currency="₽" title="Российский рубль" aria-label="Установить валюту: рубль">₽</button>
+            <button class="currency-btn" data-currency="£" title="Фунт стерлингов" aria-label="Установить валюту: фунт">£</button>
+        </div>
         <button class="theme-toggle" id="themeToggle" title="Переключить тему" aria-label="Переключить тему">🌙</button>
-            <div class="search-wrap">
-                <span class="search-icon">🔍</span>
-                <input type="text" class="search-input" id="searchInput" placeholder="Поиск метрики…" autocomplete="off">
-                <button class="search-clear" id="searchClear" title="Очистить поиск" aria-label="Очистить">×</button>
-                <div class="search-dropdown" id="searchDropdown"></div>
+            <div class="search-wrap" role="search">
+                <span class="search-icon" aria-hidden="true">🔍</span>
+                <label for="searchInput" class="visually-hidden">Поиск метрики</label>
+                <input type="search" class="search-input" id="searchInput" placeholder="Поиск метрики…" autocomplete="off" aria-label="Поиск метрики (нажмите / для фокуса)">
+                <button class="search-clear" id="searchClear" title="Очистить поиск" aria-label="Очистить поиск">×</button>
+                <div class="search-dropdown" id="searchDropdown" role="listbox" aria-label="Результаты поиска"></div>
             </div>
             <button class="share-btn" id="shareLinkBtn" title="Поделиться ссылкой на эту метрику">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -1276,7 +1339,7 @@
             </button>
             <button class="clear-btn" id="clearAllBtn">Очистить всё</button>
         </div>
-    </div>
+    </header>
 
     <!-- Onboarding bar (first visit) -->
     <div class="onboarding-bar" id="onboardingBar" style="display:none;">
@@ -1292,16 +1355,16 @@
         <button class="onboarding-dismiss" id="onboardingDismiss">Понятно</button>
     </div>
 
-    <div class="sections-nav-wrap">
-        <div class="sections-nav" id="sectionsNav">
-            <div class="section-card active" data-section="b2c"><h3>B2C</h3><p>DAU, MAU, LTV, CAC, ARPU, Churn, Stickiness, LTV:CAC</p></div>
-            <div class="section-card" data-section="b2b"><h3>B2B</h3><p>MRR, ARR, ACV, GRR, NRR, CAC Payback</p></div>
-            <div class="section-card" data-section="sales"><h3>AAARR</h3><p>Acquisition · Activation · Retention · Referral · Revenue</p></div>
-            <div class="section-card" data-section="growth"><h3>Growth</h3><p>CR · ROAS · CPC · Bounce Rate · CTR</p></div>
-            <div class="section-card" data-section="qa"><h3>QA</h3><p>Bug Rate · Test Coverage · Defect Density</p></div>
-            <div class="section-card" data-section="support"><h3>Support</h3><p>CSAT · NPS · FCR · SLA</p></div>
+    <nav class="sections-nav-wrap" aria-label="Разделы метрик">
+        <div class="sections-nav" id="sectionsNav" role="tablist">
+            <div class="section-card active" data-section="b2c" role="tab" tabindex="0" aria-selected="true"><h3>B2C</h3><p>DAU, MAU, LTV, CAC, ARPU, Churn, Stickiness, LTV:CAC</p></div>
+            <div class="section-card" data-section="b2b" role="tab" tabindex="0" aria-selected="false"><h3>B2B</h3><p>MRR, ARR, ACV, GRR, NRR, CAC Payback, Burn Multiple, Magic Number, Rule of 40, Quick Ratio</p></div>
+            <div class="section-card" data-section="sales" role="tab" tabindex="0" aria-selected="false"><h3>AARRR</h3><p>Acquisition · Activation · Retention · Referral · Revenue</p></div>
+            <div class="section-card" data-section="growth" role="tab" tabindex="0" aria-selected="false"><h3>Growth</h3><p>CR · ROAS · CPC · Bounce Rate · CTR</p></div>
+            <div class="section-card" data-section="qa" role="tab" tabindex="0" aria-selected="false"><h3>QA</h3><p>Bug Rate · Test Coverage · Defect Density</p></div>
+            <div class="section-card" data-section="support" role="tab" tabindex="0" aria-selected="false"><h3>Support</h3><p>CSAT · NPS · FCR · SLA</p></div>
         </div>
-    </div>
+    </nav>
 
     <!-- Compare snapshots overlay -->
     <div class="compare-overlay" id="compareOverlay">
@@ -1360,13 +1423,13 @@
     <!-- Mobile metric chips (shown instead of sidebar on mobile) -->
     <div class="metric-chips" id="metricChips"></div>
 
-    <div class="metrics-area">
-        <div class="metrics-list" id="metricsList">
+    <main class="metrics-area" id="main">
+        <aside class="metrics-list" id="metricsList" aria-label="Список метрик в разделе">
             <h4 id="sectionTitle">Метрики B2C</h4>
-            <div id="metricsListItems"></div>
+            <div id="metricsListItems" role="list"></div>
             <div class="no-results" id="noResults">Ничего не найдено</div>
-        </div>
-        <div class="metric-card" id="metricCard">
+        </aside>
+        <article class="metric-card" id="metricCard" tabindex="-1">
             <div class="metric-header">
                 <div class="metric-header-left">
                     <h2 id="metricName"></h2>
@@ -1376,8 +1439,8 @@
             </div>
             <div class="metric-description" id="metricDesc"></div>
             <div id="inputFields"></div>
-            <div class="validation-error" id="validationError"></div>
-            <div class="result-block" id="resultBlock" style="display:none;">
+            <div class="validation-error" id="validationError" role="alert" aria-live="polite"></div>
+            <div class="result-block" id="resultBlock" style="display:none;" role="region" aria-label="Результат расчёта" aria-live="polite">
                 <div class="result-main">
                     <div class="result-left">
                         <span class="result-label">Результат:</span>
@@ -1407,8 +1470,8 @@
             </div>
             <div class="snapshots-block" id="snapshotsBlock" style="display:none;"></div>
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
-        </div>
-    </div>
+        </article>
+    </main>
 </div>
 
 <!-- Модалка подтверждения очистки -->
@@ -1427,12 +1490,41 @@
 (function() {
     const LS_KEY = 'metricsTree_v2';
     const LS_THEME = 'metricsTree_theme';
+    const LS_CURRENCY = 'metricsTree_currency';
 
-    // ---- Тема ----
+    // ---- Валюта (только меняет отображаемый символ; конвертация не делается) ----
+    let currentCurrency = '$';
+    try { const c = localStorage.getItem(LS_CURRENCY); if (c && /^[\$€₽£]$/.test(c)) currentCurrency = c; } catch(e) {}
+    function localizeLabel(text) {
+        if (typeof text !== 'string') return text;
+        if (currentCurrency === '$') return text;
+        return text.replace(/, \$/g, ', ' + currentCurrency).replace(/\$/g, currentCurrency);
+    }
+    function localizeUnit(unit) {
+        if (unit === '$' && currentCurrency !== '$') return currentCurrency;
+        return unit;
+    }
+    function initCurrency() {
+        document.querySelectorAll('.currency-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.currency === currentCurrency);
+            btn.addEventListener('click', () => {
+                currentCurrency = btn.dataset.currency;
+                try { localStorage.setItem(LS_CURRENCY, currentCurrency); } catch(e) {}
+                document.querySelectorAll('.currency-btn').forEach(b => b.classList.toggle('active', b === btn));
+                renderMetricCard();
+            });
+        });
+    }
+
+    // ---- Тема (с уважением к prefers-color-scheme при первой загрузке) ----
     (function initTheme() {
-        const saved = localStorage.getItem(LS_THEME) || 'dark';
-        document.documentElement.setAttribute('data-theme', saved);
-        document.getElementById('themeToggle').textContent = saved === 'dark' ? '🌙' : '☀️';
+        let theme = localStorage.getItem(LS_THEME);
+        if (!theme) {
+            theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light' : 'dark';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+        document.getElementById('themeToggle').textContent = theme === 'dark' ? '🌙' : '☀️';
     })();
 
     document.getElementById('themeToggle').addEventListener('click', () => {
@@ -1494,29 +1586,21 @@
                     id: 'dau', name: 'DAU',
                     formula: 'Уникальные пользователи за день',
                     description: 'Daily Active Users — количество уникальных пользователей, взаимодействовавших с продуктом за сутки.',
-                    threshold: 'Плохо: <5k, Средне: 5k–20k, Хорошо: >20k',
+                    threshold: 'Метрика-счётчик. Оценивайте динамику MoM и через Stickiness',
                     inputs: [{ label: 'Уникальные пользователи (день)', placeholder: '12500', key: 'users', min: 0 }],
                     calculate: v => { const u = sanitizeNumber(v.users); return u !== null ? u : null; },
                     unit: 'чел',
-                    insight: val => {
-                        if (val < 5000) return { color: '#F44336', text: 'Низкая активность. Попробуйте улучшить вовлечение.' };
-                        if (val < 20000) return { color: '#FFC107', text: 'Средняя активность. Работайте над удержанием.' };
-                        return { color: '#4CAF50', text: 'Высокая активность. Отлично!' };
-                    }
+                    insight: val => ({ color: '#2A6DF4', text: 'DAU — счётчик; «норма» зависит от стадии. Смотрите Stickiness (DAU/MAU) и MoM-рост.' })
                 },
                 {
                     id: 'mau', name: 'MAU',
                     formula: 'Уникальные пользователи за месяц',
                     description: 'Monthly Active Users — количество уникальных пользователей за последние 30 дней.',
-                    threshold: 'Плохо: <30k, Средне: 30k–100k, Хорошо: >100k',
+                    threshold: 'Метрика-счётчик. Оценивайте динамику MoM и через Stickiness',
                     inputs: [{ label: 'Уникальные пользователи (месяц)', placeholder: '75400', key: 'users', min: 0 }],
                     calculate: v => { const u = sanitizeNumber(v.users); return u !== null ? u : null; },
                     unit: 'чел',
-                    insight: val => {
-                        if (val < 30000) return { color: '#F44336', text: 'Низкая база. Увеличьте маркетинговые активности.' };
-                        if (val < 100000) return { color: '#FFC107', text: 'Средний охват. Работайте над реферальными программами.' };
-                        return { color: '#4CAF50', text: 'Большая аудитория. Масштабируйте успех!' };
-                    }
+                    insight: val => ({ color: '#2A6DF4', text: 'MAU — счётчик; контекст важен. Сравнивайте через Stickiness, Retention и YoY-рост.' })
                 },
                 {
                     id: 'stickiness', name: 'Stickiness (DAU/MAU)',
@@ -1566,7 +1650,7 @@
                     id: 'ltv', name: 'LTV',
                     formula: 'AOV × Частота покупок в год × Время жизни (лет)',
                     description: 'Lifetime Value — сколько денег приносит клиент за всё время.',
-                    threshold: 'Плохо: <$1k, Средне: $1k–$5k, Хорошо: >$5k',
+                    threshold: 'Главное — соотношение к CAC: LTV:CAC > 3 норма, > 5 отлично',
                     inputs: [
                         { label: 'Средний чек (AOV), $', placeholder: '2500', key: 'aov', min: 0 },
                         { label: 'Частота покупок в год', placeholder: '2', key: 'freq', min: 0 },
@@ -1580,11 +1664,7 @@
                         return (aov * freq * life).toFixed(2);
                     },
                     unit: '$',
-                    insight: val => {
-                        if (val < 1000) return { color: '#F44336', text: 'LTV ниже желаемого. Увеличивайте частоту покупок или средний чек.' };
-                        if (val < 5000) return { color: '#FFC107', text: 'LTV в норме. Работайте над удержанием для роста.' };
-                        return { color: '#4CAF50', text: 'Высокий LTV! Инвестируйте в привлечение похожих клиентов.' };
-                    }
+                    insight: val => ({ color: '#2A6DF4', text: 'Сам по себе LTV ничего не говорит — сравните с CAC через LTV:CAC Ratio (цель ≥ 3:1).' })
                 },
                 {
                     id: 'cac', name: 'CAC',
@@ -1684,29 +1764,21 @@
                     id: 'mrr', name: 'MRR',
                     formula: 'Сумма месячной выручки с подписок',
                     description: 'Monthly Recurring Revenue — регулярная месячная выручка.',
-                    threshold: 'Плохо: <$10k, Средне: $10k–$50k, Хорошо: >$50k',
+                    threshold: 'Главное — MoM-рост: норма >5%, хорошо >10%, отлично >20%',
                     inputs: [{ label: 'Сумма MRR, $', placeholder: '45000', key: 'mrr', min: 0 }],
                     calculate: v => { const m = sanitizeNumber(v.mrr); return m !== null ? m : null; },
                     unit: '$',
-                    insight: val => {
-                        if (val < 10000) return { color: '#F44336', text: 'MRR низкий. Фокус на привлечение первых клиентов.' };
-                        if (val < 50000) return { color: '#FFC107', text: 'MRR средний. Работайте над расширением.' };
-                        return { color: '#4CAF50', text: 'Высокий MRR — стабильный рост!' };
-                    }
+                    insight: val => ({ color: '#2A6DF4', text: 'MRR — счётчик. Контекст важнее: смотрите MoM-рост, NRR, CAC Payback.' })
                 },
                 {
                     id: 'arr', name: 'ARR',
                     formula: 'MRR × 12',
                     description: 'Annual Recurring Revenue — годовая регулярная выручка.',
-                    threshold: 'Плохо: <$120k, Средне: $120k–$600k, Хорошо: >$600k',
+                    threshold: 'Главное — YoY-рост и NRR. Молодой SaaS: T2D3 (3x к ARR за 2 года)',
                     inputs: [{ label: 'MRR, $', placeholder: '45000', key: 'mrr', min: 0 }],
                     calculate: v => { const m = sanitizeNumber(v.mrr); return m !== null ? (m * 12).toFixed(2) : null; },
                     unit: '$',
-                    insight: val => {
-                        if (val < 120000) return { color: '#F44336', text: 'ARR низкий. Нужно увеличивать MRR.' };
-                        if (val < 600000) return { color: '#FFC107', text: 'ARR средний. Потенциал для масштабирования.' };
-                        return { color: '#4CAF50', text: 'Высокий ARR — бизнес устойчив.' };
-                    }
+                    insight: val => ({ color: '#2A6DF4', text: 'ARR — счётчик; зрелость определяется YoY-ростом и Rule of 40 (рост + маржа ≥ 40%).' })
                 },
                 {
                     id: 'acv', name: 'ACV',
@@ -1777,6 +1849,106 @@
                     }
                 },
                 {
+                    id: 'burnMultiple', name: 'Burn Multiple',
+                    formula: 'Net Burn / Net New ARR',
+                    description: 'Сколько $ сжигаем, чтобы сгенерировать $1 новой годовой выручки. Метрика капитальной эффективности SaaS (David Sacks).',
+                    threshold: 'Отлично: <1, Хорошо: 1–1.5, Норма: 1.5–2, Плохо: 2–3, Ужасно: >3',
+                    inputs: [
+                        { label: 'Net Burn (чистое сжигание кэша за период), $', placeholder: '500000', key: 'burn', min: 0 },
+                        { label: 'Net New ARR (прирост ARR за тот же период), $', placeholder: '600000', key: 'newArr', min: 0.01 }
+                    ],
+                    calculate: v => {
+                        const b = sanitizeNumber(v.burn);
+                        const a = sanitizeNumber(v.newArr);
+                        if (b === null || a === null || a <= 0) return null;
+                        return (b / a).toFixed(2);
+                    },
+                    unit: 'x',
+                    insight: val => {
+                        if (val < 1) return { color: '#4CAF50', text: 'Отличный Burn Multiple — высокая капитальная эффективность.' };
+                        if (val < 1.5) return { color: '#4CAF50', text: 'Хороший Burn Multiple — инвесторам нравится.' };
+                        if (val < 2) return { color: '#FFC107', text: 'Норма для роста; можно оптимизировать.' };
+                        if (val < 3) return { color: '#FFC107', text: 'Высокий burn — пересмотрите unit-economics.' };
+                        return { color: '#F44336', text: 'Критично: каждый $ роста стоит >$3 burn.' };
+                    }
+                },
+                {
+                    id: 'magicNumber', name: 'Magic Number',
+                    formula: '(Net New ARR × 4) / S&M расходы за квартал',
+                    description: 'Эффективность Sales & Marketing: сколько $ нового ARR в год даёт каждый $, потраченный на S&M (Scale Venture Partners).',
+                    threshold: 'Плохо: <0.5, Норма: 0.5–1, Хорошо: 1–1.5, Отлично: >1.5',
+                    inputs: [
+                        { label: 'Net New ARR за квартал, $', placeholder: '500000', key: 'newArr', min: 0 },
+                        { label: 'Расходы на Sales & Marketing за квартал, $', placeholder: '400000', key: 'sm', min: 0.01 }
+                    ],
+                    calculate: v => {
+                        const a = sanitizeNumber(v.newArr);
+                        const sm = sanitizeNumber(v.sm);
+                        if (a === null || sm === null || sm <= 0) return null;
+                        return ((a * 4) / sm).toFixed(2);
+                    },
+                    unit: '',
+                    insight: val => {
+                        if (val < 0.5) return { color: '#F44336', text: 'Низкий Magic Number — сократите S&M, исправьте воронку.' };
+                        if (val < 1) return { color: '#FFC107', text: 'Нормально, но окупаемость S&M >2 лет.' };
+                        if (val < 1.5) return { color: '#4CAF50', text: 'Хорошо — инвестируйте в рост.' };
+                        return { color: '#4CAF50', text: 'Отлично — масштабируйте S&M агрессивно!' };
+                    }
+                },
+                {
+                    id: 'ruleOf40', name: 'Rule of 40',
+                    formula: 'Темп роста выручки YoY (%) + Маржа EBITDA (%)',
+                    description: 'Здоровье SaaS: сумма роста и прибыльности. ≥ 40% — компания привлекательна для инвесторов независимо от соотношения growth vs profit.',
+                    threshold: 'Плохо: <20%, Норма: 20–40%, Хорошо: ≥40%, Отлично: >60%',
+                    inputs: [
+                        { label: 'Рост выручки YoY, %', placeholder: '35', key: 'growth', min: -100, max: 1000 },
+                        { label: 'Маржа EBITDA (или FCF), %', placeholder: '10', key: 'margin', min: -100, max: 100 }
+                    ],
+                    calculate: v => {
+                        const g = sanitizeNumber(v.growth);
+                        const m = sanitizeNumber(v.margin);
+                        if (g === null || m === null) return null;
+                        return (g + m).toFixed(1);
+                    },
+                    unit: '%',
+                    insight: val => {
+                        if (val < 20) return { color: '#F44336', text: 'Ниже 20%: критическое состояние — нужны фундаментальные изменения.' };
+                        if (val < 40) return { color: '#FFC107', text: 'Не дотягиваем до Rule of 40 — балансируйте рост и маржу.' };
+                        if (val < 60) return { color: '#4CAF50', text: 'Rule of 40 выполнено — здоровый SaaS.' };
+                        return { color: '#4CAF50', text: 'Выше 60% — звёздная категория (top decile).' };
+                    }
+                },
+                {
+                    id: 'quickRatio', name: 'Quick Ratio',
+                    formula: '(New MRR + Expansion MRR) / (Churned MRR + Contraction MRR)',
+                    description: 'SaaS Quick Ratio (Mamoon Hamid): сколько новой выручки приходится на каждый $ потерянной. Показатель устойчивости роста.',
+                    threshold: 'Плохо: <1, Норма: 1–2, Хорошо: 2–4, Отлично: >4',
+                    inputs: [
+                        { label: 'New MRR (новые клиенты), $', placeholder: '40000', key: 'newMrr', min: 0 },
+                        { label: 'Expansion MRR (апселы существующих), $', placeholder: '8000', key: 'expansion', min: 0 },
+                        { label: 'Churned MRR (ушедшие), $', placeholder: '5000', key: 'churned', min: 0 },
+                        { label: 'Contraction MRR (даунгрейды), $', placeholder: '3000', key: 'contraction', min: 0 }
+                    ],
+                    calculate: v => {
+                        const nm = sanitizeNumber(v.newMrr);
+                        const ex = sanitizeNumber(v.expansion);
+                        const ch = sanitizeNumber(v.churned);
+                        const co = sanitizeNumber(v.contraction);
+                        if ([nm,ex,ch,co].some(x=>x===null)) return null;
+                        const lost = ch + co;
+                        if (lost <= 0) return '∞';
+                        return ((nm + ex) / lost).toFixed(2);
+                    },
+                    unit: '',
+                    insight: val => {
+                        if (val === '∞' || val > 4) return { color: '#4CAF50', text: 'Отличный Quick Ratio — рост существенно превышает потери.' };
+                        if (val < 1) return { color: '#F44336', text: 'Quick Ratio < 1 — теряете больше, чем привлекаете.' };
+                        if (val < 2) return { color: '#FFC107', text: 'Хрупкий рост — каждый $ потерь съедает половину нового MRR.' };
+                        if (val < 4) return { color: '#4CAF50', text: 'Здоровый Quick Ratio — рост устойчив.' };
+                        return { color: '#4CAF50', text: 'Отличный Quick Ratio.' };
+                    }
+                },
+                {
                     id: 'cacPayback', name: 'CAC Payback',
                     formula: 'CAC / (MRR на клиента × Маржинальность)',
                     description: 'Время (месяцев) для возврата затрат на привлечение клиента.',
@@ -1805,21 +1977,17 @@
             ]
         },
         sales: {
-            name: 'AAARR',
+            name: 'AARRR',
             metrics: [
                 {
                     id: 'acquisition', name: 'Acquisition',
                     formula: 'Количество новых пользователей за период',
                     description: 'Сколько новых посетителей/клиентов привлечено.',
-                    threshold: 'Плохо: <500, Средне: 500–2000, Хорошо: >2000',
+                    threshold: 'Метрика-счётчик. Оценивайте через CAC, конверсии и MoM-динамику',
                     inputs: [{ label: 'Новые пользователи', placeholder: '1200', key: 'new', min: 0 }],
                     calculate: v => { const n = sanitizeNumber(v.new); return n !== null ? n : null; },
                     unit: 'чел',
-                    insight: val => {
-                        if (val < 500) return { color: '#F44336', text: 'Мало новых. Усильте маркетинг.' };
-                        if (val < 2000) return { color: '#FFC107', text: 'Нормально, но можно расти.' };
-                        return { color: '#4CAF50', text: 'Отличный приток!' };
-                    }
+                    insight: val => ({ color: '#2A6DF4', text: 'Acquisition — счётчик; качество важнее количества. Смотрите CAC, Activation Rate, LTV:CAC.' })
                 },
                 {
                     id: 'activation', name: 'Activation',
@@ -1891,15 +2059,11 @@
                     id: 'revenue', name: 'Revenue',
                     formula: 'Общая выручка за период',
                     description: 'Денежный поток от всех источников за период.',
-                    threshold: 'Плохо: <$50k, Средне: $50k–$200k, Хорошо: >$200k',
+                    threshold: 'Метрика-счётчик. Контекст: рост MoM/YoY, маржа, Rule of 40',
                     inputs: [{ label: 'Выручка, $', placeholder: '85000', key: 'rev', min: 0 }],
                     calculate: v => { const r = sanitizeNumber(v.rev); return r !== null ? r : null; },
                     unit: '$',
-                    insight: val => {
-                        if (val < 50000) return { color: '#F44336', text: 'Выручка низкая. Ищите новые каналы.' };
-                        if (val < 200000) return { color: '#FFC107', text: 'Выручка средняя. Масштабируйте.' };
-                        return { color: '#4CAF50', text: 'Высокая выручка — отличный результат.' };
-                    }
+                    insight: val => ({ color: '#2A6DF4', text: 'Revenue — счётчик; здоровье бизнеса определяется ростом, маржой и unit-экономикой.' })
                 }
             ]
         },
@@ -2135,8 +2299,9 @@
                     insight: val => {
                         if (val < 0) return { color: '#F44336', text: 'Отрицательный NPS. Требуются срочные меры.' };
                         if (val < 30) return { color: '#FFC107', text: 'NPS средний. Работайте над лояльностью.' };
-                        if (val < 50) return { color: '#4CAF50', text: 'Высокий NPS — много промоутеров!' };
-                        return { color: '#4CAF50', text: 'Отличный NPS — мирового уровня!' };
+                        if (val <= 50) return { color: '#4CAF50', text: 'Высокий NPS — много промоутеров!' };
+                        if (val <= 70) return { color: '#4CAF50', text: 'Очень высокий NPS — клиенты вас любят!' };
+                        return { color: '#4CAF50', text: 'Отличный NPS — мирового уровня (>70)!' };
                     }
                 },
                 {
@@ -2205,11 +2370,11 @@
             media:     'Плохо: <2%, Норма: 3–8%, Хорошо: >8%',
         },
         cpc: {
-            universal: 'Отлично: <30₽, Норма: 30–100₽, Плохо: >100₽',
-            saas:      'Отлично: <100₽, Норма: 100–400₽, Плохо: >400₽',
-            ecom:      'Отлично: <20₽, Норма: 20–80₽, Плохо: >80₽',
-            mobile:    'Отлично: <15₽, Норма: 15–60₽, Плохо: >60₽',
-            media:     'Отлично: <10₽, Норма: 10–40₽, Плохо: >40₽',
+            universal: 'Отлично: <$0.5, Норма: $0.5–$2, Плохо: >$2',
+            saas:      'Отлично: <$2, Норма: $2–$8, Плохо: >$8',
+            ecom:      'Отлично: <$0.3, Норма: $0.3–$1.2, Плохо: >$1.2',
+            mobile:    'Отлично: <$0.2, Норма: $0.2–$1, Плохо: >$1',
+            media:     'Отлично: <$0.15, Норма: $0.15–$0.6, Плохо: >$0.6',
         },
         roas: {
             universal: 'Плохо: <100%, Норма: 100–200%, Хорошо: >300%',
@@ -2225,7 +2390,7 @@
             mobile:    'Плохо: <1%, Норма: 1–5%, Хорошо: >5%',
             media:     'Плохо: <0.5%, Норма: 0.5–2%, Хорошо: >2%',
         },
-        bounce: {
+        bounceRate: {
             universal: 'Хорошо: <40%, Норма: 40–70%, Плохо: >70%',
             saas:      'Хорошо: <35%, Норма: 35–60%, Плохо: >60%',
             ecom:      'Хорошо: <30%, Норма: 30–55%, Плохо: >55%',
@@ -2249,9 +2414,9 @@
         cac: {
             universal: 'Отлично: CAC < LTV/3, Норма: CAC < LTV/2, Плохо: CAC > LTV/2',
             saas:      'Отлично: Окупаемость <6 мес, Норма: 6–18 мес, Плохо: >18 мес',
-            ecom:      'Отлично: CAC < 500₽, Норма: 500–2000₽, Плохо: >2000₽',
-            mobile:    'Отлично: CAC < 100₽, Норма: 100–500₽, Плохо: >500₽',
-            media:     'Отлично: CAC < 200₽, Норма: 200–1000₽, Плохо: >1000₽',
+            ecom:      'Отлично: CAC < $5, Норма: $5–$25, Плохо: >$25',
+            mobile:    'Отлично: CAC < $1, Норма: $1–$5, Плохо: >$5',
+            media:     'Отлично: CAC < $2, Норма: $2–$10, Плохо: >$10',
         },
         dau: {
             universal: 'Норма: Stickiness >20%, Хорошо: >40%',
@@ -2287,6 +2452,118 @@
             ecom:      'Плохо: <65%, Норма: 65–85%, Хорошо: >85%',
             mobile:    'Плохо: <60%, Норма: 60–80%, Хорошо: >80%',
             media:     'Плохо: <55%, Норма: 55–75%, Хорошо: >75%',
+        },
+        stickiness: {
+            universal: 'Плохо: <10%, Норма: 10–25%, Хорошо: >25%',
+            saas:      'Плохо: <15%, Норма: 15–30%, Хорошо: >30%, Отлично: >50%',
+            ecom:      'Плохо: <3%, Норма: 3–10%, Хорошо: >10%',
+            mobile:    'Плохо: <10%, Норма: 10–25%, Хорошо: >25%, Отлично: >40%',
+            media:     'Плохо: <12%, Норма: 12–30%, Хорошо: >30%',
+        },
+        retention: {
+            universal: 'Плохо: <30%, Норма: 30–60%, Хорошо: >60%',
+            saas:      'Плохо: <70%, Норма: 70–85%, Хорошо: >85% (по логин когортам D30)',
+            ecom:      'Плохо: <20%, Норма: 20–40%, Хорошо: >40% (повторная покупка 90д)',
+            mobile:    'Плохо: <15% D30, Норма: 15–30%, Хорошо: >30%',
+            media:     'Плохо: <25%, Норма: 25–50%, Хорошо: >50%',
+        },
+        retention_aarrr: {
+            universal: 'Плохо: <30%, Норма: 30–60%, Хорошо: >60%',
+            saas:      'Плохо: <60%, Норма: 60–80%, Хорошо: >80%',
+            ecom:      'Плохо: <20%, Норма: 20–40%, Хорошо: >40%',
+            mobile:    'Плохо: <15%, Норма: 15–30%, Хорошо: >30%',
+            media:     'Плохо: <20%, Норма: 20–45%, Хорошо: >45%',
+        },
+        activation: {
+            universal: 'Плохо: <30%, Норма: 30–60%, Хорошо: >60%',
+            saas:      'Плохо: <40%, Норма: 40–65%, Хорошо: >65%',
+            ecom:      'Плохо: <25%, Норма: 25–50%, Хорошо: >50%',
+            mobile:    'Плохо: <30%, Норма: 30–55%, Хорошо: >55%',
+            media:     'Плохо: <20%, Норма: 20–45%, Хорошо: >45%',
+        },
+        referral: {
+            universal: 'Плохо: <0.3, Норма: 0.3–1, Хорошо: >1 (вирусный рост)',
+            saas:      'Плохо: <0.2, Норма: 0.2–0.6, Хорошо: >0.6, Виральность: >1',
+            ecom:      'Плохо: <0.15, Норма: 0.15–0.5, Хорошо: >0.5',
+            mobile:    'Плохо: <0.4, Норма: 0.4–1, Хорошо: >1',
+            media:     'Плохо: <0.5, Норма: 0.5–1.5, Хорошо: >1.5',
+        },
+        arpu: {
+            universal: 'Зависит от модели — сравнивайте с CAC',
+            saas:      'B2B: $50–$500/мес, SMB: $20–$100, Enterprise: >$500',
+            ecom:      'Норма: $5–$50/мес активного покупателя',
+            mobile:    'Free-to-play: $0.05–$5, Premium app: $1–$20',
+            media:     'Подписка: $3–$15, Реклама: $0.5–$5',
+        },
+        grr: {
+            universal: 'Плохо: <80%, Норма: 80–95%, Хорошо: >95%',
+            saas:      'Плохо: <85%, Норма: 85–95%, Хорошо: >95%, Отлично: >97%',
+            ecom:      'Плохо: <75%, Норма: 75–90%, Хорошо: >90%',
+            mobile:    'Плохо: <70%, Норма: 70–88%, Хорошо: >88%',
+            media:     'Плохо: <80%, Норма: 80–92%, Хорошо: >92%',
+        },
+        cacPayback: {
+            universal: 'Хорошо: <12 мес, Норма: 12–24 мес, Плохо: >24 мес',
+            saas:      'Хорошо: <12 мес, Норма: 12–18 мес, Плохо: >18 мес',
+            ecom:      'Хорошо: <3 мес, Норма: 3–9 мес, Плохо: >9 мес',
+            mobile:    'Хорошо: <6 мес, Норма: 6–12 мес, Плохо: >12 мес',
+            media:     'Хорошо: <9 мес, Норма: 9–18 мес, Плохо: >18 мес',
+        },
+        ltv_cac: {
+            universal: 'Плохо: <1 (убыток), Норма: 1–3, Хорошо: >3, Отлично: >5',
+            saas:      'Плохо: <2, Норма: 2–4, Хорошо: 4–6, Отлично: >6',
+            ecom:      'Плохо: <1.5, Норма: 1.5–3, Хорошо: >3',
+            mobile:    'Плохо: <1.5, Норма: 1.5–3, Хорошо: >3',
+            media:     'Плохо: <2, Норма: 2–4, Хорошо: >4',
+        },
+        testCoverage: {
+            universal: 'Плохо: <50%, Норма: 50–80%, Хорошо: >80%',
+            saas:      'Плохо: <60%, Норма: 60–85%, Хорошо: >85%',
+            ecom:      'Плохо: <55%, Норма: 55–80%, Хорошо: >80%',
+            mobile:    'Плохо: <50%, Норма: 50–75%, Хорошо: >75%',
+            media:     'Плохо: <40%, Норма: 40–70%, Хорошо: >70%',
+        },
+        fcr: {
+            universal: 'Плохо: <60%, Норма: 60–80%, Хорошо: >80%',
+            saas:      'Плохо: <65%, Норма: 65–82%, Хорошо: >82%',
+            ecom:      'Плохо: <55%, Норма: 55–75%, Хорошо: >75%',
+            mobile:    'Плохо: <60%, Норма: 60–78%, Хорошо: >78%',
+            media:     'Плохо: <50%, Норма: 50–72%, Хорошо: >72%',
+        },
+        sla: {
+            universal: 'Плохо: <90%, Норма: 90–98%, Хорошо: >98%',
+            saas:      'Плохо: <95%, Норма: 95–99%, Хорошо: >99% (Enterprise: 99.9%)',
+            ecom:      'Плохо: <92%, Норма: 92–98%, Хорошо: >98%',
+            mobile:    'Плохо: <90%, Норма: 90–97%, Хорошо: >97%',
+            media:     'Плохо: <88%, Норма: 88–96%, Хорошо: >96%',
+        },
+        burnMultiple: {
+            universal: 'Отлично: <1, Хорошо: 1–1.5, Норма: 1.5–2, Плохо: >2',
+            saas:      'Отлично: <1 (top decile), Хорошо: 1–1.5, Норма: 1.5–2.5, Плохо: >2.5',
+            ecom:      'Отлично: <1.5, Норма: 1.5–2.5, Плохо: >2.5',
+            mobile:    'Отлично: <1.2, Норма: 1.2–2, Плохо: >2',
+            media:     'Отлично: <1.5, Норма: 1.5–3, Плохо: >3',
+        },
+        magicNumber: {
+            universal: 'Плохо: <0.5, Норма: 0.5–1, Хорошо: 1–1.5, Отлично: >1.5',
+            saas:      'Плохо: <0.5, Норма: 0.5–0.75, Хорошо: 0.75–1, Отлично: >1',
+            ecom:      'Плохо: <0.7, Норма: 0.7–1.2, Хорошо: >1.2',
+            mobile:    'Плохо: <0.6, Норма: 0.6–1, Хорошо: >1',
+            media:     'Плохо: <0.4, Норма: 0.4–0.8, Хорошо: >0.8',
+        },
+        ruleOf40: {
+            universal: 'Плохо: <20%, Норма: 20–40%, Хорошо: ≥40%, Отлично: >60%',
+            saas:      'Плохо: <30%, Норма: 30–40%, Хорошо: 40–60%, Отлично: >60%',
+            ecom:      'Плохо: <15%, Норма: 15–30%, Хорошо: >30%',
+            mobile:    'Плохо: <20%, Норма: 20–35%, Хорошо: >35%',
+            media:     'Плохо: <10%, Норма: 10–25%, Хорошо: >25%',
+        },
+        quickRatio: {
+            universal: 'Плохо: <1, Норма: 1–2, Хорошо: 2–4, Отлично: >4',
+            saas:      'Плохо: <2, Норма: 2–4, Хорошо: 4–6, Отлично: >6 (Bessemer benchmark)',
+            ecom:      'Плохо: <1.5, Норма: 1.5–3, Хорошо: >3',
+            mobile:    'Плохо: <2, Норма: 2–4, Хорошо: >4',
+            media:     'Плохо: <1.5, Норма: 1.5–3, Хорошо: >3',
         },
     };
 
@@ -2439,7 +2716,7 @@
 
         const numericResult = parseFloat(rawResult);
         let displayHtml = formatNum(String(rawResult));
-        if (metric.unit) displayHtml += ` <small>${metric.unit}</small>`;
+        if (metric.unit) displayHtml += ` <small>${localizeUnit(metric.unit)}</small>`;
         resultValue.innerHTML = displayHtml;
 
         if (!isNaN(numericResult) && metric.insight) {
@@ -2564,7 +2841,7 @@
         metric.inputs.forEach(inp => {
             inputsHtml += `
                 <div class="input-group">
-                    <label for="input-${inp.key}">${inp.label}</label>
+                    <label for="input-${inp.key}">${localizeLabel(inp.label)}</label>
                     <input type="text" id="input-${inp.key}" placeholder="${formatNum(inp.placeholder)}" value="" autocomplete="off" inputmode="decimal">
                     <div class="input-error-msg" id="err-${inp.key}"></div>
                 </div>`;
@@ -2599,6 +2876,7 @@
         renderRelated(metric.id);
         renderSnapshotsBlock();
         updateSectionBadges();
+        syncCleanURL();
     }
 
     function setActiveSection(sectionId) {
@@ -2724,11 +3002,20 @@
 
     // ---- СЕКЦИИ ----
     sectionCards.forEach(card => {
-        card.addEventListener('click', () => {
+        const activate = () => {
             const sectionId = card.dataset.section;
             if (sectionId) { searchInput.value = ''; searchQuery = ''; searchClear.classList.remove('visible'); setActiveSection(sectionId); }
+        };
+        card.addEventListener('click', activate);
+        card.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
         });
     });
+    // Sync aria-selected when active section changes (мутация-наблюдатель за классом 'active')
+    const _ariaSync = new MutationObserver(() => {
+        sectionCards.forEach(c => c.setAttribute('aria-selected', c.classList.contains('active') ? 'true' : 'false'));
+    });
+    sectionCards.forEach(c => _ariaSync.observe(c, { attributes: true, attributeFilter: ['class'] }));
 
     // ---- KEYBOARD SHORTCUTS ----
     function navigateMetrics(dir) {
@@ -2873,7 +3160,19 @@
         fcr:          [{ s:'support', id:'csat', note:'FCR определяет CSAT' },
                        { s:'support', id:'sla',  note:'SLA и FCR — пара' }],
         sla:          [{ s:'support', id:'fcr',  note:'FCR и SLA — пара' },
-                       { s:'support', id:'csat', note:'SLA влияет на CSAT' }]
+                       { s:'support', id:'csat', note:'SLA влияет на CSAT' }],
+        burnMultiple: [{ s:'b2b', id:'magicNumber', note:'Magic Number — об эффективности S&M' },
+                       { s:'b2b', id:'ruleOf40',    note:'Rule of 40 — баланс роста и маржи' },
+                       { s:'b2b', id:'arr',          note:'Net New ARR — знаменатель формулы' }],
+        magicNumber:  [{ s:'b2b', id:'burnMultiple', note:'Burn Multiple — обратная сторона' },
+                       { s:'b2b', id:'cacPayback',   note:'CAC Payback — как быстро S&M окупается' },
+                       { s:'b2c', id:'cac',           note:'CAC — компонент Magic Number' }],
+        ruleOf40:     [{ s:'b2b', id:'arr',          note:'ARR-рост — половина формулы' },
+                       { s:'b2b', id:'burnMultiple', note:'Burn Multiple — также про эффективность' },
+                       { s:'b2b', id:'quickRatio',   note:'Quick Ratio — устойчивость роста' }],
+        quickRatio:   [{ s:'b2b', id:'nrr',          note:'NRR — другой угол на удержание выручки' },
+                       { s:'b2b', id:'mrr',          note:'Все компоненты — изменения MRR' },
+                       { s:'b2b', id:'grr',          note:'GRR — обратная сторона потерь' }]
     };
 
     const relatedBlockEl = document.getElementById('relatedBlock');
@@ -2903,12 +3202,19 @@
         });
     }
 
-    // ---- URL SHARING ----
-    function buildShareURL() {
+    // ---- URL SHARING + CLEAN URLs ----
+    // Helper: \u043D\u0430\u0439\u0442\u0438 \u0440\u0430\u0437\u0434\u0435\u043B \u043C\u0435\u0442\u0440\u0438\u043A\u0438 \u043F\u043E \u0435\u0451 id (\u0434\u043B\u044F clean-URL \u0432\u0438\u0434\u0430 /ltv)
+    function findSectionByMetricId(metricId) {
+        for (const [sid, section] of Object.entries(metricsData)) {
+            if (section.metrics.some(m => m.id === metricId)) return sid;
+        }
+        return null;
+    }
+
+    function buildShareURL(opts) {
+        const useClean = opts && opts.clean;
         const metric = getCurrentMetric();
         const params = new URLSearchParams();
-        params.set('s', currentSection);
-        params.set('m', currentMetricId);
         if (metric) {
             metric.inputs.forEach(inp => {
                 const el = document.getElementById(`input-${inp.key}`);
@@ -2916,23 +3222,58 @@
                 if (raw) params.set(inp.key, raw);
             });
         }
-        const base = window.location.href.split('?')[0];
-        return `${base}?${params.toString()}`;
+        const origin = window.location.origin;
+        if (useClean && currentMetricId) {
+            const qs = params.toString();
+            return `${origin}/${currentMetricId}${qs ? '?' + qs : ''}`;
+        }
+        params.set('s', currentSection);
+        params.set('m', currentMetricId);
+        return `${origin}/?${params.toString()}`;
+    }
+
+    // \u041E\u0431\u043D\u043E\u0432\u0438\u0442\u044C \u0430\u0434\u0440\u0435\u0441\u043D\u0443\u044E \u0441\u0442\u0440\u043E\u043A\u0443 \u0434\u043E \u0447\u0438\u0441\u0442\u043E\u0433\u043E URL \u0431\u0435\u0437 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0438
+    function syncCleanURL() {
+        if (!currentMetricId) return;
+        const path = '/' + currentMetricId;
+        const search = window.location.search;
+        const newUrl = path + search + window.location.hash;
+        // \u041E\u0431\u043D\u043E\u0432\u043B\u044F\u0435\u043C \u0442\u043E\u043B\u044C\u043A\u043E \u0435\u0441\u043B\u0438 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u043E\u0442\u043B\u0438\u0447\u0430\u0435\u0442\u0441\u044F, \u0447\u0442\u043E\u0431\u044B \u043D\u0435 \u043F\u043B\u043E\u0434\u0438\u0442\u044C history-\u0437\u0430\u043F\u0438\u0441\u0438
+        if (window.location.pathname !== path) {
+            try { window.history.replaceState(null, '', newUrl); } catch (e) {}
+        }
     }
 
     function restoreFromURL() {
         const params = new URLSearchParams(window.location.search);
-        if (!params.has('s') && !params.has('m')) return false;
-        const s = params.get('s');
-        const m = params.get('m');
-        if (s && metricsData[s]) {
-            currentSection = s;
-            sectionCards.forEach(c => c.classList.toggle('active', c.dataset.section === s));
+        // 1) \u041F\u043E\u0434\u0434\u0435\u0440\u0436\u043A\u0430 clean URL: /ltv, /cac, /m/ltv
+        const path = window.location.pathname.replace(/^\/m\//, '/');
+        const pathMetric = path.replace(/^\//, '').replace(/\/$/, '');
+        let metricFromPath = null;
+        if (pathMetric && /^[a-zA-Z_]+$/.test(pathMetric)) {
+            const sid = findSectionByMetricId(pathMetric);
+            if (sid) {
+                currentSection = sid;
+                currentMetricId = pathMetric;
+                metricFromPath = pathMetric;
+                sectionCards.forEach(c => c.classList.toggle('active', c.dataset.section === sid));
+            }
         }
-        if (m && metricsData[currentSection]) {
-            const found = metricsData[currentSection].metrics.find(mx => mx.id === m);
-            if (found) currentMetricId = m;
+        // 2) \u0421\u0442\u0430\u0440\u044B\u0439 \u0444\u043E\u0440\u043C\u0430\u0442 ?s=...&m=...
+        if (!metricFromPath && (params.has('s') || params.has('m'))) {
+            const s = params.get('s');
+            const m = params.get('m');
+            if (s && metricsData[s]) {
+                currentSection = s;
+                sectionCards.forEach(c => c.classList.toggle('active', c.dataset.section === s));
+            }
+            if (m && metricsData[currentSection]) {
+                const found = metricsData[currentSection].metrics.find(mx => mx.id === m);
+                if (found) currentMetricId = m;
+            }
         }
+        if (!metricFromPath && !params.has('s') && !params.has('m')) return false;
+
         const urlMetric = getCurrentMetric();
         if (urlMetric) {
             const urlVals = {};
@@ -2947,7 +3288,7 @@
     }
 
     document.getElementById('shareLinkBtn').addEventListener('click', () => {
-        const url = buildShareURL();
+        const url = buildShareURL({ clean: true });
         const btn = document.getElementById('shareLinkBtn');
         const textEl = btn.querySelector('.share-btn-text');
         const origText = textEl ? textEl.textContent : '';
@@ -3273,7 +3614,7 @@
             const snapA = snaps[idxA];
             const snapB = idxB !== null ? snaps[idxB] : null; // null = текущие значения
 
-            const unit = metric.unit ? ` ${metric.unit}` : '';
+            const unit = metric.unit ? ` ${localizeUnit(metric.unit)}` : '';
 
             function snapCard(snap, label) {
                 const inputRows = snap.inputs.map(i =>
@@ -3433,6 +3774,10 @@
                 acv:{ total:6000, years:1 }, grr:{ start:50000, churn:2500 },
                 nrr:{ start:50000, upsell:4000, churn:2500 },
                 cacPayback:{ cac:450, mrrPerCustomer:80, margin:75 },
+                burnMultiple:{ burn:600000, newArr:600000 },
+                magicNumber:{ newArr:150000, sm:200000 },
+                ruleOf40:{ growth:120, margin:-30 },
+                quickRatio:{ newMrr:40000, expansion:5000, churned:3000, contraction:1500 },
                 acquisition:{ new:400 }, activation:{ activated:160, total:400 },
                 retention_aarrr:{ ret:120, new:400 }, referral:{ invited:40, active:200 },
                 revenue:{ rev:50000 },
@@ -3458,6 +3803,10 @@
                 acv:{ total:24000, years:1 }, grr:{ start:2000000, churn:30000 },
                 nrr:{ start:2000000, upsell:250000, churn:30000 },
                 cacPayback:{ cac:5000, mrrPerCustomer:350, margin:82 },
+                burnMultiple:{ burn:1500000, newArr:6000000 },
+                magicNumber:{ newArr:1500000, sm:1200000 },
+                ruleOf40:{ growth:30, margin:18 },
+                quickRatio:{ newMrr:2000000, expansion:300000, churned:50000, contraction:20000 },
                 acquisition:{ new:2000 }, activation:{ activated:1400, total:2000 },
                 retention_aarrr:{ ret:1600, new:2000 }, referral:{ invited:400, active:1000 },
                 revenue:{ rev:2000000 },
@@ -3635,7 +3984,7 @@
                                 color = ins.color;
                                 insightText = ins.text;
                             }
-                            const unit = metric.unit ? ` ${metric.unit}` : '';
+                            const unit = metric.unit ? ` ${localizeUnit(metric.unit)}` : '';
                             const displayVal = Math.abs(num) >= 1e6
                                 ? (num/1e6).toFixed(2)+'M'
                                 : Math.abs(num) >= 1e3
@@ -3745,7 +4094,7 @@
                 </div>`;
         });
 
-        const unit = metric.unit ? ` ${metric.unit}` : '';
+        const unit = metric.unit ? ` ${localizeUnit(metric.unit)}` : '';
         html += `
             <div class="whatif-result-row">
                 <span class="whatif-result-lbl">Результат:</span>
@@ -3826,6 +4175,7 @@
     // ---- INIT ----
     initTemplates();
     initIndustry();
+    initCurrency();
     updateSectionBadges();
     const _restoredFromURL = restoreFromURL();
     if (_restoredFromURL) {
@@ -3846,7 +4196,7 @@
 
     <h2 style="font-size:1rem;font-weight:700;color:var(--text-2);margin:1.25rem 0 0.5rem;">Метрики по разделам</h2>
     <p><strong>B2C-метрики:</strong> DAU (Daily Active Users), MAU (Monthly Active Users), Stickiness (DAU/MAU), Retention Rate, LTV (Lifetime Value), CAC (Customer Acquisition Cost), LTV:CAC Ratio, ARPU, Churn Rate.</p>
-    <p><strong>B2B SaaS-метрики:</strong> MRR (Monthly Recurring Revenue), ARR (Annual Recurring Revenue), ACV (Annual Contract Value), GRR (Gross Revenue Retention), NRR (Net Revenue Retention), CAC Payback Period.</p>
+    <p><strong>B2B SaaS-метрики:</strong> MRR (Monthly Recurring Revenue), ARR (Annual Recurring Revenue), ACV (Annual Contract Value), GRR (Gross Revenue Retention), NRR (Net Revenue Retention), CAC Payback Period, Burn Multiple, Magic Number, Rule of 40, Quick Ratio.</p>
     <p><strong>AARRR / Пиратские метрики:</strong> Acquisition, Activation Rate, Retention, Referral (K-factor), Revenue.</p>
     <p><strong>Growth-метрики:</strong> CR (Conversion Rate), ROAS, CPC, CTR, Bounce Rate.</p>
     <p><strong>QA-метрики:</strong> Bug Rate, Test Coverage, Defect Density.</p>
@@ -3857,6 +4207,9 @@
     <p><strong>Как рассчитать CAC?</strong> CAC = Маркетинговые затраты / Количество новых клиентов. Норма окупаемости CAC для SaaS — до 12–18 месяцев.</p>
     <p><strong>Что такое NRR (Net Revenue Retention)?</strong> NRR показывает рост выручки от существующих клиентов с учётом апселов и оттока. NRR выше 100% означает рост без новых клиентов. Отличный NRR для SaaS — выше 120%.</p>
     <p><strong>Что такое Churn Rate?</strong> Churn Rate — процент клиентов, покинувших продукт за период. Для SaaS норма — менее 2% в месяц, для мобильных приложений — до 10%.</p>
+    <p><strong>Что такое Burn Multiple?</strong> Burn Multiple = Net Burn / Net New ARR. Метрика капитальной эффективности SaaS от David Sacks. Меньше 1 — отлично, 1–1.5 — хорошо, больше 2 — нужно оптимизировать.</p>
+    <p><strong>Что такое Rule of 40?</strong> Rule of 40 = Темп роста выручки YoY (%) + Маржа EBITDA (%). Здоровый SaaS поддерживает сумму ≥ 40% независимо от баланса роста и прибыльности.</p>
+    <p><strong>Что такое Magic Number?</strong> Magic Number = (Net New ARR × 4) / S&amp;M расходы за квартал. Эффективность Sales &amp; Marketing — сколько $ нового ARR в год даёт каждый $ S&amp;M. Хорошо: &gt;1, отлично: &gt;1.5.</p>
 </section>
 </body>
 </html>

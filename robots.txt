@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://metricstree.vercel.app/sitemap.xml
+
+# Crawl politeness
+Crawl-delay: 1
