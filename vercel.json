@@ -3,8 +3,43 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/m/:metricId([a-zA-Z_]+)", "destination": "/index.html" },
-    { "source": "/(dau|mau|stickiness|retention|ltv|cac|ltv_cac|arpu|churn|mrr|arr|acv|grr|nrr|cacPayback|burnMultiple|magicNumber|ruleOf40|quickRatio|acquisition|activation|retention_aarrr|referral|revenue|cr|roas|cpc|ctr|bounceRate|bugRate|testCoverage|defectDensity|csat|nps|fcr|sla)", "destination": "/index.html" }
+    { "source": "/dau", "destination": "/index.html" },
+    { "source": "/mau", "destination": "/index.html" },
+    { "source": "/stickiness", "destination": "/index.html" },
+    { "source": "/retention", "destination": "/index.html" },
+    { "source": "/ltv", "destination": "/index.html" },
+    { "source": "/cac", "destination": "/index.html" },
+    { "source": "/ltv_cac", "destination": "/index.html" },
+    { "source": "/arpu", "destination": "/index.html" },
+    { "source": "/churn", "destination": "/index.html" },
+    { "source": "/mrr", "destination": "/index.html" },
+    { "source": "/arr", "destination": "/index.html" },
+    { "source": "/acv", "destination": "/index.html" },
+    { "source": "/grr", "destination": "/index.html" },
+    { "source": "/nrr", "destination": "/index.html" },
+    { "source": "/cacPayback", "destination": "/index.html" },
+    { "source": "/burnMultiple", "destination": "/index.html" },
+    { "source": "/magicNumber", "destination": "/index.html" },
+    { "source": "/ruleOf40", "destination": "/index.html" },
+    { "source": "/quickRatio", "destination": "/index.html" },
+    { "source": "/acquisition", "destination": "/index.html" },
+    { "source": "/activation", "destination": "/index.html" },
+    { "source": "/retention_aarrr", "destination": "/index.html" },
+    { "source": "/referral", "destination": "/index.html" },
+    { "source": "/revenue", "destination": "/index.html" },
+    { "source": "/cr", "destination": "/index.html" },
+    { "source": "/roas", "destination": "/index.html" },
+    { "source": "/cpc", "destination": "/index.html" },
+    { "source": "/ctr", "destination": "/index.html" },
+    { "source": "/bounceRate", "destination": "/index.html" },
+    { "source": "/bugRate", "destination": "/index.html" },
+    { "source": "/testCoverage", "destination": "/index.html" },
+    { "source": "/defectDensity", "destination": "/index.html" },
+    { "source": "/csat", "destination": "/index.html" },
+    { "source": "/nps", "destination": "/index.html" },
+    { "source": "/fcr", "destination": "/index.html" },
+    { "source": "/sla", "destination": "/index.html" },
+    { "source": "/m/:metricId", "destination": "/index.html" }
   ],
   "headers": [
     {
@@ -18,9 +53,21 @@
       ]
     },
     {
-      "source": "/(favicon\\.(svg|ico)|og-image\\.svg|manifest\\.webmanifest)",
+      "source": "/favicon.svg",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+      ]
+    },
+    {
+      "source": "/og-image.svg",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+      ]
+    },
+    {
+      "source": "/manifest.webmanifest",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
       ]
     },
     {
