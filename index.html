@@ -1851,10 +1851,10 @@
                 {
                     id: 'burnMultiple', name: 'Burn Multiple',
                     formula: 'Net Burn / Net New ARR',
-                    description: 'Сколько $ сжигаем, чтобы сгенерировать $1 новой годовой выручки. Метрика капитальной эффективности SaaS (David Sacks).',
+                    description: 'Сколько $ сжигаем, чтобы сгенерировать $1 новой годовой выручки. Метрика капитальной эффективности SaaS (David Sacks). Отрицательный burn = компания cash-flow positive.',
                     threshold: 'Отлично: <1, Хорошо: 1–1.5, Норма: 1.5–2, Плохо: 2–3, Ужасно: >3',
                     inputs: [
-                        { label: 'Net Burn (чистое сжигание кэша за период), $', placeholder: '500000', key: 'burn', min: 0 },
+                        { label: 'Net Burn (отрицательно если cash-positive), $', placeholder: '500000', key: 'burn', min: -1e15 },
                         { label: 'Net New ARR (прирост ARR за тот же период), $', placeholder: '600000', key: 'newArr', min: 0.01 }
                     ],
                     calculate: v => {
@@ -1865,6 +1865,7 @@
                     },
                     unit: 'x',
                     insight: val => {
+                        if (val < 0) return { color: '#4CAF50', text: 'Cash-positive рост — каждый $ ARR приходит с прибылью. Эталон.' };
                         if (val < 1) return { color: '#4CAF50', text: 'Отличный Burn Multiple — высокая капитальная эффективность.' };
                         if (val < 1.5) return { color: '#4CAF50', text: 'Хороший Burn Multiple — инвесторам нравится.' };
                         if (val < 2) return { color: '#FFC107', text: 'Норма для роста; можно оптимизировать.' };
@@ -1935,13 +1936,15 @@
                         const ch = sanitizeNumber(v.churned);
                         const co = sanitizeNumber(v.contraction);
                         if ([nm,ex,ch,co].some(x=>x===null)) return null;
+                        const gained = nm + ex;
                         const lost = ch + co;
-                        if (lost <= 0) return '∞';
-                        return ((nm + ex) / lost).toFixed(2);
+                        if (gained === 0 && lost === 0) return null; // нет движения MRR — невозможно посчитать
+                        if (lost <= 0) return Infinity; // ноль потерь, есть рост — бесконечный Quick Ratio
+                        return ((gained) / lost).toFixed(2);
                     },
                     unit: '',
                     insight: val => {
-                        if (val === '∞' || val > 4) return { color: '#4CAF50', text: 'Отличный Quick Ratio — рост существенно превышает потери.' };
+                        if (val === Infinity || val > 4) return { color: '#4CAF50', text: 'Отличный Quick Ratio — рост существенно превышает потери.' };
                         if (val < 1) return { color: '#F44336', text: 'Quick Ratio < 1 — теряете больше, чем привлекаете.' };
                         if (val < 2) return { color: '#FFC107', text: 'Хрупкий рост — каждый $ потерь съедает половину нового MRR.' };
                         if (val < 4) return { color: '#4CAF50', text: 'Здоровый Quick Ratio — рост устойчив.' };
@@ -2640,7 +2643,8 @@
         const num = parseFloat(clean);
         if (clean === '') return null;
         if (isNaN(num)) return 'Введите числовое значение';
-        if (num < 0) return 'Значение не может быть отрицательным';
+        const allowsNegative = inp.min !== undefined && inp.min < 0;
+        if (num < 0 && !allowsNegative) return 'Значение не может быть отрицательным';
         if (inp.min !== undefined && num < inp.min) {
             if (inp.min === 1 || inp.min === 0.01) return 'Значение должно быть больше 0 (деление на ноль недопустимо)';
             return `Минимальное значение: ${inp.min}`;
@@ -2698,10 +2702,10 @@
 
         if (!allValid) {
             resultBlock.style.display = 'none';
-            if (errorMessages.length > 0) {
-                validationError.textContent = errorMessages[0];
-                validationError.classList.add('show');
-            }
+            // Показываем сводную плашку только если есть ошибки И они не из inline-валидации полей
+            // (inline-ошибки и так показаны под каждым полем — плашка снизу была дублёром).
+            // Оставляем плашку только для случая, когда нет полей с введёнными ошибочными значениями
+            // — например, при разделах с явной перекрёстной валидацией. Сейчас таких нет, поэтому скрываем.
             return;
         }
 
@@ -2714,12 +2718,15 @@
             return;
         }
 
-        const numericResult = parseFloat(rawResult);
-        let displayHtml = formatNum(String(rawResult));
+        // Поддержка Infinity как корректного результата (например, Quick Ratio при нуле потерь)
+        const numericResult = rawResult === Infinity ? Infinity : parseFloat(rawResult);
+        const displayResult = rawResult === Infinity ? '∞' : String(rawResult);
+        let displayHtml = formatNum(displayResult);
         if (metric.unit) displayHtml += ` <small>${localizeUnit(metric.unit)}</small>`;
         resultValue.innerHTML = displayHtml;
 
-        if (!isNaN(numericResult) && metric.insight) {
+        const isFinite = numericResult === Infinity || (!isNaN(numericResult) && Number.isFinite(numericResult));
+        if ((isFinite || numericResult === Infinity) && metric.insight) {
             const ins = metric.insight(numericResult);
             resultValue.style.color = ins.color;
             insightMessage.textContent = ins.text;
@@ -3250,7 +3257,7 @@
         const path = window.location.pathname.replace(/^\/m\//, '/');
         const pathMetric = path.replace(/^\//, '').replace(/\/$/, '');
         let metricFromPath = null;
-        if (pathMetric && /^[a-zA-Z_]+$/.test(pathMetric)) {
+        if (pathMetric && /^[a-zA-Z][a-zA-Z0-9_]*$/.test(pathMetric)) {
             const sid = findSectionByMetricId(pathMetric);
             if (sid) {
                 currentSection = sid;
@@ -3563,7 +3570,8 @@
                 if (allFilled && metric.inputs.length > 0) {
                     try {
                         const r = metric.calculate(vals);
-                        if (r !== null && r !== undefined) resultStr = String(r);
+                        if (r === Infinity) resultStr = '∞';
+                        else if (r !== null && r !== undefined) resultStr = String(r);
                     } catch(e) {}
                 }
 
@@ -3974,8 +3982,9 @@
                 if (allFilled && metric.inputs.length > 0) {
                     try {
                         const result = metric.calculate(vals);
-                        const num = parseFloat(result);
-                        if (result !== null && !isNaN(num)) {
+                        const isInf = result === Infinity;
+                        const num = isInf ? Infinity : parseFloat(result);
+                        if (result !== null && (isInf || !isNaN(num))) {
                             hasAny = true;
                             let color = 'var(--accent)';
                             let insightText = '';
@@ -3985,10 +3994,9 @@
                                 insightText = ins.text;
                             }
                             const unit = metric.unit ? ` ${localizeUnit(metric.unit)}` : '';
-                            const displayVal = Math.abs(num) >= 1e6
-                                ? (num/1e6).toFixed(2)+'M'
-                                : Math.abs(num) >= 1e3
-                                ? (num/1e3).toFixed(1)+'K'
+                            const displayVal = isInf ? '∞'
+                                : Math.abs(num) >= 1e6 ? (num/1e6).toFixed(2)+'M'
+                                : Math.abs(num) >= 1e3 ? (num/1e3).toFixed(1)+'K'
                                 : String(result).length > 8 ? parseFloat(num.toFixed(2)) : result;
                             sectionHtml += `
                                 <div class="dash-card" data-sid="${sid}" data-mid="${metric.id}" title="${metric.name}: нажмите для расчёта">
