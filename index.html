@@ -570,13 +570,16 @@
         /* ===================== SECTION FILL BADGE ===================== */
         .section-fill-badge {
             display: inline-flex; align-items: center; justify-content: center;
-            width: 16px; height: 16px; border-radius: 50%;
-            font-size: 0.58rem; font-weight: 700; margin-left: 0.3rem;
-            vertical-align: middle; line-height: 1; flex-shrink: 0;
+            min-width: 22px; height: 18px; padding: 0 6px; border-radius: 999px;
+            font-size: 0.62rem; font-weight: 700;
+            margin-left: 0.55rem;
+            vertical-align: 1px; line-height: 1; flex-shrink: 0;
+            font-family: 'JetBrains Mono','Menlo',monospace;
+            letter-spacing: 0.02em;
         }
-        .section-fill-badge.none { background: var(--border); color: var(--text-3); }
-        .section-fill-badge.partial { background: rgba(255,193,7,0.2); color: var(--yellow); border: 1px solid var(--yellow); }
-        .section-fill-badge.full { background: rgba(76,175,80,0.15); color: var(--green); border: 1px solid var(--green); }
+        .section-fill-badge.none { background: var(--bg-input); color: var(--text-3); border: 1px solid var(--border); }
+        .section-fill-badge.partial { background: rgba(255,193,7,0.15); color: var(--yellow); border: 1px solid rgba(255,193,7,0.5); }
+        .section-fill-badge.full { background: rgba(76,175,80,0.18); color: var(--green); border: 1px solid rgba(76,175,80,0.55); padding: 0 4px; min-width: 18px; }
 
         /* ===================== SECTIONS NAV ===================== */
         .sections-nav-wrap { position: relative; margin-bottom: 1.25rem; }
@@ -1050,6 +1053,151 @@
         }
         .snapshot-del:hover { color: var(--red); }
 
+        /* ===================== GOAL MODE PANEL ===================== */
+        .goal-btn {
+            background: var(--bg-card); color: var(--text-2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 0.4rem 0.7rem; font-size: 0.78rem; font-weight: 600;
+            cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem;
+            transition: background var(--transition), color var(--transition), border-color var(--transition);
+        }
+        .goal-btn:hover { background: var(--bg-hover); color: var(--text-1); }
+        .goal-btn.open { background: rgba(76,175,80,0.12); color: #4CAF50; border-color: rgba(76,175,80,0.4); }
+        .goal-panel {
+            margin-top: 0.85rem; padding: 0.95rem 1rem;
+            background: var(--bg-input); border: 1px solid var(--border);
+            border-left: 3px solid #4CAF50;
+            border-radius: var(--radius-md);
+            display: none; animation: fadeIn 0.2s ease-out;
+        }
+        .goal-panel.open { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+        .goal-title { font-weight: 700; font-size: 0.88rem; color: var(--text-1); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem; }
+        .goal-question-select {
+            width: 100%; background: var(--bg-card); color: var(--text-1);
+            border: 1px solid var(--border-input); border-radius: var(--radius-sm);
+            padding: 0.55rem 0.7rem; font-size: 0.82rem; margin-bottom: 0.7rem;
+            font-family: inherit; cursor: pointer;
+        }
+        .goal-question-select:focus { border-color: var(--accent); outline: none; }
+        .goal-input-row { display: flex; gap: 0.6rem; align-items: center; margin-bottom: 0.5rem; }
+        .goal-input-row label { font-size: 0.75rem; color: var(--text-2); min-width: 130px; flex-shrink: 0; }
+        .goal-input-row input {
+            flex: 1; background: var(--bg-card); color: var(--text-1);
+            border: 1px solid var(--border-input); border-radius: var(--radius-sm);
+            padding: 0.45rem 0.65rem; font-size: 0.85rem; font-family: 'JetBrains Mono','Menlo',monospace;
+        }
+        .goal-input-row input:focus { border-color: var(--accent); outline: none; }
+        .goal-result-row {
+            margin-top: 0.85rem; padding: 0.7rem 0.85rem;
+            background: rgba(76,175,80,0.08); border-radius: var(--radius-sm);
+            display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 0.75rem;
+        }
+        .goal-result-label { font-size: 0.75rem; color: var(--text-2); font-weight: 600; }
+        .goal-result-val { font-size: 1.3rem; font-weight: 800; color: #4CAF50; font-family: 'JetBrains Mono','Menlo',monospace; }
+        .goal-result-hint { width: 100%; font-size: 0.75rem; color: var(--text-3); margin-top: 0.2rem; }
+        .goal-empty { color: var(--text-3); font-size: 0.78rem; padding: 0.5rem 0; font-style: italic; }
+
+        /* ===================== TOOLTIP ===================== */
+        .tooltip-wrap { display: inline-flex; align-items: center; position: relative; margin-left: 0.3rem; vertical-align: middle; }
+        .tooltip-icon {
+            width: 14px; height: 14px; border-radius: 50%;
+            background: var(--bg-card); color: var(--text-3);
+            border: 1px solid var(--border);
+            font-size: 9px; font-weight: 700;
+            display: inline-flex; align-items: center; justify-content: center;
+            cursor: help; transition: all var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+        .tooltip-icon:hover, .tooltip-icon:focus { background: var(--accent-dim); color: var(--accent); border-color: var(--accent); }
+        .tooltip-bubble {
+            position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+            background: var(--text-1); color: var(--bg);
+            padding: 0.5rem 0.7rem; border-radius: var(--radius-sm);
+            font-size: 0.74rem; line-height: 1.4; font-weight: 500;
+            white-space: normal; width: 240px; max-width: 80vw;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.18s ease;
+            z-index: 60; box-shadow: var(--shadow-md);
+        }
+        .tooltip-bubble::after {
+            content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+            border: 5px solid transparent; border-top-color: var(--text-1);
+        }
+        .tooltip-wrap:hover .tooltip-bubble, .tooltip-icon:focus + .tooltip-bubble { opacity: 1; }
+
+        /* ===================== TOAST ===================== */
+        .toast {
+            position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(20px);
+            background: var(--text-1); color: var(--bg);
+            padding: 0.6rem 1.1rem; border-radius: 999px;
+            font-size: 0.82rem; font-weight: 600;
+            box-shadow: var(--shadow-md);
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            z-index: 350; display: inline-flex; align-items: center; gap: 0.45rem;
+            max-width: 90vw;
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .toast.success { background: #4CAF50; color: #fff; }
+        .toast.error { background: #F44336; color: #fff; }
+
+        /* ===================== EMPTY-STATE WELCOME ===================== */
+        .welcome-card {
+            display: none; margin-top: 1rem;
+            padding: 1.5rem 1.2rem; background: var(--bg-input);
+            border: 1px dashed var(--border-input); border-radius: var(--radius-md);
+            text-align: center;
+        }
+        .welcome-card.show { display: block; }
+        .welcome-emoji { font-size: 2rem; margin-bottom: 0.4rem; }
+        .welcome-title { font-size: 0.95rem; font-weight: 700; color: var(--text-1); margin-bottom: 0.35rem; }
+        .welcome-sub { font-size: 0.8rem; color: var(--text-3); margin-bottom: 0.9rem; }
+        .welcome-actions { display: inline-flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+        .welcome-btn {
+            background: var(--accent); color: #fff; border: none;
+            padding: 0.5rem 0.95rem; border-radius: var(--radius-sm);
+            font-size: 0.8rem; font-weight: 600; cursor: pointer;
+            transition: background var(--transition), transform var(--transition);
+        }
+        .welcome-btn:hover { background: #1A56DB; transform: translateY(-1px); }
+        .welcome-btn.ghost { background: transparent; color: var(--text-2); border: 1px solid var(--border); }
+        .welcome-btn.ghost:hover { background: var(--bg-hover); color: var(--text-1); }
+
+        /* ===================== HEADER MORE-MENU ===================== */
+        .more-menu-wrap { position: relative; display: inline-flex; }
+        .more-menu-btn {
+            background: var(--bg-card); color: var(--text-2);
+            border: 1px solid var(--border); border-radius: var(--radius-sm);
+            padding: 0.42rem 0.5rem; font-size: 0.8rem; cursor: pointer;
+            display: inline-flex; align-items: center; gap: 0.3rem;
+            transition: background var(--transition), color var(--transition);
+        }
+        .more-menu-btn:hover { background: var(--bg-hover); color: var(--text-1); }
+        .more-menu-pop {
+            position: absolute; top: calc(100% + 6px); right: 0;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 0.4rem;
+            box-shadow: var(--shadow-md);
+            display: none; min-width: 200px; z-index: 100;
+        }
+        .more-menu-pop.open { display: block; animation: fadeIn 0.15s ease-out; }
+        .more-menu-pop button {
+            width: 100%; text-align: left; background: transparent; border: none;
+            color: var(--text-1); padding: 0.45rem 0.65rem; border-radius: var(--radius-sm);
+            font-size: 0.82rem; font-weight: 500; cursor: pointer;
+            display: flex; align-items: center; gap: 0.5rem;
+            transition: background var(--transition);
+        }
+        .more-menu-pop button:hover { background: var(--bg-hover); }
+        .more-menu-pop button kbd {
+            margin-left: auto; font-size: 0.7rem; color: var(--text-3);
+            font-family: 'JetBrains Mono','Menlo',monospace;
+            background: var(--bg-input); padding: 1px 5px; border-radius: 3px;
+            border: 1px solid var(--border);
+        }
+
         /* ===================== WHAT-IF PANEL ===================== */
         .whatif-btn {
             display: inline-flex; align-items: center; gap: 0.35rem;
@@ -1311,11 +1459,7 @@
             </div>
         </div>
         <div class="header-right">
-            <button class="csv-btn" id="csvExportBtn" title="Экспорт всех метрик в CSV">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-            CSV
-        </button>
-        <button class="dashboard-btn" id="dashboardBtn" title="Unit-economics дашборд">
+            <button class="dashboard-btn" id="dashboardBtn" title="Unit-economics дашборд (Ctrl+D)">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
             Дашборд
         </button>
@@ -1337,7 +1481,17 @@
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
                 <span class="share-btn-text">Поделиться</span>
             </button>
-            <button class="clear-btn" id="clearAllBtn">Очистить всё</button>
+            <div class="more-menu-wrap">
+                <button class="more-menu-btn" id="moreMenuBtn" title="Дополнительно" aria-label="Дополнительные действия" aria-haspopup="true" aria-expanded="false">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+                </button>
+                <div class="more-menu-pop" id="moreMenuPop" role="menu">
+                    <button id="csvExportBtn" role="menuitem">📄 Экспорт в CSV</button>
+                    <button id="snapshotMenuBtn" role="menuitem">💾 Сохранить снимок<kbd>Ctrl+S</kbd></button>
+                    <button id="searchMenuBtn" role="menuitem">🔍 Поиск метрики<kbd>/</kbd></button>
+                    <button id="clearAllBtn" role="menuitem" style="color:var(--red)">🗑 Очистить все данные</button>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -1348,8 +1502,12 @@
             <span class="onboarding-sep">→</span>
             <span class="onboarding-step"><span class="onboarding-step-num">2</span> Введите значения</span>
             <span class="onboarding-sep">→</span>
-            <span class="onboarding-step"><span class="onboarding-step-num">3</span> Получите инсайт и сравнение</span>
+            <span class="onboarding-step"><span class="onboarding-step-num">3</span> Получите инсайт</span>
             <span class="onboarding-sep">·</span>
+            <span class="onboarding-step" style="color:var(--text-3);font-size:0.72rem;">«Цель» — обратный расчёт</span>
+            <span class="onboarding-sep" style="color:var(--text-3);">·</span>
+            <span class="onboarding-step" style="color:var(--text-3);font-size:0.72rem;">«Что если?» — слайдеры</span>
+            <span class="onboarding-sep" style="color:var(--text-3);">·</span>
             <span class="onboarding-step" style="color:var(--text-3);font-size:0.72rem;">Шаблоны → быстрый старт</span>
         </div>
         <button class="onboarding-dismiss" id="onboardingDismiss">Понятно</button>
@@ -1460,13 +1618,18 @@
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
                             Сохранить
                         </button>
-                        <button class="whatif-btn" id="whatifBtn" title="Анализ Что если?">
+                        <button class="whatif-btn" id="whatifBtn" title="Анализ «Что если?»">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
                             Что если?
+                        </button>
+                        <button class="goal-btn" id="goalBtn" title="Обратный расчёт: задайте цель — получите нужное значение" style="display:none;">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                            Цель
                         </button>
                     </div>
                 </div>
                 <div class="whatif-panel" id="whatifPanel"></div>
+                <div class="goal-panel" id="goalPanel"></div>
             </div>
             <div class="snapshots-block" id="snapshotsBlock" style="display:none;"></div>
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
@@ -2873,10 +3036,14 @@
             setTimeout(() => firstInput.focus(), 50);
         }
 
-        // Закрываем What-If при смене метрики
+        // Закрываем What-If и Goal при смене метрики
         whatifOpen = false;
         if (whatifBtn) { whatifBtn.classList.remove('open'); }
         if (whatifPanel) { whatifPanel.classList.remove('open'); whatifPanel.innerHTML = ''; }
+        goalOpen = false;
+        if (goalBtn) { goalBtn.classList.remove('open'); }
+        if (goalPanel) { goalPanel.classList.remove('open'); goalPanel.innerHTML = ''; }
+        refreshGoalButtonVisibility();
 
         updateResult();
         updatePageTitle();
@@ -2913,20 +3080,15 @@
         const rawText = resultValue.textContent || resultValue.innerText || '';
         const insightText = insightMessage.textContent;
         const textToCopy = metric ? `${metric.name}: ${rawText.trim()}${insightText ? ' | ' + insightText : ''}` : rawText.trim();
-        navigator.clipboard.writeText(textToCopy).then(() => {
-            copyBtn.textContent = '✓ Скопировано';
-            copyBtn.classList.add('copied');
-            setTimeout(() => { copyBtn.textContent = 'Копировать'; copyBtn.classList.remove('copied'); }, 2000);
-        }).catch(() => {
+        const onOk = () => showToast('✓ Результат скопирован', 'success');
+        navigator.clipboard.writeText(textToCopy).then(onOk).catch(() => {
             const ta = document.createElement('textarea');
             ta.value = textToCopy;
             ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
             document.body.appendChild(ta); ta.select();
             document.execCommand('copy');
             document.body.removeChild(ta);
-            copyBtn.textContent = '✓ Скопировано';
-            copyBtn.classList.add('copied');
-            setTimeout(() => { copyBtn.textContent = 'Копировать'; copyBtn.classList.remove('copied'); }, 2000);
+            onOk();
         });
     });
 
@@ -3000,6 +3162,39 @@
         searchDropdown.classList.remove('open');
         renderMetricsList();
     });
+
+    // ---- HEADER MORE-MENU ----
+    const moreMenuBtn = document.getElementById('moreMenuBtn');
+    const moreMenuPop = document.getElementById('moreMenuPop');
+    if (moreMenuBtn && moreMenuPop) {
+        moreMenuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = moreMenuPop.classList.toggle('open');
+            moreMenuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+        document.addEventListener('click', e => {
+            if (!moreMenuPop.contains(e.target) && e.target !== moreMenuBtn) {
+                moreMenuPop.classList.remove('open');
+                moreMenuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+        // Закрываем меню после любого клика по его пунктам
+        moreMenuPop.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                moreMenuPop.classList.remove('open');
+                moreMenuBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+        // Доп. действия из меню
+        const snapMenu = document.getElementById('snapshotMenuBtn');
+        if (snapMenu) snapMenu.addEventListener('click', () => {
+            const realSnap = document.getElementById('snapshotBtn');
+            if (realSnap && resultBlock.style.display !== 'none') realSnap.click();
+            else showToast('Сначала рассчитайте метрику', 'error');
+        });
+        const searchMenu = document.getElementById('searchMenuBtn');
+        if (searchMenu) searchMenu.addEventListener('click', () => searchInput.focus());
+    }
 
     // ---- МОДАЛКА ОЧИСТКИ ----
     clearBtn.addEventListener('click', () => { modalOverlay.classList.add('show'); });
@@ -3296,19 +3491,12 @@
 
     document.getElementById('shareLinkBtn').addEventListener('click', () => {
         const url = buildShareURL({ clean: true });
-        const btn = document.getElementById('shareLinkBtn');
-        const textEl = btn.querySelector('.share-btn-text');
-        const origText = textEl ? textEl.textContent : '';
-        function onCopied() {
-            btn.classList.add('shared');
-            if (textEl) textEl.textContent = 'Скопировано!';
-            setTimeout(() => { btn.classList.remove('shared'); if (textEl) textEl.textContent = origText; }, 2000);
-        }
-        navigator.clipboard.writeText(url).then(onCopied).catch(() => {
+        const onOk = () => showToast('🔗 Ссылка скопирована', 'success');
+        navigator.clipboard.writeText(url).then(onOk).catch(() => {
             const ta = document.createElement('textarea');
             ta.value = url; ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
             document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-            onCopied();
+            onOk();
         });
     });
 
@@ -3538,15 +3726,7 @@
         }
         saveSnaps(all);
 
-        // Flash feedback
-        snapshotBtn.classList.add('saved');
-        const origText = snapshotBtn.childNodes[snapshotBtn.childNodes.length - 1].textContent;
-        snapshotBtn.childNodes[snapshotBtn.childNodes.length - 1].textContent = ' Сохранено!';
-        setTimeout(() => {
-            snapshotBtn.classList.remove('saved');
-            snapshotBtn.childNodes[snapshotBtn.childNodes.length - 1].textContent = origText;
-        }, 1800);
-
+        showToast(`💾 Снимок сохранён · ${all[metric.id].length}/${MAX_SNAPS_PER_METRIC}`, 'success');
         renderSnapshotsBlock();
     });
 
@@ -3756,13 +3936,16 @@
             }
             if (filled === 0) {
                 badge.className = 'section-fill-badge none';
-                badge.textContent = total;
+                badge.textContent = `0/${total}`;
+                badge.title = `${total} метрик в разделе`;
             } else if (filled < total) {
                 badge.className = 'section-fill-badge partial';
-                badge.textContent = filled;
+                badge.textContent = `${filled}/${total}`;
+                badge.title = `Заполнено ${filled} из ${total}`;
             } else {
                 badge.className = 'section-fill-badge full';
                 badge.textContent = '✓';
+                badge.title = `Все ${total} метрик заполнены`;
             }
         });
     }
@@ -3914,14 +4097,10 @@
             storedValues[metricId] = Object.assign({}, storedValues[metricId], vals);
         });
         saveToLS(storedValues);
-        // Re-render current metric card
         renderMetricCard();
-        // Flash confirmation
-        const toast = document.createElement('div');
-        toast.style.cssText = 'position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;padding:0.55rem 1.2rem;border-radius:2rem;font-size:0.82rem;font-weight:600;z-index:300;pointer-events:none;box-shadow:0 4px 16px rgba(0,0,0,0.3);';
-        toast.textContent = `✓ Шаблон «${tpl.name}» применён — заполнено ${countTemplateMetrics(tpl)} метрик`;
-        document.body.appendChild(toast);
-        setTimeout(() => toast.remove(), 3000);
+        if (typeof showToast === 'function') {
+            showToast(`✓ Шаблон «${tpl.name}» применён — заполнено ${countTemplateMetrics(tpl)} метрик`, 'success');
+        }
     }
 
     function initTemplates() {
@@ -4086,9 +4265,20 @@
 
         metric.inputs.forEach(inp => {
             const cur = baseValues[inp.key];
-            const minV = inp.min !== undefined ? inp.min : (cur > 0 ? cur * 0.1 : 0);
-            const maxV = cur > 0 ? cur * 3 : (inp.placeholder || 100);
-            const step = cur > 0 ? parseFloat((cur * 0.01).toFixed(6)) : 1;
+            const allowsNeg = inp.min !== undefined && inp.min < 0;
+            // Для полей с разрешёнными отрицательными значениями диапазон строим симметрично
+            // вокруг текущего, чтобы пользователь мог уйти в минус и плюс.
+            let minV, maxV, step;
+            if (allowsNeg) {
+                const span = Math.max(Math.abs(cur) * 2, 50);
+                minV = Math.max(inp.min, -span);
+                maxV = (inp.max !== undefined ? Math.min(inp.max, span) : span);
+                step = parseFloat((span * 0.01).toFixed(6)) || 1;
+            } else {
+                minV = inp.min !== undefined ? inp.min : (cur > 0 ? cur * 0.1 : 0);
+                maxV = cur > 0 ? cur * 3 : (inp.placeholder || 100);
+                step = cur > 0 ? parseFloat((cur * 0.01).toFixed(6)) : 1;
+            }
 
             html += `
                 <div class="whatif-row" data-key="${inp.key}">
@@ -4173,6 +4363,294 @@
             buildWhatIfPanel(metric);
         }
     });
+
+    // ---- GOAL MODE (REVERSE CALCULATIONS) ----
+    // Каждая метрика в этом словаре получает кнопку «🎯 Цель».
+    // q = массив вопросов: { ask, fixed: ['key1','key2',...], solveFor, hint, formula }
+    // formula(values) возвращает число — результат обратного расчёта.
+    // Только указываем поля fixed (которые не будут пересчитываться); пользователь вводит их и получает solveFor.
+    const GOAL_QUESTIONS = {
+        ltv_cac: [
+            {
+                ask: 'При LTV и целевом LTV:CAC ratio — какой максимум CAC?',
+                fixed: [
+                    { key: 'ltv',   label: 'LTV', placeholder: '15000', unit: '$' },
+                    { key: 'targetRatio', label: 'Целевой LTV:CAC', placeholder: '3', unit: 'x' }
+                ],
+                solveFor: { label: 'Максимум CAC', unit: '$' },
+                hint: 'Если CAC будет ниже этого значения — соотношение LTV:CAC выше целевого.',
+                formula: v => (v.ltv > 0 && v.targetRatio > 0) ? v.ltv / v.targetRatio : null
+            },
+            {
+                ask: 'При CAC и целевом ratio — какой нужен LTV?',
+                fixed: [
+                    { key: 'cac', label: 'CAC', placeholder: '1500', unit: '$' },
+                    { key: 'targetRatio', label: 'Целевой LTV:CAC', placeholder: '3', unit: 'x' }
+                ],
+                solveFor: { label: 'Минимум LTV', unit: '$' },
+                hint: 'Чтобы достичь целевого ratio, нужен LTV не меньше этого.',
+                formula: v => (v.cac >= 0 && v.targetRatio > 0) ? v.cac * v.targetRatio : null
+            }
+        ],
+        cacPayback: [
+            {
+                ask: 'При CAC, MRR на клиента и целевом payback — какая нужна маржа?',
+                fixed: [
+                    { key: 'cac', label: 'CAC', placeholder: '1200', unit: '$' },
+                    { key: 'mrr', label: 'MRR на клиента', placeholder: '150', unit: '$' },
+                    { key: 'targetMonths', label: 'Целевой payback', placeholder: '12', unit: 'мес' }
+                ],
+                solveFor: { label: 'Минимум маржи', unit: '%' },
+                hint: 'При меньшей марже окупаемость превысит целевую.',
+                formula: v => (v.mrr > 0 && v.targetMonths > 0) ? Math.min(100, (v.cac / (v.mrr * v.targetMonths)) * 100) : null
+            },
+            {
+                ask: 'При MRR на клиента, марже и целевом payback — какой максимум CAC?',
+                fixed: [
+                    { key: 'mrr', label: 'MRR на клиента', placeholder: '150', unit: '$' },
+                    { key: 'margin', label: 'Маржа', placeholder: '80', unit: '%' },
+                    { key: 'targetMonths', label: 'Целевой payback', placeholder: '12', unit: 'мес' }
+                ],
+                solveFor: { label: 'Максимум CAC', unit: '$' },
+                hint: 'CAC ниже — payback укладывается в целевой.',
+                formula: v => (v.mrr > 0 && v.margin > 0 && v.targetMonths > 0) ? v.mrr * (v.margin/100) * v.targetMonths : null
+            }
+        ],
+        burnMultiple: [
+            {
+                ask: 'При Net Burn и целевом Burn Multiple — какой нужен Net New ARR?',
+                fixed: [
+                    { key: 'burn', label: 'Net Burn', placeholder: '500000', unit: '$' },
+                    { key: 'targetBM', label: 'Целевой Burn Multiple', placeholder: '1', unit: 'x' }
+                ],
+                solveFor: { label: 'Минимум Net New ARR', unit: '$' },
+                hint: 'При большем приросте ARR — Burn Multiple ниже целевого.',
+                formula: v => (v.targetBM > 0) ? v.burn / v.targetBM : null
+            },
+            {
+                ask: 'При Net New ARR и целевом Burn Multiple — какой максимум Net Burn?',
+                fixed: [
+                    { key: 'newArr', label: 'Net New ARR', placeholder: '600000', unit: '$' },
+                    { key: 'targetBM', label: 'Целевой Burn Multiple', placeholder: '1', unit: 'x' }
+                ],
+                solveFor: { label: 'Максимум Net Burn', unit: '$' },
+                hint: 'Сжигаем больше — превышаем целевой Burn Multiple.',
+                formula: v => (v.newArr > 0) ? v.newArr * v.targetBM : null
+            }
+        ],
+        ruleOf40: [
+            {
+                ask: 'При марже EBITDA и целевом Rule of 40 — какой нужен рост?',
+                fixed: [
+                    { key: 'margin', label: 'Маржа EBITDA', placeholder: '15', unit: '%' },
+                    { key: 'target', label: 'Целевой Rule of 40', placeholder: '40', unit: '%' }
+                ],
+                solveFor: { label: 'Минимум роста YoY', unit: '%' },
+                hint: 'При меньшем росте сумма не достигнет цели.',
+                formula: v => v.target - v.margin
+            },
+            {
+                ask: 'При росте YoY и целевом Rule of 40 — какая нужна маржа?',
+                fixed: [
+                    { key: 'growth', label: 'Рост YoY', placeholder: '30', unit: '%' },
+                    { key: 'target', label: 'Целевой Rule of 40', placeholder: '40', unit: '%' }
+                ],
+                solveFor: { label: 'Минимум маржи EBITDA', unit: '%' },
+                hint: 'При меньшей марже сумма не достигнет цели.',
+                formula: v => v.target - v.growth
+            }
+        ],
+        roas: [
+            {
+                ask: 'При затратах на рекламу и целевом ROAS — какая нужна выручка?',
+                fixed: [
+                    { key: 'spend', label: 'Затраты на рекламу', placeholder: '30000', unit: '$' },
+                    { key: 'target', label: 'Целевой ROAS', placeholder: '4', unit: 'x' }
+                ],
+                solveFor: { label: 'Минимум выручки', unit: '$' },
+                hint: 'Это минимум, чтобы кампания дала целевой ROAS.',
+                formula: v => v.spend > 0 ? v.spend * v.target : null
+            },
+            {
+                ask: 'При выручке и целевом ROAS — какой максимум затрат?',
+                fixed: [
+                    { key: 'revenue', label: 'Выручка от рекламы', placeholder: '120000', unit: '$' },
+                    { key: 'target', label: 'Целевой ROAS', placeholder: '4', unit: 'x' }
+                ],
+                solveFor: { label: 'Максимум затрат', unit: '$' },
+                hint: 'Тратим больше — ROAS ниже целевого.',
+                formula: v => v.target > 0 ? v.revenue / v.target : null
+            }
+        ],
+        cr: [
+            {
+                ask: 'При посетителях и целевом CR — сколько нужно конверсий?',
+                fixed: [
+                    { key: 'visitors', label: 'Посетители', placeholder: '10000', unit: '' },
+                    { key: 'target', label: 'Целевой CR', placeholder: '3', unit: '%' }
+                ],
+                solveFor: { label: 'Минимум конверсий', unit: '' },
+                hint: 'Целое число ≥ этого даст требуемый CR.',
+                formula: v => v.visitors * (v.target / 100)
+            },
+            {
+                ask: 'При конверсиях и целевом CR — сколько нужно посетителей (максимум)?',
+                fixed: [
+                    { key: 'conversions', label: 'Конверсии', placeholder: '300', unit: '' },
+                    { key: 'target', label: 'Целевой CR', placeholder: '3', unit: '%' }
+                ],
+                solveFor: { label: 'Максимум посетителей', unit: '' },
+                hint: 'Большее число посетителей — CR ниже целевого.',
+                formula: v => v.target > 0 ? v.conversions / (v.target / 100) : null
+            }
+        ],
+        churn: [
+            {
+                ask: 'При начальной базе и целевом Churn — сколько максимум допустимо потерять?',
+                fixed: [
+                    { key: 'total', label: 'База на начало периода', placeholder: '2000', unit: '' },
+                    { key: 'target', label: 'Целевой Churn', placeholder: '2', unit: '%' }
+                ],
+                solveFor: { label: 'Максимум ушедших', unit: '' },
+                hint: 'Больше ушедших — Churn выше целевого.',
+                formula: v => v.total * (v.target / 100)
+            }
+        ],
+        nrr: [
+            {
+                ask: 'При начальном MRR, оттоке и целевом NRR — какой нужен апсел?',
+                fixed: [
+                    { key: 'start', label: 'Начальный MRR', placeholder: '50000', unit: '$' },
+                    { key: 'churn', label: 'Отток MRR', placeholder: '3000', unit: '$' },
+                    { key: 'target', label: 'Целевой NRR', placeholder: '120', unit: '%' }
+                ],
+                solveFor: { label: 'Минимум апселов', unit: '$' },
+                hint: 'При меньших апселах NRR не достигнет цели.',
+                formula: v => v.start > 0 ? (v.target / 100 - 1) * v.start + v.churn : null
+            }
+        ]
+    };
+
+    let goalOpen = false;
+    const goalBtn = document.getElementById('goalBtn');
+    const goalPanel = document.getElementById('goalPanel');
+
+    function getCurrencyForUnit(u) {
+        if (u === '$' && currentCurrency !== '$') return currentCurrency;
+        return u;
+    }
+
+    function buildGoalPanel(metric) {
+        if (!metric) return;
+        const questions = GOAL_QUESTIONS[metric.id];
+        if (!questions || !questions.length) {
+            goalPanel.innerHTML = `<div class="goal-empty">Для этой метрики обратные расчёты пока не настроены.</div>`;
+            return;
+        }
+        const optionsHtml = questions.map((q, i) => `<option value="${i}">${q.ask}</option>`).join('');
+        goalPanel.innerHTML = `
+            <div class="goal-title">🎯 Goal mode — обратный расчёт</div>
+            <select class="goal-question-select" id="goalSelect">${optionsHtml}</select>
+            <div id="goalForm"></div>
+        `;
+        const sel = document.getElementById('goalSelect');
+        const renderQuestion = (idx) => {
+            const q = questions[idx];
+            const form = document.getElementById('goalForm');
+            const inputsHtml = q.fixed.map(f => {
+                const u = getCurrencyForUnit(f.unit);
+                // Префилл из основной формы (если ключ совпадает с input.key текущей метрики)
+                let prefill = '';
+                const mainEl = document.getElementById('input-' + f.key);
+                if (mainEl && mainEl.value) prefill = mainEl.value;
+                return `
+                    <div class="goal-input-row">
+                        <label for="goal-${f.key}">${f.label}${u ? ', ' + u : ''}</label>
+                        <input type="text" id="goal-${f.key}" data-key="${f.key}" value="${prefill}" placeholder="${formatNum(f.placeholder)}" inputmode="decimal" autocomplete="off">
+                    </div>`;
+            }).join('');
+            const solveUnit = getCurrencyForUnit(q.solveFor.unit);
+            form.innerHTML = `
+                ${inputsHtml}
+                <div class="goal-result-row">
+                    <span class="goal-result-label">${q.solveFor.label}:</span>
+                    <span class="goal-result-val" id="goalResult">—</span>
+                    ${solveUnit ? `<span class="goal-result-label">${solveUnit}</span>` : ''}
+                    <span class="goal-result-hint" id="goalHint">${q.hint}</span>
+                </div>`;
+            const compute = () => {
+                const vals = {};
+                let allFilled = true;
+                q.fixed.forEach(f => {
+                    const el = document.getElementById('goal-' + f.key);
+                    const raw = el ? el.value.replace(/[  ]/g, '') : '';
+                    if (raw === '') allFilled = false;
+                    vals[f.key] = parseFloat(raw);
+                });
+                const out = document.getElementById('goalResult');
+                if (!allFilled) { out.textContent = '—'; return; }
+                try {
+                    const res = q.formula(vals);
+                    if (res === null || !Number.isFinite(res)) { out.textContent = '—'; return; }
+                    out.textContent = formatSmart(res);
+                } catch (e) { out.textContent = '—'; }
+            };
+            q.fixed.forEach(f => {
+                const el = document.getElementById('goal-' + f.key);
+                el.addEventListener('input', () => { formatInputEl(el); compute(); });
+            });
+            compute();
+        };
+        sel.addEventListener('change', e => renderQuestion(parseInt(e.target.value)));
+        renderQuestion(0);
+    }
+
+    function refreshGoalButtonVisibility() {
+        const m = getCurrentMetric();
+        if (!goalBtn) return;
+        if (m && GOAL_QUESTIONS[m.id]) goalBtn.style.display = '';
+        else goalBtn.style.display = 'none';
+    }
+
+    if (goalBtn) {
+        goalBtn.addEventListener('click', () => {
+            goalOpen = !goalOpen;
+            goalBtn.classList.toggle('open', goalOpen);
+            goalPanel.classList.toggle('open', goalOpen);
+            if (goalOpen) buildGoalPanel(getCurrentMetric());
+        });
+    }
+
+    // ---- SMART NUMBER FORMAT (12.5K / 1.2M / 1.5B / -0.05) ----
+    function formatSmart(n) {
+        if (n === Infinity) return '∞';
+        if (n === -Infinity) return '−∞';
+        if (typeof n !== 'number' || !Number.isFinite(n)) return String(n);
+        const abs = Math.abs(n);
+        if (abs >= 1e9) return (n / 1e9).toFixed(2).replace(/\.?0+$/, '') + 'B';
+        if (abs >= 1e6) return (n / 1e6).toFixed(2).replace(/\.?0+$/, '') + 'M';
+        if (abs >= 1e4) return (n / 1e3).toFixed(1).replace(/\.?0+$/, '') + 'K';
+        if (abs >= 100) return formatNum(n.toFixed(0));
+        if (abs >= 1) return formatNum(n.toFixed(2).replace(/\.?0+$/, ''));
+        return n.toFixed(4).replace(/\.?0+$/, '');
+    }
+
+    // ---- TOAST ----
+    let _toastEl = null, _toastTimer = null;
+    function showToast(msg, kind) {
+        if (!_toastEl) {
+            _toastEl = document.createElement('div');
+            _toastEl.className = 'toast';
+            document.body.appendChild(_toastEl);
+        }
+        _toastEl.textContent = msg;
+        _toastEl.className = 'toast' + (kind ? ' ' + kind : '');
+        // force reflow
+        void _toastEl.offsetWidth;
+        _toastEl.classList.add('show');
+        clearTimeout(_toastTimer);
+        _toastTimer = setTimeout(() => _toastEl.classList.remove('show'), 2200);
+    }
 
     // ---- DYNAMIC TITLE ----
     function updatePageTitle() {
