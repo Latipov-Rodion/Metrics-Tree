@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>MetricTree — Калькулятор продуктовых метрик: LTV, CAC, MRR, Churn, NPS, Burn Multiple и 39+</title>
-    <meta name="description" content="Бесплатный калькулятор 39 продуктовых метрик онлайн: рассчитайте LTV, CAC, MRR, ARR, Churn Rate, DAU, ROAS, NPS, Burn Multiple, Magic Number, Rule of 40, Quick Ratio с формулами, отраслевыми порогами и интерпретацией. Для продактов, маркетологов и SaaS-аналитиков.">
+    <title>LTV калькулятор (Lifetime Value) — формула + LTV:CAC анализ | MetricTree</title>
+    <meta name="description" content="Рассчитайте LTV = AOV × частота × срок жизни. Формула, отраслевые пороги, обратный расчёт LTV:CAC. Бесплатно.">
     <meta name="keywords" content="калькулятор LTV онлайн, как рассчитать CAC, формула MRR ARR, что такое Churn Rate, NPS калькулятор, DAU MAU stickiness, ROAS формула, Burn Multiple калькулятор, Magic Number SaaS, Rule of 40, Quick Ratio SaaS, продуктовые метрики, unit economics, MetricTree">
     <meta name="author" content="Родион Латыпов">
     <meta name="theme-color" content="#0A0C0E" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#F0F2F5" media="(prefers-color-scheme: light)">
-    <link rel="canonical" href="https://metricstree.vercel.app/">
+    <link rel="canonical" href="https://metricstree.vercel.app/ltv">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="alternate icon" href="/favicon.ico">
     <link rel="manifest" href="/manifest.webmanifest">
-    <meta property="og:title" content="MetricTree — Калькулятор 35 продуктовых метрик: LTV, CAC, MRR, NPS">
-    <meta property="og:description" content="Рассчитайте LTV, CAC, MRR, Churn Rate, ROAS, NPS и 30+ метрик. Формулы, отраслевые пороги, What-If анализ, шаблоны сценариев. Бесплатно.">
+    <meta property="og:title" content="LTV калькулятор (Lifetime Value) — формула + LTV:CAC анализ | MetricTree">
+    <meta property="og:description" content="Рассчитайте LTV = AOV × частота × срок жизни. Формула, отраслевые пороги, обратный расчёт LTV:CAC. Бесплатно.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://metricstree.vercel.app/">
+    <meta property="og:url" content="https://metricstree.vercel.app/ltv">
     <meta property="og:site_name" content="MetricTree">
     <meta property="og:image" content="https://metricstree.vercel.app/og-image.svg">
     <meta property="og:image:type" content="image/svg+xml">
@@ -25,8 +25,8 @@
     <meta property="og:image:alt" content="MetricTree — калькулятор продуктовых метрик: LTV, CAC, MRR, NPS, Churn">
     <meta property="og:locale" content="ru_RU">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="MetricTree — Калькулятор продуктовых метрик">
-    <meta name="twitter:description" content="LTV, CAC, MRR, Churn, ROAS, NPS и 30+ метрик с формулами и инсайтами. Бесплатно.">
+    <meta name="twitter:title" content="LTV калькулятор (Lifetime Value) — формула + LTV:CAC анализ | MetricTree">
+    <meta name="twitter:description" content="Рассчитайте LTV = AOV × частота × срок жизни. Формула, отраслевые пороги, обратный расчёт LTV:CAC. Бесплатно.">
     <meta name="twitter:image" content="https://metricstree.vercel.app/og-image.svg">
     <script type="application/ld+json">
     {
@@ -1525,6 +1525,20 @@
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Как рассчитать LTV?",
+          "acceptedAnswer": { "@type": "Answer", "text": "LTV = AOV × Частота покупок в год × Среднее время жизни (лет). Например $2500 × 4 × 3 = $30 000. Главное — соотношение LTV:CAC ≥ 3." }
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
 <a href="#metricCard" class="skip-link">Перейти к калькулятору</a>
