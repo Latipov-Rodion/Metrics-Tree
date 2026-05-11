@@ -39,6 +39,14 @@
     { "source": "/nps", "destination": "/nps.html" },
     { "source": "/fcr", "destination": "/fcr.html" },
     { "source": "/sla", "destination": "/sla.html" },
+    { "source": "/grossMargin", "destination": "/grossMargin.html" },
+    { "source": "/runway", "destination": "/runway.html" },
+    { "source": "/burnRate", "destination": "/burnRate.html" },
+    { "source": "/salesVelocity", "destination": "/salesVelocity.html" },
+    { "source": "/winRate", "destination": "/winRate.html" },
+    { "source": "/pipelineCoverage", "destination": "/pipelineCoverage.html" },
+    { "source": "/timeToValue", "destination": "/timeToValue.html" },
+    { "source": "/arpdau", "destination": "/arpdau.html" },
     { "source": "/m/:metricId", "destination": "/index.html" }
   ],
   "headers": [

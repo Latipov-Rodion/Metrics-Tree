@@ -35,7 +35,7 @@
       "name": "MetricTree",
       "alternateName": "Калькулятор продуктовых метрик",
       "url": "https://metricstree.vercel.app/",
-      "description": "Бесплатный онлайн-калькулятор 39 продуктовых метрик: LTV, CAC, MRR, ARR, Churn Rate, DAU, ROAS, NPS, Burn Multiple, Magic Number, Rule of 40, Quick Ratio с формулами и интерпретацией результатов.",
+      "description": "Бесплатный онлайн-калькулятор 47 продуктовых метрик: LTV, CAC, MRR, ARR, Churn Rate, DAU, ROAS, NPS, Burn Multiple, Magic Number, Rule of 40, Quick Ratio с формулами и интерпретацией результатов.",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -1410,6 +1410,35 @@
         }
         .modal-confirm:hover { filter: brightness(1.15); }
 
+        /* ===================== EMBED MODE (iframe) ===================== */
+        body.embed { padding: 0.5rem !important; }
+        body.embed .header,
+        body.embed .onboarding-bar,
+        body.embed .sections-nav-wrap,
+        body.embed .industry-bar,
+        body.embed .metric-chips,
+        body.embed .metrics-list,
+        body.embed .snapshots-block,
+        body.embed .related-block,
+        body.embed > section { display: none !important; }
+        body.embed .metrics-area { display: block; }
+        body.embed .metric-card {
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-sm);
+        }
+        body.embed .embed-footer {
+            display: block !important;
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.7rem;
+            color: var(--text-3);
+            text-align: center;
+        }
+        body.embed .embed-footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
+        body.embed .embed-footer a:hover { text-decoration: underline; }
+        .embed-footer { display: none; }
+
         /* ===================== HELP MODAL ===================== */
         .help-grid { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1rem; }
         .help-section-title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--text-3); letter-spacing: 0.06em; margin-bottom: 0.5rem; }
@@ -1584,6 +1613,7 @@
                     <button id="snapshotMenuBtn" role="menuitem">💾 Сохранить снимок<kbd>Ctrl+S</kbd></button>
                     <button id="searchMenuBtn" role="menuitem">🔍 Поиск метрики<kbd>/</kbd></button>
                     <button id="helpMenuBtn" role="menuitem">❓ Справка и горячие клавиши<kbd>?</kbd></button>
+                    <button id="embedMenuBtn" role="menuitem">🔗 Скопировать embed-код</button>
                     <button id="clearAllBtn" role="menuitem" style="color:var(--red)">🗑 Очистить все данные</button>
                 </div>
             </div>
@@ -1593,7 +1623,7 @@
     <!-- Onboarding bar (first visit) -->
     <div class="onboarding-bar onboarding-bar-rich" id="onboardingBar" style="display:none;">
         <div class="onboarding-content">
-            <div class="onboarding-headline">👋 39 метрик, формулы, отраслевые пороги. Бесплатно, без регистрации.</div>
+            <div class="onboarding-headline">👋 47 метрик, формулы, отраслевые пороги. Бесплатно, без регистрации.</div>
             <div class="onboarding-steps">
                 <span class="onboarding-step"><span class="onboarding-step-num">1</span> Выберите метрику</span>
                 <span class="onboarding-sep">→</span>
@@ -1612,9 +1642,10 @@
 
     <nav class="sections-nav-wrap" aria-label="Разделы метрик">
         <div class="sections-nav" id="sectionsNav" role="tablist">
-            <div class="section-card active" data-section="b2c" role="tab" tabindex="0" aria-selected="true"><h3>B2C</h3><p>DAU, MAU, LTV, CAC, ARPU, Churn, Stickiness, LTV:CAC</p></div>
+            <div class="section-card active" data-section="b2c" role="tab" tabindex="0" aria-selected="true"><h3>B2C</h3><p>DAU, MAU, LTV, CAC, ARPU, ARPDAU, Churn, Stickiness, LTV:CAC, Retention</p></div>
             <div class="section-card" data-section="b2b" role="tab" tabindex="0" aria-selected="false"><h3>B2B</h3><p>MRR, ARR, ACV, GRR, NRR, CAC Payback, Burn Multiple, Magic Number, Rule of 40, Quick Ratio</p></div>
-            <div class="section-card" data-section="sales" role="tab" tabindex="0" aria-selected="false"><h3>AARRR</h3><p>Acquisition · Activation · Retention · Referral · Revenue</p></div>
+            <div class="section-card" data-section="sales" role="tab" tabindex="0" aria-selected="false"><h3>AARRR</h3><p>Acquisition · Activation · Retention · Referral · Revenue · Time to Value</p></div>
+            <div class="section-card" data-section="finance" role="tab" tabindex="0" aria-selected="false"><h3>Finance &amp; Sales</h3><p>Gross Margin · Runway · Burn Rate · Sales Velocity · Win Rate · Pipeline Coverage</p></div>
             <div class="section-card" data-section="growth" role="tab" tabindex="0" aria-selected="false"><h3>Growth</h3><p>CR · ROAS · CPC · Bounce Rate · CTR</p></div>
             <div class="section-card" data-section="qa" role="tab" tabindex="0" aria-selected="false"><h3>QA</h3><p>Bug Rate · Test Coverage · Defect Density</p></div>
             <div class="section-card" data-section="support" role="tab" tabindex="0" aria-selected="false"><h3>Support</h3><p>CSAT · NPS · FCR · SLA</p></div>
@@ -1738,6 +1769,9 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
         </article>
     </main>
+    <div class="embed-footer" aria-hidden="true">
+        Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 47 продуктовых метрик с формулами
+    </div>
 </div>
 
 <!-- Help / shortcuts modal -->
@@ -1820,6 +1854,16 @@
             });
         });
     }
+
+    // ---- EMBED MODE ----
+    (function initEmbed(){
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('embed') === '1' || params.get('embed') === 'true') {
+            document.body.classList.add('embed');
+            // В embed-режиме принудительно открыть указанную метрику (через ?m=)
+            // restoreFromURL это сделает позже. Просто включаем класс.
+        }
+    })();
 
     // ---- Тема (с уважением к prefers-color-scheme при первой загрузке) ----
     (function initTheme() {
@@ -2036,6 +2080,29 @@
                         if (val < 10) return { color: '#F44336', text: 'Низкий ARPU. Попробуйте апселы или новые предложения.' };
                         if (val < 50) return { color: '#FFC107', text: 'Средний ARPU. Работайте над монетизацией.' };
                         return { color: '#4CAF50', text: 'Высокий ARPU — отличная монетизация!' };
+                    }
+                },
+                {
+                    id: 'arpdau', name: 'ARPDAU',
+                    formula: 'Дневная выручка / DAU',
+                    description: 'Average Revenue Per Daily Active User — выручка с одного дневного активного. Ключевая метрика mobile F2P-игр и медиа.',
+                    threshold: 'Free-to-play: $0.05–$5, Premium: $0.5–$20',
+                    inputs: [
+                        { label: 'Дневная выручка, $', placeholder: '500', key: 'dailyRevenue', min: 0, help: 'Средняя выручка от продукта за день (платежи + реклама).' },
+                        { label: 'DAU', placeholder: '12500', key: 'dau', min: 1, help: 'Уникальных дневных активных пользователей за тот же период.' }
+                    ],
+                    calculate: v => {
+                        const r = sanitizeNumber(v.dailyRevenue);
+                        const d = sanitizeNumber(v.dau);
+                        if (r === null || d === null || d <= 0) return null;
+                        return (r / d).toFixed(3);
+                    },
+                    unit: '$',
+                    insight: val => {
+                        if (val < 0.05) return { color: '#F44336', text: 'Низкий ARPDAU. Работайте над монетизацией или вовлечением.' };
+                        if (val < 0.5) return { color: '#FFC107', text: 'Типично для free-to-play. Добавьте источники монетизации.' };
+                        if (val < 5) return { color: '#4CAF50', text: 'Хороший ARPDAU — продукт зарабатывает.' };
+                        return { color: '#4CAF50', text: 'Премиум-уровень. Отлично!' };
                     }
                 },
                 {
@@ -2372,6 +2439,170 @@
                     calculate: v => { const r = sanitizeNumber(v.rev); return r !== null ? r : null; },
                     unit: '$',
                     insight: val => ({ color: '#2A6DF4', text: 'Revenue — счётчик; здоровье бизнеса определяется ростом, маржой и unit-экономикой.' })
+                },
+                {
+                    id: 'timeToValue', name: 'Time to Value',
+                    formula: 'Среднее время от регистрации до Aha-моменту',
+                    description: 'Сколько времени нужно новому пользователю, чтобы получить первую ценность от продукта. Один из главных driver-ов Activation.',
+                    threshold: 'Мгновенно: <1 день, быстро: 1–7 дней, норма: 7–30 дней, медленно: >30',
+                    inputs: [
+                        { label: 'Среднее время до Aha (дней)', placeholder: '3', key: 'days', min: 0, help: 'Медианное (не среднее!) время от регистрации до ключевого события активации.' }
+                    ],
+                    calculate: v => {
+                        const d = sanitizeNumber(v.days);
+                        if (d === null) return null;
+                        return d.toFixed(1);
+                    },
+                    unit: 'дней',
+                    insight: val => {
+                        if (val < 1) return { color: '#4CAF50', text: 'Мгновенная ценность — отлично для consumer/PLG продуктов.' };
+                        if (val < 7) return { color: '#4CAF50', text: 'Быстрая активация — хорошо для PLG.' };
+                        if (val < 30) return { color: '#FFC107', text: 'Норма для B2B/enterprise. Упростите онбординг для PLG.' };
+                        return { color: '#F44336', text: 'Слишком медленно — пользователи отваливаются. Урежьте setup-шаги.' };
+                    }
+                }
+            ]
+        },
+        finance: {
+            name: 'Finance',
+            metrics: [
+                {
+                    id: 'grossMargin', name: 'Gross Margin',
+                    formula: '(Выручка − COGS) / Выручка × 100%',
+                    description: 'Валовая маржа — доля выручки, оставшаяся после прямых затрат на доставку продукта (cost of goods sold).',
+                    threshold: 'SaaS: >75%, E-com: >40%, Hardware: >30%',
+                    inputs: [
+                        { label: 'Выручка, $', placeholder: '1000000', key: 'revenue', min: 0.01, help: 'Общая выручка за период.' },
+                        { label: 'COGS (прямые издержки), $', placeholder: '250000', key: 'cogs', min: 0, help: 'Прямые издержки на доставку продукта: хостинг, поддержка клиентов, payment processing, инфраструктура. Не включает R&D, S&M.' }
+                    ],
+                    calculate: v => {
+                        const r = sanitizeNumber(v.revenue);
+                        const c = sanitizeNumber(v.cogs);
+                        if (r === null || c === null || r <= 0) return null;
+                        return (((r - c) / r) * 100).toFixed(1);
+                    },
+                    unit: '%',
+                    insight: val => {
+                        if (val < 30) return { color: '#F44336', text: 'Низкая маржа. Проверьте unit-economics — каждая продажа теряет деньги.' };
+                        if (val < 60) return { color: '#FFC107', text: 'Норма для commerce/hardware. Для SaaS — слишком низко.' };
+                        if (val < 80) return { color: '#4CAF50', text: 'Хорошая маржа — SaaS-уровень.' };
+                        return { color: '#4CAF50', text: 'Отличная маржа — мирового класса SaaS (>80%).' };
+                    }
+                },
+                {
+                    id: 'runway', name: 'Runway',
+                    formula: 'Кэш / Среднемесячное сжигание',
+                    description: 'Сколько месяцев компания проживёт на текущем уровне сжигания. Ключевая метрика для стартапов и pre-IPO.',
+                    threshold: '<6 мес критично, 6–12 рискованно, 12–18 норма, >18 здорово',
+                    inputs: [
+                        { label: 'Кэш на счёте, $', placeholder: '5000000', key: 'cash', min: 0, help: 'Текущий остаток денежных средств + ликвидные активы.' },
+                        { label: 'Среднемесячное сжигание (Net Burn), $', placeholder: '300000', key: 'burn', min: 0.01, help: 'Средний Net Burn за последние 3–6 мес. Если cash-positive — runway бесконечен.' }
+                    ],
+                    calculate: v => {
+                        const c = sanitizeNumber(v.cash);
+                        const b = sanitizeNumber(v.burn);
+                        if (c === null || b === null) return null;
+                        if (b <= 0) return '∞';
+                        return (c / b).toFixed(1);
+                    },
+                    unit: 'мес',
+                    insight: val => {
+                        if (val === '∞' || val === Infinity) return { color: '#4CAF50', text: 'Cash-positive — runway бесконечен.' };
+                        const v = typeof val === 'number' ? val : parseFloat(val);
+                        if (v < 6) return { color: '#F44336', text: 'Менее 6 мес — срочно фандрейзить или резать burn.' };
+                        if (v < 12) return { color: '#FFC107', text: '6–12 мес — пора начинать фандрейзинг.' };
+                        if (v < 18) return { color: '#4CAF50', text: '12–18 мес — норма для пре-сид/сид.' };
+                        return { color: '#4CAF50', text: 'Больше 18 мес — здоровый runway.' };
+                    }
+                },
+                {
+                    id: 'burnRate', name: 'Burn Rate',
+                    formula: 'Расходы за месяц − Доходы за месяц',
+                    description: 'Чистое денежное сжигание за месяц. Положительное число — компания тратит больше, чем зарабатывает.',
+                    threshold: 'Контекст: соотношение с Runway и Net New ARR (см. Burn Multiple)',
+                    inputs: [
+                        { label: 'Среднемесячные расходы, $', placeholder: '500000', key: 'expenses', min: 0, help: 'Все денежные расходы за месяц: ЗП, аренда, инфра, маркетинг.' },
+                        { label: 'Среднемесячная выручка, $', placeholder: '200000', key: 'revenue', min: 0, help: 'Денежные поступления (collected revenue), не billings.' }
+                    ],
+                    calculate: v => {
+                        const e = sanitizeNumber(v.expenses);
+                        const r = sanitizeNumber(v.revenue);
+                        if (e === null || r === null) return null;
+                        return (e - r).toFixed(0);
+                    },
+                    unit: '$/мес',
+                    insight: val => {
+                        if (val <= 0) return { color: '#4CAF50', text: 'Cash-positive — выручка покрывает расходы.' };
+                        return { color: '#FFC107', text: 'Burn активен. Контролируйте через Runway и Burn Multiple.' };
+                    }
+                },
+                {
+                    id: 'salesVelocity', name: 'Sales Velocity',
+                    formula: '(Opps × ACV × Win Rate) / Длина цикла (дней)',
+                    description: 'Скорость генерации выручки B2B-воронки в день. Ключевая метрика sales performance.',
+                    threshold: 'Контекст: сравнивайте период к периоду; рост важнее абсолюта',
+                    inputs: [
+                        { label: 'Активные opportunities', placeholder: '120', key: 'opps', min: 0, help: 'Количество активных сделок в воронке за период.' },
+                        { label: 'ACV (средний контракт), $', placeholder: '24000', key: 'acv', min: 0, help: 'Annual Contract Value — средняя годовая стоимость закрытой сделки.' },
+                        { label: 'Win Rate, %', placeholder: '25', key: 'winRate', min: 0, max: 100, help: 'Доля сделок, закрывающихся в win. 20–30% — типично для B2B SaaS.' },
+                        { label: 'Длина цикла (дней)', placeholder: '60', key: 'cycle', min: 0.1, help: 'Среднее время от создания opportunity до closed-won.' }
+                    ],
+                    calculate: v => {
+                        const o = sanitizeNumber(v.opps);
+                        const a = sanitizeNumber(v.acv);
+                        const w = sanitizeNumber(v.winRate);
+                        const c = sanitizeNumber(v.cycle);
+                        if ([o,a,w,c].some(x=>x===null) || c <= 0) return null;
+                        return ((o * a * (w/100)) / c).toFixed(0);
+                    },
+                    unit: '$/день',
+                    insight: val => ({ color: '#2A6DF4', text: 'Sales Velocity — рост важнее абсолюта. Ускоряйте за счёт 4 рычагов: opps, ACV, win rate, цикл.' })
+                },
+                {
+                    id: 'winRate', name: 'Win Rate',
+                    formula: 'Closed Won / Всего закрытых opps × 100%',
+                    description: 'Доля сделок, закрытых в выигрыш. Базовая метрика квалификации B2B-воронки.',
+                    threshold: 'B2B SaaS: <15% плохо, 15–25% норма, 25–35% хорошо, >35% отлично',
+                    inputs: [
+                        { label: 'Closed Won (выиграно)', placeholder: '24', key: 'won', min: 0, help: 'Сделки, закрытые в успех за период.' },
+                        { label: 'Всего закрытых (won + lost)', placeholder: '100', key: 'total', min: 1, help: 'Все закрытые сделки за период (won + lost). Не учитываются открытые opps.' }
+                    ],
+                    calculate: v => {
+                        const w = sanitizeNumber(v.won);
+                        const t = sanitizeNumber(v.total);
+                        if (w === null || t === null || t <= 0) return null;
+                        return ((w / t) * 100).toFixed(1);
+                    },
+                    unit: '%',
+                    insight: val => {
+                        if (val < 15) return { color: '#F44336', text: 'Низкий Win Rate. Проверьте качество лидов и квалификацию.' };
+                        if (val < 25) return { color: '#FFC107', text: 'Норма для B2B SaaS, но есть куда расти.' };
+                        if (val < 35) return { color: '#4CAF50', text: 'Хороший Win Rate — воронка работает.' };
+                        return { color: '#4CAF50', text: 'Отличный Win Rate — продукт matches спросу.' };
+                    }
+                },
+                {
+                    id: 'pipelineCoverage', name: 'Pipeline Coverage',
+                    formula: 'Pipeline Value / Целевая выручка периода',
+                    description: 'Сколько раз воронка покрывает план продаж. Стандарт >3x для B2B SaaS.',
+                    threshold: 'Плохо: <2x, Норма: 2–3x, Хорошо: 3–4x, Отлично: >4x',
+                    inputs: [
+                        { label: 'Pipeline Value, $', placeholder: '3000000', key: 'pipeline', min: 0, help: 'Сумма ACV/TCV всех активных opportunities на конец периода.' },
+                        { label: 'Цель по выручке, $', placeholder: '1000000', key: 'quota', min: 0.01, help: 'Целевая новая выручка (new ARR / new bookings) за период.' }
+                    ],
+                    calculate: v => {
+                        const p = sanitizeNumber(v.pipeline);
+                        const q = sanitizeNumber(v.quota);
+                        if (p === null || q === null || q <= 0) return null;
+                        return (p / q).toFixed(2);
+                    },
+                    unit: 'x',
+                    insight: val => {
+                        if (val < 2) return { color: '#F44336', text: 'Воронки мало — не хватит, чтобы закрыть план.' };
+                        if (val < 3) return { color: '#FFC107', text: 'Норма; но небольшой запас. Увеличивайте voronку.' };
+                        if (val < 4) return { color: '#4CAF50', text: 'Хорошее покрытие — план реалистичен.' };
+                        return { color: '#4CAF50', text: 'Отличное покрытие — большой запас.' };
+                    }
                 }
             ]
         },
@@ -2873,6 +3104,55 @@
             mobile:    'Плохо: <2, Норма: 2–4, Хорошо: >4',
             media:     'Плохо: <1.5, Норма: 1.5–3, Хорошо: >3',
         },
+        grossMargin: {
+            universal: 'Низко: <40%, Норма: 40–70%, Хорошо: 70–80%, Отлично: >80%',
+            saas:      'Плохо: <60%, Норма: 60–75%, Хорошо: 75–85%, Отлично: >85%',
+            ecom:      'Плохо: <30%, Норма: 30–45%, Хорошо: >45%',
+            mobile:    'Плохо: <50%, Норма: 50–70%, Хорошо: >70%',
+            media:     'Плохо: <40%, Норма: 40–60%, Хорошо: >60%',
+        },
+        runway: {
+            universal: 'Критично: <6 мес, Рисковано: 6–12, Норма: 12–18, Хорошо: >18',
+            saas:      'Pre-seed/seed: 18–24 мес — норма; Series A+: >18 мес',
+            ecom:      'Зависит от сезонности; >12 мес страховка',
+            mobile:    'Норма для F2P: >12 мес (long monetization curve)',
+            media:     'Норма: >12 мес (медленная монетизация контента)',
+        },
+        salesVelocity: {
+            universal: 'Главное — рост MoM/QoQ, не абсолютное число',
+            saas:      'Цель: рост ≥ 20% QoQ. Ускорители: ACV ↑, win rate ↑, цикл ↓',
+            ecom:      'Применимо для enterprise B2B-направления e-com',
+            mobile:    'Применимо для B2B mobile-инструментов',
+            media:     'Применимо для ad sales команд',
+        },
+        winRate: {
+            universal: 'Плохо: <15%, Норма: 15–25%, Хорошо: 25–35%, Отлично: >35%',
+            saas:      'B2B SaaS норма: 20–25%, SMB sales 25–35%, mid-market 18–28%',
+            ecom:      'Конверсия в покупку: 1–4% (не B2B win rate)',
+            mobile:    'B2B mobile sales: 18–30%',
+            media:     'Ad sales: 20–35%',
+        },
+        pipelineCoverage: {
+            universal: 'Плохо: <2x, Норма: 2–3x, Хорошо: 3–4x, Отлично: >4x',
+            saas:      'B2B SaaS: 3–4× от quota — стандарт; new logo sales: 4–6×',
+            ecom:      'B2B-направление: 3× от плана',
+            mobile:    '3–4×',
+            media:     '3–4× от целей по ad-revenue',
+        },
+        timeToValue: {
+            universal: 'Мгновенно: <1 день, Быстро: 1–7, Норма: 7–30, Медленно: >30',
+            saas:      'PLG: <1 день, B2B sales-led: 1–14, Enterprise: 14–90 (с onboarding)',
+            ecom:      'Мгновенно после первой покупки. Days to first repeat: 14–30',
+            mobile:    'Должно быть <1 день — иначе D1 retention упадёт',
+            media:     'Мгновенно при первой релевантной статье',
+        },
+        arpdau: {
+            universal: 'Free-to-play: $0.05–$5, Premium: $0.5–$20',
+            saas:      'Менее релевантно — используйте ARPU/MRR per customer',
+            ecom:      'Менее релевантно — используйте AOV и repeat rate',
+            mobile:    'F2P top tier: $0.30–$1, mid: $0.10–$0.30, низко: <$0.05',
+            media:     'Подписка: $0.10–$0.50, реклама: $0.02–$0.20',
+        },
     };
 
     function getThreshold(metric) {
@@ -3367,6 +3647,19 @@
             const ov = document.getElementById('helpOverlay');
             if (ov) ov.classList.add('show');
         });
+        const embedMenu = document.getElementById('embedMenuBtn');
+        if (embedMenu) embedMenu.addEventListener('click', () => {
+            const m = currentMetricId || 'ltv';
+            const embedUrl = `https://metricstree.vercel.app/${m}?embed=1`;
+            const iframe = `<iframe src="${embedUrl}" width="100%" height="640" style="border:1px solid #ddd;border-radius:8px;" loading="lazy" title="MetricTree — ${m}"></iframe>`;
+            const onOk = () => showToast('🔗 Embed-код скопирован', 'success');
+            navigator.clipboard.writeText(iframe).then(onOk).catch(() => {
+                const ta = document.createElement('textarea');
+                ta.value = iframe; ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
+                document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+                onOk();
+            });
+        });
     }
 
     // ---- МОДАЛКА ОЧИСТКИ ----
@@ -3564,7 +3857,31 @@
                        { s:'b2b', id:'quickRatio',   note:'Quick Ratio — устойчивость роста' }],
         quickRatio:   [{ s:'b2b', id:'nrr',          note:'NRR — другой угол на удержание выручки' },
                        { s:'b2b', id:'mrr',          note:'Все компоненты — изменения MRR' },
-                       { s:'b2b', id:'grr',          note:'GRR — обратная сторона потерь' }]
+                       { s:'b2b', id:'grr',          note:'GRR — обратная сторона потерь' }],
+        grossMargin:  [{ s:'b2b', id:'burnMultiple', note:'Высокая маржа — низкий Burn Multiple' },
+                       { s:'b2b', id:'ruleOf40',    note:'Маржа — половина Rule of 40' },
+                       { s:'finance', id:'runway',  note:'Маржа влияет на скорость burn' }],
+        runway:       [{ s:'finance', id:'burnRate',  note:'Знаменатель формулы' },
+                       { s:'b2b', id:'burnMultiple', note:'Burn Multiple — эффективность burn' },
+                       { s:'b2b', id:'arr',          note:'Рост ARR продлевает runway' }],
+        burnRate:     [{ s:'finance', id:'runway',   note:'Burn Rate определяет Runway' },
+                       { s:'b2b', id:'burnMultiple', note:'Эффективность сжигания' },
+                       { s:'finance', id:'grossMargin', note:'Маржа уменьшает burn' }],
+        salesVelocity:[{ s:'finance', id:'winRate',  note:'Win rate — фактор формулы' },
+                       { s:'b2b', id:'acv',          note:'ACV — фактор формулы' },
+                       { s:'finance', id:'pipelineCoverage', note:'Pipeline питает скорость' }],
+        winRate:      [{ s:'finance', id:'salesVelocity', note:'Влияет на Sales Velocity' },
+                       { s:'finance', id:'pipelineCoverage', note:'Низкий win rate — нужно больше pipeline' },
+                       { s:'b2c', id:'cac',          note:'Низкий win rate растит CAC' }],
+        pipelineCoverage:[{ s:'finance', id:'salesVelocity', note:'Pipeline + cycle = velocity' },
+                          { s:'finance', id:'winRate',     note:'Win rate определяет нужное coverage' },
+                          { s:'b2b', id:'arr',             note:'Pipeline закрывается в ARR' }],
+        timeToValue:  [{ s:'sales', id:'activation',  note:'TtV напрямую влияет на Activation' },
+                       { s:'b2c', id:'retention',     note:'Чем быстрее ценность — выше Retention' },
+                       { s:'b2c', id:'churn',         note:'Долгая TtV → ранний Churn' }],
+        arpdau:       [{ s:'b2c', id:'dau',          note:'DAU — знаменатель' },
+                       { s:'b2c', id:'arpu',          note:'ARPU — месячный аналог' },
+                       { s:'b2c', id:'ltv',           note:'ARPDAU × срок × 30 ≈ LTV' }]
     };
 
     const relatedBlockEl = document.getElementById('relatedBlock');
@@ -4771,6 +5088,90 @@
                 solveFor: { label: 'Минимум апселов', unit: '$' },
                 hint: 'При меньших апселах NRR не достигнет цели.',
                 formula: v => v.start > 0 ? (v.target / 100 - 1) * v.start + v.churn : null
+            }
+        ],
+        runway: [
+            {
+                ask: 'При целевом runway и текущем сжигании — сколько нужно поднять / иметь кэша?',
+                fixed: [
+                    { key: 'burn', label: 'Месячное сжигание', placeholder: '300000', unit: '$' },
+                    { key: 'target', label: 'Целевой runway', placeholder: '18', unit: 'мес' }
+                ],
+                solveFor: { label: 'Минимум кэша', unit: '$' },
+                hint: 'Чтобы получить нужный runway — поднимите столько в раунде.',
+                formula: v => (v.burn > 0 && v.target > 0) ? v.burn * v.target : null
+            },
+            {
+                ask: 'При кэше и целевом runway — какой максимум сжигания?',
+                fixed: [
+                    { key: 'cash', label: 'Кэш на счёте', placeholder: '5000000', unit: '$' },
+                    { key: 'target', label: 'Целевой runway', placeholder: '18', unit: 'мес' }
+                ],
+                solveFor: { label: 'Максимум месячного сжигания', unit: '$' },
+                hint: 'Если сжигание выше — runway короче целевого. Режьте затраты.',
+                formula: v => (v.cash > 0 && v.target > 0) ? v.cash / v.target : null
+            }
+        ],
+        grossMargin: [
+            {
+                ask: 'При выручке и целевой марже — какой максимум COGS?',
+                fixed: [
+                    { key: 'revenue', label: 'Выручка', placeholder: '1000000', unit: '$' },
+                    { key: 'target', label: 'Целевая маржа', placeholder: '75', unit: '%' }
+                ],
+                solveFor: { label: 'Максимум COGS', unit: '$' },
+                hint: 'COGS ниже этого — маржа выше целевой.',
+                formula: v => (v.revenue > 0 && v.target >= 0) ? v.revenue * (1 - v.target/100) : null
+            }
+        ],
+        salesVelocity: [
+            {
+                ask: 'При opps, ACV, win rate и целевой velocity — какой нужен цикл?',
+                fixed: [
+                    { key: 'opps', label: 'Активные opps', placeholder: '120', unit: '' },
+                    { key: 'acv', label: 'ACV', placeholder: '24000', unit: '$' },
+                    { key: 'winRate', label: 'Win Rate', placeholder: '25', unit: '%' },
+                    { key: 'target', label: 'Целевая velocity', placeholder: '15000', unit: '$/день' }
+                ],
+                solveFor: { label: 'Максимум длины цикла', unit: 'дней' },
+                hint: 'Цикл длиннее — velocity ниже цели. Ускоряйте процесс продажи.',
+                formula: v => v.target > 0 ? (v.opps * v.acv * (v.winRate/100)) / v.target : null
+            }
+        ],
+        winRate: [
+            {
+                ask: 'При закрытых сделках и целевом win rate — сколько максимум lost?',
+                fixed: [
+                    { key: 'won', label: 'Closed Won', placeholder: '24', unit: '' },
+                    { key: 'target', label: 'Целевой Win Rate', placeholder: '30', unit: '%' }
+                ],
+                solveFor: { label: 'Максимум lost', unit: '' },
+                hint: 'Lost больше — win rate ниже целевого. Улучшайте qualification.',
+                formula: v => v.target > 0 ? v.won * (100 / v.target - 1) : null
+            }
+        ],
+        pipelineCoverage: [
+            {
+                ask: 'При quota и целевом coverage — какой нужен pipeline?',
+                fixed: [
+                    { key: 'quota', label: 'Цель по выручке', placeholder: '1000000', unit: '$' },
+                    { key: 'target', label: 'Целевое coverage', placeholder: '3', unit: 'x' }
+                ],
+                solveFor: { label: 'Минимум pipeline', unit: '$' },
+                hint: 'Меньше pipeline — рискуете не закрыть план.',
+                formula: v => v.quota * v.target
+            }
+        ],
+        arpdau: [
+            {
+                ask: 'При DAU и целевом ARPDAU — какая нужна дневная выручка?',
+                fixed: [
+                    { key: 'dau', label: 'DAU', placeholder: '50000', unit: '' },
+                    { key: 'target', label: 'Целевой ARPDAU', placeholder: '0.30', unit: '$' }
+                ],
+                solveFor: { label: 'Минимум дневной выручки', unit: '$' },
+                hint: 'Меньше выручки — ARPDAU ниже целевого.',
+                formula: v => v.dau * v.target
             }
         ]
     };
