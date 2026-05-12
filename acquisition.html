@@ -201,6 +201,18 @@
             flex-shrink: 0;
         }
 
+        /* ===================== LANG TOGGLE ===================== */
+        .lang-toggle { display: inline-flex; gap: 2px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 2px; }
+        .lang-btn {
+            background: transparent; color: var(--text-2); border: none;
+            min-width: 32px; height: 28px; padding: 0 7px;
+            font-size: 0.74rem; font-weight: 700; cursor: pointer;
+            border-radius: 4px; transition: background var(--transition), color var(--transition);
+            font-family: 'JetBrains Mono','Menlo',monospace; letter-spacing: 0.04em;
+        }
+        .lang-btn:hover { background: var(--bg-hover); color: var(--text-1); }
+        .lang-btn.active { background: var(--accent-dim); color: var(--accent); }
+
         /* ===================== CURRENCY TOGGLE ===================== */
         .currency-toggle { display: inline-flex; gap: 2px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 2px; }
         .currency-btn {
@@ -1439,6 +1451,19 @@
         body.embed .embed-footer a:hover { text-decoration: underline; }
         .embed-footer { display: none; }
 
+        /* ===================== ABOUT MODAL ===================== */
+        .about-modal { max-width: 720px; max-height: 85vh; display: flex; flex-direction: column; }
+        .about-body { overflow-y: auto; max-height: 65vh; padding-right: 0.5rem; margin-bottom: 1rem; font-size: 0.85rem; line-height: 1.55; color: var(--text-2); }
+        .about-body h4 { font-size: 0.9rem; font-weight: 700; color: var(--text-1); margin: 1.2rem 0 0.5rem; }
+        .about-body h4:first-child { margin-top: 0; }
+        .about-body p { margin-bottom: 0.5rem; }
+        .about-body ul { padding-left: 1.2rem; margin-bottom: 0.5rem; }
+        .about-body ul li { margin-bottom: 0.35rem; }
+        .about-body strong { color: var(--text-1); }
+        .about-body a { color: var(--accent); text-decoration: none; font-weight: 600; }
+        .about-body a:hover { text-decoration: underline; }
+        body.embed .about-modal { display: none !important; }
+
         /* ===================== HELP MODAL ===================== */
         .help-grid { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1rem; }
         .help-section-title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--text-3); letter-spacing: 0.06em; margin-bottom: 0.5rem; }
@@ -1576,16 +1601,21 @@
         <div class="header-left">
             <h1>MetricTree — Калькулятор продуктовых метрик</h1>
             <div class="subtitle">
-                <span>Создатель:</span>
+                <span data-t="header.creator">Создатель:</span>
                 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank" rel="noopener">Родион Латыпов</a>
-                <span>· BizDev, Sales, Product, Troubleshooter, Advisor, Consultant</span>
+                <span data-t="header.subtitle_role">· BizDev, Sales, Product, Troubleshooter, Advisor, Consultant</span>
             </div>
         </div>
         <div class="header-right">
             <button class="dashboard-btn" id="dashboardBtn" title="Unit-economics дашборд (Ctrl+D)">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-            Дашборд
+            <span data-t="btn.dashboard">Дашборд</span>
         </button>
+        <div class="lang-toggle" role="group" aria-label="Язык интерфейса">
+            <button class="lang-btn active" data-lang="ru" title="Русский">RU</button>
+            <button class="lang-btn" data-lang="en" title="English">EN</button>
+            <button class="lang-btn" data-lang="uz" title="Oʻzbekcha">UZ</button>
+        </div>
         <div class="currency-toggle" role="group" aria-label="Валюта отображения">
             <button class="currency-btn active" data-currency="$" title="Доллар США" aria-label="Установить валюту: доллар">$</button>
             <button class="currency-btn" data-currency="€" title="Евро" aria-label="Установить валюту: евро">€</button>
@@ -1602,19 +1632,20 @@
             </div>
             <button class="share-btn" id="shareLinkBtn" title="Поделиться ссылкой на эту метрику">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-                <span class="share-btn-text">Поделиться</span>
+                <span class="share-btn-text" data-t="btn.share_text">Поделиться</span>
             </button>
             <div class="more-menu-wrap">
                 <button class="more-menu-btn" id="moreMenuBtn" title="Дополнительно" aria-label="Дополнительные действия" aria-haspopup="true" aria-expanded="false">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
                 </button>
                 <div class="more-menu-pop" id="moreMenuPop" role="menu">
-                    <button id="csvExportBtn" role="menuitem">📄 Экспорт в CSV</button>
-                    <button id="snapshotMenuBtn" role="menuitem">💾 Сохранить снимок<kbd>Ctrl+S</kbd></button>
-                    <button id="searchMenuBtn" role="menuitem">🔍 Поиск метрики<kbd>/</kbd></button>
-                    <button id="helpMenuBtn" role="menuitem">❓ Справка и горячие клавиши<kbd>?</kbd></button>
-                    <button id="embedMenuBtn" role="menuitem">🔗 Скопировать embed-код</button>
-                    <button id="clearAllBtn" role="menuitem" style="color:var(--red)">🗑 Очистить все данные</button>
+                    <button id="csvExportBtn" role="menuitem" data-t="menu.csv">📄 Экспорт в CSV</button>
+                    <button id="snapshotMenuBtn" role="menuitem"><span data-t="menu.snapshot">💾 Сохранить снимок</span><kbd>Ctrl+S</kbd></button>
+                    <button id="searchMenuBtn" role="menuitem"><span data-t="menu.search">🔍 Поиск метрики</span><kbd>/</kbd></button>
+                    <button id="helpMenuBtn" role="menuitem"><span data-t="menu.help">❓ Справка и горячие клавиши</span><kbd>?</kbd></button>
+                    <button id="embedMenuBtn" role="menuitem" data-t="menu.embed">🔗 Скопировать embed-код</button>
+                    <button id="aboutMenuBtn" role="menuitem" data-t="menu.about">ℹ️ О продукте</button>
+                    <button id="clearAllBtn" role="menuitem" style="color:var(--red)" data-t="menu.clear_all">🗑 Очистить все данные</button>
                 </div>
             </div>
         </div>
@@ -1623,21 +1654,21 @@
     <!-- Onboarding bar (first visit) -->
     <div class="onboarding-bar onboarding-bar-rich" id="onboardingBar" style="display:none;">
         <div class="onboarding-content">
-            <div class="onboarding-headline">👋 47 метрик, формулы, отраслевые пороги. Бесплатно, без регистрации.</div>
+            <div class="onboarding-headline" data-t="onboard.headline">👋 47 метрик, формулы, отраслевые пороги. Бесплатно, без регистрации.</div>
             <div class="onboarding-steps">
-                <span class="onboarding-step"><span class="onboarding-step-num">1</span> Выберите метрику</span>
+                <span class="onboarding-step"><span class="onboarding-step-num">1</span> <span data-t="onboard.step_pick">Выберите метрику</span></span>
                 <span class="onboarding-sep">→</span>
-                <span class="onboarding-step"><span class="onboarding-step-num">2</span> Введите числа</span>
+                <span class="onboarding-step"><span class="onboarding-step-num">2</span> <span data-t="onboard.step_enter">Введите числа</span></span>
                 <span class="onboarding-sep">→</span>
-                <span class="onboarding-step"><span class="onboarding-step-num">3</span> Получите инсайт</span>
+                <span class="onboarding-step"><span class="onboarding-step-num">3</span> <span data-t="onboard.step_insight">Получите инсайт</span></span>
             </div>
             <div class="onboarding-cta-row">
-                <button class="onboarding-cta primary" id="onboardingTemplatesBtn">📦 Начать с шаблона</button>
-                <button class="onboarding-cta" id="onboardingDemoBtn">▶ Попробовать на примере (LTV:CAC)</button>
-                <button class="onboarding-cta ghost" id="onboardingHelpBtn">❓ Все возможности</button>
+                <button class="onboarding-cta primary" id="onboardingTemplatesBtn" data-t="onboard.cta_template">📦 Начать с шаблона</button>
+                <button class="onboarding-cta" id="onboardingDemoBtn" data-t="onboard.cta_demo">▶ Попробовать на примере (LTV:CAC)</button>
+                <button class="onboarding-cta ghost" id="onboardingHelpBtn" data-t="onboard.cta_help">❓ Все возможности</button>
             </div>
         </div>
-        <button class="onboarding-dismiss" id="onboardingDismiss" title="Скрыть приветствие">×</button>
+        <button class="onboarding-dismiss" id="onboardingDismiss" data-t-attr-title="onboard.dismiss_title" title="Скрыть приветствие">×</button>
     </div>
 
     <nav class="sections-nav-wrap" aria-label="Разделы метрик">
@@ -1683,26 +1714,26 @@
     <!-- Templates modal -->
     <div class="templates-overlay" id="templatesOverlay" style="display:none;">
         <div class="templates-modal">
-            <div class="templates-modal-title">Шаблоны сценариев</div>
-            <div class="templates-modal-sub">Выберите шаблон — все метрики заполнятся реалистичными значениями для анализа</div>
+            <div class="templates-modal-title" data-t="templates.title">Шаблоны сценариев</div>
+            <div class="templates-modal-sub" data-t="templates.subtitle">Выберите шаблон — все метрики заполнятся реалистичными значениями для анализа</div>
             <div class="templates-grid" id="templatesGrid"></div>
-            <button class="templates-close" id="templatesClose">Отмена</button>
+            <button class="templates-close" id="templatesClose" data-t="btn.cancel">Отмена</button>
         </div>
     </div>
 
     <!-- Industry selector -->
     <div class="industry-bar" id="industryBar">
-        <span class="industry-label">Отрасль:</span>
+        <span class="industry-label" data-t="industry.label">Отрасль:</span>
         <div class="industry-pills" id="industryPills">
             <button class="templates-btn" id="templatesBtn">
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                Шаблоны
+                <span data-t="industry.templates">Шаблоны</span>
             </button>
-            <button class="industry-pill active" data-industry="universal">Универсальные</button>
-            <button class="industry-pill" data-industry="saas">SaaS</button>
-            <button class="industry-pill" data-industry="ecom">E-commerce</button>
-            <button class="industry-pill" data-industry="mobile">Мобайл</button>
-            <button class="industry-pill" data-industry="media">Медиа</button>
+            <button class="industry-pill active" data-industry="universal" data-t="industry.universal">Универсальные</button>
+            <button class="industry-pill" data-industry="saas" data-t="industry.saas">SaaS</button>
+            <button class="industry-pill" data-industry="ecom" data-t="industry.ecom">E-commerce</button>
+            <button class="industry-pill" data-industry="mobile" data-t="industry.mobile">Мобайл</button>
+            <button class="industry-pill" data-industry="media" data-t="industry.media">Медиа</button>
         </div>
     </div>
 
@@ -1727,7 +1758,7 @@
             <div class="inputs-toolbar">
                 <button class="reset-metric-btn" id="resetMetricBtn" type="button" title="Очистить значения текущей метрики (только эту)" aria-label="Сбросить значения текущей метрики">
                     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><polyline points="3 4 3 10 9 10"/></svg>
-                    Сбросить
+                    <span data-t="btn.reset">Сбросить</span>
                 </button>
             </div>
             <div id="inputFields"></div>
@@ -1735,30 +1766,30 @@
             <div class="result-block" id="resultBlock" style="display:none;" role="region" aria-label="Результат расчёта" aria-live="polite">
                 <div class="result-main">
                     <div class="result-left">
-                        <span class="result-label">Результат:</span>
+                        <span class="result-label" data-t="metric.result_label">Результат:</span>
                         <span class="result-value" id="resultValue"></span>
                     </div>
                     <div class="result-right">
                         <div class="insight-message" id="insightMessage"></div>
                         <button class="copy-btn" id="copyBtn" title="Копировать результат (Ctrl+C)">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                            Копировать
+                            <span data-t="btn.copy">Копировать</span>
                         </button>
                         <button class="export-btn" id="exportPngBtn" title="Скачать карточку как PNG">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                            PNG
+                            <span data-t="btn.png">PNG</span>
                         </button>
                         <button class="snapshot-btn" id="snapshotBtn" title="Сохранить снимок расчёта">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
-                            Сохранить
+                            <span data-t="btn.save">Сохранить</span>
                         </button>
                         <button class="whatif-btn" id="whatifBtn" title="Анализ «Что если?»">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
-                            Что если?
+                            <span data-t="btn.whatif">Что если?</span>
                         </button>
                         <button class="goal-btn" id="goalBtn" title="Обратный расчёт: задайте цель — получите нужное значение" style="display:none;">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
-                            Цель
+                            <span data-t="btn.goal">Цель</span>
                         </button>
                     </div>
                 </div>
@@ -1808,7 +1839,7 @@
             </div>
         </div>
         <div class="modal-btns" style="justify-content:flex-end;">
-            <button class="modal-cancel" id="helpClose">Закрыть</button>
+            <button class="modal-cancel" id="helpClose" data-t="btn.close">Закрыть</button>
         </div>
     </div>
 </div>
@@ -1816,20 +1847,464 @@
 <!-- Модалка подтверждения очистки -->
 <div class="modal-overlay" id="modalOverlay">
     <div class="modal">
-        <h3>Очистить все данные?</h3>
-        <p>Все введённые значения во всех метриках будут удалены. Это действие нельзя отменить.</p>
+        <h3 data-t="modal.clear_title">Очистить все данные?</h3>
+        <p data-t="modal.clear_text">Все введённые значения во всех метриках будут удалены. Это действие нельзя отменить.</p>
         <div class="modal-btns">
-            <button class="modal-cancel" id="modalCancel">Отмена</button>
-            <button class="modal-confirm" id="modalConfirm">Очистить</button>
+            <button class="modal-cancel" id="modalCancel" data-t="btn.cancel">Отмена</button>
+            <button class="modal-confirm" id="modalConfirm" data-t="btn.confirm_clear">Очистить</button>
         </div>
     </div>
 </div>
 
 <script>
+// ============================================================
+// I18N — Russian default, English + Uzbek (Latin) translations.
+// Format: I18N_UI[lang][key] = translation; missing → fallback.
+// I18N_M[metricId][lang] = { name?, formula?, description? }
+// ============================================================
+window.I18N_UI = {
+  en: {
+    'header.subtitle_role': 'BizDev, Sales, Product, Troubleshooter, Advisor, Consultant',
+    'header.creator': 'Creator:',
+    'btn.dashboard': 'Dashboard',
+    'btn.share': 'Share',
+    'btn.share_text': 'Share',
+    'btn.copied': '✓ Copied',
+    'btn.copy': 'Copy',
+    'btn.png': 'PNG',
+    'btn.save': 'Save',
+    'btn.whatif': 'What if?',
+    'btn.goal': 'Goal',
+    'btn.reset': 'Reset',
+    'btn.close': 'Close',
+    'btn.cancel': 'Cancel',
+    'btn.confirm_clear': 'Clear',
+    'search.placeholder': 'Search metric…',
+    'search.aria': 'Search metric (press / to focus)',
+    'industry.label': 'Industry:',
+    'industry.universal': 'Universal',
+    'industry.saas': 'SaaS',
+    'industry.ecom': 'E-commerce',
+    'industry.mobile': 'Mobile',
+    'industry.media': 'Media',
+    'industry.templates': 'Templates',
+    'sectionTitle.prefix': 'Metrics ',
+    'metric.see_also': 'See also',
+    'metric.result_label': 'Result:',
+    'metric.norm': 'Norm',
+    'metric.bad': 'Bad',
+    'metric.good': 'Good',
+    'metric.excellent': 'Excellent',
+    'metric.no_results': 'No metrics found',
+    'menu.csv': '📄 Export CSV',
+    'menu.snapshot': '💾 Save snapshot',
+    'menu.search': '🔍 Search metric',
+    'menu.help': '❓ Help & shortcuts',
+    'menu.embed': '🔗 Copy embed code',
+    'menu.about': 'ℹ️ About product',
+    'menu.clear_all': '🗑 Clear all data',
+    'modal.clear_title': 'Clear all data?',
+    'modal.clear_text': 'All entered values across all metrics will be erased. This action cannot be undone.',
+    'help.title': 'Keyboard shortcuts and features',
+    'help.h_navigation': 'Navigation',
+    'help.h_actions': 'Actions',
+    'help.h_features': 'What\'s in the tool',
+    'help.kbd_arrows_metric': 'Metric up / down',
+    'help.kbd_arrows_section': 'Previous / next section',
+    'help.kbd_search': 'Search metric',
+    'help.kbd_esc': 'Close modal / blur',
+    'help.kbd_save': 'Save snapshot',
+    'help.kbd_dash': 'Open dashboard',
+    'help.kbd_help': 'This help',
+    'help.feat_goal_label': '🎯 Goal',
+    'help.feat_goal': 'Reverse calculation — set a target, get the required input',
+    'help.feat_whatif_label': '💡 What if?',
+    'help.feat_whatif': 'Real-time sliders for what-if analysis',
+    'help.feat_templates_label': '📦 Templates',
+    'help.feat_templates': '5 preset scenarios (Startup SaaS, Mature SaaS, E-com, Mobile, Media)',
+    'help.feat_industries_label': '🌐 Industries',
+    'help.feat_industries': 'Universal / SaaS / E-com / Mobile / Media benchmarks',
+    'help.feat_dashboard_label': '📊 Dashboard',
+    'help.feat_dashboard': 'All calculated metrics on one page',
+    'help.feat_snapshots_label': '💾 Snapshots',
+    'help.feat_snapshots': 'Up to 8 versions per metric, compare and rename',
+    'help.feat_clean_urls_label': '🔗 Clean URLs',
+    'help.feat_clean_urls': 'Each metric is its own page: /ltv, /cac, …',
+    'help.feat_currency_label': '💱 Currency',
+    'help.feat_currency': '$ / € / ₽ / £ switcher in the header',
+    'onboard.headline': '👋 47 metrics, formulas, industry benchmarks. Free, no signup.',
+    'onboard.step_pick': 'Pick a metric',
+    'onboard.step_enter': 'Enter numbers',
+    'onboard.step_insight': 'Get an insight',
+    'onboard.cta_template': '📦 Start with a template',
+    'onboard.cta_demo': '▶ Try the LTV:CAC example',
+    'onboard.cta_help': '❓ All features',
+    'onboard.dismiss_title': 'Hide welcome',
+    'whatif.title': 'What-if analysis',
+    'whatif.result': 'Result:',
+    'whatif.delta_base': '= baseline',
+    'whatif.reset': 'Reset to current values',
+    'goal.title': '🎯 Goal mode — reverse calculation',
+    'goal.empty': 'Reverse calculations are not configured for this metric yet.',
+    'dashboard.title': 'Unit-economics dashboard',
+    'dashboard.empty_title': 'No calculations yet',
+    'dashboard.empty_sub': 'Fill in values in the calculator or apply a scenario template',
+    'dashboard.no_data': 'No data',
+    'compare.title_prefix': 'Compare: ',
+    'compare.select': 'Comparing:',
+    'compare.current_values': 'Current values',
+    'compare.snap_n': 'Snapshot ',
+    'compare.relative_to': ' relative to ',
+    'snapshots.history': 'History (',
+    'snapshots.compare': 'Compare',
+    'snapshots.clear_all': 'Delete all',
+    'snapshots.delta_now': '% vs now',
+    'templates.title': 'Scenario templates',
+    'templates.subtitle': 'Pick a template — all metrics will be filled with realistic values',
+    'templates.metrics_count': 'Fills ',
+    'templates.metrics_count_suffix': ' metrics',
+    'about.title': 'About MetricTree',
+    'about.intro': 'MetricTree is a free online calculator of 47 product metrics for product managers, marketers, analysts, and founders. Compute LTV, CAC, MRR, ARR, Churn Rate, DAU, MAU, Stickiness, ROAS, NPS, CSAT, Burn Multiple, Runway, Sales Velocity and more — with formulas, industry benchmarks, and result interpretation.',
+    'about.h_sections': 'Metrics by section',
+    'about.h_features': 'Features',
+    'about.h_faq': 'Frequently asked questions',
+    'about.h_author': 'Author',
+    'about.s_b2c': 'B2C:',
+    'about.s_b2b': 'B2B SaaS:',
+    'about.s_aarrr': 'AARRR:',
+    'about.s_finance': 'Finance & Sales:',
+    'about.s_growth': 'Growth:',
+    'about.s_qa': 'QA:',
+    'about.s_support': 'Support:',
+    'about.feat_thresholds': '<strong>Industry benchmarks</strong> for 36 metrics (SaaS / E-commerce / Mobile / Media / universal).',
+    'about.feat_goal': '<strong>🎯 Goal mode</strong> — reverse calculations for 16 metrics (~32 scenarios): "I want LTV:CAC=3 — what is the max CAC?"',
+    'about.feat_whatif': '<strong>💡 What-if analysis</strong> — real-time sliders for every input.',
+    'about.feat_templates': '<strong>📦 Templates</strong> — 5 preset scenarios (Startup SaaS, Mature SaaS, E-commerce, Mobile, Media).',
+    'about.feat_dashboard': '<strong>📊 Dashboard</strong> with all computed metrics on one page.',
+    'about.feat_snapshots': '<strong>💾 Snapshots</strong> — up to 8 versions per metric with renaming and comparison.',
+    'about.feat_urls': '<strong>🔗 Clean URLs</strong> — 44 pages with unique meta and JSON-LD.',
+    'about.feat_currency': '<strong>💱 Currencies</strong> — $ / € / ₽ / £.',
+    'about.feat_embed': '<strong>🔗 Embed mode</strong> — embed any calculator via iframe with one line.',
+    'about.feat_export': '<strong>📄 Export</strong> — CSV of all metrics, PNG of a single card.',
+    'about.feat_i18n': '<strong>🌐 3 languages</strong> — Russian, English, oʻzbekcha.',
+    'about.q_ltv': 'How do I calculate LTV?',
+    'about.a_ltv': 'LTV = AOV × purchase frequency per year × average customer lifetime (years). LTV should be at least 3× CAC.',
+    'about.q_cac': 'How do I calculate CAC?',
+    'about.a_cac': 'CAC = marketing & sales spend / number of new customers. SaaS payback norm: 12–18 months.',
+    'about.q_nrr': 'What is NRR?',
+    'about.a_nrr': 'NRR shows revenue growth from existing customers including upsells and churn. NRR > 100% means growth without new customers. Excellent SaaS NRR > 120%.',
+    'about.q_churn': 'What is Churn Rate?',
+    'about.a_churn': 'Churn Rate is the percentage of customers who left during a period. SaaS norm: < 2% / month, mobile apps: up to 10%.',
+    'about.q_burn': 'What is Burn Multiple?',
+    'about.a_burn': 'Burn Multiple = Net Burn / Net New ARR (David Sacks). < 1 excellent, 1–1.5 good, > 2 needs optimization.',
+    'about.q_rule40': 'What is Rule of 40?',
+    'about.a_rule40': 'Rule of 40 = revenue growth YoY (%) + EBITDA margin (%). Healthy SaaS keeps the sum ≥ 40%.',
+    'about.q_runway': 'What is Runway?',
+    'about.a_runway': 'Runway = Cash / monthly net burn. How many months a company has left. < 6 critical, 12–18 normal.',
+    'about.author': 'Created by <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank" rel="noopener">Rodion Latipov</a> — BizDev, Sales, Product, Troubleshooter, Advisor, Consultant.',
+    'about.no_signup': 'no signup, no personal data tracking'
+  },
+  uz: {
+    'header.subtitle_role': 'BizDev, Sales, Product, Troubleshooter, Advisor, Consultant',
+    'header.creator': 'Yaratuvchi:',
+    'btn.dashboard': 'Boshqaruv paneli',
+    'btn.share': 'Ulashish',
+    'btn.share_text': 'Ulashish',
+    'btn.copied': '✓ Nusxalandi',
+    'btn.copy': 'Nusxa olish',
+    'btn.png': 'PNG',
+    'btn.save': 'Saqlash',
+    'btn.whatif': 'Agar nima bo‘lsa?',
+    'btn.goal': 'Maqsad',
+    'btn.reset': 'Tiklash',
+    'btn.close': 'Yopish',
+    'btn.cancel': 'Bekor qilish',
+    'btn.confirm_clear': 'Tozalash',
+    'search.placeholder': 'Metrikani izlash…',
+    'search.aria': 'Metrikani izlash (/ tugmasi)',
+    'industry.label': 'Soha:',
+    'industry.universal': 'Universal',
+    'industry.saas': 'SaaS',
+    'industry.ecom': 'E-tijorat',
+    'industry.mobile': 'Mobil',
+    'industry.media': 'Media',
+    'industry.templates': 'Shablonlar',
+    'sectionTitle.prefix': 'Metrikalar: ',
+    'metric.see_also': 'Shuningdek qarang',
+    'metric.result_label': 'Natija:',
+    'metric.norm': 'Norma',
+    'metric.bad': 'Yomon',
+    'metric.good': 'Yaxshi',
+    'metric.excellent': 'A’lo',
+    'metric.no_results': 'Metrika topilmadi',
+    'menu.csv': '📄 CSV eksporti',
+    'menu.snapshot': '💾 Snapshot saqlash',
+    'menu.search': '🔍 Metrika izlash',
+    'menu.help': '❓ Yordam va tugmalar',
+    'menu.embed': '🔗 Embed kodni nusxalash',
+    'menu.about': 'ℹ️ Mahsulot haqida',
+    'menu.clear_all': '🗑 Hamma ma’lumotlarni tozalash',
+    'modal.clear_title': 'Hamma ma’lumotlarni tozalashmi?',
+    'modal.clear_text': 'Barcha metrikalardagi qiymatlar o‘chiriladi. Bu amalni qaytarib bo‘lmaydi.',
+    'help.title': 'Tezkor tugmalar va imkoniyatlar',
+    'help.h_navigation': 'Navigatsiya',
+    'help.h_actions': 'Amallar',
+    'help.h_features': 'Asbob ichida nima bor',
+    'help.kbd_arrows_metric': 'Metrika yuqoriga / pastga',
+    'help.kbd_arrows_section': 'Oldingi / keyingi bo‘lim',
+    'help.kbd_search': 'Metrika izlash',
+    'help.kbd_esc': 'Modalni yopish / fokusni olib tashlash',
+    'help.kbd_save': 'Snapshot saqlash',
+    'help.kbd_dash': 'Boshqaruv panelini ochish',
+    'help.kbd_help': 'Ushbu yordam',
+    'help.feat_goal_label': '🎯 Maqsad',
+    'help.feat_goal': 'Teskari hisob — maqsadni qo‘ying, kerakli kirishni oling',
+    'help.feat_whatif_label': '💡 Agar nima bo‘lsa?',
+    'help.feat_whatif': 'Real vaqt rejimida sliderlar bilan what-if tahlili',
+    'help.feat_templates_label': '📦 Shablonlar',
+    'help.feat_templates': '5 ta tayyor stsenariy (Startap SaaS, Yetuk SaaS, E-tijorat, Mobil, Media)',
+    'help.feat_industries_label': '🌐 Sohalar',
+    'help.feat_industries': 'Universal / SaaS / E-tijorat / Mobil / Media benchmarklari',
+    'help.feat_dashboard_label': '📊 Dashboard',
+    'help.feat_dashboard': 'Barcha hisoblangan metrikalar bir sahifada',
+    'help.feat_snapshots_label': '💾 Snapshotlar',
+    'help.feat_snapshots': 'Bir metrikaga 8 ta versiya, taqqoslash va qayta nomlash',
+    'help.feat_clean_urls_label': '🔗 Toza URL’lar',
+    'help.feat_clean_urls': 'Har bir metrika alohida sahifa: /ltv, /cac, …',
+    'help.feat_currency_label': '💱 Valyuta',
+    'help.feat_currency': '$ / € / ₽ / £ — shapkadagi pereklyuchatel',
+    'onboard.headline': '👋 47 ta metrika, formulalar, soha bo‘yicha bencharklar. Bepul, ro‘yxatdan o‘tishsiz.',
+    'onboard.step_pick': 'Metrikani tanlang',
+    'onboard.step_enter': 'Sonlarni kiriting',
+    'onboard.step_insight': 'Insight oling',
+    'onboard.cta_template': '📦 Shablon bilan boshlash',
+    'onboard.cta_demo': '▶ LTV:CAC misolini sinab ko‘rish',
+    'onboard.cta_help': '❓ Barcha imkoniyatlar',
+    'onboard.dismiss_title': 'Salomlashishni yashirish',
+    'whatif.title': '"Agar nima bo‘lsa?" tahlili',
+    'whatif.result': 'Natija:',
+    'whatif.delta_base': '= boshlang‘ich',
+    'whatif.reset': 'Joriy qiymatlarga qaytarish',
+    'goal.title': '🎯 Maqsad rejimi — teskari hisob',
+    'goal.empty': 'Bu metrika uchun teskari hisob hali sozlanmagan.',
+    'dashboard.title': 'Unit-economics dashboard',
+    'dashboard.empty_title': 'Hali hisoblar yo‘q',
+    'dashboard.empty_sub': 'Kalkulyatorga qiymatlarni kiriting yoki shablonni qo‘llang',
+    'dashboard.no_data': 'Ma’lumot yo‘q',
+    'compare.title_prefix': 'Taqqoslash: ',
+    'compare.select': 'Taqqoslanmoqda:',
+    'compare.current_values': 'Joriy qiymatlar',
+    'compare.snap_n': 'Snapshot ',
+    'compare.relative_to': ' nisbatan ',
+    'snapshots.history': 'Tarix (',
+    'snapshots.compare': 'Taqqoslash',
+    'snapshots.clear_all': 'Hammasini o‘chirish',
+    'snapshots.delta_now': '% hozirga nisbatan',
+    'templates.title': 'Stsenariy shablonlari',
+    'templates.subtitle': 'Shablonni tanlang — barcha metrikalar real qiymatlar bilan to‘ldiriladi',
+    'templates.metrics_count': 'To‘ldiradi: ',
+    'templates.metrics_count_suffix': ' ta metrika',
+    'about.title': 'MetricTree haqida',
+    'about.intro': 'MetricTree — bu mahsulot menejerlari, marketologlar, analitiklar va asoschilar uchun 47 ta mahsulot metrikasini hisoblovchi bepul onlayn kalkulyator. LTV, CAC, MRR, ARR, Churn, DAU, MAU, Stickiness, ROAS, NPS, CSAT, Burn Multiple, Runway, Sales Velocity va boshqalarni formulalar, soha bencharklari va natija talqini bilan hisoblang.',
+    'about.h_sections': 'Bo‘limlar bo‘yicha metrikalar',
+    'about.h_features': 'Imkoniyatlar',
+    'about.h_faq': 'Tez-tez beriladigan savollar',
+    'about.h_author': 'Muallif',
+    'about.s_b2c': 'B2C:',
+    'about.s_b2b': 'B2B SaaS:',
+    'about.s_aarrr': 'AARRR:',
+    'about.s_finance': 'Moliya va sotuv:',
+    'about.s_growth': 'O‘sish:',
+    'about.s_qa': 'QA:',
+    'about.s_support': 'Qo‘llab-quvvatlash:',
+    'about.feat_thresholds': '<strong>Soha bencharklari</strong> 36 ta metrika uchun (SaaS / E-tijorat / Mobil / Media / universal).',
+    'about.feat_goal': '<strong>🎯 Maqsad rejimi</strong> — 16 ta metrika uchun teskari hisob (~32 ta stsenariy): "LTV:CAC=3 kerak — maksimal CAC qancha?"',
+    'about.feat_whatif': '<strong>💡 What-if tahlili</strong> — har bir kirish uchun sliderlar real vaqtda.',
+    'about.feat_templates': '<strong>📦 Shablonlar</strong> — 5 ta tayyor stsenariy (Startap SaaS, Yetuk SaaS, E-tijorat, Mobil, Media).',
+    'about.feat_dashboard': '<strong>📊 Dashboard</strong> — barcha hisoblangan metrikalar bir sahifada.',
+    'about.feat_snapshots': '<strong>💾 Snapshotlar</strong> — bir metrikaga 8 ta versiya, qayta nomlash va taqqoslash.',
+    'about.feat_urls': '<strong>🔗 Toza URL’lar</strong> — noyob meta va JSON-LD bilan 44 ta sahifa.',
+    'about.feat_currency': '<strong>💱 Valyutalar</strong> — $ / € / ₽ / £.',
+    'about.feat_embed': '<strong>🔗 Embed rejimi</strong> — istalgan kalkulyatorni bir qator bilan iframe orqali joylashtirish.',
+    'about.feat_export': '<strong>📄 Eksport</strong> — barcha metrikalar CSV, alohida karta PNG.',
+    'about.feat_i18n': '<strong>🌐 3 ta til</strong> — rus, English, oʻzbekcha.',
+    'about.q_ltv': 'LTV ni qanday hisoblash kerak?',
+    'about.a_ltv': 'LTV = AOV × yiliga xarid chastotasi × mijozning o‘rtacha umri (yil). LTV CAC dan kamida 3 baravar yuqori bo‘lishi kerak.',
+    'about.q_cac': 'CAC ni qanday hisoblash kerak?',
+    'about.a_cac': 'CAC = marketing va sotuv xarajatlari / yangi mijozlar soni. SaaS uchun qaytarilish normasi: 12–18 oy.',
+    'about.q_nrr': 'NRR nima?',
+    'about.a_nrr': 'NRR — apsel va churn bilan birga mavjud mijozlardan kelgan tushum o‘sishini ko‘rsatadi. NRR > 100% yangi mijozlarsiz o‘sishni anglatadi. SaaS uchun a’lo > 120%.',
+    'about.q_churn': 'Churn Rate nima?',
+    'about.a_churn': 'Churn Rate — davr davomida mahsulotni tark etgan mijozlar foizi. SaaS normasi: oyiga < 2%, mobil ilovalar: 10% gacha.',
+    'about.q_burn': 'Burn Multiple nima?',
+    'about.a_burn': 'Burn Multiple = Net Burn / Net New ARR (David Sacks). < 1 a’lo, 1–1.5 yaxshi, > 2 — optimallashtirish kerak.',
+    'about.q_rule40': 'Rule of 40 nima?',
+    'about.a_rule40': 'Rule of 40 = YoY tushum o‘sishi (%) + EBITDA marja (%). Sog‘lom SaaS yig‘indisi ≥ 40% bo‘ladi.',
+    'about.q_runway': 'Runway nima?',
+    'about.a_runway': 'Runway = Pul / oylik o‘rtacha sarf. Kompaniya qancha oy davomida ishlay olishi. < 6 — kritik, 12–18 — norma.',
+    'about.author': 'Yaratuvchi: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank" rel="noopener">Rodion Latipov</a> — BizDev, Sales, Product, Troubleshooter, Advisor, Consultant.',
+    'about.no_signup': 'ro‘yxatdan o‘tishsiz, shaxsiy ma’lumotlarni kuzatishsiz'
+  }
+};
+
+window.I18N_M = {
+  // B2C
+  dau:        { en: { name: 'DAU', formula: 'Unique users per day', description: 'Daily Active Users — number of unique users who interacted with the product during the day.' },
+                uz: { name: 'DAU', formula: 'Kunlik noyob foydalanuvchilar', description: 'Daily Active Users — sutka davomida mahsulot bilan ishlatgan noyob foydalanuvchilar soni.' } },
+  mau:        { en: { name: 'MAU', formula: 'Unique users per month', description: 'Monthly Active Users — number of unique users in the last 30 days.' },
+                uz: { name: 'MAU', formula: 'Oylik noyob foydalanuvchilar', description: 'Monthly Active Users — so‘nggi 30 kundagi noyob foydalanuvchilar soni.' } },
+  stickiness: { en: { name: 'Stickiness (DAU/MAU)', formula: '(DAU / MAU) × 100%', description: 'Shows what share of the monthly audience returns daily. Higher = stickier product.' },
+                uz: { name: 'Stickiness (DAU/MAU)', formula: '(DAU / MAU) × 100%', description: 'Oylik auditoriyaning qancha qismi har kuni qaytishini ko‘rsatadi. Qancha yuqori — shuncha "yopishqoq" mahsulot.' } },
+  retention:  { en: { name: 'Retention', formula: '(Users at end / Users at start) × 100%', description: 'Share of users still active after a given period (cohort analysis).' },
+                uz: { name: 'Retention', formula: '(Davr oxirida foydalanuvchilar / Boshida foydalanuvchilar) × 100%', description: 'Berilgan davr o‘tgach faol qolgan foydalanuvchilar ulushi (kogortali tahlil).' } },
+  ltv:        { en: { name: 'LTV', formula: 'AOV × purchases per year × lifetime (years)', description: 'Lifetime Value — how much money a customer brings over their entire lifetime.' },
+                uz: { name: 'LTV', formula: 'AOV × yiliga xaridlar × umri (yil)', description: 'Lifetime Value — mijoz butun umri davomida qancha pul olib kelishi.' } },
+  cac:        { en: { name: 'CAC', formula: 'Marketing & sales spend / new customers', description: 'Customer Acquisition Cost — cost of acquiring one paying customer.' },
+                uz: { name: 'CAC', formula: 'Marketing va sotuv xarajatlari / yangi mijozlar', description: 'Customer Acquisition Cost — bitta to‘lovchi mijozni jalb qilish narxi.' } },
+  ltv_cac:    { en: { name: 'LTV:CAC Ratio', formula: 'LTV / CAC', description: 'Ratio of customer value to acquisition cost. Norm > 3:1. < 1:1 means the business loses money.' },
+                uz: { name: 'LTV:CAC nisbati', formula: 'LTV / CAC', description: 'Mijoz qiymatining jalb qilish xarajatlariga nisbati. Norma > 3:1. < 1:1 — biznes zarar ko‘ryapti.' } },
+  arpu:       { en: { name: 'ARPU', formula: 'Revenue / Active users', description: 'Average Revenue Per User — average revenue per single user.' },
+                uz: { name: 'ARPU', formula: 'Tushum / Faol foydalanuvchilar', description: 'Average Revenue Per User — bitta foydalanuvchidan o‘rtacha tushum.' } },
+  arpdau:     { en: { name: 'ARPDAU', formula: 'Daily revenue / DAU', description: 'Average Revenue Per Daily Active User — revenue per single daily active. Key metric for mobile F2P games and media.' },
+                uz: { name: 'ARPDAU', formula: 'Kunlik tushum / DAU', description: 'Average Revenue Per Daily Active User — kunlik faol foydalanuvchidan tushum. Mobil F2P o‘yinlar va media uchun asosiy metrika.' } },
+  churn:      { en: { name: 'Churn Rate', formula: '(Lost / Total users) × 100%', description: 'Percentage of users who stopped using the product during the period.' },
+                uz: { name: 'Churn Rate', formula: '(Ketganlar / Jami foydalanuvchilar) × 100%', description: 'Davr davomida mahsulotdan foydalanishni to‘xtatgan foydalanuvchilar foizi.' } },
+  // B2B
+  mrr:        { en: { name: 'MRR', formula: 'Sum of monthly subscription revenue', description: 'Monthly Recurring Revenue — recurring monthly revenue.' },
+                uz: { name: 'MRR', formula: 'Oylik obuna tushumlari yig‘indisi', description: 'Monthly Recurring Revenue — muntazam oylik tushum.' } },
+  arr:        { en: { name: 'ARR', formula: 'MRR × 12', description: 'Annual Recurring Revenue — annual recurring revenue.' },
+                uz: { name: 'ARR', formula: 'MRR × 12', description: 'Annual Recurring Revenue — yillik muntazam tushum.' } },
+  acv:        { en: { name: 'ACV', formula: 'Contract value / duration (years)', description: 'Annual Contract Value — average annual contract value.' },
+                uz: { name: 'ACV', formula: 'Shartnoma summasi / muddat (yil)', description: 'Annual Contract Value — o‘rtacha yillik shartnoma qiymati.' } },
+  grr:        { en: { name: 'GRR', formula: '(Start MRR − Churn) / Start MRR × 100%', description: 'Gross Revenue Retention — revenue retention without upsells.' },
+                uz: { name: 'GRR', formula: '(Boshlang‘ich MRR − Churn) / Boshlang‘ich MRR × 100%', description: 'Gross Revenue Retention — apselsiz tushumni saqlab qolish.' } },
+  nrr:        { en: { name: 'NRR', formula: '(Start MRR + Upsell − Churn) / Start MRR × 100%', description: 'Net Revenue Retention — revenue retention including expansion.' },
+                uz: { name: 'NRR', formula: '(Boshlang‘ich MRR + Apsel − Churn) / Boshlang‘ich MRR × 100%', description: 'Net Revenue Retention — kengayish bilan tushumni saqlab qolish.' } },
+  cacPayback: { en: { name: 'CAC Payback', formula: 'CAC / (MRR per customer × Margin)', description: 'Months needed to recoup customer acquisition cost.' },
+                uz: { name: 'CAC Payback', formula: 'CAC / (mijoz boshiga MRR × Marja)', description: 'Mijozni jalb qilish xarajatlarini qaytarish uchun zarur oylar.' } },
+  burnMultiple: { en: { name: 'Burn Multiple', formula: 'Net Burn / Net New ARR', description: 'Capital efficiency metric (David Sacks): how many $ burned to generate $1 of new annual revenue. Negative burn = cash-flow positive.' },
+                  uz: { name: 'Burn Multiple', formula: 'Net Burn / Net New ARR', description: 'Kapital samaradorligi metrikasi (David Sacks): $1 yangi yillik tushum uchun qancha $ yoqilgan. Salbiy burn = pul oqimi musbat.' } },
+  magicNumber: { en: { name: 'Magic Number', formula: '(Net New ARR × 4) / Q S&M spend', description: 'S&M efficiency: how much annual ARR each $1 of S&M generates (Scale Venture Partners).' },
+                 uz: { name: 'Magic Number', formula: '(Net New ARR × 4) / Choraklik S&M', description: 'S&M samaradorligi: har bir $1 S&M qancha yillik ARR olib kelishi (Scale Venture Partners).' } },
+  ruleOf40:   { en: { name: 'Rule of 40', formula: 'YoY revenue growth (%) + EBITDA margin (%)', description: 'SaaS health: sum of growth and profitability. ≥ 40% means the company is attractive regardless of growth-vs-profit balance.' },
+                uz: { name: 'Rule of 40', formula: 'YoY tushum o‘sishi (%) + EBITDA marja (%)', description: 'SaaS sog‘lig‘i: o‘sish va foydalilik yig‘indisi. ≥ 40% kompaniya o‘sish/profit balansidan qat‘i nazar jozibali.' } },
+  quickRatio: { en: { name: 'Quick Ratio', formula: '(New + Expansion MRR) / (Churned + Contraction MRR)', description: 'SaaS Quick Ratio (Mamoon Hamid): how many $ of new revenue per $1 of lost revenue. Growth resilience indicator.' },
+                uz: { name: 'Quick Ratio', formula: '(Yangi + Kengayish MRR) / (Ketgan + Qisqarish MRR)', description: 'SaaS Quick Ratio (Mamoon Hamid): har $1 yo‘qotilgan tushum uchun qancha $ yangi. O‘sish barqarorligi ko‘rsatkichi.' } },
+  // AARRR
+  acquisition: { en: { name: 'Acquisition', formula: 'New users per period', description: 'How many new visitors / customers were acquired.' },
+                 uz: { name: 'Acquisition', formula: 'Davr boshiga yangi foydalanuvchilar', description: 'Qancha yangi tashrif buyuruvchi/mijoz jalb qilinganligi.' } },
+  activation:  { en: { name: 'Activation', formula: '(Reached Aha / All new) × 100%', description: 'Share of new users who reached the key event (Aha! moment).' },
+                 uz: { name: 'Activation', formula: '(Aha-ga yetganlar / Barcha yangilar) × 100%', description: 'Aha-momentga yetgan yangi foydalanuvchilar ulushi.' } },
+  retention_aarrr: { en: { name: 'Retention', formula: '(Returned after N days / Cohort) × 100%', description: 'Percentage of users from a cohort who return after a defined period.' },
+                     uz: { name: 'Retention', formula: '(N kun keyin qaytganlar / Kogorta) × 100%', description: 'Belgilangan davrdan keyin qaytadigan kogorta foydalanuvchilari foizi.' } },
+  referral:    { en: { name: 'Referral (K-factor)', formula: 'Invited / Active inviters', description: 'Viral coefficient — how many new users one existing user brings. > 1 = viral growth.' },
+                 uz: { name: 'Referral (K-factor)', formula: 'Taklif qilinganlar / Faol takliflovchilar', description: 'Virallik koeffitsienti — bitta foydalanuvchi qancha yangini olib keladi. > 1 = viral o‘sish.' } },
+  revenue:     { en: { name: 'Revenue', formula: 'Total revenue per period', description: 'Cash flow from all sources during the period.' },
+                 uz: { name: 'Revenue', formula: 'Davr boshiga umumiy tushum', description: 'Davr davomida barcha manbalardan kelgan pul oqimi.' } },
+  timeToValue: { en: { name: 'Time to Value', formula: 'Average time from signup to Aha moment', description: 'How long a new user takes to get the first value from the product. One of the main drivers of Activation.' },
+                 uz: { name: 'Time to Value', formula: 'Ro‘yxatdan o‘tishdan Aha-momentgacha o‘rtacha vaqt', description: 'Yangi foydalanuvchi mahsulotdan ilk qiymatni qachon olishi. Activation’ning asosiy drayveri.' } },
+  // Finance
+  grossMargin: { en: { name: 'Gross Margin', formula: '(Revenue − COGS) / Revenue × 100%', description: 'Gross margin — share of revenue left after direct costs of delivering the product.' },
+                 uz: { name: 'Gross Margin', formula: '(Tushum − COGS) / Tushum × 100%', description: 'Yalpi marja — mahsulotni yetkazib berishning to‘g‘ridan-to‘g‘ri xarajatlaridan keyin qoladigan tushum ulushi.' } },
+  runway:      { en: { name: 'Runway', formula: 'Cash / Average monthly burn', description: 'How many months a company can keep operating at the current burn rate. Key metric for startups and pre-IPO.' },
+                 uz: { name: 'Runway', formula: 'Pul / O‘rtacha oylik sarf', description: 'Kompaniya joriy yondirish stavkasida qancha oy ishlay olishi. Startaplar va pre-IPO uchun asosiy metrika.' } },
+  burnRate:    { en: { name: 'Burn Rate', formula: 'Monthly expenses − Monthly revenue', description: 'Net cash burn per month. Positive number = the company spends more than it earns.' },
+                 uz: { name: 'Burn Rate', formula: 'Oylik xarajatlar − Oylik tushum', description: 'Oyiga sof pul yondirish. Musbat son = kompaniya topishidan ko‘proq sarflaydi.' } },
+  salesVelocity: { en: { name: 'Sales Velocity', formula: '(Opps × ACV × Win Rate) / Cycle (days)', description: 'B2B revenue generation speed: how many $ per day the funnel produces.' },
+                   uz: { name: 'Sales Velocity', formula: '(Opps × ACV × Win Rate) / Tsikl (kun)', description: 'B2B tushum yaratish tezligi: voronka kuniga qancha $ keltirishi.' } },
+  winRate:     { en: { name: 'Win Rate', formula: 'Closed Won / All closed × 100%', description: 'Share of deals closed in win. Basic B2B funnel quality metric.' },
+                 uz: { name: 'Win Rate', formula: 'Closed Won / Barcha yopilganlar × 100%', description: 'Yutib yopilgan bitimlar ulushi. B2B voronkaning asosiy metrikasi.' } },
+  pipelineCoverage: { en: { name: 'Pipeline Coverage', formula: 'Pipeline value / Period quota', description: 'How many times the pipeline covers the sales target. Standard > 3× for B2B SaaS.' },
+                      uz: { name: 'Pipeline Coverage', formula: 'Pipeline qiymati / Davr maqsadi', description: 'Voronka sotuv rejasini qancha marta qoplashi. B2B SaaS standart > 3×.' } },
+  // Growth
+  cr:         { en: { name: 'CR (Conversion Rate)', formula: '(Conversions / Visitors) × 100%', description: 'Conversion rate — share of visitors who completed a target action.' },
+                uz: { name: 'CR (Conversion Rate)', formula: '(Konversiyalar / Tashrif buyuruvchilar) × 100%', description: 'Konversiya darajasi — maqsadli amalni bajargan tashrif buyuruvchilar ulushi.' } },
+  roas:       { en: { name: 'ROAS', formula: 'Ad revenue / Ad spend', description: 'Return on Ad Spend — revenue per $1 of ad spend.' },
+                uz: { name: 'ROAS', formula: 'Reklamadan tushum / Reklama xarajati', description: 'Reklama xarajatining qaytishi — har $1 reklama xarajatiga qancha tushum.' } },
+  cpc:        { en: { name: 'CPC', formula: 'Ad spend / Clicks', description: 'Cost Per Click — average cost of one ad click.' },
+                uz: { name: 'CPC', formula: 'Reklama xarajati / Bosishlar', description: 'Cost Per Click — bir reklama bosishining o‘rtacha narxi.' } },
+  ctr:        { en: { name: 'CTR', formula: '(Clicks / Impressions) × 100%', description: 'Click-Through Rate — clickability of an ad or content.' },
+                uz: { name: 'CTR', formula: '(Bosishlar / Ko‘rsatishlar) × 100%', description: 'Click-Through Rate — reklamaning yoki kontentning bosish darajasi.' } },
+  bounceRate: { en: { name: 'Bounce Rate', formula: '(Single-page sessions / All sessions) × 100%', description: 'Percentage of sessions where the user viewed only one page and left.' },
+                uz: { name: 'Bounce Rate', formula: '(Bir sahifali sessiyalar / Barcha sessiyalar) × 100%', description: 'Foydalanuvchi faqat bitta sahifani ko‘rib chiqib ketgan sessiyalar foizi.' } },
+  // QA
+  bugRate:        { en: { name: 'Bug Rate', formula: 'Bugs / Size (KLOC or sprint)', description: 'Defect detection rate. Can be per 1000 lines of code or per sprint.' },
+                    uz: { name: 'Bug Rate', formula: 'Buglar / Hajm (KLOC yoki sprint)', description: 'Defektlar topilish chastotasi. 1000 qator kod yoki sprint boshiga.' } },
+  testCoverage:   { en: { name: 'Test Coverage', formula: '(Covered requirements / Total) × 100%', description: 'Share of requirements or code lines covered by automated tests.' },
+                    uz: { name: 'Test Coverage', formula: '(Qoplangan talablar / Jami) × 100%', description: 'Avtomat testlar bilan qoplangan talablar yoki kod qatorlari ulushi.' } },
+  defectDensity:  { en: { name: 'Defect Density', formula: 'Defects / KLOC', description: 'Density of defects per thousand lines of code.' },
+                    uz: { name: 'Defect Density', formula: 'Defektlar / KLOC', description: 'Ming qator kod uchun defektlar zichligi.' } },
+  // Support
+  csat:       { en: { name: 'CSAT', formula: '(Ratings 4–5 / Total) × 100%', description: 'Customer Satisfaction Score — share of happy customers (ratings 4–5 out of 5).' },
+                uz: { name: 'CSAT', formula: '(4–5 baholar / Jami) × 100%', description: 'Customer Satisfaction Score — mamnun mijozlar ulushi (5 dan 4–5 baho).' } },
+  nps:        { en: { name: 'NPS', formula: '% Promoters − % Detractors', description: 'Net Promoter Score — willingness to recommend. Range: −100 to +100.' },
+                uz: { name: 'NPS', formula: '% Promouterlar − % Detraktorlar', description: 'Net Promoter Score — tavsiya qilishga tayyorlik. Diapazon: −100 dan +100 gacha.' } },
+  fcr:        { en: { name: 'FCR', formula: '(Resolved on first contact / All tickets) × 100%', description: 'First Contact Resolution — percentage of tickets resolved on the first contact.' },
+                uz: { name: 'FCR', formula: '(Birinchi murojaatda hal qilinganlar / Barcha ticketlar) × 100%', description: 'First Contact Resolution — birinchi murojaatda hal qilingan murojaatlar foizi.' } },
+  sla:        { en: { name: 'SLA', formula: '(Tickets within SLA / All) × 100%', description: 'Service Level Agreement — share of tickets handled within agreed-upon timeframes.' },
+                uz: { name: 'SLA', formula: '(SLA ichidagi ticketlar / Barchasi) × 100%', description: 'Service Level Agreement — kelishilgan muddatlar ichida ko‘rib chiqilgan murojaatlar ulushi.' } }
+};
+
 (function() {
     const LS_KEY = 'metricsTree_v2';
     const LS_THEME = 'metricsTree_theme';
     const LS_CURRENCY = 'metricsTree_currency';
+    const LS_LANG = 'metricsTree_lang';
+
+    // ---- LANGUAGE ----
+    let currentLang = 'ru';
+    try { const l = localStorage.getItem(LS_LANG); if (l && (l === 'en' || l === 'uz')) currentLang = l; } catch(e) {}
+
+    function t(key, fallback) {
+        if (currentLang === 'ru') return fallback || '';
+        const dict = window.I18N_UI[currentLang];
+        return (dict && dict[key]) || fallback || '';
+    }
+    function tm(metricId, field, fallback) {
+        if (currentLang === 'ru') return fallback;
+        const m = window.I18N_M[metricId];
+        if (!m || !m[currentLang]) return fallback;
+        return m[currentLang][field] || fallback;
+    }
+    function applyStaticTranslations() {
+        // Перевод всех элементов с data-t атрибутом
+        document.querySelectorAll('[data-t]').forEach(el => {
+            const key = el.getAttribute('data-t');
+            const original = el.getAttribute('data-t-original') || el.innerHTML;
+            if (!el.getAttribute('data-t-original')) {
+                el.setAttribute('data-t-original', original);
+            }
+            const translated = t(key, el.getAttribute('data-t-original'));
+            el.innerHTML = translated;
+        });
+        // Атрибуты placeholder и aria-label у поиска
+        const searchInp = document.getElementById('searchInput');
+        if (searchInp) {
+            if (!searchInp.getAttribute('data-t-placeholder-original')) searchInp.setAttribute('data-t-placeholder-original', searchInp.placeholder);
+            searchInp.placeholder = t('search.placeholder', searchInp.getAttribute('data-t-placeholder-original'));
+            if (!searchInp.getAttribute('data-t-aria-original')) searchInp.setAttribute('data-t-aria-original', searchInp.getAttribute('aria-label') || '');
+            searchInp.setAttribute('aria-label', t('search.aria', searchInp.getAttribute('data-t-aria-original')));
+        }
+        // <html lang>
+        document.documentElement.setAttribute('lang', currentLang);
+    }
+    function initLang() {
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === currentLang);
+            btn.addEventListener('click', () => {
+                currentLang = btn.dataset.lang;
+                try { localStorage.setItem(LS_LANG, currentLang); } catch(e) {}
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b === btn));
+                applyStaticTranslations();
+                renderMetricsList();
+                renderMetricCard();
+            });
+        });
+    }
+    // Expose for use in render functions below
+    window._tm = tm;
+    window._t = t;
+    window._currentLang = () => currentLang;
 
     // ---- Валюта (только меняет отображаемый символ; конвертация не делается) ----
     let currentCurrency = '$';
@@ -3374,7 +3849,7 @@
     function renderMetricsList() {
         const section = metricsData[currentSection];
         if (!section) return;
-        sectionTitleEl.textContent = `Метрики ${section.name}`;
+        sectionTitleEl.textContent = (currentLang === 'ru' ? 'Метрики ' : t('sectionTitle.prefix', 'Метрики ')) + section.name;
 
         const q = searchQuery.toLowerCase();
         let listHtml = '';
@@ -3389,8 +3864,9 @@
             const saved = storedValues[metric.id];
             const hasDot = saved && Object.values(saved).some(v => v !== '');
             const dotHtml = hasDot ? '<span class="metric-dot" title="Есть сохранённые значения"></span>' : '';
-            listHtml += `<div class="metric-item${activeClass}${hiddenClass}" data-metric-id="${metric.id}"><span class="metric-item-name">${metric.name}</span>${dotHtml}</div>`;
-            chipsHtml += `<div class="metric-chip${activeClass}${hiddenClass}" data-metric-id="${metric.id}">${metric.name}${hasDot ? ' ·' : ''}</div>`;
+            const localizedName = tm(metric.id, 'name', metric.name);
+            listHtml += `<div class="metric-item${activeClass}${hiddenClass}" data-metric-id="${metric.id}"><span class="metric-item-name">${localizedName}</span>${dotHtml}</div>`;
+            chipsHtml += `<div class="metric-chip${activeClass}${hiddenClass}" data-metric-id="${metric.id}">${localizedName}${hasDot ? ' ·' : ''}</div>`;
         });
 
         metricsListDiv.innerHTML = listHtml;
@@ -3424,9 +3900,9 @@
         void metricCard.offsetWidth;
         metricCard.classList.add('animating');
 
-        metricNameEl.textContent = metric.name;
-        formulaInlineEl.textContent = metric.formula;
-        metricDescEl.textContent = metric.description;
+        metricNameEl.textContent = tm(metric.id, 'name', metric.name);
+        formulaInlineEl.textContent = tm(metric.id, 'formula', metric.formula);
+        metricDescEl.textContent = tm(metric.id, 'description', metric.description);
         benchmarksEl.innerHTML = renderBenchmarks(getThreshold(metric));
 
         let inputsHtml = '';
@@ -3532,7 +4008,7 @@
             html += `<div class="search-dropdown-group"><div class="search-dropdown-section">${section.name}</div>`;
             matches.forEach(m => {
                 const act = m.id === currentMetricId && sid === currentSection ? ' active' : '';
-                html += `<div class="search-dropdown-item${act}" data-sid="${sid}" data-mid="${m.id}">${m.name}</div>`;
+                html += `<div class="search-dropdown-item${act}" data-sid="${sid}" data-mid="${m.id}">${tm(m.id, 'name', m.name)}</div>`;
             });
             html += '</div>';
         }
@@ -3645,6 +4121,11 @@
         const helpMenu = document.getElementById('helpMenuBtn');
         if (helpMenu) helpMenu.addEventListener('click', () => {
             const ov = document.getElementById('helpOverlay');
+            if (ov) ov.classList.add('show');
+        });
+        const aboutMenu = document.getElementById('aboutMenuBtn');
+        if (aboutMenu) aboutMenu.addEventListener('click', () => {
+            const ov = document.getElementById('aboutOverlay');
             if (ov) ov.classList.add('show');
         });
         const embedMenu = document.getElementById('embedMenuBtn');
@@ -3894,10 +4375,10 @@
             const sec = metricsData[r.s];
             const m = sec && sec.metrics.find(x => x.id === r.id);
             if (!m) return;
-            chips += `<button class="related-chip" data-sid="${r.s}" data-mid="${r.id}" title="${r.note}">${m.name}<span class="related-chip-arrow">→</span></button>`;
+            chips += `<button class="related-chip" data-sid="${r.s}" data-mid="${r.id}" title="${r.note}">${tm(m.id, 'name', m.name)}<span class="related-chip-arrow">→</span></button>`;
         });
         if (!chips) { relatedBlockEl.style.display = 'none'; return; }
-        relatedBlockEl.innerHTML = `<div class="related-label">Смотрите также</div><div class="related-chips">${chips}</div>`;
+        relatedBlockEl.innerHTML = `<div class="related-label">${t('metric.see_also', 'Смотрите также')}</div><div class="related-chips">${chips}</div>`;
         relatedBlockEl.style.display = 'block';
         relatedBlockEl.querySelectorAll('.related-chip').forEach(chip => {
             chip.addEventListener('click', () => {
@@ -5306,14 +5787,30 @@
     // ---- DYNAMIC TITLE ----
     function updatePageTitle() {
         const metric = getCurrentMetric();
-        if (metric) document.title = `${metric.name} — калькулятор продуктовых метрик`;
+        if (!metric) return;
+        const name = tm(metric.id, 'name', metric.name);
+        const suffix = currentLang === 'en' ? ' — product metrics calculator'
+                     : currentLang === 'uz' ? ' — mahsulot metrikalari kalkulyatori'
+                     : ' — калькулятор продуктовых метрик';
+        document.title = name + suffix;
     }
 
     // ---- INIT ----
     initTemplates();
     initIndustry();
     initCurrency();
+    initLang();
+    applyStaticTranslations();
     updateSectionBadges();
+    // Bind About modal close/escape (open trigger is in more-menu init)
+    (function bindAbout(){
+        const ov = document.getElementById('aboutOverlay');
+        const close = document.getElementById('aboutClose');
+        if (!ov || !close) return;
+        close.addEventListener('click', () => ov.classList.remove('show'));
+        ov.addEventListener('click', e => { if (e.target === ov) ov.classList.remove('show'); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && ov.classList.contains('show')) ov.classList.remove('show'); });
+    })();
     const _restoredFromURL = restoreFromURL();
     if (_restoredFromURL) {
         // Состояние уже восстановлено из URL — рендерим напрямую, не сбрасывая currentMetricId
@@ -5326,27 +5823,54 @@
 })();
 </script>
 
-<!-- SEO: статичный текстовый контент для индексации -->
-<section style="max-width:900px;margin:3rem auto 0;padding:0 1rem 3rem;color:var(--text-3);font-size:0.82rem;line-height:1.7;">
-    <h2 style="font-size:1rem;font-weight:700;color:var(--text-2);margin-bottom:0.75rem;">О калькуляторе MetricTree</h2>
-    <p>MetricTree — бесплатный онлайн-калькулятор 35 продуктовых метрик для продакт-менеджеров, маркетологов и аналитиков. Рассчитайте LTV, CAC, MRR, ARR, Churn Rate, DAU, MAU, Stickiness, ROAS, NPS, CSAT и другие метрики с формулами, отраслевыми порогами и интерпретацией результата.</p>
+<!-- About modal (also serves SEO — Googlebot sees this content in DOM) -->
+<div class="modal-overlay" id="aboutOverlay" role="dialog" aria-labelledby="aboutTitle" aria-modal="true">
+    <div class="modal about-modal">
+        <h3 id="aboutTitle" data-t="about.title">О продукте MetricTree</h3>
+        <div class="about-body">
+            <p data-t="about.intro">MetricTree — бесплатный онлайн-калькулятор 47 продуктовых метрик для продакт-менеджеров, маркетологов, аналитиков и фаундеров. Рассчитайте LTV, CAC, MRR, ARR, Churn Rate, DAU, MAU, Stickiness, ROAS, NPS, CSAT, Burn Multiple, Runway, Sales Velocity и другие метрики с формулами, отраслевыми порогами и интерпретацией результата.</p>
 
-    <h2 style="font-size:1rem;font-weight:700;color:var(--text-2);margin:1.25rem 0 0.5rem;">Метрики по разделам</h2>
-    <p><strong>B2C-метрики:</strong> DAU (Daily Active Users), MAU (Monthly Active Users), Stickiness (DAU/MAU), Retention Rate, LTV (Lifetime Value), CAC (Customer Acquisition Cost), LTV:CAC Ratio, ARPU, Churn Rate.</p>
-    <p><strong>B2B SaaS-метрики:</strong> MRR (Monthly Recurring Revenue), ARR (Annual Recurring Revenue), ACV (Annual Contract Value), GRR (Gross Revenue Retention), NRR (Net Revenue Retention), CAC Payback Period, Burn Multiple, Magic Number, Rule of 40, Quick Ratio.</p>
-    <p><strong>AARRR / Пиратские метрики:</strong> Acquisition, Activation Rate, Retention, Referral (K-factor), Revenue.</p>
-    <p><strong>Growth-метрики:</strong> CR (Conversion Rate), ROAS, CPC, CTR, Bounce Rate.</p>
-    <p><strong>QA-метрики:</strong> Bug Rate, Test Coverage, Defect Density.</p>
-    <p><strong>Support-метрики:</strong> CSAT, NPS (Net Promoter Score), FCR (First Contact Resolution), SLA.</p>
+            <h4 data-t="about.h_sections">Метрики по разделам</h4>
+            <p><strong data-t="about.s_b2c">B2C:</strong> DAU, MAU, Stickiness, Retention, LTV, CAC, LTV:CAC, ARPU, ARPDAU, Churn Rate.</p>
+            <p><strong data-t="about.s_b2b">B2B SaaS:</strong> MRR, ARR, ACV, GRR, NRR, CAC Payback, Burn Multiple, Magic Number, Rule of 40, Quick Ratio.</p>
+            <p><strong data-t="about.s_aarrr">AARRR:</strong> Acquisition, Activation, Retention, Referral (K-factor), Revenue, Time to Value.</p>
+            <p><strong data-t="about.s_finance">Finance &amp; Sales:</strong> Gross Margin, Runway, Burn Rate, Sales Velocity, Win Rate, Pipeline Coverage.</p>
+            <p><strong data-t="about.s_growth">Growth:</strong> CR, ROAS, CPC, CTR, Bounce Rate.</p>
+            <p><strong data-t="about.s_qa">QA:</strong> Bug Rate, Test Coverage, Defect Density.</p>
+            <p><strong data-t="about.s_support">Support:</strong> CSAT, NPS, FCR, SLA.</p>
 
-    <h2 style="font-size:1rem;font-weight:700;color:var(--text-2);margin:1.25rem 0 0.5rem;">Часто задаваемые вопросы</h2>
-    <p><strong>Как рассчитать LTV?</strong> LTV = AOV × Частота покупок в год × Время жизни клиента (лет). LTV должен быть минимум в 3 раза больше CAC.</p>
-    <p><strong>Как рассчитать CAC?</strong> CAC = Маркетинговые затраты / Количество новых клиентов. Норма окупаемости CAC для SaaS — до 12–18 месяцев.</p>
-    <p><strong>Что такое NRR (Net Revenue Retention)?</strong> NRR показывает рост выручки от существующих клиентов с учётом апселов и оттока. NRR выше 100% означает рост без новых клиентов. Отличный NRR для SaaS — выше 120%.</p>
-    <p><strong>Что такое Churn Rate?</strong> Churn Rate — процент клиентов, покинувших продукт за период. Для SaaS норма — менее 2% в месяц, для мобильных приложений — до 10%.</p>
-    <p><strong>Что такое Burn Multiple?</strong> Burn Multiple = Net Burn / Net New ARR. Метрика капитальной эффективности SaaS от David Sacks. Меньше 1 — отлично, 1–1.5 — хорошо, больше 2 — нужно оптимизировать.</p>
-    <p><strong>Что такое Rule of 40?</strong> Rule of 40 = Темп роста выручки YoY (%) + Маржа EBITDA (%). Здоровый SaaS поддерживает сумму ≥ 40% независимо от баланса роста и прибыльности.</p>
-    <p><strong>Что такое Magic Number?</strong> Magic Number = (Net New ARR × 4) / S&amp;M расходы за квартал. Эффективность Sales &amp; Marketing — сколько $ нового ARR в год даёт каждый $ S&amp;M. Хорошо: &gt;1, отлично: &gt;1.5.</p>
-</section>
+            <h4 data-t="about.h_features">Возможности</h4>
+            <ul>
+                <li data-t="about.feat_thresholds"><strong>Отраслевые пороги</strong> для 36 метрик (SaaS / E-commerce / Mobile / Media / универсальные).</li>
+                <li data-t="about.feat_goal"><strong>🎯 Goal mode</strong> — обратные расчёты для 16 метрик (~32 сценария): «Хочу LTV:CAC=3 — какой максимум CAC?»</li>
+                <li data-t="about.feat_whatif"><strong>💡 What-if анализ</strong> — слайдеры для каждого входа в реальном времени.</li>
+                <li data-t="about.feat_templates"><strong>📦 Шаблоны</strong> — 5 готовых сценариев (Стартап SaaS, Зрелый SaaS, E-commerce, Mobile, Медиа).</li>
+                <li data-t="about.feat_dashboard"><strong>📊 Дашборд</strong> со всеми рассчитанными метриками на одной странице.</li>
+                <li data-t="about.feat_snapshots"><strong>💾 Снимки</strong> до 8 версий на метрику с переименованием и сравнением.</li>
+                <li data-t="about.feat_urls"><strong>🔗 Чистые URL</strong> — 44 страницы с уникальной мета и JSON-LD.</li>
+                <li data-t="about.feat_currency"><strong>💱 Валюты</strong> — $ / € / ₽ / £.</li>
+                <li data-t="about.feat_embed"><strong>🔗 Embed-режим</strong> — встроить любой калькулятор через iframe одной строкой.</li>
+                <li data-t="about.feat_export"><strong>📄 Экспорт</strong> — CSV всех метрик, PNG отдельной карточки.</li>
+                <li data-t="about.feat_i18n"><strong>🌐 3 языка</strong> — русский, English, oʻzbekcha.</li>
+            </ul>
+
+            <h4 data-t="about.h_faq">Часто задаваемые вопросы</h4>
+            <p><strong data-t="about.q_ltv">Как рассчитать LTV?</strong> <span data-t="about.a_ltv">LTV = AOV × Частота покупок в год × Время жизни клиента (лет). LTV должен быть минимум в 3 раза больше CAC.</span></p>
+            <p><strong data-t="about.q_cac">Как рассчитать CAC?</strong> <span data-t="about.a_cac">CAC = Маркетинговые затраты / Количество новых клиентов. Норма окупаемости CAC для SaaS — до 12–18 месяцев.</span></p>
+            <p><strong data-t="about.q_nrr">Что такое NRR?</strong> <span data-t="about.a_nrr">NRR показывает рост выручки от существующих клиентов с учётом апселов и оттока. NRR выше 100% — рост без новых клиентов. Отличный для SaaS — выше 120%.</span></p>
+            <p><strong data-t="about.q_churn">Что такое Churn Rate?</strong> <span data-t="about.a_churn">Churn Rate — процент клиентов, покинувших продукт за период. Для SaaS норма — менее 2% в месяц, для мобильных приложений — до 10%.</span></p>
+            <p><strong data-t="about.q_burn">Что такое Burn Multiple?</strong> <span data-t="about.a_burn">Burn Multiple = Net Burn / Net New ARR (David Sacks). Меньше 1 — отлично, 1–1.5 — хорошо, больше 2 — нужно оптимизировать.</span></p>
+            <p><strong data-t="about.q_rule40">Что такое Rule of 40?</strong> <span data-t="about.a_rule40">Rule of 40 = Темп роста выручки YoY (%) + Маржа EBITDA (%). Здоровый SaaS поддерживает сумму ≥ 40%.</span></p>
+            <p><strong data-t="about.q_runway">Что такое Runway?</strong> <span data-t="about.a_runway">Runway = Кэш / Среднемесячное сжигание. Сколько месяцев компания проживёт. Менее 6 — критично, 12–18 — норма.</span></p>
+
+            <h4 data-t="about.h_author">Автор</h4>
+            <p data-t="about.author">Создано <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank" rel="noopener">Родионом Латыповым</a> — BizDev, Sales, Product, Troubleshooter, Advisor, Consultant.</p>
+            <p><a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank" rel="noopener">GitHub</a> · MIT License · <span data-t="about.no_signup">без регистрации, без трекинга персональных данных</span></p>
+        </div>
+        <div class="modal-btns" style="justify-content:flex-end;">
+            <button class="modal-cancel" id="aboutClose" data-t="btn.close">Закрыть</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>
