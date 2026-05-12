@@ -2245,6 +2245,655 @@ window.I18N_M = {
                 uz: { name: 'SLA', formula: '(SLA ichidagi ticketlar / Barchasi) × 100%', description: 'Service Level Agreement — kelishilgan muddatlar ichida ko‘rib chiqilgan murojaatlar ulushi.' } }
 };
 
+// ============================================================
+// I18N_INSIGHTS — translation lookup keyed by exact RU text.
+// 132 unique insight messages × {en, uz}. Russian → fallback.
+// ============================================================
+window.I18N_INSIGHTS = {
+  // — DAU / MAU / Acquisition / Revenue / ARR / MRR / LTV (advisory) —
+  'DAU — счётчик; «норма» зависит от стадии. Смотрите Stickiness (DAU/MAU) и MoM-рост.': { en: 'DAU is a counter; the "norm" depends on the stage. Look at Stickiness (DAU/MAU) and MoM growth.', uz: 'DAU — bu hisoblagich; "norma" bosqichga bog‘liq. Stickiness (DAU/MAU) va MoM o‘sishni qarang.' },
+  'MAU — счётчик; контекст важен. Сравнивайте через Stickiness, Retention и YoY-рост.': { en: 'MAU is a counter; context matters. Compare via Stickiness, Retention and YoY growth.', uz: 'MAU — hisoblagich; kontekst muhim. Stickiness, Retention va YoY o‘sish orqali taqqoslang.' },
+  'Acquisition — счётчик; качество важнее количества. Смотрите CAC, Activation Rate, LTV:CAC.': { en: 'Acquisition is a counter; quality beats quantity. Watch CAC, Activation Rate, LTV:CAC.', uz: 'Acquisition — hisoblagich; sifat miqdordan muhim. CAC, Activation Rate, LTV:CAC ni kuzating.' },
+  'Revenue — счётчик; здоровье бизнеса определяется ростом, маржой и unit-экономикой.': { en: 'Revenue is a counter; business health is determined by growth, margin, and unit economics.', uz: 'Revenue — hisoblagich; biznes salomatligi o‘sish, marja va unit-iqtisodiyot bilan belgilanadi.' },
+  'ARR — счётчик; зрелость определяется YoY-ростом и Rule of 40 (рост + маржа ≥ 40%).': { en: 'ARR is a counter; maturity is determined by YoY growth and Rule of 40 (growth + margin ≥ 40%).', uz: 'ARR — hisoblagich; yetuklik YoY o‘sish va Rule of 40 (o‘sish + marja ≥ 40%) bilan belgilanadi.' },
+  'MRR — счётчик. Контекст важнее: смотрите MoM-рост, NRR, CAC Payback.': { en: 'MRR is a counter. Context wins: watch MoM growth, NRR, CAC Payback.', uz: 'MRR — hisoblagich. Kontekst muhim: MoM o‘sish, NRR, CAC Payback ni qarang.' },
+  'Сам по себе LTV ничего не говорит — сравните с CAC через LTV:CAC Ratio (цель ≥ 3:1).': { en: 'LTV alone tells you nothing — compare to CAC via the LTV:CAC ratio (target ≥ 3:1).', uz: 'LTV o‘zicha hech nima demaydi — CAC bilan LTV:CAC nisbati orqali taqqoslang (maqsad ≥ 3:1).' },
+
+  // — Stickiness —
+  'Продукт не «липкий». Работайте над ежедневными привычками.': { en: 'Product is not sticky. Work on daily habits.', uz: 'Mahsulot "yopishqoq" emas. Kunlik odatlar ustida ishlang.' },
+  'Средняя липкость. Добавьте daily use-cases.': { en: 'Average stickiness. Add daily use cases.', uz: 'O‘rtacha stickiness. Kunlik use-case lar qo‘shing.' },
+  'Высокая липкость — пользователи возвращаются ежедневно!': { en: 'High stickiness — users come back daily!', uz: 'Yuqori stickiness — foydalanuvchilar har kuni qaytadi!' },
+
+  // — Retention —
+  'Очень низкое удержание. Проверьте онбординг и ценность продукта.': { en: 'Very low retention. Check onboarding and product value.', uz: 'Juda past retention. Onboarding va mahsulot qiymatini tekshiring.' },
+  'Среднее удержание. Улучшайте вовлечение и коммуникацию.': { en: 'Average retention. Improve engagement and communication.', uz: 'O‘rtacha retention. Vovlechenie va kommunikatsiyani yaxshilang.' },
+  'Среднее удержание. Улучшайте вовлечение.': { en: 'Average retention. Improve engagement.', uz: 'O‘rtacha retention. Vovlecheniyeni yaxshilang.' },
+  'Отличное удержание! Работает product-market fit.': { en: 'Excellent retention! Product-market fit is working.', uz: 'Ajoyib retention! Product-market fit ishlayapti.' },
+  'Отличное удержание!': { en: 'Excellent retention!', uz: 'Ajoyib retention!' },
+  'Низкое удержание. Проверьте ценность.': { en: 'Low retention. Check the value proposition.', uz: 'Past retention. Mahsulot qiymatini tekshiring.' },
+
+  // — CAC —
+  'CAC слишком высок. Оптимизируйте каналы привлечения.': { en: 'CAC is too high. Optimize acquisition channels.', uz: 'CAC juda yuqori. Jalb qilish kanallarini optimallashtiring.' },
+  'CAC приемлем, но можно улучшить.': { en: 'CAC is acceptable, but can be improved.', uz: 'CAC qabul qilinadigan, lekin yaxshilash mumkin.' },
+  'Низкий CAC — эффективное привлечение!': { en: 'Low CAC — efficient acquisition!', uz: 'Past CAC — samarali jalb qilish!' },
+
+  // — LTV:CAC —
+  'LTV < CAC — бизнес убыточен! Немедленно снизьте CAC.': { en: 'LTV < CAC — the business is unprofitable! Lower CAC immediately.', uz: 'LTV < CAC — biznes zararda! Darhol CAC ni kamaytiring.' },
+  'Соотношение ниже нормы. Цель — минимум 3:1.': { en: 'Ratio below norm. Target at least 3:1.', uz: 'Nisbat normadan past. Maqsad — kamida 3:1.' },
+  'Отличное соотношение! Бизнес рентабелен.': { en: 'Excellent ratio! The business is profitable.', uz: 'Ajoyib nisbat! Biznes foydali.' },
+  'Очень высокое LTV:CAC — либо отлично, либо недоинвестируете в рост.': { en: 'Very high LTV:CAC — either excellent, or you are underinvesting in growth.', uz: 'Juda yuqori LTV:CAC — yo ajoyib, yoki o‘sishga yetarlicha investitsiya qilmayapsiz.' },
+
+  // — ARPU / ARPDAU —
+  'Низкий ARPU. Попробуйте апселы или новые предложения.': { en: 'Low ARPU. Try upsells or new offers.', uz: 'Past ARPU. Apsel yoki yangi takliflarni sinab ko‘ring.' },
+  'Средний ARPU. Работайте над монетизацией.': { en: 'Average ARPU. Work on monetization.', uz: 'O‘rtacha ARPU. Monetizatsiya ustida ishlang.' },
+  'Высокий ARPU — отличная монетизация!': { en: 'High ARPU — excellent monetization!', uz: 'Yuqori ARPU — ajoyib monetizatsiya!' },
+  'Низкий ARPDAU. Работайте над монетизацией или вовлечением.': { en: 'Low ARPDAU. Work on monetization or engagement.', uz: 'Past ARPDAU. Monetizatsiya yoki engagement ustida ishlang.' },
+  'Типично для free-to-play. Добавьте источники монетизации.': { en: 'Typical for free-to-play. Add monetization sources.', uz: 'Free-to-play uchun odatiy. Monetizatsiya manbalarini qo‘shing.' },
+  'Хороший ARPDAU — продукт зарабатывает.': { en: 'Good ARPDAU — product earns money.', uz: 'Yaxshi ARPDAU — mahsulot pul ishlayapti.' },
+  'Премиум-уровень. Отлично!': { en: 'Premium tier. Excellent!', uz: 'Premium daraja. Ajoyib!' },
+
+  // — Churn —
+  'Высокий отток. Срочно анализируйте причины ухода.': { en: 'High churn. Urgently analyze the reasons for leaving.', uz: 'Yuqori churn. Ketish sabablarini tezda tahlil qiling.' },
+  'Отток выше среднего. Улучшайте поддержку и продукт.': { en: 'Above-average churn. Improve support and product.', uz: 'O‘rtachadan yuqori churn. Qo‘llab-quvvatlash va mahsulotni yaxshilang.' },
+  'Низкий отток — отличная лояльность!': { en: 'Low churn — excellent loyalty!', uz: 'Past churn — ajoyib sodiqlik!' },
+
+  // — GRR / NRR —
+  'GRR низкий. Серьёзные потери клиентов.': { en: 'GRR is low. Serious customer losses.', uz: 'GRR past. Mijozlarning jiddiy yo‘qotilishi.' },
+  'GRR приемлемый, но есть отток.': { en: 'GRR is acceptable, but there is churn.', uz: 'GRR qabul qilinadigan, lekin churn bor.' },
+  'GRR отличный — клиенты остаются.': { en: 'GRR is excellent — customers stay.', uz: 'GRR ajoyib — mijozlar qoladi.' },
+  'NRR < 100% — выручка падает. Нужны апселы.': { en: 'NRR < 100% — revenue is declining. Upsells needed.', uz: 'NRR < 100% — tushum tushyapti. Apsellar kerak.' },
+  'NRR > 100% — рост за счёт существующих.': { en: 'NRR > 100% — growth from existing customers.', uz: 'NRR > 100% — mavjud mijozlardan o‘sish.' },
+  'NRR отличный — клиенты расширяются.': { en: 'NRR is excellent — customers expand.', uz: 'NRR ajoyib — mijozlar kengayadi.' },
+
+  // — ACV —
+  'Низкий ACV. Цельтесь на более крупные контракты.': { en: 'Low ACV. Target larger contracts.', uz: 'Past ACV. Yirikroq shartnomalarni mo‘ljallang.' },
+  'Средний ACV. Работайте над апселами.': { en: 'Average ACV. Work on upsells.', uz: 'O‘rtacha ACV. Apsellar ustida ishlang.' },
+  'Высокий ACV — хороший показатель.': { en: 'High ACV — a good indicator.', uz: 'Yuqori ACV — yaxshi ko‘rsatkich.' },
+
+  // — CAC Payback —
+  'Окупаемость > 2 лет — слишком долго.': { en: 'Payback > 2 years — too long.', uz: 'Qaytim > 2 yil — juda uzoq.' },
+  'Окупаемость > года — нормально для B2B.': { en: 'Payback > 1 year — fine for B2B.', uz: 'Qaytim > 1 yil — B2B uchun normal.' },
+  'Быстрая окупаемость — отлично!': { en: 'Fast payback — excellent!', uz: 'Tez qaytim — ajoyib!' },
+
+  // — Burn Multiple —
+  'Cash-positive рост — каждый $ ARR приходит с прибылью. Эталон.': { en: 'Cash-positive growth — every $ of ARR comes with profit. The benchmark.', uz: 'Cash-positive o‘sish — har bir $ ARR foyda bilan keladi. Etalon.' },
+  'Отличный Burn Multiple — высокая капитальная эффективность.': { en: 'Excellent Burn Multiple — high capital efficiency.', uz: 'Ajoyib Burn Multiple — yuqori kapital samaradorligi.' },
+  'Хороший Burn Multiple — инвесторам нравится.': { en: 'Good Burn Multiple — investors like it.', uz: 'Yaxshi Burn Multiple — investorlarga yoqadi.' },
+  'Норма для роста; можно оптимизировать.': { en: 'Norm for growth; can be optimized.', uz: 'O‘sish uchun norma; optimallashtirish mumkin.' },
+  'Высокий burn — пересмотрите unit-economics.': { en: 'High burn — review unit economics.', uz: 'Yuqori burn — unit-iqtisodiyotni qayta ko‘rib chiqing.' },
+  'Критично: каждый $ роста стоит >$3 burn.': { en: 'Critical: every $ of growth costs >$3 of burn.', uz: 'Kritik: har bir $ o‘sish >$3 burn ga tushadi.' },
+
+  // — Magic Number —
+  'Низкий Magic Number — сократите S&M, исправьте воронку.': { en: 'Low Magic Number — cut S&M, fix the funnel.', uz: 'Past Magic Number — S&M ni qisqartiring, voronkani tuzating.' },
+  'Нормально, но окупаемость S&M >2 лет.': { en: 'Acceptable, but S&M payback is >2 years.', uz: 'Qabul qilinadigan, lekin S&M qaytimi >2 yil.' },
+  'Хорошо — инвестируйте в рост.': { en: 'Good — invest in growth.', uz: 'Yaxshi — o‘sishga investitsiya qiling.' },
+  'Отлично — масштабируйте S&M агрессивно!': { en: 'Excellent — scale S&M aggressively!', uz: 'Ajoyib — S&M ni agressiv masshtablashtiring!' },
+
+  // — Rule of 40 —
+  'Ниже 20%: критическое состояние — нужны фундаментальные изменения.': { en: 'Below 20%: critical state — fundamental changes needed.', uz: '20% dan past: kritik holat — fundamental o‘zgarishlar kerak.' },
+  'Не дотягиваем до Rule of 40 — балансируйте рост и маржу.': { en: 'Below Rule of 40 — balance growth and margin.', uz: 'Rule of 40 ga yetmaydi — o‘sish va marjani muvozanatlang.' },
+  'Rule of 40 выполнено — здоровый SaaS.': { en: 'Rule of 40 met — a healthy SaaS.', uz: 'Rule of 40 bajarildi — sog‘lom SaaS.' },
+  'Выше 60% — звёздная категория (top decile).': { en: 'Above 60% — star tier (top decile).', uz: '60% dan yuqori — yulduz toifa (top decile).' },
+
+  // — Quick Ratio —
+  'Quick Ratio < 1 — теряете больше, чем привлекаете.': { en: 'Quick Ratio < 1 — you lose more than you acquire.', uz: 'Quick Ratio < 1 — jalb qilganingizdan ko‘proq yo‘qotasiz.' },
+  'Хрупкий рост — каждый $ потерь съедает половину нового MRR.': { en: 'Fragile growth — every $ of loss eats half of new MRR.', uz: 'Mo‘rt o‘sish — har bir $ yo‘qotish yangi MRR ning yarmini yeydi.' },
+  'Здоровый Quick Ratio — рост устойчив.': { en: 'Healthy Quick Ratio — growth is sustainable.', uz: 'Sog‘lom Quick Ratio — o‘sish barqaror.' },
+  'Отличный Quick Ratio — рост существенно превышает потери.': { en: 'Excellent Quick Ratio — growth significantly exceeds losses.', uz: 'Ajoyib Quick Ratio — o‘sish yo‘qotishlardan sezilarli yuqori.' },
+  'Отличный Quick Ratio.': { en: 'Excellent Quick Ratio.', uz: 'Ajoyib Quick Ratio.' },
+
+  // — AARRR —
+  'Низкая активация. Упростите первый опыт.': { en: 'Low activation. Simplify the first experience.', uz: 'Past activation. Birinchi tajribani soddalashtiring.' },
+  'Средняя активация. Работайте над онбордингом.': { en: 'Average activation. Work on onboarding.', uz: 'O‘rtacha activation. Onboarding ustida ishlang.' },
+  'Высокая активация — пользователи видят ценность.': { en: 'High activation — users see the value.', uz: 'Yuqori activation — foydalanuvchilar qiymatni ko‘rmoqda.' },
+  'Низкий K-factor. Стимулируйте рефералы.': { en: 'Low K-factor. Incentivize referrals.', uz: 'Past K-factor. Referral lar uchun rag‘bat bering.' },
+  'K-factor < 1 — виральность слабая.': { en: 'K-factor < 1 — virality is weak.', uz: 'K-factor < 1 — virallik kuchsiz.' },
+  'K-factor > 1 — вирусный рост!': { en: 'K-factor > 1 — viral growth!', uz: 'K-factor > 1 — viral o‘sish!' },
+
+  // — Time to Value —
+  'Мгновенная ценность — отлично для consumer/PLG продуктов.': { en: 'Instant value — excellent for consumer/PLG products.', uz: 'Lahzali qiymat — consumer/PLG mahsulotlari uchun ajoyib.' },
+  'Быстрая активация — хорошо для PLG.': { en: 'Fast activation — good for PLG.', uz: 'Tez activation — PLG uchun yaxshi.' },
+  'Норма для B2B/enterprise. Упростите онбординг для PLG.': { en: 'Norm for B2B/enterprise. Simplify onboarding for PLG.', uz: 'B2B/enterprise uchun norma. PLG uchun onboarding ni soddalashtiring.' },
+  'Слишком медленно — пользователи отваливаются. Урежьте setup-шаги.': { en: 'Too slow — users drop off. Cut setup steps.', uz: 'Juda sekin — foydalanuvchilar ketadi. Setup qadamlarini qisqartiring.' },
+
+  // — Conversion / ROAS / CTR / CPC / Bounce —
+  'Очень низкая конверсия. Проверьте посадочную страницу.': { en: 'Very low conversion. Check the landing page.', uz: 'Juda past konversiya. Landing sahifani tekshiring.' },
+  'Средняя конверсия. A/B-тесты помогут.': { en: 'Average conversion. A/B tests will help.', uz: 'O‘rtacha konversiya. A/B testlar yordam beradi.' },
+  'Высокая конверсия — отличный результат!': { en: 'High conversion — excellent result!', uz: 'Yuqori konversiya — ajoyib natija!' },
+  'ROAS ниже нормы. Реклама не окупается.': { en: 'ROAS below norm. Ads do not pay back.', uz: 'ROAS normadan past. Reklama qaytmayapti.' },
+  'Средний ROAS. Оптимизируйте кампании.': { en: 'Average ROAS. Optimize campaigns.', uz: 'O‘rtacha ROAS. Kampaniyalarni optimallashtiring.' },
+  'Высокий ROAS — реклама эффективна!': { en: 'High ROAS — ads are effective!', uz: 'Yuqori ROAS — reklama samarali!' },
+  'Высокий CPC. Пересмотрите таргетинг.': { en: 'High CPC. Review targeting.', uz: 'Yuqori CPC. Targetingni qayta ko‘rib chiqing.' },
+  'Средний CPC. Есть куда оптимизировать.': { en: 'Average CPC. Room to optimize.', uz: 'O‘rtacha CPC. Optimallashtirish o‘rni bor.' },
+  'Низкий CPC — эффективные объявления!': { en: 'Low CPC — effective ads!', uz: 'Past CPC — samarali reklamalar!' },
+  'Очень низкий CTR. Улучшите креатив.': { en: 'Very low CTR. Improve the creative.', uz: 'Juda past CTR. Kreativni yaxshilang.' },
+  'Средний CTR. Тестируйте разные подходы.': { en: 'Average CTR. Test different approaches.', uz: 'O‘rtacha CTR. Turli yondashuvlarni sinab ko‘ring.' },
+  'Высокий CTR — объявление цепляет!': { en: 'High CTR — ad grabs attention!', uz: 'Yuqori CTR — reklama e‘tiborni tortmoqda!' },
+  'Высокий отказ. Улучшите релевантность и скорость.': { en: 'High bounce. Improve relevance and speed.', uz: 'Yuqori bounce. Tegishlilik va tezlikni yaxshilang.' },
+  'Средний отказ. Поработайте над вовлечением.': { en: 'Average bounce. Work on engagement.', uz: 'O‘rtacha bounce. Engagement ustida ishlang.' },
+  'Низкий отказ — пользователи изучают сайт.': { en: 'Low bounce — users explore the site.', uz: 'Past bounce — foydalanuvchilar saytni o‘rganadi.' },
+
+  // — QA —
+  'Высокая плотность багов. Нужно улучшить тестирование.': { en: 'High bug density. Improve testing.', uz: 'Buglar zichligi yuqori. Testlashni yaxshilang.' },
+  'Средняя плотность. Можно улучшить.': { en: 'Average density. Can be improved.', uz: 'O‘rtacha zichlik. Yaxshilash mumkin.' },
+  'Низкая плотность — качественный код.': { en: 'Low density — quality code.', uz: 'Past zichlik — sifatli kod.' },
+  'Низкое покрытие. Риск багов.': { en: 'Low coverage. Bug risk.', uz: 'Past qoplam. Bug xavfi.' },
+  'Среднее покрытие. Добавьте тестов.': { en: 'Average coverage. Add tests.', uz: 'O‘rtacha qoplam. Testlar qo‘shing.' },
+  'Хорошее покрытие — уверенность в коде.': { en: 'Good coverage — confidence in the code.', uz: 'Yaxshi qoplam — kodga ishonch.' },
+  'Высокая плотность. Проведите ревью.': { en: 'High density. Run a review.', uz: 'Yuqori zichlik. Review o‘tkazing.' },
+  'Средняя плотность. Нормально.': { en: 'Average density. OK.', uz: 'O‘rtacha zichlik. Normal.' },
+  'Низкая плотность — код чист.': { en: 'Low density — code is clean.', uz: 'Past zichlik — kod toza.' },
+
+  // — Support —
+  'Низкий CSAT. Улучшайте качество поддержки.': { en: 'Low CSAT. Improve support quality.', uz: 'Past CSAT. Qo‘llab-quvvatlash sifatini yaxshilang.' },
+  'Средний CSAT. Есть потенциал.': { en: 'Average CSAT. There is potential.', uz: 'O‘rtacha CSAT. Salohiyat bor.' },
+  'Высокий CSAT — клиенты довольны!': { en: 'High CSAT — customers are happy!', uz: 'Yuqori CSAT — mijozlar mamnun!' },
+  'Отрицательный NPS. Требуются срочные меры.': { en: 'Negative NPS. Urgent action required.', uz: 'Salbiy NPS. Shoshilinch chora-tadbirlar kerak.' },
+  'NPS средний. Работайте над лояльностью.': { en: 'Average NPS. Work on loyalty.', uz: 'O‘rtacha NPS. Sodiqlik ustida ishlang.' },
+  'Высокий NPS — много промоутеров!': { en: 'High NPS — many promoters!', uz: 'Yuqori NPS — ko‘p promouterlar!' },
+  'Очень высокий NPS — клиенты вас любят!': { en: 'Very high NPS — customers love you!', uz: 'Juda yuqori NPS — mijozlar sizni yaxshi ko‘radi!' },
+  'Отличный NPS — мирового уровня (>70)!': { en: 'Excellent NPS — world-class (>70)!', uz: 'Ajoyib NPS — jahon darajasi (>70)!' },
+  'Низкий FCR. Обучите поддержку.': { en: 'Low FCR. Train support.', uz: 'Past FCR. Qo‘llab-quvvatlashni o‘qiting.' },
+  'Средний FCR. Можно улучшить.': { en: 'Average FCR. Can be improved.', uz: 'O‘rtacha FCR. Yaxshilash mumkin.' },
+  'Высокий FCR — эффективная поддержка!': { en: 'High FCR — efficient support!', uz: 'Yuqori FCR — samarali qo‘llab-quvvatlash!' },
+  'Нарушение SLA. Увеличьте ресурсы поддержки.': { en: 'SLA breach. Increase support resources.', uz: 'SLA buzilishi. Qo‘llab-quvvatlash resurslarini oshiring.' },
+  'SLA близко к норме. Оптимизируйте процессы.': { en: 'SLA close to norm. Optimize processes.', uz: 'SLA normaga yaqin. Jarayonlarni optimallashtiring.' },
+  'SLA выполняется — отлично!': { en: 'SLA met — excellent!', uz: 'SLA bajarildi — ajoyib!' },
+
+  // — Finance & Sales —
+  'Низкая маржа. Проверьте unit-economics — каждая продажа теряет деньги.': { en: 'Low margin. Check unit economics — every sale loses money.', uz: 'Past marja. Unit-iqtisodiyotni tekshiring — har bir sotuv pul yo‘qotadi.' },
+  'Норма для commerce/hardware. Для SaaS — слишком низко.': { en: 'Norm for commerce/hardware. Too low for SaaS.', uz: 'Commerce/hardware uchun norma. SaaS uchun juda past.' },
+  'Хорошая маржа — SaaS-уровень.': { en: 'Good margin — SaaS-grade.', uz: 'Yaxshi marja — SaaS darajasi.' },
+  'Отличная маржа — мирового класса SaaS (>80%).': { en: 'Excellent margin — world-class SaaS (>80%).', uz: 'Ajoyib marja — jahon darajasidagi SaaS (>80%).' },
+  'Cash-positive — runway бесконечен.': { en: 'Cash-positive — runway is infinite.', uz: 'Cash-positive — runway cheksiz.' },
+  'Менее 6 мес — срочно фандрейзить или резать burn.': { en: 'Less than 6 months — urgently raise or cut burn.', uz: '6 oydan kam — shoshilinch fandrayzing yoki burn ni qisqartiring.' },
+  '6–12 мес — пора начинать фандрейзинг.': { en: '6–12 months — time to start fundraising.', uz: '6–12 oy — fandrayzingni boshlash vaqti.' },
+  '12–18 мес — норма для пре-сид/сид.': { en: '12–18 months — norm for pre-seed/seed.', uz: '12–18 oy — pre-seed/seed uchun norma.' },
+  'Больше 18 мес — здоровый runway.': { en: 'More than 18 months — healthy runway.', uz: '18 oydan ko‘p — sog‘lom runway.' },
+  'Cash-positive — выручка покрывает расходы.': { en: 'Cash-positive — revenue covers expenses.', uz: 'Cash-positive — tushum xarajatlarni qoplaydi.' },
+  'Burn активен. Контролируйте через Runway и Burn Multiple.': { en: 'Burn is active. Control via Runway and Burn Multiple.', uz: 'Burn faol. Runway va Burn Multiple orqali nazorat qiling.' },
+  'Sales Velocity — рост важнее абсолюта. Ускоряйте за счёт 4 рычагов: opps, ACV, win rate, цикл.': { en: 'Sales Velocity — growth matters more than absolute. Accelerate via 4 levers: opps, ACV, win rate, cycle.', uz: 'Sales Velocity — o‘sish absolyutdan muhim. 4 ta richag orqali tezlashtiring: opps, ACV, win rate, tsikl.' },
+  'Низкий Win Rate. Проверьте качество лидов и квалификацию.': { en: 'Low Win Rate. Check lead quality and qualification.', uz: 'Past Win Rate. Lid sifati va qualifikatsiyani tekshiring.' },
+  'Норма для B2B SaaS, но есть куда расти.': { en: 'Norm for B2B SaaS, but room to grow.', uz: 'B2B SaaS uchun norma, lekin o‘sish o‘rni bor.' },
+  'Хороший Win Rate — воронка работает.': { en: 'Good Win Rate — funnel is working.', uz: 'Yaxshi Win Rate — voronka ishlayapti.' },
+  'Отличный Win Rate — продукт matches спросу.': { en: 'Excellent Win Rate — product matches demand.', uz: 'Ajoyib Win Rate — mahsulot talabga mos.' },
+  'Воронки мало — не хватит, чтобы закрыть план.': { en: 'Pipeline too small — not enough to hit the plan.', uz: 'Pipeline kichik — rejani yopishga yetmaydi.' },
+  'Норма; но небольшой запас. Увеличивайте voronку.': { en: 'Norm; but small buffer. Grow the pipeline.', uz: 'Norma; lekin kichik zaxira. Pipelineni oshiring.' },
+  'Хорошее покрытие — план реалистичен.': { en: 'Good coverage — the plan is realistic.', uz: 'Yaxshi qoplam — reja realistik.' },
+  'Отличное покрытие — большой запас.': { en: 'Excellent coverage — large buffer.', uz: 'Ajoyib qoplam — katta zaxira.' }
+};
+
+window._tInsight = function(ruText) {
+  if (!window._currentLang || window._currentLang() === 'ru') return ruText;
+  const entry = window.I18N_INSIGHTS[ruText];
+  if (!entry) return ruText;
+  return entry[window._currentLang()] || ruText;
+};
+
+// ============================================================
+// I18N_THRESH — translation lookup keyed by exact RU threshold string.
+// Covers both default `metric.threshold` and INDUSTRY_THRESHOLDS values.
+// ============================================================
+window.I18N_THRESH = {
+  // Default thresholds
+  'Метрика-счётчик. Оценивайте динамику MoM и через Stickiness': { en: 'Counter metric. Evaluate MoM dynamics and via Stickiness', uz: 'Hisoblagich metrika. MoM dinamikani va Stickiness orqali baholang' },
+  'Главное — соотношение к CAC: LTV:CAC > 3 норма, > 5 отлично': { en: 'Main thing — ratio to CAC: LTV:CAC > 3 norm, > 5 excellent', uz: 'Asosiy narsa — CAC ga nisbat: LTV:CAC > 3 norma, > 5 ajoyib' },
+  'Главное — MoM-рост: норма >5%, хорошо >10%, отлично >20%': { en: 'Main thing — MoM growth: norm >5%, good >10%, excellent >20%', uz: 'Asosiy narsa — MoM o‘sish: norma >5%, yaxshi >10%, ajoyib >20%' },
+  'Главное — YoY-рост и NRR. Молодой SaaS: T2D3 (3x к ARR за 2 года)': { en: 'Main thing — YoY growth and NRR. Young SaaS: T2D3 (3x ARR in 2 years)', uz: 'Asosiy — YoY o‘sish va NRR. Yosh SaaS: T2D3 (2 yilda 3x ARR)' },
+  'Метрика-счётчик. Контекст: рост MoM/YoY, маржа, Rule of 40': { en: 'Counter metric. Context: MoM/YoY growth, margin, Rule of 40', uz: 'Hisoblagich metrika. Kontekst: MoM/YoY o‘sish, marja, Rule of 40' },
+  'Метрика-счётчик. Оценивайте через CAC, конверсии и MoM-динамику': { en: 'Counter metric. Evaluate via CAC, conversion, and MoM dynamics', uz: 'Hisoblagich metrika. CAC, konversiya va MoM dinamika orqali baholang' },
+  'Контекст: сравнивайте период к периоду; рост важнее абсолюта': { en: 'Context: compare period over period; growth matters more than absolute', uz: 'Kontekst: davrdan davrga taqqoslang; o‘sish absolyutdan muhim' },
+
+  // INDUSTRY_THRESHOLDS values — translated by exact RU
+  // CTR
+  'Плохо: <1%, Норма: 1–3%, Хорошо: >3%': { en: 'Bad: <1%, Norm: 1–3%, Good: >3%', uz: 'Yomon: <1%, Norma: 1–3%, Yaxshi: >3%' },
+  'Плохо: <1%, Норма: 2–5%, Хорошо: >5%': { en: 'Bad: <1%, Norm: 2–5%, Good: >5%', uz: 'Yomon: <1%, Norma: 2–5%, Yaxshi: >5%' },
+  'Плохо: <0.5%, Норма: 1–2%, Хорошо: >2%': { en: 'Bad: <0.5%, Norm: 1–2%, Good: >2%', uz: 'Yomon: <0.5%, Norma: 1–2%, Yaxshi: >2%' },
+  'Плохо: <0.5%, Норма: 1–3%, Хорошо: >3%': { en: 'Bad: <0.5%, Norm: 1–3%, Good: >3%', uz: 'Yomon: <0.5%, Norma: 1–3%, Yaxshi: >3%' },
+  'Плохо: <2%, Норма: 3–8%, Хорошо: >8%': { en: 'Bad: <2%, Norm: 3–8%, Good: >8%', uz: 'Yomon: <2%, Norma: 3–8%, Yaxshi: >8%' },
+
+  // CPC
+  'Отлично: <$0.5, Норма: $0.5–$2, Плохо: >$2': { en: 'Excellent: <$0.5, Norm: $0.5–$2, Bad: >$2', uz: 'Ajoyib: <$0.5, Norma: $0.5–$2, Yomon: >$2' },
+  'Отлично: <$2, Норма: $2–$8, Плохо: >$8': { en: 'Excellent: <$2, Norm: $2–$8, Bad: >$8', uz: 'Ajoyib: <$2, Norma: $2–$8, Yomon: >$8' },
+  'Отлично: <$0.3, Норма: $0.3–$1.2, Плохо: >$1.2': { en: 'Excellent: <$0.3, Norm: $0.3–$1.2, Bad: >$1.2', uz: 'Ajoyib: <$0.3, Norma: $0.3–$1.2, Yomon: >$1.2' },
+  'Отлично: <$0.2, Норма: $0.2–$1, Плохо: >$1': { en: 'Excellent: <$0.2, Norm: $0.2–$1, Bad: >$1', uz: 'Ajoyib: <$0.2, Norma: $0.2–$1, Yomon: >$1' },
+  'Отлично: <$0.15, Норма: $0.15–$0.6, Плохо: >$0.6': { en: 'Excellent: <$0.15, Norm: $0.15–$0.6, Bad: >$0.6', uz: 'Ajoyib: <$0.15, Norma: $0.15–$0.6, Yomon: >$0.6' },
+
+  // ROAS
+  'Плохо: <100%, Норма: 100–200%, Хорошо: >300%': { en: 'Bad: <100%, Norm: 100–200%, Good: >300%', uz: 'Yomon: <100%, Norma: 100–200%, Yaxshi: >300%' },
+  'Плохо: <150%, Норма: 150–400%, Хорошо: >400%': { en: 'Bad: <150%, Norm: 150–400%, Good: >400%', uz: 'Yomon: <150%, Norma: 150–400%, Yaxshi: >400%' },
+  'Плохо: <200%, Норма: 200–500%, Хорошо: >500%': { en: 'Bad: <200%, Norm: 200–500%, Good: >500%', uz: 'Yomon: <200%, Norma: 200–500%, Yaxshi: >500%' },
+  'Плохо: <100%, Норма: 100–250%, Хорошо: >250%': { en: 'Bad: <100%, Norm: 100–250%, Good: >250%', uz: 'Yomon: <100%, Norma: 100–250%, Yaxshi: >250%' },
+  'Плохо: <120%, Норма: 120–300%, Хорошо: >300%': { en: 'Bad: <120%, Norm: 120–300%, Good: >300%', uz: 'Yomon: <120%, Norma: 120–300%, Yaxshi: >300%' },
+
+  // CR
+  'Плохо: <1%, Норма: 1–4%, Хорошо: >4%': { en: 'Bad: <1%, Norm: 1–4%, Good: >4%', uz: 'Yomon: <1%, Norma: 1–4%, Yaxshi: >4%' },
+  'Плохо: <1%, Норма: 1–5%, Хорошо: >5%': { en: 'Bad: <1%, Norm: 1–5%, Good: >5%', uz: 'Yomon: <1%, Norma: 1–5%, Yaxshi: >5%' },
+  'Плохо: <0.5%, Норма: 0.5–2%, Хорошо: >2%': { en: 'Bad: <0.5%, Norm: 0.5–2%, Good: >2%', uz: 'Yomon: <0.5%, Norma: 0.5–2%, Yaxshi: >2%' },
+
+  // Bounce
+  'Хорошо: <40%, Норма: 40–70%, Плохо: >70%': { en: 'Good: <40%, Norm: 40–70%, Bad: >70%', uz: 'Yaxshi: <40%, Norma: 40–70%, Yomon: >70%' },
+  'Хорошо: <35%, Норма: 35–60%, Плохо: >60%': { en: 'Good: <35%, Norm: 35–60%, Bad: >60%', uz: 'Yaxshi: <35%, Norma: 35–60%, Yomon: >60%' },
+  'Хорошо: <30%, Норма: 30–55%, Плохо: >55%': { en: 'Good: <30%, Norm: 30–55%, Bad: >55%', uz: 'Yaxshi: <30%, Norma: 30–55%, Yomon: >55%' },
+  'Хорошо: <40%, Норма: 40–65%, Плохо: >65%': { en: 'Good: <40%, Norm: 40–65%, Bad: >65%', uz: 'Yaxshi: <40%, Norma: 40–65%, Yomon: >65%' },
+  'Хорошо: <55%, Норма: 55–80%, Плохо: >80%': { en: 'Good: <55%, Norm: 55–80%, Bad: >80%', uz: 'Yaxshi: <55%, Norma: 55–80%, Yomon: >80%' },
+
+  // Churn
+  'Отлично: <1%/мес, Норма: 1–5%/мес, Плохо: >5%/мес': { en: 'Excellent: <1%/mo, Norm: 1–5%/mo, Bad: >5%/mo', uz: 'Ajoyib: <1%/oy, Norma: 1–5%/oy, Yomon: >5%/oy' },
+  'Отлично: <0.5%/мес, Норма: 0.5–2%/мес, Плохо: >2%/мес': { en: 'Excellent: <0.5%/mo, Norm: 0.5–2%/mo, Bad: >2%/mo', uz: 'Ajoyib: <0.5%/oy, Norma: 0.5–2%/oy, Yomon: >2%/oy' },
+  'Отлично: <3%/мес, Норма: 3–8%/мес, Плохо: >8%/мес': { en: 'Excellent: <3%/mo, Norm: 3–8%/mo, Bad: >8%/mo', uz: 'Ajoyib: <3%/oy, Norma: 3–8%/oy, Yomon: >8%/oy' },
+  'Отлично: <5%/мес, Норма: 5–15%/мес, Плохо: >15%/мес': { en: 'Excellent: <5%/mo, Norm: 5–15%/mo, Bad: >15%/mo', uz: 'Ajoyib: <5%/oy, Norma: 5–15%/oy, Yomon: >15%/oy' },
+  'Отлично: <2%/мес, Норма: 2–7%/мес, Плохо: >7%/мес': { en: 'Excellent: <2%/mo, Norm: 2–7%/mo, Bad: >7%/mo', uz: 'Ajoyib: <2%/oy, Norma: 2–7%/oy, Yomon: >7%/oy' },
+
+  // LTV
+  'Хорошо: LTV > 3×CAC, Отлично: LTV > 5×CAC': { en: 'Good: LTV > 3×CAC, Excellent: LTV > 5×CAC', uz: 'Yaxshi: LTV > 3×CAC, Ajoyib: LTV > 5×CAC' },
+  'Норма: LTV > 3×CAC, Хорошо: LTV > 5×CAC, Отлично: LTV > 8×CAC': { en: 'Norm: LTV > 3×CAC, Good: LTV > 5×CAC, Excellent: LTV > 8×CAC', uz: 'Norma: LTV > 3×CAC, Yaxshi: LTV > 5×CAC, Ajoyib: LTV > 8×CAC' },
+  'Норма: LTV > 2×CAC, Хорошо: LTV > 3×CAC': { en: 'Norm: LTV > 2×CAC, Good: LTV > 3×CAC', uz: 'Norma: LTV > 2×CAC, Yaxshi: LTV > 3×CAC' },
+  'Норма: LTV > 1.5×CAC, Хорошо: LTV > 3×CAC': { en: 'Norm: LTV > 1.5×CAC, Good: LTV > 3×CAC', uz: 'Norma: LTV > 1.5×CAC, Yaxshi: LTV > 3×CAC' },
+  'Норма: LTV > 2×CAC, Хорошо: LTV > 4×CAC': { en: 'Norm: LTV > 2×CAC, Good: LTV > 4×CAC', uz: 'Norma: LTV > 2×CAC, Yaxshi: LTV > 4×CAC' },
+
+  // CAC
+  'Отлично: CAC < LTV/3, Норма: CAC < LTV/2, Плохо: CAC > LTV/2': { en: 'Excellent: CAC < LTV/3, Norm: CAC < LTV/2, Bad: CAC > LTV/2', uz: 'Ajoyib: CAC < LTV/3, Norma: CAC < LTV/2, Yomon: CAC > LTV/2' },
+  'Отлично: Окупаемость <6 мес, Норма: 6–18 мес, Плохо: >18 мес': { en: 'Excellent: Payback <6 mo, Norm: 6–18 mo, Bad: >18 mo', uz: 'Ajoyib: Qaytim <6 oy, Norma: 6–18 oy, Yomon: >18 oy' },
+  'Отлично: CAC < $5, Норма: $5–$25, Плохо: >$25': { en: 'Excellent: CAC < $5, Norm: $5–$25, Bad: >$25', uz: 'Ajoyib: CAC < $5, Norma: $5–$25, Yomon: >$25' },
+  'Отлично: CAC < $1, Норма: $1–$5, Плохо: >$5': { en: 'Excellent: CAC < $1, Norm: $1–$5, Bad: >$5', uz: 'Ajoyib: CAC < $1, Norma: $1–$5, Yomon: >$5' },
+  'Отлично: CAC < $2, Норма: $2–$10, Плохо: >$10': { en: 'Excellent: CAC < $2, Norm: $2–$10, Bad: >$10', uz: 'Ajoyib: CAC < $2, Norma: $2–$10, Yomon: >$10' },
+
+  // DAU (Stickiness-based)
+  'Норма: Stickiness >20%, Хорошо: >40%': { en: 'Norm: Stickiness >20%, Good: >40%', uz: 'Norma: Stickiness >20%, Yaxshi: >40%' },
+  'Норма: Stickiness >30%, Хорошо: >50%, Отлично: >70%': { en: 'Norm: Stickiness >30%, Good: >50%, Excellent: >70%', uz: 'Norma: Stickiness >30%, Yaxshi: >50%, Ajoyib: >70%' },
+  'Норма: Stickiness >5%, Хорошо: >15%': { en: 'Norm: Stickiness >5%, Good: >15%', uz: 'Norma: Stickiness >5%, Yaxshi: >15%' },
+  'Норма: Stickiness >20%, Хорошо: >40%, Отлично: >60%': { en: 'Norm: Stickiness >20%, Good: >40%, Excellent: >60%', uz: 'Norma: Stickiness >20%, Yaxshi: >40%, Ajoyib: >60%' },
+  'Норма: Stickiness >25%, Хорошо: >50%': { en: 'Norm: Stickiness >25%, Good: >50%', uz: 'Norma: Stickiness >25%, Yaxshi: >50%' },
+
+  // NPS
+  'Плохо: <0, Норма: 0–30, Хорошо: 30–70, Отлично: >70': { en: 'Bad: <0, Norm: 0–30, Good: 30–70, Excellent: >70', uz: 'Yomon: <0, Norma: 0–30, Yaxshi: 30–70, Ajoyib: >70' },
+  'Плохо: <20, Норма: 20–40, Хорошо: 40–60, Отлично: >60': { en: 'Bad: <20, Norm: 20–40, Good: 40–60, Excellent: >60', uz: 'Yomon: <20, Norma: 20–40, Yaxshi: 40–60, Ajoyib: >60' },
+  'Плохо: <10, Норма: 10–40, Хорошо: 40–65, Отлично: >65': { en: 'Bad: <10, Norm: 10–40, Good: 40–65, Excellent: >65', uz: 'Yomon: <10, Norma: 10–40, Yaxshi: 40–65, Ajoyib: >65' },
+  'Плохо: <0, Норма: 0–25, Хорошо: 25–50, Отлично: >50': { en: 'Bad: <0, Norm: 0–25, Good: 25–50, Excellent: >50', uz: 'Yomon: <0, Norma: 0–25, Yaxshi: 25–50, Ajoyib: >50' },
+  'Плохо: <0, Норма: 0–20, Хорошо: 20–45, Отлично: >45': { en: 'Bad: <0, Norm: 0–20, Good: 20–45, Excellent: >45', uz: 'Yomon: <0, Norma: 0–20, Yaxshi: 20–45, Ajoyib: >45' },
+
+  // MRR
+  'Норма: MoM рост >5%, Хорошо: >10%, Отлично: >20%': { en: 'Norm: MoM growth >5%, Good: >10%, Excellent: >20%', uz: 'Norma: MoM o‘sish >5%, Yaxshi: >10%, Ajoyib: >20%' },
+  'Норма: MoM рост >5%, Хорошо: >15%, Отлично: >25%': { en: 'Norm: MoM growth >5%, Good: >15%, Excellent: >25%', uz: 'Norma: MoM o‘sish >5%, Yaxshi: >15%, Ajoyib: >25%' },
+  'Норма: YoY рост >20%, Хорошо: >50%': { en: 'Norm: YoY growth >20%, Good: >50%', uz: 'Norma: YoY o‘sish >20%, Yaxshi: >50%' },
+  'Норма: MoM рост >8%, Хорошо: >20%': { en: 'Norm: MoM growth >8%, Good: >20%', uz: 'Norma: MoM o‘sish >8%, Yaxshi: >20%' },
+  'Норма: MoM рост >3%, Хорошо: >10%': { en: 'Norm: MoM growth >3%, Good: >10%', uz: 'Norma: MoM o‘sish >3%, Yaxshi: >10%' },
+
+  // NRR
+  'Плохо: <80%, Норма: 80–100%, Хорошо: 100–120%, Отлично: >120%': { en: 'Bad: <80%, Norm: 80–100%, Good: 100–120%, Excellent: >120%', uz: 'Yomon: <80%, Norma: 80–100%, Yaxshi: 100–120%, Ajoyib: >120%' },
+  'Плохо: <90%, Норма: 90–100%, Хорошо: 100–120%, Отлично: >130%': { en: 'Bad: <90%, Norm: 90–100%, Good: 100–120%, Excellent: >130%', uz: 'Yomon: <90%, Norma: 90–100%, Yaxshi: 100–120%, Ajoyib: >130%' },
+  'Плохо: <70%, Норма: 70–90%, Хорошо: >100%': { en: 'Bad: <70%, Norm: 70–90%, Good: >100%', uz: 'Yomon: <70%, Norma: 70–90%, Yaxshi: >100%' },
+  'Плохо: <75%, Норма: 75–95%, Хорошо: >100%': { en: 'Bad: <75%, Norm: 75–95%, Good: >100%', uz: 'Yomon: <75%, Norma: 75–95%, Yaxshi: >100%' },
+  'Плохо: <80%, Норма: 80–100%, Хорошо: >110%': { en: 'Bad: <80%, Norm: 80–100%, Good: >110%', uz: 'Yomon: <80%, Norma: 80–100%, Yaxshi: >110%' },
+
+  // CSAT
+  'Плохо: <60%, Норма: 60–80%, Хорошо: >80%': { en: 'Bad: <60%, Norm: 60–80%, Good: >80%', uz: 'Yomon: <60%, Norma: 60–80%, Yaxshi: >80%' },
+  'Плохо: <70%, Норма: 70–85%, Хорошо: >85%': { en: 'Bad: <70%, Norm: 70–85%, Good: >85%', uz: 'Yomon: <70%, Norma: 70–85%, Yaxshi: >85%' },
+  'Плохо: <65%, Норма: 65–85%, Хорошо: >85%': { en: 'Bad: <65%, Norm: 65–85%, Good: >85%', uz: 'Yomon: <65%, Norma: 65–85%, Yaxshi: >85%' },
+  'Плохо: <55%, Норма: 55–75%, Хорошо: >75%': { en: 'Bad: <55%, Norm: 55–75%, Good: >75%', uz: 'Yomon: <55%, Norma: 55–75%, Yaxshi: >75%' },
+
+  // Stickiness industry
+  'Плохо: <10%, Норма: 10–25%, Хорошо: >25%': { en: 'Bad: <10%, Norm: 10–25%, Good: >25%', uz: 'Yomon: <10%, Norma: 10–25%, Yaxshi: >25%' },
+  'Плохо: <15%, Норма: 15–30%, Хорошо: >30%, Отлично: >50%': { en: 'Bad: <15%, Norm: 15–30%, Good: >30%, Excellent: >50%', uz: 'Yomon: <15%, Norma: 15–30%, Yaxshi: >30%, Ajoyib: >50%' },
+  'Плохо: <3%, Норма: 3–10%, Хорошо: >10%': { en: 'Bad: <3%, Norm: 3–10%, Good: >10%', uz: 'Yomon: <3%, Norma: 3–10%, Yaxshi: >10%' },
+  'Плохо: <10%, Норма: 10–25%, Хорошо: >25%, Отлично: >40%': { en: 'Bad: <10%, Norm: 10–25%, Good: >25%, Excellent: >40%', uz: 'Yomon: <10%, Norma: 10–25%, Yaxshi: >25%, Ajoyib: >40%' },
+  'Плохо: <12%, Норма: 12–30%, Хорошо: >30%': { en: 'Bad: <12%, Norm: 12–30%, Good: >30%', uz: 'Yomon: <12%, Norma: 12–30%, Yaxshi: >30%' },
+
+  // Retention
+  'Плохо: <30%, Норма: 30–60%, Хорошо: >60%': { en: 'Bad: <30%, Norm: 30–60%, Good: >60%', uz: 'Yomon: <30%, Norma: 30–60%, Yaxshi: >60%' },
+  'Плохо: <70%, Норма: 70–85%, Хорошо: >85% (по логин когортам D30)': { en: 'Bad: <70%, Norm: 70–85%, Good: >85% (login cohorts D30)', uz: 'Yomon: <70%, Norma: 70–85%, Yaxshi: >85% (login kogortalar D30)' },
+  'Плохо: <20%, Норма: 20–40%, Хорошо: >40% (повторная покупка 90д)': { en: 'Bad: <20%, Norm: 20–40%, Good: >40% (repeat purchase 90d)', uz: 'Yomon: <20%, Norma: 20–40%, Yaxshi: >40% (90 kun ichida takroriy xarid)' },
+  'Плохо: <15% D30, Норма: 15–30%, Хорошо: >30%': { en: 'Bad: <15% D30, Norm: 15–30%, Good: >30%', uz: 'Yomon: <15% D30, Norma: 15–30%, Yaxshi: >30%' },
+  'Плохо: <25%, Норма: 25–50%, Хорошо: >50%': { en: 'Bad: <25%, Norm: 25–50%, Good: >50%', uz: 'Yomon: <25%, Norma: 25–50%, Yaxshi: >50%' },
+  'Плохо: <60%, Норма: 60–80%, Хорошо: >80%': { en: 'Bad: <60%, Norm: 60–80%, Good: >80%', uz: 'Yomon: <60%, Norma: 60–80%, Yaxshi: >80%' },
+  'Плохо: <20%, Норма: 20–45%, Хорошо: >45%': { en: 'Bad: <20%, Norm: 20–45%, Good: >45%', uz: 'Yomon: <20%, Norma: 20–45%, Yaxshi: >45%' },
+
+  // Activation
+  'Плохо: <40%, Норма: 40–65%, Хорошо: >65%': { en: 'Bad: <40%, Norm: 40–65%, Good: >65%', uz: 'Yomon: <40%, Norma: 40–65%, Yaxshi: >65%' },
+  'Плохо: <25%, Норма: 25–50%, Хорошо: >50%': { en: 'Bad: <25%, Norm: 25–50%, Good: >50%', uz: 'Yomon: <25%, Norma: 25–50%, Yaxshi: >50%' },
+  'Плохо: <30%, Норма: 30–55%, Хорошо: >55%': { en: 'Bad: <30%, Norm: 30–55%, Good: >55%', uz: 'Yomon: <30%, Norma: 30–55%, Yaxshi: >55%' },
+
+  // Referral
+  'Плохо: <0.3, Норма: 0.3–1, Хорошо: >1 (вирусный рост)': { en: 'Bad: <0.3, Norm: 0.3–1, Good: >1 (viral growth)', uz: 'Yomon: <0.3, Norma: 0.3–1, Yaxshi: >1 (viral o‘sish)' },
+  'Плохо: <0.2, Норма: 0.2–0.6, Хорошо: >0.6, Виральность: >1': { en: 'Bad: <0.2, Norm: 0.2–0.6, Good: >0.6, Viral: >1', uz: 'Yomon: <0.2, Norma: 0.2–0.6, Yaxshi: >0.6, Viral: >1' },
+  'Плохо: <0.15, Норма: 0.15–0.5, Хорошо: >0.5': { en: 'Bad: <0.15, Norm: 0.15–0.5, Good: >0.5', uz: 'Yomon: <0.15, Norma: 0.15–0.5, Yaxshi: >0.5' },
+  'Плохо: <0.4, Норма: 0.4–1, Хорошо: >1': { en: 'Bad: <0.4, Norm: 0.4–1, Good: >1', uz: 'Yomon: <0.4, Norma: 0.4–1, Yaxshi: >1' },
+  'Плохо: <0.5, Норма: 0.5–1.5, Хорошо: >1.5': { en: 'Bad: <0.5, Norm: 0.5–1.5, Good: >1.5', uz: 'Yomon: <0.5, Norma: 0.5–1.5, Yaxshi: >1.5' },
+
+  // ARPU
+  'Зависит от модели — сравнивайте с CAC': { en: 'Depends on the model — compare to CAC', uz: 'Modelga bog‘liq — CAC bilan taqqoslang' },
+  'B2B: $50–$500/мес, SMB: $20–$100, Enterprise: >$500': { en: 'B2B: $50–$500/mo, SMB: $20–$100, Enterprise: >$500', uz: 'B2B: $50–$500/oy, SMB: $20–$100, Enterprise: >$500' },
+  'Норма: $5–$50/мес активного покупателя': { en: 'Norm: $5–$50/mo per active buyer', uz: 'Norma: $5–$50/oy faol xaridor uchun' },
+  'Free-to-play: $0.05–$5, Premium app: $1–$20': { en: 'Free-to-play: $0.05–$5, Premium app: $1–$20', uz: 'Free-to-play: $0.05–$5, Premium ilova: $1–$20' },
+  'Подписка: $3–$15, Реклама: $0.5–$5': { en: 'Subscription: $3–$15, Ads: $0.5–$5', uz: 'Obuna: $3–$15, Reklama: $0.5–$5' },
+
+  // GRR
+  'Плохо: <80%, Норма: 80–95%, Хорошо: >95%': { en: 'Bad: <80%, Norm: 80–95%, Good: >95%', uz: 'Yomon: <80%, Norma: 80–95%, Yaxshi: >95%' },
+  'Плохо: <85%, Норма: 85–95%, Хорошо: >95%, Отлично: >97%': { en: 'Bad: <85%, Norm: 85–95%, Good: >95%, Excellent: >97%', uz: 'Yomon: <85%, Norma: 85–95%, Yaxshi: >95%, Ajoyib: >97%' },
+  'Плохо: <75%, Норма: 75–90%, Хорошо: >90%': { en: 'Bad: <75%, Norm: 75–90%, Good: >90%', uz: 'Yomon: <75%, Norma: 75–90%, Yaxshi: >90%' },
+  'Плохо: <70%, Норма: 70–88%, Хорошо: >88%': { en: 'Bad: <70%, Norm: 70–88%, Good: >88%', uz: 'Yomon: <70%, Norma: 70–88%, Yaxshi: >88%' },
+  'Плохо: <80%, Норма: 80–92%, Хорошо: >92%': { en: 'Bad: <80%, Norm: 80–92%, Good: >92%', uz: 'Yomon: <80%, Norma: 80–92%, Yaxshi: >92%' },
+
+  // CAC Payback
+  'Хорошо: <12 мес, Норма: 12–24 мес, Плохо: >24 мес': { en: 'Good: <12 mo, Norm: 12–24 mo, Bad: >24 mo', uz: 'Yaxshi: <12 oy, Norma: 12–24 oy, Yomon: >24 oy' },
+  'Хорошо: <12 мес, Норма: 12–18 мес, Плохо: >18 мес': { en: 'Good: <12 mo, Norm: 12–18 mo, Bad: >18 mo', uz: 'Yaxshi: <12 oy, Norma: 12–18 oy, Yomon: >18 oy' },
+  'Хорошо: <3 мес, Норма: 3–9 мес, Плохо: >9 мес': { en: 'Good: <3 mo, Norm: 3–9 mo, Bad: >9 mo', uz: 'Yaxshi: <3 oy, Norma: 3–9 oy, Yomon: >9 oy' },
+  'Хорошо: <6 мес, Норма: 6–12 мес, Плохо: >12 мес': { en: 'Good: <6 mo, Norm: 6–12 mo, Bad: >12 mo', uz: 'Yaxshi: <6 oy, Norma: 6–12 oy, Yomon: >12 oy' },
+  'Хорошо: <9 мес, Норма: 9–18 мес, Плохо: >18 мес': { en: 'Good: <9 mo, Norm: 9–18 mo, Bad: >18 mo', uz: 'Yaxshi: <9 oy, Norma: 9–18 oy, Yomon: >18 oy' },
+
+  // LTV:CAC
+  'Плохо: <1 (убыток), Норма: 1–3, Хорошо: >3, Отлично: >5': { en: 'Bad: <1 (loss), Norm: 1–3, Good: >3, Excellent: >5', uz: 'Yomon: <1 (zarar), Norma: 1–3, Yaxshi: >3, Ajoyib: >5' },
+  'Плохо: <2, Норма: 2–4, Хорошо: 4–6, Отлично: >6': { en: 'Bad: <2, Norm: 2–4, Good: 4–6, Excellent: >6', uz: 'Yomon: <2, Norma: 2–4, Yaxshi: 4–6, Ajoyib: >6' },
+  'Плохо: <1.5, Норма: 1.5–3, Хорошо: >3': { en: 'Bad: <1.5, Norm: 1.5–3, Good: >3', uz: 'Yomon: <1.5, Norma: 1.5–3, Yaxshi: >3' },
+  'Плохо: <2, Норма: 2–4, Хорошо: >4': { en: 'Bad: <2, Norm: 2–4, Good: >4', uz: 'Yomon: <2, Norma: 2–4, Yaxshi: >4' },
+
+  // Test Coverage / FCR / SLA
+  'Плохо: <50%, Норма: 50–80%, Хорошо: >80%': { en: 'Bad: <50%, Norm: 50–80%, Good: >80%', uz: 'Yomon: <50%, Norma: 50–80%, Yaxshi: >80%' },
+  'Плохо: <60%, Норма: 60–85%, Хорошо: >85%': { en: 'Bad: <60%, Norm: 60–85%, Good: >85%', uz: 'Yomon: <60%, Norma: 60–85%, Yaxshi: >85%' },
+  'Плохо: <55%, Норма: 55–80%, Хорошо: >80%': { en: 'Bad: <55%, Norm: 55–80%, Good: >80%', uz: 'Yomon: <55%, Norma: 55–80%, Yaxshi: >80%' },
+  'Плохо: <50%, Норма: 50–75%, Хорошо: >75%': { en: 'Bad: <50%, Norm: 50–75%, Good: >75%', uz: 'Yomon: <50%, Norma: 50–75%, Yaxshi: >75%' },
+  'Плохо: <40%, Норма: 40–70%, Хорошо: >70%': { en: 'Bad: <40%, Norm: 40–70%, Good: >70%', uz: 'Yomon: <40%, Norma: 40–70%, Yaxshi: >70%' },
+  'Плохо: <60%, Норма: 60–80%, Хорошо: >80%': { en: 'Bad: <60%, Norm: 60–80%, Good: >80%', uz: 'Yomon: <60%, Norma: 60–80%, Yaxshi: >80%' },
+  'Плохо: <65%, Норма: 65–82%, Хорошо: >82%': { en: 'Bad: <65%, Norm: 65–82%, Good: >82%', uz: 'Yomon: <65%, Norma: 65–82%, Yaxshi: >82%' },
+  'Плохо: <55%, Норма: 55–75%, Хорошо: >75%': { en: 'Bad: <55%, Norm: 55–75%, Good: >75%', uz: 'Yomon: <55%, Norma: 55–75%, Yaxshi: >75%' },
+  'Плохо: <60%, Норма: 60–78%, Хорошо: >78%': { en: 'Bad: <60%, Norm: 60–78%, Good: >78%', uz: 'Yomon: <60%, Norma: 60–78%, Yaxshi: >78%' },
+  'Плохо: <50%, Норма: 50–72%, Хорошо: >72%': { en: 'Bad: <50%, Norm: 50–72%, Good: >72%', uz: 'Yomon: <50%, Norma: 50–72%, Yaxshi: >72%' },
+  'Плохо: <90%, Норма: 90–98%, Хорошо: >98%': { en: 'Bad: <90%, Norm: 90–98%, Good: >98%', uz: 'Yomon: <90%, Norma: 90–98%, Yaxshi: >98%' },
+  'Плохо: <95%, Норма: 95–99%, Хорошо: >99% (Enterprise: 99.9%)': { en: 'Bad: <95%, Norm: 95–99%, Good: >99% (Enterprise: 99.9%)', uz: 'Yomon: <95%, Norma: 95–99%, Yaxshi: >99% (Enterprise: 99.9%)' },
+  'Плохо: <92%, Норма: 92–98%, Хорошо: >98%': { en: 'Bad: <92%, Norm: 92–98%, Good: >98%', uz: 'Yomon: <92%, Norma: 92–98%, Yaxshi: >98%' },
+  'Плохо: <90%, Норма: 90–97%, Хорошо: >97%': { en: 'Bad: <90%, Norm: 90–97%, Good: >97%', uz: 'Yomon: <90%, Norma: 90–97%, Yaxshi: >97%' },
+  'Плохо: <88%, Норма: 88–96%, Хорошо: >96%': { en: 'Bad: <88%, Norm: 88–96%, Good: >96%', uz: 'Yomon: <88%, Norma: 88–96%, Yaxshi: >96%' },
+
+  // Burn Multiple
+  'Отлично: <1, Хорошо: 1–1.5, Норма: 1.5–2, Плохо: >2': { en: 'Excellent: <1, Good: 1–1.5, Norm: 1.5–2, Bad: >2', uz: 'Ajoyib: <1, Yaxshi: 1–1.5, Norma: 1.5–2, Yomon: >2' },
+  'Отлично: <1 (top decile), Хорошо: 1–1.5, Норма: 1.5–2.5, Плохо: >2.5': { en: 'Excellent: <1 (top decile), Good: 1–1.5, Norm: 1.5–2.5, Bad: >2.5', uz: 'Ajoyib: <1 (top decile), Yaxshi: 1–1.5, Norma: 1.5–2.5, Yomon: >2.5' },
+  'Отлично: <1.5, Норма: 1.5–2.5, Плохо: >2.5': { en: 'Excellent: <1.5, Norm: 1.5–2.5, Bad: >2.5', uz: 'Ajoyib: <1.5, Norma: 1.5–2.5, Yomon: >2.5' },
+  'Отлично: <1.2, Норма: 1.2–2, Плохо: >2': { en: 'Excellent: <1.2, Norm: 1.2–2, Bad: >2', uz: 'Ajoyib: <1.2, Norma: 1.2–2, Yomon: >2' },
+  'Отлично: <1.5, Норма: 1.5–3, Плохо: >3': { en: 'Excellent: <1.5, Norm: 1.5–3, Bad: >3', uz: 'Ajoyib: <1.5, Norma: 1.5–3, Yomon: >3' },
+
+  // Magic Number
+  'Плохо: <0.5, Норма: 0.5–1, Хорошо: 1–1.5, Отлично: >1.5': { en: 'Bad: <0.5, Norm: 0.5–1, Good: 1–1.5, Excellent: >1.5', uz: 'Yomon: <0.5, Norma: 0.5–1, Yaxshi: 1–1.5, Ajoyib: >1.5' },
+  'Плохо: <0.5, Норма: 0.5–0.75, Хорошо: 0.75–1, Отлично: >1': { en: 'Bad: <0.5, Norm: 0.5–0.75, Good: 0.75–1, Excellent: >1', uz: 'Yomon: <0.5, Norma: 0.5–0.75, Yaxshi: 0.75–1, Ajoyib: >1' },
+  'Плохо: <0.7, Норма: 0.7–1.2, Хорошо: >1.2': { en: 'Bad: <0.7, Norm: 0.7–1.2, Good: >1.2', uz: 'Yomon: <0.7, Norma: 0.7–1.2, Yaxshi: >1.2' },
+  'Плохо: <0.6, Норма: 0.6–1, Хорошо: >1': { en: 'Bad: <0.6, Norm: 0.6–1, Good: >1', uz: 'Yomon: <0.6, Norma: 0.6–1, Yaxshi: >1' },
+  'Плохо: <0.4, Норма: 0.4–0.8, Хорошо: >0.8': { en: 'Bad: <0.4, Norm: 0.4–0.8, Good: >0.8', uz: 'Yomon: <0.4, Norma: 0.4–0.8, Yaxshi: >0.8' },
+
+  // Rule of 40
+  'Плохо: <20%, Норма: 20–40%, Хорошо: ≥40%, Отлично: >60%': { en: 'Bad: <20%, Norm: 20–40%, Good: ≥40%, Excellent: >60%', uz: 'Yomon: <20%, Norma: 20–40%, Yaxshi: ≥40%, Ajoyib: >60%' },
+  'Плохо: <30%, Норма: 30–40%, Хорошо: 40–60%, Отлично: >60%': { en: 'Bad: <30%, Norm: 30–40%, Good: 40–60%, Excellent: >60%', uz: 'Yomon: <30%, Norma: 30–40%, Yaxshi: 40–60%, Ajoyib: >60%' },
+  'Плохо: <15%, Норма: 15–30%, Хорошо: >30%': { en: 'Bad: <15%, Norm: 15–30%, Good: >30%', uz: 'Yomon: <15%, Norma: 15–30%, Yaxshi: >30%' },
+  'Плохо: <20%, Норма: 20–35%, Хорошо: >35%': { en: 'Bad: <20%, Norm: 20–35%, Good: >35%', uz: 'Yomon: <20%, Norma: 20–35%, Yaxshi: >35%' },
+  'Плохо: <10%, Норма: 10–25%, Хорошо: >25%': { en: 'Bad: <10%, Norm: 10–25%, Good: >25%', uz: 'Yomon: <10%, Norma: 10–25%, Yaxshi: >25%' },
+
+  // Quick Ratio
+  'Плохо: <1, Норма: 1–2, Хорошо: 2–4, Отлично: >4': { en: 'Bad: <1, Norm: 1–2, Good: 2–4, Excellent: >4', uz: 'Yomon: <1, Norma: 1–2, Yaxshi: 2–4, Ajoyib: >4' },
+  'Плохо: <2, Норма: 2–4, Хорошо: 4–6, Отлично: >6 (Bessemer benchmark)': { en: 'Bad: <2, Norm: 2–4, Good: 4–6, Excellent: >6 (Bessemer benchmark)', uz: 'Yomon: <2, Norma: 2–4, Yaxshi: 4–6, Ajoyib: >6 (Bessemer benchmark)' },
+  'Плохо: <1.5, Норма: 1.5–3, Хорошо: >3': { en: 'Bad: <1.5, Norm: 1.5–3, Good: >3', uz: 'Yomon: <1.5, Norma: 1.5–3, Yaxshi: >3' },
+  'Плохо: <2, Норма: 2–4, Хорошо: >4': { en: 'Bad: <2, Norm: 2–4, Good: >4', uz: 'Yomon: <2, Norma: 2–4, Yaxshi: >4' },
+
+  // Finance new metrics
+  'Низко: <40%, Норма: 40–70%, Хорошо: 70–80%, Отлично: >80%': { en: 'Low: <40%, Norm: 40–70%, Good: 70–80%, Excellent: >80%', uz: 'Past: <40%, Norma: 40–70%, Yaxshi: 70–80%, Ajoyib: >80%' },
+  'Плохо: <60%, Норма: 60–75%, Хорошо: 75–85%, Отлично: >85%': { en: 'Bad: <60%, Norm: 60–75%, Good: 75–85%, Excellent: >85%', uz: 'Yomon: <60%, Norma: 60–75%, Yaxshi: 75–85%, Ajoyib: >85%' },
+  'Плохо: <30%, Норма: 30–45%, Хорошо: >45%': { en: 'Bad: <30%, Norm: 30–45%, Good: >45%', uz: 'Yomon: <30%, Norma: 30–45%, Yaxshi: >45%' },
+  'Плохо: <50%, Норма: 50–70%, Хорошо: >70%': { en: 'Bad: <50%, Norm: 50–70%, Good: >70%', uz: 'Yomon: <50%, Norma: 50–70%, Yaxshi: >70%' },
+  'Плохо: <40%, Норма: 40–60%, Хорошо: >60%': { en: 'Bad: <40%, Norm: 40–60%, Good: >60%', uz: 'Yomon: <40%, Norma: 40–60%, Yaxshi: >60%' },
+
+  'Критично: <6 мес, Рисковано: 6–12, Норма: 12–18, Хорошо: >18': { en: 'Critical: <6 mo, Risky: 6–12, Norm: 12–18, Good: >18', uz: 'Kritik: <6 oy, Xavfli: 6–12, Norma: 12–18, Yaxshi: >18' },
+  'Pre-seed/seed: 18–24 мес — норма; Series A+: >18 мес': { en: 'Pre-seed/seed: 18–24 mo — norm; Series A+: >18 mo', uz: 'Pre-seed/seed: 18–24 oy — norma; Series A+: >18 oy' },
+  'Зависит от сезонности; >12 мес страховка': { en: 'Depends on seasonality; >12 mo as buffer', uz: 'Mavsumiylikka bog‘liq; >12 oy zaxira' },
+  'Норма для F2P: >12 мес (long monetization curve)': { en: 'Norm for F2P: >12 mo (long monetization curve)', uz: 'F2P uchun norma: >12 oy (uzun monetizatsiya egri chizig‘i)' },
+  'Норма: >12 мес (медленная монетизация контента)': { en: 'Norm: >12 mo (slow content monetization)', uz: 'Norma: >12 oy (sekin kontent monetizatsiyasi)' },
+
+  'Контекст: соотношение с Runway и Net New ARR (см. Burn Multiple)': { en: 'Context: ratio to Runway and Net New ARR (see Burn Multiple)', uz: 'Kontekst: Runway va Net New ARR ga nisbat (Burn Multiple ni qarang)' },
+
+  'Главное — рост MoM/QoQ, не абсолютное число': { en: 'Main thing — MoM/QoQ growth, not the absolute number', uz: 'Asosiy narsa — MoM/QoQ o‘sish, absolyut son emas' },
+  'Цель: рост ≥ 20% QoQ. Ускорители: ACV ↑, win rate ↑, цикл ↓': { en: 'Target: growth ≥ 20% QoQ. Accelerators: ACV ↑, win rate ↑, cycle ↓', uz: 'Maqsad: o‘sish ≥ 20% QoQ. Tezlatgichlar: ACV ↑, win rate ↑, tsikl ↓' },
+  'Применимо для enterprise B2B-направления e-com': { en: 'Applies to enterprise B2B segment of e-com', uz: 'E-com ning enterprise B2B yo‘nalishi uchun qo‘llaniladi' },
+  'Применимо для B2B mobile-инструментов': { en: 'Applies to B2B mobile tools', uz: 'B2B mobil vositalari uchun qo‘llaniladi' },
+  'Применимо для ad sales команд': { en: 'Applies to ad sales teams', uz: 'Ad sales jamoalari uchun qo‘llaniladi' },
+
+  // Win Rate
+  'Плохо: <15%, Норма: 15–25%, Хорошо: 25–35%, Отлично: >35%': { en: 'Bad: <15%, Norm: 15–25%, Good: 25–35%, Excellent: >35%', uz: 'Yomon: <15%, Norma: 15–25%, Yaxshi: 25–35%, Ajoyib: >35%' },
+  'B2B SaaS норма: 20–25%, SMB sales 25–35%, mid-market 18–28%': { en: 'B2B SaaS norm: 20–25%, SMB sales 25–35%, mid-market 18–28%', uz: 'B2B SaaS norma: 20–25%, SMB sotuvi 25–35%, mid-market 18–28%' },
+  'Конверсия в покупку: 1–4% (не B2B win rate)': { en: 'Purchase conversion: 1–4% (not B2B win rate)', uz: 'Xaridga konversiya: 1–4% (B2B win rate emas)' },
+  'B2B mobile sales: 18–30%': { en: 'B2B mobile sales: 18–30%', uz: 'B2B mobil sotuvi: 18–30%' },
+  'Ad sales: 20–35%': { en: 'Ad sales: 20–35%', uz: 'Ad sales: 20–35%' },
+
+  // Pipeline Coverage
+  'Плохо: <2x, Норма: 2–3x, Хорошо: 3–4x, Отлично: >4x': { en: 'Bad: <2x, Norm: 2–3x, Good: 3–4x, Excellent: >4x', uz: 'Yomon: <2x, Norma: 2–3x, Yaxshi: 3–4x, Ajoyib: >4x' },
+  'B2B SaaS: 3–4× от quota — стандарт; new logo sales: 4–6×': { en: 'B2B SaaS: 3–4× of quota — standard; new logo sales: 4–6×', uz: 'B2B SaaS: kvotaning 3–4× — standart; new logo sales: 4–6×' },
+  'B2B-направление: 3× от плана': { en: 'B2B segment: 3× of plan', uz: 'B2B yo‘nalish: rejaning 3×' },
+  '3–4×': { en: '3–4×', uz: '3–4×' },
+  '3–4× от целей по ad-revenue': { en: '3–4× of ad-revenue targets', uz: 'ad-revenue maqsadlarining 3–4×' },
+
+  // Time to Value
+  'Мгновенно: <1 день, Быстро: 1–7, Норма: 7–30, Медленно: >30': { en: 'Instant: <1 day, Fast: 1–7, Norm: 7–30, Slow: >30', uz: 'Lahzali: <1 kun, Tez: 1–7, Norma: 7–30, Sekin: >30' },
+  'PLG: <1 день, B2B sales-led: 1–14, Enterprise: 14–90 (с onboarding)': { en: 'PLG: <1 day, B2B sales-led: 1–14, Enterprise: 14–90 (with onboarding)', uz: 'PLG: <1 kun, B2B sales-led: 1–14, Enterprise: 14–90 (onboarding bilan)' },
+  'Мгновенно после первой покупки. Days to first repeat: 14–30': { en: 'Instant after first purchase. Days to first repeat: 14–30', uz: 'Birinchi xariddan keyin lahzali. Birinchi takror xaridgacha: 14–30 kun' },
+  'Должно быть <1 день — иначе D1 retention упадёт': { en: 'Should be <1 day — otherwise D1 retention will drop', uz: '<1 kun bo‘lishi kerak — aks holda D1 retention tushadi' },
+  'Мгновенно при первой релевантной статье': { en: 'Instant on the first relevant article', uz: 'Birinchi tegishli maqolada lahzali' },
+
+  // ARPDAU
+  'Менее релевантно — используйте ARPU/MRR per customer': { en: 'Less relevant — use ARPU/MRR per customer', uz: 'Kamroq tegishli — ARPU/MRR per customer dan foydalaning' },
+  'Менее релевантно — используйте AOV и repeat rate': { en: 'Less relevant — use AOV and repeat rate', uz: 'Kamroq tegishli — AOV va repeat rate dan foydalaning' },
+  'F2P top tier: $0.30–$1, mid: $0.10–$0.30, низко: <$0.05': { en: 'F2P top tier: $0.30–$1, mid: $0.10–$0.30, low: <$0.05', uz: 'F2P top tier: $0.30–$1, o‘rta: $0.10–$0.30, past: <$0.05' },
+  'Подписка: $0.10–$0.50, реклама: $0.02–$0.20': { en: 'Subscription: $0.10–$0.50, ads: $0.02–$0.20', uz: 'Obuna: $0.10–$0.50, reklama: $0.02–$0.20' }
+};
+
+window._tThresh = function(ruText) {
+  if (!ruText) return ruText;
+  if (!window._currentLang || window._currentLang() === 'ru') return ruText;
+  const entry = window.I18N_THRESH[ruText];
+  if (!entry) return ruText;
+  return entry[window._currentLang()] || ruText;
+};
+
+// ============================================================
+// I18N_GOAL — translation lookup for Goal mode strings
+// (ask, hint, solveFor.label, fixed[].label) keyed by exact RU.
+// ============================================================
+window.I18N_GOAL = {
+  // === LTV:CAC ===
+  'При LTV и целевом LTV:CAC ratio — какой максимум CAC?': { en: 'Given LTV and target LTV:CAC ratio — what is the maximum CAC?', uz: 'LTV va maqsadli LTV:CAC nisbati bo‘yicha — maksimal CAC qancha?' },
+  'При CAC и целевом ratio — какой нужен LTV?': { en: 'Given CAC and target ratio — what LTV do you need?', uz: 'CAC va maqsadli nisbat bo‘yicha — qanday LTV kerak?' },
+  'Если CAC будет ниже этого значения — соотношение LTV:CAC выше целевого.': { en: 'If CAC is below this value — the LTV:CAC ratio exceeds the target.', uz: 'Agar CAC bu qiymatdan past bo‘lsa — LTV:CAC nisbati maqsaddan yuqori.' },
+  'Чтобы достичь целевого ratio, нужен LTV не меньше этого.': { en: 'To hit the target ratio, you need LTV at least this much.', uz: 'Maqsadli nisbatga erishish uchun LTV kamida shu qadar bo‘lishi kerak.' },
+  'Максимум CAC': { en: 'Maximum CAC', uz: 'Maksimal CAC' },
+  'Минимум LTV': { en: 'Minimum LTV', uz: 'Minimal LTV' },
+  'LTV': { en: 'LTV', uz: 'LTV' },
+  'CAC': { en: 'CAC', uz: 'CAC' },
+  'Целевой LTV:CAC': { en: 'Target LTV:CAC', uz: 'Maqsadli LTV:CAC' },
+
+  // === CAC Payback ===
+  'При CAC, MRR на клиента и целевом payback — какая нужна маржа?': { en: 'Given CAC, MRR per customer, and target payback — what margin is needed?', uz: 'CAC, mijoz boshiga MRR va maqsadli payback bo‘yicha — qanday marja kerak?' },
+  'При MRR на клиента, марже и целевом payback — какой максимум CAC?': { en: 'Given MRR per customer, margin, and target payback — what is the maximum CAC?', uz: 'Mijoz boshiga MRR, marja va maqsadli payback bo‘yicha — maksimal CAC qancha?' },
+  'При меньшей марже окупаемость превысит целевую.': { en: 'With a lower margin, payback will exceed the target.', uz: 'Past marja bilan payback maqsaddan oshib ketadi.' },
+  'CAC ниже — payback укладывается в целевой.': { en: 'Lower CAC — payback fits within the target.', uz: 'Past CAC — payback maqsadga sig‘adi.' },
+  'Минимум маржи': { en: 'Minimum margin', uz: 'Minimal marja' },
+  'MRR на клиента': { en: 'MRR per customer', uz: 'Mijoz boshiga MRR' },
+  'Целевой payback': { en: 'Target payback', uz: 'Maqsadli payback' },
+  'Маржа': { en: 'Margin', uz: 'Marja' },
+
+  // === Burn Multiple ===
+  'При Net Burn и целевом Burn Multiple — какой нужен Net New ARR?': { en: 'Given Net Burn and target Burn Multiple — what Net New ARR is required?', uz: 'Net Burn va maqsadli Burn Multiple bo‘yicha — qanday Net New ARR kerak?' },
+  'При Net New ARR и целевом Burn Multiple — какой максимум Net Burn?': { en: 'Given Net New ARR and target Burn Multiple — what is the maximum Net Burn?', uz: 'Net New ARR va maqsadli Burn Multiple bo‘yicha — maksimal Net Burn qancha?' },
+  'При большем приросте ARR — Burn Multiple ниже целевого.': { en: 'Higher ARR growth — Burn Multiple stays below target.', uz: 'Kattaroq ARR o‘sishi — Burn Multiple maqsaddan past.' },
+  'Сжигаем больше — превышаем целевой Burn Multiple.': { en: 'Burn more — exceed the target Burn Multiple.', uz: 'Ko‘proq sarflaymiz — maqsadli Burn Multiple dan oshamiz.' },
+  'Минимум Net New ARR': { en: 'Minimum Net New ARR', uz: 'Minimal Net New ARR' },
+  'Максимум Net Burn': { en: 'Maximum Net Burn', uz: 'Maksimal Net Burn' },
+  'Net Burn': { en: 'Net Burn', uz: 'Net Burn' },
+  'Net New ARR': { en: 'Net New ARR', uz: 'Net New ARR' },
+  'Целевой Burn Multiple': { en: 'Target Burn Multiple', uz: 'Maqsadli Burn Multiple' },
+
+  // === Rule of 40 ===
+  'При марже EBITDA и целевом Rule of 40 — какой нужен рост?': { en: 'Given EBITDA margin and target Rule of 40 — what growth is needed?', uz: 'EBITDA marja va maqsadli Rule of 40 bo‘yicha — qanday o‘sish kerak?' },
+  'При росте YoY и целевом Rule of 40 — какая нужна маржа?': { en: 'Given YoY growth and target Rule of 40 — what margin is needed?', uz: 'YoY o‘sish va maqsadli Rule of 40 bo‘yicha — qanday marja kerak?' },
+  'При меньшем росте сумма не достигнет цели.': { en: 'With lower growth, the sum will not hit the target.', uz: 'Past o‘sish bilan yig‘indi maqsadga yetmaydi.' },
+  'При меньшей марже сумма не достигнет цели.': { en: 'With lower margin, the sum will not hit the target.', uz: 'Past marja bilan yig‘indi maqsadga yetmaydi.' },
+  'Минимум роста YoY': { en: 'Minimum YoY growth', uz: 'Minimal YoY o‘sish' },
+  'Минимум маржи EBITDA': { en: 'Minimum EBITDA margin', uz: 'Minimal EBITDA marja' },
+  'Маржа EBITDA': { en: 'EBITDA margin', uz: 'EBITDA marja' },
+  'Целевой Rule of 40': { en: 'Target Rule of 40', uz: 'Maqsadli Rule of 40' },
+  'Рост YoY': { en: 'YoY growth', uz: 'YoY o‘sish' },
+
+  // === ROAS ===
+  'При затратах на рекламу и целевом ROAS — какая нужна выручка?': { en: 'Given ad spend and target ROAS — what revenue is needed?', uz: 'Reklama xarajati va maqsadli ROAS bo‘yicha — qanday tushum kerak?' },
+  'При выручке и целевом ROAS — какой максимум затрат?': { en: 'Given revenue and target ROAS — what is the maximum spend?', uz: 'Tushum va maqsadli ROAS bo‘yicha — maksimal xarajat qancha?' },
+  'Это минимум, чтобы кампания дала целевой ROAS.': { en: 'This is the minimum for the campaign to hit target ROAS.', uz: 'Kampaniya maqsadli ROAS ni berishi uchun bu minimum.' },
+  'Тратим больше — ROAS ниже целевого.': { en: 'Spend more — ROAS drops below target.', uz: 'Ko‘proq sarflaymiz — ROAS maqsaddan past.' },
+  'Минимум выручки': { en: 'Minimum revenue', uz: 'Minimal tushum' },
+  'Максимум затрат': { en: 'Maximum spend', uz: 'Maksimal xarajat' },
+  'Затраты на рекламу': { en: 'Ad spend', uz: 'Reklama xarajati' },
+  'Выручка от рекламы': { en: 'Ad revenue', uz: 'Reklamadan tushum' },
+  'Целевой ROAS': { en: 'Target ROAS', uz: 'Maqsadli ROAS' },
+
+  // === CR ===
+  'При посетителях и целевом CR — сколько нужно конверсий?': { en: 'Given visitors and target CR — how many conversions are needed?', uz: 'Tashrif buyuruvchilar va maqsadli CR bo‘yicha — qancha konversiya kerak?' },
+  'При конверсиях и целевом CR — сколько нужно посетителей (максимум)?': { en: 'Given conversions and target CR — how many visitors (maximum)?', uz: 'Konversiyalar va maqsadli CR bo‘yicha — qancha tashrif buyuruvchi (maksimum)?' },
+  'Целое число ≥ этого даст требуемый CR.': { en: 'An integer ≥ this gives the required CR.', uz: 'Bu yoki katta butun son kerakli CR ni beradi.' },
+  'Большее число посетителей — CR ниже целевого.': { en: 'More visitors — CR drops below target.', uz: 'Ko‘proq tashrif buyuruvchilar — CR maqsaddan past.' },
+  'Минимум конверсий': { en: 'Minimum conversions', uz: 'Minimal konversiyalar' },
+  'Максимум посетителей': { en: 'Maximum visitors', uz: 'Maksimal tashrif buyuruvchilar' },
+  'Посетители': { en: 'Visitors', uz: 'Tashrif buyuruvchilar' },
+  'Конверсии': { en: 'Conversions', uz: 'Konversiyalar' },
+  'Целевой CR': { en: 'Target CR', uz: 'Maqsadli CR' },
+
+  // === Churn ===
+  'При начальной базе и целевом Churn — сколько максимум допустимо потерять?': { en: 'Given starting base and target Churn — what is the maximum allowable loss?', uz: 'Boshlang‘ich baza va maqsadli Churn bo‘yicha — maksimal qancha yo‘qotish mumkin?' },
+  'Больше ушедших — Churn выше целевого.': { en: 'More leavers — Churn exceeds target.', uz: 'Ko‘proq ketganlar — Churn maqsaddan yuqori.' },
+  'Максимум ушедших': { en: 'Maximum churned', uz: 'Maksimal ketganlar' },
+  'База на начало периода': { en: 'Base at start of period', uz: 'Davr boshidagi baza' },
+  'Целевой Churn': { en: 'Target Churn', uz: 'Maqsadli Churn' },
+
+  // === NRR ===
+  'При начальном MRR, оттоке и целевом NRR — какой нужен апсел?': { en: 'Given starting MRR, churn, and target NRR — what upsell is needed?', uz: 'Boshlang‘ich MRR, churn va maqsadli NRR bo‘yicha — qanday apsel kerak?' },
+  'При меньших апселах NRR не достигнет цели.': { en: 'With lower upsells, NRR will not hit the target.', uz: 'Pastroq apsellar bilan NRR maqsadga yetmaydi.' },
+  'Минимум апселов': { en: 'Minimum upsells', uz: 'Minimal apsellar' },
+  'Начальный MRR': { en: 'Starting MRR', uz: 'Boshlang‘ich MRR' },
+  'Отток MRR': { en: 'Churn MRR', uz: 'Churn MRR' },
+  'Целевой NRR': { en: 'Target NRR', uz: 'Maqsadli NRR' },
+
+  // === Runway ===
+  'При целевом runway и текущем сжигании — сколько нужно поднять / иметь кэша?': { en: 'Given target runway and current burn — how much cash to raise / have?', uz: 'Maqsadli runway va joriy burn bo‘yicha — qancha pul yig‘ish / bo‘lishi kerak?' },
+  'При кэше и целевом runway — какой максимум сжигания?': { en: 'Given cash and target runway — what is the maximum burn?', uz: 'Pul va maqsadli runway bo‘yicha — maksimal burn qancha?' },
+  'Чтобы получить нужный runway — поднимите столько в раунде.': { en: 'To get the desired runway — raise this much in the round.', uz: 'Kerakli runway uchun — raundda shu qadar yig‘ing.' },
+  'Если сжигание выше — runway короче целевого. Режьте затраты.': { en: 'If burn is higher — runway is shorter than target. Cut costs.', uz: 'Agar burn yuqori bo‘lsa — runway maqsaddan qisqaroq. Xarajatlarni qisqartiring.' },
+  'Минимум кэша': { en: 'Minimum cash', uz: 'Minimal pul' },
+  'Максимум месячного сжигания': { en: 'Maximum monthly burn', uz: 'Maksimal oylik burn' },
+  'Кэш на счёте': { en: 'Cash on hand', uz: 'Mavjud pul' },
+  'Месячное сжигание': { en: 'Monthly burn', uz: 'Oylik burn' },
+  'Целевой runway': { en: 'Target runway', uz: 'Maqsadli runway' },
+
+  // === Gross Margin ===
+  'При выручке и целевой марже — какой максимум COGS?': { en: 'Given revenue and target margin — what is the maximum COGS?', uz: 'Tushum va maqsadli marja bo‘yicha — maksimal COGS qancha?' },
+  'COGS ниже этого — маржа выше целевой.': { en: 'COGS below this — margin exceeds target.', uz: 'Bu darajadan past COGS — marja maqsaddan yuqori.' },
+  'Максимум COGS': { en: 'Maximum COGS', uz: 'Maksimal COGS' },
+  'Выручка': { en: 'Revenue', uz: 'Tushum' },
+  'Целевая маржа': { en: 'Target margin', uz: 'Maqsadli marja' },
+
+  // === Sales Velocity ===
+  'При opps, ACV, win rate и целевой velocity — какой нужен цикл?': { en: 'Given opps, ACV, win rate, and target velocity — what cycle length is needed?', uz: 'Opps, ACV, win rate va maqsadli velocity bo‘yicha — qanday tsikl kerak?' },
+  'Цикл длиннее — velocity ниже цели. Ускоряйте процесс продажи.': { en: 'Longer cycle — velocity drops below target. Accelerate the sales process.', uz: 'Uzunroq tsikl — velocity maqsaddan past. Sotuv jarayonini tezlashtiring.' },
+  'Максимум длины цикла': { en: 'Maximum cycle length', uz: 'Maksimal tsikl uzunligi' },
+  'Активные opps': { en: 'Active opps', uz: 'Faol opps' },
+  'ACV': { en: 'ACV', uz: 'ACV' },
+  'Win Rate': { en: 'Win Rate', uz: 'Win Rate' },
+  'Целевая velocity': { en: 'Target velocity', uz: 'Maqsadli velocity' },
+
+  // === Win Rate ===
+  'При закрытых сделках и целевом win rate — сколько максимум lost?': { en: 'Given closed deals and target win rate — how many losses maximum?', uz: 'Yopilgan bitimlar va maqsadli win rate bo‘yicha — maksimum qancha yo‘qotish?' },
+  'Lost больше — win rate ниже целевого. Улучшайте qualification.': { en: 'More losses — win rate below target. Improve qualification.', uz: 'Ko‘proq yo‘qotish — win rate maqsaddan past. Qualification ni yaxshilang.' },
+  'Максимум lost': { en: 'Maximum lost', uz: 'Maksimal yo‘qotilgan' },
+  'Closed Won': { en: 'Closed Won', uz: 'Closed Won' },
+  'Целевой Win Rate': { en: 'Target Win Rate', uz: 'Maqsadli Win Rate' },
+
+  // === Pipeline Coverage ===
+  'При quota и целевом coverage — какой нужен pipeline?': { en: 'Given quota and target coverage — what pipeline is needed?', uz: 'Kvota va maqsadli coverage bo‘yicha — qanday pipeline kerak?' },
+  'Меньше pipeline — рискуете не закрыть план.': { en: 'Less pipeline — you risk missing the plan.', uz: 'Kamroq pipeline — rejani yopa olmaslik xavfi.' },
+  'Минимум pipeline': { en: 'Minimum pipeline', uz: 'Minimal pipeline' },
+  'Цель по выручке': { en: 'Revenue target', uz: 'Tushum bo‘yicha maqsad' },
+  'Целевое coverage': { en: 'Target coverage', uz: 'Maqsadli coverage' },
+
+  // === ARPDAU ===
+  'При DAU и целевом ARPDAU — какая нужна дневная выручка?': { en: 'Given DAU and target ARPDAU — what daily revenue is needed?', uz: 'DAU va maqsadli ARPDAU bo‘yicha — qanday kunlik tushum kerak?' },
+  'Меньше выручки — ARPDAU ниже целевого.': { en: 'Less revenue — ARPDAU below target.', uz: 'Kamroq tushum — ARPDAU maqsaddan past.' },
+  'Минимум дневной выручки': { en: 'Minimum daily revenue', uz: 'Minimal kunlik tushum' },
+  'DAU': { en: 'DAU', uz: 'DAU' },
+  'Целевой ARPDAU': { en: 'Target ARPDAU', uz: 'Maqsadli ARPDAU' }
+};
+
+window._tGoal = function(ruText) {
+  if (!ruText) return ruText;
+  if (!window._currentLang || window._currentLang() === 'ru') return ruText;
+  const entry = window.I18N_GOAL[ruText];
+  if (!entry) return ruText;
+  return entry[window._currentLang()] || ruText;
+};
+
+// ============================================================
+// I18N_TOOLTIP — input help text translations keyed by RU.
+// ============================================================
+window.I18N_TOOLTIP = {
+  // LTV
+  'Average Order Value: общая выручка / число заказов за тот же период. Не путать с ARPU.': { en: 'Average Order Value: total revenue / number of orders for the period. Not the same as ARPU.', uz: 'Average Order Value: davr boshiga umumiy tushum / buyurtmalar soni. ARPU bilan adashtirmang.' },
+  'Сколько раз в год средний клиент покупает. Для подписки = 12 (помесячно) или 1 (годовая).': { en: 'How many times a year an average customer purchases. Subscription = 12 (monthly) or 1 (annual).', uz: 'O‘rtacha mijoz yiliga necha marta sotib oladi. Obuna = 12 (oylik) yoki 1 (yillik).' },
+  'Если знаете annual churn: life ≈ 1 / churn. Для retention 80% — life ≈ 5 лет.': { en: 'If you know annual churn: life ≈ 1 / churn. For 80% retention — life ≈ 5 years.', uz: 'Yillik churn ni bilsangiz: umr ≈ 1 / churn. 80% retention uchun — umr ≈ 5 yil.' },
+
+  // CAC
+  'Полные расходы на привлечение: реклама + сейлы + контент + ЗП маркетинг-команды. Учитывайте всё, не только performance-бюджет.': { en: 'Full acquisition cost: ads + sales + content + marketing salaries. Count everything, not just performance budget.', uz: 'To‘liq jalb qilish xarajati: reklama + sotuv + kontent + marketing maoshlari. Hammasini hisobga oling, faqat performance byudjet emas.' },
+  'Только платящие клиенты, привлечённые за тот же период. Не путать с регистрациями/триалами.': { en: 'Only paying customers acquired in the same period. Not signups or trials.', uz: 'Faqat shu davrda jalb qilingan to‘lovchi mijozlar. Ro‘yxatdan o‘tgan/trial bilan adashtirmang.' },
+
+  // Churn
+  'Customer churn (отписались / отменили). Не путать с revenue churn — это считается через GRR.': { en: 'Customer churn (unsubscribed / cancelled). Not revenue churn — that is computed via GRR.', uz: 'Mijoz churn (obunadan chiqqan / bekor qilgan). Revenue churn bilan adashtirmang — u GRR orqali hisoblanadi.' },
+  'Размер базы активных подписчиков на первый день периода. Новые приходящие в течение периода не учитываются.': { en: 'Size of the active subscriber base on day one of the period. New signups during the period are not counted.', uz: 'Davrning birinchi kunidagi faol obunachilar bazasi hajmi. Davr ichidagi yangi obunachilar hisoblanmaydi.' },
+
+  // NRR
+  'MRR от существующих клиентов на первый день периода (без новых).': { en: 'MRR from existing customers on day one of the period (excluding new).', uz: 'Davrning birinchi kunidagi mavjud mijozlardan MRR (yangilarisiz).' },
+  'Expansion MRR: апгрейды тарифов + увеличение seats + дополнительные продукты у уже существующей базы.': { en: 'Expansion MRR: plan upgrades + seat additions + extra products from existing base.', uz: 'Expansion MRR: tarif apgreydlari + seat qo‘shilishi + mavjud bazadan qo‘shimcha mahsulotlar.' },
+  'Gross MRR Churn: ушедшие клиенты + даунгрейды (contraction). Только потери в когорте существующих.': { en: 'Gross MRR Churn: departed customers + downgrades (contraction). Only losses in the existing cohort.', uz: 'Gross MRR Churn: ketgan mijozlar + downgrade (qisqarish). Faqat mavjud kogortadagi yo‘qotishlar.' },
+
+  // MRR
+  'Нормализованная месячная выручка. Годовые контракты делятся на 12. Не включает one-time / setup fees.': { en: 'Normalized monthly revenue. Annual contracts are divided by 12. Excludes one-time / setup fees.', uz: 'Normalashtirilgan oylik tushum. Yillik shartnomalar 12 ga bo‘linadi. One-time / setup to‘lovlarisiz.' },
+
+  // Burn Multiple
+  'Чистое сжигание = Operating cash burn − все Non-operating inflows. Обычно считают за квартал.': { en: 'Net burn = Operating cash burn − all non-operating inflows. Usually computed quarterly.', uz: 'Net burn = Operating cash burn − barcha non-operating tushumlar. Odatda choraklik hisoblanadi.' },
+  'Чистое сжигание за период = Все денежные траты − Все денежные поступления. Если cash-positive — введите отрицательное число.': { en: 'Net burn for the period = all cash spend − all cash inflows. If cash-positive, enter a negative number.', uz: 'Davr uchun net burn = barcha pul xarajati − barcha pul tushumi. Cash-positive bo‘lsa, manfiy son kiriting.' },
+  'Net New ARR = Конечный ARR − Начальный ARR. Включает new + expansion − churn − contraction.': { en: 'Net New ARR = Ending ARR − Starting ARR. Includes new + expansion − churn − contraction.', uz: 'Net New ARR = Yakuniy ARR − Boshlang‘ich ARR. New + expansion − churn − contraction ni o‘z ichiga oladi.' },
+  'Прирост ARR за период: Конечный − Начальный ARR. Включает new + expansion, минус churn и contraction.': { en: 'ARR growth for the period: Ending − Starting ARR. Includes new + expansion, minus churn and contraction.', uz: 'Davr uchun ARR o‘sishi: Yakuniy − Boshlang‘ich ARR. New + expansion, minus churn va contraction.' },
+
+  // Magic Number
+  'Прирост ARR за конкретный квартал (×4 в формуле даёт annualized).': { en: 'ARR growth for a specific quarter (×4 in the formula yields annualized).', uz: 'Aniq chorak uchun ARR o‘sishi (formuladagi ×4 yillik qiymatni beradi).' },
+  'Полный S&M cost: payroll команды + платформы + реклама + комиссии. По P&L, не по cash.': { en: 'Full S&M cost: team payroll + tools + ads + commissions. Per P&L, not cash basis.', uz: 'To‘liq S&M xarajat: jamoa maoshi + platformalar + reklama + komissiyalar. P&L bo‘yicha, cash bo‘yicha emas.' },
+
+  // Rule of 40
+  'Год-к-году. Можно использовать как ARR growth, так и Revenue growth.': { en: 'Year-over-year. Either ARR growth or Revenue growth works.', uz: 'Yil-bo‘yicha-yil. ARR growth yoki Revenue growth ishlatish mumkin.' },
+  'EBITDA margin или FCF margin (свободный денежный поток / выручка). Может быть отрицательной.': { en: 'EBITDA margin or FCF margin (free cash flow / revenue). May be negative.', uz: 'EBITDA marja yoki FCF marja (erkin pul oqimi / tushum). Salbiy bo‘lishi mumkin.' },
+
+  // Quick Ratio
+  'MRR от новых платящих клиентов за период.': { en: 'MRR from new paying customers in the period.', uz: 'Davr uchun yangi to‘lovchi mijozlardan MRR.' },
+  'Прирост MRR от существующих: апгрейды плана, расширение seats, дополнительные продукты.': { en: 'MRR growth from existing: plan upgrades, seat expansions, extra products.', uz: 'Mavjud mijozlardan MRR o‘sishi: plan apgreydlari, seat kengayishi, qo‘shimcha mahsulotlar.' },
+  'MRR ушедших клиентов (полная потеря).': { en: 'MRR from departed customers (full loss).', uz: 'Ketgan mijozlardan MRR (to‘liq yo‘qotish).' },
+  'Сокращение MRR у оставшихся клиентов (даунгрейд тарифа, меньше seats).': { en: 'MRR contraction from retained customers (plan downgrade, fewer seats).', uz: 'Qolgan mijozlardan MRR qisqarishi (tarif downgrade, kamroq seat).' },
+
+  // NPS
+  'Готовы рекомендовать. Только 9 и 10 — даже 8 это «пассивные».': { en: 'Willing to recommend. Only 9 and 10 — even 8 counts as passive.', uz: 'Tavsiya qilishga tayyor. Faqat 9 va 10 — hatto 8 ham passiv hisoblanadi.' },
+  'Недовольные. Любая оценка 0–6 (даже 6 это негатив для NPS).': { en: 'Unhappy. Any score 0–6 (even 6 is negative for NPS).', uz: 'Norozi. Har qanday 0–6 ball (hatto 6 ham NPS uchun salbiy).' },
+  'Промоутеры + пассивные (7–8) + детракторы. Не путать с числом всех получивших опрос.': { en: 'Promoters + passives (7–8) + detractors. Not the count of all surveyed.', uz: 'Promouterlar + passivlar (7–8) + detraktorlar. So‘rov olganlarning umumiy soni bilan adashtirmang.' },
+
+  // ROAS
+  'Атрибутированная выручка от конкретной кампании / канала. Только то, что трекается обратно до рекламы.': { en: 'Attributed revenue from a specific campaign / channel. Only what tracks back to the ad.', uz: 'Aniq kampaniya / kanaldan atributlangan tushum. Faqat reklama orqali kuzatiladigan qism.' },
+  'Полные media spend: бюджеты + комиссии агентств + production. Не включает зарплаты команды.': { en: 'Full media spend: budgets + agency fees + production. Excludes team salaries.', uz: 'To‘liq media spend: byudjetlar + agentlik komissiyalari + production. Jamoa maoshlarisiz.' }
+};
+
+window._tTooltip = function(ruText) {
+  if (!ruText) return ruText;
+  if (!window._currentLang || window._currentLang() === 'ru') return ruText;
+  const entry = window.I18N_TOOLTIP[ruText];
+  if (!entry) return ruText;
+  return entry[window._currentLang()] || ruText;
+};
+
 (function() {
     const LS_KEY = 'metricsTree_v2';
     const LS_THEME = 'metricsTree_theme';
@@ -3682,12 +4331,14 @@ window.I18N_M = {
     // ---- ВСПОМОГАТЕЛЬНЫЕ ----
     function renderBenchmarks(thresholdStr) {
         if (!thresholdStr) return '';
-        return thresholdStr.split(',').map(s => s.trim()).filter(Boolean).map(part => {
+        // Translate the entire threshold string first, then split for styling.
+        const translated = window._tThresh ? window._tThresh(thresholdStr) : thresholdStr;
+        return translated.split(',').map(s => s.trim()).filter(Boolean).map(part => {
             const low = part.toLowerCase();
             let cls = 'bench-mid';
-            if (low.startsWith('плохо')) cls = 'bench-bad';
-            else if (low.startsWith('хорошо') || low.startsWith('отлично')) cls = 'bench-good';
-            const label = part.split(':')[0].trim();
+            // Match RU + EN + UZ keywords for color coding
+            if (low.startsWith('плохо') || low.startsWith('bad') || low.startsWith('yomon') || low.startsWith('критично') || low.startsWith('critical') || low.startsWith('kritik') || low.startsWith('низко') || low.startsWith('low') || low.startsWith('past')) cls = 'bench-bad';
+            else if (low.startsWith('хорошо') || low.startsWith('отлично') || low.startsWith('good') || low.startsWith('excellent') || low.startsWith('yaxshi') || low.startsWith('ajoyib')) cls = 'bench-good';
             return `<span class="bench ${cls}">${part}</span>`;
         }).join('');
     }
@@ -3789,7 +4440,7 @@ window.I18N_M = {
         if ((isFinite || numericResult === Infinity) && metric.insight) {
             const ins = metric.insight(numericResult);
             resultValue.style.color = ins.color;
-            insightMessage.textContent = ins.text;
+            insightMessage.textContent = window._tInsight ? window._tInsight(ins.text) : ins.text;
             insightMessage.style.borderLeftColor = ins.color;
             insightMessage.style.display = '';
         } else {
@@ -3908,7 +4559,7 @@ window.I18N_M = {
         let inputsHtml = '';
         metric.inputs.forEach(inp => {
             const tooltipHtml = inp.help
-                ? `<span class="tooltip-wrap"><button type="button" class="tooltip-icon" tabindex="0" aria-label="Подсказка к полю">i</button><span class="tooltip-bubble" role="tooltip">${escapeHtml(inp.help)}</span></span>`
+                ? `<span class="tooltip-wrap"><button type="button" class="tooltip-icon" tabindex="0" aria-label="Подсказка к полю">i</button><span class="tooltip-bubble" role="tooltip">${escapeHtml(window._tTooltip ? window._tTooltip(inp.help) : inp.help)}</span></span>`
                 : '';
             inputsHtml += `
                 <div class="input-group">
@@ -5215,7 +5866,7 @@ window.I18N_M = {
                             if (metric.insight) {
                                 const ins = metric.insight(num);
                                 color = ins.color;
-                                insightText = ins.text;
+                                insightText = window._tInsight ? window._tInsight(ins.text) : ins.text;
                             }
                             const unit = metric.unit ? ` ${localizeUnit(metric.unit)}` : '';
                             const displayVal = isInf ? '∞' : formatSmart(num);
@@ -5670,12 +6321,13 @@ window.I18N_M = {
         if (!metric) return;
         const questions = GOAL_QUESTIONS[metric.id];
         if (!questions || !questions.length) {
-            goalPanel.innerHTML = `<div class="goal-empty">Для этой метрики обратные расчёты пока не настроены.</div>`;
+            goalPanel.innerHTML = `<div class="goal-empty">${t('goal.empty', 'Для этой метрики обратные расчёты пока не настроены.')}</div>`;
             return;
         }
-        const optionsHtml = questions.map((q, i) => `<option value="${i}">${q.ask}</option>`).join('');
+        const _tg = window._tGoal || (s => s);
+        const optionsHtml = questions.map((q, i) => `<option value="${i}">${_tg(q.ask)}</option>`).join('');
         goalPanel.innerHTML = `
-            <div class="goal-title">🎯 Goal mode — обратный расчёт</div>
+            <div class="goal-title">${t('goal.title', '🎯 Goal mode — обратный расчёт')}</div>
             <select class="goal-question-select" id="goalSelect">${optionsHtml}</select>
             <div id="goalForm"></div>
         `;
@@ -5691,7 +6343,7 @@ window.I18N_M = {
                 if (mainEl && mainEl.value) prefill = mainEl.value;
                 return `
                     <div class="goal-input-row">
-                        <label for="goal-${f.key}">${f.label}${u ? ', ' + u : ''}</label>
+                        <label for="goal-${f.key}">${_tg(f.label)}${u ? ', ' + u : ''}</label>
                         <input type="text" id="goal-${f.key}" data-key="${f.key}" value="${prefill}" placeholder="${formatNum(f.placeholder)}" inputmode="decimal" autocomplete="off">
                     </div>`;
             }).join('');
@@ -5699,10 +6351,10 @@ window.I18N_M = {
             form.innerHTML = `
                 ${inputsHtml}
                 <div class="goal-result-row">
-                    <span class="goal-result-label">${q.solveFor.label}:</span>
+                    <span class="goal-result-label">${_tg(q.solveFor.label)}:</span>
                     <span class="goal-result-val" id="goalResult">—</span>
                     ${solveUnit ? `<span class="goal-result-label">${solveUnit}</span>` : ''}
-                    <span class="goal-result-hint" id="goalHint">${q.hint}</span>
+                    <span class="goal-result-hint" id="goalHint">${_tg(q.hint)}</span>
                 </div>`;
             const compute = () => {
                 const vals = {};
