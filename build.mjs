@@ -68,8 +68,8 @@ function buildHtml(template, id, meta) {
   const url = `${SITE}/${id}`;
   const title = meta.title + ' | MetricTree';
   const desc = meta.desc;
-  // Per-metric PNG via Edge Function — Telegram/Slack/iMessage all render PNG.
-  const ogImg = `${SITE}/api/og?m=${id}`;
+  // OG image — static SVG fallback (PNG via Edge Function planned for v3).
+  const ogImg = `${SITE}/og-image.svg`;
 
   let html = template;
 
@@ -85,9 +85,9 @@ function buildHtml(template, id, meta) {
   html = html.replace(/<meta property="og:title"[^>]*>/, `<meta property="og:title" content="${title}">`);
   // og:description
   html = html.replace(/<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${desc}">`);
-  // og:image — per-metric PNG via Edge Function (Telegram/Slack/iMessage friendly)
+  // og:image — static SVG fallback for now
   html = html.replace(/<meta property="og:image"[^>]*>/, `<meta property="og:image" content="${ogImg}">`);
-  html = html.replace(/<meta property="og:image:type"[^>]*>/, `<meta property="og:image:type" content="image/png">`);
+  html = html.replace(/<meta property="og:image:type"[^>]*>/, `<meta property="og:image:type" content="image/svg+xml">`);
   html = html.replace(/<meta name="twitter:image"[^>]*>/, `<meta name="twitter:image" content="${ogImg}">`);
   html = html.replace(/<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${title}">`);
   html = html.replace(/<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${desc}">`);
