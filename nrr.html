@@ -18,8 +18,8 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://metricstree.vercel.app/nrr">
     <meta property="og:site_name" content="MetricTree">
-    <meta property="og:image" content="https://metricstree.vercel.app/og-image.svg">
-    <meta property="og:image:type" content="image/svg+xml">
+    <meta property="og:image" content="https://metricstree.vercel.app/api/og?m=nrr">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="MetricTree — калькулятор продуктовых метрик: LTV, CAC, MRR, NPS, Churn">
@@ -27,7 +27,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="NRR калькулятор (Net Revenue Retention) — формула, нормы SaaS | MetricTree">
     <meta name="twitter:description" content="NRR = (Start + Upsell − Churn) / Start × 100%. Норма SaaS >100%, отлично >120%. Goal-режим.">
-    <meta name="twitter:image" content="https://metricstree.vercel.app/og-image.svg">
+    <meta name="twitter:image" content="https://metricstree.vercel.app/api/og?m=nrr">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -1270,6 +1270,11 @@
             background: var(--bg-input); padding: 1px 5px; border-radius: 3px;
             border: 1px solid var(--border);
         }
+        .menu-pro-badge {
+            margin-left: auto; font-size: 0.6rem; font-weight: 800;
+            background: linear-gradient(135deg, #2A6DF4 0%, #4CAF50 100%);
+            color: #fff; padding: 2px 6px; border-radius: 3px; letter-spacing: 0.05em;
+        }
 
         /* ===================== WHAT-IF PANEL ===================== */
         .whatif-btn {
@@ -1450,6 +1455,80 @@
         body.embed .embed-footer a { color: var(--accent); text-decoration: none; font-weight: 600; }
         body.embed .embed-footer a:hover { text-decoration: underline; }
         .embed-footer { display: none; }
+
+        /* ===================== PRICING MODAL ===================== */
+        .pricing-modal { max-width: 980px; max-height: 90vh; display: flex; flex-direction: column; }
+        .pricing-sub { font-size: 0.86rem; color: var(--text-2); line-height: 1.55; margin-bottom: 1.4rem; }
+        .pricing-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.85rem; margin-bottom: 1.2rem; }
+        @media (max-width: 880px) { .pricing-grid { grid-template-columns: 1fr; } }
+        .pricing-card {
+            background: var(--bg-input); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 1.1rem 1.05rem;
+            display: flex; flex-direction: column; position: relative;
+            transition: border-color var(--transition);
+        }
+        .pricing-card:hover { border-color: var(--accent); }
+        .pricing-card-pro {
+            border: 2px solid var(--accent);
+            background: linear-gradient(180deg, rgba(42,109,244,0.08) 0%, var(--bg-input) 100%);
+            box-shadow: 0 0 0 1px var(--accent-dim);
+        }
+        .pricing-badge {
+            position: absolute; top: -10px; right: 14px;
+            background: var(--accent); color: #fff;
+            padding: 3px 10px; border-radius: 999px;
+            font-size: 0.65rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+        }
+        .pricing-tier { font-size: 0.95rem; font-weight: 700; color: var(--text-1); margin-bottom: 0.4rem; }
+        .pricing-price { display: flex; align-items: baseline; gap: 0.3rem; margin-bottom: 0.2rem; }
+        .pricing-amount { font-size: 1.85rem; font-weight: 800; color: var(--text-1); font-family: 'JetBrains Mono','Menlo',monospace; }
+        .pricing-per { font-size: 0.8rem; color: var(--text-3); }
+        .pricing-discount { font-size: 0.7rem; color: var(--green); margin-bottom: 0.85rem; font-weight: 600; }
+        .pricing-feats { list-style: none; padding: 0; margin: 0 0 1rem; flex: 1; }
+        .pricing-feats li { font-size: 0.78rem; color: var(--text-2); margin-bottom: 0.42rem; line-height: 1.4; }
+        .pricing-feats li strong { color: var(--text-1); }
+        .pricing-cta {
+            background: var(--bg-card); color: var(--text-1);
+            border: 1px solid var(--border); border-radius: var(--radius-sm);
+            padding: 0.55rem 0.85rem; font-size: 0.82rem; font-weight: 600;
+            cursor: pointer; transition: all var(--transition);
+            margin-top: auto;
+        }
+        .pricing-cta:hover { background: var(--bg-hover); border-color: var(--accent); }
+        .pricing-cta.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+        .pricing-cta.primary:hover { filter: brightness(1.08); }
+        .pricing-cta.current { background: transparent; color: var(--text-3); border-color: var(--border); cursor: default; }
+
+        .waitlist-form {
+            margin-top: 0.5rem;
+            padding: 1rem 1.1rem;
+            background: var(--bg-input);
+            border: 1px solid var(--accent);
+            border-left-width: 3px;
+            border-radius: var(--radius-md);
+            animation: fadeIn 0.25s ease-out;
+        }
+        .waitlist-form h4 { font-size: 0.92rem; font-weight: 700; color: var(--text-1); margin: 0 0 0.4rem; }
+        .waitlist-sub { font-size: 0.75rem; color: var(--text-3); margin-bottom: 0.85rem; }
+        #waitlistFormEl { display: flex; gap: 0.45rem; flex-wrap: wrap; align-items: stretch; }
+        .waitlist-email, .waitlist-role {
+            flex: 1; min-width: 180px;
+            background: var(--bg-card); color: var(--text-1);
+            border: 1px solid var(--border-input); border-radius: var(--radius-sm);
+            padding: 0.55rem 0.7rem; font-size: 0.85rem; font-family: inherit;
+        }
+        .waitlist-email:focus, .waitlist-role:focus { border-color: var(--accent); outline: none; }
+        .waitlist-submit {
+            background: var(--accent); color: #fff; border: none;
+            padding: 0 1.1rem; border-radius: var(--radius-sm);
+            font-size: 0.82rem; font-weight: 600; cursor: pointer;
+            white-space: nowrap;
+        }
+        .waitlist-submit:hover { filter: brightness(1.08); }
+        .waitlist-success {
+            margin-top: 0.7rem;
+            color: var(--green); font-weight: 600; font-size: 0.85rem;
+        }
 
         /* ===================== ABOUT MODAL ===================== */
         .about-modal { max-width: 720px; max-height: 85vh; display: flex; flex-direction: column; }
@@ -1640,11 +1719,13 @@
                 </button>
                 <div class="more-menu-pop" id="moreMenuPop" role="menu">
                     <button id="csvExportBtn" role="menuitem" data-t="menu.csv">📄 Экспорт в CSV</button>
+                    <button id="pdfExportBtn" role="menuitem"><span data-t="menu.pdf">📑 PDF-отчёт</span><span class="menu-pro-badge">PRO</span></button>
                     <button id="snapshotMenuBtn" role="menuitem"><span data-t="menu.snapshot">💾 Сохранить снимок</span><kbd>Ctrl+S</kbd></button>
                     <button id="searchMenuBtn" role="menuitem"><span data-t="menu.search">🔍 Поиск метрики</span><kbd>/</kbd></button>
                     <button id="helpMenuBtn" role="menuitem"><span data-t="menu.help">❓ Справка и горячие клавиши</span><kbd>?</kbd></button>
                     <button id="embedMenuBtn" role="menuitem" data-t="menu.embed">🔗 Скопировать embed-код</button>
                     <button id="aboutMenuBtn" role="menuitem" data-t="menu.about">ℹ️ О продукте</button>
+                    <button id="pricingMenuBtn" role="menuitem" data-t="menu.pricing">💎 Pro / Team тарифы</button>
                     <button id="clearAllBtn" role="menuitem" style="color:var(--red)" data-t="menu.clear_all">🗑 Очистить все данные</button>
                 </div>
             </div>
@@ -2002,7 +2083,54 @@ window.I18N_UI = {
     'about.q_runway': 'What is Runway?',
     'about.a_runway': 'Runway = Cash / monthly net burn. How many months a company has left. < 6 critical, 12–18 normal.',
     'about.author': 'Created by <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank" rel="noopener">Rodion Latipov</a> — BizDev, Sales, Product, Troubleshooter, Advisor, Consultant.',
-    'about.no_signup': 'no signup, no personal data tracking'
+    'about.no_signup': 'no signup, no personal data tracking',
+    'menu.pricing': '💎 Pro / Team plans',
+    'menu.pdf': '📑 PDF report',
+    'pdf.coming_soon': 'PDF report is a Pro feature. Join the waitlist for early access.',
+    'pricing.title': '💎 MetricTree Plans',
+    'pricing.subtitle': 'The current calculator is free forever. Pro and Team are for teams and advanced scenarios. We are building a waitlist now — leave your email to get early access + 50% off the first year.',
+    'pricing.tier_free': 'Free',
+    'pricing.tier_pro': 'Pro',
+    'pricing.tier_team': 'Team',
+    'pricing.forever': 'forever',
+    'pricing.per_month': '/mo',
+    'pricing.per_month_5seats': '/mo for 5 seats',
+    'pricing.team_extra': '$8/mo for each extra seat',
+    'pricing.discount_year': 'or $79/year — save 27%',
+    'pricing.badge_popular': 'Most popular',
+    'pricing.current_plan': 'Current plan',
+    'pricing.cta_waitlist': 'Get -50% on launch →',
+    'pricing.cta_waitlist_team': 'Get -50% on launch →',
+    'pricing.f_47': '✓ All 47 metrics',
+    'pricing.f_goal': '✓ Goal mode (~32 reverse-calc)',
+    'pricing.f_whatif': '✓ What-if sliders',
+    'pricing.f_industry': '✓ Industry benchmarks (5 verticals)',
+    'pricing.f_3lang': '✓ 3 languages (RU / EN / UZ)',
+    'pricing.f_snaps': '✓ Up to 8 snapshots per metric (local)',
+    'pricing.f_csv': '✓ CSV export',
+    'pricing.f_embed': '✓ Embed mode (iframe)',
+    'pricing.f_clean_urls': '✓ Clean URLs for sharing',
+    'pricing.f_all_free': '✓ Everything in Free',
+    'pricing.f_account': '✓ Account + sync across devices',
+    'pricing.f_unlimited_snaps': '✓ Unlimited snapshots',
+    'pricing.f_pdf': '✓ <strong>PDF multi-metric reports</strong> (board / investor)',
+    'pricing.f_brand_embed': '✓ <strong>Custom-branded embed</strong> (your logo / color)',
+    'pricing.f_no_watermark': '✓ No MetricTree watermark in embed',
+    'pricing.f_api_1k': '✓ API 1,000 calls/mo',
+    'pricing.f_email_digest': '✓ Weekly email digest of your metrics',
+    'pricing.f_forecast': '✓ Forecast charts on What-If (6/12 mo)',
+    'pricing.f_all_pro': '✓ Everything in Pro',
+    'pricing.f_workspace': '✓ Shared team workspace',
+    'pricing.f_audit': '✓ Audit log',
+    'pricing.f_white_label': '✓ Full white-label embed',
+    'pricing.f_sso': '✓ SSO (Google Workspace / Okta)',
+    'pricing.f_api_10k': '✓ API 10,000 calls/mo',
+    'pricing.f_priority': '✓ Priority support',
+    'pricing.f_custom_metrics': '✓ Custom metrics',
+    'waitlist.title': '📬 Leave your email — we will notify you when Pro/Team launch',
+    'waitlist.sub': 'No spam. One email at release + a 50%-off promo code for the first year.',
+    'waitlist.submit': 'Subscribe to waitlist',
+    'waitlist.success': '✓ Thanks! Email will arrive 7 days before launch.'
   },
   uz: {
     'header.subtitle_role': 'BizDev, Sales, Product, Troubleshooter, Advisor, Consultant',
@@ -2143,7 +2271,54 @@ window.I18N_UI = {
     'about.q_runway': 'Runway nima?',
     'about.a_runway': 'Runway = Pul / oylik o‘rtacha sarf. Kompaniya qancha oy davomida ishlay olishi. < 6 — kritik, 12–18 — norma.',
     'about.author': 'Yaratuvchi: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank" rel="noopener">Rodion Latipov</a> — BizDev, Sales, Product, Troubleshooter, Advisor, Consultant.',
-    'about.no_signup': 'ro‘yxatdan o‘tishsiz, shaxsiy ma’lumotlarni kuzatishsiz'
+    'about.no_signup': 'ro‘yxatdan o‘tishsiz, shaxsiy ma’lumotlarni kuzatishsiz',
+    'menu.pricing': '💎 Pro / Team tariflar',
+    'menu.pdf': '📑 PDF-hisobot',
+    'pdf.coming_soon': 'PDF-hisobot — Pro xususiyat. Erta kirish uchun waitlist ga obuna bo\'ling.',
+    'pricing.title': '💎 MetricTree tariflari',
+    'pricing.subtitle': 'Joriy kalkulyator abadiy bepul. Pro va Team — jamoalar va ilg‘or stsenariylar uchun. Hozir waitlist yig‘moqdamiz — birinchi yilga -50% chegirma uchun email qoldiring.',
+    'pricing.tier_free': 'Free',
+    'pricing.tier_pro': 'Pro',
+    'pricing.tier_team': 'Team',
+    'pricing.forever': 'abadiy',
+    'pricing.per_month': '/oy',
+    'pricing.per_month_5seats': '/oy 5 ta seat uchun',
+    'pricing.team_extra': '$8/oy har bir qo‘shimcha seat',
+    'pricing.discount_year': 'yoki $79/yil — 27% tejash',
+    'pricing.badge_popular': 'Eng mashhur',
+    'pricing.current_plan': 'Joriy reja',
+    'pricing.cta_waitlist': 'Ishga tushganda -50% olish →',
+    'pricing.cta_waitlist_team': 'Ishga tushganda -50% olish →',
+    'pricing.f_47': '✓ Barcha 47 metrika',
+    'pricing.f_goal': '✓ Maqsad rejimi (~32 teskari hisob)',
+    'pricing.f_whatif': '✓ What-if sliderlari',
+    'pricing.f_industry': '✓ Soha bencharklari (5 vertikal)',
+    'pricing.f_3lang': '✓ 3 til (RU / EN / UZ)',
+    'pricing.f_snaps': '✓ Bir metrikaga 8 snapshotgacha (lokal)',
+    'pricing.f_csv': '✓ CSV eksport',
+    'pricing.f_embed': '✓ Embed rejimi (iframe)',
+    'pricing.f_clean_urls': '✓ Ulashish uchun toza URL\'lar',
+    'pricing.f_all_free': '✓ Free dagi hammasi',
+    'pricing.f_account': '✓ Akkaunt + qurilmalar orasida sync',
+    'pricing.f_unlimited_snaps': '✓ Cheksiz snapshotlar',
+    'pricing.f_pdf': '✓ <strong>PDF ko\'p-metrikali hisobotlar</strong> (board / investor)',
+    'pricing.f_brand_embed': '✓ <strong>Brendli embed</strong> (sizning logo/rang)',
+    'pricing.f_no_watermark': '✓ Embed da MetricTree watermark siz',
+    'pricing.f_api_1k': '✓ API 1,000 call/oy',
+    'pricing.f_email_digest': '✓ Sizning metrikalaringiz bo‘yicha haftalik email digest',
+    'pricing.f_forecast': '✓ What-If da forecast grafiklar (6/12 oy)',
+    'pricing.f_all_pro': '✓ Pro dagi hammasi',
+    'pricing.f_workspace': '✓ Jamoa uchun umumiy workspace',
+    'pricing.f_audit': '✓ Audit log',
+    'pricing.f_white_label': '✓ To\'liq white-label embed',
+    'pricing.f_sso': '✓ SSO (Google Workspace / Okta)',
+    'pricing.f_api_10k': '✓ API 10,000 call/oy',
+    'pricing.f_priority': '✓ Birinchi navbatdagi qo\'llab-quvvatlash',
+    'pricing.f_custom_metrics': '✓ Maxsus metrikalar',
+    'waitlist.title': '📬 Email qoldiring — Pro/Team ishga tushganda xabar beramiz',
+    'waitlist.sub': 'Spam yo\'q. Reliz oldidan bitta email + birinchi yilga -50% promokod.',
+    'waitlist.submit': 'Waitlist ga obuna bo\'lish',
+    'waitlist.success': '✓ Rahmat! Email reliz oldidan 7 kun avval keladi.'
   }
 };
 
@@ -4779,6 +4954,18 @@ window._tTooltip = function(ruText) {
             const ov = document.getElementById('aboutOverlay');
             if (ov) ov.classList.add('show');
         });
+        const pricingMenu = document.getElementById('pricingMenuBtn');
+        if (pricingMenu) pricingMenu.addEventListener('click', () => {
+            const ov = document.getElementById('pricingOverlay');
+            if (ov) ov.classList.add('show');
+        });
+        // PDF report — Pro feature, opens pricing modal as paywall
+        const pdfBtn = document.getElementById('pdfExportBtn');
+        if (pdfBtn) pdfBtn.addEventListener('click', () => {
+            const ov = document.getElementById('pricingOverlay');
+            if (ov) ov.classList.add('show');
+            showToast(window._t ? window._t('pdf.coming_soon', 'PDF-отчёт — Pro-фича. Подпишитесь на waitlist для раннего доступа.') : 'PDF — Pro feature, join waitlist', 'success');
+        });
         const embedMenu = document.getElementById('embedMenuBtn');
         if (embedMenu) embedMenu.addEventListener('click', () => {
             const m = currentMetricId || 'ltv';
@@ -6463,6 +6650,61 @@ window._tTooltip = function(ruText) {
         ov.addEventListener('click', e => { if (e.target === ov) ov.classList.remove('show'); });
         document.addEventListener('keydown', e => { if (e.key === 'Escape' && ov.classList.contains('show')) ov.classList.remove('show'); });
     })();
+
+    // Bind Pricing modal close/escape + waitlist form (Formspree)
+    (function bindPricing(){
+        const ov = document.getElementById('pricingOverlay');
+        const close = document.getElementById('pricingClose');
+        if (!ov || !close) return;
+        close.addEventListener('click', () => ov.classList.remove('show'));
+        ov.addEventListener('click', e => { if (e.target === ov) ov.classList.remove('show'); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && ov.classList.contains('show')) ov.classList.remove('show'); });
+
+        const proBtn = document.getElementById('proWaitlistBtn');
+        const teamBtn = document.getElementById('teamWaitlistBtn');
+        const form = document.getElementById('waitlistForm');
+        const tierField = document.getElementById('waitlistTier');
+        function showWaitlist(tier) {
+            if (tierField) tierField.value = tier;
+            if (form) {
+                form.style.display = 'block';
+                form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                const emailInput = form.querySelector('.waitlist-email');
+                if (emailInput) setTimeout(() => emailInput.focus(), 300);
+            }
+        }
+        if (proBtn) proBtn.addEventListener('click', () => showWaitlist('pro'));
+        if (teamBtn) teamBtn.addEventListener('click', () => showWaitlist('team'));
+
+        const formEl = document.getElementById('waitlistFormEl');
+        const successEl = document.getElementById('waitlistSuccess');
+        if (formEl) {
+            formEl.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const data = new FormData(formEl);
+                const submit = formEl.querySelector('.waitlist-submit');
+                if (submit) { submit.disabled = true; submit.textContent = '…'; }
+                try {
+                    const resp = await fetch(formEl.action, {
+                        method: 'POST',
+                        headers: { Accept: 'application/json' },
+                        body: data
+                    });
+                    if (resp.ok) {
+                        formEl.style.display = 'none';
+                        if (successEl) successEl.style.display = 'block';
+                        showToast('✓ ' + (window._t ? window._t('waitlist.success', 'Спасибо! Письмо придёт за 7 дней до запуска.') : 'Подписка оформлена'), 'success');
+                    } else {
+                        showToast('Не удалось отправить. Напишите на rodion.121093@gmail.com', 'error');
+                        if (submit) { submit.disabled = false; submit.textContent = window._t ? window._t('waitlist.submit', 'Подписаться на waitlist') : 'Подписаться на waitlist'; }
+                    }
+                } catch (err) {
+                    showToast('Ошибка сети. Напишите на rodion.121093@gmail.com', 'error');
+                    if (submit) { submit.disabled = false; submit.textContent = 'Retry'; }
+                }
+            });
+        }
+    })();
     const _restoredFromURL = restoreFromURL();
     if (_restoredFromURL) {
         // Состояние уже восстановлено из URL — рендерим напрямую, не сбрасывая currentMetricId
@@ -6474,6 +6716,96 @@ window._tTooltip = function(ruText) {
     updatePageTitle();
 })();
 </script>
+
+<!-- Pricing modal — Free / Pro / Team -->
+<div class="modal-overlay" id="pricingOverlay" role="dialog" aria-labelledby="pricingTitle" aria-modal="true">
+    <div class="modal pricing-modal">
+        <h3 id="pricingTitle" data-t="pricing.title">💎 Тарифы MetricTree</h3>
+        <p class="pricing-sub" data-t="pricing.subtitle">Текущий калькулятор — бесплатный навсегда. Pro и Team — для команд и продвинутых сценариев. Сейчас собираем waitlist — оставьте email, чтобы получить ранний доступ + 50% off на первый год.</p>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-tier" data-t="pricing.tier_free">Free</div>
+                <div class="pricing-price"><span class="pricing-amount">$0</span><span class="pricing-per" data-t="pricing.forever">навсегда</span></div>
+                <ul class="pricing-feats">
+                    <li data-t="pricing.f_47">✓ Все 47 метрик</li>
+                    <li data-t="pricing.f_goal">✓ Goal mode (~32 reverse-calc)</li>
+                    <li data-t="pricing.f_whatif">✓ What-If слайдеры</li>
+                    <li data-t="pricing.f_industry">✓ Отраслевые пороги (5 индустрий)</li>
+                    <li data-t="pricing.f_3lang">✓ 3 языка (RU / EN / UZ)</li>
+                    <li data-t="pricing.f_snaps">✓ До 8 снимков на метрику (локально)</li>
+                    <li data-t="pricing.f_csv">✓ CSV экспорт</li>
+                    <li data-t="pricing.f_embed">✓ Embed-режим (iframe)</li>
+                    <li data-t="pricing.f_clean_urls">✓ Чистые URL для шаринга</li>
+                </ul>
+                <button class="pricing-cta current" disabled data-t="pricing.current_plan">Текущий план</button>
+            </div>
+
+            <div class="pricing-card pricing-card-pro">
+                <div class="pricing-badge" data-t="pricing.badge_popular">Популярный</div>
+                <div class="pricing-tier" data-t="pricing.tier_pro">Pro</div>
+                <div class="pricing-price"><span class="pricing-amount">$9</span><span class="pricing-per" data-t="pricing.per_month">/мес</span></div>
+                <div class="pricing-discount" data-t="pricing.discount_year">или $79/год — экономия 27%</div>
+                <ul class="pricing-feats">
+                    <li data-t="pricing.f_all_free">✓ Всё из Free</li>
+                    <li data-t="pricing.f_account">✓ Аккаунт + sync между устройствами</li>
+                    <li data-t="pricing.f_unlimited_snaps">✓ Безлимитные снимки</li>
+                    <li data-t="pricing.f_pdf">✓ <strong>PDF мульти-метрические отчёты</strong> (для board / investor)</li>
+                    <li data-t="pricing.f_brand_embed">✓ <strong>Custom-branded embed</strong> (свой логотип/цвет)</li>
+                    <li data-t="pricing.f_no_watermark">✓ Без MetricTree-watermark в embed</li>
+                    <li data-t="pricing.f_api_1k">✓ API 1000 calls/мес</li>
+                    <li data-t="pricing.f_email_digest">✓ Weekly email digest по твоим метрикам</li>
+                    <li data-t="pricing.f_forecast">✓ Forecast-графики на What-If (6/12 мес)</li>
+                </ul>
+                <button class="pricing-cta primary" id="proWaitlistBtn" data-t="pricing.cta_waitlist">Получить -50% при запуске →</button>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-tier" data-t="pricing.tier_team">Team</div>
+                <div class="pricing-price"><span class="pricing-amount">$49</span><span class="pricing-per" data-t="pricing.per_month_5seats">/мес за 5 мест</span></div>
+                <div class="pricing-discount" data-t="pricing.team_extra">$8/мес за каждое дополнительное</div>
+                <ul class="pricing-feats">
+                    <li data-t="pricing.f_all_pro">✓ Всё из Pro</li>
+                    <li data-t="pricing.f_workspace">✓ Shared workspace команды</li>
+                    <li data-t="pricing.f_audit">✓ Audit log активности</li>
+                    <li data-t="pricing.f_white_label">✓ Полный white-label embed</li>
+                    <li data-t="pricing.f_sso">✓ SSO (Google Workspace / Okta)</li>
+                    <li data-t="pricing.f_api_10k">✓ API 10 000 calls/мес</li>
+                    <li data-t="pricing.f_priority">✓ Priority support</li>
+                    <li data-t="pricing.f_custom_metrics">✓ Кастомные метрики</li>
+                </ul>
+                <button class="pricing-cta" id="teamWaitlistBtn" data-t="pricing.cta_waitlist_team">Получить -50% при запуске →</button>
+            </div>
+        </div>
+
+        <!-- Waitlist email form (Formspree) -->
+        <div class="waitlist-form" id="waitlistForm" style="display:none;">
+            <h4 data-t="waitlist.title">📬 Оставьте email — пришлём, когда Pro/Team запустятся</h4>
+            <p class="waitlist-sub" data-t="waitlist.sub">Не спамим. Один email при релизе + промокод -50% на первый год.</p>
+            <form action="https://formspree.io/f/xeoqlgaa" method="POST" id="waitlistFormEl">
+                <input type="hidden" name="_subject" value="MetricTree Pro waitlist signup">
+                <input type="hidden" name="tier" id="waitlistTier" value="pro">
+                <input type="email" name="email" placeholder="your@email.com" required class="waitlist-email" autocomplete="email">
+                <select name="role" class="waitlist-role">
+                    <option value="">Кем работаете?</option>
+                    <option value="founder">Founder / CEO</option>
+                    <option value="pm">Product Manager</option>
+                    <option value="growth">Growth / Marketing</option>
+                    <option value="finance">Finance / FP&A</option>
+                    <option value="analyst">Analyst</option>
+                    <option value="investor">Investor / VC</option>
+                    <option value="other">Другое</option>
+                </select>
+                <button type="submit" class="waitlist-submit" data-t="waitlist.submit">Подписаться на waitlist</button>
+            </form>
+            <div class="waitlist-success" id="waitlistSuccess" style="display:none;" data-t="waitlist.success">✓ Спасибо! Письмо придёт за 7 дней до запуска.</div>
+        </div>
+
+        <div class="modal-btns" style="justify-content:flex-end;">
+            <button class="modal-cancel" id="pricingClose" data-t="btn.close">Закрыть</button>
+        </div>
+    </div>
+</div>
 
 <!-- About modal (also serves SEO — Googlebot sees this content in DOM) -->
 <div class="modal-overlay" id="aboutOverlay" role="dialog" aria-labelledby="aboutTitle" aria-modal="true">
