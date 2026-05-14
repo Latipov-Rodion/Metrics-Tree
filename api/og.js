@@ -2,15 +2,14 @@
 // Usage: /api/og?m=ltv  →  1200×630 PNG with metric name + formula + bench badges.
 // Falls back to a generic image if metric is missing.
 //
-// React.createElement is used (no JSX) so this is plain ESM JavaScript.
+// Uses object-literal element syntax (no JSX, no React import).
+// satori (inside @vercel/og) accepts plain objects with { type, props }.
 
 import { ImageResponse } from '@vercel/og';
-import React from 'react';
 
 export const config = { runtime: 'edge' };
 
 const META = {
-  // — top-priority pages get explicit, more curated copy —
   ltv:           { name: 'LTV',                title: 'Lifetime Value calculator',         formula: 'AOV × Frequency × Lifetime',                  benches: ['Bad: <1×CAC', 'Norm: 1–3×', 'Good: >3×', 'Excellent: >5×'] },
   cac:           { name: 'CAC',                title: 'Customer Acquisition Cost',         formula: 'Marketing spend / new customers',             benches: ['Excellent: CAC < LTV/3', 'Norm: < LTV/2', 'Bad: > LTV/2'] },
   ltv_cac:       { name: 'LTV : CAC',          title: 'Unit-economics ratio',              formula: 'LTV / CAC',                                    benches: ['Bad: <1', 'Norm: 1–3', 'Good: >3', 'Excellent: >5'] },
@@ -59,7 +58,6 @@ const META = {
 
 const C = {
   bg:        '#0A0C0E',
-  panel:     '#14171C',
   text:      '#E8EAED',
   muted:     '#6b6f75',
   accent:    '#2A6DF4',
@@ -76,83 +74,72 @@ function benchColor(text) {
   return C.yellow;
 }
 
-const e = React.createElement;
+// Object-element shorthand — satori accepts { type, props } trees.
+const el = (type, style, children) => ({ type, props: { style, children } });
 
 function badge(text) {
   const c = benchColor(text);
-  return e('div', {
-    style: {
-      display: 'flex', alignItems: 'center',
-      padding: '8px 14px', borderRadius: 999,
-      background: c + '22', border: `1px solid ${c}66`,
-      color: c, fontSize: 22, fontWeight: 600,
-      marginRight: 10, marginTop: 8
-    }
+  return el('div', {
+    display: 'flex', alignItems: 'center',
+    padding: '8px 14px', borderRadius: 999,
+    background: c + '22', border: `1px solid ${c}66`,
+    color: c, fontSize: 22, fontWeight: 600,
+    marginRight: 10, marginTop: 8
   }, text);
 }
 
 export default function handler(req) {
   const { searchParams } = new URL(req.url);
-  const id = (searchParams.get('m') || '').toLowerCase();
-  const m = META[id] || { name: 'MetricTree', title: '47 product metrics calculator', formula: 'LTV · CAC · MRR · NRR · NPS · Runway · Burn Multiple · Rule of 40 …', benches: ['Free, no signup', '3 languages', 'Embed-ready'] };
-
-  // Big metric name + title underneath
-  // Formula chip
-  // Benchmark badges
-  // Footer with brand
+  const id = (searchParams.get('m') || '').trim();
+  const m = META[id] || { name: 'MetricTree', title: '47 product metrics calculator', formula: 'LTV · CAC · MRR · NRR · NPS · Runway · Burn Multiple · Rule of 40', benches: ['Free, no signup', '3 languages', 'Embed-ready'] };
 
   return new ImageResponse(
-    e('div', {
-      style: {
-        width: '100%', height: '100%',
-        display: 'flex', flexDirection: 'column',
-        background: C.bg,
-        padding: '60px 70px',
-        fontFamily: 'sans-serif',
-        color: C.text,
-        position: 'relative'
-      }
+    el('div', {
+      width: '100%', height: '100%',
+      display: 'flex', flexDirection: 'column',
+      background: C.bg,
+      padding: '60px 70px',
+      fontFamily: 'sans-serif',
+      color: C.text,
+      position: 'relative'
     }, [
       // Top accent bar
-      e('div', { key: 'bar', style: { position: 'absolute', top: 0, left: 0, right: 0, height: 6, background: `linear-gradient(90deg, ${C.accent} 0%, transparent 70%)` } }),
+      el('div', { position: 'absolute', top: 0, left: 0, right: 0, height: 6, background: `linear-gradient(90deg, ${C.accent} 0%, transparent 70%)` }),
 
-      // Top: brand label
-      e('div', { key: 'brand', style: { display: 'flex', alignItems: 'center', fontSize: 26, color: C.muted, fontWeight: 700, letterSpacing: 1 } }, [
-        e('div', { key: 'dot', style: { width: 14, height: 14, background: C.accent, borderRadius: 3, marginRight: 12 } }),
-        e('div', { key: 'name' }, 'METRICTREE')
+      // Brand label
+      el('div', { display: 'flex', alignItems: 'center', fontSize: 26, color: C.muted, fontWeight: 700, letterSpacing: 1 }, [
+        el('div', { width: 14, height: 14, background: C.accent, borderRadius: 3, marginRight: 12 }),
+        el('div', {}, 'METRICTREE')
       ]),
 
       // Metric name (huge)
-      e('div', { key: 'name', style: { display: 'flex', fontSize: 96, fontWeight: 800, marginTop: 36, lineHeight: 1, letterSpacing: -2 } }, m.name),
+      el('div', { display: 'flex', fontSize: 96, fontWeight: 800, marginTop: 36, lineHeight: 1, letterSpacing: -2 }, m.name),
 
       // Subtitle
-      e('div', { key: 'title', style: { display: 'flex', fontSize: 36, marginTop: 16, color: C.text, fontWeight: 500 } }, m.title),
+      el('div', { display: 'flex', fontSize: 36, marginTop: 16, color: C.text, fontWeight: 500 }, m.title),
 
       // Formula chip
-      e('div', {
-        key: 'formula',
-        style: {
-          display: 'flex',
-          marginTop: 28,
-          padding: '14px 22px',
-          background: C.accentDim,
-          border: `1px solid ${C.accent}44`,
-          borderRadius: 12,
-          fontSize: 26,
-          color: C.accent,
-          fontWeight: 600,
-          fontFamily: 'monospace',
-          alignSelf: 'flex-start'
-        }
+      el('div', {
+        display: 'flex',
+        marginTop: 28,
+        padding: '14px 22px',
+        background: C.accentDim,
+        border: `1px solid ${C.accent}44`,
+        borderRadius: 12,
+        fontSize: 26,
+        color: C.accent,
+        fontWeight: 600,
+        fontFamily: 'monospace',
+        alignSelf: 'flex-start'
       }, m.formula),
 
       // Benchmark badges
-      e('div', { key: 'benches', style: { display: 'flex', flexWrap: 'wrap', marginTop: 36 } }, m.benches.map((b, i) => e('div', { key: `b${i}`, style: { display: 'flex' } }, badge(b)))),
+      el('div', { display: 'flex', flexWrap: 'wrap', marginTop: 36 }, m.benches.map(b => el('div', { display: 'flex' }, badge(b)))),
 
-      // Footer pinned to bottom
-      e('div', { key: 'foot', style: { display: 'flex', marginTop: 'auto', justifyContent: 'space-between', alignItems: 'flex-end', fontSize: 22, color: C.muted } }, [
-        e('div', { key: 'url' }, 'metricstree.vercel.app/' + (id || '')),
-        e('div', { key: 'tag', style: { color: C.text, fontWeight: 600 } }, 'Free · No signup · RU · EN · UZ')
+      // Footer
+      el('div', { display: 'flex', marginTop: 'auto', justifyContent: 'space-between', alignItems: 'flex-end', fontSize: 22, color: C.muted }, [
+        el('div', {}, 'metricstree.vercel.app/' + (id || '')),
+        el('div', { color: C.text, fontWeight: 600 }, 'Free · No signup · RU · EN · UZ')
       ])
     ]),
     {
