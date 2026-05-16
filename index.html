@@ -1078,6 +1078,15 @@
         }
         .snapshot-btn:hover { border-color: var(--green); color: var(--green); }
         .snapshot-btn.saved { border-color: var(--green); color: var(--green); background: rgba(76,175,80,0.1); }
+        .example-btn {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            padding: 0.3rem 0.75rem;
+            background: transparent; border: 1px solid var(--border);
+            color: var(--text-2); border-radius: var(--radius-sm);
+            font-size: 0.75rem; font-weight: 600; cursor: pointer;
+            transition: all var(--transition); white-space: nowrap; flex-shrink: 0;
+        }
+        .example-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
         .snapshots-block {
             margin-top: 0.75rem; padding-top: 0.75rem;
             border-top: 1px solid var(--border);
@@ -2152,6 +2161,10 @@
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
                             <span data-t="btn.save">Сохранить</span>
                         </button>
+                        <button class="example-btn" id="exampleBtn" title="Заполнить примерными значениями" onclick="window.fillExampleValues&&window.fillExampleValues()">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>
+                            <span data-t="btn.example">Пример</span>
+                        </button>
                         <button class="whatif-btn" id="whatifBtn" title="Анализ «Что если?»">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
                             <span data-t="btn.whatif">Что если?</span>
@@ -2248,6 +2261,8 @@ window.I18N_UI = {
     'btn.copy': 'Copy',
     'btn.png': 'PNG',
     'btn.save': 'Save',
+    'btn.example': 'Example',
+    'toast.example_filled': '🎲 Example values filled',
     'btn.whatif': 'What if?',
     'btn.goal': 'Goal',
     'btn.forecast': 'Forecast',
@@ -2466,6 +2481,8 @@ window.I18N_UI = {
     'btn.copy': 'Nusxa olish',
     'btn.png': 'PNG',
     'btn.save': 'Saqlash',
+    'btn.example': 'Misol',
+    'toast.example_filled': '🎲 Misol qiymatlari toʻldirildi',
     'btn.whatif': 'Agar nima bo‘lsa?',
     'btn.goal': 'Maqsad',
     'btn.forecast': 'Prognoz',
@@ -5162,13 +5179,50 @@ window._tTooltip = function(ruText) {
         const metric = getCurrentMetric();
         if (!metric) return;
         const saved = storedValues[metricId];
+        // First-visit auto-prefill: if NO metric has ever been used (entire storedValues is empty)
+        // AND no saved value for THIS metric, populate inputs from placeholder values so the
+        // calculator shows a real result + insight on first paint — instant "aha".
+        const isFirstVisit = !Object.keys(storedValues).length && !saved;
+        let prefilled = false;
         metric.inputs.forEach(inp => {
             const el = document.getElementById(`input-${inp.key}`);
             if (!el) return;
-            const raw = (saved && saved[inp.key] !== undefined) ? saved[inp.key] : '';
+            let raw = (saved && saved[inp.key] !== undefined) ? saved[inp.key] : '';
+            if (!raw && isFirstVisit && inp.placeholder != null) {
+                raw = String(inp.placeholder);
+                prefilled = true;
+            }
             el.value = raw ? formatNum(raw) : '';
         });
+        // Save the prefilled values so the user can edit them naturally and they persist.
+        if (prefilled) {
+            const values = {};
+            metric.inputs.forEach(inp => {
+                const el = document.getElementById(`input-${inp.key}`);
+                if (el) values[inp.key] = el.value.replace(/[  ]/g, '');
+            });
+            storedValues[metricId] = values;
+            saveToLS(storedValues);
+        }
     }
+
+    // Manual "Try example" — fills current metric with placeholder values, useful even
+    // for returning users who want to reset to canonical example.
+    function fillExampleValues() {
+        const metric = getCurrentMetric();
+        if (!metric) return;
+        metric.inputs.forEach(inp => {
+            const el = document.getElementById(`input-${inp.key}`);
+            if (!el || inp.placeholder == null) return;
+            el.value = formatNum(String(inp.placeholder));
+        });
+        saveCurrentValues();
+        updateResult();
+        renderMetricsList();
+        updateSectionBadges();
+        showToast(t('toast.example_filled', '🎲 Заполнены примерные значения'), 'success');
+    }
+    window.fillExampleValues = fillExampleValues;
 
     function clearAll() {
         storedValues = {};
