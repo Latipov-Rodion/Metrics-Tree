@@ -7559,14 +7559,17 @@ window._tTooltip = function(ruText) {
     applyStaticTranslations();
     updateSectionBadges();
     // Bind About modal close/escape (open trigger is in more-menu init)
-    (function bindAbout(){
+    // NOTE: aboutOverlay HTML is AFTER this script tag, so we must wait for DOMContentLoaded.
+    function bindAbout(){
         const ov = document.getElementById('aboutOverlay');
         const close = document.getElementById('aboutClose');
         if (!ov || !close) return;
         close.addEventListener('click', () => ov.classList.remove('show'));
         ov.addEventListener('click', e => { if (e.target === ov) ov.classList.remove('show'); });
         document.addEventListener('keydown', e => { if (e.key === 'Escape' && ov.classList.contains('show')) ov.classList.remove('show'); });
-    })();
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindAbout);
+    else bindAbout();
 
     // Generic Formspree submit with success-replace pattern
     function bindFormspreeForm(formEl, successEl, source) {
@@ -7596,23 +7599,26 @@ window._tTooltip = function(ruText) {
             }
         });
     }
-    bindFormspreeForm(document.getElementById('newsletterFormAbout'), document.getElementById('newsletterAboutSuccess'), 'about');
-    bindFormspreeForm(document.getElementById('newsletterFormFooter'), null, 'footer');
+    // Footer + about-modal newsletters + About→Pricing CTA — all reference HTML AFTER this script.
+    function bindLateModalLinks() {
+        bindFormspreeForm(document.getElementById('newsletterFormAbout'), document.getElementById('newsletterAboutSuccess'), 'about');
+        bindFormspreeForm(document.getElementById('newsletterFormFooter'), null, 'footer');
 
-    // Footer links → trigger same modals
-    const footerAbout = document.getElementById('footerAbout');
-    if (footerAbout) footerAbout.addEventListener('click', e => { e.preventDefault(); document.getElementById('aboutOverlay')?.classList.add('show'); });
-    const footerPricing = document.getElementById('footerPricing');
-    if (footerPricing) footerPricing.addEventListener('click', e => { e.preventDefault(); document.getElementById('pricingOverlay')?.classList.add('show'); });
-    const footerHelp = document.getElementById('footerHelp');
-    if (footerHelp) footerHelp.addEventListener('click', e => { e.preventDefault(); document.getElementById('helpOverlay')?.classList.add('show'); });
+        const footerAbout = document.getElementById('footerAbout');
+        if (footerAbout) footerAbout.addEventListener('click', e => { e.preventDefault(); document.getElementById('aboutOverlay')?.classList.add('show'); });
+        const footerPricing = document.getElementById('footerPricing');
+        if (footerPricing) footerPricing.addEventListener('click', e => { e.preventDefault(); document.getElementById('pricingOverlay')?.classList.add('show'); });
+        const footerHelp = document.getElementById('footerHelp');
+        if (footerHelp) footerHelp.addEventListener('click', e => { e.preventDefault(); document.getElementById('helpOverlay')?.classList.add('show'); });
 
-    // About → Pricing CTA
-    const aboutPricingBtn = document.getElementById('aboutPricingBtn');
-    if (aboutPricingBtn) aboutPricingBtn.addEventListener('click', () => {
-        document.getElementById('aboutOverlay')?.classList.remove('show');
-        document.getElementById('pricingOverlay')?.classList.add('show');
-    });
+        const aboutPricingBtn = document.getElementById('aboutPricingBtn');
+        if (aboutPricingBtn) aboutPricingBtn.addEventListener('click', () => {
+            document.getElementById('aboutOverlay')?.classList.remove('show');
+            document.getElementById('pricingOverlay')?.classList.add('show');
+        });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindLateModalLinks);
+    else bindLateModalLinks();
 
     // ---- CSV IMPORT ----
     function parseCSVImport(text) {
@@ -7698,7 +7704,8 @@ window._tTooltip = function(ruText) {
         document.getElementById('csvImportOverlay')?.classList.remove('show');
         ta.value = '';
     }
-    (function bindCSVImport(){
+    // NOTE: csvImportOverlay HTML is AFTER this script tag — wait for DOMContentLoaded.
+    function bindCSVImport(){
         const ov = document.getElementById('csvImportOverlay');
         const close = document.getElementById('csvImportClose');
         const run = document.getElementById('csvImportRun');
@@ -7707,7 +7714,9 @@ window._tTooltip = function(ruText) {
         ov.addEventListener('click', e => { if (e.target === ov) ov.classList.remove('show'); });
         document.addEventListener('keydown', e => { if (e.key === 'Escape' && ov.classList.contains('show')) ov.classList.remove('show'); });
         if (run) run.addEventListener('click', runCSVImport);
-    })();
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindCSVImport);
+    else bindCSVImport();
 
     // ---- COMPARE 2 METRICS ----
     function renderCompare2Card(mid) {
@@ -7799,17 +7808,21 @@ window._tTooltip = function(ruText) {
         renderBoth();
         ov.classList.add('show');
     }
-    (function bindCompare2(){
+    // NOTE: compare2Overlay HTML is AFTER this script tag — wait for DOMContentLoaded.
+    function bindCompare2(){
         const ov = document.getElementById('compare2Overlay');
         const close = document.getElementById('compare2Close');
         if (!ov || !close) return;
         close.addEventListener('click', () => ov.classList.remove('show'));
         ov.addEventListener('click', e => { if (e.target === ov) ov.classList.remove('show'); });
         document.addEventListener('keydown', e => { if (e.key === 'Escape' && ov.classList.contains('show')) ov.classList.remove('show'); });
-    })();
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindCompare2);
+    else bindCompare2();
 
     // Bind Pricing modal close/escape + waitlist form (Formspree)
-    (function bindPricing(){
+    // NOTE: pricingOverlay HTML is AFTER this script tag — wait for DOMContentLoaded.
+    function bindPricing(){
         const ov = document.getElementById('pricingOverlay');
         const close = document.getElementById('pricingClose');
         if (!ov || !close) return;
@@ -7861,7 +7874,9 @@ window._tTooltip = function(ruText) {
                 }
             });
         }
-    })();
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindPricing);
+    else bindPricing();
     const _restoredFromURL = restoreFromURL();
     if (_restoredFromURL) {
         // Состояние уже восстановлено из URL — рендерим напрямую, не сбрасывая currentMetricId
