@@ -1920,17 +1920,44 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Что такое MRR?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Monthly Recurring Revenue — нормализованная месячная подписочная выручка. Годовые контракты делятся на 12. Не включает one-time fees." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Как считать MRR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MRR = сумма всех активных подписок, нормализованная по месяцу. Annual contract $12000 = $1000 MRR. Не включайте one-time fees, setup-платежи, transactional revenue."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чем MRR отличается от ARR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ARR = MRR × 12. ARR используется для отчётности перед инвесторами и enterprise-сделок. MRR — для еженедельного/месячного operating-цикла команды. Compounded growth обычно меряют через MRR."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какие компоненты MRR Movement важно отслеживать?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "New MRR (новые клиенты), Expansion MRR (апселы существующих), Churned MRR (отток), Contraction MRR (downgrade). Net New MRR = New + Expansion − Churned − Contraction. Это база для Quick Ratio и Burn Multiple."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какой MoM рост MRR здоровый?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Seed/early: 15–20% MoM. Series A: 10–15%. Growth: 5–10%. T2D3 (3× за 2 года) — стандарт для top-tier VC-фондированных SaaS. YC бенчмарк: 5–7% MoM минимум."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/mrr">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/mrr">

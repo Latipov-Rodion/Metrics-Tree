@@ -1920,17 +1920,20 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Что такое Win Rate?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Win Rate = Closed Won / (Won + Lost) × 100%. B2B SaaS норма 20–25%, SMB 25–35%, отлично >35%." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Что такое Win Rate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Win Rate = Closed Won / (Won + Lost) × 100%. B2B SaaS норма 20–25%, SMB 25–35%, отлично >35%."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/winRate">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/winRate">

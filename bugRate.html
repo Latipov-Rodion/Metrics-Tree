@@ -1920,17 +1920,20 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Что такое Bug Rate?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Bug Rate — плотность дефектов на 1000 строк кода или на спринт. Норма <2/KLOC, хорошо <1/KLOC." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Что такое Bug Rate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Bug Rate — плотность дефектов на 1000 строк кода или на спринт. Норма <2/KLOC, хорошо <1/KLOC."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/bugRate">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/bugRate">

@@ -1920,17 +1920,44 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Какая норма LTV:CAC?",
-          "acceptedAnswer": { "@type": "Answer", "text": "<1 — убыток. 1–3 — слабая unit-экономика. ≥3 — здоровая. >5 — отлично или недоинвестируете в рост. SaaS-target: 3–6." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Что показывает LTV:CAC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Сколько долларов lifetime-выручки приносит каждый доллар, потраченный на привлечение клиента. Базовый показатель устойчивости юнит-экономики и масштабируемости."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какая норма LTV:CAC для SaaS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "<1 — теряете деньги на каждом клиенте. 1–3 — слабая экономика (есть только если рост важнее). ≥3 — здоровая SaaS-норма. >5 — отлично, но возможно недоинвестируете в маркетинг. Top SaaS: 3–6×."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что делать, если LTV:CAC меньше 3?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "(1) снизить CAC: органика, referrals, конверсия воронки; (2) повысить LTV: апселы, снизить Churn, поднять цены; (3) переориентироваться на ICP с лучшей экономикой. Не наращивайте маркетинг с плохой unit-экономикой — это масштабирует убытки."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Когда LTV:CAC может быть слишком высоким?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Если LTV:CAC >5–6, обычно вы недоинвестируете в рост — конкуренты захватят рынок. Исключения: bootstrap-бизнес или low-growth nische. Высокий LTV:CAC + низкий рост = пора нанимать sales/marketing."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/ltv_cac">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/ltv_cac">

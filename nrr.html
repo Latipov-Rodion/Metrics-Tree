@@ -1920,17 +1920,44 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Что такое NRR?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Net Revenue Retention — удержание выручки с учётом апселов. NRR > 100% означает рост за счёт существующих клиентов без новых. Отлично для SaaS — >120%." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Как считать NRR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NRR = (MRR начала + Expansion − Churn − Contraction) / MRR начала × 100%. Берётся когорта на дату T, сравнивается их выручка через 12 мес."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чем NRR отличается от GRR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "GRR (Gross Retention) — только потери, без учёта апселов. NRR (Net Retention) — с апселами. NRR может быть >100%, GRR — никогда. GRR показывает здоровье продукта, NRR — здоровье account-команды."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какая норма NRR для SaaS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "PLG B2B: 110–130%. Mid-market: 100–115%. Enterprise: 110–140%. Top decile (Snowflake, Datadog) — 150%+. <100% — компания теряет выручку даже без новых клиентов."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как улучшить NRR?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "(1) Expansion-flows (seat-based pricing, usage-based), (2) success-managers для high-ARR клиентов, (3) reducing churn через onboarding и health-scores, (4) tiered pricing с upgrade-paths."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/nrr">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/nrr">

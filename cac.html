@@ -1920,17 +1920,44 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Как рассчитать CAC?",
-          "acceptedAnswer": { "@type": "Answer", "text": "CAC = Маркетинговые и sales затраты / Количество новых платящих клиентов. Норма: LTV должен быть ≥ 3× CAC. Окупаемость для SaaS — до 12–18 мес." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Какая формула CAC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CAC = (Маркетинговые расходы + Sales расходы) / Число новых платящих клиентов за период. Включайте все затраты: реклама, зарплаты sales и marketing, инструменты, contractor fees."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какой CAC считается нормальным?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Норма зависит от LTV: LTV:CAC ≥ 3×. SaaS B2B: $100–$1000+ для SMB, $3000–$30000+ для enterprise. E-commerce: $10–$50. Mobile B2C: $1–$20. Главное — payback <12–18 мес для SaaS."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "В чём разница Blended CAC и Paid CAC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Blended CAC = все затраты / все новые клиенты (включая органику). Paid CAC = только paid-каналы / только paid-клиенты. Paid CAC показывает реальную unit-экономику платных каналов — он всегда выше Blended."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как снизить CAC?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Рычаги: (1) органические каналы (SEO, content, sharing), (2) referral-программы, (3) улучшение конверсии воронки, (4) брендовая узнаваемость (снижает CPC), (5) self-serve onboarding (убирает sales-затраты для SMB)."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/cac">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/cac">

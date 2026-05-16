@@ -1920,17 +1920,20 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Что такое Sales Cycle Length?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Sales Cycle Length = Total days from opportunity-created to closed-won / Number of won deals. PLG <14 дней, SMB 14–60, Enterprise 120–365." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Что такое Sales Cycle Length?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sales Cycle Length = Total days from opportunity-created to closed-won / Number of won deals. PLG <14 дней, SMB 14–60, Enterprise 120–365."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/salesCycleLength">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/salesCycleLength">

@@ -1920,17 +1920,44 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Как считать Runway?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Runway = Кэш / Среднемесячный Net Burn. Сколько месяцев компания проживёт. <6 мес критично, 12–18 норма, >18 здорово." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Как считать Runway?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Runway (мес) = Кэш на балансе / Net Burn в месяц. Net Burn = Расходы − Выручка. Берите средний burn за последние 3 месяца, не один последний — он volatile."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Когда начинать фандрейзинг?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Standard: ставьте на стол ≥ 6 мес runway. SaaS fundraise обычно занимает 3–6 мес. Если runway <9 мес — начинайте уже. <6 мес — слабая переговорная позиция (term sheet hostage)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какой runway считается здоровым?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "<6 мес — критично, экстренные cost-cuts. 6–12 мес — фандрейзинг. 12–18 мес — норма для seed/Series A. 18–24 мес — отличная позиция. >24 мес — раунд был «лишним»."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как продлить Runway?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "(1) сокращение расходов (хедкаунт — 70% бюджета SaaS), (2) ускорение revenue (annual prepay, ценообразование), (3) bridge от existing инвесторов, (4) venture debt (Brex, SVB, Silicon Valley Bridge). Cut + grow одновременно."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/runway">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/runway">

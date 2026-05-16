@@ -1920,17 +1920,20 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Что такое AOV?",
-          "acceptedAnswer": { "@type": "Answer", "text": "AOV = Total Revenue / Number of Orders. Средний чек — базовая метрика e-commerce. Низкий AOV → апселы, бандлы, free-shipping threshold." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Что такое AOV?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "AOV = Total Revenue / Number of Orders. Средний чек — базовая метрика e-commerce. Низкий AOV → апселы, бандлы, free-shipping threshold."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/aov">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/aov">

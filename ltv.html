@@ -1920,17 +1920,44 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Как рассчитать LTV?",
-          "acceptedAnswer": { "@type": "Answer", "text": "LTV = AOV × Частота покупок в год × Среднее время жизни (лет). Например $2500 × 4 × 3 = $30 000. Главное — соотношение LTV:CAC ≥ 3." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Какая формула расчёта LTV?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LTV = AOV (средний чек) × Частота покупок в год × Срок жизни клиента (лет). Для SaaS: ARPU / Churn. Пример: $2500 × 4 × 3 = $30 000."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какое соотношение LTV к CAC считается здоровым?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LTV:CAC ≥ 3 — здоровая unit-экономика. 1–3 — слабая, теряете деньги на росте. >5 — отлично, но возможно недоинвестируете в маркетинг. Top SaaS — 3–6×."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как увеличить LTV?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Три рычага: (1) повысить AOV через апселы/бандлы, (2) увеличить частоту покупок (cross-sell, email-flows), (3) снизить Churn (onboarding, customer success). Каждый +10% даёт мультипликативный эффект."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чем LTV отличается от CLV?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "LTV (Lifetime Value) и CLV (Customer Lifetime Value) — синонимы. Иногда CLV считают с дисконтированием будущих cash flows (NPV). Для оперативных решений достаточно простой формулы."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/ltv">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/ltv">

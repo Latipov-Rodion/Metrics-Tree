@@ -1920,17 +1920,44 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Что такое Rule of 40?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Rule of 40 = Темп роста выручки YoY (%) + Маржа EBITDA или FCF (%). Здоровый SaaS поддерживает сумму ≥ 40%. Выше 60% — top decile." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Как считать Rule of 40?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Rule of 40 = Темп роста YoY (%) + Маржа EBITDA или FCF (%). Пример: рост 30% + маржа 15% = 45% — здоровый бизнес. Считается обычно по ARR-росту, не Revenue-росту (для SaaS точнее)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какую маржу использовать — EBITDA или FCF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Public SaaS обычно отчитывает FCF margin (наиболее консервативный). Private — Operating Margin или Adjusted EBITDA. Главное — последовательно использовать одну метрику во всех периодах."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Почему именно 40%?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Эмпирический порог от Brad Feld (Foundry Group, 2015). Анализ public SaaS показал: компании с R40 ≥ 40 торгуются с премией multiples. Это компромисс «рост vs прибыльность»."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какая норма Rule of 40 в 2024?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Top decile public SaaS: >60% (Adobe, ServiceNow, CrowdStrike). Median: 25–35% — Rule of 40 теперь сложнее достичь после ZIRP-эпохи. Private growth-stage: 40–55% — лучший mix."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/ruleOf40">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/ruleOf40">

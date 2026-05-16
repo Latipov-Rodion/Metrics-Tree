@@ -1920,17 +1920,20 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Как считать Retention?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Retention = Активные на конец / Активные на начало периода × 100%. Для SaaS норма D30 >70%, для mobile D30 >15%." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Как считать Retention?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Retention = Активные на конец / Активные на начало периода × 100%. Для SaaS норма D30 >70%, для mobile D30 >15%."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/retention">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/retention">

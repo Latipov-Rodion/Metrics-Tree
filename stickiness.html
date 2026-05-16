@@ -1920,17 +1920,20 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Что такое Stickiness?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Stickiness = DAU / MAU × 100% — доля месячной базы, возвращающейся ежедневно. Норма >20%, отлично >50% для SaaS." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Что такое Stickiness?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Stickiness = DAU / MAU × 100% — доля месячной базы, возвращающейся ежедневно. Норма >20%, отлично >50% для SaaS."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/stickiness">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/stickiness">

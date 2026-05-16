@@ -1920,17 +1920,44 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Что такое Burn Multiple?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Burn Multiple = Net Burn / Net New ARR (David Sacks). Сколько $ сжигаем, чтобы сгенерировать $1 новой ARR. <1 отлично, 1–1.5 хорошо, >2 нужно оптимизировать." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Кто придумал Burn Multiple?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "David Sacks (Craft Ventures, бывший COO PayPal, основатель Yammer) — концепция популяризирована в 2020 в его эссе. Стандартная метрика капитальной эффективности post-ZIRP эпохи."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какая норма Burn Multiple?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "<1× — Amazing (PayPal-уровень). 1–1.5× — Great. 1.5–2× — Good. 2–3× — Suspect. >3× — Bad (компания сжигает капитал неэффективно)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чем Burn Multiple лучше Magic Number?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Magic Number мерит только эффективность S&M. Burn Multiple — всю компанию: продукт, маркетинг, sales, ops. Это финальный показатель: насколько эффективно превращаете капитал в рост ARR."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как улучшить Burn Multiple?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "(1) сократить burn (увольнения, ефактеры R&D), (2) ускорить New ARR через высоко-конверсионные каналы, (3) повысить Expansion ARR (NRR), (4) пересмотреть pricing. Цель — <1.5× до Series B/C."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/burnMultiple">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/burnMultiple">

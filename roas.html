@@ -1920,17 +1920,44 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Как считать ROAS?",
-          "acceptedAnswer": { "@type": "Answer", "text": "ROAS = Выручка от рекламы / Затраты. E-commerce норма >4× (400%), SaaS — >3×. Goal-режим даст max бюджет при заданной target-доходности." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Чем ROAS отличается от ROI?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ROAS = Выручка / Ad Spend. ROI = (Прибыль − Затраты) / Затраты. ROAS — gross, до маржи. ROI — net, после COGS. ROAS быстрее для тактики, ROI точнее для стратегии."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какой ROAS считается хорошим?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "E-commerce: >4× норма, >6× отлично (с учётом 60–70% маржи). SaaS: >3× (длинный LTV компенсирует). Mobile gaming: >1.5× (быстрая монетизация). Главное — break-even ROAS = 1 / Gross Margin."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что такое break-even ROAS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Break-even ROAS = 1 / Gross Margin. При 70% марже break-even ROAS = 1.43×. Ниже этого — каждая кампания убыточна. Это floor, target должен быть в 2–3× выше break-even."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как повысить ROAS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "(1) creatives — A/B-тесты, 80% улучшений идёт оттуда; (2) landing page conversion (CR×ROAS); (3) audience targeting (lookalikes от high-LTV); (4) AOV-апселы; (5) убрать broad-match low-intent keywords."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/roas">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/roas">

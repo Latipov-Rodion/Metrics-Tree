@@ -1920,17 +1920,20 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Что такое Defect Density?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Defect Density — плотность дефектов на 1000 строк кода. Норма <2, хорошо <1." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Что такое Defect Density?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Defect Density — плотность дефектов на 1000 строк кода. Норма <2, хорошо <1."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/defectDensity">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/defectDensity">

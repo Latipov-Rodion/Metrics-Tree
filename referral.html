@@ -1920,17 +1920,20 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Что такое K-factor?",
-          "acceptedAnswer": { "@type": "Answer", "text": "K-factor (referral viral coefficient) = Приглашённые пользователи / Активные пригласившие. >1 означает вирусный рост." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Что такое K-factor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "K-factor (referral viral coefficient) = Приглашённые пользователи / Активные пригласившие. >1 означает вирусный рост."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/referral">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/referral">

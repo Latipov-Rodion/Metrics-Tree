@@ -1920,17 +1920,44 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Какой MRR Growth Rate считается хорошим?",
-          "acceptedAnswer": { "@type": "Answer", "text": "MoM норма >5%, хорошо >10%, отлично >20%. T2D3 = 100% YoY за 3 года. YC рекомендует минимум 5–7% MoM для seed-стадии." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Как считать MRR Growth Rate?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "MoM Growth = (MRR_end − MRR_start) / MRR_start × 100%. Например: $80k → $88k = +10% MoM. Cumulative MoM = (1+r)¹² − 1. 10% MoM → 213% YoY роста."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какой MRR Growth Rate здоровый по стадиям?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pre-PMF: variable, важна абсолютная цифра. Seed (post-PMF): 15–20% MoM. Series A: 10–15%. Series B+: 5–10%. T2D3 — стандарт top-tier VC: 3× → 3× → 2× → 2× → 2× YoY."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что такое правило Y Combinator о MRR-росте?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "YC рекомендует 5–7% WoW для pre-seed (excellent) или 5–7% MoM (good). Paul Graham: \"стартап = компания, делающая 5–7% в неделю\". Это main metric YC office hours."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как ускорить MRR Growth?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "(1) канал-маркет фит: один лидирующий канал, не 5 средних; (2) контракты на год вместо месяц (мгновенно поднимает MRR); (3) Expansion-flows (seat-based, usage-based); (4) ICP-фокус: один сегмент, потом расширение."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/mrrGrowthRate">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/mrrGrowthRate">

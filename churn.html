@@ -1920,17 +1920,44 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Что такое Churn Rate?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Churn Rate = Ушедшие пользователи / Всего пользователей на начало периода × 100%. SaaS норма — менее 2% в месяц, mobile — до 10%." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Чем Customer Churn отличается от Revenue Churn?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Customer Churn — % ушедших клиентов. Revenue Churn — % потерянного MRR. Если уходят малые клиенты, Customer Churn высокий, а Revenue Churn низкий. Enterprise SaaS — наоборот."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какая норма Churn для SaaS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "B2B SaaS: <1% monthly = отлично, 1–2% — норма, >3% — критично. Annual churn <10% = top decile. SMB: 3–7% monthly. Mobile B2C: 5–15% monthly норма (короткий lifecycle)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как снизить Churn?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "(1) onboarding (первая неделя — 80% будущего churn), (2) health-scoring и proactive outreach, (3) убрать billing-friction (auto-renewal, dunning), (4) feature adoption через product tours, (5) annual prepay контракты."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как считать когортный Churn?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Группируете когорту по дате регистрации. Считаете % оставшихся через 1, 3, 6, 12 мес. Когортный анализ показывает, улучшается ли retention новых когорт vs старых. Главный инструмент product-команды."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/churn">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/churn">

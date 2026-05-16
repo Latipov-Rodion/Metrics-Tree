@@ -1920,17 +1920,20 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Какое Pipeline Coverage нужно?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Pipeline Coverage = Pipeline Value / Quota. B2B SaaS стандарт — 3–4× от плана. <2× критически мало, >4× безопасный запас." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Какое Pipeline Coverage нужно?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pipeline Coverage = Pipeline Value / Quota. B2B SaaS стандарт — 3–4× от плана. <2× критически мало, >4× безопасный запас."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/pipelineCoverage">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/pipelineCoverage">

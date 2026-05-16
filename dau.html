@@ -1920,17 +1920,20 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Что такое DAU?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Daily Active Users — уникальные пользователи продукта за сутки. Сама по себе DAU — счётчик; оценивать стоит через Stickiness (DAU/MAU) и MoM-рост." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Что такое DAU?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Daily Active Users — уникальные пользователи продукта за сутки. Сама по себе DAU — счётчик; оценивать стоит через Stickiness (DAU/MAU) и MoM-рост."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/dau">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/dau">

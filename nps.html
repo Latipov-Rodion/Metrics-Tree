@@ -1920,17 +1920,44 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Как рассчитать NPS?",
-          "acceptedAnswer": { "@type": "Answer", "text": "NPS = % Промоутеров (9–10) − % Детракторов (0–6). Хорошо >30, очень высоко >50, мирового уровня >70." }
-        }
-      ]
+      "@type": "Question",
+      "name": "Какая формула NPS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "NPS = % Промоутеров (оценки 9–10) − % Детракторов (0–6). Нейтралы (7–8) не считаются. Результат: число от −100 до +100. Не процент."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какой NPS считается хорошим?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "<0 — критично, пользователи активно отговаривают. 0–30 — есть куда расти. 30–50 — хорошо. 50–70 — отлично (Slack, Netflix). >70 — мирового уровня (Apple, Tesla)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как часто опрашивать NPS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "B2C SaaS: ежеквартально + после ключевых событий (onboarding+30 дней, churn-моменты). B2B: 2× в год + post-renewal. Не чаще — иначе survey fatigue. Транзакционный NPS (после support ticket) — отдельная метрика."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как улучшить NPS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "(1) close-the-loop с детракторами (личный звонок CEO/CSM в первые 48 ч), (2) систематический анализ комментариев, (3) фичи из топ-3 жалоб промоутеров, (4) бенчмарк по сегментам — иногда low NPS концентрирован в одном."
+      }
     }
+  ]
+}
     </script>
     <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/nps">
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/nps">
