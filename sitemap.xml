@@ -58,4 +58,10 @@
   <url><loc>https://metricstree.vercel.app/timeToValue</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <!-- B2C addition -->
   <url><loc>https://metricstree.vercel.app/arpdau</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <!-- 52-metric expansion -->
+  <url><loc>https://metricstree.vercel.app/aov</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://metricstree.vercel.app/repeatPurchaseRate</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://metricstree.vercel.app/mrrGrowthRate</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://metricstree.vercel.app/salesCycleLength</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://metricstree.vercel.app/engagementRate</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
 </urlset>

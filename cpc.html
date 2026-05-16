@@ -18,16 +18,16 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://metricstree.vercel.app/cpc">
     <meta property="og:site_name" content="MetricTree">
-    <meta property="og:image" content="https://metricstree.vercel.app/og-image.svg">
-    <meta property="og:image:type" content="image/svg+xml">
+    <meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="MetricTree — калькулятор продуктовых метрик: LTV, CAC, MRR, NPS, Churn">
+    <meta property="og:image:alt" content="MetricTree — калькулятор 52 продуктовых метрик: LTV, CAC, MRR, NPS, Burn Multiple, Runway">
     <meta property="og:locale" content="ru_RU">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="CPC калькулятор — Cost Per Click | MetricTree">
     <meta name="twitter:description" content="CPC = Затраты / Клики. Отраслевые бенчмарки по платформам. Связь с CR, ROAS.">
-    <meta name="twitter:image" content="https://metricstree.vercel.app/og-image.svg">
+    <meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -35,7 +35,7 @@
       "name": "MetricTree",
       "alternateName": "Калькулятор продуктовых метрик",
       "url": "https://metricstree.vercel.app/",
-      "description": "Бесплатный онлайн-калькулятор 47 продуктовых метрик: LTV, CAC, MRR, ARR, Churn Rate, DAU, ROAS, NPS, Burn Multiple, Magic Number, Rule of 40, Quick Ratio с формулами и интерпретацией результатов.",
+      "description": "Бесплатный онлайн-калькулятор 52 продуктовых метрики: LTV, CAC, MRR, ARR, Churn Rate, DAU, ROAS, NPS, Burn Multiple, Magic Number, Rule of 40, Quick Ratio с формулами и интерпретацией результатов.",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
@@ -1530,6 +1530,77 @@
             color: var(--green); font-weight: 600; font-size: 0.85rem;
         }
 
+        /* ===================== NEWSLETTER (inline) ===================== */
+        .newsletter-inline { display: flex; gap: 0.45rem; align-items: stretch; margin-top: 0.5rem; }
+        .newsletter-email {
+            flex: 1; min-width: 0;
+            background: var(--bg-card); color: var(--text-1);
+            border: 1px solid var(--border-input); border-radius: var(--radius-sm);
+            padding: 0.55rem 0.7rem; font-size: 0.85rem; font-family: inherit;
+        }
+        .newsletter-email:focus { border-color: var(--accent); outline: none; }
+        .newsletter-submit {
+            background: var(--accent); color: #fff; border: none;
+            padding: 0 1.1rem; border-radius: var(--radius-sm);
+            font-size: 0.82rem; font-weight: 600; cursor: pointer;
+            white-space: nowrap;
+            transition: filter var(--transition);
+        }
+        .newsletter-submit:hover { filter: brightness(1.08); }
+        .newsletter-success {
+            margin-top: 0.5rem; color: var(--green);
+            font-weight: 600; font-size: 0.82rem;
+        }
+        .about-pricing-cta {
+            background: linear-gradient(135deg, var(--accent), #4CAF50);
+            color: #fff; border: none;
+            padding: 0.6rem 1rem; border-radius: var(--radius-sm);
+            font-size: 0.85rem; font-weight: 600; cursor: pointer;
+            transition: filter var(--transition);
+        }
+        .about-pricing-cta:hover { filter: brightness(1.1); }
+
+        /* ===================== SITE FOOTER (non-embed) ===================== */
+        .site-footer {
+            margin-top: 3rem; padding: 1.4rem 0 2rem;
+            border-top: 1px solid var(--border);
+            display: flex; flex-wrap: wrap; gap: 1.5rem;
+            align-items: center; justify-content: space-between;
+            font-size: 0.78rem; color: var(--text-3);
+        }
+        body.embed .site-footer { display: none !important; }
+        .site-footer-brand { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 700; color: var(--text-2); }
+        .site-footer-brand-mark {
+            width: 18px; height: 18px;
+            background: linear-gradient(135deg, var(--accent), #4CAF50);
+            border-radius: 4px;
+        }
+        .site-footer-links { display: inline-flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+        .site-footer-links a {
+            color: var(--text-3); text-decoration: none; font-weight: 500;
+            transition: color var(--transition);
+        }
+        .site-footer-links a:hover { color: var(--accent); }
+        .site-footer-news {
+            display: inline-flex; gap: 0.4rem; align-items: stretch;
+            background: var(--bg-input); border: 1px solid var(--border);
+            border-radius: var(--radius-sm); padding: 3px;
+        }
+        .site-footer-news input {
+            background: transparent; border: none; outline: none;
+            color: var(--text-1); padding: 0.25rem 0.6rem; font-size: 0.78rem;
+            min-width: 180px;
+        }
+        .site-footer-news button {
+            background: var(--accent); color: #fff; border: none;
+            padding: 0.3rem 0.7rem; border-radius: 4px;
+            font-size: 0.76rem; font-weight: 600; cursor: pointer;
+        }
+        .site-footer-news button:hover { filter: brightness(1.1); }
+        @media (max-width: 600px) {
+            .site-footer { flex-direction: column; align-items: flex-start; gap: 1rem; }
+        }
+
         /* ===================== ABOUT MODAL ===================== */
         .about-modal { max-width: 720px; max-height: 85vh; display: flex; flex-direction: column; }
         .about-body { overflow-y: auto; max-height: 65vh; padding-right: 0.5rem; margin-bottom: 1rem; font-size: 0.85rem; line-height: 1.55; color: var(--text-2); }
@@ -1735,7 +1806,7 @@
     <!-- Onboarding bar (first visit) -->
     <div class="onboarding-bar onboarding-bar-rich" id="onboardingBar" style="display:none;">
         <div class="onboarding-content">
-            <div class="onboarding-headline" data-t="onboard.headline">👋 47 метрик, формулы, отраслевые пороги. Бесплатно, без регистрации.</div>
+            <div class="onboarding-headline" data-t="onboard.headline">👋 52 метрики, формулы, отраслевые пороги. Бесплатно, без регистрации.</div>
             <div class="onboarding-steps">
                 <span class="onboarding-step"><span class="onboarding-step-num">1</span> <span data-t="onboard.step_pick">Выберите метрику</span></span>
                 <span class="onboarding-sep">→</span>
@@ -1754,11 +1825,11 @@
 
     <nav class="sections-nav-wrap" aria-label="Разделы метрик">
         <div class="sections-nav" id="sectionsNav" role="tablist">
-            <div class="section-card active" data-section="b2c" role="tab" tabindex="0" aria-selected="true"><h3>B2C</h3><p>DAU, MAU, LTV, CAC, ARPU, ARPDAU, Churn, Stickiness, LTV:CAC, Retention</p></div>
+            <div class="section-card active" data-section="b2c" role="tab" tabindex="0" aria-selected="true"><h3>B2C</h3><p>DAU, MAU, LTV, CAC, ARPU, ARPDAU, AOV, RPR, Churn, Stickiness, LTV:CAC, Retention</p></div>
             <div class="section-card" data-section="b2b" role="tab" tabindex="0" aria-selected="false"><h3>B2B</h3><p>MRR, ARR, ACV, GRR, NRR, CAC Payback, Burn Multiple, Magic Number, Rule of 40, Quick Ratio</p></div>
             <div class="section-card" data-section="sales" role="tab" tabindex="0" aria-selected="false"><h3>AARRR</h3><p>Acquisition · Activation · Retention · Referral · Revenue · Time to Value</p></div>
-            <div class="section-card" data-section="finance" role="tab" tabindex="0" aria-selected="false"><h3>Finance &amp; Sales</h3><p>Gross Margin · Runway · Burn Rate · Sales Velocity · Win Rate · Pipeline Coverage</p></div>
-            <div class="section-card" data-section="growth" role="tab" tabindex="0" aria-selected="false"><h3>Growth</h3><p>CR · ROAS · CPC · Bounce Rate · CTR</p></div>
+            <div class="section-card" data-section="finance" role="tab" tabindex="0" aria-selected="false"><h3>Finance &amp; Sales</h3><p>Gross Margin · Runway · Burn Rate · Sales Velocity · Win Rate · Pipeline Coverage · Cycle Length · MRR Growth</p></div>
+            <div class="section-card" data-section="growth" role="tab" tabindex="0" aria-selected="false"><h3>Growth</h3><p>CR · ROAS · CPC · Bounce · CTR · Engagement Rate</p></div>
             <div class="section-card" data-section="qa" role="tab" tabindex="0" aria-selected="false"><h3>QA</h3><p>Bug Rate · Test Coverage · Defect Density</p></div>
             <div class="section-card" data-section="support" role="tab" tabindex="0" aria-selected="false"><h3>Support</h3><p>CSAT · NPS · FCR · SLA</p></div>
         </div>
@@ -1882,7 +1953,7 @@
         </article>
     </main>
     <div class="embed-footer" aria-hidden="true">
-        Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 47 продуктовых метрик с формулами
+        Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 52 продуктовых метрики с формулами
     </div>
 </div>
 
@@ -2087,6 +2158,17 @@ window.I18N_UI = {
     'menu.pricing': '💎 Pro / Team plans',
     'menu.pdf': '📑 PDF report',
     'pdf.coming_soon': 'PDF report is a Pro feature. Join the waitlist for early access.',
+    'about.h_pricing': 'Plans',
+    'about.pricing_intro': 'The calculator is free forever. Pro and Team are for teams and advanced workflows (PDF reports, custom-branded embed, API, cross-device sync, weekly digest).',
+    'about.pricing_cta': '💎 See plans and join the waitlist →',
+    'about.h_newsletter': '📬 Metric of the Week',
+    'about.newsletter_intro': 'Once a week — a deep dive on one metric: history, cases, anti-patterns, industry benchmarks. Free, no spam.',
+    'newsletter.subscribe': 'Subscribe',
+    'newsletter.success': '✓ Subscribed. The first issue arrives in a few days.',
+    'footer.about': 'About',
+    'footer.pricing': 'Pro / Team',
+    'footer.help': 'Help',
+    'footer.subscribe': 'Subscribe',
     'pricing.title': '💎 MetricTree Plans',
     'pricing.subtitle': 'The current calculator is free forever. Pro and Team are for teams and advanced scenarios. We are building a waitlist now — leave your email to get early access + 50% off the first year.',
     'pricing.tier_free': 'Free',
@@ -2275,6 +2357,17 @@ window.I18N_UI = {
     'menu.pricing': '💎 Pro / Team tariflar',
     'menu.pdf': '📑 PDF-hisobot',
     'pdf.coming_soon': 'PDF-hisobot — Pro xususiyat. Erta kirish uchun waitlist ga obuna bo\'ling.',
+    'about.h_pricing': 'Tariflar',
+    'about.pricing_intro': 'Kalkulyator abadiy bepul. Pro va Team — jamoalar va ilg\'or stsenariylar uchun (PDF-hisobotlar, brendli embed, API, qurilmalar orasida sync, haftalik digest).',
+    'about.pricing_cta': '💎 Tariflarni ko\'rish va waitlist ga yozilish →',
+    'about.h_newsletter': '📬 Hafta metrikasi',
+    'about.newsletter_intro': 'Haftada bir marta — bitta metrika bo\'yicha chuqur tahlil: tarix, keyslar, anti-patternlar, soha bencharklari. Bepul, spam yo\'q.',
+    'newsletter.subscribe': 'Obuna bo\'lish',
+    'newsletter.success': '✓ Obuna rasmiylashtirildi. Birinchi son bir necha kun ichida keladi.',
+    'footer.about': 'Mahsulot',
+    'footer.pricing': 'Pro / Team',
+    'footer.help': 'Yordam',
+    'footer.subscribe': 'Obuna',
     'pricing.title': '💎 MetricTree tariflari',
     'pricing.subtitle': 'Joriy kalkulyator abadiy bepul. Pro va Team — jamoalar va ilg‘or stsenariylar uchun. Hozir waitlist yig‘moqdamiz — birinchi yilga -50% chegirma uchun email qoldiring.',
     'pricing.tier_free': 'Free',
@@ -3405,6 +3498,53 @@ window._tTooltip = function(ruText) {
                     }
                 },
                 {
+                    id: 'aov', name: 'AOV',
+                    formula: 'Выручка за период / Количество заказов',
+                    description: 'Average Order Value — средний чек. Базовая метрика e-commerce и розницы.',
+                    threshold: 'E-com средний: $50–$150, Премиум: >$200, Маркетплейс: $20–$80',
+                    inputs: [
+                        { label: 'Общая выручка, $', placeholder: '50000', key: 'revenue', min: 0, help: 'Gross revenue за период (без вычетов).' },
+                        { label: 'Количество заказов', placeholder: '500', key: 'orders', min: 1, help: 'Количество завершённых заказов за тот же период (paid orders).' }
+                    ],
+                    calculate: v => {
+                        const r = sanitizeNumber(v.revenue);
+                        const o = sanitizeNumber(v.orders);
+                        if (r === null || o === null || o <= 0) return null;
+                        return (r / o).toFixed(2);
+                    },
+                    unit: '$',
+                    insight: val => {
+                        if (val < 20) return { color: '#FFC107', text: 'Низкий AOV. Bundle, апселы или free-shipping threshold помогут.' };
+                        if (val < 100) return { color: '#4CAF50', text: 'Норма для среднего e-com. Тестируйте upsell/cross-sell.' };
+                        if (val < 250) return { color: '#4CAF50', text: 'Хороший AOV — премиум-сегмент.' };
+                        return { color: '#4CAF50', text: 'Высокий AOV — luxury / B2B-уровень.' };
+                    }
+                },
+                {
+                    id: 'repeatPurchaseRate', name: 'Repeat Purchase Rate',
+                    formula: 'Клиенты с ≥2 заказами / Все клиенты × 100%',
+                    description: 'Repeat Purchase Rate (RPR) — доля клиентов, сделавших хотя бы 2 покупки. Главный индикатор лояльности e-com.',
+                    threshold: 'Плохо: <10%, Норма: 20–30%, Хорошо: 30–50%, Отлично: >50%',
+                    inputs: [
+                        { label: 'Клиенты с 2+ заказами', placeholder: '300', key: 'repeat', min: 0, help: 'Уникальные клиенты, сделавшие 2 или больше заказов за период.' },
+                        { label: 'Всего уникальных клиентов', placeholder: '1000', key: 'total', min: 1, help: 'Все клиенты с хотя бы 1 заказом за период.' }
+                    ],
+                    calculate: v => {
+                        const r = sanitizeNumber(v.repeat);
+                        const t = sanitizeNumber(v.total);
+                        if (r === null || t === null || t <= 0) return null;
+                        return ((r / t) * 100).toFixed(1);
+                    },
+                    unit: '%',
+                    insight: val => {
+                        if (val < 10) return { color: '#F44336', text: 'Низкий RPR. Email/SMS-маркетинг и loyalty-программы помогут.' };
+                        if (val < 20) return { color: '#FFC107', text: 'Ниже нормы. Работайте над second-purchase эксперимент.' };
+                        if (val < 30) return { color: '#FFC107', text: 'Норма для среднего e-com.' };
+                        if (val < 50) return { color: '#4CAF50', text: 'Хороший RPR — лояльность построена.' };
+                        return { color: '#4CAF50', text: 'Отличный RPR — мирового уровня (Amazon, Apple).' };
+                    }
+                },
+                {
                     id: 'churn', name: 'Churn Rate',
                     formula: '(Ушедшие / Всего пользователей) × 100%',
                     description: 'Процент пользователей, переставших пользоваться продуктом за период.',
@@ -3902,6 +4042,53 @@ window._tTooltip = function(ruText) {
                         if (val < 4) return { color: '#4CAF50', text: 'Хорошее покрытие — план реалистичен.' };
                         return { color: '#4CAF50', text: 'Отличное покрытие — большой запас.' };
                     }
+                },
+                {
+                    id: 'salesCycleLength', name: 'Sales Cycle Length',
+                    formula: 'Среднее число дней от opportunity-created до closed-won',
+                    description: 'Среднее время закрытия B2B-сделки. Короче — выше Sales Velocity, ниже CAC Payback.',
+                    threshold: 'B2B SMB: <30 дней, Mid-market: 30–90, Enterprise: 90–180+',
+                    inputs: [
+                        { label: 'Сумма дней по всем закрытым сделкам', placeholder: '4500', key: 'totalDays', min: 0, help: 'Сумма дней от создания opportunity до closed-won по всем выигранным сделкам периода.' },
+                        { label: 'Количество закрытых сделок (won)', placeholder: '50', key: 'wonCount', min: 1, help: 'Только closed-won сделки за период.' }
+                    ],
+                    calculate: v => {
+                        const t = sanitizeNumber(v.totalDays);
+                        const c = sanitizeNumber(v.wonCount);
+                        if (t === null || c === null || c <= 0) return null;
+                        return (t / c).toFixed(1);
+                    },
+                    unit: 'дней',
+                    insight: val => {
+                        if (val < 30) return { color: '#4CAF50', text: 'Короткий цикл — типично для SMB / PLG / inbound.' };
+                        if (val < 90) return { color: '#4CAF50', text: 'Норма для Mid-market B2B SaaS.' };
+                        if (val < 180) return { color: '#FFC107', text: 'Enterprise-цикл. Контролируйте через Pipeline Coverage.' };
+                        return { color: '#F44336', text: 'Очень длинный цикл — рискованно для cash flow. Сегментируйте сделки.' };
+                    }
+                },
+                {
+                    id: 'mrrGrowthRate', name: 'MRR Growth Rate',
+                    formula: '(MRR конец − MRR начало) / MRR начало × 100%',
+                    description: 'Темп роста MRR за период. Главная метрика здоровья SaaS — важнее абсолютного MRR.',
+                    threshold: 'MoM: норма >5%, хорошо >10%, отлично >20%; YoY: норма >50%, T2D3 >100%',
+                    inputs: [
+                        { label: 'MRR на начало периода, $', placeholder: '100000', key: 'startMrr', min: 0.01, help: 'MRR на первый день периода.' },
+                        { label: 'MRR на конец периода, $', placeholder: '115000', key: 'endMrr', min: 0, help: 'MRR на последний день того же периода (включая новых, апселы, минус churn).' }
+                    ],
+                    calculate: v => {
+                        const s = sanitizeNumber(v.startMrr);
+                        const e = sanitizeNumber(v.endMrr);
+                        if (s === null || e === null || s <= 0) return null;
+                        return (((e - s) / s) * 100).toFixed(1);
+                    },
+                    unit: '%',
+                    insight: val => {
+                        if (val < 0) return { color: '#F44336', text: 'Отрицательный рост — выручка падает. Срочно анализ.' };
+                        if (val < 5) return { color: '#FFC107', text: 'Медленный рост. Для растущего SaaS нужно >10% MoM.' };
+                        if (val < 10) return { color: '#FFC107', text: 'Норма. Хорошие SaaS делают >10% MoM.' };
+                        if (val < 20) return { color: '#4CAF50', text: 'Хороший рост — большинство YC-стартапов в этом диапазоне.' };
+                        return { color: '#4CAF50', text: 'Отличный рост — top-tier SaaS уровень.' };
+                    }
                 }
             ]
         },
@@ -4016,6 +4203,29 @@ window._tTooltip = function(ruText) {
                         if (val > 70) return { color: '#F44336', text: 'Высокий отказ. Улучшите релевантность и скорость.' };
                         if (val > 40) return { color: '#FFC107', text: 'Средний отказ. Поработайте над вовлечением.' };
                         return { color: '#4CAF50', text: 'Низкий отказ — пользователи изучают сайт.' };
+                    }
+                },
+                {
+                    id: 'engagementRate', name: 'Engagement Rate',
+                    formula: '(Активные взаимодействия / Достигшие охвата) × 100%',
+                    description: 'Engagement Rate — доля аудитории, которая активно взаимодействовала (лайк / коммент / шер / клик). Главная метрика SMM и контент-маркетинга.',
+                    threshold: 'Соцсети: <1% плохо, 1–3% норма, 3–6% хорошо, >6% отлично',
+                    inputs: [
+                        { label: 'Взаимодействия (likes + comments + shares + clicks)', placeholder: '450', key: 'engagements', min: 0, help: 'Общее число активных взаимодействий с постом / постами за период.' },
+                        { label: 'Охват / Reach', placeholder: '15000', key: 'reach', min: 1, help: 'Уникальные пользователи, которые увидели контент (не impressions — это разные числа).' }
+                    ],
+                    calculate: v => {
+                        const e = sanitizeNumber(v.engagements);
+                        const r = sanitizeNumber(v.reach);
+                        if (e === null || r === null || r <= 0) return null;
+                        return ((e / r) * 100).toFixed(2);
+                    },
+                    unit: '%',
+                    insight: val => {
+                        if (val < 1) return { color: '#F44336', text: 'Низкий engagement. Контент не цепляет — пересмотрите формат/темы.' };
+                        if (val < 3) return { color: '#FFC107', text: 'Норма для большинства брендов в Instagram/X.' };
+                        if (val < 6) return { color: '#4CAF50', text: 'Хороший engagement — комьюнити вовлечено.' };
+                        return { color: '#4CAF50', text: 'Отличный engagement — top-tier creator-уровень.' };
                     }
                 }
             ]
@@ -4451,6 +4661,41 @@ window._tTooltip = function(ruText) {
             ecom:      'Менее релевантно — используйте AOV и repeat rate',
             mobile:    'F2P top tier: $0.30–$1, mid: $0.10–$0.30, низко: <$0.05',
             media:     'Подписка: $0.10–$0.50, реклама: $0.02–$0.20',
+        },
+        salesCycleLength: {
+            universal: 'B2B SMB <30 дней, Mid-market 30–90, Enterprise 90–180+',
+            saas:      'PLG: <14 дней, SMB: 14–60, Mid-market: 60–120, Enterprise: 120–365',
+            ecom:      'Менее релевантно — циклы измеряются в днях',
+            mobile:    'B2B mobile: 30–90 дней',
+            media:     'Ad sales: 30–90 дней',
+        },
+        mrrGrowthRate: {
+            universal: 'MoM: <5% низко, 5–10% норма, 10–20% хорошо, >20% отлично',
+            saas:      'YC-стандарт: 5–7% MoM минимум; T2D3 = 100% YoY за 3 года',
+            ecom:      'Менее релевантно для не-подписочных моделей',
+            mobile:    'F2P/SaaS hybrid: 10–25% MoM на growth-фазе',
+            media:     'Подписочное медиа: 5–15% MoM норма',
+        },
+        aov: {
+            universal: 'E-com среднее: $50–$150, Премиум >$200',
+            saas:      'Менее релевантно — используйте ACV',
+            ecom:      'Fashion: $80–$200, Beauty: $40–$120, Electronics: >$200, Маркетплейс: $20–$80',
+            mobile:    'In-app purchases: $5–$30',
+            media:     'Подписка: $5–$15/мес → $60–$180/год',
+        },
+        repeatPurchaseRate: {
+            universal: 'Плохо: <10%, Норма: 20–30%, Хорошо: 30–50%, Отлично: >50%',
+            saas:      'Не применимо — используйте Retention / NRR',
+            ecom:      'Fashion 25–35%, Beauty 35–50%, Subscription >70%',
+            mobile:    'In-app repeat purchase 15–30%',
+            media:     'Менее релевантно — используйте Retention',
+        },
+        engagementRate: {
+            universal: '<1% плохо, 1–3% норма, 3–6% хорошо, >6% отлично',
+            saas:      'B2B-контент: 2–5% хорошо',
+            ecom:      'Brand посты: 1–3% норма',
+            mobile:    'Push notification engagement: 3–8% норма',
+            media:     'Editorial: 4–8% хорошо, viral >10%',
         },
     };
 
@@ -5200,7 +5445,22 @@ window._tTooltip = function(ruText) {
                        { s:'b2c', id:'churn',         note:'Долгая TtV → ранний Churn' }],
         arpdau:       [{ s:'b2c', id:'dau',          note:'DAU — знаменатель' },
                        { s:'b2c', id:'arpu',          note:'ARPU — месячный аналог' },
-                       { s:'b2c', id:'ltv',           note:'ARPDAU × срок × 30 ≈ LTV' }]
+                       { s:'b2c', id:'ltv',           note:'ARPDAU × срок × 30 ≈ LTV' }],
+        salesCycleLength:[{ s:'finance', id:'salesVelocity', note:'Цикл — знаменатель Sales Velocity' },
+                          { s:'finance', id:'pipelineCoverage', note:'Длинный цикл — нужно больше pipeline' },
+                          { s:'b2b', id:'cacPayback',  note:'Влияет на CAC Payback' }],
+        mrrGrowthRate:[{ s:'b2b', id:'mrr',           note:'Числитель и знаменатель' },
+                       { s:'b2b', id:'arr',           note:'ARR Growth = MRR Growth' },
+                       { s:'b2b', id:'ruleOf40',      note:'Half of Rule of 40' }],
+        aov:          [{ s:'b2c', id:'arpu',          note:'AOV ≠ ARPU; AOV / частота = ARPU' },
+                       { s:'b2c', id:'ltv',           note:'AOV — компонент LTV' },
+                       { s:'b2c', id:'repeatPurchaseRate', note:'Высокий RPR делает AOV важнее' }],
+        repeatPurchaseRate:[{ s:'b2c', id:'aov',      note:'AOV × RPR ≈ выручка с клиента' },
+                            { s:'b2c', id:'retention', note:'RPR ≈ Retention для e-com' },
+                            { s:'b2c', id:'ltv',       note:'Высокий RPR → высокий LTV' }],
+        engagementRate:[{ s:'b2c', id:'stickiness',  note:'Engagement ≠ Stickiness, но связаны' },
+                        { s:'growth', id:'ctr',       note:'CTR — engagement рекламы' },
+                        { s:'support', id:'csat',     note:'High engagement → high satisfaction' }]
     };
 
     const relatedBlockEl = document.getElementById('relatedBlock');
@@ -6651,6 +6911,52 @@ window._tTooltip = function(ruText) {
         document.addEventListener('keydown', e => { if (e.key === 'Escape' && ov.classList.contains('show')) ov.classList.remove('show'); });
     })();
 
+    // Generic Formspree submit with success-replace pattern
+    function bindFormspreeForm(formEl, successEl, source) {
+        if (!formEl) return;
+        formEl.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const submitBtn = formEl.querySelector('button[type=submit], button:not([type])');
+            const origText = submitBtn ? submitBtn.textContent : '';
+            if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '…'; }
+            try {
+                const resp = await fetch(formEl.action, {
+                    method: 'POST',
+                    headers: { Accept: 'application/json' },
+                    body: new FormData(formEl)
+                });
+                if (resp.ok) {
+                    formEl.style.display = 'none';
+                    if (successEl) successEl.style.display = 'block';
+                    showToast('✓ ' + (window._t ? window._t('newsletter.success', 'Подписка оформлена!') : 'Subscribed!'), 'success');
+                } else {
+                    showToast('Ошибка отправки. Напишите на rodion.121093@gmail.com', 'error');
+                    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = origText; }
+                }
+            } catch (err) {
+                showToast('Ошибка сети', 'error');
+                if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = origText; }
+            }
+        });
+    }
+    bindFormspreeForm(document.getElementById('newsletterFormAbout'), document.getElementById('newsletterAboutSuccess'), 'about');
+    bindFormspreeForm(document.getElementById('newsletterFormFooter'), null, 'footer');
+
+    // Footer links → trigger same modals
+    const footerAbout = document.getElementById('footerAbout');
+    if (footerAbout) footerAbout.addEventListener('click', e => { e.preventDefault(); document.getElementById('aboutOverlay')?.classList.add('show'); });
+    const footerPricing = document.getElementById('footerPricing');
+    if (footerPricing) footerPricing.addEventListener('click', e => { e.preventDefault(); document.getElementById('pricingOverlay')?.classList.add('show'); });
+    const footerHelp = document.getElementById('footerHelp');
+    if (footerHelp) footerHelp.addEventListener('click', e => { e.preventDefault(); document.getElementById('helpOverlay')?.classList.add('show'); });
+
+    // About → Pricing CTA
+    const aboutPricingBtn = document.getElementById('aboutPricingBtn');
+    if (aboutPricingBtn) aboutPricingBtn.addEventListener('click', () => {
+        document.getElementById('aboutOverlay')?.classList.remove('show');
+        document.getElementById('pricingOverlay')?.classList.add('show');
+    });
+
     // Bind Pricing modal close/escape + waitlist form (Formspree)
     (function bindPricing(){
         const ov = document.getElementById('pricingOverlay');
@@ -6728,7 +7034,7 @@ window._tTooltip = function(ruText) {
                 <div class="pricing-tier" data-t="pricing.tier_free">Free</div>
                 <div class="pricing-price"><span class="pricing-amount">$0</span><span class="pricing-per" data-t="pricing.forever">навсегда</span></div>
                 <ul class="pricing-feats">
-                    <li data-t="pricing.f_47">✓ Все 47 метрик</li>
+                    <li data-t="pricing.f_47">✓ Все 52 метрики</li>
                     <li data-t="pricing.f_goal">✓ Goal mode (~32 reverse-calc)</li>
                     <li data-t="pricing.f_whatif">✓ What-If слайдеры</li>
                     <li data-t="pricing.f_industry">✓ Отраслевые пороги (5 индустрий)</li>
@@ -6812,7 +7118,7 @@ window._tTooltip = function(ruText) {
     <div class="modal about-modal">
         <h3 id="aboutTitle" data-t="about.title">О продукте MetricTree</h3>
         <div class="about-body">
-            <p data-t="about.intro">MetricTree — бесплатный онлайн-калькулятор 47 продуктовых метрик для продакт-менеджеров, маркетологов, аналитиков и фаундеров. Рассчитайте LTV, CAC, MRR, ARR, Churn Rate, DAU, MAU, Stickiness, ROAS, NPS, CSAT, Burn Multiple, Runway, Sales Velocity и другие метрики с формулами, отраслевыми порогами и интерпретацией результата.</p>
+            <p data-t="about.intro">MetricTree — бесплатный онлайн-калькулятор 52 продуктовых метрики для продакт-менеджеров, маркетологов, аналитиков и фаундеров. Рассчитайте LTV, CAC, MRR, ARR, Churn Rate, DAU, MAU, Stickiness, ROAS, NPS, CSAT, Burn Multiple, Runway, Sales Velocity и другие метрики с формулами, отраслевыми порогами и интерпретацией результата.</p>
 
             <h4 data-t="about.h_sections">Метрики по разделам</h4>
             <p><strong data-t="about.s_b2c">B2C:</strong> DAU, MAU, Stickiness, Retention, LTV, CAC, LTV:CAC, ARPU, ARPDAU, Churn Rate.</p>
@@ -6854,11 +7160,41 @@ window._tTooltip = function(ruText) {
             <h4 data-t="about.h_pricing">Тарифы</h4>
             <p data-t="about.pricing_intro">Калькулятор бесплатный навсегда. Pro и Team — для команд и продвинутых сценариев (PDF-отчёты, custom-branded embed, API, sync между устройствами, weekly digest).</p>
             <p><button class="about-pricing-cta" id="aboutPricingBtn" data-t="about.pricing_cta">💎 Посмотреть тарифы и записаться в waitlist →</button></p>
+
+            <h4 data-t="about.h_newsletter">📬 Метрика недели</h4>
+            <p data-t="about.newsletter_intro">Раз в неделю — глубокий разбор одной метрики: история, кейсы, anti-patterns, отраслевые бенчмарки. Бесплатно, без спама.</p>
+            <form action="https://formspree.io/f/mpwagnry" method="POST" id="newsletterFormAbout" class="newsletter-inline">
+                <input type="hidden" name="_subject" value="MetricTree Newsletter signup (about modal)">
+                <input type="hidden" name="source" value="about-modal">
+                <input type="email" name="email" placeholder="your@email.com" required class="newsletter-email" autocomplete="email">
+                <button type="submit" class="newsletter-submit" data-t="newsletter.subscribe">Подписаться</button>
+            </form>
+            <div class="newsletter-success" id="newsletterAboutSuccess" style="display:none;" data-t="newsletter.success">✓ Подписка оформлена. Первый выпуск придёт через несколько дней.</div>
         </div>
         <div class="modal-btns" style="justify-content:flex-end;">
             <button class="modal-cancel" id="aboutClose" data-t="btn.close">Закрыть</button>
         </div>
     </div>
 </div>
+
+<footer class="site-footer container" role="contentinfo">
+    <div class="site-footer-brand">
+        <span class="site-footer-brand-mark"></span>
+        MetricTree · 52 product metrics calculator
+    </div>
+    <div class="site-footer-links">
+        <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#" id="footerAbout" data-t="footer.about">О продукте</a>
+        <a href="#" id="footerPricing" data-t="footer.pricing">Pro / Team</a>
+        <a href="#" id="footerHelp" data-t="footer.help">Справка</a>
+    </div>
+    <form action="https://formspree.io/f/mpwagnry" method="POST" id="newsletterFormFooter" class="site-footer-news">
+        <input type="hidden" name="_subject" value="MetricTree Newsletter signup (footer)">
+        <input type="hidden" name="source" value="footer">
+        <input type="email" name="email" placeholder="📬 Метрика недели — email" required autocomplete="email">
+        <button type="submit" data-t="footer.subscribe">Подписаться</button>
+    </form>
+</footer>
 </body>
 </html>

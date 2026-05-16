@@ -47,6 +47,11 @@
     { "source": "/pipelineCoverage", "destination": "/pipelineCoverage.html" },
     { "source": "/timeToValue", "destination": "/timeToValue.html" },
     { "source": "/arpdau", "destination": "/arpdau.html" },
+    { "source": "/aov", "destination": "/aov.html" },
+    { "source": "/repeatPurchaseRate", "destination": "/repeatPurchaseRate.html" },
+    { "source": "/mrrGrowthRate", "destination": "/mrrGrowthRate.html" },
+    { "source": "/salesCycleLength", "destination": "/salesCycleLength.html" },
+    { "source": "/engagementRate", "destination": "/engagementRate.html" },
     { "source": "/m/:metricId", "destination": "/index.html" }
   ],
   "headers": [
@@ -68,6 +73,12 @@
     },
     {
       "source": "/og-image.svg",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+      ]
+    },
+    {
+      "source": "/og-image.png",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
       ]

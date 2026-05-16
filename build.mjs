@@ -61,15 +61,21 @@ const META = {
   winRate:        { title: 'Win Rate калькулятор B2B — формула и бенчмарки', desc: 'Win Rate = Closed Won / Всего закрытых. B2B SaaS норма 20–25%, отлично >35%.', q: 'Что такое Win Rate?', a: 'Win Rate = Closed Won / (Won + Lost) × 100%. B2B SaaS норма 20–25%, SMB 25–35%, отлично >35%.' },
   pipelineCoverage:{ title: 'Pipeline Coverage калькулятор — стандарт 3x', desc: 'Pipeline / Quota. Норма B2B SaaS — 3–4x от плана. Goal-режим: нужный pipeline.', q: 'Какое Pipeline Coverage нужно?', a: 'Pipeline Coverage = Pipeline Value / Quota. B2B SaaS стандарт — 3–4× от плана. <2× критически мало, >4× безопасный запас.' },
   timeToValue:    { title: 'Time to Value калькулятор — формула и нормы', desc: 'Среднее время от регистрации до первой ценности (Aha-моменту). Главный driver Activation.', q: 'Что такое Time to Value?', a: 'TtV — медианное время от регистрации до Aha-моменту. PLG <1 день, B2B 1–14 дней. Долгая TtV убивает Activation и Retention.' },
-  arpdau:         { title: 'ARPDAU калькулятор — выручка с дневного пользователя', desc: 'ARPDAU = Дневная выручка / DAU. Free-to-play $0.05–$5, premium $0.5–$20. Goal-режим.', q: 'Что такое ARPDAU?', a: 'Average Revenue Per Daily Active User = Дневная выручка / DAU. Ключевая метрика mobile F2P-игр. Top tier: $0.30–$1, mid: $0.10–$0.30.' }
+  arpdau:         { title: 'ARPDAU калькулятор — выручка с дневного пользователя', desc: 'ARPDAU = Дневная выручка / DAU. Free-to-play $0.05–$5, premium $0.5–$20. Goal-режим.', q: 'Что такое ARPDAU?', a: 'Average Revenue Per Daily Active User = Дневная выручка / DAU. Ключевая метрика mobile F2P-игр. Top tier: $0.30–$1, mid: $0.10–$0.30.' },
+  // 52-metric expansion
+  aov:                { title: 'AOV калькулятор — Average Order Value, формула', desc: 'AOV = Выручка / Заказы. Базовая метрика e-commerce. Премиум-сегмент: >$200. Bundle и upsell — рычаги роста.', q: 'Что такое AOV?', a: 'AOV = Total Revenue / Number of Orders. Средний чек — базовая метрика e-commerce. Низкий AOV → апселы, бандлы, free-shipping threshold.' },
+  repeatPurchaseRate: { title: 'Repeat Purchase Rate калькулятор — RPR e-commerce', desc: 'RPR = Клиенты с 2+ заказами / Все клиенты. Главный индикатор лояльности. Норма 20–30%, отлично >50%.', q: 'Как рассчитать Repeat Purchase Rate?', a: 'RPR = Customers with 2+ orders / Total customers × 100%. Лояльность e-com. Норма 20–30%, премиум-бренды 30–50%, Amazon-уровень >50%.' },
+  mrrGrowthRate:      { title: 'MRR Growth Rate калькулятор — MoM рост SaaS', desc: 'MoM Growth = (End MRR − Start MRR) / Start MRR. YC-стандарт: 5–7% MoM минимум. Главная SaaS-метрика.', q: 'Какой MRR Growth Rate считается хорошим?', a: 'MoM норма >5%, хорошо >10%, отлично >20%. T2D3 = 100% YoY за 3 года. YC рекомендует минимум 5–7% MoM для seed-стадии.' },
+  salesCycleLength:   { title: 'Sales Cycle Length калькулятор B2B — длина цикла', desc: 'Cycle = Сумма дней / Количество выигранных. SMB <30, Mid-market 30–90, Enterprise 90–180+ дней.', q: 'Что такое Sales Cycle Length?', a: 'Sales Cycle Length = Total days from opportunity-created to closed-won / Number of won deals. PLG <14 дней, SMB 14–60, Enterprise 120–365.' },
+  engagementRate:     { title: 'Engagement Rate калькулятор — SMM и контент', desc: 'Engagement Rate = Взаимодействия / Reach × 100%. Норма 1–3%, top-tier creators >6%.', q: 'Что такое Engagement Rate?', a: 'ER = (Likes + Comments + Shares + Clicks) / Reach × 100%. Главная метрика SMM. Менее 1% — плохо, 3–6% — хорошо, >6% — top-tier.' }
 };
 
 function buildHtml(template, id, meta) {
   const url = `${SITE}/${id}`;
   const title = meta.title + ' | MetricTree';
   const desc = meta.desc;
-  // OG image — static SVG fallback (PNG via Edge Function planned for v3).
-  const ogImg = `${SITE}/og-image.svg`;
+  // OG image — static PNG (Telegram/Slack/iMessage all render PNG).
+  const ogImg = `${SITE}/og-image.png`;
 
   let html = template;
 
@@ -85,9 +91,9 @@ function buildHtml(template, id, meta) {
   html = html.replace(/<meta property="og:title"[^>]*>/, `<meta property="og:title" content="${title}">`);
   // og:description
   html = html.replace(/<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${desc}">`);
-  // og:image — static SVG fallback for now
+  // og:image — static PNG, Telegram/Slack/iMessage friendly
   html = html.replace(/<meta property="og:image"[^>]*>/, `<meta property="og:image" content="${ogImg}">`);
-  html = html.replace(/<meta property="og:image:type"[^>]*>/, `<meta property="og:image:type" content="image/svg+xml">`);
+  html = html.replace(/<meta property="og:image:type"[^>]*>/, `<meta property="og:image:type" content="image/png">`);
   html = html.replace(/<meta name="twitter:image"[^>]*>/, `<meta name="twitter:image" content="${ogImg}">`);
   html = html.replace(/<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${title}">`);
   html = html.replace(/<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${desc}">`);
