@@ -1126,6 +1126,49 @@
         }
         .snapshot-del:hover { color: var(--red); }
 
+        /* ===================== FORECAST PANEL ===================== */
+        .forecast-btn {
+            background: var(--bg-card); color: var(--text-2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 0.4rem 0.7rem; font-size: 0.78rem; font-weight: 600;
+            cursor: pointer; display: inline-flex; align-items: center; gap: 0.35rem;
+            transition: background var(--transition), color var(--transition), border-color var(--transition);
+        }
+        .forecast-btn:hover { background: var(--bg-hover); color: var(--text-1); }
+        .forecast-btn.open { background: rgba(255,193,7,0.12); color: var(--yellow); border-color: rgba(255,193,7,0.4); }
+        .forecast-panel {
+            margin-top: 0.85rem; padding: 0.95rem 1rem;
+            background: var(--bg-input); border: 1px solid var(--border);
+            border-left: 3px solid var(--yellow);
+            border-radius: var(--radius-md);
+            display: none; animation: fadeIn 0.2s ease-out;
+        }
+        .forecast-panel.open { display: block; }
+        .forecast-title { font-weight: 700; font-size: 0.88rem; color: var(--text-1); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem; }
+        .forecast-controls { display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap; margin-bottom: 0.8rem; }
+        .forecast-control-row { display: flex; gap: 0.45rem; align-items: center; }
+        .forecast-control-row label { font-size: 0.78rem; color: var(--text-2); }
+        .forecast-control-row input[type="number"] {
+            width: 80px; background: var(--bg-card); color: var(--text-1);
+            border: 1px solid var(--border-input); border-radius: var(--radius-sm);
+            padding: 0.35rem 0.55rem; font-size: 0.84rem; font-family: 'JetBrains Mono','Menlo',monospace;
+        }
+        .forecast-control-row input[type="range"] { width: 140px; }
+        .forecast-chart-wrap { background: var(--bg-card); border-radius: var(--radius-sm); padding: 0.85rem; border: 1px solid var(--border); margin-bottom: 0.7rem; }
+        .forecast-svg { display: block; width: 100%; height: 220px; }
+        .forecast-summary {
+            display: flex; gap: 1.5rem; flex-wrap: wrap;
+            background: rgba(255,193,7,0.06); border-radius: var(--radius-sm); padding: 0.7rem 0.85rem;
+            font-size: 0.82rem; color: var(--text-2);
+        }
+        .forecast-summary-item { display: flex; flex-direction: column; gap: 2px; }
+        .forecast-summary-label { font-size: 0.7rem; color: var(--text-3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+        .forecast-summary-value { font-size: 1.05rem; font-weight: 700; color: var(--text-1); font-family: 'JetBrains Mono','Menlo',monospace; }
+        .forecast-summary-value.pos { color: var(--green); }
+        .forecast-summary-value.neg { color: var(--red); }
+        .forecast-empty { color: var(--text-3); font-size: 0.78rem; padding: 0.5rem 0; font-style: italic; }
+
         /* ===================== GOAL MODE PANEL ===================== */
         .goal-btn {
             background: var(--bg-card); color: var(--text-2);
@@ -1692,6 +1735,17 @@
             .share-btn { padding: 0 0.6rem; width: 38px; justify-content: center; }
             .share-btn-text { display: none; }
             .export-btn { font-size: 0.78rem; padding: 0.4rem 0.7rem; }
+            /* Dashboard button: icon-only */
+            .dashboard-btn span { display: none; }
+            .dashboard-btn { padding: 0.4rem 0.55rem; min-width: 36px; }
+            /* Compact currency: hide € and £ on small screens — $ and ₽ stay */
+            .currency-btn[data-currency="€"], .currency-btn[data-currency="£"] { display: none; }
+            /* Language toggle: tighter */
+            .lang-btn { min-width: 26px; padding: 0 4px; font-size: 0.7rem; }
+            /* About modal: scroll body better */
+            .about-modal, .pricing-modal, .help-modal { max-width: 100%; }
+            .about-body { max-height: 60vh; }
+            /* Pricing grid: stack to 1 column already (handled by .pricing-grid media) */
         }
 
         /* ===================== MOBILE ≤360px (small Android) ===================== */
@@ -1708,6 +1762,8 @@
             .bench { font-size: 0.64rem; padding: 0.1rem 0.4rem; }
             .clear-btn { font-size: 0.75rem; padding: 0.38rem 0.6rem; }
             .copy-btn { font-size: 0.75rem; padding: 0.38rem 0.65rem; }
+            /* On the tiniest screens, hide currency entirely (open via menu in future) */
+            .currency-toggle { display: none; }
         }
 
         /* ===================== LANDSCAPE MOBILE ===================== */
@@ -1929,10 +1985,15 @@
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
                             <span data-t="btn.goal">Цель</span>
                         </button>
+                        <button class="forecast-btn" id="forecastBtn" title="Прогноз на 6–24 мес" style="display:none;">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
+                            <span data-t="btn.forecast">Прогноз</span>
+                        </button>
                     </div>
                 </div>
                 <div class="whatif-panel" id="whatifPanel"></div>
                 <div class="goal-panel" id="goalPanel"></div>
+                <div class="forecast-panel" id="forecastPanel"></div>
             </div>
             <div class="snapshots-block" id="snapshotsBlock" style="display:none;"></div>
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
@@ -2013,7 +2074,15 @@ window.I18N_UI = {
     'btn.save': 'Save',
     'btn.whatif': 'What if?',
     'btn.goal': 'Goal',
+    'btn.forecast': 'Forecast',
     'btn.reset': 'Reset',
+    'forecast.title': 'Forecast horizon',
+    'forecast.months': 'Months',
+    'forecast.start': 'Start (M0)',
+    'forecast.end': 'End',
+    'forecast.delta': 'Change',
+    'forecast.empty': 'Forecast is not configured for this metric.',
+    'forecast.fill_first': 'Fill in metric values to build the forecast.',
     'btn.close': 'Close',
     'btn.cancel': 'Cancel',
     'btn.confirm_clear': 'Clear',
@@ -2212,7 +2281,15 @@ window.I18N_UI = {
     'btn.save': 'Saqlash',
     'btn.whatif': 'Agar nima bo‘lsa?',
     'btn.goal': 'Maqsad',
+    'btn.forecast': 'Prognoz',
     'btn.reset': 'Tiklash',
+    'forecast.title': 'Prognoz davri',
+    'forecast.months': 'Oylar',
+    'forecast.start': 'Start (M0)',
+    'forecast.end': 'Oxir',
+    'forecast.delta': 'O\'zgarish',
+    'forecast.empty': 'Bu metrika uchun prognoz sozlanmagan.',
+    'forecast.fill_first': 'Prognoz qurish uchun metrika qiymatlarini to\'ldiring.',
     'btn.close': 'Yopish',
     'btn.cancel': 'Bekor qilish',
     'btn.confirm_clear': 'Tozalash',
@@ -5002,6 +5079,10 @@ window._tTooltip = function(ruText) {
         if (goalBtn) { goalBtn.classList.remove('open'); }
         if (goalPanel) { goalPanel.classList.remove('open'); goalPanel.innerHTML = ''; }
         refreshGoalButtonVisibility();
+        forecastOpen = false;
+        if (forecastBtn) { forecastBtn.classList.remove('open'); }
+        if (forecastPanel) { forecastPanel.classList.remove('open'); forecastPanel.innerHTML = ''; }
+        if (typeof refreshForecastButtonVisibility === 'function') refreshForecastButtonVisibility();
 
         updateResult();
         updatePageTitle();
@@ -6829,6 +6910,278 @@ window._tTooltip = function(ruText) {
             goalBtn.classList.toggle('open', goalOpen);
             goalPanel.classList.toggle('open', goalOpen);
             if (goalOpen) buildGoalPanel(getCurrentMetric());
+        });
+    }
+
+    // ---- FORECAST (time-series projection) ----
+    // Each entry: { defaultRate, rateLabel, rateUnit, monthsDefault, project(startVal, rateInputPct, m) → array of N+1 values }
+    const FORECAST_CONFIG = {
+        mrr: {
+            valueKey: 'mrr',  // metric.inputs key for the value being projected
+            valueLabel: 'MRR',
+            unit: '$',
+            defaultRate: 10, rateLabel: 'MoM рост', rateUnit: '%',
+            monthsDefault: 12,
+            project: (start, ratePct, m) => {
+                const r = ratePct / 100;
+                const arr = [start];
+                for (let i = 1; i <= m; i++) arr.push(arr[i-1] * (1 + r));
+                return arr;
+            }
+        },
+        arr: {
+            valueKey: 'mrr', valueLabel: 'ARR (MRR × 12)', unit: '$',
+            defaultRate: 10, rateLabel: 'MoM рост', rateUnit: '%',
+            monthsDefault: 12,
+            project: (start, ratePct, m) => {
+                const r = ratePct / 100;
+                const arr = [start * 12];
+                for (let i = 1; i <= m; i++) arr.push(arr[i-1] * (1 + r));
+                return arr;
+            }
+        },
+        runway: {
+            // Project cash remaining month by month
+            valueKey: 'cash', valueLabel: 'Cash remaining', unit: '$',
+            defaultRate: null,  // no rate input — uses burn directly
+            customInputs: [{ key: 'burnInput', label: 'Месячное сжигание', unit: '$', getDefault: () => {
+                const b = document.getElementById('input-burn'); return b ? b.value.replace(/\s/g, '') : '300000';
+            }}],
+            monthsDefault: 18,
+            project: (start, _rate, m, extra) => {
+                const burn = parseFloat((extra?.burnInput || '0').toString().replace(/\s/g, '')) || 0;
+                const arr = [start];
+                for (let i = 1; i <= m; i++) arr.push(Math.max(0, arr[i-1] - burn));
+                return arr;
+            }
+        },
+        nrr: {
+            // Project compounded MRR at given NRR
+            valueKey: 'start', valueLabel: 'MRR проекция', unit: '$',
+            defaultRate: 110, rateLabel: 'NRR годовой', rateUnit: '%',
+            monthsDefault: 12,
+            project: (start, nrrPct, m) => {
+                // Convert annual NRR to monthly compound
+                const monthlyR = Math.pow(nrrPct / 100, 1 / 12) - 1;
+                const arr = [start];
+                for (let i = 1; i <= m; i++) arr.push(arr[i-1] * (1 + monthlyR));
+                return arr;
+            }
+        },
+        mrrGrowthRate: {
+            valueKey: 'startMrr', valueLabel: 'MRR', unit: '$',
+            defaultRate: null,
+            rateFromCalc: true,  // use the calculated growth rate directly
+            monthsDefault: 12,
+            project: (start, ratePct, m) => {
+                const r = ratePct / 100;
+                const arr = [start];
+                for (let i = 1; i <= m; i++) arr.push(arr[i-1] * (1 + r));
+                return arr;
+            }
+        },
+        churn: {
+            valueKey: 'total', valueLabel: 'Размер базы', unit: '',
+            defaultRate: null, rateFromCalc: true,
+            monthsDefault: 12,
+            project: (start, churnPct, m) => {
+                const r = churnPct / 100;
+                const arr = [start];
+                for (let i = 1; i <= m; i++) arr.push(arr[i-1] * (1 - r));
+                return arr;
+            }
+        },
+        burnMultiple: {
+            valueKey: 'newArr', valueLabel: 'ARR (projection)', unit: '$',
+            defaultRate: 5, rateLabel: 'MoM рост ARR', rateUnit: '%',
+            monthsDefault: 12,
+            project: (start, ratePct, m) => {
+                const r = ratePct / 100;
+                const arr = [start];
+                for (let i = 1; i <= m; i++) arr.push(arr[i-1] * (1 + r));
+                return arr;
+            }
+        }
+    };
+
+    let forecastOpen = false;
+    const forecastBtn = document.getElementById('forecastBtn');
+    const forecastPanel = document.getElementById('forecastPanel');
+
+    function refreshForecastButtonVisibility() {
+        const m = getCurrentMetric();
+        if (!forecastBtn) return;
+        if (m && FORECAST_CONFIG[m.id]) forecastBtn.style.display = '';
+        else forecastBtn.style.display = 'none';
+    }
+
+    function drawForecastChart(values, unit) {
+        const W = 720, H = 220, padL = 60, padR = 16, padT = 14, padB = 26;
+        const n = values.length;
+        const min = Math.min(...values, 0);
+        const max = Math.max(...values, 1);
+        const range = (max - min) || 1;
+        const xOf = i => padL + (i / (n - 1)) * (W - padL - padR);
+        const yOf = v => padT + (1 - (v - min) / range) * (H - padT - padB);
+
+        const dPath = values.map((v, i) => `${i === 0 ? 'M' : 'L'} ${xOf(i).toFixed(1)} ${yOf(v).toFixed(1)}`).join(' ');
+        const dArea = `${dPath} L ${xOf(n-1)} ${H - padB} L ${xOf(0)} ${H - padB} Z`;
+
+        // Y-axis ticks (3 labels)
+        const ticks = [max, (max + min) / 2, min];
+        const tickHtml = ticks.map(t => {
+            const y = yOf(t);
+            return `<line x1="${padL}" y1="${y.toFixed(1)}" x2="${W - padR}" y2="${y.toFixed(1)}" stroke="var(--border)" stroke-dasharray="2,3" />
+                <text x="${padL - 8}" y="${(y + 4).toFixed(1)}" text-anchor="end" fill="var(--text-3)" font-size="10" font-family="monospace">${formatSmart(t)}</text>`;
+        }).join('');
+
+        // X-axis labels (Month 0, Month 6, Month N)
+        const xTicks = [0, Math.floor(n / 2), n - 1];
+        const xLabelHtml = xTicks.map(i => `<text x="${xOf(i).toFixed(1)}" y="${H - 6}" text-anchor="middle" fill="var(--text-3)" font-size="10">M${i}</text>`).join('');
+
+        // Endpoint dot
+        const endX = xOf(n - 1), endY = yOf(values[n - 1]);
+
+        return `<svg class="forecast-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">
+            <defs>
+                <linearGradient id="grad" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#FFC107" stop-opacity="0.35"/>
+                    <stop offset="100%" stop-color="#FFC107" stop-opacity="0"/>
+                </linearGradient>
+            </defs>
+            ${tickHtml}
+            <path d="${dArea}" fill="url(#grad)"/>
+            <path d="${dPath}" fill="none" stroke="#FFC107" stroke-width="2.5" stroke-linejoin="round"/>
+            <circle cx="${endX.toFixed(1)}" cy="${endY.toFixed(1)}" r="5" fill="#FFC107" stroke="var(--bg)" stroke-width="2"/>
+            ${xLabelHtml}
+        </svg>`;
+    }
+
+    function getStartValueForForecast(metric, cfg) {
+        // If rateFromCalc — start = startMrr/total directly; else use valueKey input
+        const el = document.getElementById('input-' + cfg.valueKey);
+        if (!el) return null;
+        const raw = el.value.replace(/\s/g, '');
+        const v = parseFloat(raw);
+        if (isNaN(v)) return null;
+        return v;
+    }
+
+    function getEffectiveRate(metric, cfg) {
+        if (cfg.rateFromCalc) {
+            // Use the calculated result from metric.calculate
+            const values = {};
+            metric.inputs.forEach(inp => {
+                const el = document.getElementById('input-' + inp.key);
+                if (el) values[inp.key] = el.value.replace(/\s/g, '');
+            });
+            try {
+                const r = metric.calculate(values);
+                const n = parseFloat(r);
+                return isNaN(n) ? cfg.defaultRate || 0 : n;
+            } catch (e) { return cfg.defaultRate || 0; }
+        }
+        return cfg.defaultRate;
+    }
+
+    function buildForecastPanel(metric) {
+        if (!metric) return;
+        const cfg = FORECAST_CONFIG[metric.id];
+        if (!cfg) {
+            forecastPanel.innerHTML = `<div class="forecast-empty">${t('forecast.empty', 'Прогноз для этой метрики не настроен.')}</div>`;
+            return;
+        }
+        const startVal = getStartValueForForecast(metric, cfg);
+        if (startVal === null || startVal <= 0) {
+            forecastPanel.innerHTML = `<div class="forecast-empty">${t('forecast.fill_first', 'Заполните значения метрики, чтобы построить прогноз.')}</div>`;
+            return;
+        }
+        const initialRate = getEffectiveRate(metric, cfg);
+        const initialMonths = cfg.monthsDefault;
+
+        const customInputsHtml = (cfg.customInputs || []).map(ci => `
+            <div class="forecast-control-row">
+                <label for="fc-${ci.key}">${ci.label}${ci.unit ? ', ' + getCurrencyForUnit(ci.unit) : ''}</label>
+                <input type="number" id="fc-${ci.key}" value="${ci.getDefault()}" step="any">
+            </div>
+        `).join('');
+
+        const rateRowHtml = cfg.defaultRate !== null && !cfg.rateFromCalc ? `
+            <div class="forecast-control-row">
+                <label for="fc-rate">${cfg.rateLabel}, ${cfg.rateUnit}</label>
+                <input type="number" id="fc-rate" value="${initialRate}" step="0.1">
+            </div>` : '';
+
+        const rateInfoHtml = cfg.rateFromCalc ? `
+            <div class="forecast-control-row">
+                <span style="font-size:0.78rem;color:var(--text-3);">Темп взят из расчёта: <strong style="color:var(--text-1);font-family:'JetBrains Mono',monospace;">${initialRate.toFixed(1)}%</strong></span>
+            </div>` : '';
+
+        forecastPanel.innerHTML = `
+            <div class="forecast-title">📈 ${t('forecast.title', 'Прогноз на горизонте')}</div>
+            <div class="forecast-controls">
+                ${customInputsHtml}
+                ${rateRowHtml}
+                ${rateInfoHtml}
+                <div class="forecast-control-row">
+                    <label for="fc-months">${t('forecast.months', 'Месяцев')}</label>
+                    <input type="range" id="fc-months" min="3" max="24" value="${initialMonths}" step="1">
+                    <span id="fc-months-val" style="font-size:0.82rem;color:var(--text-1);font-family:'JetBrains Mono',monospace;min-width:32px;">${initialMonths}</span>
+                </div>
+            </div>
+            <div class="forecast-chart-wrap" id="fc-chart"></div>
+            <div class="forecast-summary" id="fc-summary"></div>
+        `;
+
+        const recompute = () => {
+            const months = parseInt(document.getElementById('fc-months')?.value || initialMonths);
+            document.getElementById('fc-months-val').textContent = months;
+            const rateEl = document.getElementById('fc-rate');
+            const rate = rateEl ? parseFloat(rateEl.value) : initialRate;
+            const extra = {};
+            (cfg.customInputs || []).forEach(ci => {
+                const el = document.getElementById('fc-' + ci.key);
+                if (el) extra[ci.key] = el.value;
+            });
+            const values = cfg.project(startVal, rate, months, extra);
+            const finalV = values[values.length - 1];
+            const delta = finalV - startVal;
+            const deltaPct = startVal > 0 ? ((finalV - startVal) / startVal) * 100 : 0;
+            const unitDisp = cfg.unit === '$' ? localizeUnit('$') : cfg.unit;
+            const chartEl = document.getElementById('fc-chart');
+            if (chartEl) chartEl.innerHTML = drawForecastChart(values, unitDisp);
+            const sumEl = document.getElementById('fc-summary');
+            if (sumEl) {
+                const deltaCls = delta > 0 ? 'pos' : (delta < 0 ? 'neg' : '');
+                const sign = delta > 0 ? '+' : '';
+                sumEl.innerHTML = `
+                    <div class="forecast-summary-item">
+                        <span class="forecast-summary-label">${t('forecast.start', 'Старт (M0)')}</span>
+                        <span class="forecast-summary-value">${formatSmart(startVal)}${unitDisp ? ' ' + unitDisp : ''}</span>
+                    </div>
+                    <div class="forecast-summary-item">
+                        <span class="forecast-summary-label">${t('forecast.end', 'Конец (M' + months + ')')}</span>
+                        <span class="forecast-summary-value">${formatSmart(finalV)}${unitDisp ? ' ' + unitDisp : ''}</span>
+                    </div>
+                    <div class="forecast-summary-item">
+                        <span class="forecast-summary-label">${t('forecast.delta', 'Изменение')}</span>
+                        <span class="forecast-summary-value ${deltaCls}">${sign}${formatSmart(delta)}${unitDisp ? ' ' + unitDisp : ''} (${sign}${deltaPct.toFixed(1)}%)</span>
+                    </div>`;
+            }
+        };
+        ['fc-rate', 'fc-months', ...(cfg.customInputs || []).map(c => 'fc-' + c.key)].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener('input', recompute);
+        });
+        recompute();
+    }
+
+    if (forecastBtn) {
+        forecastBtn.addEventListener('click', () => {
+            forecastOpen = !forecastOpen;
+            forecastBtn.classList.toggle('open', forecastOpen);
+            forecastPanel.classList.toggle('open', forecastOpen);
+            if (forecastOpen) buildForecastPanel(getCurrentMetric());
         });
     }
 
