@@ -64,4 +64,24 @@
   <url><loc>https://metricstree.vercel.app/mrrGrowthRate</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
   <url><loc>https://metricstree.vercel.app/salesCycleLength</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://metricstree.vercel.app/engagementRate</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <!-- English mirrors of top 12 metrics -->
+  <url><loc>https://metricstree.vercel.app/en/ltv</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://metricstree.vercel.app/en/cac</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://metricstree.vercel.app/en/ltv_cac</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://metricstree.vercel.app/en/mrr</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://metricstree.vercel.app/en/nrr</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://metricstree.vercel.app/en/churn</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://metricstree.vercel.app/en/burnMultiple</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://metricstree.vercel.app/en/runway</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://metricstree.vercel.app/en/ruleOf40</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://metricstree.vercel.app/en/nps</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://metricstree.vercel.app/en/roas</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://metricstree.vercel.app/en/mrrGrowthRate</loc><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <!-- Uzbek mirrors of top 6 metrics -->
+  <url><loc>https://metricstree.vercel.app/uz/ltv</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://metricstree.vercel.app/uz/cac</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://metricstree.vercel.app/uz/mrr</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://metricstree.vercel.app/uz/runway</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://metricstree.vercel.app/uz/burnMultiple</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://metricstree.vercel.app/uz/nps</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

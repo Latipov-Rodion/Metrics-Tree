@@ -1126,6 +1126,75 @@
         }
         .snapshot-del:hover { color: var(--red); }
 
+        /* ===================== DEEP CONTENT (per-metric guides) ===================== */
+        .deep-content {
+            margin-top: 1.2rem;
+            background: var(--bg-input);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+        }
+        .deep-content summary {
+            padding: 0.7rem 1rem;
+            font-size: 0.85rem; font-weight: 700;
+            color: var(--text-2);
+            cursor: pointer; user-select: none;
+            list-style: none; outline: none;
+            transition: color var(--transition);
+        }
+        .deep-content summary::-webkit-details-marker { display: none; }
+        .deep-content summary::before {
+            content: '▸'; display: inline-block; margin-right: 0.5rem;
+            transition: transform var(--transition);
+        }
+        .deep-content[open] summary::before { transform: rotate(90deg); }
+        .deep-content summary:hover { color: var(--accent); }
+        .deep-content-body {
+            padding: 0 1rem 1rem;
+            font-size: 0.86rem; line-height: 1.6;
+            color: var(--text-2);
+        }
+        .deep-content-body h4 {
+            font-size: 0.9rem; font-weight: 700;
+            color: var(--text-1);
+            margin: 1rem 0 0.4rem;
+        }
+        .deep-content-body h4:first-child { margin-top: 0; }
+        .deep-content-body p { margin-bottom: 0.6rem; }
+        .deep-content-body ul { padding-left: 1.3rem; margin-bottom: 0.7rem; }
+        .deep-content-body li { margin-bottom: 0.3rem; }
+        .deep-content-body code {
+            background: var(--bg-card); padding: 1px 5px; border-radius: 3px;
+            font-size: 0.82rem; color: var(--accent);
+            font-family: 'JetBrains Mono','Menlo',monospace;
+        }
+        .deep-content-body a {
+            color: var(--accent); text-decoration: none;
+            border-bottom: 1px dotted var(--accent);
+        }
+        .deep-content-body a:hover { border-bottom-style: solid; }
+        .deep-content-body b, .deep-content-body strong { color: var(--text-1); }
+        body.embed .deep-content { display: none; }
+
+        /* ===================== BENCHMARK SOURCES ===================== */
+        .bench-sources {
+            display: block; width: 100%; margin-top: 6px;
+            font-size: 0.7rem; color: var(--text-3);
+        }
+        .bench-sources summary {
+            cursor: pointer; padding: 2px 0; user-select: none;
+            color: var(--text-3); transition: color var(--transition);
+            list-style: none; outline: none;
+        }
+        .bench-sources summary::-webkit-details-marker { display: none; }
+        .bench-sources summary:hover { color: var(--accent); }
+        .bench-source-list { padding: 4px 0 2px; line-height: 1.6; }
+        .bench-source-link {
+            color: var(--text-2); text-decoration: none;
+            border-bottom: 1px dotted var(--border);
+            transition: color var(--transition), border-color var(--transition);
+        }
+        .bench-source-link:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
         /* ===================== FORECAST PANEL ===================== */
         .forecast-btn {
             background: var(--bg-card); color: var(--text-2);
@@ -1499,6 +1568,70 @@
         body.embed .embed-footer a:hover { text-decoration: underline; }
         .embed-footer { display: none; }
 
+        /* ===================== CSV IMPORT MODAL ===================== */
+        .csv-import-sub { font-size: 0.82rem; color: var(--text-2); margin-bottom: 0.7rem; line-height: 1.5; }
+        .csv-import-text {
+            width: 100%; min-height: 180px;
+            background: var(--bg-card); color: var(--text-1);
+            border: 1px solid var(--border-input); border-radius: var(--radius-sm);
+            padding: 0.7rem; font-family: 'JetBrains Mono','Menlo',monospace;
+            font-size: 0.82rem; line-height: 1.5;
+            resize: vertical; outline: none;
+        }
+        .csv-import-text:focus { border-color: var(--accent); }
+        .csv-import-hint {
+            margin-top: 0.6rem; padding: 0.55rem 0.7rem;
+            background: var(--bg-input); border-radius: var(--radius-sm);
+            font-size: 0.72rem; color: var(--text-3); line-height: 1.5;
+        }
+        .csv-import-hint code { background: var(--bg-card); padding: 1px 4px; border-radius: 3px; color: var(--accent); }
+
+        /* ===================== COMPARE-2-METRICS ===================== */
+        .compare2-controls { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.8rem; font-size: 0.82rem; color: var(--text-2); }
+        .compare2-select {
+            background: var(--bg-card); color: var(--text-1);
+            border: 1px solid var(--border-input); border-radius: var(--radius-sm);
+            padding: 0.4rem 0.6rem; font-size: 0.82rem; font-family: inherit;
+            min-width: 240px; cursor: pointer;
+        }
+        .compare2-select:focus { border-color: var(--accent); outline: none; }
+        .compare2-grid {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        @media (max-width: 720px) { .compare2-grid { grid-template-columns: 1fr; } }
+        .compare2-col {
+            background: var(--bg-input); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 1rem;
+        }
+        .compare2-col h4 {
+            font-size: 0.95rem; font-weight: 700; color: var(--text-1);
+            margin: 0 0 0.4rem; display: flex; align-items: center; gap: 0.4rem;
+        }
+        .compare2-col .c2-formula {
+            font-family: 'JetBrains Mono','Menlo',monospace;
+            font-size: 0.78rem; color: var(--accent);
+            background: var(--accent-dim); padding: 4px 10px; border-radius: var(--radius-sm);
+            margin-bottom: 0.6rem; display: inline-block;
+        }
+        .compare2-col .c2-descr { font-size: 0.8rem; color: var(--text-2); margin-bottom: 0.7rem; line-height: 1.4; }
+        .compare2-col .c2-inputs { margin-bottom: 0.7rem; }
+        .compare2-col .c2-input-row { display: flex; gap: 0.4rem; margin-bottom: 0.35rem; align-items: center; }
+        .compare2-col .c2-input-row label { font-size: 0.72rem; color: var(--text-3); flex: 1; }
+        .compare2-col .c2-input-row input {
+            width: 110px; background: var(--bg-card); color: var(--text-1);
+            border: 1px solid var(--border-input); border-radius: 4px;
+            padding: 0.3rem 0.5rem; font-size: 0.82rem; font-family: 'JetBrains Mono','Menlo',monospace;
+            text-align: right;
+        }
+        .compare2-col .c2-result {
+            display: flex; align-items: baseline; gap: 0.4rem;
+            padding-top: 0.55rem; border-top: 1px dashed var(--border);
+        }
+        .compare2-col .c2-result-label { font-size: 0.7rem; color: var(--text-3); font-weight: 600; text-transform: uppercase; }
+        .compare2-col .c2-result-val { font-size: 1.6rem; font-weight: 800; font-family: 'JetBrains Mono','Menlo',monospace; }
+        .compare2-col .c2-insight { font-size: 0.76rem; color: var(--text-2); margin-top: 0.4rem; padding: 0.3rem 0.55rem; border-left: 2px solid var(--accent); background: var(--bg-card); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+
         /* ===================== PRICING MODAL ===================== */
         .pricing-modal { max-width: 980px; max-height: 90vh; display: flex; flex-direction: column; }
         .pricing-sub { font-size: 0.86rem; color: var(--text-2); line-height: 1.55; margin-bottom: 1.4rem; }
@@ -1799,6 +1932,10 @@
       ]
     }
     </script>
+    <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/repeatPurchaseRate">
+    <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/repeatPurchaseRate">
+    <link rel="alternate" hreflang="uz" href="https://metricstree.vercel.app/uz/repeatPurchaseRate">
+    <link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/repeatPurchaseRate">
 </head>
 <body>
 <a href="#metricCard" class="skip-link">Перейти к калькулятору</a>
@@ -1846,6 +1983,8 @@
                 </button>
                 <div class="more-menu-pop" id="moreMenuPop" role="menu">
                     <button id="csvExportBtn" role="menuitem" data-t="menu.csv">📄 Экспорт в CSV</button>
+                    <button id="csvImportBtn" role="menuitem" data-t="menu.csv_import">📥 Импорт из CSV</button>
+                    <button id="compare2Btn" role="menuitem" data-t="menu.compare2">🔀 Сравнить 2 метрики</button>
                     <button id="pdfExportBtn" role="menuitem"><span data-t="menu.pdf">📑 PDF-отчёт</span><span class="menu-pro-badge">PRO</span></button>
                     <button id="snapshotMenuBtn" role="menuitem"><span data-t="menu.snapshot">💾 Сохранить снимок</span><kbd>Ctrl+S</kbd></button>
                     <button id="searchMenuBtn" role="menuitem"><span data-t="menu.search">🔍 Поиск метрики</span><kbd>/</kbd></button>
@@ -2011,6 +2150,7 @@
             </div>
             <div class="snapshots-block" id="snapshotsBlock" style="display:none;"></div>
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
+            <div id="deepContentSlot"></div>
         </article>
     </main>
     <div class="embed-footer" aria-hidden="true">
@@ -2097,6 +2237,17 @@ window.I18N_UI = {
     'forecast.delta': 'Change',
     'forecast.empty': 'Forecast is not configured for this metric.',
     'forecast.fill_first': 'Fill in metric values to build the forecast.',
+    'sources.label': 'Benchmark sources',
+    'menu.csv_import': '📥 Import from CSV',
+    'menu.compare2': '🔀 Compare 2 metrics',
+    'csvimport.title': '📥 Import values from CSV',
+    'csvimport.subtitle': 'Paste your data in `metric_id,value` format (or `key=value`, one per line). Field keys: aov, freq, life, cost, customers, mrr, etc. We will autofill matching metric inputs.',
+    'csvimport.placeholder': 'Example:\\nmrr,100000\\ncac,1500\\nltv,15000\\nchurn lost,150\\nchurn total,2000',
+    'csvimport.parse': 'Parse and fill',
+    'csvimport.success': 'Filled {n} value(s)',
+    'csvimport.empty': 'Nothing to parse',
+    'compare2.title': '🔀 Compare two metrics',
+    'compare2.choose': 'Choose second metric:',
     'btn.close': 'Close',
     'btn.cancel': 'Cancel',
     'btn.confirm_clear': 'Clear',
@@ -2304,6 +2455,17 @@ window.I18N_UI = {
     'forecast.delta': 'O\'zgarish',
     'forecast.empty': 'Bu metrika uchun prognoz sozlanmagan.',
     'forecast.fill_first': 'Prognoz qurish uchun metrika qiymatlarini to\'ldiring.',
+    'sources.label': 'Bencharklar manbalari',
+    'menu.csv_import': '📥 CSV dan import',
+    'menu.compare2': '🔀 2 ta metrikani taqqoslash',
+    'csvimport.title': '📥 CSV dan qiymatlarni import qilish',
+    'csvimport.subtitle': 'Ma\'lumotlaringizni `metrika_id,qiymat` formatida joylashtiring (yoki `key=value`, har bir qator). Mos metrika inputlari avtomatik to\'ldiriladi.',
+    'csvimport.placeholder': 'Misol:\\nmrr,100000\\ncac,1500\\nltv,15000',
+    'csvimport.parse': 'Parse va to\'ldirish',
+    'csvimport.success': '{n} qiymat to\'ldirildi',
+    'csvimport.empty': 'Parse uchun ma\'lumot yo\'q',
+    'compare2.title': '🔀 Ikkita metrikani taqqoslash',
+    'compare2.choose': 'Ikkinchi metrikani tanlang:',
     'btn.close': 'Yopish',
     'btn.cancel': 'Bekor qilish',
     'btn.confirm_clear': 'Tozalash',
@@ -3247,7 +3409,16 @@ window._tTooltip = function(ruText) {
 
     // ---- LANGUAGE ----
     let currentLang = 'ru';
-    try { const l = localStorage.getItem(LS_LANG); if (l && (l === 'en' || l === 'uz')) currentLang = l; } catch(e) {}
+    // 1. URL prefix /en/* or /uz/* takes precedence (deep-link from sitemap)
+    try {
+        const p = window.location.pathname || '';
+        if (p.startsWith('/en/') || p === '/en') currentLang = 'en';
+        else if (p.startsWith('/uz/') || p === '/uz') currentLang = 'uz';
+        else {
+            const l = localStorage.getItem(LS_LANG);
+            if (l && (l === 'en' || l === 'uz')) currentLang = l;
+        }
+    } catch(e) {}
 
     function t(key, fallback) {
         if (currentLang === 'ru') return fallback || '';
@@ -4793,7 +4964,7 @@ window._tTooltip = function(ruText) {
                 // Обновить пороги на текущей метрике
                 const metric = getCurrentMetric();
                 if (metric && benchmarksEl) {
-                    benchmarksEl.innerHTML = renderBenchmarks(getThreshold(metric));
+                    benchmarksEl.innerHTML = renderBenchmarks(getThreshold(metric)) + renderSources(metric.id);
                 }
             });
         });
@@ -5051,7 +5222,7 @@ window._tTooltip = function(ruText) {
         metricNameEl.textContent = tm(metric.id, 'name', metric.name);
         formulaInlineEl.textContent = tm(metric.id, 'formula', metric.formula);
         metricDescEl.textContent = tm(metric.id, 'description', metric.description);
-        benchmarksEl.innerHTML = renderBenchmarks(getThreshold(metric));
+        benchmarksEl.innerHTML = renderBenchmarks(getThreshold(metric)) + renderSources(metric.id);
 
         let inputsHtml = '';
         metric.inputs.forEach(inp => {
@@ -5104,6 +5275,9 @@ window._tTooltip = function(ruText) {
         renderSnapshotsBlock();
         updateSectionBadges();
         syncCleanURL();
+        // Deep-dive content (top-10 metrics only)
+        const slot = document.getElementById('deepContentSlot');
+        if (slot) slot.innerHTML = renderDeepContent(metric.id);
     }
 
     function setActiveSection(sectionId) {
@@ -5280,6 +5454,14 @@ window._tTooltip = function(ruText) {
             const ov = document.getElementById('aboutOverlay');
             if (ov) ov.classList.add('show');
         });
+        const csvImportMenu = document.getElementById('csvImportBtn');
+        if (csvImportMenu) csvImportMenu.addEventListener('click', () => {
+            const ov = document.getElementById('csvImportOverlay');
+            if (ov) ov.classList.add('show');
+            setTimeout(() => document.getElementById('csvImportText')?.focus(), 100);
+        });
+        const compare2MenuBtn = document.getElementById('compare2Btn');
+        if (compare2MenuBtn) compare2MenuBtn.addEventListener('click', () => openCompare2());
         const pricingMenu = document.getElementById('pricingMenuBtn');
         if (pricingMenu) pricingMenu.addEventListener('click', () => {
             const ov = document.getElementById('pricingOverlay');
@@ -5616,8 +5798,11 @@ window._tTooltip = function(ruText) {
     function restoreFromURL() {
         const params = new URLSearchParams(window.location.search);
         // 1) \u041F\u043E\u0434\u0434\u0435\u0440\u0436\u043A\u0430 clean URL: /ltv, /cac, /m/ltv
-        const path = window.location.pathname.replace(/^\/m\//, '/');
-        // Поддерживаем оба варианта: /ltv и /ltv.html (на случай прямого открытия)
+        // Strip /m/ prefix and /en/ /uz/ language prefixes before extracting metric ID
+        const path = window.location.pathname
+            .replace(/^\/m\//, '/')
+            .replace(/^\/(en|uz)\//, '/');
+        // Support both /ltv and /ltv.html (direct file open)
         const pathMetric = path.replace(/^\//, '').replace(/\.html$/i, '').replace(/\/$/, '');
         let metricFromPath = null;
         if (pathMetric && /^[a-zA-Z][a-zA-Z0-9_]*$/.test(pathMetric)) {
@@ -6927,6 +7112,103 @@ window._tTooltip = function(ruText) {
         });
     }
 
+    // ---- DEEP CONTENT (per-metric guides for SEO) ----
+    // 300-500 word expandable guide rendered as <details> after the result block.
+    // Top 10 metrics have hand-written content; others fall back to nothing.
+    const DEEP_CONTENT = {
+        ltv: {
+            ru: `<h4>Что такое LTV</h4><p>Lifetime Value (LTV) — это суммарный доход, который один клиент приносит за всё время жизни как платящего пользователя. Формула <b>AOV × Частота покупок в год × Срок жизни (лет)</b> работает для повторяющихся покупок. Для подписочных моделей альтернативная формула: <code>ARPU / Churn Rate</code>.</p><h4>Главное правило: LTV : CAC ≥ 3</h4><p>Сам по себе LTV ничего не говорит. Health-чек unit-экономики — соотношение <a href="/ltv_cac">LTV : CAC</a>. Норма ≥ 3, отлично ≥ 5. Если LTV / CAC &lt; 1 — каждый новый клиент уносит деньги.</p><h4>3 типичные ошибки</h4><ul><li><b>Считают gross-LTV, забывая COGS.</b> Для SaaS вычитайте <a href="/grossMargin">Gross Margin</a>: LTV(net) = LTV × Margin%.</li><li><b>Берут максимальное «возможное» время жизни</b> вместо фактической медианы. Считайте по реальным когортам.</li><li><b>Применяют формулу AOV × freq × life к подписочной модели</b> вместо ARPU / Churn. У подписки нет «покупок», есть длительность.</li></ul><h4>Когда LTV не главное</h4><p>На <i>seed</i>-стадии важнее <a href="/runway">Runway</a> и <a href="/mrrGrowthRate">MRR Growth</a>. LTV точно считать невозможно — выборка слишком маленькая. Используйте LTV только когда есть когорты от 6+ месяцев.</p>`,
+            en: `<h4>What is LTV</h4><p>Lifetime Value (LTV) is the total revenue one customer brings during their entire lifecycle as a paying user. The formula <b>AOV × Purchase frequency per year × Customer lifetime (years)</b> works for repeat purchases. For subscriptions, use: <code>ARPU / Churn Rate</code>.</p><h4>The main rule: LTV : CAC ≥ 3</h4><p>LTV alone tells you nothing. Unit-economics health = the <a href="/en/ltv_cac">LTV : CAC ratio</a>. Norm ≥ 3, excellent ≥ 5. If LTV / CAC &lt; 1, every new customer loses money.</p><h4>3 typical mistakes</h4><ul><li><b>Counting gross LTV, forgetting COGS.</b> For SaaS, multiply by <a href="/en/grossMargin">Gross Margin</a>: LTV(net) = LTV × Margin%.</li><li><b>Using maximum possible lifetime</b> instead of actual cohort median.</li><li><b>Applying AOV × freq × life to a subscription</b> instead of ARPU / Churn.</li></ul><h4>When LTV is not the priority</h4><p>At seed stage, <a href="/en/runway">Runway</a> and <a href="/en/mrrGrowthRate">MRR Growth</a> matter more. Use LTV when you have cohorts ≥ 6 months old.</p>`,
+            uz: `<h4>LTV nima</h4><p>Lifetime Value (LTV) — bir mijoz to'lovchi sifatida butun umri davomida olib kelgan umumiy daromad. Formula: <b>AOV × Yiliga xaridlar × Mijoz umri (yil)</b>. Obuna modelida: <code>ARPU / Churn Rate</code>.</p><h4>Asosiy qoida: LTV : CAC ≥ 3</h4><p>LTV o'zicha hech narsa demaydi. Unit-iqtisodiyot salomatligi = <a href="/uz/ltv_cac">LTV : CAC nisbati</a>. Norma ≥ 3, ajoyib ≥ 5.</p>`
+        },
+        cac: {
+            ru: `<h4>Что входит в CAC</h4><p>Customer Acquisition Cost — <b>все затраты на привлечение одного платящего клиента</b>: реклама, зарплаты sales/marketing команды, инструменты (HubSpot, ZoomInfo, рекламные кабинеты), производство контента, комиссии партнёрам. Это полная стоимость, а не только media-spend.</p><h4>Формула и когда она ломается</h4><p>CAC = (S&amp;M Spend за период) / (Новые платящие клиенты за тот же период). Ломается, если: (1) период привлечения и период оплаты разные (типично для B2B с длинным циклом), (2) включаете триальных пользователей в знаменатель, (3) не учитываете S&amp;M-payroll.</p><h4>Связь с другими метриками</h4><ul><li><b><a href="/cacPayback">CAC Payback</a></b> — за сколько месяцев CAC окупится через MRR. SaaS-норма: 12–18 мес.</li><li><b><a href="/ltv_cac">LTV : CAC</a></b> — главный health-чек. Норма ≥ 3.</li><li><b><a href="/magicNumber">Magic Number</a></b> — измеряет, насколько эффективно ваш S&amp;M бюджет конвертируется в ARR.</li></ul><h4>Blended vs Paid CAC</h4><p>Blended CAC включает органические каналы (referrals, SEO) в знаменатель — оптимистичная цифра. Paid CAC — только те клиенты, что пришли через платные каналы. Для управления каналами всегда смотрите Paid CAC per channel.</p>`,
+            en: `<h4>What goes into CAC</h4><p>Customer Acquisition Cost = <b>everything spent to acquire one paying customer</b>: ads, sales/marketing payroll, tools (HubSpot, ZoomInfo), content production, partner commissions. Full cost — not just media spend.</p><h4>The formula and when it breaks</h4><p>CAC = (S&amp;M spend in period) / (New paying customers in same period). Breaks when (1) acquisition period and payment period differ (B2B with long cycles), (2) trial users counted in denominator, (3) S&amp;M payroll excluded.</p><h4>Related metrics</h4><ul><li><b><a href="/en/cacPayback">CAC Payback</a></b> — months until CAC is recouped via MRR. SaaS norm: 12–18 mo.</li><li><b><a href="/en/ltv_cac">LTV : CAC</a></b> — main health-check. Target ≥ 3.</li><li><b><a href="/en/magicNumber">Magic Number</a></b> — how efficiently S&amp;M converts to ARR.</li></ul><h4>Blended vs Paid CAC</h4><p>Blended CAC includes organic (referrals, SEO). Paid CAC = only paid-channel customers. Always track Paid CAC per channel for channel-level decisions.</p>`,
+            uz: `<h4>CAC nima</h4><p>Customer Acquisition Cost — bir to'lovchi mijozni jalb qilish uchun barcha xarajatlar: reklama, sales/marketing maoshlari, asboblar (HubSpot, ZoomInfo), kontent, komissiyalar. To'liq qiymat — faqat media spend emas.</p>`
+        },
+        mrr: {
+            ru: `<h4>Что считается MRR</h4><p>Monthly Recurring Revenue — <b>нормализованная месячная подписочная выручка</b>. Только то, что повторяется ежемесячно с высокой предсказуемостью. Годовые контракты делятся на 12 для «контрактного MRR». One-time setup fees, профессиональные услуги, ad-hoc счета — НЕ включаются.</p><h4>MRR ≠ Cash Revenue</h4><p>MRR — это бухгалтерская абстракция (accrual), а не cash. Клиент мог заплатить за год вперёд, но MRR всё равно идёт через 1/12 в месяц. Для cash-flow смотрите billings + collections отдельно.</p><h4>Главное — рост MoM, а не абсолют</h4><p>MRR в $50k на seed — нормально. MRR в $50k через 3 года — катастрофа. Здоровье — <a href="/mrrGrowthRate">MRR Growth Rate</a>: YC-минимум 5–7% MoM, хорошо &gt;10%, отлично &gt;20% MoM.</p><h4>Декомпозиция MRR</h4><p>Чтобы понять источник роста, MRR делят на: <b>New MRR</b> (новые клиенты) + <b>Expansion MRR</b> (апселы существующих) − <b>Churned MRR</b> (отток) − <b>Contraction MRR</b> (даунгрейды). Это входы для <a href="/quickRatio">SaaS Quick Ratio</a> (Mamoon Hamid). Quick Ratio &gt; 4 — отличное здоровье.</p>`,
+            en: `<h4>What counts as MRR</h4><p>Monthly Recurring Revenue = <b>normalized monthly subscription revenue</b>. Only what recurs predictably each month. Annual contracts divided by 12 give "contracted MRR". One-time setup fees, professional services, ad-hoc invoices are EXCLUDED.</p><h4>MRR ≠ Cash Revenue</h4><p>MRR is an accrual abstraction, not cash. A customer paying annually upfront still contributes 1/12 to MRR per month. For cash flow, look at billings + collections separately.</p><h4>Growth matters more than absolute</h4><p>$50k MRR at seed = fine. $50k MRR after 3 years = catastrophe. Health = <a href="/en/mrrGrowthRate">MRR Growth Rate</a>: YC minimum 5–7% MoM, good &gt;10%, excellent &gt;20%.</p><h4>MRR decomposition</h4><p>Break MRR into: <b>New + Expansion − Churned − Contraction</b>. These feed <a href="/en/quickRatio">SaaS Quick Ratio</a> (Mamoon Hamid). Quick Ratio &gt; 4 = excellent.</p>`,
+            uz: `<h4>MRR nima</h4><p>Monthly Recurring Revenue — normalashtirilgan oylik obuna tushumi. Yillik shartnomalar 12 ga bo'linadi. One-time setup fees kiritilmaydi.</p>`
+        },
+        nrr: {
+            ru: `<h4>Что показывает NRR</h4><p>Net Revenue Retention — <b>сколько выручки осталось от существующих клиентов спустя период</b>, с учётом апселов, даунгрейдов и оттока. NRR &gt; 100% означает, что когорта старых клиентов растёт по выручке без новых клиентов вообще. Это магия "negative churn".</p><h4>Формула</h4><p>NRR = (Начальный MRR + Expansion − Downgrade − Churn) / Начальный MRR × 100%. Считается на cohort-based когорте — обычно когорта 12-месячной давности.</p><h4>Бенчмарки</h4><ul><li>&lt; 100% — выручка падает, нужно срочно работать с retention</li><li>100–110% — стабильно, типично для SMB SaaS</li><li>110–130% — здоровый рост, target для большинства SaaS</li><li>&gt; 130% — отличный результат, top-decile (Snowflake — 158%, Twilio — 134% на пике)</li></ul><p>Источник: <a href="https://openviewpartners.com/2024-saas-benchmarks-report/" target="_blank" rel="noopener">OpenView 2024 SaaS Benchmarks</a>, <a href="https://www.bvp.com/atlas/state-of-the-cloud-2024" target="_blank" rel="noopener">Bessemer State of the Cloud</a>.</p><h4>NRR vs GRR</h4><p><a href="/grr">Gross Revenue Retention</a> — то же без апселов, чистое удержание. Если GRR = 95% и NRR = 125%, значит апселы добавляют 30%. Сильный сигнал product-market fit.</p>`,
+            en: `<h4>What NRR shows</h4><p>Net Revenue Retention = <b>how much revenue is left from existing customers after a period</b>, including upsells, downgrades, and churn. NRR &gt; 100% means the old cohort grows in revenue without any new customers — "negative churn" magic.</p><h4>Formula</h4><p>NRR = (Starting MRR + Expansion − Downgrade − Churn) / Starting MRR × 100%. Cohort-based — usually a 12-month-old cohort.</p><h4>Benchmarks</h4><ul><li>&lt; 100% — revenue declining, retention work needed urgently</li><li>100–110% — stable, typical for SMB SaaS</li><li>110–130% — healthy growth, target for most SaaS</li><li>&gt; 130% — excellent, top decile (Snowflake — 158%, Twilio — 134% at peak)</li></ul><p>Source: <a href="https://openviewpartners.com/2024-saas-benchmarks-report/" target="_blank" rel="noopener">OpenView 2024</a>, <a href="https://www.bvp.com/atlas/state-of-the-cloud-2024" target="_blank" rel="noopener">Bessemer State of the Cloud</a>.</p><h4>NRR vs GRR</h4><p><a href="/en/grr">Gross Revenue Retention</a> = same without upsells. GRR = 95%, NRR = 125% means upsells add 30%. Strong PMF signal.</p>`,
+            uz: `<h4>NRR nima</h4><p>Net Revenue Retention — mavjud mijozlardan davr o'tgach qancha tushum qolganligi. NRR &gt; 100% — eski kogorta yangi mijozlarsiz o'sadi.</p>`
+        },
+        churn: {
+            ru: `<h4>Customer Churn vs Revenue Churn</h4><p>Это <b>две разные метрики</b>. Customer Churn = доля клиентов, ушедших за период. Revenue Churn = доля выручки, потерянной за период. Логика-loop: enterprise-клиент с большим ACV весит больше — поэтому Revenue Churn обычно ниже Customer Churn.</p><h4>Norm-таблица по отраслям</h4><ul><li><b>SaaS B2B (annual contracts):</b> &lt;1%/мес отлично, &lt;2% норма, &gt;5% катастрофа</li><li><b>SaaS B2C (monthly):</b> &lt;5%/мес норма, &lt;10% приемлемо</li><li><b>Mobile apps (freemium):</b> 5–15%/мес норма, выше — баг в onboarding</li><li><b>E-commerce subscription:</b> 3–8%/мес</li></ul><h4>Срок жизни ≈ 1 / Churn</h4><p>Если churn = 5%/мес, средний life ≈ 1/0.05 = 20 месяцев. Подставляется в формулу <a href="/ltv">LTV = ARPU × Life</a>. При churn = 2%/мес жизнь ≈ 50 месяцев — то есть SaaS с такой retention имеет LTV в 25× больше, чем с 5% churn. Вот почему churn — №1 метрика SaaS-руководителя.</p><h4>Что съедает churn</h4><p>Топ-3 драйвера: (1) низкая <a href="/timeToValue">Time to Value</a> — пользователь не понял продукт за первую неделю, (2) слабая <a href="/activation">Activation</a> — не дошёл до Aha-моменту, (3) плохой product-market fit. <a href="/nps">NPS &lt; 0</a> предсказывает churn за 1–3 месяца.</p>`,
+            en: `<h4>Customer Churn vs Revenue Churn</h4><p><b>Two different metrics.</b> Customer Churn = % of customers who left. Revenue Churn = % of revenue lost. Enterprise customer with high ACV weighs more — Revenue Churn is usually lower.</p><h4>Norms by vertical</h4><ul><li><b>SaaS B2B (annual):</b> &lt;1%/mo excellent, &lt;2% norm, &gt;5% catastrophe</li><li><b>SaaS B2C (monthly):</b> &lt;5%/mo norm</li><li><b>Mobile freemium:</b> 5–15%/mo norm</li><li><b>E-com subscription:</b> 3–8%/mo</li></ul><h4>Life ≈ 1 / Churn</h4><p>Churn = 5%/mo → life ≈ 1/0.05 = 20 months. Feeds <a href="/en/ltv">LTV = ARPU × Life</a>. At 2%/mo, life ≈ 50 months — LTV is 2.5× higher than at 5% churn. That's why churn is the #1 metric for SaaS leaders.</p><h4>What drives churn</h4><p>Top 3: (1) high <a href="/en/timeToValue">Time to Value</a>, (2) weak <a href="/en/activation">Activation</a>, (3) poor PMF. <a href="/en/nps">NPS &lt; 0</a> predicts churn 1–3 months out.</p>`,
+            uz: `<h4>Customer Churn vs Revenue Churn</h4><p>Ikkita boshqa metrika. Customer Churn = ketgan mijozlar foizi. Revenue Churn = yo'qotilgan tushum foizi.</p>`
+        },
+        burnMultiple: {
+            ru: `<h4>Что такое Burn Multiple</h4><p>Burn Multiple = <b>Net Burn / Net New ARR</b>. Метрика капитальной эффективности SaaS, предложена David Sacks в 2020 году (<a href="https://sacks.substack.com/p/the-burn-multiple" target="_blank" rel="noopener">оригинальный пост</a>). Отвечает на вопрос: «Сколько $ мы сжигаем, чтобы создать $1 нового годового дохода?»</p><h4>Шкала Sacks</h4><ul><li><b>&lt; 1× — отлично.</b> Top-decile SaaS. Каждый $1 burn создаёт &gt;$1 новой выручки.</li><li><b>1× — 1.5× — хорошо.</b> Норма для растущих публичных SaaS.</li><li><b>1.5× — 2× — приемлемо.</b> Но нужно следить за траекторией.</li><li><b>2× — 3× — высоко.</b> Сжигаете $2–3, чтобы получить $1 нового ARR. Пересмотрите S&amp;M-расходы.</li><li><b>&gt; 3× — критично.</b> Cash-несостоятельная модель.</li></ul><h4>Когда Burn Multiple вводит в заблуждение</h4><p>На ранней стадии (pre-seed, seed) Burn Multiple часто высок из-за маленького ARR-знаменателя. Не используйте до Series A. Также не релевантен для bootstrapped — у них burn ≤ 0, и метрика теряет смысл (cash-positive = негативный или нулевой burn).</p><h4>Связь с Rule of 40</h4><p>Низкий Burn Multiple обычно коррелирует с высоким <a href="/ruleOf40">Rule of 40</a>. Обе метрики говорят об одном: насколько эффективно ваш капитал превращается в рост.</p>`,
+            en: `<h4>What Burn Multiple is</h4><p>Burn Multiple = <b>Net Burn / Net New ARR</b>. A SaaS capital-efficiency metric coined by David Sacks in 2020 (<a href="https://sacks.substack.com/p/the-burn-multiple" target="_blank" rel="noopener">original post</a>). Answers: "How many $ do we burn to generate $1 of new annual revenue?"</p><h4>The Sacks scale</h4><ul><li><b>&lt; 1× — excellent.</b> Top-decile SaaS.</li><li><b>1× – 1.5× — good.</b> Norm for growing public SaaS.</li><li><b>1.5× – 2× — acceptable.</b> Watch the trajectory.</li><li><b>2× – 3× — high.</b> Revisit S&amp;M.</li><li><b>&gt; 3× — critical.</b> Cash-unsustainable model.</li></ul><h4>When Burn Multiple misleads</h4><p>At early stage (pre-seed, seed) it's inflated by a tiny ARR denominator. Don't use before Series A. Also not relevant for bootstrapped — burn ≤ 0 breaks the formula.</p><h4>Relationship with Rule of 40</h4><p>Low Burn Multiple correlates with high <a href="/en/ruleOf40">Rule of 40</a>.</p>`,
+            uz: `<h4>Burn Multiple nima</h4><p>Burn Multiple = Net Burn / Net New ARR. David Sacks (2020) tomonidan kiritilgan SaaS kapital samaradorlik metrikasi. &lt;1 a'lo, 1–1.5 yaxshi.</p>`
+        },
+        ruleOf40: {
+            ru: `<h4>Что такое Rule of 40</h4><p>Rule of 40 = <b>Темп роста выручки (YoY %) + Маржа EBITDA (%) ≥ 40%</b>. Health-метрика SaaS, популяризированная <a href="https://feld.com/archives/2015/02/rule-40-healthy-saas-company/" target="_blank" rel="noopener">Brad Feld в 2015</a>. Идея: вы можете расти медленнее, если прибыльны — или быть убыточным, если растёте быстро.</p><h4>Откуда «40»</h4><p>Bessemer проанализировали 100+ публичных SaaS-компаний и обнаружили: те, что устойчиво держат сумму &gt;= 40%, торгуются с премиум-мультипликатором. Это <b>не магическая константа</b>, а эмпирическая граница «инвесторской привлекательности».</p><h4>Какую маржу брать</h4><p>Обычно <b>EBITDA Margin</b>. Альтернативы: <b>FCF Margin</b> (более жёсткое требование — учитывает CapEx), <b>Operating Margin</b> (мягче — без D&amp;A). Главное — заявить какую и держать одну версию для всех периодов.</p><h4>Бенчмарки по уровню</h4><ul><li>&lt; 20%: критическое состояние</li><li>20–40%: не дотягивает, нужно балансировать</li><li>40–60%: здоровый SaaS</li><li>&gt; 60%: top-decile (Veeva, Atlassian, Datadog в разные годы)</li></ul><p>Источник: <a href="https://www.bvp.com/atlas/the-rule-of-40" target="_blank" rel="noopener">Bessemer Atlas</a>.</p>`,
+            en: `<h4>What Rule of 40 is</h4><p>Rule of 40 = <b>Revenue growth YoY (%) + EBITDA margin (%) ≥ 40%</b>. SaaS health metric popularized by <a href="https://feld.com/archives/2015/02/rule-40-healthy-saas-company/" target="_blank" rel="noopener">Brad Feld in 2015</a>. You can grow slower if profitable — or burn cash if growing fast.</p><h4>Why "40"</h4><p>Bessemer analyzed 100+ public SaaS and found those sustaining the sum at ≥40% trade at premium multiples. Not magic, just empirical "investor attractiveness".</p><h4>Which margin to use</h4><p>Usually <b>EBITDA Margin</b>. Alternatives: <b>FCF Margin</b> (stricter) or <b>Operating Margin</b> (softer). Pick one and stay consistent.</p><h4>Benchmarks</h4><ul><li>&lt; 20%: critical</li><li>20–40%: below</li><li>40–60%: healthy</li><li>&gt; 60%: top-decile (Veeva, Atlassian, Datadog)</li></ul><p>Source: <a href="https://www.bvp.com/atlas/the-rule-of-40" target="_blank" rel="noopener">Bessemer Atlas</a>.</p>`,
+            uz: `<h4>Rule of 40 nima</h4><p>Rule of 40 = O'sish YoY (%) + EBITDA marja (%) ≥ 40%. Brad Feld (2015) tomonidan ommalashtirilgan SaaS salomatlik metrikasi.</p>`
+        },
+        runway: {
+            ru: `<h4>Что такое Runway</h4><p>Runway = <b>Кэш / Среднемесячное сжигание</b>. Количество месяцев, которое компания может работать на текущем уровне расходов без дополнительного финансирования. Главная финансовая метрика стартапа — когда фандрейзить.</p><h4>Правило «18 месяцев»</h4><p>YC и большинство VC рекомендуют поддерживать Runway &gt; 18 месяцев. Логика: фандрейзинг занимает 3–6 месяцев, плюс нужен буфер на случай неудачного раунда. Раунды поднимают на следующие 18–24 месяца — этот цикл повторяется до прибыльности.</p><h4>Net Burn vs Gross Burn</h4><p><b>Gross Burn</b> = все расходы за месяц. <b>Net Burn</b> = расходы − выручка. Используйте Net Burn в формуле Runway — это реальный темп исчерпания кэша. На ранней стадии без выручки они равны.</p><h4>Зона риска</h4><ul><li><b>&lt; 6 мес — критично.</b> Срочно фандрейзить или резать burn. Bridge round, layoffs, переход на cash-flow positive.</li><li><b>6–12 мес — рискованно.</b> Уже начинайте процесс фандрейзинга.</li><li><b>12–18 мес — норма.</b> Особенно для пре-сид/сид.</li><li><b>&gt; 18 мес — здоровый запас.</b></li></ul><h4>Как удлинить Runway без раунда</h4><p>3 рычага: (1) увеличить выручку (sales pipeline, апселы), (2) сократить расходы (S&amp;M cut, headcount freeze), (3) bridge financing. Лучшая комбинация зависит от стадии: pre-revenue — режьте расходы; product-market fit — растите выручку.</p>`,
+            en: `<h4>What Runway is</h4><p>Runway = <b>Cash / Average monthly Net Burn</b>. Months a company can operate at current expense level without new funding. The startup's #1 finance metric — "when to fundraise".</p><h4>The "18 months" rule</h4><p>YC and most VCs recommend maintaining Runway &gt; 18 months. Fundraising takes 3–6 months plus buffer for a failed round. Rounds typically extend runway 18–24 months — repeat until profitability.</p><h4>Net Burn vs Gross Burn</h4><p><b>Gross Burn</b> = monthly expenses. <b>Net Burn</b> = expenses − revenue. Use Net Burn in Runway formula. Pre-revenue they're equal.</p><h4>Risk zones</h4><ul><li><b>&lt; 6 mo — critical.</b> Fundraise NOW or cut burn. Bridge round, layoffs.</li><li><b>6–12 mo — risky.</b> Start the fundraise process.</li><li><b>12–18 mo — norm.</b> Pre-seed/seed standard.</li><li><b>&gt; 18 mo — healthy buffer.</b></li></ul><h4>Extending without a round</h4><p>3 levers: (1) grow revenue, (2) cut costs, (3) bridge financing. Pre-revenue → cut costs; PMF achieved → grow revenue.</p>`,
+            uz: `<h4>Runway nima</h4><p>Runway = Pul / O'rtacha oylik Net Burn. Kompaniya joriy xarajat darajasida qancha oy ishlay olishi. Startaplar uchun asosiy moliyaviy metrika.</p>`
+        },
+        nps: {
+            ru: `<h4>Что такое NPS</h4><p>Net Promoter Score = <b>% Промоутеров (оценки 9–10) − % Детракторов (оценки 0–6)</b>. Диапазон от −100 до +100. Создан <a href="https://www.netpromoter.com/" target="_blank" rel="noopener">Bain &amp; Company в 2003 году</a>. Один из главных long-term-индикаторов retention и word-of-mouth роста.</p><h4>Главное правило: «8 — это пассив»</h4><p>Распространённая ошибка — считать «8 из 10» хорошей оценкой. Для NPS 8 = пассив, НЕ промоутер. Только 9 и 10. Это сделано намеренно, чтобы повысить bar.</p><h4>Бенчмарки по отраслям</h4><ul><li><b>SaaS B2B:</b> 20–40 — норма, &gt;60 — top tier (Slack ~70, Notion ~60)</li><li><b>E-commerce:</b> 30–50 — норма, &gt;60 — отлично (Amazon ~60)</li><li><b>Mobile apps:</b> 10–30 — норма, &gt;50 — хорошо</li><li><b>Telco / банки:</b> часто отрицательный, 0–20 — хорошо</li></ul><p>Источник: <a href="https://www.retently.com/blog/good-net-promoter-score/" target="_blank" rel="noopener">Retently NPS Benchmarks 2024</a>.</p><h4>NPS предсказывает Churn</h4><p>Детрактор (0–6) с вероятностью 50%+ уйдёт в следующие 3–6 месяцев. Промоутер (9–10) — реферит 1–3 новых клиентов. Используйте NPS как early-warning system для retention.</p>`,
+            en: `<h4>What NPS is</h4><p>Net Promoter Score = <b>% Promoters (9–10) − % Detractors (0–6)</b>. Range −100 to +100. Created by <a href="https://www.netpromoter.com/" target="_blank" rel="noopener">Bain &amp; Company in 2003</a>. Long-term indicator of retention and word-of-mouth growth.</p><h4>Main rule: "8 is a passive"</h4><p>Common mistake — counting "8 out of 10" as good. For NPS, 8 = passive, NOT promoter. Only 9 and 10. Deliberately raises the bar.</p><h4>Benchmarks by vertical</h4><ul><li><b>SaaS B2B:</b> 20–40 norm, &gt;60 top tier (Slack ~70, Notion ~60)</li><li><b>E-com:</b> 30–50 norm, &gt;60 excellent (Amazon ~60)</li><li><b>Mobile apps:</b> 10–30 norm</li><li><b>Telco / banks:</b> often negative</li></ul><p>Source: <a href="https://www.retently.com/blog/good-net-promoter-score/" target="_blank" rel="noopener">Retently 2024</a>.</p><h4>NPS predicts churn</h4><p>Detractor (0–6) churns within 3–6 months with 50%+ probability. Promoter (9–10) refers 1–3 new customers. NPS = early-warning for retention.</p>`,
+            uz: `<h4>NPS nima</h4><p>Net Promoter Score = % Promouterlar (9–10) − % Detraktorlar (0–6). 2003-yilda Bain &amp; Company tomonidan yaratilgan.</p>`
+        },
+        roas: {
+            ru: `<h4>Что такое ROAS</h4><p>Return on Ad Spend = <b>Выручка от рекламы / Затраты на рекламу</b>. Базовая метрика digital-маркетинга. ROAS = 4× означает, что каждый $1 рекламы даёт $4 выручки.</p><h4>ROAS ≠ ROI</h4><p>ROAS — gross revenue. <b>ROI</b> — profit (revenue − costs). ROAS = 4× может быть убыточным, если COGS = 80% (тогда profit margin × 20% × 4 = 0.8 — каждый $1 ad spend даёт $0.80 прибыли, минус). Всегда проверяйте через <a href="/grossMargin">Gross Margin</a>.</p><h4>Бенчмарки по отраслям</h4><ul><li><b>E-commerce:</b> &gt;4× норма, target 5–8× для устойчивого роста</li><li><b>SaaS:</b> &gt;3× норма для коротких циклов (PLG); long-cycle B2B — измеряется через CAC Payback вместо ROAS</li><li><b>Mobile games (F2P):</b> 1.5–3× для UA-кампаний, окупается через D90 LTV</li><li><b>Подписочные сервисы:</b> 0.5–1.5× на 1-й месяц; LTV окупает на горизонте 6–12 мес</li></ul><h4>Связь с CAC</h4><p>ROAS = AOV / CAC (если каждый клиент — 1 покупка). Низкий ROAS = высокий CAC. Лечение: (1) оптимизация креативов, (2) сегментация по audience, (3) переключение на retention-кампании (cheaper).</p>`,
+            en: `<h4>What ROAS is</h4><p>Return on Ad Spend = <b>Revenue from ads / Ad spend</b>. Basic digital-marketing metric. ROAS = 4× means each $1 spent returns $4 in revenue.</p><h4>ROAS ≠ ROI</h4><p>ROAS = gross revenue. <b>ROI</b> = profit. ROAS 4× can be unprofitable if COGS = 80% (profit margin × 20% × 4 = 0.8 — every $1 ad spend gives $0.80 profit, after media spend that's −$0.20). Always check via <a href="/en/grossMargin">Gross Margin</a>.</p><h4>Benchmarks</h4><ul><li><b>E-commerce:</b> &gt;4× norm, target 5–8×</li><li><b>SaaS:</b> &gt;3× for short cycles (PLG); long-cycle B2B uses CAC Payback instead</li><li><b>Mobile F2P:</b> 1.5–3× for UA, pays back via D90 LTV</li></ul><h4>Relation to CAC</h4><p>ROAS = AOV / CAC (if each customer = 1 purchase). Low ROAS = high CAC. Fix: (1) creative optimization, (2) audience segmentation, (3) shift to retention (cheaper).</p>`,
+            uz: `<h4>ROAS nima</h4><p>Return on Ad Spend = Reklamadan tushum / Reklama xarajati. ROAS = 4× har bir $1 reklama $4 tushum keltirishini anglatadi.</p>`
+        }
+    };
+
+    function renderDeepContent(metricId) {
+        const e = DEEP_CONTENT[metricId];
+        if (!e) return '';
+        const lang = window._currentLang ? window._currentLang() : 'ru';
+        const body = e[lang] || e.ru;
+        if (!body) return '';
+        const label = lang === 'en' ? 'Deep dive' : lang === 'uz' ? 'Chuqur tahlil' : 'Глубокий разбор';
+        return `<details class="deep-content"><summary>📖 ${label}</summary><div class="deep-content-body">${body}</div></details>`;
+    }
+
+    // ---- BENCHMARK SOURCES (per-metric citations) ----
+    const BENCHMARK_SOURCES = {
+        nrr:           [{ label: 'OpenView 2024 SaaS Benchmarks', url: 'https://openviewpartners.com/2024-saas-benchmarks-report/' }, { label: 'ChartMogul SaaS Benchmarks 2024', url: 'https://chartmogul.com/reports/saas-benchmarks-report/' }],
+        grr:           [{ label: 'OpenView 2024 SaaS Benchmarks', url: 'https://openviewpartners.com/2024-saas-benchmarks-report/' }, { label: 'ChartMogul 2024', url: 'https://chartmogul.com/reports/saas-benchmarks-report/' }],
+        churn:         [{ label: 'ChartMogul SaaS Benchmarks 2024', url: 'https://chartmogul.com/reports/saas-benchmarks-report/' }, { label: 'Recurly Research', url: 'https://recurly.com/research/' }],
+        ltv_cac:       [{ label: 'David Skok — For Entrepreneurs', url: 'https://www.forentrepreneurs.com/saas-metrics-2/' }, { label: 'Bessemer SaaS Benchmarks', url: 'https://www.bvp.com/atlas/state-of-the-cloud-2024' }],
+        cacPayback:    [{ label: 'OpenView 2024', url: 'https://openviewpartners.com/2024-saas-benchmarks-report/' }, { label: 'Scale Venture Partners', url: 'https://www.scalevp.com/insights' }],
+        burnMultiple:  [{ label: 'David Sacks — original 2020', url: 'https://sacks.substack.com/p/the-burn-multiple' }, { label: 'Craft Ventures benchmarks', url: 'https://craftventures.com/' }],
+        magicNumber:   [{ label: 'Scale Venture Partners (originated)', url: 'https://www.scalevp.com/insights' }, { label: 'Lemkin SaaStr', url: 'https://www.saastr.com/' }],
+        ruleOf40:      [{ label: 'Bessemer Venture Partners', url: 'https://www.bvp.com/atlas/the-rule-of-40' }, { label: 'Brad Feld 2015 (originated)', url: 'https://feld.com/archives/2015/02/rule-40-healthy-saas-company/' }],
+        quickRatio:    [{ label: 'Mamoon Hamid (originated)', url: 'https://medium.com/@mamoonha/the-quick-ratio-a-better-way-to-look-at-saas-growth-4d3a76a86d9' }, { label: 'OpenView 2024', url: 'https://openviewpartners.com/2024-saas-benchmarks-report/' }],
+        runway:        [{ label: 'YC Startup School', url: 'https://www.startupschool.org/' }, { label: 'a16z benchmarks', url: 'https://a16z.com/' }],
+        mrrGrowthRate: [{ label: 'Y Combinator (T2D3 framework)', url: 'https://blog.ycombinator.com/' }, { label: 'David Sacks T2D3', url: 'https://medium.com/craft-ventures/t2d3-the-saas-growth-blueprint-2c6e2d8f6c8d' }],
+        rule_of_40:    [{ label: 'BVP', url: 'https://www.bvp.com/atlas/the-rule-of-40' }],
+        salesVelocity: [{ label: 'Salesforce State of Sales 2024', url: 'https://www.salesforce.com/resources/research-reports/state-of-sales/' }],
+        winRate:       [{ label: 'Gong B2B sales benchmarks', url: 'https://www.gong.io/research/' }, { label: 'HubSpot State of Sales', url: 'https://www.hubspot.com/state-of-sales' }],
+        pipelineCoverage:[{ label: 'Gartner B2B benchmarks', url: 'https://www.gartner.com/' }],
+        nps:           [{ label: 'Bain & Company — NPS creator', url: 'https://www.netpromoter.com/' }, { label: 'Retently NPS Benchmarks 2024', url: 'https://www.retently.com/blog/good-net-promoter-score/' }],
+        grossMargin:   [{ label: 'Bessemer State of the Cloud', url: 'https://www.bvp.com/atlas/state-of-the-cloud-2024' }, { label: 'KeyBanc 2024 SaaS Survey', url: 'https://www.key.com/businesses-institutions/industry-expertise/2024-saas-survey-results.html' }],
+        timeToValue:   [{ label: 'Userpilot benchmarks', url: 'https://userpilot.com/blog/time-to-value-saas/' }],
+        arpdau:        [{ label: 'data.ai mobile benchmarks', url: 'https://www.data.ai/' }, { label: 'GameAnalytics F2P benchmarks', url: 'https://gameanalytics.com/blog/' }],
+        repeatPurchaseRate:[{ label: 'Shopify Plus benchmarks', url: 'https://www.shopify.com/plus/' }, { label: 'Klaviyo Email Marketing report', url: 'https://www.klaviyo.com/blog/' }]
+    };
+
+    function renderSources(metricId) {
+        const list = BENCHMARK_SOURCES[metricId];
+        if (!list || !list.length) return '';
+        const items = list.map(s => `<a href="${s.url}" target="_blank" rel="noopener" class="bench-source-link">${s.label}</a>`).join(' · ');
+        return `<details class="bench-sources"><summary>📚 ${t('sources.label', 'Источники бенчмарков')}</summary><div class="bench-source-list">${items}</div></details>`;
+    }
+
     // ---- FORECAST (time-series projection) ----
     // Each entry: { defaultRate, rateLabel, rateUnit, monthsDefault, project(startVal, rateInputPct, m) → array of N+1 values }
     const FORECAST_CONFIG = {
@@ -7310,6 +7592,200 @@ window._tTooltip = function(ruText) {
         document.getElementById('pricingOverlay')?.classList.add('show');
     });
 
+    // ---- CSV IMPORT ----
+    function parseCSVImport(text) {
+        // Build lookup: lowercased "metric_id key" or "metric_id.key" or just "key" → { mid, key }
+        const lookup = {};
+        Object.values(metricsData).forEach(section => {
+            section.metrics.forEach(m => {
+                m.inputs.forEach(inp => {
+                    const keys = [
+                        `${m.id} ${inp.key}`.toLowerCase(),
+                        `${m.id}.${inp.key}`.toLowerCase(),
+                        `${m.id}_${inp.key}`.toLowerCase()
+                    ];
+                    keys.forEach(k => { lookup[k] = { mid: m.id, key: inp.key }; });
+                    // For metrics with single input, also accept just metric.id
+                    if (m.inputs.length === 1) {
+                        lookup[m.id.toLowerCase()] = { mid: m.id, key: inp.key };
+                    }
+                });
+            });
+        });
+        // For metric IDs that don't accept short form (multi-input), try special common single-key (e.g., revenue, mrr, churn)
+        // Already handled by inp.key lookup.
+        // Also: accept just `inp.key` if unique across all metrics (no collision)
+        const keyToMetric = {};
+        Object.values(metricsData).forEach(section => {
+            section.metrics.forEach(m => {
+                m.inputs.forEach(inp => {
+                    const k = inp.key.toLowerCase();
+                    if (!keyToMetric[k]) keyToMetric[k] = [];
+                    keyToMetric[k].push({ mid: m.id, key: inp.key });
+                });
+            });
+        });
+
+        const lines = text.split(/[\r\n]+/).map(l => l.trim()).filter(l => l && !l.startsWith('#'));
+        const results = [];
+        const skipped = [];
+        lines.forEach(line => {
+            // Try parse: key=value, key,value, key\tvalue, "key": value
+            let parts = null;
+            if (line.includes('=')) parts = line.split('=', 2);
+            else if (line.includes('\t')) parts = line.split('\t', 2);
+            else if (line.includes(',')) parts = line.split(/,\s*/, 2);
+            else if (line.includes(':')) parts = line.split(/:\s*/, 2);
+            if (!parts || parts.length < 2) { skipped.push(line); return; }
+            const rawKey = parts[0].trim().replace(/^["']|["']$/g, '').toLowerCase();
+            const rawVal = parts[1].trim().replace(/^["']|["']$/g, '').replace(/[\s ]/g, '').replace(/[$€₽£]/g, '').replace(/%/g, '');
+            const num = parseFloat(rawVal);
+            if (isNaN(num)) { skipped.push(line); return; }
+
+            let target = lookup[rawKey];
+            if (!target && keyToMetric[rawKey] && keyToMetric[rawKey].length === 1) {
+                target = keyToMetric[rawKey][0];
+            }
+            if (!target) { skipped.push(line); return; }
+            results.push({ ...target, value: num });
+        });
+        return { results, skipped };
+    }
+    function runCSVImport() {
+        const ta = document.getElementById('csvImportText');
+        if (!ta || !ta.value.trim()) {
+            showToast(t('csvimport.empty', 'Нечего парсить'), 'error');
+            return;
+        }
+        const { results, skipped } = parseCSVImport(ta.value);
+        if (!results.length) {
+            showToast(t('csvimport.empty', 'Не распознано ни одной записи'), 'error');
+            return;
+        }
+        // Save to storedValues
+        results.forEach(({ mid, key, value }) => {
+            if (!storedValues[mid]) storedValues[mid] = {};
+            storedValues[mid][key] = String(value);
+        });
+        saveToLS(storedValues);
+        renderMetricCard();
+        renderMetricsList();
+        updateSectionBadges();
+        const msg = t('csvimport.success', 'Заполнено {n} значени(й/я)').replace('{n}', results.length);
+        showToast(msg + (skipped.length ? ` · пропущено: ${skipped.length}` : ''), 'success');
+        document.getElementById('csvImportOverlay')?.classList.remove('show');
+        ta.value = '';
+    }
+    (function bindCSVImport(){
+        const ov = document.getElementById('csvImportOverlay');
+        const close = document.getElementById('csvImportClose');
+        const run = document.getElementById('csvImportRun');
+        if (!ov || !close) return;
+        close.addEventListener('click', () => ov.classList.remove('show'));
+        ov.addEventListener('click', e => { if (e.target === ov) ov.classList.remove('show'); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && ov.classList.contains('show')) ov.classList.remove('show'); });
+        if (run) run.addEventListener('click', runCSVImport);
+    })();
+
+    // ---- COMPARE 2 METRICS ----
+    function renderCompare2Card(mid) {
+        const m = Object.values(metricsData).flatMap(s => s.metrics).find(x => x.id === mid);
+        if (!m) return '<div class="compare2-col">—</div>';
+        // Restore values from LS
+        const saved = storedValues[m.id] || {};
+        const vals = {};
+        m.inputs.forEach(inp => { vals[inp.key] = saved[inp.key] || ''; });
+        const localizedName = tm(m.id, 'name', m.name);
+        const localizedFormula = tm(m.id, 'formula', m.formula);
+        const localizedDescr = tm(m.id, 'description', m.description);
+        let result = '—', insight = '', color = 'var(--accent)';
+        // Compute if all filled
+        const allFilled = m.inputs.every(inp => {
+            const raw = (vals[inp.key] || '').toString().replace(/\s/g, '');
+            return raw !== '' && !isNaN(parseFloat(raw));
+        });
+        if (allFilled) {
+            try {
+                const parsed = {};
+                m.inputs.forEach(inp => { parsed[inp.key] = vals[inp.key]; });
+                const r = m.calculate(parsed);
+                if (r !== null && r !== undefined) {
+                    result = formatSmart(parseFloat(r)) + (m.unit ? ' ' + localizeUnit(m.unit) : '');
+                    if (m.insight) {
+                        const ins = m.insight(parseFloat(r));
+                        color = ins.color;
+                        insight = window._tInsight ? window._tInsight(ins.text) : ins.text;
+                    }
+                }
+            } catch(e) {}
+        }
+        const inputsHtml = m.inputs.map(inp => `
+            <div class="c2-input-row">
+                <label>${localizeLabel(inp.label)}</label>
+                <input type="text" data-mid="${m.id}" data-key="${inp.key}" value="${vals[inp.key]}" placeholder="${formatNum(inp.placeholder)}" inputmode="decimal">
+            </div>
+        `).join('');
+        return `<div class="compare2-col">
+            <h4>${localizedName}</h4>
+            <span class="c2-formula">${localizedFormula}</span>
+            <div class="c2-descr">${localizedDescr}</div>
+            <div class="c2-inputs">${inputsHtml}</div>
+            <div class="c2-result"><span class="c2-result-label">${t('metric.result_label', 'Результат:')}</span><span class="c2-result-val" style="color:${color}">${result}</span></div>
+            ${insight ? `<div class="c2-insight" style="border-left-color:${color}">${insight}</div>` : ''}
+        </div>`;
+    }
+    function openCompare2() {
+        const ov = document.getElementById('compare2Overlay');
+        const grid = document.getElementById('compare2Grid');
+        const sel = document.getElementById('compare2Select');
+        if (!ov || !grid || !sel) return;
+        // Populate select with all metrics except current
+        const currentMid = currentMetricId;
+        const opts = [];
+        Object.entries(metricsData).forEach(([sid, section]) => {
+            section.metrics.forEach(m => {
+                if (m.id !== currentMid) opts.push(`<option value="${m.id}">${section.name} · ${tm(m.id, 'name', m.name)}</option>`);
+            });
+        });
+        sel.innerHTML = opts.join('');
+        // Default: pick a sensible related metric or first
+        const related = RELATED[currentMid];
+        if (related && related[0]) sel.value = related[0].id;
+
+        const renderBoth = () => {
+            grid.innerHTML = renderCompare2Card(currentMid) + renderCompare2Card(sel.value);
+            // Wire up input live updates per card
+            grid.querySelectorAll('input').forEach(inp => {
+                inp.addEventListener('input', () => {
+                    const mid = inp.dataset.mid;
+                    const key = inp.dataset.key;
+                    if (!storedValues[mid]) storedValues[mid] = {};
+                    storedValues[mid][key] = inp.value.replace(/\s/g, '');
+                    saveToLS(storedValues);
+                    // Re-render only — quick
+                    grid.innerHTML = renderCompare2Card(currentMid) + renderCompare2Card(sel.value);
+                    grid.querySelectorAll('input').forEach(ii => {
+                        ii.addEventListener('input', arguments.callee);
+                    });
+                    // Focus the same input after re-render
+                    const newInp = grid.querySelector(`input[data-mid="${mid}"][data-key="${key}"]`);
+                    if (newInp) { newInp.focus(); newInp.setSelectionRange(newInp.value.length, newInp.value.length); }
+                });
+            });
+        };
+        sel.addEventListener('change', renderBoth);
+        renderBoth();
+        ov.classList.add('show');
+    }
+    (function bindCompare2(){
+        const ov = document.getElementById('compare2Overlay');
+        const close = document.getElementById('compare2Close');
+        if (!ov || !close) return;
+        close.addEventListener('click', () => ov.classList.remove('show'));
+        ov.addEventListener('click', e => { if (e.target === ov) ov.classList.remove('show'); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && ov.classList.contains('show')) ov.classList.remove('show'); });
+    })();
+
     // Bind Pricing modal close/escape + waitlist form (Formspree)
     (function bindPricing(){
         const ov = document.getElementById('pricingOverlay');
@@ -7375,6 +7851,37 @@ window._tTooltip = function(ruText) {
     updatePageTitle();
 })();
 </script>
+
+<!-- CSV Import modal -->
+<div class="modal-overlay" id="csvImportOverlay" role="dialog" aria-labelledby="csvImportTitle" aria-modal="true">
+    <div class="modal" style="max-width:640px;">
+        <h3 id="csvImportTitle" data-t="csvimport.title">📥 Импорт значений из CSV</h3>
+        <p class="csv-import-sub" data-t="csvimport.subtitle">Вставьте данные в формате `metric_id,value` (или `metric.key=value`, по одной строке). Ключи полей: aov, freq, life, cost, customers, mrr, и т.д. Мы автозаполним все соответствующие поля.</p>
+        <textarea id="csvImportText" class="csv-import-text" rows="9" data-t-attr-placeholder="csvimport.placeholder" placeholder="Пример:&#10;mrr,100000&#10;cac,1500&#10;ltv,15000&#10;churn lost,150&#10;churn total,2000"></textarea>
+        <div class="csv-import-hint">
+            <strong>Поддерживаемые форматы:</strong> CSV (<code>key,value</code>) · TSV (<code>key\tvalue</code>) · ENV (<code>key=value</code>). Для метрик с несколькими полями используйте <code>metric_id field_key,value</code> или <code>metric_id.field_key=value</code>.
+        </div>
+        <div class="modal-btns">
+            <button class="modal-cancel" id="csvImportClose" data-t="btn.cancel">Отмена</button>
+            <button class="modal-confirm" id="csvImportRun" data-t="csvimport.parse">Распарсить и заполнить</button>
+        </div>
+    </div>
+</div>
+
+<!-- Compare 2 metrics modal -->
+<div class="modal-overlay" id="compare2Overlay" role="dialog" aria-labelledby="compare2Title" aria-modal="true">
+    <div class="modal" style="max-width:1100px;max-height:90vh;display:flex;flex-direction:column;">
+        <h3 id="compare2Title" data-t="compare2.title">🔀 Сравнение двух метрик</h3>
+        <div class="compare2-controls">
+            <span data-t="compare2.choose">Выберите вторую метрику:</span>
+            <select id="compare2Select" class="compare2-select"></select>
+        </div>
+        <div class="compare2-grid" id="compare2Grid" style="overflow-y:auto;flex:1;"></div>
+        <div class="modal-btns" style="justify-content:flex-end;">
+            <button class="modal-cancel" id="compare2Close" data-t="btn.close">Закрыть</button>
+        </div>
+    </div>
+</div>
 
 <!-- Pricing modal — Free / Pro / Team -->
 <div class="modal-overlay" id="pricingOverlay" role="dialog" aria-labelledby="pricingTitle" aria-modal="true">

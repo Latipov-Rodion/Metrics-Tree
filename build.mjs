@@ -98,7 +98,7 @@ function buildHtml(template, id, meta) {
   html = html.replace(/<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${title}">`);
   html = html.replace(/<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${desc}">`);
 
-  // Append per-metric FAQ JSON-LD just before </head> (lightweight, in addition to the generic one)
+  // Append per-metric FAQ JSON-LD + hreflang link tags just before </head>
   const perMetricFaq = `
     <script type="application/ld+json">
     {
@@ -113,6 +113,10 @@ function buildHtml(template, id, meta) {
       ]
     }
     </script>
+    <link rel="alternate" hreflang="ru" href="${SITE}/${id}">
+    <link rel="alternate" hreflang="en" href="${SITE}/en/${id}">
+    <link rel="alternate" hreflang="uz" href="${SITE}/uz/${id}">
+    <link rel="alternate" hreflang="x-default" href="${SITE}/${id}">
 `;
   html = html.replace('</head>', perMetricFaq + '</head>');
 
