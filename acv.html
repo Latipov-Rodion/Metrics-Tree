@@ -1938,6 +1938,46 @@
     <link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/acv">
 </head>
 <body>
+<script>
+// CRITICAL: global delegated close-handler for ALL modal overlays.
+// Runs BEFORE the main IIFE so it can never be broken by errors there.
+// Closes any .modal-overlay when its .modal-cancel button is clicked,
+// when the backdrop is clicked, or when Escape is pressed.
+(function bulletproofModalClose() {
+    document.addEventListener('click', function(e) {
+        // Cancel/close button inside any modal
+        const cancel = e.target.closest('.modal-cancel, .dashboard-close, .templates-close, .compare-close');
+        if (cancel) {
+            const overlay = cancel.closest('.modal-overlay, .dashboard-overlay, .templates-overlay, .compare-overlay');
+            if (overlay) {
+                overlay.classList.remove('show', 'open');
+                if (overlay.classList.contains('templates-overlay')) overlay.style.display = 'none';
+                if (overlay.classList.contains('dashboard-overlay') || overlay.classList.contains('compare-overlay')) {
+                    document.body.style.overflow = '';
+                }
+            }
+            return;
+        }
+        // Backdrop click (clicked the overlay itself, not children)
+        if (e.target.classList && (e.target.classList.contains('modal-overlay') || e.target.classList.contains('templates-overlay'))) {
+            e.target.classList.remove('show');
+            if (e.target.classList.contains('templates-overlay')) e.target.style.display = 'none';
+        }
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key !== 'Escape') return;
+        // Close the topmost open modal
+        const openModals = document.querySelectorAll('.modal-overlay.show, .templates-overlay[style*="flex"], .dashboard-overlay.open, .compare-overlay.open');
+        openModals.forEach(m => {
+            m.classList.remove('show', 'open');
+            if (m.classList.contains('templates-overlay')) m.style.display = 'none';
+            if (m.classList.contains('dashboard-overlay') || m.classList.contains('compare-overlay')) {
+                document.body.style.overflow = '';
+            }
+        });
+    });
+})();
+</script>
 <a href="#metricCard" class="skip-link">Перейти к калькулятору</a>
 <div class="container">
     <header class="header" role="banner">
