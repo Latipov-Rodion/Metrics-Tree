@@ -179,9 +179,17 @@ async def callback_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await q.answer()
     if q.data.startswith('usage:'):
         cmd = q.data.split(':', 1)[1]
-        _, _, args_hint, name = METRICS[cmd]
+        _, arity, args_hint, name = METRICS[cmd]
+        example_args = ' '.join(['100' for _ in range(arity)])
+        web_path = cmd if cmd != 'ltvcac' else 'ltv_cac'
+        text = (
+            f'<b>{name}</b>\n\n'
+            f'Usage: <code>/{cmd} {args_hint}</code>\n'
+            f'Example: <code>/{cmd} {example_args}</code>\n\n'
+            f'🌐 Full: {WEB}/{web_path}'
+        )
         await q.edit_message_text(
-            f'<b>{name}</b>\n\nUsage: <code>/{cmd} {args_hint}</code>\nExample: <code>/{cmd} ' + (' '.join(['100' for _ in range(METRICS[cmd][1])])) + '</code>\n\n🌐 Full: {WEB}/{cmd if cmd != "ltvcac" else "ltv_cac"}',
+            text,
             parse_mode='HTML',
             reply_markup=InlineKeyboardMarkup([[InlineKeyboardButton('« back', callback_data='back')]])
         )
