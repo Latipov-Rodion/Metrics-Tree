@@ -130,6 +130,98 @@ const META = {
   engagementRate:     { title: 'Engagement Rate калькулятор — SMM и контент', desc: 'Engagement Rate = Взаимодействия / Reach × 100%. Норма 1–3%, top-tier creators >6%.', q: 'Что такое Engagement Rate?', a: 'ER = (Likes + Comments + Shares + Clicks) / Reach × 100%. Главная метрика SMM. Менее 1% — плохо, 3–6% — хорошо, >6% — top-tier.' }
 };
 
+// Cross-metric internal link graph — mirrors RELATED map in index.html.
+// Rendered as STATIC HTML in each per-metric page so Google crawler sees the links
+// (the client-side renderRelated also writes the same data to #relatedBlock for users).
+// Each entry: { id: target-metric-id, note: short reason this metric is related (RU) }.
+const RELATED = {
+  dau: [{ id: 'mau', note: 'нужен для расчёта Stickiness' }, { id: 'stickiness', note: 'Stickiness = DAU / MAU' }],
+  mau: [{ id: 'stickiness', note: 'Stickiness = DAU / MAU' }, { id: 'arpu', note: 'ARPU считается по активным' }],
+  stickiness: [{ id: 'dau', note: 'числитель формулы' }, { id: 'mau', note: 'знаменатель формулы' }, { id: 'retention', note: 'связана с удержанием' }],
+  retention: [{ id: 'churn', note: 'Churn = 1 − Retention' }, { id: 'ltv', note: 'Retention напрямую влияет на LTV' }],
+  ltv: [{ id: 'cac', note: 'LTV должен быть > 3× CAC' }, { id: 'ltv_cac', note: 'LTV:CAC — ключевое соотношение' }, { id: 'arpu', note: 'ARPU — компонент LTV' }],
+  cac: [{ id: 'ltv', note: 'LTV должен быть > 3× CAC' }, { id: 'ltv_cac', note: 'LTV:CAC — ключевое соотношение' }, { id: 'cacPayback', note: 'Payback Period по этому CAC' }],
+  ltv_cac: [{ id: 'ltv', note: 'числитель соотношения' }, { id: 'cac', note: 'знаменатель соотношения' }],
+  arpu: [{ id: 'ltv', note: 'ARPU × частота × срок = LTV' }, { id: 'mrr', note: 'MRR — B2B-аналог ARPU' }],
+  churn: [{ id: 'retention', note: 'Retention = 1 − Churn' }, { id: 'nrr', note: 'высокий Churn снижает NRR' }, { id: 'ltv', note: 'Churn сокращает LTV' }],
+  mrr: [{ id: 'arr', note: 'ARR = MRR × 12' }, { id: 'nrr', note: 'NRR показывает рост MRR' }, { id: 'grr', note: 'GRR — удержание без роста' }],
+  arr: [{ id: 'mrr', note: 'MRR — ежемесячный источник' }, { id: 'nrr', note: 'NRR определяет рост ARR' }],
+  acv: [{ id: 'mrr', note: 'MRR vs ACV: разные модели' }, { id: 'cacPayback', note: 'ACV определяет Payback Period' }],
+  grr: [{ id: 'nrr', note: 'NRR = GRR + апселы' }, { id: 'mrr', note: 'GRR считается от MRR' }, { id: 'churn', note: 'Churn — обратная сторона GRR' }],
+  nrr: [{ id: 'grr', note: 'GRR без учёта апселов' }, { id: 'mrr', note: 'NRR считается от MRR' }, { id: 'churn', note: 'Churn снижает NRR' }],
+  cacPayback: [{ id: 'cac', note: 'CAC — числитель Payback' }, { id: 'mrr', note: 'MRR на клиента — знаменатель' }],
+  acquisition: [{ id: 'activation', note: 'Activation Rate из пришедших' }, { id: 'cr', note: 'CR влияет на Acquisition' }],
+  activation: [{ id: 'acquisition', note: 'Acquisition даёт базу' }, { id: 'retention_aarrr', note: 'следующий шаг воронки' }],
+  retention_aarrr: [{ id: 'retention', note: 'Retention в B2C-модели' }, { id: 'activation', note: 'Activation предшествует' }],
+  referral: [{ id: 'acquisition', note: 'Referral усиливает Acquisition' }],
+  revenue: [{ id: 'arpu', note: 'ARPU = Revenue / Users' }, { id: 'mrr', note: 'MRR — основной B2B-аналог' }],
+  cr: [{ id: 'roas', note: 'CR влияет на итоговый ROAS' }, { id: 'cpc', note: 'CPC × CR = стоимость клиента' }, { id: 'bounceRate', note: 'высокий Bounce снижает CR' }],
+  roas: [{ id: 'cr', note: 'CR — компонент ROAS' }, { id: 'cpc', note: 'CPC влияет на ROAS' }, { id: 'cac', note: 'CAC = CPC / CR' }],
+  cpc: [{ id: 'ctr', note: 'CTR определяет CPC' }, { id: 'roas', note: 'CPC влияет на ROAS' }],
+  ctr: [{ id: 'cpc', note: 'CTR определяет CPC' }, { id: 'bounceRate', note: 'CTR и Bounce — пара' }],
+  bounceRate: [{ id: 'cr', note: 'Bounce влияет на CR' }, { id: 'ctr', note: 'CTR и Bounce — пара' }],
+  bugRate: [{ id: 'testCoverage', note: 'Coverage снижает Bug Rate' }, { id: 'defectDensity', note: 'Defect Density — схожая метрика' }],
+  testCoverage: [{ id: 'bugRate', note: 'Coverage снижает Bug Rate' }, { id: 'defectDensity', note: 'Coverage снижает дефекты' }],
+  defectDensity: [{ id: 'testCoverage', note: 'Coverage снижает дефекты' }, { id: 'bugRate', note: 'Bug Rate — схожая метрика' }],
+  csat: [{ id: 'nps', note: 'NPS — долгосрочный CSAT' }, { id: 'fcr', note: 'FCR напрямую влияет на CSAT' }],
+  nps: [{ id: 'csat', note: 'CSAT — краткосрочный аналог' }, { id: 'churn', note: 'низкий NPS предсказывает Churn' }],
+  fcr: [{ id: 'csat', note: 'FCR определяет CSAT' }, { id: 'sla', note: 'SLA и FCR — пара' }],
+  sla: [{ id: 'fcr', note: 'FCR и SLA — пара' }, { id: 'csat', note: 'SLA влияет на CSAT' }],
+  burnMultiple: [{ id: 'magicNumber', note: 'Magic Number — об эффективности S&M' }, { id: 'ruleOf40', note: 'Rule of 40 — баланс роста и маржи' }, { id: 'arr', note: 'Net New ARR — знаменатель формулы' }],
+  magicNumber: [{ id: 'burnMultiple', note: 'Burn Multiple — обратная сторона' }, { id: 'cacPayback', note: 'CAC Payback — как быстро S&M окупается' }, { id: 'cac', note: 'CAC — компонент Magic Number' }],
+  ruleOf40: [{ id: 'arr', note: 'ARR-рост — половина формулы' }, { id: 'burnMultiple', note: 'Burn Multiple — также про эффективность' }, { id: 'quickRatio', note: 'Quick Ratio — устойчивость роста' }],
+  quickRatio: [{ id: 'nrr', note: 'NRR — другой угол на удержание' }, { id: 'mrr', note: 'все компоненты — изменения MRR' }, { id: 'grr', note: 'GRR — обратная сторона потерь' }],
+  grossMargin: [{ id: 'burnMultiple', note: 'высокая маржа — низкий Burn Multiple' }, { id: 'ruleOf40', note: 'маржа — половина Rule of 40' }, { id: 'runway', note: 'маржа влияет на скорость burn' }],
+  runway: [{ id: 'burnRate', note: 'знаменатель формулы' }, { id: 'burnMultiple', note: 'Burn Multiple — эффективность burn' }, { id: 'arr', note: 'рост ARR продлевает runway' }],
+  burnRate: [{ id: 'runway', note: 'Burn Rate определяет Runway' }, { id: 'burnMultiple', note: 'эффективность сжигания' }, { id: 'grossMargin', note: 'маржа уменьшает burn' }],
+  salesVelocity: [{ id: 'winRate', note: 'Win rate — фактор формулы' }, { id: 'acv', note: 'ACV — фактор формулы' }, { id: 'pipelineCoverage', note: 'Pipeline питает скорость' }],
+  winRate: [{ id: 'salesVelocity', note: 'влияет на Sales Velocity' }, { id: 'pipelineCoverage', note: 'низкий win rate — нужно больше pipeline' }, { id: 'cac', note: 'низкий win rate растит CAC' }],
+  pipelineCoverage: [{ id: 'salesVelocity', note: 'Pipeline + cycle = velocity' }, { id: 'winRate', note: 'Win rate определяет нужное coverage' }, { id: 'arr', note: 'Pipeline закрывается в ARR' }],
+  timeToValue: [{ id: 'activation', note: 'TtV напрямую влияет на Activation' }, { id: 'retention', note: 'чем быстрее ценность — выше Retention' }, { id: 'churn', note: 'долгая TtV → ранний Churn' }],
+  arpdau: [{ id: 'dau', note: 'DAU — знаменатель' }, { id: 'arpu', note: 'ARPU — месячный аналог' }, { id: 'ltv', note: 'ARPDAU × срок × 30 ≈ LTV' }],
+  salesCycleLength: [{ id: 'salesVelocity', note: 'цикл — знаменатель Sales Velocity' }, { id: 'pipelineCoverage', note: 'длинный цикл — нужно больше pipeline' }, { id: 'cacPayback', note: 'влияет на CAC Payback' }],
+  mrrGrowthRate: [{ id: 'mrr', note: 'числитель и знаменатель' }, { id: 'arr', note: 'ARR Growth = MRR Growth' }, { id: 'ruleOf40', note: 'половина Rule of 40' }],
+  aov: [{ id: 'arpu', note: 'AOV ≠ ARPU; AOV / частота = ARPU' }, { id: 'ltv', note: 'AOV — компонент LTV' }, { id: 'repeatPurchaseRate', note: 'высокий RPR делает AOV важнее' }],
+  repeatPurchaseRate: [{ id: 'aov', note: 'AOV × RPR ≈ выручка с клиента' }, { id: 'retention', note: 'RPR ≈ Retention для e-com' }, { id: 'ltv', note: 'высокий RPR → высокий LTV' }],
+  engagementRate: [{ id: 'stickiness', note: 'Engagement ≠ Stickiness, но связаны' }, { id: 'ctr', note: 'CTR — engagement рекламы' }, { id: 'csat', note: 'high engagement → high satisfaction' }]
+};
+
+// Short display names for related-block anchor text (full metric title is too long).
+const SHORT_NAME = {
+  dau: 'DAU', mau: 'MAU', stickiness: 'Stickiness', retention: 'Retention',
+  ltv: 'LTV', cac: 'CAC', ltv_cac: 'LTV:CAC', arpu: 'ARPU', churn: 'Churn Rate',
+  mrr: 'MRR', arr: 'ARR', acv: 'ACV', grr: 'GRR', nrr: 'NRR', cacPayback: 'CAC Payback',
+  burnMultiple: 'Burn Multiple', magicNumber: 'Magic Number', ruleOf40: 'Rule of 40',
+  quickRatio: 'Quick Ratio', acquisition: 'Acquisition', activation: 'Activation',
+  retention_aarrr: 'Cohort Retention', referral: 'K-factor', revenue: 'Revenue',
+  cr: 'Conversion Rate', roas: 'ROAS', cpc: 'CPC', ctr: 'CTR', bounceRate: 'Bounce Rate',
+  bugRate: 'Bug Rate', testCoverage: 'Test Coverage', defectDensity: 'Defect Density',
+  csat: 'CSAT', nps: 'NPS', fcr: 'FCR', sla: 'SLA', grossMargin: 'Gross Margin',
+  runway: 'Runway', burnRate: 'Burn Rate', salesVelocity: 'Sales Velocity',
+  winRate: 'Win Rate', pipelineCoverage: 'Pipeline Coverage', timeToValue: 'Time to Value',
+  arpdau: 'ARPDAU', salesCycleLength: 'Sales Cycle Length', mrrGrowthRate: 'MRR Growth Rate',
+  aov: 'AOV', repeatPurchaseRate: 'Repeat Purchase Rate', engagementRate: 'Engagement Rate'
+};
+
+function renderRelatedStatic(metricId) {
+  const rels = RELATED[metricId];
+  if (!rels || !rels.length) return '';
+  const items = rels.map(({ id, note }) => {
+    const name = SHORT_NAME[id] || id;
+    return `      <li><a href="/${id}"><strong>${name}</strong></a> — ${note}</li>`;
+  }).join('\n');
+  return `
+<!-- Cross-metric internal links — static HTML for SEO crawlers.
+     Client-side renderRelated() also populates #relatedBlock with the same data for users. -->
+<aside class="related-static" aria-label="Связанные метрики" style="max-width:900px;margin:2rem auto 1rem;padding:1rem 1.25rem;border-top:1px solid var(--border,#2C2F33);font-size:0.85rem;color:var(--text-2,#B0B3B8);">
+  <h3 style="font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-3,#6b6f75);margin:0 0 0.5rem;">См. также</h3>
+  <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0.4rem 1rem;">
+${items}
+  </ul>
+</aside>
+`;
+}
+
 function buildHtml(template, id, meta) {
   const url = `${SITE}/${id}`;
   const title = meta.title + ' | MetricTree';
@@ -182,6 +274,12 @@ ${JSON.stringify(faqJson, null, 2)}
     <link rel="alternate" hreflang="x-default" href="${SITE}/${id}">
 `;
   html = html.replace('</head>', perMetricFaq + '</head>');
+
+  // Static "See also" block right before </body> — crawler-visible internal links.
+  const staticRelated = renderRelatedStatic(id);
+  if (staticRelated) {
+    html = html.replace('</body>', staticRelated + '</body>');
+  }
 
   return html;
 }

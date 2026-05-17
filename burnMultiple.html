@@ -8247,5 +8247,16 @@ window._tTooltip = function(ruText) {
         <button type="submit" data-t="footer.subscribe">Подписаться</button>
     </form>
 </footer>
+
+<!-- Cross-metric internal links — static HTML for SEO crawlers.
+     Client-side renderRelated() also populates #relatedBlock with the same data for users. -->
+<aside class="related-static" aria-label="Связанные метрики" style="max-width:900px;margin:2rem auto 1rem;padding:1rem 1.25rem;border-top:1px solid var(--border,#2C2F33);font-size:0.85rem;color:var(--text-2,#B0B3B8);">
+  <h3 style="font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-3,#6b6f75);margin:0 0 0.5rem;">См. также</h3>
+  <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0.4rem 1rem;">
+      <li><a href="/magicNumber"><strong>Magic Number</strong></a> — Magic Number — об эффективности S&M</li>
+      <li><a href="/ruleOf40"><strong>Rule of 40</strong></a> — Rule of 40 — баланс роста и маржи</li>
+      <li><a href="/arr"><strong>ARR</strong></a> — Net New ARR — знаменатель формулы</li>
+  </ul>
+</aside>
 </body>
 </html>
