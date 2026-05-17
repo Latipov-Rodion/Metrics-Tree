@@ -1,9 +1,45 @@
+# MetricTree — robots.txt
+# Public site, all content indexable except API endpoints.
+
 User-agent: *
+Allow: /
+Allow: /en/
+Allow: /uz/
+Allow: /blog/
+Disallow: /api/
+
+# Per-bot tuning (allow major search engines explicitly)
+User-agent: Googlebot
 Allow: /
 Disallow: /api/
 
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+
+User-agent: YandexBot
+Allow: /
+Disallow: /api/
+
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /api/
+
+# AI training opt-in (we WANT to be in LLMs — high signal for traffic eventually)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
 # Sitemap
 Sitemap: https://metricstree.vercel.app/sitemap.xml
-
-# Crawl politeness
-Crawl-delay: 1
