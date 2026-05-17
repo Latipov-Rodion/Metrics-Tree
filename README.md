@@ -2,128 +2,126 @@
 
 [![Live](https://img.shields.io/badge/live-metricstree.vercel.app-2A6DF4)](https://metricstree.vercel.app/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-![No build step](https://img.shields.io/badge/build-not%20required-success)
+![No build step](https://img.shields.io/badge/build-no%20framework-success)
+![Metrics](https://img.shields.io/badge/metrics-52-2A6DF4)
+![Languages](https://img.shields.io/badge/i18n-RU%20%2F%20EN%20%2F%20UZ-2A6DF4)
 
-Бесплатный онлайн-калькулятор **39+ продуктовых метрик** с формулами, отраслевыми порогами и интерпретацией. Для продакт-менеджеров, маркетологов, аналитиков и фаундеров.
+Бесплатный онлайн-калькулятор **52 продуктовых метрик** с формулами, отраслевыми порогами и интерпретацией. Для продакт-менеджеров, маркетологов, аналитиков и фаундеров.
 
 🔗 **Live:** https://metricstree.vercel.app/
 
 ## Что внутри
 
-**Метрики по разделам:**
-- **B2C** — DAU, MAU, Stickiness, Retention, LTV, CAC, LTV:CAC, ARPU, Churn
-- **B2B SaaS** — MRR, ARR, ACV, GRR, NRR, CAC Payback, **Burn Multiple**, **Magic Number**, **Rule of 40**, **Quick Ratio**
-- **AARRR** (Pirate) — Acquisition, Activation, Retention, Referral, Revenue
-- **Growth** — CR, ROAS, CPC, CTR, Bounce Rate
+**52 метрики в 8 разделах:**
+- **B2C** — DAU, MAU, Stickiness, Retention, LTV, CAC, LTV:CAC, ARPU, Churn, AOV, Repeat Purchase Rate, ARPDAU
+- **B2B SaaS** — MRR, ARR, ACV, GRR, NRR, CAC Payback, Burn Multiple, Magic Number, Rule of 40, Quick Ratio, MRR Growth Rate
+- **AARRR** (Pirate) — Acquisition, Activation, Retention, Referral, Revenue, Time to Value
+- **Growth** — CR, ROAS, CPC, CTR, Bounce Rate, Engagement Rate
+- **Finance & Sales** — Gross Margin, Runway, Burn Rate, Sales Velocity, Win Rate, Pipeline Coverage, Sales Cycle Length
 - **QA** — Bug Rate, Test Coverage, Defect Density
 - **Support** — CSAT, NPS, FCR, SLA
 
 **Фичи:**
-- 🎯 Отраслевые пороги (SaaS / E-commerce / Mobile / Media / Универсальные)
-- 📊 Unit-economics дашборд по всем заполненным метрикам
-- 📦 Шаблоны сценариев (Стартап SaaS, Зрелый SaaS, E-commerce, Mobile, Медиа)
-- 🔄 What-if анализ через ползунки (как изменится результат при изменении входов)
-- 📸 История снимков с pop-сравнением
-- 🔗 **Чистые URL** для каждой метрики: `/ltv`, `/cac`, `/burnMultiple`...
-- 💱 Переключатель валюты ($ / € / ₽ / £) — символ в подписях и результате
-- 🔗 Шаринг текущего расчёта по URL (с пресетами полей: `/ltv?aov=2500&freq=4&life=3`)
-- 🖼️ Экспорт карточки в PNG, всех метрик — в CSV
-- 🌗 Тёмная/светлая тема (с автоопределением системной)
-- 🔍 Глобальный поиск по метрикам и описаниям
-- ⌨️ Клавиатурные сокращения (`/`, `↑↓`, `←→`, `Esc`, `Ctrl/⌘+S`, `Ctrl/⌘+D`)
-- ♿ A11y: skip-link, ARIA-роли, focus-visible, prefers-reduced-motion
-- 🚀 PWA-ready (manifest, theme-color)
+- 🎯 **Goal mode** — обратный расчёт: задай цель, получи нужный вход (16 метрик)
+- 💡 **What-if** ползунки — пересчёт в реальном времени
+- 📈 **Forecast** — SVG-прогноз на 6–24 мес
+- 🔀 **Compare 2** — две метрики side-by-side
+- 📥 **CSV import** — вставь числа, заполнит дашборд
+- 📊 **Unit-economics дашборд** по всем заполненным метрикам
+- 📦 **5 шаблонов сценариев** (Стартап SaaS, Зрелый SaaS, E-com, Mobile, Media)
+- 🎲 **Авто-пример на первой загрузке** — метрика считается сразу, без ввода
+- 📸 **Snapshots** — сохранение и сравнение состояний
+- 🔗 **Per-metric clean URLs** + per-language: `/ltv`, `/en/ltv`, `/uz/ltv`
+- 💱 **4 валюты** ($ / € / ₽ / £)
+- 🔗 **Share** копирует URL c пресетами полей; виральные кнопки **X / LinkedIn** с готовым твитом
+- 🖼️ **PNG-экспорт** карточки, CSV-экспорт всех
+- 🤖 **Telegram бот**: `/ltv 2500 4 3` (см. [TELEGRAM_BOT_SETUP.md](TELEGRAM_BOT_SETUP.md))
+- 🌐 **3 языка**: Русский, English, Oʻzbekcha (с per-language URLs + hreflang)
+- 🌗 **Тёмная / светлая** тема (auto detect)
+- 🔍 **Глобальный поиск** по 52 метрикам
+- 🧠 **Deep content** + ссылки на источники (OpenView, Bessemer, David Sacks, Mamoon Hamid, Bain) на top-10 метриках
+- 📚 **FAQ JSON-LD** rich-snippet'ы на top-12 метриках (3-4 Q&A каждая)
+- ⌨️ Hotkeys (`/`, `↑↓`, `←→`, `Esc`, `Ctrl+S`, `Ctrl+D`, `?`)
+- ♿ A11y: skip-link, ARIA, focus-visible, prefers-reduced-motion
+- 🚀 PWA-ready, embed mode (`?embed=1`)
 
 ## Структура
 
 ```
 .
-├── index.html              ← всё приложение (HTML + CSS + JS + данные inline)
-├── favicon.svg
-├── og-image.svg            ← превью для шаринга (см. ниже про PNG)
-├── manifest.webmanifest    ← PWA-манифест
-├── robots.txt
-├── sitemap.xml             ← URL’ы всех 35 метрик
-├── vercel.json             ← security headers + кеширование
+├── index.html              ← всё приложение (HTML + CSS + JS + 52 метрики inline)
+├── build.mjs               ← генератор 49 per-metric HTML c уникальной meta + FAQ JSON-LD
+├── bot.py                  ← Telegram-бот companion (python-telegram-bot v21)
+├── generate_og.py          ← генератор og-image.png (Pillow)
+├── vercel.json             ← rewrites для clean URLs (RU/EN/UZ) + security headers
+├── sitemap.xml             ← 80+ URLs (52 metrics × 3 langs + homepage)
+├── favicon.svg, manifest.webmanifest, og-image.png
+├── PRODUCTHUNT.md          ← launch kit
+├── TELEGRAM_BOT_SETUP.md   ← bot deploy guide (Railway / Render / Fly)
 ├── LICENSE                 ← MIT
-└── README.md
+└── *.html                  ← 49 сгенерированных per-metric страниц (build artifacts)
 ```
 
 ## Локальный запуск
 
-Никакого билда не нужно. Любой статический сервер:
+Никакого build framework. Любой статический сервер:
 
 ```bash
 # Python 3
 python -m http.server 5173
 
-# Node (если есть)
+# Node
 npx serve .
 
 # Или просто открыть index.html в браузере (двойной клик)
+```
+
+Перегенерировать per-metric HTML после изменения `index.html`:
+```bash
+node build.mjs
 ```
 
 → http://localhost:5173
 
 ## Деплой
 
-Уже настроен **Vercel** для домена [metricstree.vercel.app](https://metricstree.vercel.app/). Для своего деплоя:
+Уже настроен **Vercel** для домена [metricstree.vercel.app](https://metricstree.vercel.app/).
 
 ```bash
 npm i -g vercel
 vercel deploy --prod
 ```
 
-`vercel.json` уже содержит CSP/HSTS/X-Frame-Options и правильный кеш-заголовки для статики.
+`vercel.json` содержит:
+- 49 rewrites для clean RU URLs (`/ltv` → `/ltv.html`)
+- 98 rewrites для EN/UZ (`/en/ltv` + `/uz/ltv` → `/ltv.html`)
+- CSP, HSTS, X-Frame-Options
+- Cache headers для статики
 
 ## Шаринг по URL
 
-**Чистый формат (рекомендуется):**
-
+**Чистый формат:**
 ```
 https://metricstree.vercel.app/ltv?aov=2500&freq=4&life=3
-https://metricstree.vercel.app/burnMultiple?burn=500000&newArr=600000
+https://metricstree.vercel.app/en/burnMultiple?burn=500000&newArr=600000
+https://metricstree.vercel.app/uz/runway?cash=5000000&burn=300000
 ```
 
-**Обратно совместимый формат:**
-
+**Обратно совместимый:**
 ```
 https://metricstree.vercel.app/?s=b2c&m=ltv&aov=2500&freq=4&life=3
 ```
 
-`s` — раздел, `m` — id метрики; в чистом URL раздел определяется автоматически. Параметры запроса — значения полей по их `key`. Кнопка «Поделиться» в шапке копирует чистый URL.
+Параметры — значения полей по `inp.key` метрики. Кнопка «Поделиться» в шапке копирует чистый URL; X/LinkedIn кнопки в карточке открывают share-intent с готовым твитом.
 
-## TODO: PNG для og:image
+## Embed mode
 
-Сейчас `og-image.svg` подключён как Open Graph image. Большинство современных платформ (Twitter/X, LinkedIn) рендерят SVG, но **Telegram и Slack — нет**. Сгенерируйте PNG любым способом и положите рядом:
-
-```bash
-# через rsvg-convert (librsvg)
-rsvg-convert -w 1200 -h 630 og-image.svg -o og-image.png
-
-# через resvg (Rust)
-npx resvg-cli og-image.svg -o og-image.png --width 1200
-
-# или онлайн: https://cloudconvert.com/svg-to-png
+Добавь `?embed=1` к URL — получишь чистый виджет без шапки/футера, идеально для iframe в Notion / Substack / блогах:
+```html
+<iframe src="https://metricstree.vercel.app/ltv?embed=1" width="600" height="700" frameborder="0"></iframe>
 ```
 
-Затем поменяйте в `<head>` ссылки `og-image.svg` → `og-image.png` (и `og:image:type` → `image/png`).
-
-## Roadmap
-
-- [x] Чистые per-metric URL (`/ltv`, `/cac`, `/burnMultiple`...) через `vercel.json` rewrites + клиентская маршрутизация
-- [x] Новые метрики: Burn Multiple, Magic Number, Rule of 40, Quick Ratio
-- [x] Переключатель валюты в шапке
-- [x] Расширенный FAQ JSON-LD (12 вопросов вместо 6)
-- [ ] Per-metric meta-теги через server-side рендеринг (для уникальных title/description в SERP) — Edge Function на Vercel
-- [ ] Английская версия (i18n)
-- [ ] Goal-режим: «Хочу LTV:CAC = 3, какой максимум CAC?»
-- [ ] Forecast-график на What-If (трекинг 6/12 мес)
-- [ ] PDF-экспорт мульти-метрического отчёта
-- [ ] Ещё новые метрики: Net Dollar Retention, Sales Velocity, Pipeline Coverage, ARPDAU, D1/D7/D30 Retention
-- [ ] Рефакторинг в модули + Vite + Vitest (тесты на формулы)
-- [ ] Telegram-бот / Slack-команда
-- [ ] Browser extension
+Меню → «Скопировать embed-код» делает это за тебя.
 
 ## Лицензия
 
