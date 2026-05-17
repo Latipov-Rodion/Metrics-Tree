@@ -1348,7 +1348,7 @@
             box-shadow: var(--shadow-md);
             opacity: 0; pointer-events: none;
             transition: opacity 0.2s ease, transform 0.2s ease;
-            z-index: 350; display: inline-flex; align-items: center; gap: 0.45rem;
+            z-index: 100000; display: inline-flex; align-items: center; gap: 0.45rem;
             max-width: 90vw;
         }
         .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -7775,7 +7775,29 @@ window._tTooltip = function(ruText) {
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bindAbout);
     else bindAbout();
 
-    // Generic Formspree submit with success-replace pattern
+    // Generic Formspree submit with mailto+localStorage fallback for max reliability.
+    // If Formspree endpoint is unregistered (404) or any network error, we still capture
+    // the email locally AND open a pre-filled mailto so the lead is never lost.
+    const FALLBACK_EMAIL = 'rodion.121093@gmail.com';
+
+    function saveLeadLocally(source, formData) {
+        try {
+            const key = 'mt_pending_leads_v1';
+            const list = JSON.parse(localStorage.getItem(key) || '[]');
+            const entry = { ts: new Date().toISOString(), source };
+            formData.forEach((v, k) => { entry[k] = v; });
+            list.push(entry);
+            localStorage.setItem(key, JSON.stringify(list));
+        } catch (e) {}
+    }
+    function openMailtoFallback(source, formData) {
+        const subject = encodeURIComponent(`MetricTree ${source} signup`);
+        const lines = [];
+        formData.forEach((v, k) => { if (k && !k.startsWith('_')) lines.push(`${k}: ${v}`); });
+        lines.push('', `source: ${source}`, `URL: ${window.location.href}`);
+        const body = encodeURIComponent(lines.join('\n'));
+        window.location.href = `mailto:${FALLBACK_EMAIL}?subject=${subject}&body=${body}`;
+    }
     function bindFormspreeForm(formEl, successEl, source) {
         if (!formEl) return;
         formEl.addEventListener('submit', async (e) => {
@@ -7783,24 +7805,32 @@ window._tTooltip = function(ruText) {
             const submitBtn = formEl.querySelector('button[type=submit], button:not([type])');
             const origText = submitBtn ? submitBtn.textContent : '';
             if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '…'; }
+            const formData = new FormData(formEl);
+            saveLeadLocally(source, formData);
+            let ok = false;
             try {
                 const resp = await fetch(formEl.action, {
                     method: 'POST',
                     headers: { Accept: 'application/json' },
-                    body: new FormData(formEl)
+                    body: formData
                 });
-                if (resp.ok) {
-                    formEl.style.display = 'none';
-                    if (successEl) successEl.style.display = 'block';
-                    showToast('✓ ' + (window._t ? window._t('newsletter.success', 'Подписка оформлена!') : 'Subscribed!'), 'success');
-                } else {
-                    showToast('Ошибка отправки. Напишите на rodion.121093@gmail.com', 'error');
-                    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = origText; }
+                ok = resp.ok;
+            } catch (err) { ok = false; }
+            if (ok) {
+                formEl.style.display = 'none';
+                if (successEl) successEl.style.display = 'block';
+                showToast('✓ ' + (window._t ? window._t('newsletter.success', 'Подписка оформлена!') : 'Subscribed!'), 'success');
+            } else {
+                // Fallback path: open mailto so the lead reaches Rodion even when Formspree is down/unregistered.
+                openMailtoFallback(source, formData);
+                formEl.style.display = 'none';
+                if (successEl) {
+                    successEl.style.display = 'block';
+                    successEl.innerHTML = `📧 Открыли почту — отправьте письмо, чтобы попасть в waitlist. <br>Или напишите вручную: <a href="mailto:${FALLBACK_EMAIL}" style="color:var(--accent);">${FALLBACK_EMAIL}</a>`;
                 }
-            } catch (err) {
-                showToast('Ошибка сети', 'error');
-                if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = origText; }
+                showToast('📧 Открыли почту — отправьте письмо', 'success');
             }
+            if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = origText; }
         });
     }
     // Footer + about-modal newsletters + About→Pricing CTA — all reference HTML AFTER this script.
@@ -8058,24 +8088,31 @@ window._tTooltip = function(ruText) {
                 const data = new FormData(formEl);
                 const submit = formEl.querySelector('.waitlist-submit');
                 if (submit) { submit.disabled = true; submit.textContent = '…'; }
+                saveLeadLocally('pro-waitlist', data);
+                let ok = false;
                 try {
                     const resp = await fetch(formEl.action, {
                         method: 'POST',
                         headers: { Accept: 'application/json' },
                         body: data
                     });
-                    if (resp.ok) {
-                        formEl.style.display = 'none';
-                        if (successEl) successEl.style.display = 'block';
-                        showToast('✓ ' + (window._t ? window._t('waitlist.success', 'Спасибо! Письмо придёт за 7 дней до запуска.') : 'Подписка оформлена'), 'success');
-                    } else {
-                        showToast('Не удалось отправить. Напишите на rodion.121093@gmail.com', 'error');
-                        if (submit) { submit.disabled = false; submit.textContent = window._t ? window._t('waitlist.submit', 'Подписаться на waitlist') : 'Подписаться на waitlist'; }
+                    ok = resp.ok;
+                } catch (err) { ok = false; }
+                if (ok) {
+                    formEl.style.display = 'none';
+                    if (successEl) successEl.style.display = 'block';
+                    showToast('✓ ' + (window._t ? window._t('waitlist.success', 'Спасибо! Письмо придёт за 7 дней до запуска.') : 'Подписка оформлена'), 'success');
+                } else {
+                    // Mailto fallback — lead reaches Rodion even when Formspree is down/unregistered.
+                    openMailtoFallback('pro-waitlist', data);
+                    formEl.style.display = 'none';
+                    if (successEl) {
+                        successEl.style.display = 'block';
+                        successEl.innerHTML = `📧 Открыли почту — отправьте письмо, чтобы попасть в waitlist. <br>Или напишите вручную: <a href="mailto:${FALLBACK_EMAIL}" style="color:var(--accent);">${FALLBACK_EMAIL}</a>`;
                     }
-                } catch (err) {
-                    showToast('Ошибка сети. Напишите на rodion.121093@gmail.com', 'error');
-                    if (submit) { submit.disabled = false; submit.textContent = 'Retry'; }
+                    showToast('📧 Открыли почту — отправьте письмо', 'success');
                 }
+                if (submit) { submit.disabled = false; submit.textContent = window._t ? window._t('waitlist.submit', 'Подписаться на waitlist') : 'Подписаться на waitlist'; }
             });
         }
     }
