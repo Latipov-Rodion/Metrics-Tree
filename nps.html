@@ -8226,7 +8226,7 @@ window._tTooltip = function(ruText) {
         <div class="waitlist-form" id="waitlistForm" style="display:none;">
             <h4 data-t="waitlist.title">📬 Оставьте email — пришлём, когда Pro/Team запустятся</h4>
             <p class="waitlist-sub" data-t="waitlist.sub">Не спамим. Один email при релизе + промокод -50% на первый год.</p>
-            <form action="https://formspree.io/f/xeoqlgaa" method="POST" id="waitlistFormEl">
+            <form action="/api/lead" method="POST" id="waitlistFormEl">
                 <input type="hidden" name="_subject" value="MetricTree Pro waitlist signup">
                 <input type="hidden" name="tier" id="waitlistTier" value="pro">
                 <input type="email" name="email" placeholder="your@email.com" required class="waitlist-email" autocomplete="email">
@@ -8301,7 +8301,7 @@ window._tTooltip = function(ruText) {
 
             <h4 data-t="about.h_newsletter">📬 Метрика недели</h4>
             <p data-t="about.newsletter_intro">Раз в неделю — глубокий разбор одной метрики: история, кейсы, anti-patterns, отраслевые бенчмарки. Бесплатно, без спама.</p>
-            <form action="https://formspree.io/f/mpwagnry" method="POST" id="newsletterFormAbout" class="newsletter-inline">
+            <form action="/api/lead" method="POST" id="newsletterFormAbout" class="newsletter-inline">
                 <input type="hidden" name="_subject" value="MetricTree Newsletter signup (about modal)">
                 <input type="hidden" name="source" value="about-modal">
                 <input type="email" name="email" placeholder="your@email.com" required class="newsletter-email" autocomplete="email">
@@ -8327,7 +8327,7 @@ window._tTooltip = function(ruText) {
         <a href="#" id="footerPricing" data-t="footer.pricing">Pro / Team</a>
         <a href="#" id="footerHelp" data-t="footer.help">Справка</a>
     </div>
-    <form action="https://formspree.io/f/mpwagnry" method="POST" id="newsletterFormFooter" class="site-footer-news">
+    <form action="/api/lead" method="POST" id="newsletterFormFooter" class="site-footer-news">
         <input type="hidden" name="_subject" value="MetricTree Newsletter signup (footer)">
         <input type="hidden" name="source" value="footer">
         <input type="email" name="email" placeholder="📬 Метрика недели — email" required autocomplete="email">
