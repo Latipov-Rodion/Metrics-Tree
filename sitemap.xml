@@ -88,6 +88,16 @@
   <url><loc>https://metricstree.vercel.app/blog/rule-of-40-saas</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://metricstree.vercel.app/blog/ltv-cac-unit-economics</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://metricstree.vercel.app/blog/10-pm-metrics-2026</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://metricstree.vercel.app/blog/quick-ratio-saas</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://metricstree.vercel.app/blog/magic-number-saas</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://metricstree.vercel.app/blog/nrr-vs-grr</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://metricstree.vercel.app/blog/sales-velocity-b2b</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://metricstree.vercel.app/blog/runway-when-fundraise</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://metricstree.vercel.app/blog/mrr-growth-rate-yc</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://metricstree.vercel.app/blog/cac-payback-period</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://metricstree.vercel.app/blog/arpdau-mobile-games</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://metricstree.vercel.app/blog/aov-ecommerce-growth</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://metricstree.vercel.app/blog/pipeline-coverage-b2b</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <!-- Uzbek mirrors of top 6 metrics -->
   <url><loc>https://metricstree.vercel.app/uz/ltv</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://metricstree.vercel.app/uz/cac</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>

@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>CAC Payback Period — почему он важнее LTV:CAC для cash management | MetricTree Blog</title>
+<meta name="description" content="CAC Payback = CAC / (MRR × Gross Margin). Бенчмарки 12-18 мес для SaaS, почему длинный payback убивает компанию даже при healthy LTV:CAC.">
+<meta name="keywords" content="cac payback, cac payback period, формула cac payback, окупаемость CAC">
+<link rel="canonical" href="https://metricstree.vercel.app/blog/cac-payback-period">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="CAC Payback Period — почему он важнее LTV:CAC для cash management">
+<meta property="og:description" content="CAC Payback = CAC / (MRR × Gross Margin). Бенчмарки 12-18 мес для SaaS, почему длинный payback убивает компанию даже при healthy LTV:CAC.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/blog/cac-payback-period">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-04-13">
+<meta property="article:author" content="Родион Латыпов">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CAC Payback Period — почему он важнее LTV:CAC для cash management">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "CAC Payback Period — почему он важнее LTV:CAC для cash management",
+  "description": "CAC Payback = CAC / (MRR × Gross Margin). Бенчмарки 12-18 мес для SaaS, почему длинный payback убивает компанию даже при healthy LTV:CAC.",
+  "datePublished": "2026-04-13",
+  "author": {
+    "@type": "Person",
+    "name": "Родион Латыпов",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/blog/cac-payback-period"
+  },
+  "keywords": "cac payback, cac payback period, формула cac payback, окупаемость CAC",
+  "inLanguage": "ru"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#6b6f75; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#777; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div>
+</nav>
+<article>
+<h1>CAC Payback Period — почему он важнее LTV:CAC для cash management</h1>
+<div class="meta">2026-04-13 · автор: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a></div>
+<h1>CAC Payback Period — почему он важнее LTV:CAC для cash management</h1>
+
+<p>LTV:CAC = 5 звучит как «здоровая компания». Но если CAC Payback = 36 месяцев — у тебя cash crunch до того как клиент окупится.</p>
+
+<p><strong>LTV:CAC показывает long-term возврат. CAC Payback — short-term cash mechanics.</strong></p>
+
+<p>В 2026 году пост-ZIRP инвесторы смотрят CAC Payback <strong>first</strong>, потом LTV:CAC.</p>
+
+<h2>Формула</h2>
+
+<p>> <strong>CAC Payback Period (мес) = CAC / (MRR на клиента × Gross Margin)</strong></p>
+
+<p>Пример:<br><ul><li>CAC = $1,500</li><li>MRR на клиента = $200</li><li>Gross Margin = 80%</li><li>CAC Payback = 1500 / (200 × 0.80) = 1500 / 160 = <strong>9.4 мес</strong></li></ul></p>
+
+<p>Customer окупает себя через 9.4 мес. После — все его MRR это прибыль.</p>
+
+<h2>Бенчмарки</h2>
+
+<table><thead><tr><th>Сегмент</th><th>Healthy</th><th>Excellent</th></tr></thead><tbody><tr><td></td><td>SMB SaaS</td><td><12 мес</td><td><6 мес</td><td></td></tr><tr><td></td><td>Mid-market SaaS</td><td>12-18 мес</td><td><12 мес</td><td></td></tr><tr><td></td><td>Enterprise SaaS</td><td>18-24 мес</td><td><15 мес</td><td></td></tr><tr><td></td><td>B2C / Mobile</td><td><6 мес</td><td><3 мес</td><td></td></tr><tr><td></td><td>E-commerce</td><td><3 мес</td><td><1 мес</td><td></td></tr></tbody></table>
+<strong>>24 мес для SaaS = warning.</strong> >36 мес = модель неустойчива независимо от LTV.
+
+<h2>Почему длинный payback убивает компании</h2>
+
+<p>Простая математика:<br><ul><li>Customer pays $200/мес × 80% margin = $160 net/мес</li><li>CAC = $5000 → Payback 31 мес</li><li>Если customer churns после 24 мес → ты потерял $1000 на этом customer</li></ul></p>
+
+<p>LTV:CAC может быть <strong>5</strong> на бумаге (если они остались бы 5 лет), но <strong>реальный</strong> churn-adjusted LTV меньше CAC = <strong>убыток</strong>.</p>
+
+<h2>Real-world example: что убило MoviePass</h2>
+
+<p>MoviePass: $10/мес unlimited films в кинотеатре. CAC ~$15.<br><ul><li>Average customer стоил $50/мес в reimbursed tickets (loss $40/мес)</li><li>"LTV" was «if they stay forever»</li><li>Real payback: never</li><li>Liquidated в 2019</li></ul></p>
+
+<p>Урок: payback должен быть < typical churn time. Иначе модель broken.</p>
+
+<h2>Чем CAC Payback лучше LTV:CAC в 2026</h2>
+
+<table><thead><tr><th>Параметр</th><th>LTV:CAC</th><th>CAC Payback</th></tr></thead><tbody><tr><td></td><td>Считается с</td><td>Предсказанным LTV (uncertain)</td><td>Известным CAC + current MRR (certain)</td><td></td></tr><tr><td></td><td>Time-sensitivity</td><td>Игнорирует когда</td><td>Учитывает время</td><td></td></tr><tr><td></td><td>Cash flow impact</td><td>Не показывает</td><td>Прямо показывает</td><td></td></tr><tr><td></td><td>Manipulable</td><td>Easily (просто extend срок жизни в предположениях)</td><td>Трудно (CAC и MRR — наблюдаемые)</td><td></td></tr><tr><td></td><td>VC сейчас смотрят</td><td>Второй</td><td><strong>Первой</strong></td><td></td></tr></tbody></table>
+Один из топ-VC цитата: «I don't trust LTV. I trust CAC Payback».
+
+<h2>4 рычага сокращения CAC Payback</h2>
+
+<h3>1. Снизить CAC (numerator)</h3>
+<ul><li>Органические каналы (SEO, content, referrals) — payback там часто 3-6 мес</li><li>Conversion optimization — каждый +10% к CR воронки = -10% CAC payback</li><li>Self-serve onboarding для SMB — убирает sales costs</li></ul>
+
+<h3>2. Поднять MRR per customer (denominator)</h3>
+<ul><li>Pricing review — каждые 12 мес</li><li>Upsell premium tiers в первой сделке</li><li>Bundle мульти-product offerings</li></ul>
+
+<h3>3. Поднять Gross Margin (denominator multiplier)</h3>
+<ul><li>Hosting оптимизация (AWS reserved, cache, CDN)</li><li>Support deflection (docs, AI chatbot)</li><li>Customer support automation</li></ul>
+
+<p>+10pp gross margin (75%→85%) = -12% payback time. Big lever.</p>
+
+<h3>4. Annual prepay</h3>
+Annual prepay collects 12 мес upfront → payback <strong>mathematically becomes 0</strong> для cash purposes (хотя GAAP-revenue растягивается на 12 мес).
+
+<h2>Pricing power как hidden lever</h2>
+
+<p>Главный insight: повышение price на +20% обычно даёт +18-20% к Net New ARR без proportional roi на CAC.</p>
+
+<p><strong>Pre-pricing increase:</strong><br><ul><li>CAC = $1500, MRR = $200, margin 75% → payback = 10 мес</li></ul></p>
+
+<p><strong>Post-pricing increase (+20%):</strong><br><ul><li>CAC = $1500 (same), MRR = $240, margin 80% (better gross because fixed costs same) → payback = 1500 / 192 = <strong>7.8 мес</strong></li></ul></p>
+
+<p>-22% payback time от одного pricing-action. Это самый дешёвый рычаг.</p>
+
+<h2>Когда длинный CAC Payback OK</h2>
+
+<p>Не всегда CAC Payback нужно <18 мес:</p>
+
+<p>1. <strong>Enterprise multi-year contracts</strong> — 5-year $500k contracts. Payback 24 мес ok если annual churn <5%.</p>
+
+<p>2. <strong>Network-effects продукты</strong> — Each new customer привлекает 2 others organically. Initial CAC payback long, но cohort payback short.</p>
+
+<p>3. <strong>Strategic vendor relationship</strong> — клиент станет ключевой reference для всего сегмента (HubSpot для marketing agencies).</p>
+
+<p>В этих cases <strong>cohort payback</strong> > customer payback. Считай его отдельно.</p>
+
+<h2>Связь с фандрейзингом</h2>
+
+<p><strong>VC term sheet check:</strong><br><ul><li>CAC Payback <18 мес → могут invest</li><li>CAC Payback <12 мес → premium valuation</li><li>CAC Payback <6 мес → fire sale (everyone wants in)</li><li>CAC Payback >24 мес → нужно объяснить как сократишь, иначе skip</li></ul></p>
+
+<h2>Итог</h2>
+
+<p>CAC Payback — это <strong>cash-version</strong> unit-экономики. LTV:CAC = долгосрочная rentability. CAC Payback = выживаемость в next 12 мес. Знай обе. Healthy SaaS: <strong>LTV:CAC ≥ 3 AND CAC Payback < 18 мес</strong>. Если только одна — есть проблема, починить которую = priority.</p>
+
+<p><strong>Считай свой CAC Payback ниже</strong> + Goal mode для расчёта max CAC при target payback.</p>
+
+<p>---</p>
+
+<h3>Дополнительные ресурсы</h3>
+
+<ul><li><a href="/cac">/cac</a> — CAC calculator</li><li><a href="/ltv_cac">/ltv_cac</a> — LTV:CAC ratio</li><li><a href="/grossMargin">/grossMargin</a> — Gross Margin (один из inputs)</li><li><a href="/blog/ltv-cac-unit-economics">/blog/ltv-cac-unit-economics</a> — LTV:CAC deep dive</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Считай прямо здесь:</strong>
+  <iframe src="https://metricstree.vercel.app/cacPayback?embed=1" width="100%" height="650" loading="lazy" title="MetricTree cacPayback калькулятор"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Открыть в полной версии: <a href="https://metricstree.vercel.app/cacPayback" target="_blank">https://metricstree.vercel.app/cacPayback</a></p>
+</div>
+<div class="share-row">
+  Поделиться:
+  <a href="https://twitter.com/intent/tweet?text=CAC%20Payback%20Period%20%E2%80%94%20%D0%BF%D0%BE%D1%87%D0%B5%D0%BC%D1%83%20%D0%BE%D0%BD%20%D0%B2%D0%B0%D0%B6%D0%BD%D0%B5%D0%B5%20LTV%3ACAC%20%D0%B4%D0%BB%D1%8F%20cash%20management&url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fcac-payback-period" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fcac-payback-period" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fcac-payback-period&text=CAC%20Payback%20Period%20%E2%80%94%20%D0%BF%D0%BE%D1%87%D0%B5%D0%BC%D1%83%20%D0%BE%D0%BD%20%D0%B2%D0%B0%D0%B6%D0%BD%D0%B5%D0%B5%20LTV%3ACAC%20%D0%B4%D0%BB%D1%8F%20cash%20management" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="/blog/">Все посты</a> · <a href="/">Калькулятор</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

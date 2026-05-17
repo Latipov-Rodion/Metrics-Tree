@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Runway калькулятор — когда фандрейзить в 2026 | MetricTree Blog</title>
+<meta name="description" content="Runway = Cash / Net Burn. Сколько месяцев живёт компания. Когда начинать фандрейзинг (≥9 мес), что делать при <6 мес, как продлить runway без external capital.">
+<meta name="keywords" content="runway калькулятор, runway saas, когда фандрейзить, как считать runway">
+<link rel="canonical" href="https://metricstree.vercel.app/blog/runway-when-fundraise">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Runway калькулятор — когда фандрейзить в 2026">
+<meta property="og:description" content="Runway = Cash / Net Burn. Сколько месяцев живёт компания. Когда начинать фандрейзинг (≥9 мес), что делать при <6 мес, как продлить runway без external capital.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/blog/runway-when-fundraise">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-04-20">
+<meta property="article:author" content="Родион Латыпов">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Runway калькулятор — когда фандрейзить в 2026">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Runway калькулятор — когда фандрейзить в 2026",
+  "description": "Runway = Cash / Net Burn. Сколько месяцев живёт компания. Когда начинать фандрейзинг (≥9 мес), что делать при <6 мес, как продлить runway без external capital.",
+  "datePublished": "2026-04-20",
+  "author": {
+    "@type": "Person",
+    "name": "Родион Латыпов",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/blog/runway-when-fundraise"
+  },
+  "keywords": "runway калькулятор, runway saas, когда фандрейзить, как считать runway",
+  "inLanguage": "ru"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#6b6f75; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#777; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div>
+</nav>
+<article>
+<h1>Runway калькулятор — когда фандрейзить в 2026</h1>
+<div class="meta">2026-04-20 · автор: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a></div>
+<h1>Runway калькулятор — когда фандрейзить в 2026</h1>
+
+<p>Runway — это сколько месяцев твоя компания проживёт без новых денег. Самая базовая фин-метрика, но самая важная для timing fundraise.</p>
+
+<p>> <strong>Runway = Cash на балансе / Net Burn в месяц</strong></p>
+
+<p><strong>Net Burn</strong> = Расходы − Выручка (за месяц).</p>
+
+<p>Если ты cash-positive (Net Burn ≤ 0) — runway бесконечен, не нужно фандрейзить (если не хочешь ускориться).</p>
+
+<h2>Бенчмарки 2026 (post-ZIRP реальность)</h2>
+
+<table><thead><tr><th>Runway</th><th>Статус</th></tr></thead><tbody><tr><td></td><td><strong><3 мес</strong></td><td>Catastrophe — экстренные cost cuts, любой term sheet acceptable</td><td></td></tr><tr><td></td><td><strong>3-6 мес</strong></td><td>Critical — раунд под non-negotiable terms</td><td></td></tr><tr><td></td><td><strong>6-9 мес</strong></td><td>High pressure — слабая переговорная позиция</td><td></td></tr><tr><td></td><td><strong>9-12 мес</strong></td><td>Right time to start fundraising</td><td></td></tr><tr><td></td><td><strong>12-18 мес</strong></td><td>Healthy norm для seed/Series A</td><td></td></tr><tr><td></td><td><strong>18-24 мес</strong></td><td>Strong position — fundraise from strength</td><td></td></tr><tr><td></td><td><strong>>24 мес</strong></td><td>Раунд был «лишним», но не критично</td><td></td></tr></tbody></table>
+<strong>Правило</strong>: ставь на стол <strong>≥9 мес runway</strong>. SaaS-fundraise занимает 3-6 мес. Если runway <6 мес когда подписываешь term sheet — это плохая позиция.
+
+<h2>Пример расчёта</h2>
+
+<p><strong>Стартап:</strong><br><ul><li>Cash: $2,500,000</li><li>Monthly расходы: $250,000</li><li>Monthly Revenue: $50,000</li><li><strong>Net Burn</strong> = 250 − 50 = $200,000/мес</li><li><strong>Runway</strong> = 2,500,000 / 200,000 = <strong>12.5 мес</strong></li></ul></p>
+
+<h2>Подвох: какой Burn использовать?</h2>
+
+<p>3 типа:</p>
+
+<table><thead><tr><th>Тип</th><th>Формула</th><th>Когда использовать</th></tr></thead><tbody><tr><td></td><td><strong>Gross Burn</strong></td><td>Total expenses</td><td>Если revenue нестабильна (early stage) — consetvative</td><td></td></tr><tr><td></td><td><strong>Net Burn</strong></td><td>Expenses − Revenue</td><td>Standard, balanced</td><td></td></tr><tr><td></td><td><strong>Adjusted Net Burn</strong></td><td>Net Burn − one-time expenses</td><td>Если был большой capex событие — нормализуй</td><td></td></tr></tbody></table>
+<strong>Не используй последний месяц Burn</strong> — он volatile. Бери <strong>trailing 3-month average</strong> для точной picture.
+
+<h2>Когда начинать фандрейзинг — детально</h2>
+
+<table><thead><tr><th>Runway when start</th><th>Outcome</th></tr></thead><tbody><tr><td></td><td>12+ мес</td><td>Best position. Multiple term sheets. Can negotiate.</td><td></td></tr><tr><td></td><td>9-12 мес</td><td>Good. 1-2 term sheets likely.</td><td></td></tr><tr><td></td><td>6-9 мес</td><td>Tense. Investors see weakness, lowball offers.</td><td></td></tr><tr><td></td><td><6 мес</td><td>"Bridge financing" trap. Existing investors at unfair terms.</td><td></td></tr></tbody></table>
+<strong>SaaS-fundraise process timing:</strong>
+<ul><li>Прелiminary outreach + decks: 3-4 weeks</li><li>Partner meetings: 4-6 weeks</li><li>Due diligence: 2-4 weeks</li><li>Term sheet → close: 4-6 weeks</li><li><strong>Total: 13-20 weeks = 3-5 мес minimum</strong></li></ul>
+
+<p>Если у тебя 6 мес runway, к close у тебя останется 1 мес. Это <strong>очень тонкая</strong> позиция.</p>
+
+<h2>5 рычагов продления runway без external capital</h2>
+
+<h3>1. Hire freeze + selective layoffs (-30% burn realistic)</h3>
+70% бюджета SaaS = payroll. Каждый увольняемый = $5-15k/мес runway extension. Hard but most-effective lever.
+
+<h3>2. Annual prepay (+20-30% to immediate cash)</h3>
+Discount −15-20% за annual prepay. Customer happy (saves money). Ты получаешь 12 мес cash upfront → runway extends mathematically.
+
+<h3>3. Pricing increase (+10-15% revenue без новых customers)</h3>
+Скучный но рабочий. Annual price review должен быть автоматическим. Если ты не повышал prices в 12+ мес — поднимай +15% завтра. Загрузишь existing-customers, новых будешь привлекать чуть медленнее — net positive для runway.
+
+<h3>4. Venture debt (+6-12 мес runway non-dilutive)</h3>
+<ul><li>Brex Credit, SVB Credit Line, Silicon Valley Bridge</li><li>Стоимость: ~10-15% APR</li><li>Условие: existing equity raise <12 мес</li><li>Не fixes underlying проблему, но buys time</li></ul>
+
+<h3>5. Bridge from existing investors</h3>
+Если existing investors не хотят bridge → плохой сигнал market. Если хотят — fine, но new investors после bridge будут price-shop. Bridge = «не дойдём до next round в текущем shape».
+
+<h2>Что делать при runway <6 мес</h2>
+
+<p><strong>Day 1:</strong><br>1. Stop all non-essential spend (tools, contractors, events, marketing experiments)<br>2. Layoff conversation с CFO/board</p>
+
+<p><strong>Week 1:</strong><br>3. Annual prepay campaign — discount 20% for upfront annual<br>4. Reach out к existing investors про bridge<br>5. Reach out к venture debt providers</p>
+
+<p><strong>Week 2-3:</strong><br>6. Layoffs execute (if needed)<br>7. Reduced burn rate fixed → recalc runway<br>8. Re-prioritize roadmap to revenue-impact features only</p>
+
+<p><strong>Week 4+:</strong><br>9. Fundraise process kicks off with new lower burn rate в pitch (показывает дисциплину)</p>
+
+<h2>Когда runway >24 мес = тоже плохо</h2>
+
+<p>Парадоксально:<br><ul><li>Большой cash → психологически расслабляешься</li><li>Тратишь на «nice-to-have» вместо essentials</li><li>Не учишься scrappy mindset</li><li>Когда раунд кончается — shock</li></ul></p>
+
+<p>Top-tier SaaS-стартапы <strong>намеренно sizing раунды к 18-24 мес</strong>, не 36+, чтобы держать urgency.</p>
+
+<h2>Связь с другими метриками</h2>
+
+<table><thead><tr><th>Метрика</th><th>Связь</th></tr></thead><tbody><tr><td></td><td><strong>Burn Multiple</strong></td><td>Capital efficiency определяет sustainable Burn → влияет на Runway</td><td></td></tr><tr><td></td><td><strong>MRR Growth Rate</strong></td><td>Если revenue растёт быстро → Net Burn падает → Runway extends</td><td></td></tr><tr><td></td><td><strong>Gross Margin</strong></td><td>Higher margin → меньше cash burn на каждый $ revenue → Runway extends</td><td></td></tr></tbody></table>
+<h2>Итог</h2>
+
+<p>Runway — это <strong>самая важная single-number метрика</strong> для founders. Знай её каждый понедельник утром. Если <12 мес — у тебя есть 1-3 мес чтобы либо resolve через cost-cuts/revenue-growth, либо начать serious fundraise.</p>
+
+<p><strong>Считай свой Runway ниже</strong> + Goal mode для расчёта target burn при заданном runway.</p>
+
+<p>---</p>
+
+<h3>Дополнительные ресурсы</h3>
+
+<ul><li><a href="/burnRate">/burnRate</a> — Burn Rate отдельно</li><li><a href="/burnMultiple">/burnMultiple</a> — Burn Multiple для efficiency</li><li><a href="/grossMargin">/grossMargin</a> — Gross Margin влияет на Burn</li><li><a href="/blog/burn-multiple-saas-2026">/blog/burn-multiple-saas-2026</a> — Burn Multiple deep dive</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Считай прямо здесь:</strong>
+  <iframe src="https://metricstree.vercel.app/runway?embed=1" width="100%" height="650" loading="lazy" title="MetricTree runway калькулятор"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Открыть в полной версии: <a href="https://metricstree.vercel.app/runway" target="_blank">https://metricstree.vercel.app/runway</a></p>
+</div>
+<div class="share-row">
+  Поделиться:
+  <a href="https://twitter.com/intent/tweet?text=Runway%20%D0%BA%D0%B0%D0%BB%D1%8C%D0%BA%D1%83%D0%BB%D1%8F%D1%82%D0%BE%D1%80%20%E2%80%94%20%D0%BA%D0%BE%D0%B3%D0%B4%D0%B0%20%D1%84%D0%B0%D0%BD%D0%B4%D1%80%D0%B5%D0%B9%D0%B7%D0%B8%D1%82%D1%8C%20%D0%B2%202026&url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Frunway-when-fundraise" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Frunway-when-fundraise" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Frunway-when-fundraise&text=Runway%20%D0%BA%D0%B0%D0%BB%D1%8C%D0%BA%D1%83%D0%BB%D1%8F%D1%82%D0%BE%D1%80%20%E2%80%94%20%D0%BA%D0%BE%D0%B3%D0%B4%D0%B0%20%D1%84%D0%B0%D0%BD%D0%B4%D1%80%D0%B5%D0%B9%D0%B7%D0%B8%D1%82%D1%8C%20%D0%B2%202026" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="/blog/">Все посты</a> · <a href="/">Калькулятор</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

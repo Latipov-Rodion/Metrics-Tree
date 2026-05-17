@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ARPDAU — главная метрика mobile F2P-игр, бенчмарки 2026 | MetricTree Blog</title>
+<meta name="description" content="ARPDAU = Daily Revenue / DAU. Free-to-play норма $0.05-$5, premium $0.5-$20. Что отличает hyper-casual от RPG в монетизации.">
+<meta name="keywords" content="arpdau, mobile games metric, free-to-play монетизация, формула ARPDAU">
+<link rel="canonical" href="https://metricstree.vercel.app/blog/arpdau-mobile-games">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="ARPDAU — главная метрика mobile F2P-игр, бенчмарки 2026">
+<meta property="og:description" content="ARPDAU = Daily Revenue / DAU. Free-to-play норма $0.05-$5, premium $0.5-$20. Что отличает hyper-casual от RPG в монетизации.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/blog/arpdau-mobile-games">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-04-10">
+<meta property="article:author" content="Родион Латыпов">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ARPDAU — главная метрика mobile F2P-игр, бенчмарки 2026">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ARPDAU — главная метрика mobile F2P-игр, бенчмарки 2026",
+  "description": "ARPDAU = Daily Revenue / DAU. Free-to-play норма $0.05-$5, premium $0.5-$20. Что отличает hyper-casual от RPG в монетизации.",
+  "datePublished": "2026-04-10",
+  "author": {
+    "@type": "Person",
+    "name": "Родион Латыпов",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/blog/arpdau-mobile-games"
+  },
+  "keywords": "arpdau, mobile games metric, free-to-play монетизация, формула ARPDAU",
+  "inLanguage": "ru"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#6b6f75; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#777; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div>
+</nav>
+<article>
+<h1>ARPDAU — главная метрика mobile F2P-игр, бенчмарки 2026</h1>
+<div class="meta">2026-04-10 · автор: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a></div>
+<h1>ARPDAU — главная метрика mobile F2P-игр, бенчмарки 2026</h1>
+
+<p>В mobile gaming industry <strong>ARPDAU</strong> (Average Revenue Per Daily Active User) — это пульс монетизации. Если LTV — это «сколько customer стоит за всю жизнь», то ARPDAU — это «сколько он стоит сегодня».</p>
+
+<h2>Формула</h2>
+
+<p>> <strong>ARPDAU = Total Daily Revenue / Daily Active Users</strong></p>
+
+<p>Пример:<br><ul><li>Daily revenue $5,000</li><li>DAU 50,000</li><li>ARPDAU = $5000 / 50000 = <strong>$0.10</strong></li></ul></p>
+
+<p>10 центов в день per active user. Звучит мало? Это <strong>в норме для casual игр</strong>. Для top-tier RPG норма $0.50-1.50.</p>
+
+<h2>Бенчмарки по жанрам (2026 data)</h2>
+
+<table><thead><tr><th>Жанр</th><th>ARPDAU нижний</th><th>Median</th><th>Top tier</th></tr></thead><tbody><tr><td></td><td><strong>Hyper-casual</strong></td><td>$0.01</td><td>$0.03</td><td>$0.08</td><td></td></tr><tr><td></td><td><strong>Casual</strong></td><td>$0.05</td><td>$0.12</td><td>$0.30</td><td></td></tr><tr><td></td><td><strong>Mid-core (puzzle)</strong></td><td>$0.10</td><td>$0.25</td><td>$0.60</td><td></td></tr><tr><td></td><td><strong>Strategy / 4X</strong></td><td>$0.30</td><td>$0.80</td><td>$2.00</td><td></td></tr><tr><td></td><td><strong>RPG / MMO</strong></td><td>$0.50</td><td>$1.20</td><td>$3.00</td><td></td></tr><tr><td></td><td><strong>Casino / Slots</strong></td><td>$1.00</td><td>$2.50</td><td>$8.00</td><td></td></tr><tr><td></td><td><strong>Premium / paid apps</strong></td><td>n/a</td><td>$5.00</td><td>$15.00+</td><td></td></tr></tbody></table>
+Данные: AppMagic, Sensor Tower, AppAnnie aggregates.
+
+<h2>Чем ARPDAU отличается от ARPU</h2>
+
+<table><thead><tr><th>Метрика</th><th>Считается</th><th>Когда использовать</th></tr></thead><tbody><tr><td></td><td><strong>ARPDAU</strong></td><td>Per daily active user</td><td>Mobile F2P — daily-engagement продукты</td><td></td></tr><tr><td></td><td><strong>ARPU</strong></td><td>Per active user в период (mo/year)</td><td>SaaS, subscription, e-commerce</td><td></td></tr><tr><td></td><td><strong>ARPPU</strong></td><td>Per PAYING user</td><td>Free-to-play — фокус на conversion</td><td></td></tr><tr><td></td><td><strong>LTV</strong></td><td>Total за время жизни</td><td>Long-term unit economics</td><td></td></tr></tbody></table>
+<strong>ARPDAU × Average Lifespan in days = approximate LTV</strong> для daily-engagement продуктов.
+
+<p>Пример: ARPDAU $0.20 × 180-day lifespan = LTV $36.</p>
+
+<h2>Как разложить ARPDAU на компоненты</h2>
+
+<pre><code class="language-">ARPDAU = (Paying Users / DAU) × (ARPPU per day)
+       = Conversion Rate × Avg payment frequency × Avg payment size
+</code></pre>
+
+<p>Раскладывая, видишь рычаги:<br><ul><li><strong>Conversion</strong>: % DAU кто хоть раз заплатил</li><li><strong>Frequency</strong>: how often paying users pay  </li><li><strong>Size</strong>: average transaction amount</li></ul></p>
+
+<h2>4 рычага роста ARPDAU</h2>
+
+<h3>1. IAP (in-app purchases) — основной для F2P</h3>
+<ul><li><strong>Soft currency</strong> покупки (gems, gold)</li><li><strong>Cosmetic items</strong> — скины, эмоции (high-margin, no balance impact)</li><li><strong>Power-ups</strong> — boost, energy refills</li><li><strong>Battle Pass</strong> — seasonal subscription model (растёт frequency)</li></ul>
+
+<p>Industry-leader: <strong>Battle Pass конвертирует +30% не-paying users → paying.</strong> Самый высокий impact на conversion rate.</p>
+
+<h3>2. Ad monetization — для широкой аудитории</h3>
+<ul><li><strong>Rewarded video</strong> — оптимально (high opt-in)</li><li><strong>Interstitial</strong> между уровнями (annoying но high RPM)</li><li><strong>Banner</strong> — outdated, low yield</li><li><strong>Playable ads</strong> — best for hyper-casual</li></ul>
+
+<p>Industry standard ad eCPM: $5-15 для US, $2-5 для emerging markets.</p>
+
+<h3>3. Subscriptions</h3>
+<strong>Pass / VIP / Premium tier</strong>:
+<ul><li>Stable monthly revenue (recurring)</li><li>2-3× ARPU normal users</li><li>Локальная норма 5-10% DAU subscribed</li></ul>
+
+<h3>4. Whales optimization</h3>
+В F2P <strong>2% paying users</strong> generate <strong>70% revenue</strong>. Эти whales — твой revenue.
+<ul><li>VIP-program с perks</li><li>Personal account managers (для top-100 spenders)</li><li>Limited editions / exclusive offers</li><li>Faster customer support</li></ul>
+
+<h2>ARPDAU growth — что НЕ работает</h2>
+
+<p>❌ <strong>Pay-to-win mechanics</strong> — кратковременный +30% ARPDAU, через 3-6 мес массовый churn casual игроков → DAU падает на -50%, итого ARPDAU остаётся, но Net Revenue падает.</p>
+
+<p>❌ <strong>Aggressive ads</strong> — interstitial каждые 30 сек = retention crash.</p>
+
+<p>❌ <strong>Раздражающие pop-up offers</strong> — каждый минут = churn risk.</p>
+
+<p>❌ <strong>Geographically uniform pricing</strong> — same price $0.99 в US и Indonesia. В emerging markets local pricing essential.</p>
+
+<h2>Real-world ARPDAU examples</h2>
+
+<table><thead><tr><th>Игра</th><th>Жанр</th><th>ARPDAU (2024 est)</th><th>DAU</th></tr></thead><tbody><tr><td></td><td><strong>Honor of Kings</strong></td><td>MOBA</td><td>$0.45</td><td>100M</td><td></td></tr><tr><td></td><td><strong>Genshin Impact</strong></td><td>RPG</td><td>$1.20</td><td>60M</td><td></td></tr><tr><td></td><td><strong>Clash Royale</strong></td><td>Strategy</td><td>$0.30</td><td>25M</td><td></td></tr><tr><td></td><td><strong>Subway Surfers</strong></td><td>Hyper-casual</td><td>$0.05</td><td>50M</td><td></td></tr><tr><td></td><td><strong>Candy Crush</strong></td><td>Match-3</td><td>$0.15</td><td>75M</td><td></td></tr></tbody></table>
+Top revenue игры — <strong>не самые высокие ARPDAU</strong>, а highest <strong>(ARPDAU × DAU)</strong>. Volume × monetization > только monetization.
+
+<h2>Связь с другими метриками</h2>
+
+<table><thead><tr><th>Метрика</th><th>Связь</th></tr></thead><tbody><tr><td></td><td><strong>DAU</strong></td><td>Знаменатель формулы</td><td></td></tr><tr><td></td><td><strong>Retention</strong></td><td>High retention → longer lifespan → higher LTV at same ARPDAU</td><td></td></tr><tr><td></td><td><strong>ARPU</strong></td><td>Monthly equivalent ARPDAU × 30</td><td></td></tr><tr><td></td><td><strong>Conversion Rate</strong></td><td>Free-to-paying conversion = главный component ARPDAU</td><td></td></tr></tbody></table>
+<h2>Когда ARPDAU ВВОДИТ В ЗАБЛУЖДЕНИЕ</h2>
+
+<p>1. <strong>Cohort skew</strong> — если DAU drops но whales stay → ARPDAU растёт хотя бизнес умирает<br>2. <strong>Seasonal events</strong> — Christmas event дабл ARPDAU на 2 недели, потом normal<br>3. <strong>Pricing experiments</strong> — sub-cohort tests искажают average<br>4. <strong>Currency</strong> — игры работают глобально, USD-reported ARPDAU дрейфует от FX</p>
+
+<h2>Итог</h2>
+
+<p>ARPDAU — это <strong>главная мобильная метрика</strong> для F2P-игр. Знай свою. Сравни с benchmark в твоём жанре. Если ниже — поработай над monetization mix (IAP/Ads/Subs). Top tier ARPDAU в category = ~10% всех публикуют игры, но они занимают 50%+ category revenue.</p>
+
+<p><strong>Считай свой ARPDAU ниже</strong> + жанровый benchmark.</p>
+
+<p>---</p>
+
+<h3>Дополнительные ресурсы</h3>
+
+<ul><li><a href="/dau">/dau</a> — DAU calculator</li><li><a href="/arpu">/arpu</a> — ARPU (monthly equivalent)</li><li><a href="/ltv">/ltv</a> — LTV (ARPDAU × lifespan)</li><li><a href="/retention">/retention</a> — Retention (mobile)</li><li><a href="https://appmagic.rocks">AppMagic / Sensor Tower</a> — ARPDAU benchmarks</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Считай прямо здесь:</strong>
+  <iframe src="https://metricstree.vercel.app/arpdau?embed=1" width="100%" height="650" loading="lazy" title="MetricTree arpdau калькулятор"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Открыть в полной версии: <a href="https://metricstree.vercel.app/arpdau" target="_blank">https://metricstree.vercel.app/arpdau</a></p>
+</div>
+<div class="share-row">
+  Поделиться:
+  <a href="https://twitter.com/intent/tweet?text=ARPDAU%20%E2%80%94%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F%20%D0%BC%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B0%20mobile%20F2P-%D0%B8%D0%B3%D1%80%2C%20%D0%B1%D0%B5%D0%BD%D1%87%D0%BC%D0%B0%D1%80%D0%BA%D0%B8%202026&url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Farpdau-mobile-games" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Farpdau-mobile-games" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Farpdau-mobile-games&text=ARPDAU%20%E2%80%94%20%D0%B3%D0%BB%D0%B0%D0%B2%D0%BD%D0%B0%D1%8F%20%D0%BC%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D0%B0%20mobile%20F2P-%D0%B8%D0%B3%D1%80%2C%20%D0%B1%D0%B5%D0%BD%D1%87%D0%BC%D0%B0%D1%80%D0%BA%D0%B8%202026" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="/blog/">Все посты</a> · <a href="/">Калькулятор</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

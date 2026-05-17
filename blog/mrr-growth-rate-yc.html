@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>MRR Growth Rate — почему YC требует 5-7% MoM | MetricTree Blog</title>
+<meta name="description" content="MRR Growth Rate = MoM рост подписочной выручки. Стандарт Y Combinator 5-7%/мес, T2D3 модель, как ускорить growth через 5 рычагов.">
+<meta name="keywords" content="mrr growth rate, y combinator metric, T2D3, формула MRR growth, как ускорить рост saas">
+<link rel="canonical" href="https://metricstree.vercel.app/blog/mrr-growth-rate-yc">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="MRR Growth Rate — почему YC требует 5-7% MoM">
+<meta property="og:description" content="MRR Growth Rate = MoM рост подписочной выручки. Стандарт Y Combinator 5-7%/мес, T2D3 модель, как ускорить growth через 5 рычагов.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/blog/mrr-growth-rate-yc">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-04-17">
+<meta property="article:author" content="Родион Латыпов">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MRR Growth Rate — почему YC требует 5-7% MoM">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "MRR Growth Rate — почему YC требует 5-7% MoM",
+  "description": "MRR Growth Rate = MoM рост подписочной выручки. Стандарт Y Combinator 5-7%/мес, T2D3 модель, как ускорить growth через 5 рычагов.",
+  "datePublished": "2026-04-17",
+  "author": {
+    "@type": "Person",
+    "name": "Родион Латыпов",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/blog/mrr-growth-rate-yc"
+  },
+  "keywords": "mrr growth rate, y combinator metric, T2D3, формула MRR growth, как ускорить рост saas",
+  "inLanguage": "ru"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#6b6f75; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#777; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div>
+</nav>
+<article>
+<h1>MRR Growth Rate — почему YC требует 5-7% MoM</h1>
+<div class="meta">2026-04-17 · автор: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a></div>
+<h1>MRR Growth Rate — почему YC требует 5-7% MoM</h1>
+
+<p>В Y Combinator есть internal benchmark, который Paul Graham повторяет в каждом office hours:</p>
+
+<p>> «<strong>A startup is a company designed to grow fast. We typically look for 5-7% week-over-week revenue growth at YC.</strong> Если ты делаешь 1% — это начало.»</p>
+
+<p>Это формальный стандарт. Если ты YC-applicant — это <strong>первая</strong> цифра в твоей application.</p>
+
+<h2>Формула</h2>
+
+<p>> <strong>MRR Growth Rate (MoM) = (MRR_конец − MRR_начало) / MRR_начало × 100%</strong></p>
+
+<p>Пример: $80k → $88k = (88−80) / 80 = 10%.</p>
+
+<p><strong>Annualized via compounding:</strong><br><pre><code class="language-">Annual growth = (1 + monthly)^12 − 1<br></code></pre><br><ul><li>5% MoM → 79% annual</li><li>10% MoM → 213% annual  </li><li>15% MoM → 435% annual</li><li>20% MoM → 791% annual</li></ul></p>
+
+<p>Compound makes it brutal — каждый 1pp MoM ≈ +50% annual растут at scale.</p>
+
+<h2>Бенчмарки по стадиям</h2>
+
+<table><thead><tr><th>Стадия</th><th>Healthy MoM</th><th>Великолепно</th></tr></thead><tbody><tr><td></td><td>Pre-PMF</td><td>Variable</td><td>Любой стабильный</td><td></td></tr><tr><td></td><td>Seed (post-PMF)</td><td>15-20%</td><td>25%+</td><td></td></tr><tr><td></td><td>Series A</td><td>10-15%</td><td>20%</td><td></td></tr><tr><td></td><td>Series B</td><td>7-10%</td><td>12%</td><td></td></tr><tr><td></td><td>Series C+</td><td>5-7%</td><td>10%</td><td></td></tr><tr><td></td><td>Public SaaS</td><td>2-3% MoM (= 30-50% YoY)</td><td>5%+</td><td></td></tr></tbody></table>
+<strong>Сurves bend</strong> — невозможно поддерживать 20% MoM на $100M ARR (это $20M new MRR в месяц = $240M/year additional).
+
+<h2>T2D3 — Stripe / Bessemer стандарт</h2>
+
+<p><strong>T2D3</strong> = <strong>Triple, Triple, Double, Double, Double</strong> ($1M ARR → $100M за 5 лет):</p>
+
+<table><thead><tr><th>Year</th><th>ARR</th><th>YoY</th></tr></thead><tbody><tr><td></td><td>Year 0</td><td>$1M</td><td>—</td><td></td></tr><tr><td></td><td>Year 1</td><td>$3M</td><td>3× (triple)</td><td></td></tr><tr><td></td><td>Year 2</td><td>$9M</td><td>3× (triple)</td><td></td></tr><tr><td></td><td>Year 3</td><td>$18M</td><td>2× (double)</td><td></td></tr><tr><td></td><td>Year 4</td><td>$36M</td><td>2×</td><td></td></tr><tr><td></td><td>Year 5</td><td>$72M</td><td>2×</td><td></td></tr></tbody></table>
+Эквивалент в MoM:
+<ul><li>Year 1-2 (3× annual) = ~9.5% MoM</li><li>Year 3-5 (2× annual) = ~6% MoM</li></ul>
+
+<p>T2D3 — это <strong>path to IPO</strong>. Top-tier VC уверены что компании ниже этого pace не дойдут до $100M ARR.</p>
+
+<h2>YC's «5-7% WoW» переведённый</h2>
+
+<p>5-7% <strong>per WEEK</strong> = <strong>23-32% per MONTH</strong> = <strong>1300-2900% per YEAR</strong>.</p>
+
+<p>Это <strong>только для early-stage</strong>, обычно $0-$100k MRR. Когда переваливаешь $100k MRR — переключаешься на MoM tracking.</p>
+
+<h2>Как ускорить MRR Growth — 5 рычагов</h2>
+
+<h3>1. Channel-market fit > product-market fit на growth-стадии</h3>
+<strong>1 working channel</strong> при scale > 5 mediocre. Найди свой:
+<ul><li>B2B SaaS: outbound sales, content+SEO, paid social ABM</li><li>PLG / freemium: viral loops, community, integrations</li><li>E-commerce: paid social, influencer, retargeting</li></ul>
+
+<p>Don't dilute — double-down на one channel пока ROI < 1x.</p>
+
+<h3>2. Annual → instant +5-15% MRR</h3>
+Переключение pricing на annual prepay:
+<ul><li>Mathematically повышает recurring revenue</li><li>Снижает churn ×12</li><li>Cash forward</li></ul>
+
+<p>Discount −15% для annual в обмен на 12-мес commit = no-brainer для customer.</p>
+
+<h3>3. Pricing review каждые 12 мес</h3>
++10-15% price = +10-15% MRR в течение 3 мес (после rollout existing customers + new sign-ups).
+
+<p>Если ты не повышал price за 18 мес — поднимай немедленно.</p>
+
+<h3>4. Expansion revenue ≠ new customer revenue</h3>
+Existing customer expansion имеет CAC ~$0:
+<ul><li>Seat-based pricing (scales with team)</li><li>Usage-based (scales with usage)</li><li>Tiered upgrades</li></ul>
+
+<p>NRR >115% даёт ~10% growth «бесплатно» (без новых customers).</p>
+
+<h3>5. ICP focus — drop low-fit segments</h3>
+Counter-intuitive: cut 30% юзеров (low-fit, high-churn, support-heavy) → release капасити команды на high-fit segment → faster growth там.
+
+<p>«Less is more» actually works in B2B SaaS.</p>
+
+<h2>Real-world примеры</h2>
+
+<p><strong>Slack 2014:</strong><br><ul><li>$0 → $1M ARR за 5 мес (post-launch)</li><li>Average MoM ~100% (founders effect)</li></ul></p>
+
+<p><strong>Notion 2018:</strong><br><ul><li>$1M → $10M ARR за 18 мес</li><li>Average MoM ~14%</li></ul></p>
+
+<p><strong>Figma 2017-2018:</strong><br><ul><li>$1M → $4M за 12 мес</li><li>Average MoM ~12%</li></ul></p>
+
+<p>Это все <strong>outliers</strong>. Healthy growth для post-PMF SaaS = 10-15% MoM. Если ты делаешь 20%+ устойчиво — ты на pace к unicorn.</p>
+
+<h2>Когда MoM Growth ВВОДИТ В ЗАБЛУЖДЕНИЕ</h2>
+
+<p>1. <strong>Маленькая база</strong> — $5k → $7k = 40% MoM. Не показатель долгосрочного.<br>2. <strong>Один большой контракт</strong> — Q4 enterprise deal искажает trailing months.<br>3. <strong>Annual contracts billed monthly vs upfront</strong> — переключение pricing влияет на reporting.<br>4. <strong>Promotion / discounts</strong> — Black Friday MoM ≠ норм.</p>
+
+<p>Используй <strong>trailing 3-month average MoM</strong> для нормализованной picture.</p>
+
+<h2>Связь с YC application</h2>
+
+<p>В YC application форме есть literal question: «What is your MoM growth rate?»</p>
+
+<p>Они <strong>не filter</strong> по этой цифре, но 5-7% MoM = strong signal. Меньше — нужно объяснять (длинный sales cycle, recent launch, etc.). Больше — instant attention.</p>
+
+<h2>Итог</h2>
+
+<p>MRR Growth Rate — это <strong>пульс компании</strong>. Меряй weekly до $100k MRR, monthly после. Знай свой trailing 3-month average. Целься на 10%+ MoM для early-stage SaaS, тогда T2D3 path к $100M ARR realistic.</p>
+
+<p><strong>Считай свой MRR Growth ниже</strong> + bench + projection.</p>
+
+<p>---</p>
+
+<h3>Дополнительные ресурсы</h3>
+
+<ul><li><a href="/mrr">/mrr</a> — MRR calculator</li><li><a href="/arr">/arr</a> — ARR calculator (MRR × 12)</li><li><a href="/ruleOf40">/ruleOf40</a> — Rule of 40 (growth — half of formula)</li><li><a href="/blog/rule-of-40-saas">/blog/rule-of-40-saas</a> — Rule of 40 deep dive</li><li><a href="https://www.ycombinator.com/library">YC Library — Growth</a></li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Считай прямо здесь:</strong>
+  <iframe src="https://metricstree.vercel.app/mrrGrowthRate?embed=1" width="100%" height="650" loading="lazy" title="MetricTree mrrGrowthRate калькулятор"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Открыть в полной версии: <a href="https://metricstree.vercel.app/mrrGrowthRate" target="_blank">https://metricstree.vercel.app/mrrGrowthRate</a></p>
+</div>
+<div class="share-row">
+  Поделиться:
+  <a href="https://twitter.com/intent/tweet?text=MRR%20Growth%20Rate%20%E2%80%94%20%D0%BF%D0%BE%D1%87%D0%B5%D0%BC%D1%83%20YC%20%D1%82%D1%80%D0%B5%D0%B1%D1%83%D0%B5%D1%82%205-7%25%20MoM&url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fmrr-growth-rate-yc" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fmrr-growth-rate-yc" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fmrr-growth-rate-yc&text=MRR%20Growth%20Rate%20%E2%80%94%20%D0%BF%D0%BE%D1%87%D0%B5%D0%BC%D1%83%20YC%20%D1%82%D1%80%D0%B5%D0%B1%D1%83%D0%B5%D1%82%205-7%25%20MoM" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="/blog/">Все посты</a> · <a href="/">Калькулятор</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

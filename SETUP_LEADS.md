@@ -78,6 +78,42 @@
 
 ---
 
+## Шаг 5 — (Опционально) /admin dashboard + Vercel KV
+
+Хочешь видеть все лиды в одном месте на metricstree.vercel.app/admin? 2 минуты:
+
+### 5a. Включи Vercel KV
+1. **Vercel dashboard** → Storage → **Create Database** → **KV** (Redis-compatible)
+2. Name: `metrictree-leads` (любое)
+3. Region: any close (например `iad1` или `fra1`)
+4. После создания → **Connect to Project** → выбери `Metrics-Tree`
+5. Vercel автоматом добавит env vars `KV_REST_API_URL` и `KV_REST_API_TOKEN`
+
+### 5b. Set ADMIN_SECRET
+Сгенерь и добавь в Vercel env:
+
+```
+ADMIN_SECRET = <твой 24+ char случайный токен>
+```
+
+Можешь использовать этот: `8Cz0BO-IR8-4LsmAoweC2632xG8wdULB` (я сгенерил его при создании файлов — но лучше свой, через https://1password.com/password-generator/).
+
+### 5c. Redeploy
+Vercel → Deployments → ⋯ → Redeploy
+
+### 5d. Открой
+**https://metricstree.vercel.app/admin?secret=&lt;твой_токен&gt;**
+
+Дашборд:
+- Все leads с фильтрами (по tier, source, search)
+- Stats (общее количество, по tier)
+- CSV-export одним кликом
+- Token сохраняется в localStorage — больше не вводишь
+
+Бесплатный тариф KV: 30k requests/мес + 256MB storage. С 1000 лидов в день ты в нём поместишься на 30 лет.
+
+---
+
 ## Архитектура
 
 ```

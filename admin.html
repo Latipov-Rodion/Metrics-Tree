@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin · Leads — MetricTree</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#6b6f75; --accent:#2A6DF4; --green:#4CAF50; --red:#F44336; --yellow:#FFC107; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#777; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.5; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:1200px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav .pill { background: rgba(244,67,54,0.15); color: var(--red); padding: 0.2rem 0.65rem; border-radius: 999px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.wrap { max-width:1200px; margin:0 auto; padding:1.5rem 1.25rem 4rem; }
+h1 { font-size: 1.6rem; margin: 0.5rem 0 1.5rem; }
+.auth-form { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.5rem; max-width: 500px; margin: 4rem auto; }
+.auth-form h2 { margin: 0 0 1rem; font-size: 1.2rem; }
+.auth-form input[type=password] { width: 100%; padding: 0.65rem 0.85rem; background: var(--bg); border: 1px solid var(--border); border-radius: 0.5rem; color: var(--text-1); font-size: 0.95rem; font-family: monospace; }
+.auth-form button { display:block; width: 100%; margin-top: 0.85rem; padding: 0.65rem; background: var(--accent); color: #fff; border: 0; border-radius: 0.5rem; font-weight: 600; font-size: 0.95rem; cursor: pointer; }
+.auth-form button:hover { opacity: 0.92; }
+.auth-form .hint { font-size: 0.8rem; color: var(--text-3); margin-top: 0.85rem; }
+.stats { display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.8rem; margin-bottom: 1.5rem; }
+.stat { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.6rem; padding: 0.9rem 1rem; }
+.stat .label { color: var(--text-3); font-size: 0.7rem; text-transform: uppercase; letter-spacing:0.05em; font-weight: 700; }
+.stat .value { font-size: 1.6rem; font-weight: 700; color: var(--accent); margin-top: 0.2rem; }
+.controls { display:flex; gap: 0.5rem; align-items:center; margin-bottom: 1rem; flex-wrap: wrap; }
+.controls input[type=search] { padding: 0.5rem 0.85rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 0.5rem; color: var(--text-1); font-size: 0.9rem; min-width: 220px; }
+.controls select, .controls .btn { padding: 0.5rem 0.85rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 0.5rem; color: var(--text-1); font-size: 0.85rem; cursor: pointer; }
+.controls .btn { color: var(--accent); text-decoration: none; }
+.controls .btn:hover { border-color: var(--accent); }
+table { width:100%; border-collapse: collapse; background: var(--bg-card); border: 1px solid var(--border); border-radius: 0.75rem; overflow:hidden; font-size: 0.85rem; }
+th, td { padding: 0.55rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { background: rgba(42,109,244,0.06); font-weight: 700; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.04em; color: var(--text-3); }
+tr:last-child td { border-bottom: 0; }
+tr:hover td { background: rgba(42,109,244,0.04); }
+td.email { font-family: 'Menlo', monospace; font-size: 0.82rem; }
+td .tier-pill { display:inline-block; padding: 0.1rem 0.5rem; border-radius: 999px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+.tier-pill.pro { background: rgba(42,109,244,0.15); color: var(--accent); }
+.tier-pill.team { background: rgba(76,175,80,0.15); color: var(--green); }
+.tier-pill.newsletter { background: rgba(255,193,7,0.15); color: var(--yellow); }
+td .src { color: var(--text-3); font-size: 0.78rem; }
+td .ts { color: var(--text-3); font-size: 0.75rem; white-space: nowrap; }
+.empty-state { text-align: center; padding: 4rem 1rem; color: var(--text-3); }
+.error-box { background: rgba(244,67,54,0.08); border: 1px solid rgba(244,67,54,0.3); border-radius: 0.5rem; padding: 1rem 1.25rem; color: var(--text-1); margin: 1rem 0; }
+.error-box .hint { font-size: 0.85rem; color: var(--text-2); margin-top: 0.5rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.8rem; }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <span class="pill">Admin</span>
+</nav>
+
+<main class="wrap">
+<div id="auth-screen">
+  <div class="auth-form">
+    <h2>🔐 Lead Dashboard</h2>
+    <p style="color:var(--text-2); font-size:0.9rem; margin-bottom: 1rem;">Введи secret token (из Vercel env var <code>ADMIN_SECRET</code>):</p>
+    <input type="password" id="secret-input" placeholder="Secret token" autocomplete="off">
+    <button id="auth-btn">Войти</button>
+    <div class="hint">Or open with <code>?secret=&lt;token&gt;</code> in URL. Token saved locally — не нужно вводить каждый раз.</div>
+  </div>
+</div>
+
+<div id="app" style="display:none;">
+  <h1>Leads</h1>
+  <div id="error-area"></div>
+  <div class="stats" id="stats"></div>
+  <div class="controls">
+    <input type="search" id="search" placeholder="Search email / source / tier...">
+    <select id="filter-tier"><option value="">All tiers</option></select>
+    <a class="btn" id="csv-export" href="#" download>📥 Export CSV</a>
+    <a class="btn" id="refresh-btn" href="#">↻ Refresh</a>
+    <a class="btn" id="logout-btn" href="#">Logout</a>
+  </div>
+  <div id="leads-area"></div>
+</div>
+
+<div class="footer">
+  Cached locally (no server logs). Vercel Edge Function reads from KV. <a href="/">← Main calculator</a>
+</div>
+</main>
+
+<script>
+(function() {
+  const LS_KEY = 'metricstree_admin_secret';
+  const $ = id => document.getElementById(id);
+
+  // Read secret from URL → save to LS, OR from LS
+  const urlSecret = new URL(location.href).searchParams.get('secret');
+  if (urlSecret) {
+    localStorage.setItem(LS_KEY, urlSecret);
+    history.replaceState(null, '', location.pathname);
+  }
+  let secret = localStorage.getItem(LS_KEY) || '';
+
+  function showAuth() { $('auth-screen').style.display = 'block'; $('app').style.display = 'none'; }
+  function showApp() { $('auth-screen').style.display = 'none'; $('app').style.display = 'block'; }
+
+  let allLeads = [];
+
+  async function loadLeads() {
+    if (!secret) return showAuth();
+    showApp();
+    $('error-area').innerHTML = '<p style="color:var(--text-3);">Loading...</p>';
+    try {
+      const r = await fetch('/api/leads?secret=' + encodeURIComponent(secret));
+      const j = await r.json();
+      if (!r.ok) {
+        $('error-area').innerHTML = `<div class="error-box"><strong>${j.error}</strong>${j.hint ? `<div class="hint">${j.hint}</div>` : ''}</div>`;
+        if (r.status === 401) {
+          localStorage.removeItem(LS_KEY); secret = '';
+          setTimeout(showAuth, 1500);
+        }
+        return;
+      }
+      $('error-area').innerHTML = '';
+      allLeads = j.leads || [];
+      render();
+    } catch (e) {
+      $('error-area').innerHTML = `<div class="error-box">Network error: ${e.message}</div>`;
+    }
+  }
+
+  function render() {
+    const search = $('search').value.toLowerCase();
+    const tierFilter = $('filter-tier').value;
+    const filtered = allLeads.filter(l => {
+      if (tierFilter && (l.tier || l.source) !== tierFilter) return false;
+      if (!search) return true;
+      const blob = JSON.stringify(l).toLowerCase();
+      return blob.includes(search);
+    });
+
+    // Stats
+    const tiers = {};
+    allLeads.forEach(l => { const k = l.tier || l.source || 'unknown'; tiers[k] = (tiers[k] || 0) + 1; });
+    const since = allLeads.length ? new Date(Math.min(...allLeads.map(l => new Date(l.ts || 0)))).toLocaleDateString() : '—';
+    $('stats').innerHTML = `
+      <div class="stat"><div class="label">Total</div><div class="value">${allLeads.length}</div></div>
+      ${Object.entries(tiers).map(([k,v]) => `<div class="stat"><div class="label">${escapeHtml(k)}</div><div class="value">${v}</div></div>`).join('')}
+      <div class="stat"><div class="label">Since</div><div class="value" style="font-size:1rem;">${since}</div></div>
+    `;
+
+    // Tier filter options
+    const filterEl = $('filter-tier');
+    if (filterEl.options.length === 1) {
+      Object.keys(tiers).forEach(k => {
+        const opt = document.createElement('option');
+        opt.value = k; opt.textContent = k;
+        filterEl.appendChild(opt);
+      });
+    }
+
+    // Table
+    if (!filtered.length) {
+      $('leads-area').innerHTML = `<div class="empty-state">📭 ${allLeads.length ? 'No leads match filter' : 'No leads yet — share metricstree.vercel.app and check back'}</div>`;
+      return;
+    }
+    const html = `<table>
+      <thead><tr><th>When</th><th>Email</th><th>Tier / Source</th><th>Role</th><th>URL</th></tr></thead>
+      <tbody>
+      ${filtered.map(l => {
+        const tier = l.tier || l.source || '';
+        const tierClass = (tier.includes('newsletter') ? 'newsletter' : tier === 'team' ? 'team' : tier === 'pro' ? 'pro' : '');
+        return `<tr>
+          <td><span class="ts">${l.ts ? new Date(l.ts).toLocaleString('ru-RU', { dateStyle: 'short', timeStyle: 'short' }) : ''}</span></td>
+          <td class="email">${escapeHtml(l.email || '')}</td>
+          <td>${tier ? `<span class="tier-pill ${tierClass}">${escapeHtml(tier)}</span>` : ''}${l.source && l.source !== tier ? `<div class="src">${escapeHtml(l.source)}</div>` : ''}</td>
+          <td>${escapeHtml(l.role || '')}</td>
+          <td><span class="src" title="${escapeHtml(l.url || '')}">${escapeHtml((l.url || '').replace(/^https?:\/\//, '').slice(0, 40))}</span></td>
+        </tr>`;
+      }).join('')}
+      </tbody>
+    </table>`;
+    $('leads-area').innerHTML = html;
+
+    // CSV download URL
+    $('csv-export').href = '/api/leads?csv=1&secret=' + encodeURIComponent(secret);
+  }
+
+  function escapeHtml(s) { return String(s || '').replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c])); }
+
+  // Wire up
+  $('auth-btn').addEventListener('click', () => {
+    const v = $('secret-input').value.trim();
+    if (!v) return;
+    localStorage.setItem(LS_KEY, v); secret = v;
+    loadLeads();
+  });
+  $('secret-input').addEventListener('keydown', e => { if (e.key === 'Enter') $('auth-btn').click(); });
+  $('search').addEventListener('input', render);
+  $('filter-tier').addEventListener('change', render);
+  $('refresh-btn').addEventListener('click', e => { e.preventDefault(); loadLeads(); });
+  $('logout-btn').addEventListener('click', e => {
+    e.preventDefault();
+    localStorage.removeItem(LS_KEY); secret = '';
+    showAuth();
+  });
+
+  // Initial load
+  if (secret) loadLeads(); else showAuth();
+})();
+</script>
+</body>
+</html>

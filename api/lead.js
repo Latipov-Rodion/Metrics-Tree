@@ -159,6 +159,26 @@ export default async function handler(req) {
   const resendFrom = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
   const resendTo = process.env.RESEND_TO_EMAIL;
 
+  // Persist to Vercel KV if configured (for /admin dashboard).
+  // Graceful: if KV not set up, skip silently — Telegram + Resend still fire.
+  const kvUrl = process.env.KV_REST_API_URL;
+  const kvToken = process.env.KV_REST_API_TOKEN;
+  if (kvUrl && kvToken) {
+    try {
+      lead.ts = new Date().toISOString();
+      lead.id = `${Date.now()}_${Math.random().toString(36).slice(2, 8)}`;
+      // Push to a Redis list "leads" (newest first). Capped at 1000 entries.
+      await fetch(`${kvUrl}/lpush/leads/${encodeURIComponent(JSON.stringify(lead))}`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${kvToken}` }
+      });
+      await fetch(`${kvUrl}/ltrim/leads/0/999`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${kvToken}` }
+      });
+    } catch (e) { /* KV failure must not block delivery */ }
+  }
+
   const results = [];
   // Fire both in parallel — fastest path, neither blocks the other
   const promises = [];
