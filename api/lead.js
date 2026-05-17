@@ -159,10 +159,12 @@ export default async function handler(req) {
   const resendFrom = process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev';
   const resendTo = process.env.RESEND_TO_EMAIL;
 
-  // Persist to Vercel KV if configured (for /admin dashboard).
-  // Graceful: if KV not set up, skip silently — Telegram + Resend still fire.
-  const kvUrl = process.env.KV_REST_API_URL;
-  const kvToken = process.env.KV_REST_API_TOKEN;
+  // Persist to Vercel KV / Upstash Redis if configured (for /admin dashboard).
+  // Vercel renamed KV→Upstash in 2024 — env vars may be either KV_REST_API_*
+  // (legacy) or UPSTASH_REDIS_REST_* (new Marketplace integration). Try both.
+  // Graceful: if neither configured, skip silently — Telegram + Resend still fire.
+  const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+  const kvToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
   if (kvUrl && kvToken) {
     try {
       lead.ts = new Date().toISOString();

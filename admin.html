@@ -76,6 +76,7 @@ td .ts { color: var(--text-3); font-size: 0.75rem; white-space: nowrap; }
     <select id="filter-tier"><option value="">All tiers</option></select>
     <a class="btn" id="csv-export" href="#" download>📥 Export CSV</a>
     <a class="btn" id="refresh-btn" href="#">↻ Refresh</a>
+    <a class="btn" id="debug-btn" href="#" title="Show which env vars Vercel sees">🔍 Debug</a>
     <a class="btn" id="logout-btn" href="#">Logout</a>
   </div>
   <div id="leads-area"></div>
@@ -197,6 +198,24 @@ td .ts { color: var(--text-3); font-size: 0.75rem; white-space: nowrap; }
   $('search').addEventListener('input', render);
   $('filter-tier').addEventListener('change', render);
   $('refresh-btn').addEventListener('click', e => { e.preventDefault(); loadLeads(); });
+  $('debug-btn').addEventListener('click', async e => {
+    e.preventDefault();
+    try {
+      const r = await fetch('/api/leads?debug=1&secret=' + encodeURIComponent(secret));
+      const j = await r.json();
+      const summary = `<div class="error-box" style="background:rgba(42,109,244,0.08);border-color:rgba(42,109,244,0.3);">
+        <strong>Diagnostic:</strong><br>
+        KV detected: <strong style="color:${j.kv_detected ? 'var(--green)' : 'var(--red)'}">${j.kv_detected ? 'YES ✓' : 'NO ✗'}</strong><br>
+        KV URL present: ${j.kv_url_present ? '✓' : '✗'}<br>
+        KV Token present: ${j.kv_token_present ? '✓' : '✗'}<br>
+        Relevant env vars: <code>${(j.relevant_env_vars || []).join(', ') || '(none)'}</code><br>
+        <div class="hint">${j.hint || ''}</div>
+      </div>`;
+      $('error-area').innerHTML = summary;
+    } catch (err) {
+      $('error-area').innerHTML = `<div class="error-box">Debug failed: ${err.message}</div>`;
+    }
+  });
   $('logout-btn').addEventListener('click', e => {
     e.preventDefault();
     localStorage.removeItem(LS_KEY); secret = '';

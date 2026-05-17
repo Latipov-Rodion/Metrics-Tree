@@ -42,12 +42,34 @@ export default async function handler(req) {
     });
   }
 
-  const kvUrl = process.env.KV_REST_API_URL;
-  const kvToken = process.env.KV_REST_API_TOKEN;
+  // Support both legacy Vercel KV names (KV_REST_API_*) and new Upstash names
+  // (UPSTASH_REDIS_REST_*) — Vercel renamed in 2024 Marketplace migration.
+  const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+  const kvToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+
+  // Diagnostic mode — returns which env vars are present (without exposing values).
+  // Use: /api/leads?secret=<TOKEN>&debug=1
+  if (url.searchParams.get('debug') === '1') {
+    const envKeys = Object.keys(process.env).filter(k =>
+      /^(KV_|UPSTASH_|REDIS_|TELEGRAM_|RESEND_|ADMIN_)/.test(k)
+    );
+    return new Response(JSON.stringify({
+      ok: true,
+      mode: 'debug',
+      kv_detected: !!(kvUrl && kvToken),
+      kv_url_present: !!kvUrl,
+      kv_token_present: !!kvToken,
+      relevant_env_vars: envKeys.sort(),
+      hint: kvUrl && kvToken
+        ? 'KV detected and ready. Remove ?debug=1 to see leads.'
+        : 'KV not detected. Check that storage integration is connected to this project + redeployed.'
+    }, null, 2), { status: 200, headers: { 'Content-Type': 'application/json' } });
+  }
+
   if (!kvUrl || !kvToken) {
     return new Response(JSON.stringify({
       error: 'KV not configured',
-      hint: 'Vercel dashboard → Storage → Create Database → KV → Connect to Project. Then redeploy.'
+      hint: 'Vercel → Storage → Marketplace → Upstash Redis → Connect to Project, then redeploy. Or open /api/leads?secret=<TOKEN>&debug=1 to see which env vars are present.'
     }), { status: 503, headers: { 'Content-Type': 'application/json' } });
   }
 
