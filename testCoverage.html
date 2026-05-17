@@ -2064,7 +2064,7 @@
             </div>
         </div>
         <div class="header-right">
-            <button class="dashboard-btn" id="dashboardBtn" title="Unit-economics дашборд (Ctrl+D)">
+            <button class="dashboard-btn" id="dashboardBtn" data-t-attr-title="btn.dashboard_tt" title="Unit-economics дашборд (Ctrl+D)">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
             <span data-t="btn.dashboard">Дашборд</span>
         </button>
@@ -2079,7 +2079,7 @@
             <button class="currency-btn" data-currency="₽" title="Российский рубль" aria-label="Установить валюту: рубль">₽</button>
             <button class="currency-btn" data-currency="£" title="Фунт стерлингов" aria-label="Установить валюту: фунт">£</button>
         </div>
-        <button class="theme-toggle" id="themeToggle" title="Переключить тему" aria-label="Переключить тему">🌙</button>
+        <button class="theme-toggle" id="themeToggle" data-t-attr-title="btn.theme_tt" data-t-attr-aria-label="btn.theme_tt" title="Переключить тему" aria-label="Переключить тему">🌙</button>
             <div class="search-wrap" role="search">
                 <span class="search-icon" aria-hidden="true">🔍</span>
                 <label for="searchInput" class="visually-hidden">Поиск метрики</label>
@@ -2087,7 +2087,7 @@
                 <button class="search-clear" id="searchClear" title="Очистить поиск" aria-label="Очистить поиск">×</button>
                 <div class="search-dropdown" id="searchDropdown" role="listbox" aria-label="Результаты поиска"></div>
             </div>
-            <button class="share-btn" id="shareLinkBtn" title="Поделиться ссылкой на эту метрику">
+            <button class="share-btn" id="shareLinkBtn" data-t-attr-title="btn.share_url_tt" title="Поделиться ссылкой на эту метрику">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
                 <span class="share-btn-text" data-t="btn.share_text">Поделиться</span>
             </button>
@@ -2232,37 +2232,37 @@
                     </div>
                     <div class="result-right">
                         <div class="insight-message" id="insightMessage"></div>
-                        <button class="copy-btn" id="copyBtn" title="Копировать результат (Ctrl+C)">
+                        <button class="copy-btn" id="copyBtn" data-t-attr-title="btn.copy_tt" title="Копировать результат (Ctrl+C)">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                             <span data-t="btn.copy">Копировать</span>
                         </button>
-                        <button class="social-share-btn" id="shareTwitterBtn" title="Поделиться расчётом в X (Twitter)" aria-label="Share on X">
+                        <button class="social-share-btn" id="shareTwitterBtn" data-t-attr-title="btn.share_tw_tt" title="Поделиться расчётом в X (Twitter)" aria-label="Share on X">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                         </button>
-                        <button class="social-share-btn" id="shareLinkedinBtn" title="Поделиться расчётом в LinkedIn" aria-label="Share on LinkedIn">
+                        <button class="social-share-btn" id="shareLinkedinBtn" data-t-attr-title="btn.share_li_tt" title="Поделиться расчётом в LinkedIn" aria-label="Share on LinkedIn">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                         </button>
-                        <button class="export-btn" id="exportPngBtn" title="Скачать карточку как PNG">
+                        <button class="export-btn" id="exportPngBtn" data-t-attr-title="btn.png_tt" title="Скачать карточку как PNG">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                             <span data-t="btn.png">PNG</span>
                         </button>
-                        <button class="snapshot-btn" id="snapshotBtn" title="Сохранить снимок расчёта">
+                        <button class="snapshot-btn" id="snapshotBtn" data-t-attr-title="btn.save_tt" title="Сохранить снимок расчёта">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
                             <span data-t="btn.save">Сохранить</span>
                         </button>
-                        <button class="example-btn" id="exampleBtn" title="Заполнить примерными значениями" onclick="window.fillExampleValues&&window.fillExampleValues()">
+                        <button class="example-btn" id="exampleBtn" data-t-attr-title="btn.example_tt" title="Заполнить примерными значениями" onclick="window.fillExampleValues&&window.fillExampleValues()">
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>
                             <span data-t="btn.example">Пример</span>
                         </button>
-                        <button class="whatif-btn" id="whatifBtn" title="Анализ «Что если?»">
+                        <button class="whatif-btn" id="whatifBtn" data-t-attr-title="btn.whatif_tt" title="Анализ «Что если?»">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
                             <span data-t="btn.whatif">Что если?</span>
                         </button>
-                        <button class="goal-btn" id="goalBtn" title="Обратный расчёт: задайте цель — получите нужное значение" style="display:none;">
+                        <button class="goal-btn" id="goalBtn" data-t-attr-title="btn.goal_tt" title="Обратный расчёт: задайте цель — получите нужное значение" style="display:none;">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
                             <span data-t="btn.goal">Цель</span>
                         </button>
-                        <button class="forecast-btn" id="forecastBtn" title="Прогноз на 6–24 мес" style="display:none;">
+                        <button class="forecast-btn" id="forecastBtn" data-t-attr-title="btn.forecast_tt" title="Прогноз на 6–24 мес" style="display:none;">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
                             <span data-t="btn.forecast">Прогноз</span>
                         </button>
@@ -2352,6 +2352,18 @@ window.I18N_UI = {
     'btn.save': 'Save',
     'btn.example': 'Example',
     'toast.example_filled': '🎲 Example values filled',
+    'btn.dashboard_tt': 'Unit-economics dashboard (Ctrl+D)',
+    'btn.theme_tt': 'Toggle theme',
+    'btn.share_url_tt': 'Copy share link for this metric',
+    'btn.copy_tt': 'Copy result (Ctrl+C)',
+    'btn.share_tw_tt': 'Share calculation on X (Twitter)',
+    'btn.share_li_tt': 'Share calculation on LinkedIn',
+    'btn.png_tt': 'Download card as PNG',
+    'btn.save_tt': 'Save calculation snapshot',
+    'btn.example_tt': 'Fill inputs with example values',
+    'btn.whatif_tt': 'What-If analysis',
+    'btn.goal_tt': 'Reverse calculation: set a target, get the required input',
+    'btn.forecast_tt': 'Forecast 6–24 months',
     'btn.whatif': 'What if?',
     'btn.goal': 'Goal',
     'btn.forecast': 'Forecast',
@@ -2572,6 +2584,18 @@ window.I18N_UI = {
     'btn.save': 'Saqlash',
     'btn.example': 'Misol',
     'toast.example_filled': '🎲 Misol qiymatlari toʻldirildi',
+    'btn.dashboard_tt': 'Unit-economics dashboardi (Ctrl+D)',
+    'btn.theme_tt': 'Mavzu almashtirish',
+    'btn.share_url_tt': 'Ushbu metrika havolasini ulashish',
+    'btn.copy_tt': 'Natijani nusxa olish (Ctrl+C)',
+    'btn.share_tw_tt': 'Hisobni X (Twitter)ʼda ulashish',
+    'btn.share_li_tt': 'Hisobni LinkedIn’da ulashish',
+    'btn.png_tt': 'Kartochkani PNG sifatida yuklab olish',
+    'btn.save_tt': 'Hisob suratini saqlash',
+    'btn.example_tt': 'Misol qiymatlari bilan toʻldirish',
+    'btn.whatif_tt': '«Agar nima boʻlsa?» tahlili',
+    'btn.goal_tt': 'Teskari hisob: maqsadni belgilang — kerakli qiymat hisoblanadi',
+    'btn.forecast_tt': '6–24 oylik prognoz',
     'btn.whatif': 'Agar nima bo‘lsa?',
     'btn.goal': 'Maqsad',
     'btn.forecast': 'Prognoz',
@@ -3570,7 +3594,19 @@ window._tTooltip = function(ruText) {
             const translated = t(key, el.getAttribute('data-t-original'));
             el.innerHTML = translated;
         });
-        // Атрибуты placeholder и aria-label у поиска
+        // Универсальный перевод произвольных атрибутов: data-t-attr-<attr>="key"
+        // Например: data-t-attr-title="btn.share_tooltip" → переводит title="..."
+        document.querySelectorAll('*').forEach(el => {
+            Array.from(el.attributes).forEach(a => {
+                if (!a.name.startsWith('data-t-attr-')) return;
+                const attrName = a.name.slice('data-t-attr-'.length); // title, aria-label, placeholder
+                const key = a.value;
+                const origAttr = `data-t-${attrName}-original`;
+                if (!el.getAttribute(origAttr)) el.setAttribute(origAttr, el.getAttribute(attrName) || '');
+                el.setAttribute(attrName, t(key, el.getAttribute(origAttr)));
+            });
+        });
+        // Атрибуты placeholder и aria-label у поиска (legacy путь — оставлен)
         const searchInp = document.getElementById('searchInput');
         if (searchInp) {
             if (!searchInp.getAttribute('data-t-placeholder-original')) searchInp.setAttribute('data-t-placeholder-original', searchInp.placeholder);
@@ -7304,6 +7340,20 @@ window._tTooltip = function(ruText) {
         if (m && GOAL_QUESTIONS[m.id]) goalBtn.style.display = '';
         else goalBtn.style.display = 'none';
     }
+    // Safety net: re-run visibility checks after window load + on popstate (back/forward)
+    // — fixes edge cases where the initial render lost the state due to stale localStorage
+    // or racing scripts.
+    window.addEventListener('load', () => {
+        try { refreshGoalButtonVisibility(); if (typeof refreshForecastButtonVisibility === 'function') refreshForecastButtonVisibility(); } catch(e){}
+    });
+    window.addEventListener('popstate', () => {
+        try {
+            const restored = restoreFromURL();
+            if (restored) { renderMetricsList(); renderMetricCard(); }
+            refreshGoalButtonVisibility();
+            if (typeof refreshForecastButtonVisibility === 'function') refreshForecastButtonVisibility();
+        } catch(e){}
+    });
 
     if (goalBtn) {
         goalBtn.addEventListener('click', () => {
