@@ -748,22 +748,28 @@
             padding-bottom: 0.4rem;
             scrollbar-width: none;
             margin-bottom: 0.75rem;
+            scroll-snap-type: x proximity;
+            -webkit-overflow-scrolling: touch;
+            /* Right-edge fade hints at scrollable content */
+            mask-image: linear-gradient(to right, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, black 90%, transparent);
         }
         .metric-chips::-webkit-scrollbar { display: none; }
         .metric-chip {
             flex: 0 0 auto;
-            padding: 0.45rem 0.9rem;
+            padding: 0.5rem 1rem;
             border: 1px solid var(--border);
             border-radius: 2rem;
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             font-weight: 500;
             color: var(--text-2);
             background: var(--bg-card);
             cursor: pointer;
             transition: all var(--transition);
             white-space: nowrap;
-            min-height: 36px;
+            min-height: 40px;
             display: flex; align-items: center;
+            scroll-snap-align: start;
         }
         .metric-chip:hover { border-color: var(--accent); color: var(--accent); }
         .metric-chip.active {
@@ -1832,7 +1838,13 @@
 
         /* ===================== MOBILE ≤768px ===================== */
         @media (max-width: 768px) {
-            body { padding: 0.75rem 0.75rem 1.5rem; }
+            body {
+                padding:
+                    max(0.75rem, env(safe-area-inset-top))
+                    max(0.75rem, env(safe-area-inset-right))
+                    max(1.5rem, env(safe-area-inset-bottom))
+                    max(0.75rem, env(safe-area-inset-left));
+            }
 
             .header { flex-direction: column; align-items: stretch; gap: 0.6rem; }
             .header-left { flex: none; }
@@ -1865,8 +1877,38 @@
             .benchmarks { justify-content: flex-start; flex-wrap: wrap; flex-shrink: 1; padding-top: 0; }
 
             .result-main { flex-direction: column; align-items: stretch; gap: 0.6rem; }
-            .result-right { width: 100%; flex: none; justify-content: flex-start; }
-            .insight-message { flex: 1 1 0; max-width: 100%; }
+            .result-right {
+                width: 100%; flex: none;
+                justify-content: flex-start;
+                flex-wrap: wrap; /* 9+ action buttons fit comfortably across multiple rows */
+                gap: 0.45rem;
+            }
+            .insight-message { flex: 1 1 100%; max-width: 100%; order: -1; /* insight first, buttons below */ }
+            /* Touch targets: bump small icon-only buttons to 36px so thumbs can hit them */
+            .social-share-btn { width: 36px; height: 36px; }
+            /* Action buttons get more vertical room on touch */
+            .copy-btn, .export-btn, .snapshot-btn, .example-btn,
+            .whatif-btn, .goal-btn, .forecast-btn {
+                min-height: 36px;
+            }
+
+            /* Inputs get a comfortable touch height — iOS keyboard friendly */
+            .input-group input[type="text"], .input-group input[type="number"] {
+                min-height: 44px; font-size: 16px; /* 16px prevents iOS zoom on focus */
+            }
+
+            /* Deep content on mobile: more breathing room, smaller h3 */
+            .deep-content { padding: 1rem 0.85rem; font-size: 0.85rem; }
+            .deep-content h3 { font-size: 1rem; }
+            .deep-content p { line-height: 1.55; }
+            .deep-content ul { padding-left: 1rem; }
+
+            /* Modal overlays: prevent body scroll when open, allow modal scroll */
+            .modal-overlay.show { padding: 0.75rem; align-items: flex-start; }
+            .modal { max-height: calc(100vh - 1.5rem); overflow-y: auto; }
+
+            /* CSV import textarea: bigger on mobile so paste is comfortable */
+            .csv-import-text { min-height: 200px; font-size: 16px; }
         }
 
         /* ===================== MOBILE ≤480px ===================== */
@@ -1889,6 +1931,14 @@
             .share-btn { padding: 0 0.6rem; width: 38px; justify-content: center; }
             .share-btn-text { display: none; }
             .export-btn { font-size: 0.78rem; padding: 0.4rem 0.7rem; }
+            /* Example button: icon-only label on small phones */
+            .example-btn { padding: 0.42rem 0.6rem; }
+            .example-btn span { display: none; }
+            /* What-if & forecast: shorter labels */
+            .whatif-btn, .forecast-btn, .goal-btn { padding: 0.42rem 0.65rem; }
+            /* Footer: single column comfortable spacing */
+            .site-footer { padding: 1rem 0.75rem; }
+            .site-footer-news input { min-height: 44px; font-size: 16px; }
             /* Dashboard button: icon-only */
             .dashboard-btn span { display: none; }
             .dashboard-btn { padding: 0.4rem 0.55rem; min-width: 36px; }
