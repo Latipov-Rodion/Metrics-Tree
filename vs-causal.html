@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>MetricTree vs Causal: лёгкая бесплатная альтернатива для расчёта метрик | MetricTree</title>
+<meta name="description" content="Causal — мощная фин-модель платформа, но требует обучения и кривая входа. MetricTree — мгновенный калькулятор 52 метрик без signup, для разовых расчётов и обучения формулам.">
+<link rel="canonical" href="https://metricstree.vercel.app/vs-causal">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="MetricTree vs Causal — instant calculator vs full modeling platform">
+<meta property="og:description" content="MetricTree: open in 1 second, calculate any metric. Causal: full financial modeling, steeper learning curve.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/vs-causal">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Чем MetricTree отличается от Causal?", "acceptedAnswer": { "@type": "Answer", "text": "Causal — полноценная платформа для финансового моделирования с гибким DSL, scenario analysis и presentation mode (от $0 free до $250+/мес enterprise). MetricTree — instant калькулятор 52 продуктовых метрик без signup и без learning curve. Causal требует обучения и моделирования; MetricTree — открыл и посчитал." } },
+    { "@type": "Question", "name": "Когда выбирать MetricTree вместо Causal?", "acceptedAnswer": { "@type": "Answer", "text": "MetricTree выбирают когда нужен быстрый расчёт стандартной продуктовой метрики (LTV, CAC, MRR, NRR, Burn Multiple), сравнение с отраслевыми бенчмарками или встраивание калькулятора в блог. Causal лучше для полной финансовой модели стартапа с custom-формулами и scenarios." } }
+  ]
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#6b6f75; --accent:#2A6DF4; --green:#4CAF50; --red:#F44336; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#777; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.6; }
+.wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:880px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; font-weight:500; }
+.nav a:hover { color:var(--text-1); }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.85rem; letter-spacing:-0.02em; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+.lede { font-size: 1.1rem; color: var(--text-2); margin: 0 0 2rem; }
+.cta-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 1rem; padding: 1.4rem 1.5rem; margin: 1.5rem 0; }
+.cta-box a.btn { display:inline-block; background: var(--accent); color:#fff; padding:0.6rem 1.2rem; border-radius:0.5rem; text-decoration:none; font-weight:600; margin-top:0.5rem; }
+table { width:100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.92rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 0.75rem; overflow:hidden; }
+th, td { padding: 0.6rem 0.85rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.04em; }
+td:not(:first-child) { text-align: center; }
+tr:last-child td { border-bottom: 0; }
+.yes { color: var(--green); font-weight: 700; }
+.no { color: var(--red); font-weight: 700; }
+.partial { color: #FFC107; font-weight: 700; }
+.cell-strong { background: rgba(76,175,80,0.06); }
+ul { padding-left: 1.25rem; } li { margin-bottom: 0.4rem; }
+a { color: var(--accent); text-decoration: none; } a:hover { text-decoration: underline; }
+.faq details { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.6rem; padding: 0.85rem 1rem; margin-bottom: 0.5rem; }
+.faq summary { cursor: pointer; font-weight: 600; }
+.faq details[open] summary { margin-bottom: 0.6rem; }
+.footer { text-align: center; color: var(--text-3); margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/">Калькулятор →</a></div>
+</nav>
+
+<main class="wrap">
+<h1>MetricTree vs Causal — instant calculator vs full modeling platform</h1>
+<p class="lede">Causal — мощная платформа фин-моделирования с DSL и scenarios. MetricTree — мгновенный калькулятор 52 продуктовых метрик без signup и learning curve.</p>
+
+<div class="cta-box">
+  <strong>TL;DR:</strong> Causal — это <em>Excel + Notion + Tableau</em> для финансовых моделей. MetricTree — это <em>научный калькулятор</em> для продуктовых метрик. Если нужно построить P&L прогноз на 5 лет — Causal. Если нужно посчитать LTV/CAC для board-meeting через 10 минут — MetricTree.
+  <br><a class="btn" href="/">Открыть MetricTree →</a>
+</div>
+
+<h2>Сравнение по фичам</h2>
+<table>
+<thead><tr><th>Фича</th><th>Causal</th><th>MetricTree</th></tr></thead>
+<tbody>
+<tr><td>Цена</td><td>Free → $250+/мес enterprise</td><td class="cell-strong"><span class="yes">$0 навсегда</span></td></tr>
+<tr><td>Без signup</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">✓</span></td></tr>
+<tr><td>Learning curve</td><td>часы–дни</td><td class="cell-strong"><span class="yes">секунды</span></td></tr>
+<tr><td>Готовые формулы продуктовых метрик</td><td><span class="partial">шаблоны, нужно настраивать</span></td><td class="cell-strong"><span class="yes">52 встроены</span></td></tr>
+<tr><td>Custom DSL для моделей</td><td class="cell-strong"><span class="yes">✓</span></td><td><span class="no">✗</span></td></tr>
+<tr><td>Multi-sheet модели</td><td class="cell-strong"><span class="yes">✓</span></td><td><span class="no">✗</span></td></tr>
+<tr><td>Scenario analysis (multiple branches)</td><td class="cell-strong"><span class="yes">✓ unlimited</span></td><td><span class="yes">✓ What-If sliders + Goal mode</span></td></tr>
+<tr><td>Presentation mode</td><td class="cell-strong"><span class="yes">✓ slides</span></td><td><span class="partial">PNG export + embed iframe</span></td></tr>
+<tr><td>Industry benchmarks</td><td><span class="partial">community templates</span></td><td class="cell-strong"><span class="yes">✓ Sacks/Hamid/OpenView cited</span></td></tr>
+<tr><td>Multi-language UI</td><td><span class="no">EN only</span></td><td class="cell-strong"><span class="yes">RU / EN / UZ</span></td></tr>
+<tr><td>Open source</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">MIT</span></td></tr>
+<tr><td>Embed iframe</td><td><span class="partial">share-link only</span></td><td class="cell-strong"><span class="yes">✓ полноценный widget</span></td></tr>
+<tr><td>Time to first calc (cold start)</td><td>30+ мин (setup модели)</td><td class="cell-strong">&lt; 1 сек (auto-prefill)</td></tr>
+</tbody>
+</table>
+
+<h2>Когда выбирать MetricTree</h2>
+<ul>
+<li>Нужен <strong>конкретный расчёт</strong>: LTV, CAC, MRR, Burn Multiple — здесь и сейчас</li>
+<li>Не готов вкладываться в обучение Causal-моделям</li>
+<li>Hugh нужен <strong>правильный бенчмарк</strong> (а не своя формула)</li>
+<li>Делаешь <strong>пост в блоге про метрику</strong> — нужен интерактивный embed</li>
+<li>Команда RU/UZ-speaking</li>
+<li>Open-source self-host на свой домен</li>
+</ul>
+
+<h2>Когда выбирать Causal</h2>
+<ul>
+<li>Строишь <strong>5-летний P&L прогноз</strong> с custom-формулами</li>
+<li>Нужен <strong>scenario tree</strong> с 10+ ветками</li>
+<li>Финансовая команда привыкла к Excel-like моделям и хочет «лучше Excel»</li>
+<li>Нужно интегрировать <strong>живые данные из QuickBooks / Stripe / Pipedrive</strong></li>
+<li>Готов вложить 5-10 часов в setup модели</li>
+</ul>
+
+<div class="cta-box">
+  <strong>Они дополняют друг друга:</strong> Causal для long-term модели компании, MetricTree для quick checks и tactical decisions. Большинство фаундеров используют оба.
+  <br><a class="btn" href="/">Попробовать MetricTree →</a>
+</div>
+
+<h2>FAQ</h2>
+<div class="faq">
+  <details><summary>Чем MetricTree отличается от Causal?</summary><p>Causal — платформа фин-моделирования с DSL, scenarios, multi-sheet моделями. MetricTree — instant калькулятор 52 продуктовых метрик с готовыми формулами и бенчмарками. Causal требует обучения, MetricTree — открыл и посчитал.</p></details>
+  <details><summary>Когда выбирать MetricTree вместо Causal?</summary><p>Когда нужен быстрый расчёт стандартной метрики (LTV, CAC, MRR, NRR, Burn Multiple), сравнение с бенчмарками или встраивание в блог. Causal — для полной фин-модели стартапа с custom-формулами.</p></details>
+  <details><summary>Можно ли использовать обе?</summary><p>Да, это разные слои: Causal для long-term P&L и cap-table моделей, MetricTree для tactical product metric decisions. Они дополняют друг друга.</p></details>
+</div>
+
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a> · <a href="/">Главная</a>
+</div>
+</main>
+</body>
+</html>

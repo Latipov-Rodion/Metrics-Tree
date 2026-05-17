@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>10 метрик которые product-менеджер должен трекать в 2026 | MetricTree Blog</title>
+<meta name="description" content="Какие 10 метрик должен знать наизусть каждый PM в B2B SaaS и B2C — от Activation до NRR. С формулами, бенчмарками и интерактивными калькуляторами.">
+<meta name="keywords" content="product manager метрики, pm метрики, saas метрики 2026, activation, retention, nrr">
+<link rel="canonical" href="https://metricstree.vercel.app/blog/10-pm-metrics-2026">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="10 метрик которые product-менеджер должен трекать в 2026">
+<meta property="og:description" content="Какие 10 метрик должен знать наизусть каждый PM в B2B SaaS и B2C — от Activation до NRR. С формулами, бенчмарками и интерактивными калькуляторами.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/blog/10-pm-metrics-2026">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-05-07">
+<meta property="article:author" content="Родион Латыпов">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="10 метрик которые product-менеджер должен трекать в 2026">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "10 метрик которые product-менеджер должен трекать в 2026",
+  "description": "Какие 10 метрик должен знать наизусть каждый PM в B2B SaaS и B2C — от Activation до NRR. С формулами, бенчмарками и интерактивными калькуляторами.",
+  "datePublished": "2026-05-07",
+  "author": {
+    "@type": "Person",
+    "name": "Родион Латыпов",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/blog/10-pm-metrics-2026"
+  },
+  "keywords": "product manager метрики, pm метрики, saas метрики 2026, activation, retention, nrr",
+  "inLanguage": "ru"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#6b6f75; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#777; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div>
+</nav>
+<article>
+<h1>10 метрик которые product-менеджер должен трекать в 2026</h1>
+<div class="meta">2026-05-07 · автор: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a></div>
+<h1>10 метрик которые product-менеджер должен трекать в 2026</h1>
+
+<p>В 2024 ICONIQ Capital опубликовал opener-report «Top 10 Metrics PMs Track in High-Growth SaaS». Я сравнил с собственным опытом + с тем, что чаще всего вижу в pitch decks. Вот сжатый list.</p>
+
+<p>Каждая метрика — с прямой ссылкой на интерактивный калькулятор.</p>
+
+<h2>1. <a href="/activation">Activation Rate</a></h2>
+
+<p><strong>Что:</strong> Процент новых юзеров, дошедших до Aha-моменту.</p>
+
+<p><strong>Формула:</strong> Активированные / Все новые × 100%</p>
+
+<p><strong>Бенчмарк:</strong> >30% — норма, >40% — для SaaS, >50% — exceptional</p>
+
+<p><strong>Почему критично:</strong> 80% future churn определяется первой неделей. Activation — leading indicator всего downstream.</p>
+
+<p><strong>Как улучшить:</strong> Onboarding-флоу, product tours, success-driven email-кампания первые 7 дней.</p>
+
+<h2>2. <a href="/retention">Retention</a> / <a href="/churn">Churn</a></h2>
+
+<p><strong>Что:</strong> Сколько юзеров вернулись через N дней (D1, D7, D30, M1, M3, M12).</p>
+
+<p><strong>Формула:</strong> Активные на конец / Активные на начало × 100%</p>
+
+<p><strong>Бенчмарки:</strong><br><ul><li>B2B SaaS: D30 retention >70%, Annual churn <10% = top decile</li><li>Mobile B2C: D1 >25%, D7 >12%, D30 >5%</li><li>Consumer SaaS: M1 >50%, M3 >40%, M12 >25%</li></ul></p>
+
+<p><strong>Почему критично:</strong> Бизнес без retention — это «leaky bucket». Любой growth gets washed out.</p>
+
+<h2>3. <a href="/ltv_cac">LTV : CAC</a></h2>
+
+<p><strong>Что:</strong> Сколько долларов lifetime-выручки приходится на каждый доллар привлечения.</p>
+
+<p><strong>Бенчмарк:</strong> ≥3 — здоровая unit-экономика, ≥5 — отлично</p>
+
+<p><strong>Почему критично:</strong> Базовое условие масштабируемости. Без healthy LTV:CAC любой growth = ускорение к банкротству.</p>
+
+<p>См. отдельный пост: <a href="/blog/ltv-cac-unit-economics">LTV vs CAC — пошаговый расчёт</a>.</p>
+
+<h2>4. <a href="/nrr">NRR (Net Revenue Retention)</a></h2>
+
+<p><strong>Что:</strong> Какой % выручки удержали + апсейлам у existing-клиентов через 12 мес.</p>
+
+<p><strong>Формула:</strong> (Start MRR + Expansion − Churn) / Start MRR × 100%</p>
+
+<p><strong>Бенчмарк:</strong><br><ul><li>SaaS B2B: >100% — норма, >115% — отлично, >130% — top decile (Snowflake, Datadog)</li><li>PLG B2B: >110% baseline</li></ul></p>
+
+<p><strong>Почему критично:</strong> NRR > 100% = компания растёт даже без новых клиентов. Это <strong>самый сильный</strong> indicator product-market fit.</p>
+
+<h2>5. <a href="/mrrGrowthRate">MRR Growth Rate</a></h2>
+
+<p><strong>Что:</strong> Месячный темп роста месячной recurring выручки (MoM).</p>
+
+<p><strong>Бенчмарк:</strong><br><ul><li>Seed: 15-20% MoM</li><li>Series A: 10-15% MoM</li><li>Series B+: 5-10% MoM</li><li><strong>YC standard: 5-7% MoM минимум</strong> (Paul Graham)</li></ul></p>
+
+<p><strong>Почему критично:</strong> Это main metric у YC office hours. Все остальные метрики важны, но MoM-growth — это пульс компании.</p>
+
+<h2>6. <a href="/burnMultiple">Burn Multiple</a></h2>
+
+<p><strong>Что:</strong> Net Burn / Net New ARR (David Sacks).</p>
+
+<p><strong>Бенчмарк:</strong> <1.5× для Series A/B, top tier <1.0×</p>
+
+<p><strong>Почему критично:</strong> В 2026 главный VC-сигнал капитальной эффективности.</p>
+
+<p>См. отдельный пост: <a href="/blog/burn-multiple-saas-2026">Burn Multiple — главная SaaS-метрика 2026</a>.</p>
+
+<h2>7. <a href="/timeToValue">Time to Value (TtV)</a></h2>
+
+<p><strong>Что:</strong> Медианное время от регистрации до первого Aha-момента.</p>
+
+<p><strong>Бенчмарк:</strong><br><ul><li>PLG <1 день</li><li>SMB SaaS 1-7 дней</li><li>Enterprise SaaS 1-14 дней</li></ul></p>
+
+<p><strong>Почему критично:</strong> Долгая TtV убивает Activation и драматически повышает Churn. Каждый час сокращения TtV = улучшение downstream метрик.</p>
+
+<p><strong>Как улучшить:</strong> Tutorial-mode, sample data preloaded, в onboarding-emails — single CTA "Try X in 30 seconds".</p>
+
+<h2>8. <a href="/stickiness">Stickiness (DAU/MAU)</a></h2>
+
+<p><strong>Что:</strong> Какая часть месячной аудитории возвращается ежедневно.</p>
+
+<p><strong>Формула:</strong> DAU / MAU × 100%</p>
+
+<p><strong>Бенчмарк:</strong><br><ul><li>B2B SaaS: >20%</li><li>Consumer apps: >50% (Instagram, TikTok-уровень)</li><li>Office tools (Slack, Notion): >70% in active workspaces</li></ul></p>
+
+<p><strong>Почему критично:</strong> Engaged users = retained users. Если Stickiness стагнирует — продукт становится "occasionally useful" вместо "daily essential".</p>
+
+<h2>9. <a href="/engagementRate">Engagement Rate</a></h2>
+
+<p><strong>Что:</strong> Interactions per session или per active user. Зависит от продукта:<br><ul><li>B2B: actions per workspace per week</li><li>Social: likes/comments/shares per impression</li><li>E-com: pages per session, cart additions per session</li></ul></p>
+
+<p><strong>Бенчмарк:</strong> контекстный, отслеживай trend (улучшается ли когорта-к-когорте).</p>
+
+<p><strong>Почему критично:</strong> Раннее warning sign decline. Падает Engagement → через 2-3 мес упадёт Retention → ещё через 1-2 мес упадёт Revenue.</p>
+
+<h2>10. <a href="/nps">NPS (Net Promoter Score)</a></h2>
+
+<p><strong>Что:</strong> % Промоутеров (9-10) − % Детракторов (0-6).</p>
+
+<p><strong>Бенчмарк:</strong><br><ul><li>0-30: ОК, есть куда расти</li><li>30-50: хорошо</li><li>50-70: отлично (Slack, Netflix)</li><li>>70: world-class (Apple, Tesla)</li></ul></p>
+
+<p><strong>Почему критично:</strong> Качественный сигнал. Не cause-effect, но лучший predictor of future word-of-mouth growth + Customer Churn (low NPS = early Churn warning).</p>
+
+<h2>Bonus: Sequence важна</h2>
+
+<p>Эти метрики связаны причинно-следственной цепочкой:</p>
+
+<pre><code class="language-">Time to Value ↓
+  → Activation Rate ↑
+    → Retention ↑
+      → NRR ↑, Churn ↓
+        → LTV ↑
+          → LTV:CAC ↑
+            → MRR Growth ↑
+              → Burn Multiple ↓
+</code></pre>
+
+<p>Не пытайся оптимизировать всё параллельно. Найди bottleneck в этой цепочке — и фиксь там. Обычно проблема в <strong>первых трёх</strong> (TtV, Activation, Retention).</p>
+
+<h2>Как использовать</h2>
+
+<p>1. Раз в неделю — посчитай <strong>все 10 метрик</strong> для своего продукта<br>2. Сравни с бенчмарками<br>3. Найди <strong>одну метрику ниже бенчмарка</strong> — фиксь её<br>4. Через месяц — проверь динамику</p>
+
+<p>Калькуляторы на metricstree автоматически показывают бенчмарк рядом с твоим результатом → instant сравнение.</p>
+
+<h2>Итог</h2>
+
+<p>Метрик в SaaS-мире — десятки. Эти 10 — <strong>базовый kit любого PM</strong> в B2B SaaS или B2C-продукте. Знай формулы наизусть, отслеживай еженедельно, и ты будешь видеть проблемы за 2-3 месяца до того как они станут видны в revenue.</p>
+
+<p><strong>Считай свои на <a href="/">metricstree.vercel.app</a></strong> — все 52 метрики, free, no signup.</p>
+
+<p>---</p>
+
+<h3>Дополнительные ресурсы</h3>
+
+<ul><li><a href="https://www.iconiqcapital.com">ICONIQ Capital — Top 10 PM Metrics</a></li><li><a href="/blog/burn-multiple-saas-2026">/blog/burn-multiple-saas-2026</a> — Burn Multiple подробно</li><li><a href="/blog/rule-of-40-saas">/blog/rule-of-40-saas</a> — Rule of 40 подробно</li><li><a href="/blog/ltv-cac-unit-economics">/blog/ltv-cac-unit-economics</a> — LTV vs CAC подробно</li></ul>
+
+<div class="share-row">
+  Поделиться:
+  <a href="https://twitter.com/intent/tweet?text=10%20%D0%BC%D0%B5%D1%82%D1%80%D0%B8%D0%BA%20%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D1%8B%D0%B5%20product-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B4%D0%BE%D0%BB%D0%B6%D0%B5%D0%BD%20%D1%82%D1%80%D0%B5%D0%BA%D0%B0%D1%82%D1%8C%20%D0%B2%202026&url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2F10-pm-metrics-2026" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2F10-pm-metrics-2026" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2F10-pm-metrics-2026&text=10%20%D0%BC%D0%B5%D1%82%D1%80%D0%B8%D0%BA%20%D0%BA%D0%BE%D1%82%D0%BE%D1%80%D1%8B%D0%B5%20product-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B4%D0%BE%D0%BB%D0%B6%D0%B5%D0%BD%20%D1%82%D1%80%D0%B5%D0%BA%D0%B0%D1%82%D1%8C%20%D0%B2%202026" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="/blog/">Все посты</a> · <a href="/">Калькулятор</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

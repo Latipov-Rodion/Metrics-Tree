@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>MetricTree vs Baremetrics: free alternative для расчёта SaaS-метрик | MetricTree</title>
+<meta name="description" content="Baremetrics — платный SaaS-дашборд от $129/мес с auto-tracking. MetricTree — бесплатный калькулятор 52 метрик без signup, на 3 языках, с Goal mode и embed. Когда что выбирать.">
+<link rel="canonical" href="https://metricstree.vercel.app/vs-baremetrics">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="MetricTree vs Baremetrics — free alternative">
+<meta property="og:description" content="Baremetrics — $129+/мес. MetricTree — $0 с 52 метриками, embed, Goal mode, 3 языками.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/vs-baremetrics">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Чем MetricTree отличается от Baremetrics?", "acceptedAnswer": { "@type": "Answer", "text": "Baremetrics — платный SaaS-дашборд с auto-tracking из Stripe/Braintree (от $129/мес). MetricTree — бесплатный калькулятор 52 метрик без signup и подключения биллинга. Используй MetricTree когда нужен разовый расчёт или ты не хочешь подключать Stripe; используй Baremetrics для постоянного мониторинга на реальных данных." } },
+    { "@type": "Question", "name": "Можно ли заменить Baremetrics на MetricTree?", "acceptedAnswer": { "@type": "Answer", "text": "Не полностью — это разные инструменты. Baremetrics показывает реальные SaaS-метрики автоматически из биллинга. MetricTree считает по введённым числам. Но если нужны только формулы + бенчмарки + сценарное моделирование (а не daily-tracking), MetricTree покрывает 80% use-cases при $0." } },
+    { "@type": "Question", "name": "Поддерживает ли MetricTree forecasting как Baremetrics?", "acceptedAnswer": { "@type": "Answer", "text": "Да, MetricTree включает Forecast charts с SVG-проекцией на 6, 12, 18, 24 месяца для MRR, ARR, Runway, Churn и других time-series метрик. Baremetrics forecast работает на исторических данных, MetricTree — на твоих gross/churn assumptions." } }
+  ]
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#6b6f75; --accent:#2A6DF4; --green:#4CAF50; --red:#F44336; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#777; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.6; }
+.wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:880px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; font-weight:500; }
+.nav a:hover { color:var(--text-1); }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.85rem; letter-spacing:-0.02em; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+.lede { font-size: 1.1rem; color: var(--text-2); margin: 0 0 2rem; }
+.cta-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 1rem; padding: 1.4rem 1.5rem; margin: 1.5rem 0; }
+.cta-box a.btn { display:inline-block; background: var(--accent); color:#fff; padding:0.6rem 1.2rem; border-radius:0.5rem; text-decoration:none; font-weight:600; margin-top:0.5rem; }
+table { width:100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.92rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 0.75rem; overflow:hidden; }
+th, td { padding: 0.6rem 0.85rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.04em; }
+td:not(:first-child) { text-align: center; }
+tr:last-child td { border-bottom: 0; }
+.yes { color: var(--green); font-weight: 700; }
+.no { color: var(--red); font-weight: 700; }
+.partial { color: #FFC107; font-weight: 700; }
+.cell-strong { background: rgba(76,175,80,0.06); }
+ul { padding-left: 1.25rem; } li { margin-bottom: 0.4rem; }
+a { color: var(--accent); text-decoration: none; } a:hover { text-decoration: underline; }
+.faq details { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.6rem; padding: 0.85rem 1rem; margin-bottom: 0.5rem; }
+.faq summary { cursor: pointer; font-weight: 600; }
+.faq details[open] summary { margin-bottom: 0.6rem; }
+.footer { text-align: center; color: var(--text-3); margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/">Калькулятор →</a></div>
+</nav>
+
+<main class="wrap">
+<h1>MetricTree vs Baremetrics — free alternative для SaaS-метрик</h1>
+<p class="lede">Baremetrics — платный дашборд от $129/мес с автотрекингом из Stripe. MetricTree — бесплатный калькулятор 52 метрик без signup и подключения биллинга.</p>
+
+<div class="cta-box">
+  <strong>TL;DR:</strong> Это разные инструменты. <strong>Baremetrics</strong> — для постоянного мониторинга на реальных данных из Stripe. <strong>MetricTree</strong> — для разовых расчётов, моделирования, презентаций и обучения. 80% юзеров Baremetrics могли бы обойтись MetricTree.
+  <br><a class="btn" href="/">Открыть MetricTree →</a>
+</div>
+
+<h2>Сравнение по фичам</h2>
+<table>
+<thead><tr><th>Фича</th><th>Baremetrics</th><th>MetricTree</th></tr></thead>
+<tbody>
+<tr><td>Цена</td><td><span class="no">$129–$229/мес</span></td><td class="cell-strong"><span class="yes">$0 навсегда</span></td></tr>
+<tr><td>Auto-tracking из Stripe</td><td class="cell-strong"><span class="yes">✓</span></td><td><span class="no">✗</span> (ручной ввод)</td></tr>
+<tr><td>Cohort retention графики</td><td class="cell-strong"><span class="yes">✓</span></td><td><span class="no">✗</span></td></tr>
+<tr><td>Forecast charts</td><td class="cell-strong"><span class="yes">✓</span></td><td class="cell-strong"><span class="yes">✓ 6–24 мес</span></td></tr>
+<tr><td>Количество метрик</td><td>~15 SaaS-only</td><td class="cell-strong"><strong>52</strong> (SaaS + B2C + AARRR + Growth + QA + Support)</td></tr>
+<tr><td>Goal mode (обратный расчёт)</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">✓</span></td></tr>
+<tr><td>What-If scenarios</td><td><span class="partial">limited</span></td><td class="cell-strong"><span class="yes">✓ live sliders</span></td></tr>
+<tr><td>Compare 2 metrics</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">✓</span></td></tr>
+<tr><td>CSV import</td><td><span class="yes">✓</span></td><td class="cell-strong"><span class="yes">✓</span></td></tr>
+<tr><td>Industry templates</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">✓ 5</span></td></tr>
+<tr><td>Embed iframe в блог</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">✓</span></td></tr>
+<tr><td>Multi-language</td><td><span class="no">EN only</span></td><td class="cell-strong"><span class="yes">✓ RU / EN / UZ</span></td></tr>
+<tr><td>Open source</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">✓ MIT</span></td></tr>
+<tr><td>Без signup</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">✓</span></td></tr>
+<tr><td>Open-Startups (publish метрики)</td><td class="cell-strong"><span class="yes">✓</span></td><td><span class="no">✗</span></td></tr>
+</tbody>
+</table>
+
+<h2>Когда выбирать MetricTree</h2>
+<ul>
+<li>Pre-revenue / pre-PMF — ещё нет данных в Stripe для трекинга</li>
+<li>Считаешь метрики <strong>для investor-pitch'а или board memo</strong> — нужны бенчмарки и формулы, а не daily-monitoring</li>
+<li>Не хочешь платить $129/мес ради 3-5 формул</li>
+<li>Команда RU/UZ-speaking — Baremetrics только англоязычный</li>
+<li>Нужен <strong>обратный расчёт</strong>: «при target Burn Multiple = 1.5 какой max burn для $2M ARR?»</li>
+<li>Делаешь <strong>сценарное моделирование</strong>: «что будет если NRR вырастет с 105% до 115%?» (What-If sliders)</li>
+<li>Хочешь <strong>встроить калькулятор</strong> в свой блог про SaaS</li>
+</ul>
+
+<h2>Когда нужен Baremetrics</h2>
+<ul>
+<li>Established SaaS с реальной MRR в Stripe/Braintree/Chargebee</li>
+<li>Нужен <strong>daily/weekly monitoring</strong> с alerts (Slack notifications)</li>
+<li>Cohort-анализ на реальных юзерах</li>
+<li>Recover (dunning) для failed payments — отдельный продукт Baremetrics</li>
+<li>Open Startups для PR (публикация метрик публично)</li>
+</ul>
+
+<div class="cta-box">
+  <strong>Hybrid стратегия:</strong> используй <strong>MetricTree</strong> для quarterly board-memo и сценарного планирования, <strong>Baremetrics</strong> — для daily-ops monitoring. Не дублируются.
+  <br><a class="btn" href="/">Попробовать MetricTree →</a>
+</div>
+
+<h2>FAQ</h2>
+<div class="faq">
+  <details><summary>Можно ли заменить Baremetrics на MetricTree?</summary><p>Не полностью. Baremetrics auto-tracks реальные данные. MetricTree считает по введённым числам. Но если нужны формулы + бенчмарки + моделирование (а не daily-tracking) — MetricTree покрывает 80% use-cases при $0.</p></details>
+  <details><summary>Есть ли в MetricTree forecasting как в Baremetrics?</summary><p>Да, Forecast charts с SVG-проекцией на 6/12/18/24 мес для MRR, ARR, Runway, Churn. Baremetrics forecast работает на исторических данных, MetricTree — на твоих growth/churn assumptions (more flexible для сценариев).</p></details>
+  <details><summary>Сколько стоит MetricTree?</summary><p>$0 навсегда, open-source MIT. Pro появится позже ($9/мес) с PDF-отчётами и API. Текущий калькулятор останется free.</p></details>
+  <details><summary>Можно ли self-host MetricTree?</summary><p>Да, MIT-лицензия. Forkни <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">репо</a> и деплой на Vercel за 1 клик.</p></details>
+</div>
+
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a> · <a href="/">Главная</a>
+</div>
+</main>
+</body>
+</html>

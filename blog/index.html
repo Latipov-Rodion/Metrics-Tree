@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Blog — MetricTree | Гайды по продуктовым метрикам</title>
+<meta name="description" content="Гайды и разборы продуктовых метрик: Burn Multiple, Rule of 40, LTV:CAC, NRR, MRR growth — формулы, бенчмарки, рекомендации.">
+<link rel="canonical" href="https://metricstree.vercel.app/blog/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="MetricTree Blog — Гайды по продуктовым метрикам">
+<meta property="og:description" content="Разборы LTV:CAC, Burn Multiple, Rule of 40, NRR и других SaaS-метрик. С формулами, бенчмарками, real-world примерами.">
+<meta property="og:url" content="https://metricstree.vercel.app/blog/">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#6b6f75; --accent:#2A6DF4; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#777; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.6; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:780px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+.wrap { max-width:780px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.lede { font-size: 1.05rem; color: var(--text-2); margin: 0 0 2rem; }
+.post-card { display:block; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin-bottom: 0.85rem; text-decoration:none; color: inherit; transition: border-color 0.15s; }
+.post-card:hover { border-color: var(--accent); }
+.post-card h2 { font-size: 1.2rem; margin: 0 0 0.4rem; color: var(--text-1); }
+.post-card .post-meta { font-size: 0.8rem; color: var(--text-3); margin-bottom: 0.4rem; }
+.post-card .post-desc { font-size: 0.92rem; color: var(--text-2); margin: 0; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/">Калькулятор →</a></div>
+</nav>
+<main class="wrap">
+<h1>Blog</h1>
+<p class="lede">Глубокие гайды по продуктовым метрикам: формулы, отраслевые бенчмарки, real-world применение. Каждый пост включает интерактивный калькулятор.</p>
+
+<a class="post-card" href="/blog/burn-multiple-saas-2026">
+  <div class="post-meta">2026-05-17</div>
+  <h2>Burn Multiple — главная метрика SaaS-инвестора в 2026</h2>
+  <p class="post-desc">Что такое Burn Multiple от David Sacks, как считать, какие нормы для seed/Series A/B+, и почему она вытеснила Magic Number из VC-пайплайнов после ZIRP-эпохи.</p>
+</a>
+
+<a class="post-card" href="/blog/rule-of-40-saas">
+  <div class="post-meta">2026-05-14</div>
+  <h2>Rule of 40 — почему 40% это магия для SaaS-компаний</h2>
+  <p class="post-desc">Подробный разбор Rule of 40 (Brad Feld, 2015) — как считать, почему именно 40%, какая норма для public vs private SaaS в 2026, и как достичь top decile (>60%).</p>
+</a>
+
+<a class="post-card" href="/blog/ltv-cac-unit-economics">
+  <div class="post-meta">2026-05-10</div>
+  <h2>LTV vs CAC — пошаговый расчёт unit-экономики стартапа</h2>
+  <p class="post-desc">Как правильно посчитать LTV и CAC, какое соотношение норма (3:1, 5:1), и почему даже healthy LTV:CAC не значит здоровый бизнес без правильного payback.</p>
+</a>
+
+<a class="post-card" href="/blog/10-pm-metrics-2026">
+  <div class="post-meta">2026-05-07</div>
+  <h2>10 метрик которые product-менеджер должен трекать в 2026</h2>
+  <p class="post-desc">Какие 10 метрик должен знать наизусть каждый PM в B2B SaaS и B2C — от Activation до NRR. С формулами, бенчмарками и интерактивными калькуляторами.</p>
+</a>
+
+</main>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="/">Калькулятор</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>
