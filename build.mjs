@@ -210,15 +210,19 @@ function renderRelatedStatic(metricId) {
     const name = SHORT_NAME[id] || id;
     return `      <li><a href="/${id}"><strong>${name}</strong></a> — ${note}</li>`;
   }).join('\n');
+  // The static block is removed by JS once the SPA hydrates (renderRelated() shows the
+  // dynamic version in #relatedBlock with richer markup). If JS fails or is disabled,
+  // crawlers and users still see this block.
   return `
-<!-- Cross-metric internal links — static HTML for SEO crawlers.
-     Client-side renderRelated() also populates #relatedBlock with the same data for users. -->
-<aside class="related-static" aria-label="Связанные метрики" style="max-width:900px;margin:2rem auto 1rem;padding:1rem 1.25rem;border-top:1px solid var(--border,#2C2F33);font-size:0.85rem;color:var(--text-2,#B0B3B8);">
+<!-- Cross-metric internal links — static HTML for SEO crawlers + no-JS fallback.
+     Client-side SPA removes this on hydrate; renderRelated() shows dynamic version. -->
+<aside class="related-static" data-spa-replace="true" aria-label="Связанные метрики" style="max-width:900px;margin:2rem auto 1rem;padding:1rem 1.25rem;border-top:1px solid var(--border,#2C2F33);font-size:0.85rem;color:var(--text-2,#B0B3B8);">
   <h3 style="font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-3,#6b6f75);margin:0 0 0.5rem;">См. также</h3>
   <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0.4rem 1rem;">
 ${items}
   </ul>
 </aside>
+<script>document.querySelectorAll('aside[data-spa-replace]').forEach(el => { /* visually hide once JS loads — kept in DOM for crawlers */ el.style.display = 'none'; });</script>
 `;
 }
 
