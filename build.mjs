@@ -254,7 +254,7 @@ function buildHtml(template, id, meta) {
   html = html.replace(/<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${title}">`);
   html = html.replace(/<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${desc}">`);
 
-  // Append per-metric FAQ JSON-LD + hreflang link tags just before </head>.
+  // Append per-metric FAQ JSON-LD + HowTo JSON-LD + hreflang link tags just before </head>.
   // Use rich faq array if defined (top metrics), else fall back to single {q,a}.
   const faqEntries = (meta.faq && meta.faq.length)
     ? meta.faq
@@ -268,9 +268,44 @@ function buildHtml(template, id, meta) {
       'acceptedAnswer': { '@type': 'Answer', 'text': a }
     }))
   };
+  // HowTo schema — gives Google "How to calculate X" rich snippets with step cards.
+  // Extracted from meta.q/a as a 3-step generic recipe; works for every metric since
+  // metric formula + inputs + result interpretation are universal calc steps.
+  const metricName = meta.title.split(' —')[0].split(' (')[0].split(' калькулятор')[0].trim();
+  const howToJson = {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    'name': `Как рассчитать ${metricName}`,
+    'description': meta.desc,
+    'totalTime': 'PT1M',
+    'step': [
+      {
+        '@type': 'HowToStep',
+        'position': 1,
+        'name': 'Откройте калькулятор',
+        'text': `Перейдите на ${url} — калькулятор уже заполнен примером.`,
+        'url': url
+      },
+      {
+        '@type': 'HowToStep',
+        'position': 2,
+        'name': 'Введите ваши значения',
+        'text': `Замените примерные значения на свои данные. Калькулятор пересчитывает результат в реальном времени.`
+      },
+      {
+        '@type': 'HowToStep',
+        'position': 3,
+        'name': 'Сравните с бенчмарком',
+        'text': meta.a || 'Получите результат + отраслевой бенчмарк + плейн-language интерпретацию (healthy / critical / excellent).'
+      }
+    ]
+  };
   const perMetricFaq = `
     <script type="application/ld+json">
 ${JSON.stringify(faqJson, null, 2)}
+    </script>
+    <script type="application/ld+json">
+${JSON.stringify(howToJson, null, 2)}
     </script>
     <link rel="alternate" hreflang="ru" href="${SITE}/${id}">
     <link rel="alternate" hreflang="en" href="${SITE}/en/${id}">
