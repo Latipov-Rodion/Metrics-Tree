@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Changelog — MetricTree | Что нового</title>
+<meta name="description" content="История релизов MetricTree: новые метрики, фичи, улучшения. Build-in-public changelog.">
+<link rel="canonical" href="https://metricstree.vercel.app/changelog">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="MetricTree Changelog — что нового">
+<meta property="og:description" content="История релизов и улучшений MetricTree — open-source калькулятора 52 продуктовых метрик.">
+<meta property="og:url" content="https://metricstree.vercel.app/changelog">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<style>:root{color-scheme:light dark;--bg:#0A0C0E;--bg-card:#1A1C1F;--border:#2C2F33;--text-1:#E8EAED;--text-2:#B0B3B8;--text-3:#6b6f75;--accent:#2A6DF4;--green:#4CAF50}html[data-theme="light"]{--bg:#F0F2F5;--bg-card:#fff;--border:#E1E4E8;--text-1:#1A1C1F;--text-2:#4A4E55;--text-3:#777}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text-1);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.6}.wrap{max-width:780px;margin:0 auto;padding:2rem 1.25rem 4rem}.nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;max-width:780px;margin:0 auto}.brand{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:1.05rem;text-decoration:none;color:var(--text-1)}.brand-mark{width:24px;height:24px;background:var(--accent);border-radius:6px}.nav a{color:var(--text-2);text-decoration:none}h1{font-size:2rem;margin:.5rem 0 .5rem;letter-spacing:-.02em}.lede{font-size:1rem;color:var(--text-2);margin:0 0 2rem}.release{background:var(--bg-card);border:1px solid var(--border);border-radius:.75rem;padding:1.25rem 1.4rem;margin-bottom:1rem}.release h2{font-size:1.15rem;margin:0 0 .3rem;color:var(--text-1)}.release .date{color:var(--text-3);font-size:.85rem;margin-bottom:.7rem}.tag{display:inline-block;padding:.12rem .55rem;border-radius:999px;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-right:.4rem;margin-bottom:.3rem}.tag-feat{background:rgba(42,109,244,.15);color:var(--accent)}.tag-fix{background:rgba(255,193,7,.15);color:#FFC107}.tag-perf{background:rgba(76,175,80,.15);color:var(--green)}.tag-docs{background:rgba(176,179,184,.15);color:var(--text-2)}.release ul{padding-left:1.2rem;margin:.5rem 0}.release li{margin-bottom:.3rem;color:var(--text-2)}.release li strong{color:var(--text-1)}.footer{text-align:center;color:var(--text-3);margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);font-size:.85rem}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}</style>
+</head>
+<body>
+<nav class="nav"><a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a><div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div></nav>
+<main class="wrap">
+<h1>Changelog</h1>
+<p class="lede">История релизов MetricTree. Открытый build-in-public процесс — все коммиты на <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>.</p>
+
+<div class="release">
+<h2>v2.5 — Lead capture overhaul</h2>
+<div class="date">2026-05-18</div>
+<span class="tag tag-feat">feat</span><span class="tag tag-fix">fix</span>
+<ul>
+<li><strong>/api/lead</strong> Vercel Edge Function — Telegram + Resend fan-out + Vercel KV backup</li>
+<li><strong>/admin dashboard</strong> с secret-URL auth, фильтрами, CSV-export</li>
+<li>Поддержка legacy KV_REST_API_* и new UPSTASH_REDIS_REST_* env names</li>
+<li>4 уровня lead-защиты: Telegram + Email + KV + mailto fallback</li>
+<li>Toast z-index fix (был под модалкой)</li>
+</ul>
+</div>
+
+<div class="release">
+<h2>v2.4 — Mobile UX polish + SEO scale</h2>
+<div class="date">2026-05-17</div>
+<span class="tag tag-feat">feat</span><span class="tag tag-perf">perf</span>
+<ul>
+<li><strong>14 блог-постов</strong> по top SaaS-метрикам (Burn Multiple, Rule of 40, LTV:CAC, Quick Ratio, Magic Number, NRR, Sales Velocity, Runway, MRR Growth, CAC Payback, ARPDAU, AOV, Pipeline Coverage, 10 PM metrics)</li>
+<li>3 vs-comparison landing-страницы (vs-profitwell, vs-baremetrics, vs-causal)</li>
+<li>/press kit для журналистов</li>
+<li>iOS safe-area-inset для notch + dynamic island</li>
+<li>Touch targets ≥ 36px для всех action buttons</li>
+<li>No-zoom inputs (16px font + 44px height)</li>
+<li>Result-right flex-wrap для 9 action buttons</li>
+<li>Cross-metric static "См. также" links (crawler-visible internal-link graph)</li>
+</ul>
+</div>
+
+<div class="release">
+<h2>v2.3 — Schema + share + viral</h2>
+<div class="date">2026-05-16</div>
+<span class="tag tag-feat">feat</span>
+<ul>
+<li><strong>X / LinkedIn share buttons</strong> с pre-filled tweet (metric name + result + insight + URL)</li>
+<li>FAQ JSON-LD schema расширена до 4 Q&A на top-12 метрик</li>
+<li>Auto-prefill example values на первой загрузке (instant aha &lt;1с)</li>
+<li>Organization + WebSite + SearchAction Schema.org на homepage</li>
+<li>og:locale:alternate для en_US, uz_UZ</li>
+<li>robots.txt: opt-in для GPTBot, ClaudeBot, PerplexityBot (LLM citations = new SEO)</li>
+<li>IndexNow integration для мгновенной индексации Bing/Yandex</li>
+</ul>
+</div>
+
+<div class="release">
+<h2>v2.2 — Per-language URLs + bot</h2>
+<div class="date">2026-05-15</div>
+<span class="tag tag-feat">feat</span>
+<ul>
+<li><strong>Per-language URLs</strong>: /en/ltv, /uz/ltv с hreflang tags</li>
+<li>Telegram bot (bot.py) — 9 команд (/ltv, /cac, /mrr, /nrr, /nps, /burn, /runway, /ltvcac, /rule40)</li>
+<li>Deep content для top-10 метрик с цитированием источников</li>
+<li>CSV import — paste numbers, autofill 50+ полей</li>
+<li>Compare 2 metrics side-by-side</li>
+</ul>
+</div>
+
+<div class="release">
+<h2>v2.1 — Forecast charts + 5 new metrics</h2>
+<div class="date">2026-05-14</div>
+<span class="tag tag-feat">feat</span>
+<ul>
+<li>Forecast SVG графики на 6/12/18/24 мес</li>
+<li>+5 метрик: AOV, Repeat Purchase Rate, MRR Growth Rate, Sales Cycle Length, Engagement Rate (52 всего)</li>
+<li>Static PNG og-image 1200×630 (Telegram/Slack-friendly)</li>
+<li>Newsletter signup в About modal + footer</li>
+</ul>
+</div>
+
+<div class="release">
+<h2>v2.0 — i18n + Goal mode</h2>
+<div class="date">2026-05-10</div>
+<span class="tag tag-feat">feat</span>
+<ul>
+<li><strong>3 языка</strong>: RU / EN / UZ — UI, метрики, инсайты, бенчмарки полностью локализованы</li>
+<li><strong>Goal mode</strong>: обратный расчёт для 16 метрик × 32 сценария</li>
+<li>What-If слайдеры для live-моделирования</li>
+<li>Embed mode (?embed=1) для встраивания в блоги</li>
+<li>Industry templates: Startup SaaS, Mature SaaS, E-com, Mobile, Media</li>
+</ul>
+</div>
+
+<div class="release">
+<h2>v1.5 — B2B SaaS expansion</h2>
+<div class="date">2026-04-28</div>
+<span class="tag tag-feat">feat</span>
+<ul>
+<li>+8 B2B SaaS метрик: Burn Multiple (David Sacks), Magic Number, Rule of 40, Quick Ratio (Mamoon Hamid), Sales Velocity, Win Rate, Pipeline Coverage, Time to Value</li>
+<li>Industry бенчмарки с источниками: OpenView, Bessemer, Sacks, Hamid, Bain</li>
+<li>Финансовая секция: Gross Margin, Runway, Burn Rate</li>
+</ul>
+</div>
+
+<div class="release">
+<h2>v1.0 — Initial public launch</h2>
+<div class="date">2026-04-01</div>
+<span class="tag tag-feat">feat</span>
+<ul>
+<li>30 продуктовых метрик в 7 разделах: B2C, B2B SaaS, AARRR, Growth, QA, Support</li>
+<li>Формулы + отраслевые пороги + плейн-language интерпретация</li>
+<li>4 валюты ($/€/₽/£)</li>
+<li>Snapshots, dashboard, PNG export</li>
+<li>Открытый source MIT</li>
+</ul>
+</div>
+
+<div class="footer">
+Stay updated: <a href="/blog/">Blog</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub Releases</a> · <a href="/">Главная</a>
+</div>
+</main>
+</body>
+</html>

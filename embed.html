@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Embed Builder — встрой калькулятор в свой блог за 30 секунд | MetricTree</title>
+<meta name="description" content="Конструктор iframe для встраивания 52 калькуляторов MetricTree в Notion, Substack, Medium, WordPress. Выбери метрику, размер, тему — получи готовый код.">
+<link rel="canonical" href="https://metricstree.vercel.app/embed">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="MetricTree Embed Builder — calculator widget for your blog">
+<meta property="og:description" content="Drop any of 52 metric calculators into your Notion / Substack / Medium / WordPress as a working iframe widget. Free, no signup.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/embed">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<style>
+:root{color-scheme:light dark;--bg:#0A0C0E;--bg-card:#1A1C1F;--border:#2C2F33;--text-1:#E8EAED;--text-2:#B0B3B8;--text-3:#6b6f75;--accent:#2A6DF4;--green:#4CAF50}
+html[data-theme="light"]{--bg:#F0F2F5;--bg-card:#fff;--border:#E1E4E8;--text-1:#1A1C1F;--text-2:#4A4E55;--text-3:#777}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text-1);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.6}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;max-width:1200px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:1.05rem;text-decoration:none;color:var(--text-1)}
+.brand-mark{width:24px;height:24px;background:var(--accent);border-radius:6px}
+.nav a{color:var(--text-2);text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:1.5rem 1.25rem 4rem}
+h1{font-size:2.2rem;line-height:1.2;margin:.5rem 0 .5rem;letter-spacing:-.02em}
+.lede{font-size:1.05rem;color:var(--text-2);margin:0 0 2rem;max-width:760px}
+.layout{display:grid;grid-template-columns:1fr 1.4fr;gap:1.5rem}
+@media (max-width:880px){.layout{grid-template-columns:1fr}}
+.panel{background:var(--bg-card);border:1px solid var(--border);border-radius:.85rem;padding:1.2rem 1.4rem}
+.panel h2{font-size:1.05rem;margin:0 0 1rem;color:var(--text-1)}
+.field{margin-bottom:1.1rem}
+.field label{display:block;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text-3);margin-bottom:.4rem}
+.field select,.field input{width:100%;padding:.55rem .8rem;background:var(--bg);border:1px solid var(--border);border-radius:.5rem;color:var(--text-1);font-size:.92rem;font-family:inherit}
+.field select:focus,.field input:focus{outline:none;border-color:var(--accent)}
+.field .hint{font-size:.78rem;color:var(--text-3);margin-top:.3rem}
+.toggle-row{display:flex;gap:.5rem;flex-wrap:wrap}
+.toggle-row button{flex:1;padding:.5rem .75rem;background:var(--bg);border:1px solid var(--border);border-radius:.5rem;color:var(--text-2);font-size:.85rem;cursor:pointer;font-weight:500}
+.toggle-row button.active{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+.toggle-row button:hover:not(.active){border-color:var(--accent);color:var(--accent)}
+.preview-area{position:sticky;top:1rem}
+.preview-frame{background:var(--bg);border:1px dashed var(--border);border-radius:.5rem;padding:.5rem;margin-bottom:1rem;overflow:hidden}
+.preview-frame iframe{display:block;width:100%;border:0;border-radius:.4rem}
+.code-block{background:#0d1117;border:1px solid var(--border);border-radius:.5rem;padding:1rem 1.1rem;font-family:'Menlo','Cascadia Code',monospace;font-size:.82rem;line-height:1.5;color:#e8eaed;white-space:pre-wrap;word-break:break-all;position:relative}
+.code-block .copy-btn{position:absolute;top:.55rem;right:.55rem;background:var(--accent);color:#fff;border:0;padding:.35rem .7rem;border-radius:.4rem;cursor:pointer;font-size:.78rem;font-weight:600}
+.code-block .copy-btn:hover{opacity:.92}
+.code-block .copy-btn.copied{background:var(--green)}
+.code-tabs{display:flex;gap:.3rem;margin-bottom:.5rem}
+.code-tabs button{padding:.35rem .7rem;background:transparent;border:1px solid var(--border);border-radius:.4rem;color:var(--text-2);cursor:pointer;font-size:.78rem}
+.code-tabs button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.where-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.5rem;margin-top:1rem}
+.where-item{background:var(--bg);border:1px solid var(--border);border-radius:.5rem;padding:.6rem .75rem;font-size:.82rem;color:var(--text-2);display:flex;align-items:center;gap:.5rem}
+.where-item strong{color:var(--text-1)}
+.footer{text-align:center;color:var(--text-3);margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);font-size:.85rem}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<nav class="nav"><a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a><div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div></nav>
+<main class="wrap">
+<h1>Embed Builder</h1>
+<p class="lede">Встрой любой из 52 калькуляторов в свой блог, Notion, Substack, Medium или WordPress за 30 секунд. Выбери метрику, размер, тему — скопируй готовый iframe-код. Бесплатно и без ограничений.</p>
+
+<div class="layout">
+  <div class="panel">
+    <h2>⚙️ Настройки виджета</h2>
+
+    <div class="field">
+      <label>Метрика</label>
+      <select id="metric">
+        <optgroup label="🔥 Топ-метрики (most popular)">
+          <option value="ltv">LTV — Lifetime Value</option>
+          <option value="cac">CAC — Customer Acquisition Cost</option>
+          <option value="ltv_cac">LTV : CAC ratio</option>
+          <option value="mrr">MRR — Monthly Recurring Revenue</option>
+          <option value="nrr">NRR — Net Revenue Retention</option>
+          <option value="churn">Churn Rate</option>
+          <option value="burnMultiple">Burn Multiple (David Sacks)</option>
+          <option value="ruleOf40">Rule of 40</option>
+          <option value="runway">Runway</option>
+          <option value="nps">NPS — Net Promoter Score</option>
+          <option value="roas">ROAS</option>
+        </optgroup>
+        <optgroup label="B2C">
+          <option value="dau">DAU</option>
+          <option value="mau">MAU</option>
+          <option value="stickiness">Stickiness (DAU/MAU)</option>
+          <option value="retention">Retention Rate</option>
+          <option value="arpu">ARPU</option>
+          <option value="aov">AOV (Average Order Value)</option>
+          <option value="repeatPurchaseRate">Repeat Purchase Rate</option>
+          <option value="arpdau">ARPDAU</option>
+        </optgroup>
+        <optgroup label="B2B SaaS">
+          <option value="arr">ARR</option>
+          <option value="acv">ACV</option>
+          <option value="grr">GRR — Gross Revenue Retention</option>
+          <option value="cacPayback">CAC Payback Period</option>
+          <option value="magicNumber">Magic Number</option>
+          <option value="quickRatio">SaaS Quick Ratio (Mamoon Hamid)</option>
+          <option value="mrrGrowthRate">MRR Growth Rate</option>
+        </optgroup>
+        <optgroup label="Growth & Marketing">
+          <option value="cr">Conversion Rate</option>
+          <option value="cpc">CPC</option>
+          <option value="ctr">CTR</option>
+          <option value="bounceRate">Bounce Rate</option>
+          <option value="engagementRate">Engagement Rate</option>
+        </optgroup>
+        <optgroup label="Sales & Finance">
+          <option value="salesVelocity">Sales Velocity</option>
+          <option value="winRate">Win Rate</option>
+          <option value="pipelineCoverage">Pipeline Coverage</option>
+          <option value="salesCycleLength">Sales Cycle Length</option>
+          <option value="grossMargin">Gross Margin</option>
+          <option value="burnRate">Burn Rate</option>
+        </optgroup>
+        <optgroup label="AARRR (Pirate)">
+          <option value="acquisition">Acquisition</option>
+          <option value="activation">Activation</option>
+          <option value="retention_aarrr">Cohort Retention</option>
+          <option value="referral">K-factor / Referral</option>
+          <option value="revenue">Revenue</option>
+          <option value="timeToValue">Time to Value</option>
+        </optgroup>
+        <optgroup label="Support & QA">
+          <option value="csat">CSAT</option>
+          <option value="fcr">FCR</option>
+          <option value="sla">SLA</option>
+          <option value="bugRate">Bug Rate</option>
+          <option value="testCoverage">Test Coverage</option>
+          <option value="defectDensity">Defect Density</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Язык интерфейса</label>
+      <div class="toggle-row" id="lang-row">
+        <button data-lang="" class="active">RU</button>
+        <button data-lang="en">EN</button>
+        <button data-lang="uz">UZ</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Высота виджета</label>
+      <div class="toggle-row" id="height-row">
+        <button data-height="550">Compact (550)</button>
+        <button data-height="700" class="active">Standard (700)</button>
+        <button data-height="900">Full (900)</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Ширина</label>
+      <select id="width">
+        <option value="100%" selected>100% (responsive)</option>
+        <option value="600">600px (fixed)</option>
+        <option value="700">700px (fixed)</option>
+        <option value="800">800px (fixed)</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>Валюта по умолчанию</label>
+      <div class="toggle-row" id="currency-row">
+        <button data-currency="" class="active">$ USD</button>
+        <button data-currency="EUR">€ EUR</button>
+        <button data-currency="RUB">₽ RUB</button>
+        <button data-currency="GBP">£ GBP</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Border style</label>
+      <div class="toggle-row" id="border-row">
+        <button data-border="solid" class="active">Solid</button>
+        <button data-border="none">None</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="preview-area">
+    <div class="panel">
+      <h2>👁 Превью</h2>
+      <div class="preview-frame">
+        <iframe id="preview-iframe" src="" loading="lazy" title="MetricTree calculator preview"></iframe>
+      </div>
+
+      <h2 style="margin-top:1.5rem;">📋 Код для встраивания</h2>
+      <div class="code-tabs">
+        <button class="active" data-tab="html">HTML / iframe</button>
+        <button data-tab="markdown">Markdown</button>
+        <button data-tab="react">React JSX</button>
+      </div>
+      <div class="code-block">
+        <button class="copy-btn" id="copy-btn">📋 Copy</button>
+        <code id="code-output"></code>
+      </div>
+
+      <h2 style="margin-top:1.5rem;">📍 Где работает</h2>
+      <div class="where-list">
+        <div class="where-item">✓ <strong>Notion</strong> (Embed block)</div>
+        <div class="where-item">✓ <strong>Substack</strong> (Embed → HTML)</div>
+        <div class="where-item">✓ <strong>Medium</strong> (paste URL)</div>
+        <div class="where-item">✓ <strong>WordPress</strong> (HTML widget)</div>
+        <div class="where-item">✓ <strong>Ghost</strong> (HTML card)</div>
+        <div class="where-item">✓ <strong>Webflow</strong></div>
+        <div class="where-item">✓ <strong>Squarespace</strong></div>
+        <div class="where-item">✓ <strong>Любой HTML</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Сделано <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родионом Латыповым</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">Open source MIT</a> · <a href="/">Главная</a><br>
+  <span style="font-size:.78rem;">Используя embed, ты помогаешь проекту развиваться. Ссылка на metricstree.vercel.app приветствуется, но не требуется.</span>
+</div>
+
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+const state = { metric: 'ltv', lang: '', height: '700', width: '100%', currency: '', border: 'solid' };
+
+function buildSrc() {
+  const path = state.lang ? `/${state.lang}/${state.metric}` : `/${state.metric}`;
+  const params = new URLSearchParams({ embed: '1' });
+  if (state.currency) params.set('currency', state.currency);
+  return `https://metricstree.vercel.app${path}?${params.toString()}`;
+}
+
+function buildIframeHTML() {
+  const src = buildSrc();
+  const widthAttr = state.width === '100%' ? 'width="100%"' : `width="${state.width}"`;
+  const styleBorder = state.border === 'none' ? 'border:0' : 'border:1px solid #2C2F33';
+  return `<iframe src="${src}"
+        ${widthAttr} height="${state.height}"
+        style="${styleBorder}; border-radius:.75rem;"
+        loading="lazy"
+        title="MetricTree calculator"></iframe>`;
+}
+
+function buildMarkdown() {
+  const src = buildSrc();
+  return `<iframe src="${src}" width="${state.width}" height="${state.height}" frameborder="0"></iframe>`;
+}
+
+function buildReact() {
+  const src = buildSrc();
+  return `<iframe
+  src="${src}"
+  width="${state.width}"
+  height={${state.height}}
+  style={{ border: 0, borderRadius: '0.75rem' }}
+  loading="lazy"
+  title="MetricTree calculator"
+/>`;
+}
+
+let codeTab = 'html';
+
+function render() {
+  $('preview-iframe').src = buildSrc();
+  $('preview-iframe').style.height = state.height + 'px';
+  const code = codeTab === 'html' ? buildIframeHTML() : codeTab === 'markdown' ? buildMarkdown() : buildReact();
+  $('code-output').textContent = code;
+  // Reset copy button state
+  const btn = $('copy-btn');
+  btn.textContent = '📋 Copy';
+  btn.classList.remove('copied');
+}
+
+// Wire up
+$('metric').addEventListener('change', e => { state.metric = e.target.value; render(); });
+$('width').addEventListener('change', e => { state.width = e.target.value; render(); });
+
+['lang-row', 'height-row', 'currency-row', 'border-row'].forEach(rowId => {
+  const row = $(rowId);
+  row.addEventListener('click', e => {
+    if (!e.target.matches('button')) return;
+    row.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    if (rowId === 'lang-row') state.lang = e.target.dataset.lang;
+    else if (rowId === 'height-row') state.height = e.target.dataset.height;
+    else if (rowId === 'currency-row') state.currency = e.target.dataset.currency;
+    else if (rowId === 'border-row') state.border = e.target.dataset.border;
+    render();
+  });
+});
+
+document.querySelectorAll('.code-tabs button').forEach(b => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('.code-tabs button').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    codeTab = b.dataset.tab;
+    render();
+  });
+});
+
+$('copy-btn').addEventListener('click', async () => {
+  const code = $('code-output').textContent;
+  try {
+    await navigator.clipboard.writeText(code);
+    const btn = $('copy-btn');
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy'; btn.classList.remove('copied'); }, 2000);
+  } catch (e) {
+    const ta = document.createElement('textarea');
+    ta.value = code; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+    $('copy-btn').textContent = '✓ Copied (fallback)';
+  }
+});
+
+// Initial render
+render();
+</script>
+</body>
+</html>
