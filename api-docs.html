@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Public API — MetricTree | Free metric calculations as JSON</title>
+<meta name="description" content="Free public API for product metrics: LTV, CAC, MRR, NRR, Burn Multiple, Rule of 40 + 17 more. No signup, no API key, CORS open. Just GET /api/calc?metric=ltv&aov=2500.">
+<link rel="canonical" href="https://metricstree.vercel.app/api-docs">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="MetricTree Public API — free product metric calculations">
+<meta property="og:description" content="22 metrics as JSON. No signup, no API key, CORS open. Built for developers.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/api-docs">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{color-scheme:light dark;--bg:#0A0C0E;--bg-card:#1A1C1F;--border:#2C2F33;--text-1:#E8EAED;--text-2:#B0B3B8;--text-3:#6b6f75;--accent:#2A6DF4;--green:#4CAF50;--code:#0d1117}
+html[data-theme="light"]{--bg:#F0F2F5;--bg-card:#fff;--border:#E1E4E8;--text-1:#1A1C1F;--text-2:#4A4E55;--text-3:#777;--code:#f6f8fa}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text-1);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.65}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;max-width:920px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:1.05rem;text-decoration:none;color:var(--text-1)}
+.brand-mark{width:24px;height:24px;background:var(--accent);border-radius:6px}
+.nav a{color:var(--text-2);text-decoration:none}
+.wrap{max-width:920px;margin:0 auto;padding:2rem 1.25rem 4rem}
+h1{font-size:2.2rem;line-height:1.2;margin:.5rem 0 .5rem;letter-spacing:-.02em}
+.lede{font-size:1.1rem;color:var(--text-2);margin:0 0 1.5rem}
+.pills{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.pill{padding:.25rem .7rem;border-radius:999px;font-size:.78rem;background:rgba(76,175,80,.12);color:var(--green);border:1px solid rgba(76,175,80,.3)}
+.pill-blue{background:rgba(42,109,244,.12);color:var(--accent);border-color:rgba(42,109,244,.3)}
+h2{font-size:1.5rem;margin:2.5rem 0 .75rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}
+h3{font-size:1.15rem;margin:1.5rem 0 .5rem}
+p{margin:.7rem 0}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+code{background:var(--code);padding:.1rem .4rem;border-radius:.25rem;font-size:.92em;font-family:'Menlo','Cascadia Code',monospace}
+pre{background:var(--code);padding:1rem 1.2rem;border-radius:.6rem;overflow-x:auto;font-size:.85rem;line-height:1.5;border:1px solid var(--border);font-family:'Menlo','Cascadia Code',monospace}
+pre code{background:none;padding:0}
+table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.88rem;background:var(--bg-card);border:1px solid var(--border);border-radius:.6rem;overflow:hidden}
+th,td{padding:.5rem .7rem;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+th{background:rgba(42,109,244,.06);font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.04em;color:var(--text-3)}
+tr:last-child td{border-bottom:0}
+td code{font-size:.82em}
+.try-box{background:var(--bg-card);border:1px solid var(--border);border-radius:.75rem;padding:1.2rem 1.4rem;margin:1.5rem 0}
+.try-box input{width:100%;padding:.55rem .8rem;background:var(--bg);border:1px solid var(--border);border-radius:.4rem;color:var(--text-1);font-family:monospace;font-size:.85rem;margin-bottom:.6rem}
+.try-box button{background:var(--accent);color:#fff;border:0;padding:.5rem 1rem;border-radius:.4rem;font-weight:600;cursor:pointer}
+.try-box .result{background:var(--code);border:1px solid var(--border);border-radius:.4rem;padding:.8rem 1rem;margin-top:.8rem;font-family:monospace;font-size:.82rem;white-space:pre-wrap;color:var(--text-1);display:none}
+.footer{text-align:center;color:var(--text-3);margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);font-size:.85rem}
+</style>
+</head>
+<body>
+<nav class="nav"><a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a><div><a href="/blog/">Blog</a> · <a href="/">Calculator →</a></div></nav>
+<main class="wrap">
+<h1>MetricTree Public API</h1>
+<p class="lede">Free product-metric calculations as JSON. 22 metrics. No signup, no API key, CORS open. Built for developers.</p>
+
+<div class="pills">
+  <span class="pill">✓ Free forever</span>
+  <span class="pill">✓ No API key</span>
+  <span class="pill">✓ No signup</span>
+  <span class="pill">✓ CORS open</span>
+  <span class="pill pill-blue">Edge-hosted (low latency)</span>
+  <span class="pill pill-blue">Open source MIT</span>
+</div>
+
+<h2>Quickstart</h2>
+<p>Calculate LTV via GET:</p>
+<pre><code>curl "https://metricstree.vercel.app/api/calc?metric=ltv&aov=2500&freq=4&life=3"</code></pre>
+<p>Response:</p>
+<pre><code>{
+  "metric": "ltv",
+  "inputs": { "aov": 2500, "freq": 4, "life": 3 },
+  "formula": "AOV × Frequency × Lifetime",
+  "result": 30000,
+  "unit": "$",
+  "insight": "LTV target ≥ 3× CAC for healthy unit economics",
+  "rating": "high",
+  "calculator_url": "https://metricstree.vercel.app/ltv",
+  "docs_url": "https://metricstree.vercel.app/api-docs"
+}</code></pre>
+
+<h2>Try it now</h2>
+<div class="try-box">
+  <p style="margin-top:0;font-size:.85rem;color:var(--text-3);">Edit URL and hit Calculate:</p>
+  <input id="try-url" value="https://metricstree.vercel.app/api/calc?metric=burnMultiple&burn=500000&newArr=600000">
+  <button id="try-btn">Calculate →</button>
+  <div class="result" id="try-result"></div>
+</div>
+
+<h2>POST with JSON body</h2>
+<pre><code>curl -X POST "https://metricstree.vercel.app/api/calc" \
+  -H "Content-Type: application/json" \
+  -d '{"metric":"nrr","inputs":{"start":1000000,"expansion":200000,"churn":50000,"contraction":10000}}'</code></pre>
+
+<h2>Endpoints</h2>
+<table>
+<thead><tr><th>Endpoint</th><th>Method</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><code>/api/calc</code></td><td>GET, POST</td><td>Calculate any supported metric</td></tr>
+<tr><td><code>/api/lead</code></td><td>POST</td><td>(Internal — used by MetricTree forms only)</td></tr>
+</tbody>
+</table>
+
+<h2>Supported metrics (22)</h2>
+<table>
+<thead><tr><th>metric</th><th>Required inputs</th><th>Returns (unit)</th></tr></thead>
+<tbody>
+<tr><td><code>ltv</code></td><td><code>aov, freq, life</code></td><td>Lifetime Value ($)</td></tr>
+<tr><td><code>cac</code></td><td><code>spend, customers</code></td><td>CAC ($)</td></tr>
+<tr><td><code>ltv_cac</code></td><td><code>ltv, cac</code></td><td>LTV:CAC ratio (x)</td></tr>
+<tr><td><code>mrr</code></td><td><code>mrr</code></td><td>MRR ($)</td></tr>
+<tr><td><code>arr</code></td><td><code>mrr</code></td><td>ARR = MRR×12 ($)</td></tr>
+<tr><td><code>nrr</code></td><td><code>start, expansion, churn, contraction</code></td><td>NRR (%)</td></tr>
+<tr><td><code>grr</code></td><td><code>start, churn, contraction</code></td><td>GRR (%)</td></tr>
+<tr><td><code>churn</code></td><td><code>lost, total</code></td><td>Churn Rate (%)</td></tr>
+<tr><td><code>runway</code></td><td><code>cash, burn</code></td><td>Runway (months)</td></tr>
+<tr><td><code>burnMultiple</code></td><td><code>burn, newArr</code></td><td>Burn Multiple (x)</td></tr>
+<tr><td><code>ruleOf40</code></td><td><code>growth, margin</code></td><td>Rule of 40 (%)</td></tr>
+<tr><td><code>quickRatio</code></td><td><code>newMrr, expansionMrr, churnMrr, contractionMrr</code></td><td>Quick Ratio (x)</td></tr>
+<tr><td><code>magicNumber</code></td><td><code>newArrQuarter, sm</code></td><td>Magic Number (x)</td></tr>
+<tr><td><code>nps</code></td><td><code>promoters, detractors, total</code></td><td>NPS (score)</td></tr>
+<tr><td><code>cacPayback</code></td><td><code>cac, mrrPerCustomer, grossMargin</code></td><td>CAC Payback (months)</td></tr>
+<tr><td><code>roas</code></td><td><code>revenue, spend</code></td><td>ROAS (x)</td></tr>
+<tr><td><code>stickiness</code></td><td><code>dau, mau</code></td><td>Stickiness (%)</td></tr>
+<tr><td><code>salesVelocity</code></td><td><code>opps, acv, winRate, cycleDays</code></td><td>$/day</td></tr>
+<tr><td><code>winRate</code></td><td><code>won, total</code></td><td>Win Rate (%)</td></tr>
+<tr><td><code>pipelineCoverage</code></td><td><code>pipeline, quota</code></td><td>Coverage (x)</td></tr>
+<tr><td><code>aov</code></td><td><code>revenue, orders</code></td><td>AOV ($)</td></tr>
+<tr><td><code>mrrGrowthRate</code></td><td><code>startMrr, endMrr</code></td><td>MoM growth (%)</td></tr>
+</tbody>
+</table>
+
+<h2>JavaScript example</h2>
+<pre><code>// Calculate LTV:CAC from browser
+const r = await fetch('https://metricstree.vercel.app/api/calc?metric=ltv_cac&ltv=15000&cac=3000');
+const data = await r.json();
+console.log(data.result);   // 5
+console.log(data.insight);  // "Excellent (or under-investing in growth)"
+console.log(data.rating);   // "excellent"</code></pre>
+
+<h2>Python example</h2>
+<pre><code>import requests
+
+r = requests.get('https://metricstree.vercel.app/api/calc', params={
+    'metric': 'runway', 'cash': 5000000, 'burn': 300000
+})
+print(r.json())
+# { "result": 16.67, "unit": "months", "rating": "healthy", ... }</code></pre>
+
+<h2>Response format</h2>
+<table>
+<thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td><code>metric</code></td><td>string</td><td>Echo of the requested metric</td></tr>
+<tr><td><code>inputs</code></td><td>object</td><td>Echo of provided inputs</td></tr>
+<tr><td><code>formula</code></td><td>string</td><td>Plain-English formula</td></tr>
+<tr><td><code>result</code></td><td>number | "Infinity"</td><td>Calculated value (rounded to 2 decimals)</td></tr>
+<tr><td><code>unit</code></td><td>string</td><td>"$" / "%" / "x" / "months" / etc</td></tr>
+<tr><td><code>insight</code></td><td>string</td><td>Plain-English interpretation + benchmark</td></tr>
+<tr><td><code>rating</code></td><td>string</td><td>Categorical: "healthy" / "critical" / "excellent" / etc</td></tr>
+<tr><td><code>calculator_url</code></td><td>string</td><td>Link to interactive calculator on MetricTree</td></tr>
+</tbody>
+</table>
+
+<h2>Errors</h2>
+<table>
+<thead><tr><th>Status</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>400</code></td><td>Missing required inputs / invalid JSON body</td></tr>
+<tr><td><code>404</code></td><td>Unknown metric</td></tr>
+<tr><td><code>405</code></td><td>Method not allowed (use GET, POST, or OPTIONS)</td></tr>
+<tr><td><code>422</code></td><td>Inputs valid but calculation undefined (e.g., divide by zero)</td></tr>
+</tbody>
+</table>
+
+<h2>Rate limiting</h2>
+<p>Soft limit ~60 requests/minute per IP (Edge runtime default). No hard limit, no API key required. Be reasonable.</p>
+<p>If you need higher throughput or SLA guarantees — get in touch (<a href="mailto:rodion.121093@gmail.com">rodion.121093@gmail.com</a>). The future Pro tier will include higher limits + sub-50ms guaranteed latency.</p>
+
+<h2>CORS</h2>
+<p><code>Access-Control-Allow-Origin: *</code> — open to all origins. Use directly from browser apps.</p>
+
+<h2>Caching</h2>
+<p><code>Cache-Control: public, max-age=300</code> — responses cacheable 5 minutes (calculations are deterministic by inputs).</p>
+
+<h2>Want a metric we don't support?</h2>
+<p>Open an issue on <a href="https://github.com/Latipov-Rodion/Metrics-Tree/issues" target="_blank">GitHub</a> or email — we'll add it within 48 hours if it's a standard product metric.</p>
+
+<h2>License</h2>
+<p>MIT — use commercially, modify, redistribute. Attribution appreciated but not required.</p>
+
+<h2>Use cases</h2>
+<ul>
+<li><strong>Internal dashboards</strong> — embed metric calculations in your team's Notion/Confluence</li>
+<li><strong>SaaS-blog automation</strong> — auto-update benchmark tables in posts</li>
+<li><strong>Slack/Discord bots</strong> — slash-command to compute metric (just like our Telegram bot)</li>
+<li><strong>Zapier/Make automations</strong> — feed metric calculations into your CRM / spreadsheet</li>
+<li><strong>Learning</strong> — verify your hand-calculation against canonical formula</li>
+</ul>
+
+<div class="footer">
+  Built by <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latypov</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub MIT</a> · <a href="/">Main calculator</a>
+</div>
+</main>
+
+<script>
+document.getElementById('try-btn').addEventListener('click', async () => {
+  const url = document.getElementById('try-url').value.trim();
+  const out = document.getElementById('try-result');
+  out.style.display = 'block';
+  out.textContent = 'Loading...';
+  try {
+    const r = await fetch(url);
+    const j = await r.json();
+    out.textContent = `HTTP ${r.status}\n\n${JSON.stringify(j, null, 2)}`;
+  } catch (e) {
+    out.textContent = 'Error: ' + e.message;
+  }
+});
+</script>
+</body>
+</html>

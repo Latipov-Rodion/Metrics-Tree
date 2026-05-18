@@ -85,6 +85,7 @@
   <url><loc>https://metricstree.vercel.app/vs-chartmogul</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
   <url><loc>https://metricstree.vercel.app/embed</loc><changefreq>monthly</changefreq><priority>0.85</priority></url>
   <url><loc>https://metricstree.vercel.app/changelog</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://metricstree.vercel.app/api-docs</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <!-- Blog -->
   <url><loc>https://metricstree.vercel.app/blog/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://metricstree.vercel.app/blog/burn-multiple-saas-2026</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>

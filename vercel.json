@@ -12,6 +12,8 @@
     { "source": "/embed", "destination": "/embed.html" },
     { "source": "/embed-builder", "destination": "/embed.html" },
     { "source": "/changelog", "destination": "/changelog.html" },
+    { "source": "/api-docs", "destination": "/api-docs.html" },
+    { "source": "/docs", "destination": "/api-docs.html" },
     { "source": "/blog", "destination": "/blog/index.html" },
     { "source": "/blog/", "destination": "/blog/index.html" },
     { "source": "/blog/burn-multiple-saas-2026", "destination": "/blog/burn-multiple-saas-2026.html" },
