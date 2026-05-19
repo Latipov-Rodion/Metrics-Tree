@@ -5331,10 +5331,11 @@ window._tTooltip = function(ruText) {
         const metric = getCurrentMetric();
         if (!metric) return;
         const saved = storedValues[metricId];
-        // First-visit auto-prefill: if NO metric has ever been used (entire storedValues is empty)
-        // AND no saved value for THIS metric, populate inputs from placeholder values so the
-        // calculator shows a real result + insight on first paint — instant "aha".
-        const isFirstVisit = !Object.keys(storedValues).length && !saved;
+        // Auto-prefill for THIS metric if user has no saved values for it yet.
+        // Fires both on first-ever visit AND when user lands via deep-link on a metric
+        // they haven't used before (even if other metrics have stored values).
+        // Every metric page shows instant aha → never empty calculator.
+        const isFirstVisit = !saved || Object.keys(saved).length === 0;
         let prefilled = false;
         metric.inputs.forEach(inp => {
             const el = document.getElementById(`input-${inp.key}`);
