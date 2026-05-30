@@ -203,27 +203,62 @@ const SHORT_NAME = {
   aov: 'AOV', repeatPurchaseRate: 'Repeat Purchase Rate', engagementRate: 'Engagement Rate'
 };
 
-function renderRelatedStatic(metricId) {
-  const rels = RELATED[metricId];
-  if (!rels || !rels.length) return '';
-  const items = rels.map(({ id, note }) => {
-    const name = SHORT_NAME[id] || id;
-    return `      <li><a href="/${id}"><strong>${name}</strong></a> — ${note}</li>`;
-  }).join('\n');
-  // The static block is removed by JS once the SPA hydrates (renderRelated() shows the
-  // dynamic version in #relatedBlock with richer markup). If JS fails or is disabled,
-  // crawlers and users still see this block.
+// Pull the Russian formula / description / threshold straight out of the metricsData
+// object in index.html so the SEO prose can never drift from the live calculator.
+// metricsData uses single-quoted strings with no escaped apostrophes (an unescaped
+// ' would be a JS syntax error), so [^']* is a safe capture.
+function extractMetricData(template, id) {
+  const re = new RegExp(
+    `id: '${id}', name: '([^']*)',[\\s\\S]*?formula: '([^']*)',[\\s\\S]*?description: '([^']*)'` +
+    `(?:,[\\s\\S]*?threshold: '([^']*)')?`
+  );
+  const m = template.match(re);
+  if (!m) return null;
+  return { name: m[1], formula: m[2], description: m[3], threshold: m[4] || '' };
+}
+
+const esc = s => String(s == null ? '' : s)
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+// Visible, unique, crawlable content block appended to the <main> of each per-metric
+// page. Mirrors the FAQ JSON-LD (Google wants structured data to match visible text),
+// adds the live formula/description/benchmark, and surfaces internal links as real
+// anchors (not JS-hidden), fixing the thin/duplicate-content risk across the 49 clones.
+function renderSeoSection(template, id, meta) {
+  const data = extractMetricData(template, id);
+  if (!data) return '';
+  const shortName = SHORT_NAME[id] || data.name;
+
+  const faqEntries = (meta.faq && meta.faq.length) ? meta.faq : [{ q: meta.q, a: meta.a }];
+  const faqHtml = faqEntries
+    .filter(f => f && f.q && f.a)
+    .map(f => `        <details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`)
+    .join('\n');
+
+  const rels = RELATED[id] || [];
+  const relHtml = rels.length
+    ? `      <h3>Связанные метрики</h3>\n      <ul class="seo-related">\n` +
+      rels.map(r => `        <li><a href="/${r.id}">${esc(SHORT_NAME[r.id] || r.id)}</a></li>`).join('\n') +
+      `\n      </ul>`
+    : '';
+
+  const thresholdHtml = data.threshold
+    ? `      <h3>Отраслевые бенчмарки</h3>\n      <p>${esc(data.threshold)}</p>`
+    : '';
+
   return `
-<!-- Cross-metric internal links — static HTML for SEO crawlers + no-JS fallback.
-     Client-side SPA removes this on hydrate; renderRelated() shows dynamic version. -->
-<aside class="related-static" data-spa-replace="true" aria-label="Связанные метрики" style="max-width:900px;margin:2rem auto 1rem;padding:1rem 1.25rem;border-top:1px solid var(--border,#2C2F33);font-size:0.85rem;color:var(--text-2,#B0B3B8);">
-  <h3 style="font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-3,#6b6f75);margin:0 0 0.5rem;">См. также</h3>
-  <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0.4rem 1rem;">
-${items}
-  </ul>
-</aside>
-<script>document.querySelectorAll('aside[data-spa-replace]').forEach(el => { /* visually hide once JS loads — kept in DOM for crawlers */ el.style.display = 'none'; });</script>
-`;
+    <section class="metric-seo" aria-label="О метрике ${esc(shortName)}">
+      <h2>Что такое ${esc(shortName)}</h2>
+      <p>${esc(data.description)}</p>
+      <h3>Формула расчёта ${esc(shortName)}</h3>
+      <p><span class="seo-formula">${esc(data.formula)}</span></p>
+${thresholdHtml}
+      <h3>Частые вопросы про ${esc(shortName)}</h3>
+      <div class="seo-faq">
+${faqHtml}
+      </div>
+${relHtml}
+    </section>`;
 }
 
 function buildHtml(template, id, meta) {
@@ -326,10 +361,12 @@ ${JSON.stringify(breadcrumbJson, null, 2)}
 `;
   html = html.replace('</head>', perMetricFaq + '</head>');
 
-  // Static "See also" block right before </body> — crawler-visible internal links.
-  const staticRelated = renderRelatedStatic(id);
-  if (staticRelated) {
-    html = html.replace('</body>', staticRelated + '</body>');
+  // Visible per-metric SEO content (formula, benchmarks, FAQ, related links) injected
+  // before </main>. Replaces the old JS-hidden "See also" block: this content stays
+  // visible after hydration, matches the FAQ JSON-LD, and gives each clone unique prose.
+  const seoSection = renderSeoSection(template, id, meta);
+  if (seoSection) {
+    html = html.replace('</main>', seoSection + '\n    </main>');
   }
 
   return html;

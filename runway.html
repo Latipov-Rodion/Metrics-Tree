@@ -2030,6 +2030,24 @@
             .metric-description { margin-bottom: 0.3rem; font-size: 0.85rem; }
             .input-group { margin-bottom: 0.6rem; }
         }
+        /* Per-metric SEO content section (injected by build.mjs into generated pages).
+           Visible, unique, crawlable prose — matches the page's FAQ JSON-LD. Hidden in
+           embed mode so the iframe widget stays clean. */
+        .metric-seo { max-width: 820px; margin: 2.5rem auto 1rem; padding: 0 1.25rem; color: var(--text-1); }
+        .metric-seo h2 { font-size: 1.15rem; margin: 1.6rem 0 0.6rem; }
+        .metric-seo h3 { font-size: 0.98rem; margin: 1.1rem 0 0.35rem; color: var(--text-1); }
+        .metric-seo p, .metric-seo li { font-size: 0.92rem; line-height: 1.6; color: var(--text-2); }
+        .metric-seo .seo-formula { display: inline-block; background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-sm); padding: 0.35rem 0.6rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.88rem; color: var(--text-1); }
+        .metric-seo .seo-faq { margin-top: 0.75rem; }
+        .metric-seo .seo-faq details { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0.5rem 0.75rem; margin-bottom: 0.5rem; background: var(--bg-card); }
+        .metric-seo .seo-faq summary { cursor: pointer; font-weight: 600; color: var(--text-1); font-size: 0.92rem; }
+        .metric-seo .seo-faq details[open] summary { margin-bottom: 0.4rem; }
+        .metric-seo .seo-related { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .metric-seo .seo-related a { display: inline-block; background: var(--accent-dim); color: var(--accent);
+            text-decoration: none; padding: 0.3rem 0.7rem; border-radius: 999px; font-size: 0.85rem; }
+        body.embed .metric-seo { display: none; }
     </style>
     <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
     <!-- Vercel Speed Insights -->
@@ -2037,6 +2055,12 @@
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
+    <script>
+        // Vercel Web Analytics custom events. window.va is provided by the insights
+        // script above; queue calls before it loads. No PII — only metric ids / sources.
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+        window.track = function (name, data) { try { window.va('event', { name: name, data: data || {} }); } catch (e) {} };
+    </script>
 
     <script type="application/ld+json">
 {
@@ -2398,6 +2422,28 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
             <div id="deepContentSlot"></div>
         </article>
+    
+    <section class="metric-seo" aria-label="О метрике Runway">
+      <h2>Что такое Runway</h2>
+      <p>Сколько месяцев компания проживёт на текущем уровне сжигания. Ключевая метрика для стартапов и pre-IPO.</p>
+      <h3>Формула расчёта Runway</h3>
+      <p><span class="seo-formula">Кэш / Среднемесячное сжигание</span></p>
+      <h3>Отраслевые бенчмарки</h3>
+      <p>&lt;6 мес критично, 6–12 рискованно, 12–18 норма, &gt;18 здорово</p>
+      <h3>Частые вопросы про Runway</h3>
+      <div class="seo-faq">
+        <details><summary>Как считать Runway?</summary><p>Runway (мес) = Кэш на балансе / Net Burn в месяц. Net Burn = Расходы − Выручка. Берите средний burn за последние 3 месяца, не один последний — он volatile.</p></details>
+        <details><summary>Когда начинать фандрейзинг?</summary><p>Standard: ставьте на стол ≥ 6 мес runway. SaaS fundraise обычно занимает 3–6 мес. Если runway &lt;9 мес — начинайте уже. &lt;6 мес — слабая переговорная позиция (term sheet hostage).</p></details>
+        <details><summary>Какой runway считается здоровым?</summary><p>&lt;6 мес — критично, экстренные cost-cuts. 6–12 мес — фандрейзинг. 12–18 мес — норма для seed/Series A. 18–24 мес — отличная позиция. &gt;24 мес — раунд был «лишним».</p></details>
+        <details><summary>Как продлить Runway?</summary><p>(1) сокращение расходов (хедкаунт — 70% бюджета SaaS), (2) ускорение revenue (annual prepay, ценообразование), (3) bridge от existing инвесторов, (4) venture debt (Brex, SVB, Silicon Valley Bridge). Cut + grow одновременно.</p></details>
+      </div>
+      <h3>Связанные метрики</h3>
+      <ul class="seo-related">
+        <li><a href="/burnRate">Burn Rate</a></li>
+        <li><a href="/burnMultiple">Burn Multiple</a></li>
+        <li><a href="/arr">ARR</a></li>
+      </ul>
+    </section>
     </main>
     <div class="embed-footer" aria-hidden="true">
         Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 52 продуктовых метрики с формулами
@@ -5408,6 +5454,7 @@ window._tTooltip = function(ruText) {
         void resultBlock.offsetWidth;
         resultBlock.classList.add('result-animate');
         renderSnapshotsBlock();
+        if (window.track) window.track('calc', { metric: metric.id, lang: (window._currentLang ? window._currentLang() : 'ru') });
     }
 
     function saveCurrentValues() {
@@ -5804,6 +5851,7 @@ window._tTooltip = function(ruText) {
             const embedUrl = `https://metricstree.vercel.app/${m}?embed=1`;
             const iframe = `<iframe src="${embedUrl}" width="100%" height="640" style="border:1px solid #ddd;border-radius:8px;" loading="lazy" title="MetricTree — ${m}"></iframe>`;
             const onOk = () => showToast('🔗 Embed-код скопирован', 'success');
+            if (window.track) window.track('embed_copy', { metric: m });
             navigator.clipboard.writeText(iframe).then(onOk).catch(() => {
                 const ta = document.createElement('textarea');
                 ta.value = iframe; ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
@@ -6169,6 +6217,7 @@ window._tTooltip = function(ruText) {
     document.getElementById('shareLinkBtn').addEventListener('click', () => {
         const url = buildShareURL({ clean: true });
         const onOk = () => showToast('🔗 Ссылка скопирована', 'success');
+        if (window.track) window.track('share', { method: 'copy_link', metric: (currentMetricId || '') });
         navigator.clipboard.writeText(url).then(onOk).catch(() => {
             const ta = document.createElement('textarea');
             ta.value = url; ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
@@ -6203,6 +6252,7 @@ window._tTooltip = function(ruText) {
         const txt = _composeShareText();
         const full = txt.length > 240 ? txt.slice(0, 237) + '…' : txt;
         const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(full)}&url=${encodeURIComponent(url)}&via=rodion_latipov`;
+        if (window.track) window.track('share', { method: 'twitter', metric: (currentMetricId || '') });
         _openShareWindow(intent);
     });
     const _liBtn = document.getElementById('shareLinkedinBtn');
@@ -6211,6 +6261,7 @@ window._tTooltip = function(ruText) {
         // LinkedIn's modern share intent only accepts URL — they pull title/desc from OG.
         // For pre-filled text we'd need a feed/share/article endpoint with auth — keep simple.
         const intent = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+        if (window.track) window.track('share', { method: 'linkedin', metric: (currentMetricId || '') });
         _openShareWindow(intent);
     });
 
@@ -7966,6 +8017,7 @@ window._tTooltip = function(ruText) {
                 ok = resp.ok;
             } catch (err) { ok = false; }
             if (ok) {
+                if (window.track) window.track('lead', { source: source });
                 formEl.style.display = 'none';
                 if (successEl) successEl.style.display = 'block';
                 showToast('✓ ' + (window._t ? window._t('newsletter.success', 'Подписка оформлена!') : 'Subscribed!'), 'success');
@@ -8489,17 +8541,5 @@ window._tTooltip = function(ruText) {
         <button type="submit" data-t="footer.subscribe">Подписаться</button>
     </form>
 </footer>
-
-<!-- Cross-metric internal links — static HTML for SEO crawlers + no-JS fallback.
-     Client-side SPA removes this on hydrate; renderRelated() shows dynamic version. -->
-<aside class="related-static" data-spa-replace="true" aria-label="Связанные метрики" style="max-width:900px;margin:2rem auto 1rem;padding:1rem 1.25rem;border-top:1px solid var(--border,#2C2F33);font-size:0.85rem;color:var(--text-2,#B0B3B8);">
-  <h3 style="font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-3,#6b6f75);margin:0 0 0.5rem;">См. также</h3>
-  <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0.4rem 1rem;">
-      <li><a href="/burnRate"><strong>Burn Rate</strong></a> — знаменатель формулы</li>
-      <li><a href="/burnMultiple"><strong>Burn Multiple</strong></a> — Burn Multiple — эффективность burn</li>
-      <li><a href="/arr"><strong>ARR</strong></a> — рост ARR продлевает runway</li>
-  </ul>
-</aside>
-<script>document.querySelectorAll('aside[data-spa-replace]').forEach(el => { /* visually hide once JS loads — kept in DOM for crawlers */ el.style.display = 'none'; });</script>
 </body>
 </html>
