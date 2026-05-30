@@ -3,6 +3,8 @@
   "cleanUrls": false,
   "trailingSlash": false,
   "rewrites": [
+    { "source": "/en", "destination": "/index.html" },
+    { "source": "/uz", "destination": "/index.html" },
     { "source": "/vs-profitwell", "destination": "/vs-profitwell.html" },
     { "source": "/vs-baremetrics", "destination": "/vs-baremetrics.html" },
     { "source": "/vs-causal", "destination": "/vs-causal.html" },

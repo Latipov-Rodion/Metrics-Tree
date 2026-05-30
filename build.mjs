@@ -300,12 +300,24 @@ function buildHtml(template, id, meta) {
       }
     ]
   };
+  // BreadcrumbList JSON-LD — gives Google a "MetricTree › <Metric>" trail in SERPs.
+  const breadcrumbJson = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'MetricTree', 'item': `${SITE}/` },
+      { '@type': 'ListItem', 'position': 2, 'name': SHORT_NAME[id] || metricName, 'item': url },
+    ],
+  };
   const perMetricFaq = `
     <script type="application/ld+json">
 ${JSON.stringify(faqJson, null, 2)}
     </script>
     <script type="application/ld+json">
 ${JSON.stringify(howToJson, null, 2)}
+    </script>
+    <script type="application/ld+json">
+${JSON.stringify(breadcrumbJson, null, 2)}
     </script>
     <link rel="alternate" hreflang="ru" href="${SITE}/${id}">
     <link rel="alternate" hreflang="en" href="${SITE}/en/${id}">
@@ -323,6 +335,74 @@ ${JSON.stringify(howToJson, null, 2)}
   return html;
 }
 
+// Generate sitemap.xml — full RU/EN/UZ coverage for every metric, with hreflang
+// alternates and lastmod. Replaces the previously hand-maintained file that had
+// an invalid xmlns, missing EN/UZ metric URLs, and no lastmod/hreflang.
+function generateSitemap() {
+  const today = new Date().toISOString().slice(0, 10);
+
+  const urlNode = (loc, { priority = '0.7', changefreq = 'weekly', alts = null } = {}) => {
+    const altLinks = alts
+      ? alts.map(a => `<xhtml:link rel="alternate" hreflang="${a.lang}" href="${a.href}"/>`).join('')
+      : '';
+    return `<url><loc>${loc}</loc><lastmod>${today}</lastmod><changefreq>${changefreq}</changefreq><priority>${priority}</priority>${altLinks}</url>`;
+  };
+
+  const urls = [];
+
+  // Homepage in all three languages.
+  const homeAlts = [
+    { lang: 'ru', href: `${SITE}/` },
+    { lang: 'en', href: `${SITE}/en` },
+    { lang: 'uz', href: `${SITE}/uz` },
+    { lang: 'x-default', href: `${SITE}/` },
+  ];
+  urls.push(urlNode(`${SITE}/`, { priority: '1.0', alts: homeAlts }));
+  urls.push(urlNode(`${SITE}/en`, { priority: '0.8', alts: homeAlts }));
+  urls.push(urlNode(`${SITE}/uz`, { priority: '0.8', alts: homeAlts }));
+
+  // Per-metric pages: RU root + /en/ + /uz/, each cross-linked via hreflang.
+  for (const id of Object.keys(META)) {
+    const alts = [
+      { lang: 'ru', href: `${SITE}/${id}` },
+      { lang: 'en', href: `${SITE}/en/${id}` },
+      { lang: 'uz', href: `${SITE}/uz/${id}` },
+      { lang: 'x-default', href: `${SITE}/${id}` },
+    ];
+    urls.push(urlNode(`${SITE}/${id}`, { priority: '0.8', alts }));
+    urls.push(urlNode(`${SITE}/en/${id}`, { priority: '0.7', alts }));
+    urls.push(urlNode(`${SITE}/uz/${id}`, { priority: '0.7', alts }));
+  }
+
+  // Hand-authored standalone public pages (RU only).
+  const standalone = [
+    'press', 'embed', 'changelog', 'api-docs',
+    'vs-profitwell', 'vs-baremetrics', 'vs-causal', 'vs-chartmogul',
+  ];
+  for (const p of standalone) {
+    urls.push(urlNode(`${SITE}/${p}`, { priority: '0.6', changefreq: 'monthly' }));
+  }
+
+  // Blog: derive live clean-URL slugs from vercel.json rewrites (source of truth
+  // for which posts are actually reachable) to avoid 404s in the sitemap.
+  urls.push(urlNode(`${SITE}/blog`, { priority: '0.8', changefreq: 'weekly' }));
+  const vercel = fs.readFileSync(path.join(ROOT, 'vercel.json'), 'utf8');
+  const blogSlugs = [...new Set(
+    [...vercel.matchAll(/"source":\s*"\/blog\/([a-z0-9-]+)"/g)].map(m => m[1])
+  )].filter(s => s !== 'index');
+  for (const slug of blogSlugs) {
+    urls.push(urlNode(`${SITE}/blog/${slug}`, { priority: '0.7', changefreq: 'monthly' }));
+  }
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${urls.join('\n')}
+</urlset>
+`;
+  fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), xml);
+  return urls.length;
+}
+
 function main() {
   const indexPath = path.join(ROOT, 'index.html');
   const template = fs.readFileSync(indexPath, 'utf8');
@@ -334,6 +414,9 @@ function main() {
     generated++;
   }
   console.log(`✓ Generated ${generated} per-metric HTML files`);
+
+  const sitemapUrls = generateSitemap();
+  console.log(`✓ Generated sitemap.xml with ${sitemapUrls} URLs`);
 }
 
 main();
