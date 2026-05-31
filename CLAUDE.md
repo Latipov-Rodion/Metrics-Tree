@@ -4,7 +4,7 @@ Guidance for AI assistants (Claude Code and others) working in this repository.
 
 ## What this project is
 
-**MetricTree** (metricstree.vercel.app) is a free online calculator for ~52 product
+**MetricTree** (metricstree.vercel.app) is a free online calculator for 48 product
 metrics (LTV, CAC, MRR, ARR, Churn, DAU/MAU, NPS, Runway, etc.), with formulas,
 industry benchmarks, and result interpretation. It targets product managers,
 marketers, analysts, and founders. UI is trilingual: **Russian (default), English,
@@ -25,7 +25,7 @@ Match the existing language when editing content; keep code identifiers in Engli
 ## Repository layout
 
 ```
-index.html              ← THE app. HTML+CSS+JS+52 metric defs+i18n, all inline. Source of truth.
+index.html              ← THE app. HTML+CSS+JS+48 metric defs+i18n, all inline. Source of truth.
 build.mjs               ← Generates 49 per-metric SEO pages (dau.html, ltv.html, …) from index.html
 build-blog.mjs          ← Converts blog-src/*.md → blog/*.html (Markdown → static HTML)
 bot.py                  ← Telegram bot companion (python-telegram-bot v21), standalone process
