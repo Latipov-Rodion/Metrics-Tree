@@ -2574,6 +2574,12 @@ window.I18N_UI = {
     'footer.pricing': 'Pro / Team',
     'footer.help': 'Help',
     'footer.subscribe': 'Subscribe',
+    'footer.cheatsheet': 'PDF cheat sheet',
+    'cheatsheet.title': '📥 Free PDF cheat sheet: 48 metrics with formulas and benchmarks',
+    'cheatsheet.placeholder': 'you@company.com',
+    'cheatsheet.cta': 'Get the PDF →',
+    'cheatsheet.success': '✓ Done!',
+    'cheatsheet.open': 'Open the cheat sheet and save as PDF →',
     'pricing.title': '💎 MetricTree Plans',
     'pricing.subtitle': 'The current calculator is free forever. Pro and Team are for teams and advanced scenarios. We are building a waitlist now — leave your email to get early access + 50% off the first year.',
     'pricing.tier_free': 'Free',
@@ -7923,6 +7929,9 @@ window._tTooltip = function(ruText) {
     function bindLateModalLinks() {
         bindFormspreeForm(document.getElementById('newsletterFormAbout'), document.getElementById('newsletterAboutSuccess'), 'about');
         bindFormspreeForm(document.getElementById('newsletterFormFooter'), null, 'footer');
+        // Lead magnet: free PDF benchmarks cheat sheet. Same /api/lead path (saveLeadLocally
+        // + lead event + mailto fallback); on success reveals the link to open & print it.
+        bindFormspreeForm(document.getElementById('cheatsheetFormEl'), document.getElementById('cheatsheetSuccess'), 'pdf_benchmarks');
 
         const footerAbout = document.getElementById('footerAbout');
         if (footerAbout) footerAbout.addEventListener('click', e => { e.preventDefault(); document.getElementById('aboutOverlay')?.classList.add('show'); });
@@ -8418,6 +8427,19 @@ window._tTooltip = function(ruText) {
         <a href="#" id="footerAbout" data-t="footer.about">О продукте</a>
         <a href="#" id="footerPricing" data-t="footer.pricing">Pro / Team</a>
         <a href="#" id="footerHelp" data-t="footer.help">Справка</a>
+        <a href="/benchmarks" data-t="footer.cheatsheet">PDF-шпаргалка</a>
+    </div>
+    <div class="footer-leadmagnet" style="width:100%;max-width:560px;margin:0.5rem auto 0;text-align:center;">
+        <strong style="display:block;font-size:0.9rem;color:var(--text-1);margin-bottom:0.5rem;" data-t="cheatsheet.title">📥 Бесплатная PDF-шпаргалка: 48 метрик с формулами и порогами</strong>
+        <form action="/api/lead" method="POST" id="cheatsheetFormEl" style="display:flex;gap:0.45rem;flex-wrap:wrap;justify-content:center;">
+            <input type="hidden" name="source" value="pdf_benchmarks">
+            <input type="hidden" name="_subject" value="MetricTree PDF cheat sheet download">
+            <input type="email" name="email" required placeholder="you@company.com" aria-label="Email" data-t-attr-placeholder="cheatsheet.placeholder" autocomplete="email" style="flex:1;min-width:200px;padding:0.55rem 0.7rem;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--text-1);font-size:0.9rem;">
+            <button type="submit" data-t="cheatsheet.cta" style="padding:0.55rem 1rem;border:0;border-radius:var(--radius-sm);background:var(--accent);color:#fff;font-weight:600;font-size:0.9rem;cursor:pointer;">Получить PDF →</button>
+        </form>
+        <div id="cheatsheetSuccess" style="display:none;font-size:0.88rem;margin-top:0.5rem;">
+            <span data-t="cheatsheet.success">✓ Готово!</span> <a href="/benchmarks" target="_blank" rel="noopener" style="color:var(--accent);" data-t="cheatsheet.open">Открыть шпаргалку и сохранить в PDF →</a>
+        </div>
     </div>
     <form action="/api/lead" method="POST" id="newsletterFormFooter" class="site-footer-news">
         <input type="hidden" name="_subject" value="MetricTree Newsletter signup (footer)">
