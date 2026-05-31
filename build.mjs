@@ -413,7 +413,7 @@ function generateSitemap() {
 
   // Hand-authored standalone public pages (RU only).
   const standalone = [
-    'press', 'embed', 'changelog', 'api-docs',
+    'press', 'embed', 'changelog', 'api-docs', 'benchmarks',
     'vs-profitwell', 'vs-baremetrics', 'vs-causal', 'vs-chartmogul',
   ];
   for (const p of standalone) {
@@ -440,6 +440,88 @@ ${urls.join('\n')}
   return urls.length;
 }
 
+// Lead-magnet asset: a standalone, print-to-PDF cheat sheet of every metric's
+// formula + industry benchmark, pulled from metricsData so it never drifts. Served
+// at /benchmarks; the homepage email-gates it (fires the `lead` analytics event,
+// then opens this page for "Save as PDF"). Self-contained — no app bundle, fast.
+function generateBenchmarksPage(template) {
+  const rows = Object.keys(META).map(id => {
+    const d = extractMetricData(template, id);
+    if (!d) return '';
+    const name = SHORT_NAME[id] || d.name;
+    return `      <tr>
+        <td class="m-name">${esc(name)}</td>
+        <td class="m-formula">${esc(d.formula)}</td>
+        <td class="m-bench">${esc(d.threshold || '—')}</td>
+      </tr>`;
+  }).filter(Boolean).join('\n');
+
+  const count = Object.keys(META).length;
+  const today = new Date().toISOString().slice(0, 10);
+
+  const html = `<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${count} продуктовых метрик: формулы и бенчмарки — шпаргалка | MetricTree</title>
+<meta name="description" content="Бесплатная PDF-шпаргалка: формулы и отраслевые пороги для ${count} продуктовых метрик (LTV, CAC, MRR, NRR, Burn Multiple, Rule of 40 и др.). От MetricTree.">
+<link rel="canonical" href="${SITE}/benchmarks">
+<style>
+  :root { --ink:#0A0C0E; --muted:#5b6068; --line:#e3e6ea; --accent:#2A6DF4; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink); max-width: 980px; margin: 0 auto; padding: 2rem 1.25rem 4rem; line-height: 1.5; }
+  header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem;
+    border-bottom: 2px solid var(--accent); padding-bottom: 0.75rem; margin-bottom: 1.25rem; }
+  h1 { font-size: 1.5rem; margin: 0; }
+  .sub { color: var(--muted); font-size: 0.9rem; }
+  .toolbar { margin: 0 0 1.5rem; }
+  .print-btn { background: var(--accent); color: #fff; border: 0; border-radius: 8px; padding: 0.6rem 1.1rem;
+    font-size: 0.95rem; font-weight: 600; cursor: pointer; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  th, td { text-align: left; vertical-align: top; padding: 0.55rem 0.6rem; border-bottom: 1px solid var(--line); }
+  th { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+  .m-name { font-weight: 700; white-space: nowrap; }
+  .m-formula { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: #1a2733; }
+  .m-bench { color: var(--muted); }
+  footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.82rem; }
+  footer a { color: var(--accent); text-decoration: none; }
+  @media print {
+    .toolbar { display: none; }
+    body { padding: 0; max-width: none; font-size: 10.5px; }
+    th, td { padding: 4px 6px; }
+    tr { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>${count} продуктовых метрик: формулы и бенчмарки</h1>
+    <span class="sub">MetricTree · обновлено ${today}</span>
+  </header>
+  <div class="toolbar">
+    <button class="print-btn" onclick="window.print()">🖨️ Сохранить в PDF / распечатать</button>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Метрика</th><th>Формула</th><th>Отраслевой порог</th></tr>
+    </thead>
+    <tbody>
+${rows}
+    </tbody>
+  </table>
+  <footer>
+    Источник: <a href="${SITE}/">metricstree.vercel.app</a> — бесплатный калькулятор ${count} продуктовых метрик
+    с формулами, порогами и интерпретацией. RU / EN / UZ. © Родион Латыпов.
+  </footer>
+</body>
+</html>
+`;
+  fs.writeFileSync(path.join(ROOT, 'benchmarks.html'), html);
+  return count;
+}
+
 function main() {
   const indexPath = path.join(ROOT, 'index.html');
   const template = fs.readFileSync(indexPath, 'utf8');
@@ -451,6 +533,9 @@ function main() {
     generated++;
   }
   console.log(`✓ Generated ${generated} per-metric HTML files`);
+
+  const benchCount = generateBenchmarksPage(template);
+  console.log(`✓ Generated benchmarks.html (${benchCount} metrics)`);
 
   const sitemapUrls = generateSitemap();
   console.log(`✓ Generated sitemap.xml with ${sitemapUrls} URLs`);
