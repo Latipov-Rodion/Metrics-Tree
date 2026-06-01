@@ -40,3 +40,14 @@ jobs:
         with:
           node-version: '20'
       - run: node validate-site.mjs
+
+  # Unit tests for the public calculator API (api/calc.js formulas + handler).
+  unit-tests:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node --test test/*.test.mjs

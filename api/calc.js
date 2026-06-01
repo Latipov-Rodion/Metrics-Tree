@@ -19,7 +19,8 @@
 export const config = { runtime: 'edge' };
 
 // Calculators — single source of truth. Each returns { result, unit, insight, rating }.
-const CALCULATORS = {
+// Exported so the unit tests (test/calc.test.mjs) can assert the formulas directly.
+export const CALCULATORS = {
   ltv: {
     inputs: ['aov', 'freq', 'life'],
     calc: ({ aov, freq, life }) => aov * freq * life,
