@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Metric Report — MetricTree</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<style>
+@page { size: A4; margin: 1.2cm; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #fff; color: #1A1C1F; font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.5; }
+body { padding: 1.5rem; }
+.toolbar { background: #1A1C1F; color: #fff; padding: 0.6rem 1rem; border-radius: 0.5rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap; }
+.toolbar .left { display: flex; align-items: center; gap: 0.5rem; font-weight: 600; font-size: 0.95rem; }
+.toolbar button { background: #2A6DF4; color: #fff; border: 0; padding: 0.45rem 0.9rem; border-radius: 0.4rem; font-weight: 600; cursor: pointer; font-size: 0.85rem; }
+.toolbar button:hover { opacity: 0.92; }
+.toolbar a { color: #B0B3B8; text-decoration: none; font-size: 0.85rem; }
+.toolbar input { background: #0A0C0E; color: #fff; border: 1px solid #2C2F33; padding: 0.35rem 0.55rem; border-radius: 0.3rem; font-size: 0.82rem; }
+
+@media print {
+  .toolbar { display: none !important; }
+  body { padding: 0; }
+}
+
+.header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #2A6DF4; padding-bottom: 0.8rem; margin-bottom: 1.5rem; }
+.header .brand { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em; }
+.header .brand-mark { display: inline-block; width: 22px; height: 22px; background: #2A6DF4; border-radius: 5px; vertical-align: middle; margin-right: 0.5rem; }
+.header .meta { text-align: right; color: #777; font-size: 0.82rem; }
+
+h1 { font-size: 1.6rem; margin: 0.5rem 0 0.3rem; }
+.subtitle { color: #777; font-size: 0.95rem; margin: 0 0 1.5rem; }
+
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.7rem; margin-bottom: 1.5rem; }
+.summary-card { background: #f8f9fa; border: 1px solid #e1e4e8; border-radius: 0.6rem; padding: 0.8rem 1rem; }
+.summary-card .label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #777; letter-spacing: 0.04em; }
+.summary-card .value { font-size: 1.4rem; font-weight: 700; color: #2A6DF4; margin-top: 0.2rem; }
+.summary-card.bad .value { color: #F44336; }
+.summary-card.good .value { color: #4CAF50; }
+.summary-card .insight { font-size: 0.72rem; color: #555; margin-top: 0.2rem; line-height: 1.3; }
+
+h2 { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; padding-bottom: 0.3rem; border-bottom: 1px solid #e1e4e8; page-break-after: avoid; }
+
+.metric-block { background: #fbfbfc; border: 1px solid #e1e4e8; border-radius: 0.6rem; padding: 0.85rem 1.1rem; margin-bottom: 0.75rem; page-break-inside: avoid; }
+.metric-block .metric-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.35rem; }
+.metric-block h3 { font-size: 1rem; margin: 0; }
+.metric-block .formula { font-size: 0.78rem; color: #777; font-family: 'Menlo', monospace; }
+.metric-block .result-row { display: flex; gap: 1rem; align-items: baseline; margin: 0.4rem 0; flex-wrap: wrap; }
+.metric-block .result-val { font-size: 1.35rem; font-weight: 700; color: #2A6DF4; }
+.metric-block .rating { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+.rating-healthy, .rating-excellent, .rating-amazing, .rating-great, .rating-good, .rating-top_decile, .rating-top_quartile, .rating-world_class, .rating-top_tier { background: rgba(76,175,80,0.15); color: #2E7D32; }
+.rating-acceptable, .rating-ok, .rating-marginal, .rating-tight, .rating-weak, .rating-yc_min, .rating-suspect { background: rgba(255,193,7,0.18); color: #F57C00; }
+.rating-bad, .rating-critical, .rating-losing, .rating-decaying, .rating-high, .rating-low, .rating-unprofitable, .rating-below_min, .rating-below_norm { background: rgba(244,67,54,0.15); color: #C62828; }
+.metric-block .insight { font-size: 0.82rem; color: #444; margin-top: 0.3rem; }
+.metric-block .inputs { font-size: 0.72rem; color: #999; margin-top: 0.4rem; font-family: 'Menlo', monospace; }
+
+.recommendations { background: #f0f5ff; border-left: 3px solid #2A6DF4; padding: 0.8rem 1rem; margin: 1.5rem 0 1rem; border-radius: 0.4rem; }
+.recommendations h2 { border: 0; margin: 0 0 0.5rem; font-size: 1rem; }
+.recommendations ul { margin: 0; padding-left: 1.1rem; font-size: 0.85rem; line-height: 1.55; }
+.recommendations li { margin-bottom: 0.35rem; }
+
+.footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e1e4e8; font-size: 0.74rem; color: #777; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.footer a { color: #2A6DF4; text-decoration: none; }
+
+.error { background: #FEF2F2; border: 1px solid #FCA5A5; color: #B91C1C; padding: 0.85rem 1rem; border-radius: 0.5rem; margin: 1rem 0; }
+.empty { text-align: center; padding: 3rem 1rem; color: #777; }
+.empty a { color: #2A6DF4; }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="left">📄 PDF Report — выбраны метрики: <span id="metric-count">…</span></div>
+  <div style="display:flex; gap:0.5rem; align-items:center;">
+    <input id="company-input" placeholder="Имя компании (опционально)" style="width: 200px;">
+    <button id="apply-company">Применить</button>
+    <button id="print-btn">📄 Скачать как PDF</button>
+    <a href="/">← Главная</a>
+  </div>
+</div>
+
+<div class="header">
+  <div>
+    <span class="brand"><span class="brand-mark"></span>MetricTree</span>
+  </div>
+  <div class="meta">
+    <div id="report-date">2026-05-18</div>
+    <div>Confidential</div>
+  </div>
+</div>
+
+<h1 id="report-title">Metric Report</h1>
+<p class="subtitle" id="report-subtitle">Сгенерировано на metricstree.vercel.app</p>
+
+<div id="content"></div>
+
+<div class="footer">
+  <div>Powered by <a href="https://metricstree.vercel.app/">MetricTree</a> — open-source калькулятор 52 продуктовых метрик</div>
+  <div>© 2026 · MIT License</div>
+</div>
+
+<script>
+(function() {
+  const params = new URLSearchParams(location.search);
+  const metricsParam = params.get('metrics') || '';
+  const companyParam = params.get('company') || '';
+  const titleParam = params.get('title') || '';
+
+  if (titleParam) document.getElementById('report-title').textContent = titleParam;
+  if (companyParam) {
+    document.getElementById('report-subtitle').textContent = `Подготовлено для ${companyParam} · ${new Date().toLocaleDateString('ru-RU')}`;
+    document.getElementById('company-input').value = companyParam;
+  }
+  document.getElementById('report-date').textContent = new Date().toLocaleDateString('ru-RU');
+
+  // Parse: metrics=ltv:aov=2500,freq=4,life=3|cac:spend=50000,customers=200|...
+  // Each metric: <id>:<key>=<val>,<key>=<val>
+  const items = metricsParam.split('|').filter(Boolean).map(seg => {
+    const [id, kvs] = seg.split(':');
+    const inputs = {};
+    (kvs || '').split(',').forEach(kv => {
+      const [k, v] = kv.split('=');
+      if (k && v !== undefined) inputs[k.trim()] = parseFloat(v);
+    });
+    return { id: id.trim(), inputs };
+  });
+
+  document.getElementById('metric-count').textContent = items.length || '0';
+
+  if (!items.length) {
+    document.getElementById('content').innerHTML = `<div class="empty">
+      <p>📭 Выбери метрики для отчёта.</p>
+      <p>Формат URL:</p>
+      <pre style="background:#f8f9fa;border:1px solid #e1e4e8;border-radius:0.5rem;padding:1rem;text-align:left;font-size:0.78rem;">/report?metrics=ltv:aov=2500,freq=4,life=3|cac:spend=50000,customers=200|nrr:start=1000000,expansion=200000,churn=50000,contraction=10000&company=Acme Corp&title=Q4 Metrics Review</pre>
+      <p>Или возьми любой набор метрик из калькулятора и нажми «Save as PDF» на странице метрики (planned feature).</p>
+      <p><a href="/">← Открыть калькулятор</a></p>
+    </div>`;
+    return;
+  }
+
+  // Render summary cards (top 4 metrics)
+  const top = items.slice(0, 4);
+
+  // Fetch results from /api/calc for each
+  Promise.all(items.map(async (item) => {
+    try {
+      const url = '/api/calc?metric=' + item.id + '&' + Object.entries(item.inputs).map(([k,v]) => k + '=' + encodeURIComponent(v)).join('&');
+      const r = await fetch(url);
+      const j = await r.json();
+      return { ...item, ...j };
+    } catch (e) {
+      return { ...item, error: e.message };
+    }
+  })).then(results => {
+    // Summary grid (top 4)
+    const summaryHTML = results.slice(0, 4).map(r => {
+      const isGood = r.rating && ['healthy','excellent','amazing','great','good','top_decile','top_quartile','world_class','top_tier'].includes(r.rating);
+      const isBad = r.rating && ['bad','critical','losing','decaying','high','low','unprofitable','below_min','below_norm'].includes(r.rating);
+      const cls = isGood ? 'good' : isBad ? 'bad' : '';
+      return `<div class="summary-card ${cls}">
+        <div class="label">${r.metric}</div>
+        <div class="value">${r.result || '—'}${r.unit ? ' ' + r.unit : ''}</div>
+        <div class="insight">${(r.insight || '').slice(0, 70)}</div>
+      </div>`;
+    }).join('');
+
+    let html = '';
+    if (results.length > 1) html += '<div class="summary-grid">' + summaryHTML + '</div>';
+
+    // Detailed blocks
+    html += '<h2>Детальный анализ</h2>';
+    html += results.map(r => {
+      if (r.error) return `<div class="metric-block"><h3>${r.id}</h3><div class="error">Error: ${r.error}</div></div>`;
+      const inputsStr = Object.entries(r.inputs || {}).map(([k,v]) => `${k}=${v}`).join(', ');
+      return `<div class="metric-block">
+        <div class="metric-head">
+          <h3>${r.metric}</h3>
+          <span class="formula">${r.formula || ''}</span>
+        </div>
+        <div class="result-row">
+          <span class="result-val">${r.result || '—'}${r.unit ? ' ' + r.unit : ''}</span>
+          ${r.rating ? `<span class="rating rating-${r.rating}">${r.rating.replace(/_/g, ' ')}</span>` : ''}
+        </div>
+        <div class="insight">${r.insight || ''}</div>
+        <div class="inputs">Inputs: ${inputsStr}</div>
+      </div>`;
+    }).join('');
+
+    // Recommendations
+    const recs = generateRecommendations(results);
+    if (recs.length) {
+      html += `<div class="recommendations">
+        <h2>💡 Рекомендации</h2>
+        <ul>${recs.map(r => '<li>' + r + '</li>').join('')}</ul>
+      </div>`;
+    }
+
+    document.getElementById('content').innerHTML = html;
+  });
+
+  function generateRecommendations(results) {
+    const recs = [];
+    results.forEach(r => {
+      if (r.rating === 'critical' || r.rating === 'bad' || r.rating === 'losing') {
+        recs.push(`<strong>${r.metric}</strong>: критическое значение. Приоритет №1 в следующем квартале. ${r.insight || ''}`);
+      } else if (r.rating === 'low' || r.rating === 'high' && r.metric === 'churn') {
+        recs.push(`<strong>${r.metric}</strong>: ниже бенчмарка. Сравни с топ-квартилем индустрии — см. /industries/.`);
+      }
+    });
+    if (!recs.length) recs.push('Все метрики в норме. Фокус на повышении NRR / снижении CAC для долгосрочного compounding.');
+    recs.push('Используй <a href="/">Goal mode</a> чтобы понять что нужно достичь для следующего уровня.');
+    recs.push('Сравни себя с индустриальными бенчмарками: <a href="/industries/">/industries/</a>');
+    return recs;
+  }
+
+  // Toolbar handlers
+  document.getElementById('print-btn').addEventListener('click', () => window.print());
+  document.getElementById('apply-company').addEventListener('click', () => {
+    const c = document.getElementById('company-input').value.trim();
+    const u = new URL(location.href);
+    if (c) u.searchParams.set('company', c); else u.searchParams.delete('company');
+    location.href = u.toString();
+  });
+})();
+</script>
+
+</body>
+</html>
