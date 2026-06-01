@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A/B Experiments — MetricTree Admin</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<script src="/theme-sync.js" defer></script>
+<style>
+:root{color-scheme:light dark;--bg:#0A0C0E;--bg-card:#1A1C1F;--border:#2C2F33;--text-1:#E8EAED;--text-2:#B0B3B8;--text-3:#6b6f75;--accent:#2A6DF4;--green:#4CAF50;--red:#F44336;--yellow:#FFC107}
+html[data-theme="light"]{--bg:#F0F2F5;--bg-card:#fff;--border:#E1E4E8;--text-1:#1A1C1F;--text-2:#4A4E55;--text-3:#777}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text-1);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.55}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;max-width:1200px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:1.05rem;text-decoration:none;color:var(--text-1)}
+.brand-mark{width:24px;height:24px;background:var(--accent);border-radius:6px}
+.pill{background:rgba(244,67,54,.15);color:var(--red);padding:.2rem .65rem;border-radius:999px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.wrap{max-width:1200px;margin:0 auto;padding:1.5rem 1.25rem 4rem}
+h1{font-size:1.6rem;margin:0.5rem 0 0.4rem}
+.lede{color:var(--text-2);font-size:.95rem;margin:0 0 1.5rem}
+.auth-form{background:var(--bg-card);border:1px solid var(--border);border-radius:.75rem;padding:1.5rem;max-width:500px;margin:4rem auto}
+.auth-form h2{margin:0 0 1rem;font-size:1.2rem}
+.auth-form input{width:100%;padding:.65rem .85rem;background:var(--bg);border:1px solid var(--border);border-radius:.5rem;color:var(--text-1);font-size:.95rem;font-family:monospace}
+.auth-form button{display:block;width:100%;margin-top:.85rem;padding:.65rem;background:var(--accent);color:#fff;border:0;border-radius:.5rem;font-weight:600;font-size:.95rem;cursor:pointer}
+.controls{display:flex;gap:.5rem;align-items:center;margin-bottom:1.2rem;flex-wrap:wrap}
+.controls .btn{padding:.5rem .85rem;background:var(--bg-card);border:1px solid var(--border);border-radius:.5rem;color:var(--accent);font-size:.85rem;text-decoration:none;cursor:pointer}
+.controls .btn:hover{border-color:var(--accent)}
+.summary{background:var(--bg-card);border:1px solid var(--border);border-radius:.6rem;padding:.85rem 1.1rem;margin-bottom:1rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.88rem}
+.summary strong{color:var(--accent)}
+.exp-block{background:var(--bg-card);border:1px solid var(--border);border-radius:.85rem;padding:1.25rem 1.4rem;margin-bottom:1.2rem}
+.exp-block h2{margin:0 0 .8rem;font-size:1.1rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.exp-block .exp-key{font-family:'Menlo',monospace;background:var(--bg);padding:.15rem .45rem;border-radius:.25rem;font-size:.85rem;color:var(--accent)}
+.variant-table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:.6rem}
+.variant-table th,.variant-table td{padding:.5rem .65rem;text-align:left;border-bottom:1px solid var(--border)}
+.variant-table th{background:rgba(42,109,244,.06);font-weight:700;font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:var(--text-3)}
+.variant-table tr:last-child td{border-bottom:0}
+.variant-table td.num{font-variant-numeric:tabular-nums;font-family:'Menlo',monospace}
+.variant-table tr.winner td{background:rgba(76,175,80,.08)}
+.lift-up{color:var(--green);font-weight:700}
+.lift-down{color:var(--red);font-weight:700}
+.sig-yes{background:rgba(76,175,80,.15);color:var(--green);padding:.1rem .55rem;border-radius:999px;font-size:.7rem;font-weight:700;text-transform:uppercase}
+.sig-no{background:rgba(176,179,184,.12);color:var(--text-3);padding:.1rem .55rem;border-radius:999px;font-size:.7rem;font-weight:600}
+.empty-state{text-align:center;padding:4rem 1rem;color:var(--text-3)}
+.error-box{background:rgba(244,67,54,.08);border:1px solid rgba(244,67,54,.3);border-radius:.5rem;padding:1rem 1.2rem;color:var(--text-1);margin:1rem 0}
+.error-box .hint{font-size:.85rem;color:var(--text-2);margin-top:.4rem}
+.footer{text-align:center;color:var(--text-3);margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);font-size:.8rem}
+.footer a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <span class="pill">Admin · A/B</span>
+</nav>
+
+<main class="wrap">
+
+<div id="auth-screen">
+  <div class="auth-form">
+    <h2>🔐 A/B Experiments Dashboard</h2>
+    <p style="color:var(--text-2);font-size:.9rem;margin-bottom:1rem;">Введи admin secret token:</p>
+    <input type="password" id="secret-input" placeholder="Secret" autocomplete="off">
+    <button id="auth-btn">Войти</button>
+    <p style="color:var(--text-3);font-size:.78rem;margin-top:.85rem;">Or open with <code>?secret=&lt;token&gt;</code>. Saved locally.</p>
+  </div>
+</div>
+
+<div id="app" style="display:none;">
+  <h1>A/B Experiments</h1>
+  <p class="lede">Wilson CI 95%. Two-proportion z-test для статистической значимости (p&lt;0.05). Минимум 100 exposures per variant для надёжных выводов.</p>
+  <div id="error-area"></div>
+  <div class="controls">
+    <a class="btn" id="refresh-btn" href="#">↻ Refresh</a>
+    <a class="btn" id="logout-btn" href="#">Logout</a>
+  </div>
+  <div class="summary" id="summary"></div>
+  <div id="exp-list"></div>
+</div>
+
+<div class="footer">
+  Cached locally. Vercel Edge reads from KV. <a href="/admin">← Leads dashboard</a> · <a href="/">Main calculator</a>
+</div>
+</main>
+
+<script>
+(function() {
+  const LS_KEY = 'metricstree_admin_secret';
+  const $ = id => document.getElementById(id);
+
+  const urlSecret = new URL(location.href).searchParams.get('secret');
+  if (urlSecret) {
+    localStorage.setItem(LS_KEY, urlSecret);
+    history.replaceState(null, '', location.pathname);
+  }
+  let secret = localStorage.getItem(LS_KEY) || '';
+
+  function showAuth() { $('auth-screen').style.display = 'block'; $('app').style.display = 'none'; }
+  function showApp() { $('auth-screen').style.display = 'none'; $('app').style.display = 'block'; }
+
+  async function loadResults() {
+    if (!secret) return showAuth();
+    showApp();
+    $('error-area').innerHTML = '<p style="color:var(--text-3);">Loading...</p>';
+    try {
+      const r = await fetch('/api/ab-results?secret=' + encodeURIComponent(secret));
+      const j = await r.json();
+      if (!r.ok) {
+        $('error-area').innerHTML = `<div class="error-box"><strong>${j.error}</strong>${j.hint ? `<div class="hint">${j.hint}</div>` : ''}</div>`;
+        if (r.status === 401) {
+          localStorage.removeItem(LS_KEY); secret = '';
+          setTimeout(showAuth, 1500);
+        }
+        return;
+      }
+      $('error-area').innerHTML = '';
+      render(j);
+    } catch (e) {
+      $('error-area').innerHTML = `<div class="error-box">Network error: ${e.message}</div>`;
+    }
+  }
+
+  function fmt(num, digits = 2) {
+    if (num === null || num === undefined) return '—';
+    if (typeof num !== 'number' || !isFinite(num)) return String(num);
+    return num.toFixed(digits);
+  }
+  function pct(num, digits = 2) {
+    if (num === null || num === undefined || !isFinite(num)) return '—';
+    return (num * 100).toFixed(digits) + '%';
+  }
+  function pctSigned(num, digits = 1) {
+    if (num === null || num === undefined || !isFinite(num)) return '—';
+    const v = (num * 100).toFixed(digits);
+    return (num >= 0 ? '+' : '') + v + '%';
+  }
+
+  function render(data) {
+    const experiments = data.experiments || {};
+    const expCount = Object.keys(experiments).length;
+    $('summary').innerHTML = `
+      <span><strong>${data.total_events || 0}</strong> events</span>
+      <span><strong>${expCount}</strong> experiments</span>
+      <span style="color:var(--text-3);">Wilson 95% CI · Two-prop z-test</span>
+    `;
+    if (!expCount) {
+      $('exp-list').innerHTML = `<div class="empty-state">
+        🧪 No experiments yet.
+        <p style="font-size:.88rem;max-width:480px;margin:1rem auto;">Add <code>ABTest.experiment(...)</code> to any page, drive traffic, and stats appear here.</p>
+      </div>`;
+      return;
+    }
+
+    let html = '';
+    Object.entries(experiments).forEach(([key, exp]) => {
+      const variants = exp.variants || [];
+      const totalExposures = variants.reduce((s, v) => s + v.exposures, 0);
+
+      // Identify winner: variant with highest stat-sig conversion vs control
+      let winnerIdx = -1;
+      let bestLift = 0;
+      variants.forEach((v, i) => {
+        if (i > 0 && v.significant_at_95 && v.lift_vs_control > bestLift) {
+          bestLift = v.lift_vs_control;
+          winnerIdx = i;
+        }
+      });
+
+      html += `<div class="exp-block">
+        <h2><span>🧪</span><span class="exp-key">${escapeHtml(key)}</span><span style="color:var(--text-3);font-weight:400;font-size:.85rem;">${totalExposures} exposures</span></h2>
+        <table class="variant-table">
+          <thead><tr>
+            <th>#</th><th>Exposures</th><th>Conversions</th>
+            <th>CR</th><th>CR 95% CI</th>
+            <th>vs Control</th><th>p-value</th><th>Sig?</th>
+          </tr></thead>
+          <tbody>
+            ${variants.map((v, i) => `<tr class="${i === winnerIdx ? 'winner' : ''}">
+              <td><strong>${i}${i === 0 ? ' (control)' : ''}${i === winnerIdx ? ' 🏆' : ''}</strong></td>
+              <td class="num">${v.exposures}</td>
+              <td class="num">${v.conversions}</td>
+              <td class="num"><strong>${pct(v.conversion_rate)}</strong></td>
+              <td class="num" style="color:var(--text-3);font-size:.82rem;">${pct(v.conversion_rate_ci_low)} – ${pct(v.conversion_rate_ci_high)}</td>
+              <td class="num ${v.lift_vs_control > 0 ? 'lift-up' : v.lift_vs_control < 0 ? 'lift-down' : ''}">${i === 0 ? '—' : pctSigned(v.lift_vs_control)}</td>
+              <td class="num" style="color:var(--text-3);font-size:.82rem;">${i === 0 ? '—' : fmt(v.p_value_vs_control, 4)}</td>
+              <td>${i === 0 ? '—' : (v.significant_at_95 ? '<span class="sig-yes">SIG</span>' : '<span class="sig-no">noise</span>')}</td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>`;
+    });
+    $('exp-list').innerHTML = html;
+  }
+
+  function escapeHtml(s) {
+    return String(s || '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  }
+
+  $('auth-btn').addEventListener('click', () => {
+    const v = $('secret-input').value.trim();
+    if (!v) return;
+    localStorage.setItem(LS_KEY, v); secret = v;
+    loadResults();
+  });
+  $('secret-input').addEventListener('keydown', e => { if (e.key === 'Enter') $('auth-btn').click(); });
+  $('refresh-btn').addEventListener('click', e => { e.preventDefault(); loadResults(); });
+  $('logout-btn').addEventListener('click', e => {
+    e.preventDefault();
+    localStorage.removeItem(LS_KEY); secret = '';
+    showAuth();
+  });
+
+  if (secret) loadResults(); else showAuth();
+})();
+</script>
+</body>
+</html>

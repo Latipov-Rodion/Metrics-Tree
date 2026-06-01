@@ -34,6 +34,7 @@ const fileForPath = (p) => path.join(ROOT, p.replace(/^\//, ''));
 // 2. Every rewrite destination that points to an .html file must exist.
 for (const r of rewrites) {
   if (typeof r.destination === 'string' && r.destination.endsWith('.html')) {
+    if (r.destination.includes(':')) continue; // dynamic :param rewrite — not a literal file
     if (!fs.existsSync(fileForPath(r.destination))) {
       errors.push(`rewrite destination missing on disk: ${r.destination}  (source ${r.source})`);
     }

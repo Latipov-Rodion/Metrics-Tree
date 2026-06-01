@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>MRR Growth Rate для SaaS — бенчмарк и формула | MetricTree</title>
+<meta name="description" content="MRR Growth Rate в контексте SaaS.  Бесплатный калькулятор + Goal mode.">
+<link rel="canonical" href="https://metricstree.vercel.app/industries/saas/mrrGrowthRate">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="MRR Growth Rate для SaaS — бенчмарк и расчёт">
+<meta property="og:description" content="Подписочный софтверный бизнес: ежемесячная рекуррентная выручка, NRR, churn, Burn Multiple. Метрики которыми VC оценивают SaaS на каждой стадии.">
+<meta property="og:url" content="https://metricstree.vercel.app/industries/saas/mrrGrowthRate">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MetricTree","item":"https://metricstree.vercel.app"},{"@type":"ListItem","position":2,"name":"Industries","item":"https://metricstree.vercel.app/industries/"},{"@type":"ListItem","position":3,"name":"SaaS","item":"https://metricstree.vercel.app/industries/saas/"},{"@type":"ListItem","position":4,"name":"MRR Growth Rate","item":"https://metricstree.vercel.app/industries/saas/mrrGrowthRate"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Что такое MRR Growth Rate в SaaS?","acceptedAnswer":{"@type":"Answer","text":"MRR Growth Rate — одна из топ-10 метрик SaaS. См. калькулятор для формулы и бенчмарков."}},{"@type":"Question","name":"Как улучшить MRR Growth Rate в моём SaaS-бизнесе?","acceptedAnswer":{"@type":"Answer","text":"Открой калькулятор → введи свои данные → используй What-If слайдеры чтобы понять impact каждого input. Goal mode (если доступен) считает обратно: задай target → получи required input."}},{"@type":"Question","name":"Какие связанные метрики важно трекать вместе?","acceptedAnswer":{"@type":"Answer","text":"Метрики не существуют изолированно. Для SaaS вместе с MRR Growth Rate обычно смотрят: MRR, ARR, NRR."}}]}</script>
+<style>:root{color-scheme:light dark;--bg:#0A0C0E;--bg-card:#1A1C1F;--border:#2C2F33;--text-1:#E8EAED;--text-2:#B0B3B8;--text-3:#6b6f75;--accent:#2A6DF4;--green:#4CAF50}html[data-theme="light"]{--bg:#F0F2F5;--bg-card:#fff;--border:#E1E4E8;--text-1:#1A1C1F;--text-2:#4A4E55;--text-3:#777}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text-1);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.65}.nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;max-width:920px;margin:0 auto}.brand{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:1.05rem;text-decoration:none;color:var(--text-1)}.brand-mark{width:24px;height:24px;background:var(--accent);border-radius:6px}.nav a{color:var(--text-2);text-decoration:none}.crumbs{max-width:920px;margin:0 auto;padding:0 1.25rem;font-size:.85rem;color:var(--text-3)}.crumbs a{color:var(--accent);text-decoration:none}.wrap{max-width:920px;margin:0 auto;padding:1.5rem 1.25rem 4rem}h1{font-size:2.2rem;line-height:1.2;margin:.5rem 0 .5rem;letter-spacing:-.02em}h2{font-size:1.5rem;margin:2rem 0 .75rem;padding-bottom:.4rem;border-bottom:1px solid var(--border)}h3{font-size:1.15rem;margin:1.5rem 0 .5rem}.lede{font-size:1.1rem;color:var(--text-2);margin:0 0 1.5rem}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin:1.5rem 0}.card{background:var(--bg-card);border:1px solid var(--border);border-radius:.75rem;padding:1.1rem 1.25rem;text-decoration:none;color:inherit;display:block;transition:border-color .15s}.card:hover{border-color:var(--accent);text-decoration:none}.card h3{margin:0 0 .3rem;font-size:1.05rem;color:var(--text-1)}.card p{margin:0;font-size:.88rem;color:var(--text-2)}.card .emoji{font-size:1.4rem;margin-bottom:.4rem;display:block}table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:.92rem;background:var(--bg-card);border:1px solid var(--border);border-radius:.5rem;overflow:hidden}th,td{padding:.55rem .8rem;text-align:left;border-bottom:1px solid var(--border)}th{background:rgba(42,109,244,.06);font-weight:700;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--text-3)}tr:last-child td{border-bottom:0}.bench-card{background:var(--bg-card);border:1px solid var(--border);border-radius:.6rem;padding:1rem 1.2rem;margin:.5rem 0}.bench-card strong{color:var(--accent)}.cta-box{background:var(--bg-card);border:1px solid var(--border);border-radius:1rem;padding:1.4rem 1.5rem;margin:1.5rem 0;text-align:center}.cta-box a.btn{display:inline-block;background:var(--accent);color:#fff;padding:.7rem 1.4rem;border-radius:.5rem;text-decoration:none;font-weight:600;margin-top:.7rem}.faq details{background:var(--bg-card);border:1px solid var(--border);border-radius:.6rem;padding:.85rem 1rem;margin-bottom:.5rem}.faq summary{cursor:pointer;font-weight:600}.faq details[open] summary{margin-bottom:.6rem}.footer{text-align:center;color:var(--text-3);margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);font-size:.85rem}.footer a{color:var(--accent)}ul{padding-left:1.3rem}li{margin-bottom:.4rem}</style>
+<script src="/theme-sync.js" defer></script>
+</head>
+<body>
+<nav class="nav"><a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a><div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div></nav>
+<div class="crumbs"><a href="/">Главная</a> › <a href="/industries/">Industries</a> › <a href="/industries/saas/">SaaS</a> › MRR Growth Rate</div>
+<main class="wrap">
+<h1>☁️ MRR Growth Rate в SaaS</h1>
+<p class="lede">MRR Growth Rate — одна из топ-10 метрик которые должен трекать каждый SaaS-фаундер. Здесь — индустриальный контекст: норма для SaaS, источники бенчмарков, связанные метрики.</p>
+
+
+
+<h2>Зачем именно MRR Growth Rate в SaaS?</h2>
+<p>SaaS живёт и умирает recurring-метриками — MRR, NRR, churn. В отличие от one-time продаж, каждый contract клиента compound'ится.</p>
+
+<div class="cta-box">
+<strong>Считать MRR Growth Rate прямо сейчас</strong><br>
+<a class="btn" href="/mrrGrowthRate">Открыть калькулятор →</a>
+</div>
+
+<h2>Embed калькулятор в свой блог</h2>
+<p>Если ты ведёшь блог про SaaS, встрой live-калькулятор MRR Growth Rate вместо статической формулы:</p>
+<pre style="background:#0d1117;color:#e8eaed;padding:.85rem 1rem;border-radius:.5rem;overflow-x:auto;font-size:.82rem;">&lt;iframe src="https://metricstree.vercel.app/mrrGrowthRate?embed=1" width="100%" height="700" loading="lazy"&gt;&lt;/iframe&gt;</pre>
+<p style="font-size:.85rem;color:var(--text-3);">Builder: <a href="/embed">/embed</a> — выбери метрику, размер, язык → получи готовый код.</p>
+
+<h2>Связанные метрики SaaS</h2>
+<div class="card-grid">
+<a class="card" href="/industries/saas/mrr"><h3>MRR</h3><p>Тоже в топ-10 для SaaS</p></a><a class="card" href="/industries/saas/arr"><h3>ARR</h3><p>Тоже в топ-10 для SaaS</p></a><a class="card" href="/industries/saas/nrr"><h3>NRR</h3><p>Тоже в топ-10 для SaaS</p></a><a class="card" href="/industries/saas/grr"><h3>GRR</h3><p>Тоже в топ-10 для SaaS</p></a><a class="card" href="/industries/saas/churn"><h3>Churn Rate</h3><p>Тоже в топ-10 для SaaS</p></a>
+</div>
+
+<h2>FAQ</h2>
+<div class="faq">
+<details><summary>Что такое MRR Growth Rate в SaaS?</summary><p>MRR Growth Rate — одна из топ-10 метрик SaaS. См. калькулятор для формулы и бенчмарков.</p></details><details><summary>Как улучшить MRR Growth Rate в моём SaaS-бизнесе?</summary><p>Открой калькулятор → введи свои данные → используй What-If слайдеры чтобы понять impact каждого input. Goal mode (если доступен) считает обратно: задай target → получи required input.</p></details><details><summary>Какие связанные метрики важно трекать вместе?</summary><p>Метрики не существуют изолированно. Для SaaS вместе с MRR Growth Rate обычно смотрят: MRR, ARR, NRR.</p></details>
+</div>
+</main>
+<div class="footer">© 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="/industries/saas/">Все метрики SaaS</a> · <a href="/industries/">Все индустрии</a></div>
+</body></html>

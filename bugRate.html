@@ -1825,10 +1825,12 @@
         }
         .site-footer-links { display: inline-flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
         .site-footer-links a {
-            color: var(--text-3); text-decoration: none; font-weight: 500;
+            color: var(--text-2); text-decoration: none; font-weight: 500;
             transition: color var(--transition);
+            border-bottom: 1px solid transparent;
         }
-        .site-footer-links a:hover { color: var(--accent); }
+        .site-footer-links a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+        .site-footer-links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
         .site-footer-news {
             display: inline-flex; gap: 0.4rem; align-items: stretch;
             background: var(--bg-input); border: 1px solid var(--border);
@@ -8509,6 +8511,9 @@ window._tTooltip = function(ruText) {
         <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank" rel="noopener">GitHub</a>
         <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank" rel="noopener">LinkedIn</a>
         <a href="/blog/">Blog</a>
+        <a href="/quiz">Quiz</a>
+        <a href="/glossary">Glossary</a>
+        <a href="/industries/">Industries</a>
         <a href="/api-docs">API</a>
         <a href="/embed">Embed</a>
         <a href="/vs-profitwell">vs Profitwell</a>

@@ -209,6 +209,7 @@ em { color: var(--text-1); }
 .share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
 .share-row a:hover { border-color: var(--accent); }
 </style>
+<script src="/theme-sync.js" defer></script>
 </head>
 <body>
 <nav class="nav">
@@ -274,6 +275,7 @@ h1 { font-size: 2.2rem; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
 .post-card .post-desc { font-size: 0.92rem; color: var(--text-2); margin: 0; }
 .footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
 </style>
+<script src="/theme-sync.js" defer></script>
 </head>
 <body>
 <nav class="nav">

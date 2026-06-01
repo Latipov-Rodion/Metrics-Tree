@@ -17,10 +17,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Regenerate per-metric pages, sitemap and blog
+      - name: Regenerate all build artifacts
         run: |
+          node build-industries.mjs
+          node build-glossary.mjs
           node build.mjs
           node build-blog.mjs
+          node inject-theme-sync.mjs
       - name: Fail if generated artifacts are stale
         run: |
           if ! git diff --quiet; then
