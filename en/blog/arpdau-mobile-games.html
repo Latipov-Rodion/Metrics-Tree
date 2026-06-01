@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ARPDAU — the key metric for mobile F2P games, 2026 benchmarks | MetricTree Blog</title>
+<meta name="description" content="ARPDAU = Daily Revenue / DAU. Free-to-play norm $0.05-$5, premium $0.5-$20. What separates hyper-casual from RPG in monetization.">
+<meta name="keywords" content="arpdau, mobile games metric, free-to-play monetization, arpdau formula">
+<link rel="canonical" href="https://metricstree.vercel.app/en/blog/arpdau-mobile-games">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/arpdau-mobile-games">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/arpdau-mobile-games">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/arpdau-mobile-games">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="ARPDAU — the key metric for mobile F2P games, 2026 benchmarks">
+<meta property="og:description" content="ARPDAU = Daily Revenue / DAU. Free-to-play norm $0.05-$5, premium $0.5-$20. What separates hyper-casual from RPG in monetization.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/en/blog/arpdau-mobile-games">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-04-10">
+<meta property="article:author" content="Rodion Latipov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ARPDAU — the key metric for mobile F2P games, 2026 benchmarks">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ARPDAU — the key metric for mobile F2P games, 2026 benchmarks",
+  "description": "ARPDAU = Daily Revenue / DAU. Free-to-play norm $0.05-$5, premium $0.5-$20. What separates hyper-casual from RPG in monetization.",
+  "datePublished": "2026-04-10",
+  "author": {
+    "@type": "Person",
+    "name": "Rodion Latipov",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/en/blog/arpdau-mobile-games"
+  },
+  "keywords": "arpdau, mobile games metric, free-to-play monetization, arpdau formula",
+  "inLanguage": "en"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#6b6f75; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#777; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/en" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/en/blog/">Blog</a> · <a href="/en">Calculator →</a></div>
+</nav>
+<article>
+<h1>ARPDAU — the key metric for mobile F2P games, 2026 benchmarks</h1>
+<div class="meta">2026-04-10 · by <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a></div>
+<h1>ARPDAU — the key metric for mobile F2P games, 2026 benchmarks</h1>
+
+<p>In the mobile gaming industry, <strong>ARPDAU</strong> (Average Revenue Per Daily Active User) is the pulse of monetization. If LTV is "how much a customer is worth over their entire lifetime", then ARPDAU is "how much they're worth today".</p>
+
+<h2>The formula</h2>
+
+<p>> <strong>ARPDAU = Total Daily Revenue / Daily Active Users</strong></p>
+
+<p>Example:<br><ul><li>Daily revenue $5,000</li><li>DAU 50,000</li><li>ARPDAU = $5000 / 50000 = <strong>$0.10</strong></li></ul></p>
+
+<p>10 cents a day per active user. Sounds small? That's <strong>normal for casual games</strong>. For a top-tier RPG, the norm is $0.50-1.50.</p>
+
+<h2>Benchmarks by genre (2026 data)</h2>
+
+<table><thead><tr><th>Genre</th><th>ARPDAU low</th><th>Median</th><th>Top tier</th></tr></thead><tbody><tr><td></td><td><strong>Hyper-casual</strong></td><td>$0.01</td><td>$0.03</td><td>$0.08</td><td></td></tr><tr><td></td><td><strong>Casual</strong></td><td>$0.05</td><td>$0.12</td><td>$0.30</td><td></td></tr><tr><td></td><td><strong>Mid-core (puzzle)</strong></td><td>$0.10</td><td>$0.25</td><td>$0.60</td><td></td></tr><tr><td></td><td><strong>Strategy / 4X</strong></td><td>$0.30</td><td>$0.80</td><td>$2.00</td><td></td></tr><tr><td></td><td><strong>RPG / MMO</strong></td><td>$0.50</td><td>$1.20</td><td>$3.00</td><td></td></tr><tr><td></td><td><strong>Casino / Slots</strong></td><td>$1.00</td><td>$2.50</td><td>$8.00</td><td></td></tr><tr><td></td><td><strong>Premium / paid apps</strong></td><td>n/a</td><td>$5.00</td><td>$15.00+</td><td></td></tr></tbody></table>
+Data: AppMagic, Sensor Tower, AppAnnie aggregates.
+
+<h2>How ARPDAU differs from ARPU</h2>
+
+<table><thead><tr><th>Metric</th><th>Calculated</th><th>When to use</th></tr></thead><tbody><tr><td></td><td><strong>ARPDAU</strong></td><td>Per daily active user</td><td>Mobile F2P — daily-engagement products</td><td></td></tr><tr><td></td><td><strong>ARPU</strong></td><td>Per active user in a period (mo/year)</td><td>SaaS, subscription, e-commerce</td><td></td></tr><tr><td></td><td><strong>ARPPU</strong></td><td>Per PAYING user</td><td>Free-to-play — conversion focus</td><td></td></tr><tr><td></td><td><strong>LTV</strong></td><td>Total over lifetime</td><td>Long-term unit economics</td><td></td></tr></tbody></table>
+<strong>ARPDAU × average lifespan in days ≈ LTV</strong> for daily-engagement products.
+
+<p>Example: ARPDAU $0.20 × 180-day lifespan = LTV $36.</p>
+
+<h2>How to break ARPDAU into components</h2>
+
+<pre><code class="language-">ARPDAU = (Paying Users / DAU) × (ARPPU per day)
+       = Conversion Rate × Avg payment frequency × Avg payment size
+</code></pre>
+
+<p>Decomposing it reveals the levers:<br><ul><li><strong>Conversion</strong>: % of DAU who paid at least once</li><li><strong>Frequency</strong>: how often paying users pay</li><li><strong>Size</strong>: average transaction amount</li></ul></p>
+
+<h2>4 levers to grow ARPDAU</h2>
+
+<h3>1. IAP (in-app purchases) — the core for F2P</h3>
+<ul><li><strong>Soft currency</strong> purchases (gems, gold)</li><li><strong>Cosmetic items</strong> — skins, emotes (high-margin, no balance impact)</li><li><strong>Power-ups</strong> — boosts, energy refills</li><li><strong>Battle Pass</strong> — seasonal subscription model (raises frequency)</li></ul>
+
+<p>Industry leader: <strong>Battle Pass converts +30% of non-paying users → paying.</strong> The highest impact on conversion rate.</p>
+
+<h3>2. Ad monetization — for a broad audience</h3>
+<ul><li><strong>Rewarded video</strong> — optimal (high opt-in)</li><li><strong>Interstitial</strong> between levels (annoying but high RPM)</li><li><strong>Banner</strong> — outdated, low yield</li><li><strong>Playable ads</strong> — best for hyper-casual</li></ul>
+
+<p>Industry standard ad eCPM: $5-15 for the US, $2-5 for emerging markets.</p>
+
+<h3>3. Subscriptions</h3>
+<strong>Pass / VIP / Premium tier</strong>:
+<ul><li>Stable monthly revenue (recurring)</li><li>2-3× the ARPU of normal users</li><li>A typical norm is 5-10% of DAU subscribed</li></ul>
+
+<h3>4. Whale optimization</h3>
+In F2P, <strong>2% of paying users</strong> generate <strong>70% of revenue</strong>. These whales are your revenue.
+<ul><li>VIP program with perks</li><li>Personal account managers (for the top-100 spenders)</li><li>Limited editions / exclusive offers</li><li>Faster customer support</li></ul>
+
+<h2>ARPDAU growth — what does NOT work</h2>
+
+<p>❌ <strong>Pay-to-win mechanics</strong> — a short-term +30% ARPDAU, then a mass churn of casual players in 3-6 months → DAU drops -50%, so ARPDAU stays but Net Revenue falls.</p>
+
+<p>❌ <strong>Aggressive ads</strong> — an interstitial every 30 seconds = retention crash.</p>
+
+<p>❌ <strong>Annoying pop-up offers</strong> — one every minute = churn risk.</p>
+
+<p>❌ <strong>Geographically uniform pricing</strong> — the same $0.99 price in the US and Indonesia. In emerging markets, local pricing is essential.</p>
+
+<h2>Real-world ARPDAU examples</h2>
+
+<table><thead><tr><th>Game</th><th>Genre</th><th>ARPDAU (2024 est)</th><th>DAU</th></tr></thead><tbody><tr><td></td><td><strong>Honor of Kings</strong></td><td>MOBA</td><td>$0.45</td><td>100M</td><td></td></tr><tr><td></td><td><strong>Genshin Impact</strong></td><td>RPG</td><td>$1.20</td><td>60M</td><td></td></tr><tr><td></td><td><strong>Clash Royale</strong></td><td>Strategy</td><td>$0.30</td><td>25M</td><td></td></tr><tr><td></td><td><strong>Subway Surfers</strong></td><td>Hyper-casual</td><td>$0.05</td><td>50M</td><td></td></tr><tr><td></td><td><strong>Candy Crush</strong></td><td>Match-3</td><td>$0.15</td><td>75M</td><td></td></tr></tbody></table>
+The top-revenue games are <strong>not the ones with the highest ARPDAU</strong>, but the highest <strong>(ARPDAU × DAU)</strong>. Volume × monetization > monetization alone.
+
+<h2>Relationship to other metrics</h2>
+
+<table><thead><tr><th>Metric</th><th>Relationship</th></tr></thead><tbody><tr><td></td><td><strong>DAU</strong></td><td>The denominator of the formula</td><td></td></tr><tr><td></td><td><strong>Retention</strong></td><td>High retention → longer lifespan → higher LTV at the same ARPDAU</td><td></td></tr><tr><td></td><td><strong>ARPU</strong></td><td>The monthly equivalent ≈ ARPDAU × 30</td><td></td></tr><tr><td></td><td><strong>Conversion Rate</strong></td><td>Free-to-paying conversion = the main component of ARPDAU</td><td></td></tr></tbody></table>
+<h2>When ARPDAU is MISLEADING</h2>
+
+<p>1. <strong>Cohort skew</strong> — if DAU drops but whales stay → ARPDAU rises even though the business is dying<br>2. <strong>Seasonal events</strong> — a Christmas event doubles ARPDAU for 2 weeks, then back to normal<br>3. <strong>Pricing experiments</strong> — sub-cohort tests distort the average<br>4. <strong>Currency</strong> — games run globally, USD-reported ARPDAU drifts with FX</p>
+
+<h2>Bottom line</h2>
+
+<p>ARPDAU is the <strong>key mobile metric</strong> for F2P games. Know yours. Compare it to the benchmark in your genre. If it's lower — work on the monetization mix (IAP/Ads/Subs). Top-tier ARPDAU in a category = ~10% of all published games, but they take 50%+ of category revenue.</p>
+
+<p><strong>Calculate your ARPDAU below</strong> + a genre benchmark.</p>
+
+<p>---</p>
+
+<h3>Further resources</h3>
+
+<ul><li><a href="/en/dau">/en/dau</a> — DAU calculator</li><li><a href="/en/arpu">/en/arpu</a> — ARPU (monthly equivalent)</li><li><a href="/en/ltv">/en/ltv</a> — LTV (ARPDAU × lifespan)</li><li><a href="/en/retention">/en/retention</a> — Retention (mobile)</li><li><a href="https://appmagic.rocks">AppMagic / Sensor Tower</a> — ARPDAU benchmarks</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Calculate it right here:</strong>
+  <iframe src="https://metricstree.vercel.app/arpdau?embed=1" width="100%" height="650" loading="lazy" title="MetricTree arpdau calculator"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Open the full version: <a href="https://metricstree.vercel.app/arpdau" target="_blank">https://metricstree.vercel.app/arpdau</a></p>
+</div>
+<div class="share-row">
+  Share:
+  <a href="https://twitter.com/intent/tweet?text=ARPDAU%20%E2%80%94%20the%20key%20metric%20for%20mobile%20F2P%20games%2C%202026%20benchmarks&url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Farpdau-mobile-games" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Farpdau-mobile-games" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Farpdau-mobile-games&text=ARPDAU%20%E2%80%94%20the%20key%20metric%20for%20mobile%20F2P%20games%2C%202026%20benchmarks" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/en/blog/">All posts</a> · <a href="/en">Calculator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>
