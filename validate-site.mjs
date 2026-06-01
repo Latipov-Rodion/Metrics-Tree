@@ -84,7 +84,7 @@ for (const s of slugs(path.join(ROOT, 'blog-src', 'en'))) {
 // 6. Guard against regressing the metric count (was 52, then 35; canonical is 48 / 7 sections).
 const STALE_COUNT = /(?:35|52)[\s-]?(?:product\s+|продуктов\w*\s+)?(?:metrics?|метрик\w*|калькулятор\w*)/i;
 const countFiles = [
-  'index.html', 'manifest.webmanifest', 'bot.py',
+  'index.html', 'manifest.webmanifest', 'bot.py', 'generate_og.py',
   'press.html', 'embed.html', 'changelog.html', 'api-docs.html',
   'vs-profitwell.html', 'vs-baremetrics.html', 'vs-causal.html',
   'vs-chartmogul.html', 'vs-geckoboard.html', 'vs-finmodelslab.html',

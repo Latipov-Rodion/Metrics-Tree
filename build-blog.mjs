@@ -134,7 +134,7 @@ function hreflangLinks(slug, slugLangs) {
   return '\n' + lines.join('\n');
 }
 
-const TEMPLATE = (meta, html, slug, lang, altLinks) => {
+const TEMPLATE = (meta, html, slug, lang, altLinks, ogImage) => {
   const L = LANGS[lang];
   const url = `${SITE}${L.urlBase}/${slug}`;
   return `<!doctype html>
@@ -151,12 +151,12 @@ const TEMPLATE = (meta, html, slug, lang, altLinks) => {
 <meta property="og:description" content="${meta.description}">
 <meta property="og:type" content="article">
 <meta property="og:url" content="${url}">
-<meta property="og:image" content="${SITE}/og-image.png">
+<meta property="og:image" content="${ogImage}">
 <meta property="article:published_time" content="${meta.date || ''}">
 <meta property="article:author" content="${L.author}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${meta.title}">
-<meta name="twitter:image" content="${SITE}/og-image.png">
+<meta name="twitter:image" content="${ogImage}">
 <script type="application/ld+json">
 ${JSON.stringify({
   '@context': 'https://schema.org',
@@ -166,7 +166,7 @@ ${JSON.stringify({
   datePublished: meta.date,
   author: { '@type': 'Person', name: L.author, url: 'https://www.linkedin.com/in/rodion-latipov' },
   publisher: { '@type': 'Organization', name: 'MetricTree', url: SITE, logo: { '@type': 'ImageObject', url: `${SITE}/og-image.png` } },
-  image: `${SITE}/og-image.png`,
+  image: ogImage,
   mainEntityOfPage: { '@type': 'WebPage', '@id': url },
   keywords: meta.keywords,
   inLanguage: lang
@@ -336,7 +336,9 @@ function main() {
     for (const p of posts) {
       const html = md2html(p.body);
       const alts = hreflangLinks(p.slug, slugLangs[p.slug]);
-      fs.writeFileSync(path.join(L.out, p.slug + '.html'), TEMPLATE(p.meta, html, p.slug, lang, alts));
+      const ogRel = lang === 'en' ? `blog-og/en/${p.slug}.png` : `blog-og/${p.slug}.png`;
+      const ogImage = fs.existsSync(path.join(ROOT, ogRel)) ? `${SITE}/${ogRel}` : `${SITE}/og-image.png`;
+      fs.writeFileSync(path.join(L.out, p.slug + '.html'), TEMPLATE(p.meta, html, p.slug, lang, alts, ogImage));
       total++;
     }
     // Sort by date descending, generate per-language index.
