@@ -346,6 +346,7 @@ function buildHTML() {
 <meta property="og:image" content="${SITE}/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">${JSON.stringify(jsonld, null, 2)}</script>
+<script src="/theme-sync.js" defer></script>
 <style>
 :root{color-scheme:light dark;--bg:#0A0C0E;--bg-card:#1A1C1F;--border:#2C2F33;--text-1:#E8EAED;--text-2:#B0B3B8;--text-3:#6b6f75;--accent:#2A6DF4;--green:#4CAF50}
 html[data-theme="light"]{--bg:#F0F2F5;--bg-card:#fff;--border:#E1E4E8;--text-1:#1A1C1F;--text-2:#4A4E55;--text-3:#777}
