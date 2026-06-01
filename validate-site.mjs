@@ -81,6 +81,21 @@ for (const s of slugs(path.join(ROOT, 'blog-src', 'en'))) {
   if (!ruSlugs.has(s)) errors.push(`EN blog post '${s}' has no RU twin (orphaned hreflang)`);
 }
 
+// 6. Guard against regressing the metric count (was 52, then 35; canonical is 48 / 7 sections).
+const STALE_COUNT = /(?:35|52)[\s-]?(?:product\s+|продуктов\w*\s+)?(?:metrics?|метрик\w*|калькулятор\w*)/i;
+const countFiles = [
+  'index.html', 'manifest.webmanifest', 'bot.py',
+  'press.html', 'embed.html', 'changelog.html', 'api-docs.html',
+  'vs-profitwell.html', 'vs-baremetrics.html', 'vs-causal.html',
+  'vs-chartmogul.html', 'vs-geckoboard.html', 'vs-finmodelslab.html',
+];
+for (const f of countFiles) {
+  const fp = path.join(ROOT, f);
+  if (!fs.existsSync(fp)) continue;
+  const m = fs.readFileSync(fp, 'utf8').match(STALE_COUNT);
+  if (m) errors.push(`${f}: stale metric count "${m[0].trim()}" — should be 48 metrics / 7 sections`);
+}
+
 if (errors.length) {
   console.error(`✗ validate-site: ${errors.length} issue(s):`);
   for (const e of errors) console.error('  - ' + e);

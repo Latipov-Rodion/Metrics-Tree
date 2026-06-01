@@ -1,0 +1,6 @@
+# Python dependencies for the standalone helpers (NOT part of the Vercel deploy).
+#
+# Telegram bot — long-poll process (bot.py), hosted separately (Railway/Render/Fly):
+python-telegram-bot==21.6
+# Image generators (generate_og.py, generate_icons.py) — run locally, commit output:
+Pillow>=10,<13

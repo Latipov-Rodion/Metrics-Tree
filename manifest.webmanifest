@@ -1,7 +1,7 @@
 {
   "name": "MetricTree — Калькулятор продуктовых метрик",
   "short_name": "MetricTree",
-  "description": "Бесплатный калькулятор 35 продуктовых метрик: LTV, CAC, MRR, Churn, NPS, ROAS и других — с формулами, отраслевыми порогами и What-If анализом.",
+  "description": "Бесплатный калькулятор 48 продуктовых метрик: LTV, CAC, MRR, Churn, NPS, ROAS и других — с формулами, отраслевыми порогами и What-If анализом.",
   "lang": "ru",
   "start_url": "/",
   "scope": "/",
@@ -10,6 +10,8 @@
   "background_color": "#0A0C0E",
   "theme_color": "#0A0C0E",
   "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
     { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
   ],
   "categories": ["business", "productivity", "finance"]
