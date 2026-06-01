@@ -4,6 +4,7 @@ on:
   pull_request:
   push:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   # Guard against the #1 footgun of this no-bundler site: editing a source
