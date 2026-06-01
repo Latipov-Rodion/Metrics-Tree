@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Burn Multiple — the SaaS investor's #1 metric in 2026 | MetricTree Blog</title>
+<meta name="description" content="What Burn Multiple (David Sacks) is, how to calculate it, benchmarks for seed / Series A / B+, and why it replaced Magic Number in VC pipelines after the ZIRP era.">
+<meta name="keywords" content="burn multiple, david sacks, saas metrics, capital efficiency, burn multiple formula">
+<link rel="canonical" href="https://metricstree.vercel.app/en/blog/burn-multiple-saas-2026">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/burn-multiple-saas-2026">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/burn-multiple-saas-2026">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/burn-multiple-saas-2026">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Burn Multiple — the SaaS investor's #1 metric in 2026">
+<meta property="og:description" content="What Burn Multiple (David Sacks) is, how to calculate it, benchmarks for seed / Series A / B+, and why it replaced Magic Number in VC pipelines after the ZIRP era.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/en/blog/burn-multiple-saas-2026">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-05-17">
+<meta property="article:author" content="Rodion Latipov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Burn Multiple — the SaaS investor's #1 metric in 2026">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Burn Multiple — the SaaS investor's #1 metric in 2026",
+  "description": "What Burn Multiple (David Sacks) is, how to calculate it, benchmarks for seed / Series A / B+, and why it replaced Magic Number in VC pipelines after the ZIRP era.",
+  "datePublished": "2026-05-17",
+  "author": {
+    "@type": "Person",
+    "name": "Rodion Latipov",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/en/blog/burn-multiple-saas-2026"
+  },
+  "keywords": "burn multiple, david sacks, saas metrics, capital efficiency, burn multiple formula",
+  "inLanguage": "en"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#6b6f75; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#777; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/en" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/en/blog/">Blog</a> · <a href="/en">Calculator →</a></div>
+</nav>
+<article>
+<h1>Burn Multiple — the SaaS investor's #1 metric in 2026</h1>
+<div class="meta">2026-05-17 · by <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a></div>
+<h1>Burn Multiple — the SaaS investor's #1 metric in 2026</h1>
+
+<p>In 2020 David Sacks (Craft Ventures, ex-COO of PayPal) published a short essay that reshaped how SaaS companies are evaluated. He proposed one simple formula:</p>
+
+<p>> <strong>Burn Multiple = Net Burn / Net New ARR</strong></p>
+
+<p>How many dollars a company burns to generate $1 of new annual recurring revenue.</p>
+
+<p>It strips away every marketing illusion. It doesn't matter how much growth you have — what matters is <strong>how efficiently</strong> you buy that growth.</p>
+
+<h2>Why Burn Multiple matters more than ever right now</h2>
+
+<p>Before 2022, in the ZIRP era (zero interest rate policy), venture money was almost free. Funds handed capital to companies with a Burn Multiple of 5x, 8x, sometimes 15x — as long as growth was there. "Grow at all costs" was the mantra.</p>
+
+<p>That's over. Funds now treat capital efficiency as table stakes:</p>
+
+<table><thead><tr><th>Period</th><th>Acceptable Burn Multiple for Series A</th></tr></thead><tbody><tr><td></td><td>2019–2021</td><td>up to 3-5×</td><td></td></tr><tr><td></td><td>2022–2023 (correction)</td><td>up to 2×</td><td></td></tr><tr><td></td><td>2024–2026</td><td><strong><1.5×</strong> — otherwise raising a round is hard</td><td></td></tr></tbody></table>
+<h2>The formula in detail</h2>
+
+<p><strong>Net Burn</strong> = cash expenses − cash revenue over the period (usually a quarter).</p>
+
+<p><strong>Net New ARR</strong> = New ARR + Expansion ARR − Churned ARR − Contraction ARR.</p>
+
+<p>It's typically measured per quarter, then normalized. Example:<br><ul><li>Net Burn in Q1: $500,000</li><li>Net New ARR in Q1: $600,000</li><li>Burn Multiple = 500 / 600 = <strong>0.83×</strong> → excellent</li></ul></p>
+
+<h2>David Sacks' benchmarks</h2>
+
+<table><thead><tr><th>Burn Multiple</th><th>Rating</th></tr></thead><tbody><tr><td></td><td><1×</td><td>Amazing (PayPal-level)</td><td></td></tr><tr><td></td><td>1–1.5×</td><td>Great</td><td></td></tr><tr><td></td><td>1.5–2×</td><td>Good</td><td></td></tr><tr><td></td><td>2–3×</td><td>Suspect</td><td></td></tr><tr><td></td><td>>3×</td><td>Bad — the company burns capital inefficiently</td><td></td></tr></tbody></table>
+Top public SaaS companies (Snowflake, Datadog, Crowdstrike, Cloudflare) at growth stage hold a Burn Multiple of <strong>0.5–1.2×</strong>.
+
+<h2>Why is Burn Multiple better than Magic Number?</h2>
+
+<p><strong>Magic Number</strong> (Scale Venture Partners) only measures Sales & Marketing efficiency:</p>
+
+<pre><code class="language-">Magic Number = (Net New ARR × 4) / S&amp;M spend per quarter
+</code></pre>
+
+<p>Great for optimizing the funnel. But it ignores R&D, G&A and operations — which is most of an early-stage SaaS company's spend.</p>
+
+<p><strong>Burn Multiple covers everything.</strong> It's the final efficiency figure for the whole company. Magic Number optimizes a part; Burn Multiple optimizes the whole.</p>
+
+<p>In a typical SaaS business:<br><ul><li>40% of burn = S&M</li><li>35% = R&D</li><li>15% = G&A</li><li>10% = COGS (if not already in gross margin)</li></ul></p>
+
+<p>Magic Number sees 40%. Burn Multiple sees 100%.</p>
+
+<h2>4 levers to improve Burn Multiple</h2>
+
+<h3>1. Sales & Marketing efficiency</h3>
+Lower your <strong>CAC</strong>:
+<ul><li>Organic channels (SEO, content, referrals) instead of paid</li><li>ICP focus — don't chase segments with poor conversion</li><li>Self-serve onboarding for SMB (removes sales cost)</li><li>Optimize funnel CR — every +10% compounds</li></ul>
+
+<h3>2. Expansion ARR (NRR-driven)</h3>
+Every existing-customer dollar is cheaper than a new one:
+<ul><li>Seat-based or usage-based pricing</li><li>Tiered features → natural upgrade paths</li><li>Account management for high-ARR customers</li><li>Customer health scoring for proactive expansion</li></ul>
+
+<h3>3. R&D efficiency</h3>
+<ul><li>Fewer parallel streams — focus on 1-2 ICPs</li><li>AI / no-code for PRD/QA automation</li><li>A senior-heavy team (3 seniors > 6 mids in SaaS)</li></ul>
+
+<h3>4. Churn reduction</h3>
+Every point of churn roughly doubles the CAC you need to compensate:
+<ul><li>Onboarding — the first week drives 80% of future churn</li><li>Annual prepay contracts (mathematically cut churn ×12)</li><li>Health scoring + proactive outreach</li></ul>
+
+<h2>Real-world example</h2>
+
+<p><strong>A SaaS startup with:</strong><br><ul><li>ARR: $2M, 8% MoM growth</li><li>Net Burn: $250k/mo (=$750k/quarter)</li><li>Net New ARR per quarter: $500k</li></ul></p>
+
+<p><strong>Burn Multiple</strong> = 750 / 500 = <strong>1.5×</strong> → Good, but room to improve.</p>
+
+<p><strong>Scenario "get to 1.0×":</strong><br><ul><li>Cut burn by $250k/quarter = -33% (headcount cuts? Outsource ops?)</li><li>OR accelerate ARR growth to $750k/quarter = +50% (new channel? Better pricing?)</li><li>OR a mix: -15% burn + +20% ARR ≈ 1.05×</li></ul></p>
+
+<p>Use the calculator below to model your own scenario.</p>
+
+<h2>When Burn Multiple is MISLEADING</h2>
+
+<p>The metric isn't a silver bullet. Ignore it or read it carefully when:</p>
+
+<p>1. <strong>Pre-revenue stage</strong> — denominator = 0, the metric is infinite<br>2. <strong>One large contract skewed the quarter</strong> — normalize over a rolling 4 quarters<br>3. <strong>You're investing in a long-horizon product</strong> (deep tech, hardware-software) — a short-term Burn Multiple is bad by design<br>4. <strong>Seasonal businesses</strong> — Q4 e-commerce vs Q1 SaaS</p>
+
+<h2>Bottom line</h2>
+
+<p>If you're a SaaS founder in 2026, Burn Multiple is the number an investor asks about <strong>first</strong> in the next-round meeting. Know yours, optimize it below 1.5× per quarter, and fundraising gets an order of magnitude easier.</p>
+
+<p><strong>Calculate your Burn Multiple below</strong> — the built-in calculator shows the result, the benchmark and an interpretation instantly.</p>
+
+<p>---</p>
+
+<h3>Further resources</h3>
+
+<ul><li><a href="https://sacks.substack.com/">David Sacks' original essay</a></li><li><a href="https://www.bvp.com/atlas/state-of-the-cloud">Bessemer 'State of the Cloud' annual report</a> — public SaaS benchmarks</li><li><a href="/en/ruleOf40">/en/ruleOf40</a> — Rule of 40 calculator, a complementary metric</li><li><a href="/en/magicNumber">/en/magicNumber</a> — Magic Number, to optimize S&M separately</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Calculate it right here:</strong>
+  <iframe src="https://metricstree.vercel.app/burnMultiple?embed=1" width="100%" height="650" loading="lazy" title="MetricTree burnMultiple calculator"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Open the full version: <a href="https://metricstree.vercel.app/burnMultiple" target="_blank">https://metricstree.vercel.app/burnMultiple</a></p>
+</div>
+<div class="share-row">
+  Share:
+  <a href="https://twitter.com/intent/tweet?text=Burn%20Multiple%20%E2%80%94%20the%20SaaS%20investor's%20%231%20metric%20in%202026&url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fburn-multiple-saas-2026" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fburn-multiple-saas-2026" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fburn-multiple-saas-2026&text=Burn%20Multiple%20%E2%80%94%20the%20SaaS%20investor's%20%231%20metric%20in%202026" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/en/blog/">All posts</a> · <a href="/en">Calculator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

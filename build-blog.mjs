@@ -1,5 +1,12 @@
-// Blog generator — converts Markdown posts in blog-src/*.md to static HTML in blog/.
+// Blog generator — converts Markdown posts to static HTML.
+//
+// Sources:
+//   blog-src/*.md       → Russian posts   → /blog/<slug>      (blog/<slug>.html)
+//   blog-src/en/*.md    → English posts   → /en/blog/<slug>   (en/blog/<slug>.html)
+//
 // Each post gets unique <title>, og tags, canonical URL, BlogPosting JSON-LD.
+// When the same <slug> exists in both languages, the posts are cross-linked via
+// hreflang alternates (ru ↔ en, x-default → ru).
 //
 // Frontmatter format (YAML-ish, simple):
 // ---
@@ -18,6 +25,53 @@ const ROOT = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z
 const SITE = 'https://metricstree.vercel.app';
 const SRC_DIR = path.join(ROOT, 'blog-src');
 const OUT_DIR = path.join(ROOT, 'blog');
+
+// Per-language chrome / microcopy. Russian values reproduce the original
+// template exactly so RU output stays byte-identical.
+const LANGS = {
+  ru: {
+    out: OUT_DIR,
+    urlBase: '/blog',
+    author: 'Родион Латыпов',
+    navCalc: 'Калькулятор →',
+    homeHref: '/',
+    blogHref: '/blog/',
+    metaBy: 'автор:',
+    embedHeading: '🧮 Считай прямо здесь:',
+    embedOpenFull: 'Открыть в полной версии:',
+    iframeTitle: (id) => `MetricTree ${id} калькулятор`,
+    shareLabel: 'Поделиться:',
+    footerAllPosts: 'Все посты',
+    footerCalc: 'Калькулятор',
+    indexTitle: 'Blog — MetricTree | Гайды по продуктовым метрикам',
+    indexDesc: 'Гайды и разборы продуктовых метрик: Burn Multiple, Rule of 40, LTV:CAC, NRR, MRR growth — формулы, бенчмарки, рекомендации.',
+    indexOgTitle: 'MetricTree Blog — Гайды по продуктовым метрикам',
+    indexOgDesc: 'Разборы LTV:CAC, Burn Multiple, Rule of 40, NRR и других SaaS-метрик. С формулами, бенчмарками, real-world примерами.',
+    indexH1: 'Blog',
+    indexLede: 'Глубокие гайды по продуктовым метрикам: формулы, отраслевые бенчмарки, real-world применение. Каждый пост включает интерактивный калькулятор.',
+  },
+  en: {
+    out: path.join(ROOT, 'en', 'blog'),
+    urlBase: '/en/blog',
+    author: 'Rodion Latipov',
+    navCalc: 'Calculator →',
+    homeHref: '/en',
+    blogHref: '/en/blog/',
+    metaBy: 'by',
+    embedHeading: '🧮 Calculate it right here:',
+    embedOpenFull: 'Open the full version:',
+    iframeTitle: (id) => `MetricTree ${id} calculator`,
+    shareLabel: 'Share:',
+    footerAllPosts: 'All posts',
+    footerCalc: 'Calculator',
+    indexTitle: 'Blog — MetricTree | Product metrics guides',
+    indexDesc: 'Guides and breakdowns of product metrics: Burn Multiple, Rule of 40, LTV:CAC, NRR, MRR growth — formulas, benchmarks, recommendations.',
+    indexOgTitle: 'MetricTree Blog — Product metrics guides',
+    indexOgDesc: 'Breakdowns of LTV:CAC, Burn Multiple, Rule of 40, NRR and other SaaS metrics. With formulas, benchmarks and real-world examples.',
+    indexH1: 'Blog',
+    indexLede: 'In-depth product metrics guides: formulas, industry benchmarks, real-world application. Every post includes an interactive calculator.',
+  },
+};
 
 function parseFrontmatter(raw) {
   const m = raw.match(/^---\n([\s\S]+?)\n---\n([\s\S]*)$/);
@@ -69,23 +123,37 @@ function md2html(md) {
   return html;
 }
 
-const TEMPLATE = (meta, html, slug) => `<!doctype html>
-<html lang="ru">
+// hreflang alternate <link> lines, given which langs hold this slug.
+function hreflangLinks(slug, slugLangs) {
+  if (slugLangs.length < 2) return '';
+  const lines = slugLangs.map(l =>
+    `<link rel="alternate" hreflang="${l}" href="${SITE}${LANGS[l].urlBase}/${slug}">`);
+  // Russian is the canonical default for the project.
+  const def = slugLangs.includes('ru') ? 'ru' : slugLangs[0];
+  lines.push(`<link rel="alternate" hreflang="x-default" href="${SITE}${LANGS[def].urlBase}/${slug}">`);
+  return '\n' + lines.join('\n');
+}
+
+const TEMPLATE = (meta, html, slug, lang, altLinks) => {
+  const L = LANGS[lang];
+  const url = `${SITE}${L.urlBase}/${slug}`;
+  return `<!doctype html>
+<html lang="${lang}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>${meta.title} | MetricTree Blog</title>
 <meta name="description" content="${meta.description}">
 <meta name="keywords" content="${meta.keywords || ''}">
-<link rel="canonical" href="${SITE}/blog/${slug}">
+<link rel="canonical" href="${url}">${altLinks}
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta property="og:title" content="${meta.title}">
 <meta property="og:description" content="${meta.description}">
 <meta property="og:type" content="article">
-<meta property="og:url" content="${SITE}/blog/${slug}">
+<meta property="og:url" content="${url}">
 <meta property="og:image" content="${SITE}/og-image.png">
 <meta property="article:published_time" content="${meta.date || ''}">
-<meta property="article:author" content="Родион Латыпов">
+<meta property="article:author" content="${L.author}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${meta.title}">
 <meta name="twitter:image" content="${SITE}/og-image.png">
@@ -96,12 +164,12 @@ ${JSON.stringify({
   headline: meta.title,
   description: meta.description,
   datePublished: meta.date,
-  author: { '@type': 'Person', name: 'Родион Латыпов', url: 'https://www.linkedin.com/in/rodion-latipov' },
+  author: { '@type': 'Person', name: L.author, url: 'https://www.linkedin.com/in/rodion-latipov' },
   publisher: { '@type': 'Organization', name: 'MetricTree', url: SITE, logo: { '@type': 'ImageObject', url: `${SITE}/og-image.png` } },
   image: `${SITE}/og-image.png`,
-  mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE}/blog/${slug}` },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
   keywords: meta.keywords,
-  inLanguage: 'ru'
+  inLanguage: lang
 }, null, 2)}
 </script>
 <style>
@@ -144,45 +212,48 @@ em { color: var(--text-1); }
 </head>
 <body>
 <nav class="nav">
-  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
-  <div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div>
+  <a href="${L.homeHref}" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="${L.blogHref}">Blog</a> · <a href="${L.homeHref}">${L.navCalc}</a></div>
 </nav>
 <article>
 <h1>${meta.title}</h1>
-<div class="meta">${meta.date || ''} · автор: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a></div>
+<div class="meta">${meta.date || ''} · ${L.metaBy} <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">${L.author}</a></div>
 ${html}
 ${meta.embed ? `
 <div class="embed-cta">
-  <strong>🧮 Считай прямо здесь:</strong>
-  <iframe src="${SITE}/${meta.embed}?embed=1" width="100%" height="650" loading="lazy" title="MetricTree ${meta.embed} калькулятор"></iframe>
-  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Открыть в полной версии: <a href="${SITE}/${meta.embed}" target="_blank">${SITE}/${meta.embed}</a></p>
+  <strong>${L.embedHeading}</strong>
+  <iframe src="${SITE}/${meta.embed}?embed=1" width="100%" height="650" loading="lazy" title="${L.iframeTitle(meta.embed)}"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">${L.embedOpenFull} <a href="${SITE}/${meta.embed}" target="_blank">${SITE}/${meta.embed}</a></p>
 </div>` : ''}
 <div class="share-row">
-  Поделиться:
-  <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(meta.title)}&url=${encodeURIComponent(SITE + '/blog/' + slug)}" target="_blank">𝕏 / Twitter</a>
-  <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(SITE + '/blog/' + slug)}" target="_blank">LinkedIn</a>
-  <a href="https://t.me/share/url?url=${encodeURIComponent(SITE + '/blog/' + slug)}&text=${encodeURIComponent(meta.title)}" target="_blank">Telegram</a>
+  ${L.shareLabel}
+  <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(meta.title)}&url=${encodeURIComponent(url)}" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(meta.title)}" target="_blank">Telegram</a>
 </div>
 </article>
 <div class="footer">
-  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="/blog/">Все посты</a> · <a href="/">Калькулятор</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">${L.author}</a> · <a href="${L.blogHref}">${L.footerAllPosts}</a> · <a href="${L.homeHref}">${L.footerCalc}</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
 </div>
 </body>
 </html>
 `;
+};
 
-const INDEX_TEMPLATE = (posts) => `<!doctype html>
-<html lang="ru">
+const INDEX_TEMPLATE = (posts, lang) => {
+  const L = LANGS[lang];
+  return `<!doctype html>
+<html lang="${lang}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Blog — MetricTree | Гайды по продуктовым метрикам</title>
-<meta name="description" content="Гайды и разборы продуктовых метрик: Burn Multiple, Rule of 40, LTV:CAC, NRR, MRR growth — формулы, бенчмарки, рекомендации.">
-<link rel="canonical" href="${SITE}/blog/">
+<title>${L.indexTitle}</title>
+<meta name="description" content="${L.indexDesc}">
+<link rel="canonical" href="${SITE}${L.blogHref}">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<meta property="og:title" content="MetricTree Blog — Гайды по продуктовым метрикам">
-<meta property="og:description" content="Разборы LTV:CAC, Burn Multiple, Rule of 40, NRR и других SaaS-метрик. С формулами, бенчмарками, real-world примерами.">
-<meta property="og:url" content="${SITE}/blog/">
+<meta property="og:title" content="${L.indexOgTitle}">
+<meta property="og:description" content="${L.indexOgDesc}">
+<meta property="og:url" content="${SITE}${L.blogHref}">
 <meta property="og:image" content="${SITE}/og-image.png">
 <style>
 :root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#6b6f75; --accent:#2A6DF4; }
@@ -206,14 +277,14 @@ h1 { font-size: 2.2rem; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
 </head>
 <body>
 <nav class="nav">
-  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
-  <div><a href="/">Калькулятор →</a></div>
+  <a href="${L.homeHref}" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="${L.homeHref}">${L.navCalc}</a></div>
 </nav>
 <main class="wrap">
-<h1>Blog</h1>
-<p class="lede">Глубокие гайды по продуктовым метрикам: формулы, отраслевые бенчмарки, real-world применение. Каждый пост включает интерактивный калькулятор.</p>
+<h1>${L.indexH1}</h1>
+<p class="lede">${L.indexLede}</p>
 ${posts.map(p => `
-<a class="post-card" href="/blog/${p.slug}">
+<a class="post-card" href="${L.urlBase}/${p.slug}">
   <div class="post-meta">${p.meta.date || ''}</div>
   <h2>${p.meta.title}</h2>
   <p class="post-desc">${p.meta.description}</p>
@@ -221,34 +292,58 @@ ${posts.map(p => `
 `).join('')}
 </main>
 <div class="footer">
-  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="/">Калькулятор</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">${L.author}</a> · <a href="${L.homeHref}">${L.footerCalc}</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
 </div>
 </body>
 </html>
 `;
+};
+
+function readPosts(dir, lang) {
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir)
+    .filter(f => f.endsWith('.md'))
+    .map(f => {
+      const raw = fs.readFileSync(path.join(dir, f), 'utf8');
+      const { meta, body } = parseFrontmatter(raw);
+      return { slug: f.replace(/\.md$/, ''), meta, body, lang };
+    });
+}
 
 function main() {
   if (!fs.existsSync(SRC_DIR)) {
     console.error('blog-src/ directory does not exist');
     process.exit(1);
   }
-  if (!fs.existsSync(OUT_DIR)) fs.mkdirSync(OUT_DIR);
 
-  const files = fs.readdirSync(SRC_DIR).filter(f => f.endsWith('.md'));
-  const posts = [];
-  for (const f of files) {
-    const raw = fs.readFileSync(path.join(SRC_DIR, f), 'utf8');
-    const { meta, body } = parseFrontmatter(raw);
-    const slug = f.replace(/\.md$/, '');
-    const html = md2html(body);
-    fs.writeFileSync(path.join(OUT_DIR, slug + '.html'), TEMPLATE(meta, html, slug));
-    posts.push({ slug, meta });
+  const byLang = {
+    ru: readPosts(SRC_DIR, 'ru'),
+    en: readPosts(path.join(SRC_DIR, 'en'), 'en'),
+  };
+
+  // Map slug -> [langs] for hreflang pairing.
+  const slugLangs = {};
+  for (const lang of Object.keys(byLang)) {
+    for (const p of byLang[lang]) (slugLangs[p.slug] ||= []).push(lang);
   }
-  // Sort by date descending
-  posts.sort((a, b) => (b.meta.date || '').localeCompare(a.meta.date || ''));
-  // Generate index
-  fs.writeFileSync(path.join(OUT_DIR, 'index.html'), INDEX_TEMPLATE(posts));
-  console.log(`✓ Generated ${posts.length} blog post(s) + index.html → /blog/`);
+
+  let total = 0;
+  for (const lang of Object.keys(byLang)) {
+    const posts = byLang[lang];
+    if (!posts.length) continue;
+    const L = LANGS[lang];
+    if (!fs.existsSync(L.out)) fs.mkdirSync(L.out, { recursive: true });
+    for (const p of posts) {
+      const html = md2html(p.body);
+      const alts = hreflangLinks(p.slug, slugLangs[p.slug]);
+      fs.writeFileSync(path.join(L.out, p.slug + '.html'), TEMPLATE(p.meta, html, p.slug, lang, alts));
+      total++;
+    }
+    // Sort by date descending, generate per-language index.
+    const sorted = [...posts].sort((a, b) => (b.meta.date || '').localeCompare(a.meta.date || ''));
+    fs.writeFileSync(path.join(L.out, 'index.html'), INDEX_TEMPLATE(sorted, lang));
+  }
+  console.log(`✓ Generated ${total} blog post(s): ${byLang.ru.length} ru + ${byLang.en.length} en → /blog/ + /en/blog/`);
 }
 
 main();

@@ -427,8 +427,28 @@ function generateSitemap() {
   const blogSlugs = [...new Set(
     [...vercel.matchAll(/"source":\s*"\/blog\/([a-z0-9-]+)"/g)].map(m => m[1])
   )].filter(s => s !== 'index');
+  const enBlogSlugs = [...new Set(
+    [...vercel.matchAll(/"source":\s*"\/en\/blog\/([a-z0-9-]+)"/g)].map(m => m[1])
+  )].filter(s => s !== 'index');
+  const enBlogSet = new Set(enBlogSlugs);
+  // hreflang alternates for a blog slug that exists in both languages.
+  const blogAlts = (slug) => [
+    { lang: 'ru', href: `${SITE}/blog/${slug}` },
+    { lang: 'en', href: `${SITE}/en/blog/${slug}` },
+    { lang: 'x-default', href: `${SITE}/blog/${slug}` },
+  ];
   for (const slug of blogSlugs) {
-    urls.push(urlNode(`${SITE}/blog/${slug}`, { priority: '0.7', changefreq: 'monthly' }));
+    const opts = { priority: '0.7', changefreq: 'monthly' };
+    if (enBlogSet.has(slug)) opts.alts = blogAlts(slug);
+    urls.push(urlNode(`${SITE}/blog/${slug}`, opts));
+  }
+  if (enBlogSlugs.length) {
+    urls.push(urlNode(`${SITE}/en/blog`, { priority: '0.7', changefreq: 'weekly' }));
+    for (const slug of enBlogSlugs) {
+      const opts = { priority: '0.6', changefreq: 'monthly' };
+      if (blogSlugs.includes(slug)) opts.alts = blogAlts(slug);
+      urls.push(urlNode(`${SITE}/en/blog/${slug}`, opts));
+    }
   }
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
