@@ -8,14 +8,14 @@
 
 ### 1. Lenny Rachitsky (Lenny's Newsletter, 500k+ подписчиков)
 **To:** lenny@lennyrachitsky.com
-**Subject:** Free open-source product metrics calculator (52 metrics, no signup)
+**Subject:** Free open-source product metrics calculator (48 metrics, no signup)
 
 Hi Lenny,
 
-Big fan of the newsletter — your post on metrics-driven PM-ing finally got me to build the tool I always wanted: **MetricTree** — a free open-source calculator for 52 product metrics (LTV, CAC, MRR, NRR, Burn Multiple, Rule of 40, Sales Velocity, Quick Ratio, etc.).
+Big fan of the newsletter — your post on metrics-driven PM-ing finally got me to build the tool I always wanted: **MetricTree** — a free open-source calculator for 48 product metrics (LTV, CAC, MRR, NRR, Burn Multiple, Rule of 40, Sales Velocity, Quick Ratio, etc.).
 
 What's different:
-- 52 metrics in one place (vs Profitwell's 6 free)
+- 48 metrics in one place (vs Profitwell's 6 free)
 - Goal mode — reverse calculations («I want LTV:CAC = 3, my LTV is $15k — what's max CAC?»)
 - Industry benchmarks with cited sources (OpenView, Bessemer, Sacks, Hamid)
 - Embed mode — drop any calculator into your post as an iframe
@@ -50,7 +50,7 @@ Includes goal mode (reverse-calc) + benchmarks + What-If sliders. Cited you as s
 
 Patrick,
 
-Long-time admirer of Profitwell's content. Was inspired to build a free open-source companion for the metrics you cover: **MetricTree** (https://metricstree.vercel.app/) — 52 metrics, no signup, embed mode, Goal mode for reverse calculations.
+Long-time admirer of Profitwell's content. Was inspired to build a free open-source companion for the metrics you cover: **MetricTree** (https://metricstree.vercel.app/) — 48 metrics, no signup, embed mode, Goal mode for reverse calculations.
 
 Positioned as «when ProfitWell is overkill» — for fast calculations during pitch prep, board-decks, scenario modeling. Most users won't have Stripe data ready (pre-revenue, advisory, learning).
 
@@ -64,11 +64,11 @@ Rodion
 
 ### 4. Maya Grossman (SaaS marketing influencer)
 **To:** DM on LinkedIn
-**Subject:** Free open-source 52-metric calculator (Rule of 40, Burn Multiple, Magic Number)
+**Subject:** Free open-source 48-metric calculator (Rule of 40, Burn Multiple, Magic Number)
 
 Hi Maya,
 
-I built a free open-source calculator for 52 SaaS metrics: https://metricstree.vercel.app/
+I built a free open-source calculator for 48 SaaS metrics: https://metricstree.vercel.app/
 
 You can embed any calculator in your blog posts via iframe — interactive widget instead of static formula tables. Already wrote 14 deep posts on the top metrics (here: https://metricstree.vercel.app/blog/) — would love to guest post on your network if there's interest.
 
@@ -85,7 +85,7 @@ Rodion
 
 Hiten,
 
-Built **MetricTree** — free open-source calculator for 52 product metrics: https://metricstree.vercel.app/
+Built **MetricTree** — free open-source calculator for 48 product metrics: https://metricstree.vercel.app/
 
 Was inspired by your decade of content on SaaS metrics + KISSmetrics analytics tooling. The killer feature is Goal mode (reverse-calc): «I want LTV:CAC = 3, my LTV is $15k — what's max CAC?» (4× cheaper than Causal, instant vs minutes).
 
@@ -97,11 +97,11 @@ Rodion · CEO Boxette · PRO Финансы podcast
 
 ### 6. Tomasz Tunguz (Theory Ventures, SaaS metrics blog)
 **To:** tomasz@theory.ventures
-**Subject:** Free 52-metric SaaS calculator — would love to be referenced
+**Subject:** Free 48-metric SaaS calculator — would love to be referenced
 
 Tomasz,
 
-Built **MetricTree** — free open-source calc for 52 SaaS metrics, including everything you cover (Burn Multiple, Magic Number, Quick Ratio, Net Magic Number, T2D3, Rule of 40, NRR cohort decay).
+Built **MetricTree** — free open-source calc for 48 SaaS metrics, including everything you cover (Burn Multiple, Magic Number, Quick Ratio, Net Magic Number, T2D3, Rule of 40, NRR cohort decay).
 
 Live + embed: https://metricstree.vercel.app/
 
@@ -119,7 +119,7 @@ Rodion
 
 Christoph,
 
-Long-time reader of your blog. Built **MetricTree** — free open-source calculator for 52 SaaS metrics including a T2D3-checker (MRR Growth Rate with annualized projection + your benchmark).
+Long-time reader of your blog. Built **MetricTree** — free open-source calculator for 48 SaaS metrics including a T2D3-checker (MRR Growth Rate with annualized projection + your benchmark).
 
 Reading: https://metricstree.vercel.app/blog/mrr-growth-rate-yc — cites T2D3 model
 
@@ -141,7 +141,7 @@ Built a free Quick Ratio calculator + deep post citing you as source:
 - https://metricstree.vercel.app/quickRatio
 - https://metricstree.vercel.app/blog/quick-ratio-saas
 
-Part of MetricTree — 52 SaaS metrics, no signup, MIT open source. Would value any feedback or RT 🙏
+Part of MetricTree — 48 SaaS metrics, no signup, MIT open source. Would value any feedback or RT 🙏
 
 Rodion
 
@@ -155,7 +155,7 @@ Jason,
 
 Built **MetricTree** for pre-revenue SaaS founders who don't yet have data in Stripe for Profitwell/Baremetrics: https://metricstree.vercel.app/
 
-52 metrics, Goal mode, What-If sliders, scenario modeling. Free, no signup, MIT.
+48 metrics, Goal mode, What-If sliders, scenario modeling. Free, no signup, MIT.
 
 When you next mention SaaS metrics in your blog, would value an offhand link — saves readers from setting up dashboards just to verify a formula.
 
@@ -167,11 +167,11 @@ Rodion
 
 ### 10. Andrew Chen (Andreessen Horowitz, growth metrics)
 **To:** andrew@a16z.com / @andrewchen DM
-**Subject:** Open-source 52-metric calculator (cites a16z growth posts)
+**Subject:** Open-source 48-metric calculator (cites a16z growth posts)
 
 Andrew,
 
-Built MetricTree — free 52-metric calc including AARRR, K-factor, growth metrics: https://metricstree.vercel.app/
+Built MetricTree — free 48-metric calc including AARRR, K-factor, growth metrics: https://metricstree.vercel.app/
 
 Cited your network-effects posts in benchmark sources. Would love any feedback or X RT 🙏 — open source MIT.
 
@@ -183,11 +183,11 @@ Rodion
 
 ### 11. Илья Красинский (Apptractor / SaaS-blog RU)
 **To:** через LinkedIn DM
-**Subject:** Бесплатный калькулятор 52 SaaS-метрик — потенциал для коллаба
+**Subject:** Бесплатный калькулятор 48 SaaS-метрик — потенциал для коллаба
 
 Илья, привет!
 
-Построил **MetricTree** — бесплатный open-source калькулятор 52 продуктовых метрик на русском (плюс EN/UZ): https://metricstree.vercel.app/
+Построил **MetricTree** — бесплатный open-source калькулятор 48 продуктовых метрик на русском (плюс EN/UZ): https://metricstree.vercel.app/
 
 Killer-фичи:
 - Goal mode (обратный расчёт): «хочу LTV:CAC = 3, какой max CAC?»
@@ -205,11 +205,11 @@ Killer-фичи:
 
 ### 12. Михаил Карпов (Russian PM newsletter)
 **To:** DM Telegram
-**Subject:** MetricTree — бесплатный калькулятор 52 продуктовых метрик
+**Subject:** MetricTree — бесплатный калькулятор 48 продуктовых метрик
 
 Михаил, привет!
 
-Запустил **metricstree.vercel.app** — бесплатный калькулятор 52 продуктовых метрик (LTV, CAC, MRR, Burn Multiple, Rule of 40, etc.) на 3 языках, без регистрации.
+Запустил **metricstree.vercel.app** — бесплатный калькулятор 48 продуктовых метрик (LTV, CAC, MRR, Burn Multiple, Rule of 40, etc.) на 3 языках, без регистрации.
 
 Killer feature — Goal mode для обратного расчёта. Open source, MIT.
 
@@ -226,8 +226,8 @@ Killer feature — Goal mode для обратного расчёта. Open sour
 
 Денис, привет!
 
-Построил **MetricTree** (https://metricstree.vercel.app/) — бесплатный калькулятор 52 продуктовых метрик. Возможно подойдёт студентам как дополнительный инструмент к программе:
-- 52 метрики с формулами + бенчмарками + интерпретацией
+Построил **MetricTree** (https://metricstree.vercel.app/) — бесплатный калькулятор 48 продуктовых метрик. Возможно подойдёт студентам как дополнительный инструмент к программе:
+- 48 метрик с формулами + бенчмарками + интерпретацией
 - Goal mode для практики
 - Embed в Notion для домашек
 
@@ -245,7 +245,7 @@ Open source, можно self-host на свой домен. Бесплатно �
 
 Андрей, привет!
 
-Запустил MetricTree (https://metricstree.vercel.app/) — бесплатный калькулятор 52 продуктовых метрик. Open source, без signup. Использую для board-meeting'ов и моделирования. Может пригодится твоей команде.
+Запустил MetricTree (https://metricstree.vercel.app/) — бесплатный калькулятор 48 продуктовых метрик. Open source, без signup. Использую для board-meeting'ов и моделирования. Может пригодится твоей команде.
 
 Доступен embed-режим для встраивания в Notion / блог. Думал — может полезно для каких-то твоих статей про unit-экономику.
 
@@ -259,9 +259,9 @@ Open source, можно self-host на свой домен. Бесплатно �
 
 Привет!
 
-Запустил бесплатный калькулятор 52 продуктовых метрик: metricstree.vercel.app. Думаю подойдёт для одного из ваших обзоров инструментов.
+Запустил бесплатный калькулятор 48 продуктовых метрик: metricstree.vercel.app. Думаю подойдёт для одного из ваших обзоров инструментов.
 
-- 52 метрики (B2C, B2B SaaS, AARRR, Growth, Finance, QA, Support)
+- 48 метрик (B2C, B2B SaaS, AARRR, Growth, Finance, QA, Support)
 - 3 языка (RU/EN/UZ)
 - Goal mode (обратный расчёт)
 - Embed iframe для встраивания
@@ -275,11 +275,11 @@ CEO Boxette · подкаст PRO Финансы
 
 ### 16. Канал «SaaSный мир»
 **To:** DM админа
-**Subject:** Free 52-metric calculator для упоминания в SaaSный мир
+**Subject:** Free 48-metric calculator для упоминания в SaaSный мир
 
 Привет!
 
-MetricTree — бесплатный open-source калькулятор 52 SaaS-метрик с поддержкой RU: https://metricstree.vercel.app/
+MetricTree — бесплатный open-source калькулятор 48 SaaS-метрик с поддержкой RU: https://metricstree.vercel.app/
 
 Думаю интересно вашей аудитории. Закроет все формулы Burn Multiple / Quick Ratio / NRR / Rule of 40 в одном месте. Embed для встраивания в посты канала.
 
@@ -291,13 +291,13 @@ MetricTree — бесплатный open-source калькулятор 52 SaaS-�
 
 ### 17. vc.ru (редакция)
 **To:** redactor@vc.ru
-**Subject:** Колонка: «Я устал гуглить SaaS-формулы — построил калькулятор 52 метрик»
+**Subject:** Колонка: «Я устал гуглить SaaS-формулы — построил калькулятор 48 метрик»
 
 Здравствуйте!
 
 Меня зовут Родион Латыпов, я CEO Boxette Uzbekistan и веду подкаст «PRO Финансы».
 
-Хочу предложить колонку для vc.ru «Почему я устал гуглить SaaS-формулы и сделал open-source калькулятор 52 метрик» — про процесс, технические решения (Vanilla JS, Vercel Edge, мульти-язычность для CIS-рынка), unit-экономику side-project'а.
+Хочу предложить колонку для vc.ru «Почему я устал гуглить SaaS-формулы и сделал open-source калькулятор 48 метрик» — про процесс, технические решения (Vanilla JS, Vercel Edge, мульти-язычность для CIS-рынка), unit-экономику side-project'а.
 
 Готовый текст ~1500 слов с скриншотами могу прислать по запросу. Calculator живой: https://metricstree.vercel.app/
 
@@ -308,7 +308,7 @@ MetricTree — бесплатный open-source калькулятор 52 SaaS-�
 
 ### 18. Habr (Tomas Higbee, редакция SaaS-блогов)
 **To:** через профиль на Habr
-**Subject:** Open-source SaaS-калькулятор — статья «Как я построил калькулятор 52 метрик за выходные»
+**Subject:** Open-source SaaS-калькулятор — статья «Как я построил калькулятор 48 метрик за выходные»
 
 Здравствуйте!
 
@@ -332,7 +332,7 @@ MetricTree — бесплатный open-source калькулятор 52 SaaS-�
 
 Илья, привет!
 
-Запустил MetricTree (https://metricstree.vercel.app/) — бесплатный калькулятор 52 продуктовых метрик. Единственный в категории с поддержкой узбекского + русского.
+Запустил MetricTree (https://metricstree.vercel.app/) — бесплатный калькулятор 48 продуктовых метрик. Единственный в категории с поддержкой узбекского + русского.
 
 Думаю это уникальная новость для CIS-tech-комьюнити — стартап из Ташкента запускает open-source SaaS-инструмент с глобальной аудиторией. Можно сделать материал в стиле «как фаундер из УЗ делает open source».
 
@@ -348,7 +348,7 @@ MetricTree — бесплатный open-source калькулятор 52 SaaS-�
 
 Здравствуйте!
 
-Запускаю MetricTree на ProductHunt — бесплатный open-source калькулятор 52 продуктовых метрик с поддержкой русского и узбекского: https://metricstree.vercel.app/
+Запускаю MetricTree на ProductHunt — бесплатный open-source калькулятор 48 продуктовых метрик с поддержкой русского и узбекского: https://metricstree.vercel.app/
 
 Был бы благодарен за анонс в канале в день launch (планирую запуск через ~10 дней). Готов прислать assets pack + точную дату.
 
@@ -362,7 +362,7 @@ MetricTree — бесплатный open-source калькулятор 52 SaaS-�
 
 ### 21. Никита Маклахов (Будет Сделано! подкаст)
 **To:** через Telegram / Instagram DM
-**Subject:** Гость в подкаст — основатель MetricTree (52 product metrics)
+**Subject:** Гость в подкаст — основатель MetricTree (48 product metrics)
 
 Никита, привет!
 
@@ -404,7 +404,7 @@ MetricTree — бесплатный open-source калькулятор 52 SaaS-�
 
 Hi team,
 
-I'm Rodion Latypov, CEO of Boxette Uzbekistan. Recently launched **MetricTree** — free open-source calculator for 52 SaaS metrics: https://metricstree.vercel.app/
+I'm Rodion Latypov, CEO of Boxette Uzbekistan. Recently launched **MetricTree** — free open-source calculator for 48 SaaS metrics: https://metricstree.vercel.app/
 
 Interesting podcast guest because:
 1. Unusual location (Tashkent) building global open-source SaaS tool
@@ -420,11 +420,11 @@ Rodion
 
 ### 24. SaaStr Podcast / Jason Lemkin
 **To:** jason@saastr.com / DM on X
-**Subject:** Free 52-metric SaaS calc — would love to be a podcast guest
+**Subject:** Free 48-metric SaaS calc — would love to be a podcast guest
 
 Jason,
 
-Built **MetricTree** — free open-source 52-metric SaaS calculator covering all your framework references (NRR, Burn Multiple, Quick Ratio, Rule of 40, T2D3, etc.).
+Built **MetricTree** — free open-source 48-metric SaaS calculator covering all your framework references (NRR, Burn Multiple, Quick Ratio, Rule of 40, T2D3, etc.).
 
 https://metricstree.vercel.app/
 
@@ -446,7 +446,7 @@ Rodion
 Hi Lenny,
 
 Already emailed about MetricTree. Want to offer specifically as a podcast guest:
-- Why I built 52-metric open-source tool (most calc-tools cover ~6)
+- Why I built 48-metric open-source tool (most calc-tools cover ~6)
 - Insights from 100s of founders who used it (pre-launch beta)
 - Building from Tashkent — perspective on global open source
 - Multi-lingual SaaS — Russian + Uzbek launch insights
@@ -465,7 +465,7 @@ Rodion
 
 Hi team,
 
-I built MetricTree (https://metricstree.vercel.app/) — free open-source calc for 52 SaaS metrics with embed iframe support.
+I built MetricTree (https://metricstree.vercel.app/) — free open-source calc for 48 SaaS metrics with embed iframe support.
 
 If you're publishing posts on growth/metrics on Telegram blog, you can embed live calculator widgets:
 `<iframe src="https://metricstree.vercel.app/mrr?embed=1" ...></iframe>`
@@ -484,7 +484,7 @@ Rodion
 
 Hi Atlas team,
 
-Built MetricTree — free open-source 52-metric calculator with embed-iframe for blogs: https://metricstree.vercel.app/
+Built MetricTree — free open-source 48-metric calculator with embed-iframe for blogs: https://metricstree.vercel.app/
 
 Could be useful for your Atlas Guides on metrics (LTV, CAC, MRR, churn) — embed interactive widget instead of static formula. Free, no signup, MIT.
 
@@ -500,7 +500,7 @@ Rodion · CEO Boxette UZ
 
 Hi team,
 
-Built MetricTree — calculator for 52 SaaS metrics that embeds natively in Notion via /embed block: https://metricstree.vercel.app/
+Built MetricTree — calculator for 48 SaaS metrics that embeds natively in Notion via /embed block: https://metricstree.vercel.app/
 
 Already templated for use in:
 - SaaS investor template

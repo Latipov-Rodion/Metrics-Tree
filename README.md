@@ -12,7 +12,7 @@
 
 ## Что внутри
 
-**48 метрик в 8 разделах:**
+**48 метрик в 7 разделах:**
 - **B2C** — DAU, MAU, Stickiness, Retention, LTV, CAC, LTV:CAC, ARPU, Churn, AOV, Repeat Purchase Rate, ARPDAU
 - **B2B SaaS** — MRR, ARR, ACV, GRR, NRR, CAC Payback, Burn Multiple, Magic Number, Rule of 40, Quick Ratio, MRR Growth Rate
 - **AARRR** (Pirate) — Acquisition, Activation, Retention, Referral, Revenue, Time to Value
