@@ -6635,9 +6635,9 @@ window._tTooltip = function(ruText) {
             content.innerHTML = `
                 <div class="compare-select-wrap">
                     <span style="font-size:0.78rem;color:var(--text-3)">Сравниваем:</span>
-                    <select class="compare-select" id="cmpSelA">${snapOptions}</select>
+                    <select class="compare-select" id="cmpSelA" aria-label="Первый снимок для сравнения">${snapOptions}</select>
                     <span style="font-size:0.78rem;color:var(--text-3)">vs</span>
-                    <select class="compare-select" id="cmpSelB">${snapOptionsB}</select>
+                    <select class="compare-select" id="cmpSelB" aria-label="Второй снимок для сравнения">${snapOptionsB}</select>
                 </div>
                 <div class="compare-grid">
                     ${snapCard(snapA, labelA)}
@@ -7434,7 +7434,7 @@ window._tTooltip = function(ruText) {
         const optionsHtml = questions.map((q, i) => `<option value="${i}">${_tg(q.ask)}</option>`).join('');
         goalPanel.innerHTML = `
             <div class="goal-title">${t('goal.title', '🎯 Goal mode — обратный расчёт')}</div>
-            <select class="goal-question-select" id="goalSelect">${optionsHtml}</select>
+            <select class="goal-question-select" id="goalSelect" aria-label="${t('goal.select_aria', 'Выберите вопрос для обратного расчёта')}">${optionsHtml}</select>
             <div id="goalForm"></div>
         `;
         const sel = document.getElementById('goalSelect');
@@ -8337,7 +8337,7 @@ window._tTooltip = function(ruText) {
         <h3 id="compare2Title" data-t="compare2.title">🔀 Сравнение двух метрик</h3>
         <div class="compare2-controls">
             <span data-t="compare2.choose">Выберите вторую метрику:</span>
-            <select id="compare2Select" class="compare2-select"></select>
+            <select id="compare2Select" class="compare2-select" aria-label="Выберите вторую метрику для сравнения"></select>
         </div>
         <div class="compare2-grid" id="compare2Grid" style="overflow-y:auto;flex:1;"></div>
         <div class="modal-btns" style="justify-content:flex-end;">
