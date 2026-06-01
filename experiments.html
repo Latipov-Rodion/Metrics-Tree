@@ -103,7 +103,7 @@ h1{font-size:1.6rem;margin:0.5rem 0 0.4rem}
     showApp();
     $('error-area').innerHTML = '<p style="color:var(--text-3);">Loading...</p>';
     try {
-      const r = await fetch('/api/ab-results?secret=' + encodeURIComponent(secret));
+      const r = await fetch('/api/ab-results', { headers: { Authorization: 'Bearer ' + secret } });
       const j = await r.json();
       if (!r.ok) {
         $('error-area').innerHTML = `<div class="error-box"><strong>${j.error}</strong>${j.hint ? `<div class="hint">${j.hint}</div>` : ''}</div>`;

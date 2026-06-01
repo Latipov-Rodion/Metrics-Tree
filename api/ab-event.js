@@ -92,6 +92,22 @@ export default async function handler(req) {
   }
 
   try {
+    // Light anti-flood: cap ~60 events/min per visitor so a script can't churn
+    // the 50k-capped list and evict real experiment data. Graceful on KV error.
+    const rlKey = `rl:abev:${payload.visitor || req.headers.get('x-forwarded-for') || 'anon'}`;
+    const rl = await fetch(`${kv.url}/incr/${encodeURIComponent(rlKey)}`, {
+      method: 'POST', headers: { Authorization: `Bearer ${kv.token}` }
+    }).then(r => r.json()).catch(() => null);
+    if (rl && rl.result === 1) {
+      await fetch(`${kv.url}/expire/${encodeURIComponent(rlKey)}/60`, {
+        method: 'POST', headers: { Authorization: `Bearer ${kv.token}` }
+      }).catch(() => {});
+    }
+    if (rl && typeof rl.result === 'number' && rl.result > 60) {
+      return new Response(JSON.stringify({ ok: true, stored: false, throttled: true }), {
+        status: 200, headers: { 'Content-Type': 'application/json', ...CORS }
+      });
+    }
     await pushEvent(kv, payload);
     return new Response(JSON.stringify({ ok: true, stored: true }), {
       status: 200,

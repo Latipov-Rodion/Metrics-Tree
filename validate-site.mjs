@@ -89,6 +89,8 @@ const countFiles = [
   'press.html', 'embed.html', 'changelog.html', 'api-docs.html',
   'vs-profitwell.html', 'vs-baremetrics.html', 'vs-causal.html',
   'vs-chartmogul.html', 'vs-geckoboard.html', 'vs-finmodelslab.html',
+  'report.html', 'quiz.html', 'experiments.html', 'glossary.html',
+  'build-industries.mjs', 'build-glossary.mjs',
 ];
 for (const f of countFiles) {
   const fp = path.join(ROOT, f);

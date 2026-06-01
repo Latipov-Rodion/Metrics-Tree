@@ -38,7 +38,9 @@ function twoPropZ(p1n, p1d, p2n, p2d) {
 
 export default async function handler(req) {
   const url = new URL(req.url);
-  const secret = url.searchParams.get('secret') || '';
+  // Prefer the Authorization: Bearer header (not logged); keep ?secret= fallback.
+  const authHeader = req.headers.get('authorization') || '';
+  const secret = authHeader.replace(/^Bearer\s+/i, '').trim() || url.searchParams.get('secret') || '';
   const adminSecret = process.env.ADMIN_SECRET;
 
   if (!adminSecret) {
