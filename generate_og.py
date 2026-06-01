@@ -27,11 +27,15 @@ def load_font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont:
         r'C:\Windows\Fonts\seguibd.ttf',     # Segoe UI Bold
         r'C:\Windows\Fonts\arialbd.ttf',
         r'C:\Windows\Fonts\Verdana Bold.ttf',
+        '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',  # Linux/CI fallback (Cyrillic)
+        'DejaVuSans-Bold.ttf',
     ]
     candidates_reg = [
         r'C:\Windows\Fonts\segoeui.ttf',     # Segoe UI
         r'C:\Windows\Fonts\arial.ttf',
         r'C:\Windows\Fonts\verdana.ttf',
+        '/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf',
+        'DejaVuSans.ttf',
     ]
     for p in (candidates_bold if bold else candidates_reg):
         try:
@@ -64,7 +68,7 @@ def main():
     d.text((pad_x, 140), 'MetricTree', fill=TEXT, font=load_font(120, bold=True))
 
     # Subtitle
-    d.text((pad_x, 290), '52 product metrics calculator', fill=TEXT, font=load_font(40))
+    d.text((pad_x, 290), '48 product metrics calculator', fill=TEXT, font=load_font(40))
 
     # Formula chip
     chip_x, chip_y = pad_x, 360

@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  # Guard against the #1 footgun of this no-bundler site: editing a source
+  # (index.html / blog-src) without regenerating the committed artifacts.
+  artifacts-in-sync:
+    name: Build artifacts in sync
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Regenerate all build artifacts
+        run: |
+          node build-industries.mjs
+          node build-glossary.mjs
+          node build.mjs
+          node build-blog.mjs
+          node inject-theme-sync.mjs
+      - name: Fail if generated artifacts are stale
+        run: |
+          if ! git diff --quiet; then
+            echo "::error::Generated artifacts are out of sync with sources."
+            echo "Run 'node build.mjs && node build-blog.mjs' and commit the result."
+            git --no-pager diff --stat
+            exit 1
+          fi
+          echo "✓ All generated artifacts match their sources."
+
+  # Validate rewrites, sitemap reachability, internal blog links and hreflang twins.
+  validate-site:
+    name: Validate links & sitemap
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node validate-site.mjs
+
+  # Unit tests for the public calculator API (api/calc.js formulas + handler).
+  unit-tests:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node --test test/*.test.mjs

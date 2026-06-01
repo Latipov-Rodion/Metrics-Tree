@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Gross Margin в SaaS — почему 80% это стандарт и что входит в COGS | MetricTree Blog</title>
+<meta name="description" content="Gross Margin = (Выручка − COGS) / Выручка. Почему у SaaS норма 75-85%, что включать в COGS, и как маржа влияет на Rule of 40, CAC Payback и оценку компании.">
+<meta name="keywords" content="gross margin, валовая маржа saas, что входит в cogs, формула gross margin, маржинальность saas">
+<link rel="canonical" href="https://metricstree.vercel.app/blog/gross-margin-saas">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/gross-margin-saas">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/gross-margin-saas">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/gross-margin-saas">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Gross Margin в SaaS — почему 80% это стандарт и что входит в COGS">
+<meta property="og:description" content="Gross Margin = (Выручка − COGS) / Выручка. Почему у SaaS норма 75-85%, что включать в COGS, и как маржа влияет на Rule of 40, CAC Payback и оценку компании.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/blog/gross-margin-saas">
+<meta property="og:image" content="https://metricstree.vercel.app/blog-og/gross-margin-saas.png">
+<meta property="article:published_time" content="2026-05-19">
+<meta property="article:author" content="Родион Латыпов">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gross Margin в SaaS — почему 80% это стандарт и что входит в COGS">
+<meta name="twitter:image" content="https://metricstree.vercel.app/blog-og/gross-margin-saas.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Gross Margin в SaaS — почему 80% это стандарт и что входит в COGS",
+  "description": "Gross Margin = (Выручка − COGS) / Выручка. Почему у SaaS норма 75-85%, что включать в COGS, и как маржа влияет на Rule of 40, CAC Payback и оценку компании.",
+  "datePublished": "2026-05-19",
+  "author": {
+    "@type": "Person",
+    "name": "Родион Латыпов",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/blog-og/gross-margin-saas.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/blog/gross-margin-saas"
+  },
+  "keywords": "gross margin, валовая маржа saas, что входит в cogs, формула gross margin, маржинальность saas",
+  "inLanguage": "ru"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#6b6f75; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#777; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div>
+</nav>
+<article>
+<h1>Gross Margin в SaaS — почему 80% это стандарт и что входит в COGS</h1>
+<div class="meta">2026-05-19 · автор: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a></div>
+<h1>Gross Margin в SaaS — почему 80% это стандарт и что входит в COGS</h1>
+
+<p>Gross Margin (валовая маржа) — фундамент финансового здоровья SaaS. Она показывает, сколько с каждого доллара выручки остаётся после прямых затрат на доставку продукта. Именно она определяет, насколько эффективно растёт компания.</p>
+
+<p>> <strong>Gross Margin = (Выручка − COGS) / Выручка × 100%</strong></p>
+
+<p>COGS (Cost of Goods Sold) — прямые затраты на предоставление сервиса. Чем меньше COGS, тем больше денег остаётся на рост и прибыль.</p>
+
+<h2>Почему у SaaS маржа 75-85%</h2>
+
+<p>В отличие от физических товаров, доставка ещё одной копии софта стоит почти ничего. Поэтому SaaS — один из самых высокомаржинальных бизнесов в мире:</p>
+
+<table><thead><tr><th>Тип бизнеса</th><th>Типичный Gross Margin</th></tr></thead><tbody><tr><td></td><td><strong>SaaS (зрелый)</strong></td><td>75-85%</td><td></td></tr><tr><td></td><td><strong>SaaS (top-tier)</strong></td><td>85-90%</td><td></td></tr><tr><td></td><td><strong>Marketplace</strong></td><td>50-70%</td><td></td></tr><tr><td></td><td><strong>E-commerce</strong></td><td>20-40%</td><td></td></tr><tr><td></td><td><strong>Hardware</strong></td><td>20-35%</td><td></td></tr><tr><td></td><td><strong>Услуги / агентства</strong></td><td>30-50%</td><td></td></tr></tbody></table>
+<strong>Норма для SaaS — 80%.</strong> Ниже 70% — инвесторы насторожатся: либо высокие хостинг-затраты, либо в выручке скрыты услуги/имплементация с низкой маржой.
+
+<h2>Что входит в COGS у SaaS</h2>
+
+<p>Главная ошибка — путать COGS с операционными расходами. В COGS идёт только то, что <strong>напрямую</strong> нужно для работы сервиса:</p>
+
+<table><thead><tr><th>Входит в COGS ✓</th><th>НЕ входит (это OpEx) ✗</th></tr></thead><tbody><tr><td></td><td>Хостинг / облако (AWS, GCP)</td><td>Sales & Marketing</td><td></td></tr><tr><td></td><td>Сторонние API в составе продукта</td><td>R&D / разработка фич</td><td></td></tr><tr><td></td><td>Поддержка клиентов (часть)</td><td>G&A (офис, юристы, финансы)</td><td></td></tr><tr><td></td><td>Customer Success (часть)</td><td>Зарплаты разработчиков</td><td></td></tr><tr><td></td><td>Платёжные комиссии</td><td>Реклама</td><td></td></tr><tr><td></td><td>Доставка контента (CDN)</td><td>Менеджмент</td><td></td></tr></tbody></table>
+<strong>Серая зона</strong> — Customer Success и Support. Часть, обеспечивающая базовую работу клиента, — это COGS; часть, занимающаяся upsell, — это Sales. Раздели последовательно и не меняй методику между периодами.
+
+<h2>Пример расчёта</h2>
+
+<p><strong>SaaS-компания:</strong><br><ul><li>Выручка за год: $5,000,000</li><li>Хостинг (AWS): $400,000</li><li>Поддержка (базовая): $250,000</li><li>Платёжные комиссии: $150,000</li><li>COGS итого: $800,000</li></ul></p>
+
+<p>Gross Margin = (5,000,000 − 800,000) / 5,000,000 = 4,200,000 / 5,000,000 = <strong>84%</strong> → отлично</p>
+
+<h2>Как Gross Margin влияет на всё остальное</h2>
+
+<p>Маржа — это множитель эффективности всей экономики:</p>
+
+<h3>Rule of 40</h3>
+Gross/EBITDA margin — половина формулы R40. +5pp маржи = +5 пунктов R40 напрямую.
+
+<h3>CAC Payback</h3>
+<code>CAC Payback = CAC / (MRR × Gross Margin)</code>. Рост маржи с 75% до 85% сокращает payback на ~12% без изменения CAC.
+
+<h3>Runway</h3>
+Выше маржа → меньше cash сжигается на каждый доллар выручки → runway длиннее.
+
+<h3>Оценка компании</h3>
+Публичные SaaS с маржой 80%+ торгуются с премией к мультипликаторам относительно компаний с 60%. Маржа напрямую закладывается в valuation.
+
+<h2>4 рычага роста Gross Margin</h2>
+
+<h3>1. Оптимизация хостинга</h3>
+Самый частый источник раздутого COGS на масштабе:
+<ul><li>Reserved / committed-use инстансы (−30-50% к on-demand)</li><li>Автоскейлинг и отключение idle-ресурсов</li><li>Кэширование и CDN вместо повторных вычислений</li><li>Аудит «забытых» сервисов и дублей</li></ul>
+
+<h3>2. Deflection в поддержке</h3>
+<ul><li>База знаний и документация (снимает 30-50% тикетов)</li><li>AI-чатбот для типовых вопросов</li><li>Self-serve онбординг для SMB</li></ul>
+
+<h3>3. Pricing review</h3>
+Повышение цены идёт напрямую в маржу (COGS не растёт пропорционально). +10% цены при тех же затратах = заметный прирост Gross Margin.
+
+<h3>4. Убрать низкомаржинальные услуги из core</h3>
+Кастомная имплементация и консалтинг с маржой 30% размывают общую. Выдели их в отдельную строку или отдай партнёрам, чтобы core-SaaS показывал честные 80%+.
+
+<h2>Когда Gross Margin ВВОДИТ В ЗАБЛУЖДЕНИЕ</h2>
+
+<p>1. <strong>Непоследовательный COGS</strong> — если в один квартал включил Support, в другой нет, тренд бессмысленный<br>2. <strong>Услуги в выручке</strong> — high-touch имплементация занижает «софтовую» маржу; раздели revenue streams<br>3. <strong>Ранняя стадия</strong> — при низкой выручке фиксированный хостинг даёт искажённо низкую маржу, которая выправится с масштабом<br>4. <strong>Gross vs Net</strong> — не путай валовую маржу с операционной/чистой</p>
+
+<h2>Связь с другими метриками</h2>
+
+<table><thead><tr><th>Метрика</th><th>Связь с Gross Margin</th></tr></thead><tbody><tr><td></td><td><strong>Rule of 40</strong></td><td>Маржа — половина формулы</td><td></td></tr><tr><td></td><td><strong>CAC Payback</strong></td><td>Маржа — множитель в знаменателе</td><td></td></tr><tr><td></td><td><strong>LTV</strong></td><td>Net LTV считается после вычета COGS</td><td></td></tr><tr><td></td><td><strong>Burn Multiple</strong></td><td>Выше маржа → ниже burn на единицу роста</td><td></td></tr></tbody></table>
+<h2>Итог</h2>
+
+<p>Gross Margin — это <strong>фундамент юнит-экономики SaaS</strong>. Целься в 75-85%, считай COGS последовательно (хостинг + базовая поддержка + комиссии, без S&M и R&D), и помни: маржа усиливает или ослабляет каждую другую метрику. Поднять маржу на 5-10pp — один из самых дешёвых способов улучшить сразу R40, CAC Payback и runway.</p>
+
+<p><strong>Считай свой Gross Margin ниже</strong> — встроенный калькулятор покажет результат и бенчмарк.</p>
+
+<p>---</p>
+
+<h3>Дополнительные ресурсы</h3>
+
+<ul><li><a href="/ruleOf40">/ruleOf40</a> — Rule of 40 (маржа — половина формулы)</li><li><a href="/cacPayback">/cacPayback</a> — CAC Payback (маржа в знаменателе)</li><li><a href="/runway">/runway</a> — Runway</li><li><a href="/blog/rule-of-40-saas">/blog/rule-of-40-saas</a> — Rule of 40 подробно</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Считай прямо здесь:</strong>
+  <iframe src="https://metricstree.vercel.app/grossMargin?embed=1" width="100%" height="650" loading="lazy" title="MetricTree grossMargin калькулятор"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Открыть в полной версии: <a href="https://metricstree.vercel.app/grossMargin" target="_blank">https://metricstree.vercel.app/grossMargin</a></p>
+</div>
+<div class="share-row">
+  Поделиться:
+  <a href="https://twitter.com/intent/tweet?text=Gross%20Margin%20%D0%B2%20SaaS%20%E2%80%94%20%D0%BF%D0%BE%D1%87%D0%B5%D0%BC%D1%83%2080%25%20%D1%8D%D1%82%D0%BE%20%D1%81%D1%82%D0%B0%D0%BD%D0%B4%D0%B0%D1%80%D1%82%20%D0%B8%20%D1%87%D1%82%D0%BE%20%D0%B2%D1%85%D0%BE%D0%B4%D0%B8%D1%82%20%D0%B2%20COGS&url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fgross-margin-saas" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fgross-margin-saas" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fgross-margin-saas&text=Gross%20Margin%20%D0%B2%20SaaS%20%E2%80%94%20%D0%BF%D0%BE%D1%87%D0%B5%D0%BC%D1%83%2080%25%20%D1%8D%D1%82%D0%BE%20%D1%81%D1%82%D0%B0%D0%BD%D0%B4%D0%B0%D1%80%D1%82%20%D0%B8%20%D1%87%D1%82%D0%BE%20%D0%B2%D1%85%D0%BE%D0%B4%D0%B8%D1%82%20%D0%B2%20COGS" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="/blog/">Все посты</a> · <a href="/">Калькулятор</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

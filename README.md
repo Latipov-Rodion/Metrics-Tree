@@ -3,16 +3,16 @@
 [![Live](https://img.shields.io/badge/live-metricstree.vercel.app-2A6DF4)](https://metricstree.vercel.app/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 ![No build step](https://img.shields.io/badge/build-no%20framework-success)
-![Metrics](https://img.shields.io/badge/metrics-52-2A6DF4)
+![Metrics](https://img.shields.io/badge/metrics-48-2A6DF4)
 ![Languages](https://img.shields.io/badge/i18n-RU%20%2F%20EN%20%2F%20UZ-2A6DF4)
 
-Бесплатный онлайн-калькулятор **52 продуктовых метрик** с формулами, отраслевыми порогами и интерпретацией. Для продакт-менеджеров, маркетологов, аналитиков и фаундеров.
+Бесплатный онлайн-калькулятор **48 продуктовых метрик** с формулами, отраслевыми порогами и интерпретацией. Для продакт-менеджеров, маркетологов, аналитиков и фаундеров.
 
 🔗 **Live:** https://metricstree.vercel.app/
 
 ## Что внутри
 
-**52 метрики в 8 разделах:**
+**48 метрик в 7 разделах:**
 - **B2C** — DAU, MAU, Stickiness, Retention, LTV, CAC, LTV:CAC, ARPU, Churn, AOV, Repeat Purchase Rate, ARPDAU
 - **B2B SaaS** — MRR, ARR, ACV, GRR, NRR, CAC Payback, Burn Multiple, Magic Number, Rule of 40, Quick Ratio, MRR Growth Rate
 - **AARRR** (Pirate) — Acquisition, Activation, Retention, Referral, Revenue, Time to Value
@@ -38,7 +38,7 @@
 - 🤖 **Telegram бот**: `/ltv 2500 4 3` (см. [TELEGRAM_BOT_SETUP.md](TELEGRAM_BOT_SETUP.md))
 - 🌐 **3 языка**: Русский, English, Oʻzbekcha (с per-language URLs + hreflang)
 - 🌗 **Тёмная / светлая** тема (auto detect)
-- 🔍 **Глобальный поиск** по 52 метрикам
+- 🔍 **Глобальный поиск** по 48 метрикам
 - 🧠 **Deep content** + ссылки на источники (OpenView, Bessemer, David Sacks, Mamoon Hamid, Bain) на top-10 метриках
 - 📚 **FAQ JSON-LD** rich-snippet'ы на top-12 метриках (3-4 Q&A каждая)
 - ⌨️ Hotkeys (`/`, `↑↓`, `←→`, `Esc`, `Ctrl+S`, `Ctrl+D`, `?`)
@@ -49,12 +49,12 @@
 
 ```
 .
-├── index.html              ← всё приложение (HTML + CSS + JS + 52 метрики inline)
+├── index.html              ← всё приложение (HTML + CSS + JS + 48 метрик inline)
 ├── build.mjs               ← генератор 49 per-metric HTML c уникальной meta + FAQ JSON-LD
 ├── bot.py                  ← Telegram-бот companion (python-telegram-bot v21)
 ├── generate_og.py          ← генератор og-image.png (Pillow)
 ├── vercel.json             ← rewrites для clean URLs (RU/EN/UZ) + security headers
-├── sitemap.xml             ← 80+ URLs (52 metrics × 3 langs + homepage)
+├── sitemap.xml             ← 170+ URLs (48 metrics × 3 langs + homepage + blog), генерируется build.mjs
 ├── favicon.svg, manifest.webmanifest, og-image.png
 ├── PRODUCTHUNT.md          ← launch kit
 ├── TELEGRAM_BOT_SETUP.md   ← bot deploy guide (Railway / Render / Fly)

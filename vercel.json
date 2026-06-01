@@ -3,10 +3,14 @@
   "cleanUrls": false,
   "trailingSlash": false,
   "rewrites": [
+    { "source": "/en", "destination": "/index.html" },
+    { "source": "/uz", "destination": "/index.html" },
     { "source": "/vs-profitwell", "destination": "/vs-profitwell.html" },
     { "source": "/vs-baremetrics", "destination": "/vs-baremetrics.html" },
     { "source": "/vs-causal", "destination": "/vs-causal.html" },
     { "source": "/vs-chartmogul", "destination": "/vs-chartmogul.html" },
+    { "source": "/vs-geckoboard", "destination": "/vs-geckoboard.html" },
+    { "source": "/vs-finmodelslab", "destination": "/vs-finmodelslab.html" },
     { "source": "/press", "destination": "/press.html" },
     { "source": "/admin", "destination": "/admin.html" },
     { "source": "/embed", "destination": "/embed.html" },
@@ -14,6 +18,7 @@
     { "source": "/changelog", "destination": "/changelog.html" },
     { "source": "/api-docs", "destination": "/api-docs.html" },
     { "source": "/docs", "destination": "/api-docs.html" },
+    { "source": "/benchmarks", "destination": "/benchmarks.html" },
     { "source": "/industries", "destination": "/industries/index.html" },
     { "source": "/industries/", "destination": "/industries/index.html" },
     { "source": "/industries/:slug", "destination": "/industries/:slug/index.html" },
@@ -40,6 +45,30 @@
     { "source": "/blog/arpdau-mobile-games", "destination": "/blog/arpdau-mobile-games.html" },
     { "source": "/blog/aov-ecommerce-growth", "destination": "/blog/aov-ecommerce-growth.html" },
     { "source": "/blog/pipeline-coverage-b2b", "destination": "/blog/pipeline-coverage-b2b.html" },
+    { "source": "/blog/churn-reduction-saas", "destination": "/blog/churn-reduction-saas.html" },
+    { "source": "/blog/nps-benchmarks-2026", "destination": "/blog/nps-benchmarks-2026.html" },
+    { "source": "/blog/dau-mau-stickiness", "destination": "/blog/dau-mau-stickiness.html" },
+    { "source": "/blog/gross-margin-saas", "destination": "/blog/gross-margin-saas.html" },
+    { "source": "/en/blog", "destination": "/en/blog/index.html" },
+    { "source": "/en/blog/", "destination": "/en/blog/index.html" },
+    { "source": "/en/blog/burn-multiple-saas-2026", "destination": "/en/blog/burn-multiple-saas-2026.html" },
+    { "source": "/en/blog/rule-of-40-saas", "destination": "/en/blog/rule-of-40-saas.html" },
+    { "source": "/en/blog/ltv-cac-unit-economics", "destination": "/en/blog/ltv-cac-unit-economics.html" },
+    { "source": "/en/blog/quick-ratio-saas", "destination": "/en/blog/quick-ratio-saas.html" },
+    { "source": "/en/blog/magic-number-saas", "destination": "/en/blog/magic-number-saas.html" },
+    { "source": "/en/blog/nrr-vs-grr", "destination": "/en/blog/nrr-vs-grr.html" },
+    { "source": "/en/blog/mrr-growth-rate-yc", "destination": "/en/blog/mrr-growth-rate-yc.html" },
+    { "source": "/en/blog/runway-when-fundraise", "destination": "/en/blog/runway-when-fundraise.html" },
+    { "source": "/en/blog/cac-payback-period", "destination": "/en/blog/cac-payback-period.html" },
+    { "source": "/en/blog/sales-velocity-b2b", "destination": "/en/blog/sales-velocity-b2b.html" },
+    { "source": "/en/blog/arpdau-mobile-games", "destination": "/en/blog/arpdau-mobile-games.html" },
+    { "source": "/en/blog/10-pm-metrics-2026", "destination": "/en/blog/10-pm-metrics-2026.html" },
+    { "source": "/en/blog/aov-ecommerce-growth", "destination": "/en/blog/aov-ecommerce-growth.html" },
+    { "source": "/en/blog/pipeline-coverage-b2b", "destination": "/en/blog/pipeline-coverage-b2b.html" },
+    { "source": "/en/blog/churn-reduction-saas", "destination": "/en/blog/churn-reduction-saas.html" },
+    { "source": "/en/blog/nps-benchmarks-2026", "destination": "/en/blog/nps-benchmarks-2026.html" },
+    { "source": "/en/blog/dau-mau-stickiness", "destination": "/en/blog/dau-mau-stickiness.html" },
+    { "source": "/en/blog/gross-margin-saas", "destination": "/en/blog/gross-margin-saas.html" },
     { "source": "/dau", "destination": "/dau.html" },
     { "source": "/mau", "destination": "/mau.html" },
     { "source": "/stickiness", "destination": "/stickiness.html" },
@@ -196,10 +225,21 @@
       "source": "/(.*)",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
         { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
         { "key": "Permissions-Policy", "value": "geolocation=(), microphone=(), camera=(), payment=(), usb=()" },
-        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.vercel-insights.com https://*.vercel-insights.com https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://metricstree.vercel.app; font-src 'self' data:; connect-src 'self' https://vitals.vercel-insights.com https://*.vercel-insights.com https://formspree.io https://api.formspree.io; frame-ancestors 'self'; base-uri 'self'; form-action 'self' https://formspree.io" }
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.vercel-insights.com https://*.vercel-insights.com https://va.vercel-scripts.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://metricstree.vercel.app; font-src 'self' data:; connect-src 'self' https://vitals.vercel-insights.com https://*.vercel-insights.com; base-uri 'self'; form-action 'self'" }
+      ]
+    },
+    {
+      "source": "/admin",
+      "headers": [
+        { "key": "X-Frame-Options", "value": "DENY" }
+      ]
+    },
+    {
+      "source": "/admin.html",
+      "headers": [
+        { "key": "X-Frame-Options", "value": "DENY" }
       ]
     },
     {

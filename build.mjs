@@ -203,27 +203,62 @@ const SHORT_NAME = {
   aov: 'AOV', repeatPurchaseRate: 'Repeat Purchase Rate', engagementRate: 'Engagement Rate'
 };
 
-function renderRelatedStatic(metricId) {
-  const rels = RELATED[metricId];
-  if (!rels || !rels.length) return '';
-  const items = rels.map(({ id, note }) => {
-    const name = SHORT_NAME[id] || id;
-    return `      <li><a href="/${id}"><strong>${name}</strong></a> — ${note}</li>`;
-  }).join('\n');
-  // The static block is removed by JS once the SPA hydrates (renderRelated() shows the
-  // dynamic version in #relatedBlock with richer markup). If JS fails or is disabled,
-  // crawlers and users still see this block.
+// Pull the Russian formula / description / threshold straight out of the metricsData
+// object in index.html so the SEO prose can never drift from the live calculator.
+// metricsData uses single-quoted strings with no escaped apostrophes (an unescaped
+// ' would be a JS syntax error), so [^']* is a safe capture.
+function extractMetricData(template, id) {
+  const re = new RegExp(
+    `id: '${id}', name: '([^']*)',[\\s\\S]*?formula: '([^']*)',[\\s\\S]*?description: '([^']*)'` +
+    `(?:,[\\s\\S]*?threshold: '([^']*)')?`
+  );
+  const m = template.match(re);
+  if (!m) return null;
+  return { name: m[1], formula: m[2], description: m[3], threshold: m[4] || '' };
+}
+
+const esc = s => String(s == null ? '' : s)
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+// Visible, unique, crawlable content block appended to the <main> of each per-metric
+// page. Mirrors the FAQ JSON-LD (Google wants structured data to match visible text),
+// adds the live formula/description/benchmark, and surfaces internal links as real
+// anchors (not JS-hidden), fixing the thin/duplicate-content risk across the 49 clones.
+function renderSeoSection(template, id, meta) {
+  const data = extractMetricData(template, id);
+  if (!data) return '';
+  const shortName = SHORT_NAME[id] || data.name;
+
+  const faqEntries = (meta.faq && meta.faq.length) ? meta.faq : [{ q: meta.q, a: meta.a }];
+  const faqHtml = faqEntries
+    .filter(f => f && f.q && f.a)
+    .map(f => `        <details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`)
+    .join('\n');
+
+  const rels = RELATED[id] || [];
+  const relHtml = rels.length
+    ? `      <h3>Связанные метрики</h3>\n      <ul class="seo-related">\n` +
+      rels.map(r => `        <li><a href="/${r.id}">${esc(SHORT_NAME[r.id] || r.id)}</a></li>`).join('\n') +
+      `\n      </ul>`
+    : '';
+
+  const thresholdHtml = data.threshold
+    ? `      <h3>Отраслевые бенчмарки</h3>\n      <p>${esc(data.threshold)}</p>`
+    : '';
+
   return `
-<!-- Cross-metric internal links — static HTML for SEO crawlers + no-JS fallback.
-     Client-side SPA removes this on hydrate; renderRelated() shows dynamic version. -->
-<aside class="related-static" data-spa-replace="true" aria-label="Связанные метрики" style="max-width:900px;margin:2rem auto 1rem;padding:1rem 1.25rem;border-top:1px solid var(--border,#2C2F33);font-size:0.85rem;color:var(--text-2,#B0B3B8);">
-  <h3 style="font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-3,#6b6f75);margin:0 0 0.5rem;">См. также</h3>
-  <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0.4rem 1rem;">
-${items}
-  </ul>
-</aside>
-<script>document.querySelectorAll('aside[data-spa-replace]').forEach(el => { /* visually hide once JS loads — kept in DOM for crawlers */ el.style.display = 'none'; });</script>
-`;
+    <section class="metric-seo" aria-label="О метрике ${esc(shortName)}">
+      <h2>Что такое ${esc(shortName)}</h2>
+      <p>${esc(data.description)}</p>
+      <h3>Формула расчёта ${esc(shortName)}</h3>
+      <p><span class="seo-formula">${esc(data.formula)}</span></p>
+${thresholdHtml}
+      <h3>Частые вопросы про ${esc(shortName)}</h3>
+      <div class="seo-faq">
+${faqHtml}
+      </div>
+${relHtml}
+    </section>`;
 }
 
 function buildHtml(template, id, meta) {
@@ -300,12 +335,24 @@ function buildHtml(template, id, meta) {
       }
     ]
   };
+  // BreadcrumbList JSON-LD — gives Google a "MetricTree › <Metric>" trail in SERPs.
+  const breadcrumbJson = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      { '@type': 'ListItem', 'position': 1, 'name': 'MetricTree', 'item': `${SITE}/` },
+      { '@type': 'ListItem', 'position': 2, 'name': SHORT_NAME[id] || metricName, 'item': url },
+    ],
+  };
   const perMetricFaq = `
     <script type="application/ld+json">
 ${JSON.stringify(faqJson, null, 2)}
     </script>
     <script type="application/ld+json">
 ${JSON.stringify(howToJson, null, 2)}
+    </script>
+    <script type="application/ld+json">
+${JSON.stringify(breadcrumbJson, null, 2)}
     </script>
     <link rel="alternate" hreflang="ru" href="${SITE}/${id}">
     <link rel="alternate" hreflang="en" href="${SITE}/en/${id}">
@@ -314,13 +361,209 @@ ${JSON.stringify(howToJson, null, 2)}
 `;
   html = html.replace('</head>', perMetricFaq + '</head>');
 
-  // Static "See also" block right before </body> — crawler-visible internal links.
-  const staticRelated = renderRelatedStatic(id);
-  if (staticRelated) {
-    html = html.replace('</body>', staticRelated + '</body>');
+  // Visible per-metric SEO content (formula, benchmarks, FAQ, related links) injected
+  // before </main>. Replaces the old JS-hidden "See also" block: this content stays
+  // visible after hydration, matches the FAQ JSON-LD, and gives each clone unique prose.
+  const seoSection = renderSeoSection(template, id, meta);
+  if (seoSection) {
+    html = html.replace('</main>', seoSection + '\n    </main>');
   }
 
   return html;
+}
+
+// Generate sitemap.xml — full RU/EN/UZ coverage for every metric, with hreflang
+// alternates and lastmod. Replaces the previously hand-maintained file that had
+// an invalid xmlns, missing EN/UZ metric URLs, and no lastmod/hreflang.
+function generateSitemap() {
+  const today = new Date().toISOString().slice(0, 10);
+
+  const urlNode = (loc, { priority = '0.7', changefreq = 'weekly', alts = null } = {}) => {
+    const altLinks = alts
+      ? alts.map(a => `<xhtml:link rel="alternate" hreflang="${a.lang}" href="${a.href}"/>`).join('')
+      : '';
+    return `<url><loc>${loc}</loc><lastmod>${today}</lastmod><changefreq>${changefreq}</changefreq><priority>${priority}</priority>${altLinks}</url>`;
+  };
+
+  const urls = [];
+
+  // Homepage in all three languages.
+  const homeAlts = [
+    { lang: 'ru', href: `${SITE}/` },
+    { lang: 'en', href: `${SITE}/en` },
+    { lang: 'uz', href: `${SITE}/uz` },
+    { lang: 'x-default', href: `${SITE}/` },
+  ];
+  urls.push(urlNode(`${SITE}/`, { priority: '1.0', alts: homeAlts }));
+  urls.push(urlNode(`${SITE}/en`, { priority: '0.8', alts: homeAlts }));
+  urls.push(urlNode(`${SITE}/uz`, { priority: '0.8', alts: homeAlts }));
+
+  // Per-metric pages: RU root + /en/ + /uz/, each cross-linked via hreflang.
+  for (const id of Object.keys(META)) {
+    const alts = [
+      { lang: 'ru', href: `${SITE}/${id}` },
+      { lang: 'en', href: `${SITE}/en/${id}` },
+      { lang: 'uz', href: `${SITE}/uz/${id}` },
+      { lang: 'x-default', href: `${SITE}/${id}` },
+    ];
+    urls.push(urlNode(`${SITE}/${id}`, { priority: '0.8', alts }));
+    urls.push(urlNode(`${SITE}/en/${id}`, { priority: '0.7', alts }));
+    urls.push(urlNode(`${SITE}/uz/${id}`, { priority: '0.7', alts }));
+  }
+
+  // Hand-authored standalone public pages (RU only).
+  const standalone = [
+    'press', 'embed', 'changelog', 'api-docs', 'benchmarks',
+    'vs-profitwell', 'vs-baremetrics', 'vs-causal', 'vs-chartmogul',
+    'vs-geckoboard', 'vs-finmodelslab',
+  ];
+  for (const p of standalone) {
+    urls.push(urlNode(`${SITE}/${p}`, { priority: '0.6', changefreq: 'monthly' }));
+  }
+
+  // Blog: derive live clean-URL slugs from vercel.json rewrites (source of truth
+  // for which posts are actually reachable) to avoid 404s in the sitemap.
+  urls.push(urlNode(`${SITE}/blog`, { priority: '0.8', changefreq: 'weekly' }));
+  const vercel = fs.readFileSync(path.join(ROOT, 'vercel.json'), 'utf8');
+  const blogSlugs = [...new Set(
+    [...vercel.matchAll(/"source":\s*"\/blog\/([a-z0-9-]+)"/g)].map(m => m[1])
+  )].filter(s => s !== 'index');
+  const enBlogSlugs = [...new Set(
+    [...vercel.matchAll(/"source":\s*"\/en\/blog\/([a-z0-9-]+)"/g)].map(m => m[1])
+  )].filter(s => s !== 'index');
+  const enBlogSet = new Set(enBlogSlugs);
+  // hreflang alternates for a blog slug that exists in both languages.
+  const blogAlts = (slug) => [
+    { lang: 'ru', href: `${SITE}/blog/${slug}` },
+    { lang: 'en', href: `${SITE}/en/blog/${slug}` },
+    { lang: 'x-default', href: `${SITE}/blog/${slug}` },
+  ];
+  for (const slug of blogSlugs) {
+    const opts = { priority: '0.7', changefreq: 'monthly' };
+    if (enBlogSet.has(slug)) opts.alts = blogAlts(slug);
+    urls.push(urlNode(`${SITE}/blog/${slug}`, opts));
+  }
+  if (enBlogSlugs.length) {
+    urls.push(urlNode(`${SITE}/en/blog`, { priority: '0.7', changefreq: 'weekly' }));
+    for (const slug of enBlogSlugs) {
+      const opts = { priority: '0.6', changefreq: 'monthly' };
+      if (blogSlugs.includes(slug)) opts.alts = blogAlts(slug);
+      urls.push(urlNode(`${SITE}/en/blog/${slug}`, opts));
+    }
+  }
+
+  // Programmatic-SEO industry pages (generated by build-industries.mjs) — read
+  // straight off disk so the sitemap can't drift from the generated files.
+  const indDir = path.join(ROOT, 'industries');
+  if (fs.existsSync(indDir)) {
+    urls.push(urlNode(`${SITE}/industries`, { priority: '0.7', changefreq: 'monthly' }));
+    for (const slug of fs.readdirSync(indDir)) {
+      const sdir = path.join(indDir, slug);
+      if (!fs.statSync(sdir).isDirectory()) continue;
+      urls.push(urlNode(`${SITE}/industries/${slug}`, { priority: '0.6', changefreq: 'monthly' }));
+      for (const f of fs.readdirSync(sdir)) {
+        if (f.endsWith('.html') && f !== 'index.html') {
+          urls.push(urlNode(`${SITE}/industries/${slug}/${f.replace(/\.html$/, '')}`, { priority: '0.6', changefreq: 'monthly' }));
+        }
+      }
+    }
+  }
+  // Standalone content pages added on main (only if the file exists).
+  for (const p of ['glossary', 'quiz', 'report']) {
+    if (fs.existsSync(path.join(ROOT, `${p}.html`))) {
+      urls.push(urlNode(`${SITE}/${p}`, { priority: '0.6', changefreq: 'monthly' }));
+    }
+  }
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${urls.join('\n')}
+</urlset>
+`;
+  fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), xml);
+  return urls.length;
+}
+
+// Lead-magnet asset: a standalone, print-to-PDF cheat sheet of every metric's
+// formula + industry benchmark, pulled from metricsData so it never drifts. Served
+// at /benchmarks; the homepage email-gates it (fires the `lead` analytics event,
+// then opens this page for "Save as PDF"). Self-contained — no app bundle, fast.
+function generateBenchmarksPage(template) {
+  const rows = Object.keys(META).map(id => {
+    const d = extractMetricData(template, id);
+    if (!d) return '';
+    const name = SHORT_NAME[id] || d.name;
+    return `      <tr>
+        <td class="m-name">${esc(name)}</td>
+        <td class="m-formula">${esc(d.formula)}</td>
+        <td class="m-bench">${esc(d.threshold || '—')}</td>
+      </tr>`;
+  }).filter(Boolean).join('\n');
+
+  const count = Object.keys(META).length;
+  const today = new Date().toISOString().slice(0, 10);
+
+  const html = `<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${count} продуктовых метрик: формулы и бенчмарки — шпаргалка | MetricTree</title>
+<meta name="description" content="Бесплатная PDF-шпаргалка: формулы и отраслевые пороги для ${count} продуктовых метрик (LTV, CAC, MRR, NRR, Burn Multiple, Rule of 40 и др.). От MetricTree.">
+<link rel="canonical" href="${SITE}/benchmarks">
+<style>
+  :root { --ink:#0A0C0E; --muted:#5b6068; --line:#e3e6ea; --accent:#2A6DF4; }
+  * { box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink); max-width: 980px; margin: 0 auto; padding: 2rem 1.25rem 4rem; line-height: 1.5; }
+  header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 0.5rem;
+    border-bottom: 2px solid var(--accent); padding-bottom: 0.75rem; margin-bottom: 1.25rem; }
+  h1 { font-size: 1.5rem; margin: 0; }
+  .sub { color: var(--muted); font-size: 0.9rem; }
+  .toolbar { margin: 0 0 1.5rem; }
+  .print-btn { background: var(--accent); color: #fff; border: 0; border-radius: 8px; padding: 0.6rem 1.1rem;
+    font-size: 0.95rem; font-weight: 600; cursor: pointer; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  th, td { text-align: left; vertical-align: top; padding: 0.55rem 0.6rem; border-bottom: 1px solid var(--line); }
+  th { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+  .m-name { font-weight: 700; white-space: nowrap; }
+  .m-formula { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: #1a2733; }
+  .m-bench { color: var(--muted); }
+  footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: 0.82rem; }
+  footer a { color: var(--accent); text-decoration: none; }
+  @media print {
+    .toolbar { display: none; }
+    body { padding: 0; max-width: none; font-size: 10.5px; }
+    th, td { padding: 4px 6px; }
+    tr { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <h1>${count} продуктовых метрик: формулы и бенчмарки</h1>
+    <span class="sub">MetricTree · обновлено ${today}</span>
+  </header>
+  <div class="toolbar">
+    <button class="print-btn" onclick="window.print()">🖨️ Сохранить в PDF / распечатать</button>
+  </div>
+  <table>
+    <thead>
+      <tr><th>Метрика</th><th>Формула</th><th>Отраслевой порог</th></tr>
+    </thead>
+    <tbody>
+${rows}
+    </tbody>
+  </table>
+  <footer>
+    Источник: <a href="${SITE}/">metricstree.vercel.app</a> — бесплатный калькулятор ${count} продуктовых метрик
+    с формулами, порогами и интерпретацией. RU / EN / UZ. © Родион Латыпов.
+  </footer>
+</body>
+</html>
+`;
+  fs.writeFileSync(path.join(ROOT, 'benchmarks.html'), html);
+  return count;
 }
 
 function main() {
@@ -334,6 +577,12 @@ function main() {
     generated++;
   }
   console.log(`✓ Generated ${generated} per-metric HTML files`);
+
+  const benchCount = generateBenchmarksPage(template);
+  console.log(`✓ Generated benchmarks.html (${benchCount} metrics)`);
+
+  const sitemapUrls = generateSitemap();
+  console.log(`✓ Generated sitemap.xml with ${sitemapUrls} URLs`);
 }
 
 main();

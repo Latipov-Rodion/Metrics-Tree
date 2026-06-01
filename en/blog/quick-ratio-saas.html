@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>SaaS Quick Ratio (Mamoon Hamid) — growth durability in 30 seconds | MetricTree Blog</title>
+<meta name="description" content="The formula Quick Ratio = (New + Expansion MRR) / (Churn + Contraction MRR). What >4× means in SaaS, and why Sequoia uses it as a first screening filter.">
+<meta name="keywords" content="saas quick ratio, mamoon hamid, growth durability, quick ratio formula">
+<link rel="canonical" href="https://metricstree.vercel.app/en/blog/quick-ratio-saas">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/quick-ratio-saas">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/quick-ratio-saas">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/quick-ratio-saas">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="SaaS Quick Ratio (Mamoon Hamid) — growth durability in 30 seconds">
+<meta property="og:description" content="The formula Quick Ratio = (New + Expansion MRR) / (Churn + Contraction MRR). What >4× means in SaaS, and why Sequoia uses it as a first screening filter.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/en/blog/quick-ratio-saas">
+<meta property="og:image" content="https://metricstree.vercel.app/blog-og/en/quick-ratio-saas.png">
+<meta property="article:published_time" content="2026-05-03">
+<meta property="article:author" content="Rodion Latipov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SaaS Quick Ratio (Mamoon Hamid) — growth durability in 30 seconds">
+<meta name="twitter:image" content="https://metricstree.vercel.app/blog-og/en/quick-ratio-saas.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "SaaS Quick Ratio (Mamoon Hamid) — growth durability in 30 seconds",
+  "description": "The formula Quick Ratio = (New + Expansion MRR) / (Churn + Contraction MRR). What >4× means in SaaS, and why Sequoia uses it as a first screening filter.",
+  "datePublished": "2026-05-03",
+  "author": {
+    "@type": "Person",
+    "name": "Rodion Latipov",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/blog-og/en/quick-ratio-saas.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/en/blog/quick-ratio-saas"
+  },
+  "keywords": "saas quick ratio, mamoon hamid, growth durability, quick ratio formula",
+  "inLanguage": "en"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#6b6f75; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#777; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/en" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/en/blog/">Blog</a> · <a href="/en">Calculator →</a></div>
+</nav>
+<article>
+<h1>SaaS Quick Ratio (Mamoon Hamid) — growth durability in 30 seconds</h1>
+<div class="meta">2026-05-03 · by <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a></div>
+<h1>SaaS Quick Ratio (Mamoon Hamid) — growth durability in 30 seconds</h1>
+
+<p>In 2014 <strong>Mamoon Hamid</strong> (Kleiner Perkins, formerly Social Capital) proposed one of the most elegant SaaS metrics:</p>
+
+<p>> <strong>Quick Ratio = (New MRR + Expansion MRR) / (Churned MRR + Contraction MRR)</strong></p>
+
+<p>How many dollars of new MRR you generate for every dollar lost. It's the pulse of growth durability.</p>
+
+<h2>Why this formula</h2>
+
+<p>MRR Growth Rate shows <strong>what</strong> is growing. Quick Ratio shows <strong>on what basis</strong>. If you have 10% MoM growth but a Quick Ratio of 1.2, it means: for every $1 of new MRR you lose almost as much. You're running on a treadmill with no forward motion.</p>
+
+<p>Compare:<br><ul><li>Company A: 10% MoM growth, Quick Ratio = 4 → durable growth</li><li>Company B: 10% MoM growth, Quick Ratio = 1.5 → fragile growth, any shock = decline</li></ul></p>
+
+<h2>Benchmarks</h2>
+
+<table><thead><tr><th>Quick Ratio</th><th>Rating</th></tr></thead><tbody><tr><td></td><td><1</td><td>Declining — you lose more than you gain</td><td></td></tr><tr><td></td><td>1-2</td><td>Weak growth, easily derailed</td><td></td></tr><tr><td></td><td>2-4</td><td>Good</td><td></td></tr><tr><td></td><td><strong>>4</strong></td><td><strong>Excellent — top decile SaaS</strong></td><td></td></tr></tbody></table>
+Public top-tier SaaS (Datadog, Snowflake, ServiceNow) hold a Quick Ratio of <strong>6-12+</strong> at early growth stage, then stabilize at 3-5 after Series E.
+
+<h2>Worked example</h2>
+
+<p><strong>A SaaS startup over one month:</strong><br><ul><li>New MRR: $80k (10 new customers × $8k ARR / 12)</li><li>Expansion MRR: $20k (upgrades from existing)</li><li>Churned MRR: $15k (2 customers left)</li><li>Contraction MRR: $5k (downgrades)</li></ul></p>
+
+<p>Quick Ratio = (80 + 20) / (15 + 5) = 100 / 20 = <strong>5.0</strong> → excellent</p>
+
+<h2>What Sequoia / Kleiner Perkins say</h2>
+
+<p>In top-VC internal screening docs, Quick Ratio is often the <strong>first filter</strong> after growth rate:</p>
+
+<p>1. MoM growth >7%? → if not, they pass<br>2. Quick Ratio >2? → if not, they pass<br>3. Burn Multiple <2? → if not, they pass</p>
+
+<p>All three must be green. Any single red = they skip it.</p>
+
+<h2>3 levers to improve Quick Ratio</h2>
+
+<h3>1. Reduce churn (the denominator)</h3>
+<ul><li>Onboarding: the first week drives 80% of future churn</li><li>Customer Success: proactive outreach to high-ARR accounts</li><li>Annual prepay contracts (mathematically cut monthly churn ×12)</li><li>Health scoring + escalation for at-risk accounts</li></ul>
+
+<h3>2. Raise expansion (the numerator)</h3>
+<ul><li>Seat-based pricing → growth with the customer's team</li><li>Usage-based pricing → growth with usage</li><li>Tiered features → natural upgrade path</li><li>Account-based marketing for top-200 accounts</li></ul>
+
+<h3>3. Reduce contraction</h3>
+<ul><li>Make tier downgrades a little painful (but not so painful they leave entirely)</li><li>A pause-instead-of-cancel option for seasonal customers</li><li>Win-back campaigns for recently churned</li></ul>
+
+<h2>When Quick Ratio is MISLEADING</h2>
+
+<ul><li><strong>Small base (<50 customers)</strong> — one big churn distorts everything</li><li><strong>Annual contract recalculations</strong> — switching annual→monthly billing makes the numbers jump</li><li><strong>Heavy seasonal businesses</strong> — Q4 SaaS vs Q1 e-commerce</li><li><strong>Mass free→paid conversions</strong> — New MRR can look inflated</li></ul>
+
+<p>Always look at a trailing 3-month rolling average, not a single month.</p>
+
+<h2>Relationship to other metrics</h2>
+
+<table><thead><tr><th>Metric</th><th>Relationship to Quick Ratio</th></tr></thead><tbody><tr><td></td><td><strong>NRR</strong></td><td>Quick Ratio ↑ → NRR ↑ (but NRR is net, Quick Ratio is gross)</td><td></td></tr><tr><td></td><td><strong>Burn Multiple</strong></td><td>High Quick Ratio = efficient growth, usually low Burn Multiple</td><td></td></tr><tr><td></td><td><strong>LTV:CAC</strong></td><td>Independent, but both show unit economics</td><td></td></tr><tr><td></td><td><strong>Rule of 40</strong></td><td>Quick Ratio is a leading indicator of R40 improvement</td><td></td></tr></tbody></table>
+<h2>Bottom line</h2>
+
+<p>Quick Ratio is <strong>one number</strong> that shows your growth durability in 30 seconds. If it's <2 — fix churn first, then everything else. If >4 — scale, the economics are healthy.</p>
+
+<p><strong>Calculate your Quick Ratio below</strong> — the built-in calculator shows the result, the benchmark and recommendations.</p>
+
+<p>---</p>
+
+<h3>Further resources</h3>
+
+<ul><li><a href="/en/nrr">/en/nrr</a> — Net Revenue Retention, a complementary metric</li><li><a href="/en/burnMultiple">/en/burnMultiple</a> — Burn Multiple, capital efficiency</li><li><a href="/en/blog/burn-multiple-saas-2026">/en/blog/burn-multiple-saas-2026</a> — Burn Multiple in detail</li><li><a href="https://www.forbes.com/sites/tomtaulli/">Mamoon Hamid on Forbes (2014)</a> — first mention of Quick Ratio</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Calculate it right here:</strong>
+  <iframe src="https://metricstree.vercel.app/quickRatio?embed=1" width="100%" height="650" loading="lazy" title="MetricTree quickRatio calculator"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Open the full version: <a href="https://metricstree.vercel.app/quickRatio" target="_blank">https://metricstree.vercel.app/quickRatio</a></p>
+</div>
+<div class="share-row">
+  Share:
+  <a href="https://twitter.com/intent/tweet?text=SaaS%20Quick%20Ratio%20(Mamoon%20Hamid)%20%E2%80%94%20growth%20durability%20in%2030%20seconds&url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fquick-ratio-saas" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fquick-ratio-saas" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fquick-ratio-saas&text=SaaS%20Quick%20Ratio%20(Mamoon%20Hamid)%20%E2%80%94%20growth%20durability%20in%2030%20seconds" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/en/blog/">All posts</a> · <a href="/en">Calculator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

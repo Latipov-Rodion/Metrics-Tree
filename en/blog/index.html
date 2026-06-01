@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Blog — MetricTree | Product metrics guides</title>
+<meta name="description" content="Guides and breakdowns of product metrics: Burn Multiple, Rule of 40, LTV:CAC, NRR, MRR growth — formulas, benchmarks, recommendations.">
+<link rel="canonical" href="https://metricstree.vercel.app/en/blog/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="MetricTree Blog — Product metrics guides">
+<meta property="og:description" content="Breakdowns of LTV:CAC, Burn Multiple, Rule of 40, NRR and other SaaS metrics. With formulas, benchmarks and real-world examples.">
+<meta property="og:url" content="https://metricstree.vercel.app/en/blog/">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#6b6f75; --accent:#2A6DF4; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#777; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.6; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:780px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+.wrap { max-width:780px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.lede { font-size: 1.05rem; color: var(--text-2); margin: 0 0 2rem; }
+.post-card { display:block; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin-bottom: 0.85rem; text-decoration:none; color: inherit; transition: border-color 0.15s; }
+.post-card:hover { border-color: var(--accent); }
+.post-card h2 { font-size: 1.2rem; margin: 0 0 0.4rem; color: var(--text-1); }
+.post-card .post-meta { font-size: 0.8rem; color: var(--text-3); margin-bottom: 0.4rem; }
+.post-card .post-desc { font-size: 0.92rem; color: var(--text-2); margin: 0; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+</style>
+<script src="/theme-sync.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/en" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/en">Calculator →</a></div>
+</nav>
+<main class="wrap">
+<h1>Blog</h1>
+<p class="lede">In-depth product metrics guides: formulas, industry benchmarks, real-world application. Every post includes an interactive calculator.</p>
+
+<a class="post-card" href="/en/blog/churn-reduction-saas">
+  <div class="post-meta">2026-05-28</div>
+  <h2>How to reduce Churn in SaaS — 7 levers and 2026 benchmarks</h2>
+  <p class="post-desc">Churn Rate = lost customers / base over a period. Benchmarks for SMB/Mid-market/Enterprise, why 1pp of churn doubles CAC, and 7 proven levers to cut it.</p>
+</a>
+
+<a class="post-card" href="/en/blog/nps-benchmarks-2026">
+  <div class="post-meta">2026-05-25</div>
+  <h2>NPS benchmarks 2026 — what counts as a good Net Promoter Score</h2>
+  <p class="post-desc">NPS = % promoters − % detractors. A scale from −100 to +100, industry benchmarks for SaaS/B2C/fintech, and why the absolute NPS number means almost nothing without context.</p>
+</a>
+
+<a class="post-card" href="/en/blog/dau-mau-stickiness">
+  <div class="post-meta">2026-05-22</div>
+  <h2>DAU/MAU Stickiness — how "sticky" your product really is</h2>
+  <p class="post-desc">Stickiness = DAU / MAU × 100%. What 20% vs 50% means, benchmarks by product type (social, SaaS, utilities), and why high stickiness matters more than MAU growth.</p>
+</a>
+
+<a class="post-card" href="/en/blog/gross-margin-saas">
+  <div class="post-meta">2026-05-19</div>
+  <h2>Gross Margin in SaaS — why 80% is the standard and what goes into COGS</h2>
+  <p class="post-desc">Gross Margin = (Revenue − COGS) / Revenue. Why SaaS norms are 75-85%, what to include in COGS, and how margin affects Rule of 40, CAC Payback and valuation.</p>
+</a>
+
+<a class="post-card" href="/en/blog/burn-multiple-saas-2026">
+  <div class="post-meta">2026-05-17</div>
+  <h2>Burn Multiple — the SaaS investor's #1 metric in 2026</h2>
+  <p class="post-desc">What Burn Multiple (David Sacks) is, how to calculate it, benchmarks for seed / Series A / B+, and why it replaced Magic Number in VC pipelines after the ZIRP era.</p>
+</a>
+
+<a class="post-card" href="/en/blog/rule-of-40-saas">
+  <div class="post-meta">2026-05-14</div>
+  <h2>Rule of 40 — why 40% is the magic number for SaaS</h2>
+  <p class="post-desc">A deep dive into the Rule of 40 (Brad Feld, 2015) — how to calculate it, why 40%, the benchmark for public vs private SaaS in 2026, and how to reach the top decile (>60%).</p>
+</a>
+
+<a class="post-card" href="/en/blog/ltv-cac-unit-economics">
+  <div class="post-meta">2026-05-10</div>
+  <h2>LTV vs CAC — a step-by-step guide to startup unit economics</h2>
+  <p class="post-desc">How to correctly calculate LTV and CAC, what ratio is healthy (3:1, 5:1), and why even a healthy LTV:CAC doesn't mean a healthy business without the right payback.</p>
+</a>
+
+<a class="post-card" href="/en/blog/10-pm-metrics-2026">
+  <div class="post-meta">2026-05-07</div>
+  <h2>10 metrics every product manager should track in 2026</h2>
+  <p class="post-desc">The 10 metrics every PM in B2B SaaS and B2C should know by heart — from Activation to NRR. With formulas, benchmarks and interactive calculators.</p>
+</a>
+
+<a class="post-card" href="/en/blog/quick-ratio-saas">
+  <div class="post-meta">2026-05-03</div>
+  <h2>SaaS Quick Ratio (Mamoon Hamid) — growth durability in 30 seconds</h2>
+  <p class="post-desc">The formula Quick Ratio = (New + Expansion MRR) / (Churn + Contraction MRR). What >4× means in SaaS, and why Sequoia uses it as a first screening filter.</p>
+</a>
+
+<a class="post-card" href="/en/blog/magic-number-saas">
+  <div class="post-meta">2026-04-30</div>
+  <h2>Magic Number — Sales & Marketing efficiency in a single figure</h2>
+  <p class="post-desc">Magic Number = (Net New ARR × 4) / S&M spend. The Scale Venture Partners formula, benchmarks, and when to hire sales vs optimize the funnel.</p>
+</a>
+
+<a class="post-card" href="/en/blog/nrr-vs-grr">
+  <div class="post-meta">2026-04-27</div>
+  <h2>NRR vs GRR — what separates a $10B from a $100M SaaS company</h2>
+  <p class="post-desc">Net Revenue Retention vs Gross Revenue Retention — formulas, top-decile benchmarks (>130%), and why NRR is the strongest indicator of product-market fit.</p>
+</a>
+
+<a class="post-card" href="/en/blog/sales-velocity-b2b">
+  <div class="post-meta">2026-04-23</div>
+  <h2>Sales Velocity — the B2B revenue speed formula and 4 growth levers</h2>
+  <p class="post-desc">Sales Velocity = (Opps × ACV × Win Rate) / Cycle Length. The key B2B sales-team metric, and how to accelerate it through each of the 4 factors in the formula.</p>
+</a>
+
+<a class="post-card" href="/en/blog/runway-when-fundraise">
+  <div class="post-meta">2026-04-20</div>
+  <h2>Runway calculator — when to fundraise in 2026</h2>
+  <p class="post-desc">Runway = Cash / Net Burn. How many months a company has left. When to start fundraising (≥9 months), what to do at <6 months, and how to extend runway without external capital.</p>
+</a>
+
+<a class="post-card" href="/en/blog/mrr-growth-rate-yc">
+  <div class="post-meta">2026-04-17</div>
+  <h2>MRR Growth Rate — why YC looks for 5-7% MoM</h2>
+  <p class="post-desc">MRR Growth Rate = MoM growth of subscription revenue. The Y Combinator 5-7%/mo standard, the T2D3 model, and 5 levers to accelerate growth.</p>
+</a>
+
+<a class="post-card" href="/en/blog/cac-payback-period">
+  <div class="post-meta">2026-04-13</div>
+  <h2>CAC Payback Period — why it matters more than LTV:CAC for cash management</h2>
+  <p class="post-desc">CAC Payback = CAC / (MRR × Gross Margin). Benchmarks of 12-18 months for SaaS, and why a long payback kills companies even with a healthy LTV:CAC.</p>
+</a>
+
+<a class="post-card" href="/en/blog/arpdau-mobile-games">
+  <div class="post-meta">2026-04-10</div>
+  <h2>ARPDAU — the key metric for mobile F2P games, 2026 benchmarks</h2>
+  <p class="post-desc">ARPDAU = Daily Revenue / DAU. Free-to-play norm $0.05-$5, premium $0.5-$20. What separates hyper-casual from RPG in monetization.</p>
+</a>
+
+<a class="post-card" href="/en/blog/aov-ecommerce-growth">
+  <div class="post-meta">2026-04-06</div>
+  <h2>AOV — 5 levers to grow average order value in e-commerce</h2>
+  <p class="post-desc">Average Order Value = Revenue / Orders. Benchmarks by segment, and how to raise AOV through bundles, upsell, a free-shipping threshold, cross-sell and premium tiers.</p>
+</a>
+
+<a class="post-card" href="/en/blog/pipeline-coverage-b2b">
+  <div class="post-meta">2026-04-03</div>
+  <h2>Pipeline Coverage — why 3-4× is the standard and how to maintain it</h2>
+  <p class="post-desc">Pipeline Coverage = Pipeline Value / Quota. The B2B SaaS norm is 3-4×, <2× is critical. How to maintain coverage through inbound + outbound + ABM.</p>
+</a>
+
+</main>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/en">Calculator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

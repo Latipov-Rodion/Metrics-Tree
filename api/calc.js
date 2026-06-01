@@ -10,14 +10,17 @@
 // burnMultiple, magicNumber, ruleOf40, quickRatio, nps, cacPayback, roas,
 // stickiness, salesVelocity, winRate, pipelineCoverage, aov, mrrGrowthRate
 //
-// No auth required. Rate limit: 60 requests/min per IP (Edge runtime soft limit).
+// No auth required. Soft rate limit: ~60 requests/min per IP, best-effort and
+// per edge instance (isolates aren't shared, so it blunts floods rather than
+// enforcing a hard global cap).
 //
 // CORS: open to all origins — feel free to call from browser apps.
 
 export const config = { runtime: 'edge' };
 
 // Calculators — single source of truth. Each returns { result, unit, insight, rating }.
-const CALCULATORS = {
+// Exported so the unit tests (test/calc.test.mjs) can assert the formulas directly.
+export const CALCULATORS = {
   ltv: {
     inputs: ['aov', 'freq', 'life'],
     calc: ({ aov, freq, life }) => aov * freq * life,
@@ -221,10 +224,30 @@ function jsonResponse(body, status = 200, extraHeaders = {}) {
   });
 }
 
+// Best-effort sliding-window limiter (per edge isolate, in-memory — no KV round-trip).
+const RL_WINDOW_MS = 60_000;
+const RL_MAX = 60;
+const rlHits = new Map(); // ip -> timestamps[]
+function rateLimited(ip) {
+  const now = Date.now();
+  const hits = (rlHits.get(ip) || []).filter(t => now - t < RL_WINDOW_MS);
+  hits.push(now);
+  rlHits.set(ip, hits);
+  if (rlHits.size > 5000) { // crude memory cap for long-lived isolates
+    for (const k of rlHits.keys()) { rlHits.delete(k); if (rlHits.size <= 2500) break; }
+  }
+  return hits.length > RL_MAX;
+}
+
 export default async function handler(req) {
   // CORS preflight
   if (req.method === 'OPTIONS') {
     return new Response(null, { status: 204, headers: CORS_HEADERS });
+  }
+
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown';
+  if (rateLimited(ip)) {
+    return jsonResponse({ error: 'Rate limit exceeded — max 60 requests/min. Slow down.' }, 429, { 'Retry-After': '60' });
   }
 
   const url = new URL(req.url);

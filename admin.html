@@ -112,7 +112,7 @@ td .ts { color: var(--text-3); font-size: 0.75rem; white-space: nowrap; }
     showApp();
     $('error-area').innerHTML = '<p style="color:var(--text-3);">Loading...</p>';
     try {
-      const r = await fetch('/api/leads?secret=' + encodeURIComponent(secret));
+      const r = await fetch('/api/leads', { headers: { Authorization: 'Bearer ' + secret } });
       const j = await r.json();
       if (!r.ok) {
         $('error-area').innerHTML = `<div class="error-box"><strong>${j.error}</strong>${j.hint ? `<div class="hint">${j.hint}</div>` : ''}</div>`;
@@ -182,9 +182,6 @@ td .ts { color: var(--text-3); font-size: 0.75rem; white-space: nowrap; }
       </tbody>
     </table>`;
     $('leads-area').innerHTML = html;
-
-    // CSV download URL
-    $('csv-export').href = '/api/leads?csv=1&secret=' + encodeURIComponent(secret);
   }
 
   function escapeHtml(s) { return String(s || '').replace(/[&<>"]/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c])); }
@@ -200,10 +197,26 @@ td .ts { color: var(--text-3); font-size: 0.75rem; white-space: nowrap; }
   $('search').addEventListener('input', render);
   $('filter-tier').addEventListener('change', render);
   $('refresh-btn').addEventListener('click', e => { e.preventDefault(); loadLeads(); });
+  $('csv-export').addEventListener('click', async e => {
+    e.preventDefault();
+    if (!secret) return;
+    try {
+      const r = await fetch('/api/leads?csv=1', { headers: { Authorization: 'Bearer ' + secret } });
+      if (!r.ok) { $('error-area').innerHTML = `<div class="error-box">CSV export failed (${r.status})</div>`; return; }
+      const blob = await r.blob();
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `metrictree-leads-${new Date().toISOString().slice(0, 10)}.csv`;
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(a.href);
+    } catch (err) {
+      $('error-area').innerHTML = `<div class="error-box">CSV export failed: ${err.message}</div>`;
+    }
+  });
   $('debug-btn').addEventListener('click', async e => {
     e.preventDefault();
     try {
-      const r = await fetch('/api/leads?debug=1&secret=' + encodeURIComponent(secret));
+      const r = await fetch('/api/leads?debug=1', { headers: { Authorization: 'Bearer ' + secret } });
       const j = await r.json();
       const summary = `<div class="error-box" style="background:rgba(42,109,244,0.08);border-color:rgba(42,109,244,0.3);">
         <strong>Diagnostic:</strong><br>

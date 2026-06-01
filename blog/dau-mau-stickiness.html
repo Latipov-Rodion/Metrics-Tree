@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>DAU/MAU Stickiness — насколько «липкий» твой продукт | MetricTree Blog</title>
+<meta name="description" content="Stickiness = DAU / MAU × 100%. Что значит 20% vs 50%, бенчмарки по типам продуктов (соцсети, SaaS, утилиты), и почему высокий stickiness важнее роста MAU.">
+<meta name="keywords" content="dau mau, stickiness, липкость продукта, формула stickiness, engagement метрика">
+<link rel="canonical" href="https://metricstree.vercel.app/blog/dau-mau-stickiness">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/dau-mau-stickiness">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/dau-mau-stickiness">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/dau-mau-stickiness">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="DAU/MAU Stickiness — насколько «липкий» твой продукт">
+<meta property="og:description" content="Stickiness = DAU / MAU × 100%. Что значит 20% vs 50%, бенчмарки по типам продуктов (соцсети, SaaS, утилиты), и почему высокий stickiness важнее роста MAU.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/blog/dau-mau-stickiness">
+<meta property="og:image" content="https://metricstree.vercel.app/blog-og/dau-mau-stickiness.png">
+<meta property="article:published_time" content="2026-05-22">
+<meta property="article:author" content="Родион Латыпов">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DAU/MAU Stickiness — насколько «липкий» твой продукт">
+<meta name="twitter:image" content="https://metricstree.vercel.app/blog-og/dau-mau-stickiness.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "DAU/MAU Stickiness — насколько «липкий» твой продукт",
+  "description": "Stickiness = DAU / MAU × 100%. Что значит 20% vs 50%, бенчмарки по типам продуктов (соцсети, SaaS, утилиты), и почему высокий stickiness важнее роста MAU.",
+  "datePublished": "2026-05-22",
+  "author": {
+    "@type": "Person",
+    "name": "Родион Латыпов",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/blog-og/dau-mau-stickiness.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/blog/dau-mau-stickiness"
+  },
+  "keywords": "dau mau, stickiness, липкость продукта, формула stickiness, engagement метрика",
+  "inLanguage": "ru"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#6b6f75; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#777; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div>
+</nav>
+<article>
+<h1>DAU/MAU Stickiness — насколько «липкий» твой продукт</h1>
+<div class="meta">2026-05-22 · автор: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a></div>
+<h1>DAU/MAU Stickiness — насколько «липкий» твой продукт</h1>
+
+<p>Stickiness («липкость») показывает, какая доля месячной аудитории возвращается в продукт каждый день. Это самый честный индикатор вовлечённости: рост MAU можно купить рекламой, но stickiness купить нельзя — он отражает реальную ценность продукта.</p>
+
+<p>> <strong>Stickiness = DAU / MAU × 100%</strong></p>
+
+<p>DAU — среднее число уникальных пользователей в день. MAU — уникальные за месяц. Результат: какой % месячных пользователей заходит в типичный день.</p>
+
+<h2>Как читать цифру</h2>
+
+<p>Stickiness 20% означает, что средний пользователь активен <strong>6 дней из 30</strong>. Stickiness 50% → 15 дней из 30 → продукт стал частью ежедневной рутины.</p>
+
+<table><thead><tr><th>Stickiness</th><th>Что это значит</th></tr></thead><tbody><tr><td></td><td><10%</td><td>Низкая вовлечённость — продукт «вспоминают» редко</td><td></td></tr><tr><td></td><td>10-20%</td><td>Норма для большинства SaaS и контент-приложений</td><td></td></tr><tr><td></td><td>20-50%</td><td>Высокая вовлечённость — формируется привычка</td><td></td></tr><tr><td></td><td>>50%</td><td>Daily-habit продукт (мессенджеры, соцсети)</td><td></td></tr></tbody></table>
+<h2>Бенчмарки по типам продуктов</h2>
+
+<table><thead><tr><th>Тип продукта</th><th>Типичный Stickiness</th><th>Примеры</th></tr></thead><tbody><tr><td></td><td><strong>Мессенджеры / соцсети</strong></td><td>50-60%</td><td>WhatsApp, Instagram</td><td></td></tr><tr><td></td><td><strong>Daily-utility</strong></td><td>30-50%</td><td>Карты, погода, банк</td><td></td></tr><tr><td></td><td><strong>Продуктивность / SaaS</strong></td><td>20-40%</td><td>Slack, Notion (рабочие дни!)</td><td></td></tr><tr><td></td><td><strong>Контент / медиа</strong></td><td>15-30%</td><td>YouTube, новости</td><td></td></tr><tr><td></td><td><strong>B2B SaaS (нишевый)</strong></td><td>10-20%</td><td>Аналитика, CRM</td><td></td></tr><tr><td></td><td><strong>Транзакционные</strong></td><td><10%</td><td>Маркетплейсы, доставка, travel</td><td></td></tr></tbody></table>
+<strong>Важно</strong>: низкий stickiness не всегда плох. Налоговому сервису или сайту авиабилетов не нужно ежедневное использование — там важнее частота в правильный момент. Сравнивай с нормой <strong>своего типа продукта</strong>, а не с Instagram.
+
+<h2>Почему stickiness важнее роста MAU</h2>
+
+<p>Можно влить $1M в рекламу и удвоить MAU за месяц. Но если эти новые пользователи не возвращаются — DAU не растёт, stickiness падает, а через месяц MAU схлопывается обратно. Это «дырявое ведро».</p>
+
+<p><strong>Высокий stickiness = подтверждённый product-market fit.</strong> Сначала добейся, чтобы возвращались имеющиеся пользователи, потом масштабируй привлечение. Рост на фоне падающего stickiness — иллюзия.</p>
+
+<h2>Подвох: рабочие дни искажают B2B</h2>
+
+<p>Для B2B-инструментов (Slack, Jira, CRM) пользователи активны 5 дней в неделю, а не 7. Потолок stickiness для них структурно ~71% (5/7), и реалистичная «отличная» цифра — 30-40%, а не 50%+.</p>
+
+<p>Для таких продуктов считай <strong>DAU/WAU</strong> (Weekly Active Users) или stickiness только по рабочим дням — это честнее.</p>
+
+<h2>4 рычага роста Stickiness</h2>
+
+<h3>1. Сократи time-to-value в онбординге</h3>
+Пользователь, получивший ценность в первую сессию, возвращается в разы чаще. Убери трение между регистрацией и «aha-моментом».
+
+<h3>2. Триггеры возврата</h3>
+<ul><li>Полезные (не спамные) push/email по реальным событиям</li><li>Daily-механики: стрики, ежедневные задачи, дайджесты</li><li>Интеграции в ежедневный workflow (Slack-бот, браузер-расширение)</li></ul>
+
+<h3>3. Habit loops (петли привычки)</h3>
+Триггер → действие → переменная награда → инвестиция. Чем чаще проходит петля, тем сильнее привычка. Соцсети мастера этого; SaaS может встроить мягко (ежедневная сводка метрик).
+
+<h3>4. Расширяй use-cases</h3>
+Один сценарий = используют изредка. Несколько связанных сценариев = повод заходить чаще. Notion вырос из заметок в «второй мозг» именно так.
+
+<h2>Real-world: математика дырявого ведра</h2>
+
+<p><strong>Продукт A:</strong> MAU 100k, stickiness 10% → DAU 10k<br><strong>Продукт B:</strong> MAU 50k, stickiness 40% → DAU 20k</p>
+
+<p>Продукт B вдвое меньше по MAU, но имеет <strong>вдвое больше DAU</strong> и кратно выше монетизацию и retention. Инвесторы и рекламодатели платят за DAU и вовлечённость, а не за «зарегистрированных».</p>
+
+<h2>Когда Stickiness ВВОДИТ В ЗАБЛУЖДЕНИЕ</h2>
+
+<p>1. <strong>Тип продукта</strong> — для транзакционных сервисов низкий stickiness — норма<br>2. <strong>Рабочие дни</strong> — B2B-потолок ~71%, не сравнивай с 7-дневными продуктами<br>3. <strong>Боты и фрод</strong> — накрученные DAU завышают stickiness<br>4. <strong>Определение «активного»</strong> — открытие пуша ≠ реальная сессия; зафиксируй честное определение Active</p>
+
+<h2>Связь с другими метриками</h2>
+
+<table><thead><tr><th>Метрика</th><th>Связь со Stickiness</th></tr></thead><tbody><tr><td></td><td><strong>DAU / MAU</strong></td><td>Сами компоненты формулы</td><td></td></tr><tr><td></td><td><strong>Retention</strong></td><td>Высокий retention → высокий stickiness</td><td></td></tr><tr><td></td><td><strong>ARPDAU</strong></td><td>Stickiness × монетизация = доход на пользователя</td><td></td></tr><tr><td></td><td><strong>Churn</strong></td><td>Низкий stickiness — ранний предиктор будущего churn</td><td></td></tr></tbody></table>
+<h2>Итог</h2>
+
+<p>Stickiness — это <strong>детектор настоящей привычки</strong>. Сравни со своим типом продукта (не с соцсетями), для B2B учитывай рабочие дни. Сначала подними липкость существующих пользователей, потом масштабируй MAU — иначе льёшь воду в дырявое ведро. Растущий stickiness — лучшее подтверждение, что продукт по-настоящему нужен.</p>
+
+<p><strong>Считай свой Stickiness ниже</strong> — встроенный калькулятор покажет % и интерпретацию.</p>
+
+<p>---</p>
+
+<h3>Дополнительные ресурсы</h3>
+
+<ul><li><a href="/dau">/dau</a> — DAU отдельно</li><li><a href="/mau">/mau</a> — MAU отдельно</li><li><a href="/retention">/retention</a> — Retention</li><li><a href="/blog/arpdau-mobile-games">/blog/arpdau-mobile-games</a> — ARPDAU (stickiness × монетизация)</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Считай прямо здесь:</strong>
+  <iframe src="https://metricstree.vercel.app/stickiness?embed=1" width="100%" height="650" loading="lazy" title="MetricTree stickiness калькулятор"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Открыть в полной версии: <a href="https://metricstree.vercel.app/stickiness" target="_blank">https://metricstree.vercel.app/stickiness</a></p>
+</div>
+<div class="share-row">
+  Поделиться:
+  <a href="https://twitter.com/intent/tweet?text=DAU%2FMAU%20Stickiness%20%E2%80%94%20%D0%BD%D0%B0%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%C2%AB%D0%BB%D0%B8%D0%BF%D0%BA%D0%B8%D0%B9%C2%BB%20%D1%82%D0%B2%D0%BE%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82&url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fdau-mau-stickiness" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fdau-mau-stickiness" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fdau-mau-stickiness&text=DAU%2FMAU%20Stickiness%20%E2%80%94%20%D0%BD%D0%B0%D1%81%D0%BA%D0%BE%D0%BB%D1%8C%D0%BA%D0%BE%20%C2%AB%D0%BB%D0%B8%D0%BF%D0%BA%D0%B8%D0%B9%C2%BB%20%D1%82%D0%B2%D0%BE%D0%B9%20%D0%BF%D1%80%D0%BE%D0%B4%D1%83%D0%BA%D1%82" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="/blog/">Все посты</a> · <a href="/">Калькулятор</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

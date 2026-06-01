@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>MetricTree vs Finmodelslab: бесплатный онлайн-калькулятор vs Excel-шаблоны | MetricTree</title>
+<meta name="description" content="Сравнение MetricTree и Finmodelslab: 48 метрик мгновенно онлайн с бенчмарками и без скачивания vs платные Excel/Google Sheets шаблоны. Что выбрать.">
+<link rel="canonical" href="https://metricstree.vercel.app/vs-finmodelslab">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="MetricTree vs Finmodelslab — online calculator vs Excel templates">
+<meta property="og:description" content="Finmodelslab продаёт Excel-шаблоны фин-моделей. MetricTree — бесплатный онлайн-калькулятор 48 метрик с бенчмарками, без скачивания и регистрации.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/vs-finmodelslab">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MetricTree vs Finmodelslab">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Чем MetricTree отличается от Finmodelslab?", "acceptedAnswer": { "@type": "Answer", "text": "MetricTree — бесплатный онлайн-калькулятор 48 продуктовых метрик: открыл, ввёл числа, мгновенно получил результат, бенчмарк и интерпретацию, без скачивания и регистрации, на 3 языках. Finmodelslab продаёт платные Excel/Google Sheets шаблоны финансовых моделей под конкретные типы бизнеса — их нужно купить, скачать и заполнять вручную в таблице." } },
+    { "@type": "Question", "name": "Нужно ли что-то скачивать для MetricTree?", "acceptedAnswer": { "@type": "Answer", "text": "Нет. MetricTree работает прямо в браузере, без скачивания, установки Excel и регистрации. Finmodelslab — это файлы-шаблоны, которые требуют покупки и Excel/Google Sheets." } },
+    { "@type": "Question", "name": "Даёт ли MetricTree отраслевые бенчмарки?", "acceptedAnswer": { "@type": "Answer", "text": "Да, для каждой метрики MetricTree показывает порог (плохо/средне/хорошо) и цитирует источники бенчмарков (David Sacks, Mamoon Hamid, OpenView, Bessemer, Bain). Excel-шаблоны обычно дают структуру расчёта, но не встроенные бенчмарки с интерпретацией." } },
+    { "@type": "Question", "name": "Что выбрать для полной финансовой модели?", "acceptedAnswer": { "@type": "Answer", "text": "Если нужна полноценная многолетняя финансовая модель с P&L, cash flow и сценариями для инвесторов — Excel-шаблон Finmodelslab подойдёт лучше. Если нужно быстро посчитать отдельную метрику (LTV, CAC, MRR, Burn Multiple, Runway) и понять норму — MetricTree быстрее и бесплатен." } }
+  ]
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#6b6f75; --accent:#2A6DF4; --green:#4CAF50; --red:#F44336; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#777; }
+* { box-sizing: border-box; }
+body { margin:0; padding:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.6; }
+.wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:880px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; display:inline-block; }
+.nav a { color:var(--text-2); text-decoration:none; font-weight:500; }
+.nav a:hover { color:var(--text-1); }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.85rem; letter-spacing:-0.02em; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.5rem; }
+.lede { font-size: 1.1rem; color: var(--text-2); margin: 0 0 2rem; }
+.cta-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 1rem; padding: 1.4rem 1.5rem; margin: 1.5rem 0; }
+.cta-box a.btn { display:inline-block; background: var(--accent); color:#fff; padding:0.6rem 1.2rem; border-radius:0.5rem; text-decoration:none; font-weight:600; margin-top:0.5rem; }
+.cta-box a.btn:hover { opacity:0.92; }
+table { width:100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.92rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 0.75rem; overflow:hidden; }
+th, td { padding: 0.6rem 0.85rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; color: var(--text-1); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.04em; }
+td:not(:first-child) { text-align: center; }
+tr:last-child td { border-bottom: 0; }
+.yes { color: var(--green); font-weight: 700; }
+.no { color: var(--red); font-weight: 700; }
+.partial { color: #FFC107; font-weight: 700; }
+.cell-strong { background: rgba(76,175,80,0.06); }
+ul { padding-left: 1.25rem; }
+li { margin-bottom: 0.4rem; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.faq { margin-top: 2.5rem; }
+.faq details { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.6rem; padding: 0.85rem 1rem; margin-bottom: 0.5rem; }
+.faq summary { cursor: pointer; font-weight: 600; color: var(--text-1); }
+.faq details[open] summary { margin-bottom: 0.6rem; }
+.footer { text-align: center; color: var(--text-3); margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+</style>
+
+<script src="/theme-sync.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/">Калькулятор →</a></div>
+</nav>
+
+<main class="wrap">
+<h1>MetricTree vs Finmodelslab — онлайн-калькулятор vs Excel-шаблоны</h1>
+<p class="lede">Finmodelslab продаёт платные Excel/Google Sheets шаблоны финансовых моделей. MetricTree — бесплатный онлайн-калькулятор 48 метрик: открыл, посчитал, получил бенчмарк — без скачивания, Excel и регистрации.</p>
+
+<div class="cta-box">
+  <strong>TL;DR:</strong> Нужно быстро посчитать отдельную метрику (LTV, CAC, MRR, Burn Multiple, Runway) и понять, нормальный ли результат — MetricTree сделает это за секунды бесплатно. Нужна полноценная многолетняя финмодель с P&L и cash flow для инвесторов — Excel-шаблон Finmodelslab подойдёт лучше.
+  <br><a class="btn" href="/">Открыть MetricTree →</a>
+</div>
+
+<h2>Сравнение по фичам</h2>
+<table>
+<thead><tr><th>Фича</th><th>Finmodelslab</th><th>MetricTree</th></tr></thead>
+<tbody>
+<tr><td>Бесплатно</td><td><span class="no">✗</span> платные шаблоны</td><td class="cell-strong"><span class="yes">✓ MIT</span></td></tr>
+<tr><td>Без скачивания (онлайн)</td><td><span class="no">✗</span> нужен Excel</td><td class="cell-strong"><span class="yes">✓ в браузере</span></td></tr>
+<tr><td>Мгновенный результат</td><td><span class="partial">после заполнения</span></td><td class="cell-strong"><span class="yes">✓ за секунды</span></td></tr>
+<tr><td>Количество готовых метрик</td><td><span class="partial">зависит от шаблона</span></td><td class="cell-strong"><strong>48</strong></td></tr>
+<tr><td>Отраслевые бенчмарки + источники</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">✓ Sacks, Hamid, OpenView</span></td></tr>
+<tr><td>Интерпретация результата</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">✓ порог + инсайт</span></td></tr>
+<tr><td>Goal mode (обратный расчёт)</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">✓ 32 сценария</span></td></tr>
+<tr><td>What-If слайдеры</td><td><span class="partial">вручную в Excel</span></td><td class="cell-strong"><span class="yes">✓</span></td></tr>
+<tr><td>Embed iframe в блог / Notion</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">✓</span></td></tr>
+<tr><td>3 языка (RU / EN / UZ)</td><td><span class="no">EN only</span></td><td class="cell-strong"><span class="yes">✓</span></td></tr>
+<tr><td>Open source</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">✓ MIT</span></td></tr>
+<tr><td>Полная многолетняя фин-модель (P&L, cash flow)</td><td class="cell-strong"><span class="yes">✓</span></td><td><span class="no">✗</span> (точечные метрики)</td></tr>
+<tr><td>Кастомизация под свой бизнес в таблице</td><td class="cell-strong"><span class="yes">✓</span></td><td><span class="partial">фикс. формулы</span></td></tr>
+</tbody>
+</table>
+
+<h2>Когда выбирать MetricTree</h2>
+<ul>
+<li>Нужен <strong>быстрый расчёт</strong> отдельной метрики без скачивания и Excel</li>
+<li>Хочешь сразу <strong>бенчмарк и интерпретацию</strong>: «нормальный ли это LTV:CAC?»</li>
+<li>Нужен <strong>обратный расчёт</strong>: «какой max CAC при target LTV:CAC = 3?»</li>
+<li>Хочешь <strong>встроить калькулятор</strong> в блог или Notion как виджет</li>
+<li>Команда <strong>не англоязычная</strong> — нужен русский или узбекский</li>
+<li>Не хочешь платить за шаблон ради одной-двух формул</li>
+</ul>
+
+<h2>Когда выбирать Finmodelslab</h2>
+<ul>
+<li>Нужна <strong>полная финансовая модель</strong> на 3-5 лет с P&L, cash flow, балансом</li>
+<li>Готовишь <strong>модель для инвесторов</strong> под конкретный тип бизнеса</li>
+<li>Хочешь <strong>править формулы вручную</strong> и строить свои сценарии в Excel</li>
+<li>Нужен <strong>офлайн-файл</strong>, который остаётся у тебя навсегда</li>
+</ul>
+<p>Инструменты дополняют друг друга: MetricTree — чтобы быстро проверить отдельную метрику и норму, Excel-шаблон — чтобы собрать полную модель.</p>
+
+<h2>Цена</h2>
+<table>
+<tbody>
+<tr><td><strong>MetricTree Free</strong></td><td>$0 навсегда</td><td>48 метрик, embed, 3 языка</td></tr>
+<tr><td>MetricTree Pro (скоро)</td><td>$9/мес</td><td>PDF-отчёты, custom-branded embed, API</td></tr>
+<tr><td>Finmodelslab</td><td>разовая покупка за шаблон</td><td>Excel/Sheets фин-модель под тип бизнеса</td></tr>
+</tbody>
+</table>
+
+<div class="cta-box">
+  <strong>Попробуй прямо сейчас:</strong> калькулятор уже заполнен примерными значениями — увидишь результат + инсайт за 1 секунду, без скачивания.
+  <br><a class="btn" href="/">Открыть MetricTree →</a>
+</div>
+
+<h2 class="faq">FAQ</h2>
+<div class="faq">
+  <details><summary>Чем MetricTree отличается от Finmodelslab?</summary><p>MetricTree — бесплатный онлайн-калькулятор 48 метрик с бенчмарками и интерпретацией, прямо в браузере, на 3 языках. Finmodelslab продаёт платные Excel/Sheets шаблоны фин-моделей, которые нужно купить, скачать и заполнять вручную.</p></details>
+  <details><summary>Нужно ли что-то скачивать для MetricTree?</summary><p>Нет, всё работает в браузере без установки, Excel и регистрации. Finmodelslab — это файлы-шаблоны.</p></details>
+  <details><summary>Даёт ли MetricTree отраслевые бенчмарки?</summary><p>Да, для каждой метрики показан порог (плохо/средне/хорошо) и цитируются источники (Sacks, Hamid, OpenView, Bessemer, Bain).</p></details>
+  <details><summary>Что выбрать для полной финансовой модели?</summary><p>Для многолетней модели с P&L и cash flow лучше Excel-шаблон. Для быстрого расчёта отдельной метрики и нормы — MetricTree.</p></details>
+  <details><summary>MetricTree open-source?</summary><p>Да, MIT-лицензия. Код на <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank" rel="noopener">GitHub</a>. Можно self-host на свой домен.</p></details>
+</div>
+
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a> · <a href="/">Главная</a>
+</div>
+</main>
+</body>
+</html>

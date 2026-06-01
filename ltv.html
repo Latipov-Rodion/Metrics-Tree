@@ -13,6 +13,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="alternate icon" href="/favicon.ico">
     <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta property="og:title" content="LTV калькулятор (Lifetime Value) — формула + LTV:CAC анализ | MetricTree">
     <meta property="og:description" content="Рассчитайте LTV = AOV × частота × срок жизни. Формула, отраслевые пороги, обратный расчёт LTV:CAC. Бесплатно.">
     <meta property="og:type" content="website">
@@ -22,14 +23,10 @@
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="MetricTree — калькулятор 52 продуктовых метрик: LTV, CAC, MRR, NPS, Burn Multiple, Runway">
+    <meta property="og:image:alt" content="MetricTree — калькулятор 48 продуктовых метрик: LTV, CAC, MRR, NPS, Burn Multiple, Runway">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:locale:alternate" content="en_US">
     <meta property="og:locale:alternate" content="uz_UZ">
-    <!-- Google Search Console verification — REPLACE the 'content' below with the code Google gives you at search.google.com/search-console (Add Property → HTML tag method). -->
-    <meta name="google-site-verification" content="REPLACE_WITH_GSC_VERIFICATION_CODE">
-    <!-- Yandex Webmaster verification — get yours at webmaster.yandex.ru -->
-    <meta name="yandex-verification" content="REPLACE_WITH_YANDEX_VERIFICATION_CODE">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="LTV калькулятор (Lifetime Value) — формула + LTV:CAC анализ | MetricTree">
     <meta name="twitter:description" content="Рассчитайте LTV = AOV × частота × срок жизни. Формула, отраслевые пороги, обратный расчёт LTV:CAC. Бесплатно.">
@@ -41,14 +38,14 @@
       "name": "MetricTree",
       "alternateName": ["Калькулятор продуктовых метрик", "Product Metrics Calculator", "Mahsulot metrikalari kalkulyatori"],
       "url": "https://metricstree.vercel.app/",
-      "description": "Бесплатный онлайн-калькулятор 52 продуктовых метрики: LTV, CAC, MRR, ARR, Churn Rate, DAU, ROAS, NPS, Burn Multiple, Magic Number, Rule of 40, Quick Ratio с формулами и интерпретацией результатов.",
+      "description": "Бесплатный онлайн-калькулятор 48 продуктовых метрик: LTV, CAC, MRR, ARR, Churn Rate, DAU, ROAS, NPS, Burn Multiple, Magic Number, Rule of 40, Quick Ratio с формулами и интерпретацией результатов.",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Any",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "author": { "@type": "Person", "name": "Родион Латыпов", "url": "https://www.linkedin.com/in/rodion-latipov" },
       "inLanguage": ["ru", "en", "uz"],
       "featureList": [
-        "52 product metrics in 8 sections",
+        "48 product metrics in 8 sections",
         "Goal mode — reverse calculations",
         "What-If sliders for real-time scenarios",
         "Forecast charts (6–24 months)",
@@ -2032,6 +2029,24 @@
             .metric-description { margin-bottom: 0.3rem; font-size: 0.85rem; }
             .input-group { margin-bottom: 0.6rem; }
         }
+        /* Per-metric SEO content section (injected by build.mjs into generated pages).
+           Visible, unique, crawlable prose — matches the page's FAQ JSON-LD. Hidden in
+           embed mode so the iframe widget stays clean. */
+        .metric-seo { max-width: 820px; margin: 2.5rem auto 1rem; padding: 0 1.25rem; color: var(--text-1); }
+        .metric-seo h2 { font-size: 1.15rem; margin: 1.6rem 0 0.6rem; }
+        .metric-seo h3 { font-size: 0.98rem; margin: 1.1rem 0 0.35rem; color: var(--text-1); }
+        .metric-seo p, .metric-seo li { font-size: 0.92rem; line-height: 1.6; color: var(--text-2); }
+        .metric-seo .seo-formula { display: inline-block; background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-sm); padding: 0.35rem 0.6rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.88rem; color: var(--text-1); }
+        .metric-seo .seo-faq { margin-top: 0.75rem; }
+        .metric-seo .seo-faq details { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0.5rem 0.75rem; margin-bottom: 0.5rem; background: var(--bg-card); }
+        .metric-seo .seo-faq summary { cursor: pointer; font-weight: 600; color: var(--text-1); font-size: 0.92rem; }
+        .metric-seo .seo-faq details[open] summary { margin-bottom: 0.4rem; }
+        .metric-seo .seo-related { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .metric-seo .seo-related a { display: inline-block; background: var(--accent-dim); color: var(--accent);
+            text-decoration: none; padding: 0.3rem 0.7rem; border-radius: 999px; font-size: 0.85rem; }
+        body.embed .metric-seo { display: none; }
     </style>
     <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
     <!-- Vercel Speed Insights -->
@@ -2039,6 +2054,12 @@
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
     </script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
+    <script>
+        // Vercel Web Analytics custom events. window.va is provided by the insights
+        // script above; queue calls before it loads. No PII — only metric ids / sources.
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+        window.track = function (name, data) { try { window.va('event', { name: name, data: data || {} }); } catch (e) {} };
+    </script>
 
     <script type="application/ld+json">
 {
@@ -2106,6 +2127,26 @@
       "position": 3,
       "name": "Сравните с бенчмарком",
       "text": "LTV = AOV × Частота покупок в год × Среднее время жизни (лет). Например $2500 × 4 × 3 = $30 000. Главное — соотношение LTV:CAC ≥ 3."
+    }
+  ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "MetricTree",
+      "item": "https://metricstree.vercel.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "LTV",
+      "item": "https://metricstree.vercel.app/ltv"
     }
   ]
 }
@@ -2219,7 +2260,7 @@
     <!-- Onboarding bar (first visit) -->
     <div class="onboarding-bar onboarding-bar-rich" id="onboardingBar" style="display:none;">
         <div class="onboarding-content">
-            <div class="onboarding-headline" data-t="onboard.headline">👋 52 метрики, формулы, отраслевые пороги. Бесплатно, без регистрации.</div>
+            <div class="onboarding-headline" data-t="onboard.headline">👋 48 метрик, формулы, отраслевые пороги. Бесплатно, без регистрации.</div>
             <div class="onboarding-steps">
                 <span class="onboarding-step"><span class="onboarding-step-num">1</span> <span data-t="onboard.step_pick">Выберите метрику</span></span>
                 <span class="onboarding-sep">→</span>
@@ -2380,9 +2421,31 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
             <div id="deepContentSlot"></div>
         </article>
+    
+    <section class="metric-seo" aria-label="О метрике LTV">
+      <h2>Что такое LTV</h2>
+      <p>Lifetime Value — сколько денег приносит клиент за всё время.</p>
+      <h3>Формула расчёта LTV</h3>
+      <p><span class="seo-formula">AOV × Частота покупок в год × Время жизни (лет)</span></p>
+      <h3>Отраслевые бенчмарки</h3>
+      <p>Главное — соотношение к CAC: LTV:CAC &gt; 3 норма, &gt; 5 отлично</p>
+      <h3>Частые вопросы про LTV</h3>
+      <div class="seo-faq">
+        <details><summary>Какая формула расчёта LTV?</summary><p>LTV = AOV (средний чек) × Частота покупок в год × Срок жизни клиента (лет). Для SaaS: ARPU / Churn. Пример: $2500 × 4 × 3 = $30 000.</p></details>
+        <details><summary>Какое соотношение LTV к CAC считается здоровым?</summary><p>LTV:CAC ≥ 3 — здоровая unit-экономика. 1–3 — слабая, теряете деньги на росте. &gt;5 — отлично, но возможно недоинвестируете в маркетинг. Top SaaS — 3–6×.</p></details>
+        <details><summary>Как увеличить LTV?</summary><p>Три рычага: (1) повысить AOV через апселы/бандлы, (2) увеличить частоту покупок (cross-sell, email-flows), (3) снизить Churn (onboarding, customer success). Каждый +10% даёт мультипликативный эффект.</p></details>
+        <details><summary>Чем LTV отличается от CLV?</summary><p>LTV (Lifetime Value) и CLV (Customer Lifetime Value) — синонимы. Иногда CLV считают с дисконтированием будущих cash flows (NPV). Для оперативных решений достаточно простой формулы.</p></details>
+      </div>
+      <h3>Связанные метрики</h3>
+      <ul class="seo-related">
+        <li><a href="/cac">CAC</a></li>
+        <li><a href="/ltv_cac">LTV:CAC</a></li>
+        <li><a href="/arpu">ARPU</a></li>
+      </ul>
+    </section>
     </main>
     <div class="embed-footer" aria-hidden="true">
-        Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 52 продуктовых метрики с формулами
+        Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 48 продуктовых метрик с формулами
     </div>
 </div>
 
@@ -2546,7 +2609,7 @@ window.I18N_UI = {
     'help.feat_clean_urls': 'Each metric is its own page: /ltv, /cac, …',
     'help.feat_currency_label': '💱 Currency',
     'help.feat_currency': '$ / € / ₽ / £ switcher in the header',
-    'onboard.headline': '👋 47 metrics, formulas, industry benchmarks. Free, no signup.',
+    'onboard.headline': '👋 48 metrics, formulas, industry benchmarks. Free, no signup.',
     'onboard.step_pick': 'Pick a metric',
     'onboard.step_enter': 'Enter numbers',
     'onboard.step_insight': 'Get an insight',
@@ -2578,7 +2641,7 @@ window.I18N_UI = {
     'templates.metrics_count': 'Fills ',
     'templates.metrics_count_suffix': ' metrics',
     'about.title': 'About MetricTree',
-    'about.intro': 'MetricTree is a free online calculator of 47 product metrics for product managers, marketers, analysts, and founders. Compute LTV, CAC, MRR, ARR, Churn Rate, DAU, MAU, Stickiness, ROAS, NPS, CSAT, Burn Multiple, Runway, Sales Velocity and more — with formulas, industry benchmarks, and result interpretation.',
+    'about.intro': 'MetricTree is a free online calculator of 48 product metrics for product managers, marketers, analysts, and founders. Compute LTV, CAC, MRR, ARR, Churn Rate, DAU, MAU, Stickiness, ROAS, NPS, CSAT, Burn Multiple, Runway, Sales Velocity and more — with formulas, industry benchmarks, and result interpretation.',
     'about.h_sections': 'Metrics by section',
     'about.h_features': 'Features',
     'about.h_faq': 'Frequently asked questions',
@@ -2631,6 +2694,12 @@ window.I18N_UI = {
     'footer.pricing': 'Pro / Team',
     'footer.help': 'Help',
     'footer.subscribe': 'Subscribe',
+    'footer.cheatsheet': 'PDF cheat sheet',
+    'cheatsheet.title': '📥 Free PDF cheat sheet: 48 metrics with formulas and benchmarks',
+    'cheatsheet.placeholder': 'you@company.com',
+    'cheatsheet.cta': 'Get the PDF →',
+    'cheatsheet.success': '✓ Done!',
+    'cheatsheet.open': 'Open the cheat sheet and save as PDF →',
     'pricing.title': '💎 MetricTree Plans',
     'pricing.subtitle': 'The current calculator is free forever. Pro and Team are for teams and advanced scenarios. We are building a waitlist now — leave your email to get early access + 50% off the first year.',
     'pricing.tier_free': 'Free',
@@ -2645,7 +2714,7 @@ window.I18N_UI = {
     'pricing.current_plan': 'Current plan',
     'pricing.cta_waitlist': 'Get -50% on launch →',
     'pricing.cta_waitlist_team': 'Get -50% on launch →',
-    'pricing.f_47': '✓ All 47 metrics',
+    'pricing.f_47': '✓ All 48 metrics',
     'pricing.f_goal': '✓ Goal mode (~32 reverse-calc)',
     'pricing.f_whatif': '✓ What-if sliders',
     'pricing.f_industry': '✓ Industry benchmarks (5 verticals)',
@@ -2810,7 +2879,7 @@ window.I18N_UI = {
     'templates.metrics_count': 'To‘ldiradi: ',
     'templates.metrics_count_suffix': ' ta metrika',
     'about.title': 'MetricTree haqida',
-    'about.intro': 'MetricTree — bu mahsulot menejerlari, marketologlar, analitiklar va asoschilar uchun 47 ta mahsulot metrikasini hisoblovchi bepul onlayn kalkulyator. LTV, CAC, MRR, ARR, Churn, DAU, MAU, Stickiness, ROAS, NPS, CSAT, Burn Multiple, Runway, Sales Velocity va boshqalarni formulalar, soha bencharklari va natija talqini bilan hisoblang.',
+    'about.intro': 'MetricTree — bu mahsulot menejerlari, marketologlar, analitiklar va asoschilar uchun 48 ta mahsulot metrikasini hisoblovchi bepul onlayn kalkulyator. LTV, CAC, MRR, ARR, Churn, DAU, MAU, Stickiness, ROAS, NPS, CSAT, Burn Multiple, Runway, Sales Velocity va boshqalarni formulalar, soha bencharklari va natija talqini bilan hisoblang.',
     'about.h_sections': 'Bo‘limlar bo‘yicha metrikalar',
     'about.h_features': 'Imkoniyatlar',
     'about.h_faq': 'Tez-tez beriladigan savollar',
@@ -2877,7 +2946,7 @@ window.I18N_UI = {
     'pricing.current_plan': 'Joriy reja',
     'pricing.cta_waitlist': 'Ishga tushganda -50% olish →',
     'pricing.cta_waitlist_team': 'Ishga tushganda -50% olish →',
-    'pricing.f_47': '✓ Barcha 47 metrika',
+    'pricing.f_47': '✓ Barcha 48 metrika',
     'pricing.f_goal': '✓ Maqsad rejimi (~32 teskari hisob)',
     'pricing.f_whatif': '✓ What-if sliderlari',
     'pricing.f_industry': '✓ Soha bencharklari (5 vertikal)',
@@ -5390,6 +5459,7 @@ window._tTooltip = function(ruText) {
         void resultBlock.offsetWidth;
         resultBlock.classList.add('result-animate');
         renderSnapshotsBlock();
+        if (window.track) window.track('calc', { metric: metric.id, lang: (window._currentLang ? window._currentLang() : 'ru') });
     }
 
     function saveCurrentValues() {
@@ -5786,6 +5856,7 @@ window._tTooltip = function(ruText) {
             const embedUrl = `https://metricstree.vercel.app/${m}?embed=1`;
             const iframe = `<iframe src="${embedUrl}" width="100%" height="640" style="border:1px solid #ddd;border-radius:8px;" loading="lazy" title="MetricTree — ${m}"></iframe>`;
             const onOk = () => showToast('🔗 Embed-код скопирован', 'success');
+            if (window.track) window.track('embed_copy', { metric: m });
             navigator.clipboard.writeText(iframe).then(onOk).catch(() => {
                 const ta = document.createElement('textarea');
                 ta.value = iframe; ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
@@ -6079,6 +6150,12 @@ window._tTooltip = function(ruText) {
                 if (raw) params.set(inp.key, raw);
             });
         }
+        // UTM-\u043C\u0435\u0442\u043A\u0438 \u0434\u043B\u044F \u0430\u0442\u0440\u0438\u0431\u0443\u0446\u0438\u0438 \u0432\u0438\u0440\u0430\u043B\u044C\u043D\u044B\u0445 \u043F\u0435\u0440\u0435\u0445\u043E\u0434\u043E\u0432 \u0432 \u0430\u043D\u0430\u043B\u0438\u0442\u0438\u043A\u0435 (utm_* \u0438\u0433\u043D\u043E\u0440\u0438\u0440\u0443\u044E\u0442\u0441\u044F restoreFromURL).
+        if (opts && opts.utm) {
+            params.set('utm_source', opts.utm.source || 'share');
+            params.set('utm_medium', opts.utm.medium || 'referral');
+            params.set('utm_campaign', 'metric_share');
+        }
         const origin = window.location.origin;
         if (useClean && currentMetricId) {
             const qs = params.toString();
@@ -6149,8 +6226,9 @@ window._tTooltip = function(ruText) {
     }
 
     document.getElementById('shareLinkBtn').addEventListener('click', () => {
-        const url = buildShareURL({ clean: true });
+        const url = buildShareURL({ clean: true, utm: { source: 'share', medium: 'copy' } });
         const onOk = () => showToast('🔗 Ссылка скопирована', 'success');
+        if (window.track) window.track('share', { method: 'copy_link', metric: (currentMetricId || '') });
         navigator.clipboard.writeText(url).then(onOk).catch(() => {
             const ta = document.createElement('textarea');
             ta.value = url; ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
@@ -6181,18 +6259,20 @@ window._tTooltip = function(ruText) {
     }
     const _twBtn = document.getElementById('shareTwitterBtn');
     if (_twBtn) _twBtn.addEventListener('click', () => {
-        const url = buildShareURL({ clean: true });
+        const url = buildShareURL({ clean: true, utm: { source: 'twitter', medium: 'social' } });
         const txt = _composeShareText();
         const full = txt.length > 240 ? txt.slice(0, 237) + '…' : txt;
         const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(full)}&url=${encodeURIComponent(url)}&via=rodion_latipov`;
+        if (window.track) window.track('share', { method: 'twitter', metric: (currentMetricId || '') });
         _openShareWindow(intent);
     });
     const _liBtn = document.getElementById('shareLinkedinBtn');
     if (_liBtn) _liBtn.addEventListener('click', () => {
-        const url = buildShareURL({ clean: true });
+        const url = buildShareURL({ clean: true, utm: { source: 'linkedin', medium: 'social' } });
         // LinkedIn's modern share intent only accepts URL — they pull title/desc from OG.
         // For pre-filled text we'd need a feed/share/article endpoint with auth — keep simple.
         const intent = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+        if (window.track) window.track('share', { method: 'linkedin', metric: (currentMetricId || '') });
         _openShareWindow(intent);
     });
 
@@ -6585,9 +6665,9 @@ window._tTooltip = function(ruText) {
             content.innerHTML = `
                 <div class="compare-select-wrap">
                     <span style="font-size:0.78rem;color:var(--text-3)">Сравниваем:</span>
-                    <select class="compare-select" id="cmpSelA">${snapOptions}</select>
+                    <select class="compare-select" id="cmpSelA" aria-label="Первый снимок для сравнения">${snapOptions}</select>
                     <span style="font-size:0.78rem;color:var(--text-3)">vs</span>
-                    <select class="compare-select" id="cmpSelB">${snapOptionsB}</select>
+                    <select class="compare-select" id="cmpSelB" aria-label="Второй снимок для сравнения">${snapOptionsB}</select>
                 </div>
                 <div class="compare-grid">
                     ${snapCard(snapA, labelA)}
@@ -7384,7 +7464,7 @@ window._tTooltip = function(ruText) {
         const optionsHtml = questions.map((q, i) => `<option value="${i}">${_tg(q.ask)}</option>`).join('');
         goalPanel.innerHTML = `
             <div class="goal-title">${t('goal.title', '🎯 Goal mode — обратный расчёт')}</div>
-            <select class="goal-question-select" id="goalSelect">${optionsHtml}</select>
+            <select class="goal-question-select" id="goalSelect" aria-label="${t('goal.select_aria', 'Выберите вопрос для обратного расчёта')}">${optionsHtml}</select>
             <div id="goalForm"></div>
         `;
         const sel = document.getElementById('goalSelect');
@@ -7948,6 +8028,7 @@ window._tTooltip = function(ruText) {
                 ok = resp.ok;
             } catch (err) { ok = false; }
             if (ok) {
+                if (window.track) window.track('lead', { source: source });
                 formEl.style.display = 'none';
                 if (successEl) successEl.style.display = 'block';
                 showToast('✓ ' + (window._t ? window._t('newsletter.success', 'Подписка оформлена!') : 'Subscribed!'), 'success');
@@ -7968,6 +8049,9 @@ window._tTooltip = function(ruText) {
     function bindLateModalLinks() {
         bindFormspreeForm(document.getElementById('newsletterFormAbout'), document.getElementById('newsletterAboutSuccess'), 'about');
         bindFormspreeForm(document.getElementById('newsletterFormFooter'), null, 'footer');
+        // Lead magnet: free PDF benchmarks cheat sheet. Same /api/lead path (saveLeadLocally
+        // + lead event + mailto fallback); on success reveals the link to open & print it.
+        bindFormspreeForm(document.getElementById('cheatsheetFormEl'), document.getElementById('cheatsheetSuccess'), 'pdf_benchmarks');
 
         const footerAbout = document.getElementById('footerAbout');
         if (footerAbout) footerAbout.addEventListener('click', e => { e.preventDefault(); document.getElementById('aboutOverlay')?.classList.add('show'); });
@@ -8283,7 +8367,7 @@ window._tTooltip = function(ruText) {
         <h3 id="compare2Title" data-t="compare2.title">🔀 Сравнение двух метрик</h3>
         <div class="compare2-controls">
             <span data-t="compare2.choose">Выберите вторую метрику:</span>
-            <select id="compare2Select" class="compare2-select"></select>
+            <select id="compare2Select" class="compare2-select" aria-label="Выберите вторую метрику для сравнения"></select>
         </div>
         <div class="compare2-grid" id="compare2Grid" style="overflow-y:auto;flex:1;"></div>
         <div class="modal-btns" style="justify-content:flex-end;">
@@ -8303,7 +8387,7 @@ window._tTooltip = function(ruText) {
                 <div class="pricing-tier" data-t="pricing.tier_free">Free</div>
                 <div class="pricing-price"><span class="pricing-amount">$0</span><span class="pricing-per" data-t="pricing.forever">навсегда</span></div>
                 <ul class="pricing-feats">
-                    <li data-t="pricing.f_47">✓ Все 52 метрики</li>
+                    <li data-t="pricing.f_47">✓ Все 48 метрик</li>
                     <li data-t="pricing.f_goal">✓ Goal mode (~32 reverse-calc)</li>
                     <li data-t="pricing.f_whatif">✓ What-If слайдеры</li>
                     <li data-t="pricing.f_industry">✓ Отраслевые пороги (5 индустрий)</li>
@@ -8387,7 +8471,7 @@ window._tTooltip = function(ruText) {
     <div class="modal about-modal">
         <h3 id="aboutTitle" data-t="about.title">О продукте MetricTree</h3>
         <div class="about-body">
-            <p data-t="about.intro">MetricTree — бесплатный онлайн-калькулятор 52 продуктовых метрики для продакт-менеджеров, маркетологов, аналитиков и фаундеров. Рассчитайте LTV, CAC, MRR, ARR, Churn Rate, DAU, MAU, Stickiness, ROAS, NPS, CSAT, Burn Multiple, Runway, Sales Velocity и другие метрики с формулами, отраслевыми порогами и интерпретацией результата.</p>
+            <p data-t="about.intro">MetricTree — бесплатный онлайн-калькулятор 48 продуктовых метрик для продакт-менеджеров, маркетологов, аналитиков и фаундеров. Рассчитайте LTV, CAC, MRR, ARR, Churn Rate, DAU, MAU, Stickiness, ROAS, NPS, CSAT, Burn Multiple, Runway, Sales Velocity и другие метрики с формулами, отраслевыми порогами и интерпретацией результата.</p>
 
             <h4 data-t="about.h_sections">Метрики по разделам</h4>
             <p><strong data-t="about.s_b2c">B2C:</strong> DAU, MAU, Stickiness, Retention, LTV, CAC, LTV:CAC, ARPU, ARPDAU, Churn Rate.</p>
@@ -8449,7 +8533,7 @@ window._tTooltip = function(ruText) {
 <footer class="site-footer container" role="contentinfo">
     <div class="site-footer-brand">
         <span class="site-footer-brand-mark"></span>
-        MetricTree · 52 product metrics calculator
+        MetricTree · 48 product metrics calculator
     </div>
     <div class="site-footer-links">
         <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank" rel="noopener">GitHub</a>
@@ -8466,6 +8550,19 @@ window._tTooltip = function(ruText) {
         <a href="#" id="footerAbout" data-t="footer.about">О продукте</a>
         <a href="#" id="footerPricing" data-t="footer.pricing">Pro / Team</a>
         <a href="#" id="footerHelp" data-t="footer.help">Справка</a>
+        <a href="/benchmarks" data-t="footer.cheatsheet">PDF-шпаргалка</a>
+    </div>
+    <div class="footer-leadmagnet" style="width:100%;max-width:560px;margin:0.5rem auto 0;text-align:center;">
+        <strong style="display:block;font-size:0.9rem;color:var(--text-1);margin-bottom:0.5rem;" data-t="cheatsheet.title">📥 Бесплатная PDF-шпаргалка: 48 метрик с формулами и порогами</strong>
+        <form action="/api/lead" method="POST" id="cheatsheetFormEl" style="display:flex;gap:0.45rem;flex-wrap:wrap;justify-content:center;">
+            <input type="hidden" name="source" value="pdf_benchmarks">
+            <input type="hidden" name="_subject" value="MetricTree PDF cheat sheet download">
+            <input type="email" name="email" required placeholder="you@company.com" aria-label="Email" data-t-attr-placeholder="cheatsheet.placeholder" autocomplete="email" style="flex:1;min-width:200px;padding:0.55rem 0.7rem;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--text-1);font-size:0.9rem;">
+            <button type="submit" data-t="cheatsheet.cta" style="padding:0.55rem 1rem;border:0;border-radius:var(--radius-sm);background:var(--accent);color:#fff;font-weight:600;font-size:0.9rem;cursor:pointer;">Получить PDF →</button>
+        </form>
+        <div id="cheatsheetSuccess" style="display:none;font-size:0.88rem;margin-top:0.5rem;">
+            <span data-t="cheatsheet.success">✓ Готово!</span> <a href="/benchmarks" target="_blank" rel="noopener" style="color:var(--accent);" data-t="cheatsheet.open">Открыть шпаргалку и сохранить в PDF →</a>
+        </div>
     </div>
     <form action="/api/lead" method="POST" id="newsletterFormFooter" class="site-footer-news">
         <input type="hidden" name="_subject" value="MetricTree Newsletter signup (footer)">
@@ -8474,17 +8571,5 @@ window._tTooltip = function(ruText) {
         <button type="submit" data-t="footer.subscribe">Подписаться</button>
     </form>
 </footer>
-
-<!-- Cross-metric internal links — static HTML for SEO crawlers + no-JS fallback.
-     Client-side SPA removes this on hydrate; renderRelated() shows dynamic version. -->
-<aside class="related-static" data-spa-replace="true" aria-label="Связанные метрики" style="max-width:900px;margin:2rem auto 1rem;padding:1rem 1.25rem;border-top:1px solid var(--border,#2C2F33);font-size:0.85rem;color:var(--text-2,#B0B3B8);">
-  <h3 style="font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-3,#6b6f75);margin:0 0 0.5rem;">См. также</h3>
-  <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0.4rem 1rem;">
-      <li><a href="/cac"><strong>CAC</strong></a> — LTV должен быть > 3× CAC</li>
-      <li><a href="/ltv_cac"><strong>LTV:CAC</strong></a> — LTV:CAC — ключевое соотношение</li>
-      <li><a href="/arpu"><strong>ARPU</strong></a> — ARPU — компонент LTV</li>
-  </ul>
-</aside>
-<script>document.querySelectorAll('aside[data-spa-replace]').forEach(el => { /* visually hide once JS loads — kept in DOM for crawlers */ el.style.display = 'none'; });</script>
 </body>
 </html>

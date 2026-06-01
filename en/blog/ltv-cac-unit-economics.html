@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>LTV vs CAC — a step-by-step guide to startup unit economics | MetricTree Blog</title>
+<meta name="description" content="How to correctly calculate LTV and CAC, what ratio is healthy (3:1, 5:1), and why even a healthy LTV:CAC doesn't mean a healthy business without the right payback.">
+<meta name="keywords" content="ltv, cac, ltv:cac, unit economics, startup unit economics calculation">
+<link rel="canonical" href="https://metricstree.vercel.app/en/blog/ltv-cac-unit-economics">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/ltv-cac-unit-economics">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/ltv-cac-unit-economics">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/ltv-cac-unit-economics">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="LTV vs CAC — a step-by-step guide to startup unit economics">
+<meta property="og:description" content="How to correctly calculate LTV and CAC, what ratio is healthy (3:1, 5:1), and why even a healthy LTV:CAC doesn't mean a healthy business without the right payback.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/en/blog/ltv-cac-unit-economics">
+<meta property="og:image" content="https://metricstree.vercel.app/blog-og/en/ltv-cac-unit-economics.png">
+<meta property="article:published_time" content="2026-05-10">
+<meta property="article:author" content="Rodion Latipov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LTV vs CAC — a step-by-step guide to startup unit economics">
+<meta name="twitter:image" content="https://metricstree.vercel.app/blog-og/en/ltv-cac-unit-economics.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "LTV vs CAC — a step-by-step guide to startup unit economics",
+  "description": "How to correctly calculate LTV and CAC, what ratio is healthy (3:1, 5:1), and why even a healthy LTV:CAC doesn't mean a healthy business without the right payback.",
+  "datePublished": "2026-05-10",
+  "author": {
+    "@type": "Person",
+    "name": "Rodion Latipov",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/blog-og/en/ltv-cac-unit-economics.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/en/blog/ltv-cac-unit-economics"
+  },
+  "keywords": "ltv, cac, ltv:cac, unit economics, startup unit economics calculation",
+  "inLanguage": "en"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#6b6f75; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#777; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/en" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/en/blog/">Blog</a> · <a href="/en">Calculator →</a></div>
+</nav>
+<article>
+<h1>LTV vs CAC — a step-by-step guide to startup unit economics</h1>
+<div class="meta">2026-05-10 · by <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a></div>
+<h1>LTV vs CAC — a step-by-step guide to startup unit economics</h1>
+
+<p>LTV:CAC is probably <strong>the most quoted and most often miscalculated</strong> metric in SaaS. I've seen startups report LTV:CAC = 8 on a pitch deck and fail to explain how they got there.</p>
+
+<p>Let's break it down step by step, the right way.</p>
+
+<h2>1. LTV (Lifetime Value) — what it is and how to calculate it</h2>
+
+<p>LTV is <strong>how much revenue a customer brings over their entire lifetime as a customer</strong>.</p>
+
+<p>Simple formula for <strong>B2C / e-commerce:</strong></p>
+
+<pre><code class="language-">LTV = AOV × purchases per year × customer lifetime (years)
+</code></pre>
+
+<p>Example:<br><ul><li>AOV = $250</li><li>4 purchases per year</li><li>Lifetime = 3 years</li></ul></p>
+
+<p>LTV = 250 × 4 × 3 = <strong>$3,000</strong></p>
+
+<p>Formula for <strong>B2B SaaS:</strong></p>
+
+<pre><code class="language-">LTV = ARPA / Monthly Churn Rate
+</code></pre>
+
+<p>Where ARPA = Average Revenue Per Account (=MRR per customer). Example:<br><ul><li>ARPA = $200/mo</li><li>Monthly Churn = 2%</li></ul></p>
+
+<p>LTV = 200 / 0.02 = <strong>$10,000</strong></p>
+
+<p><strong>Pitfall 1:</strong> don't confuse Customer Churn and Revenue Churn. If your Customer Churn = 5% but Revenue Churn = 2% (small customers leave, big ones stay and upsell), use Revenue Churn for LTV.</p>
+
+<p><strong>Pitfall 2:</strong> if you have a short history (<24 months), LTV is a prediction, not a fact. Stay humble: multiply your projected LTV by 0.7-0.8 for a conservative estimate.</p>
+
+<h2>2. CAC (Customer Acquisition Cost) — what to include</h2>
+
+<p><strong>CAC</strong> = (Marketing + Sales spend) / number of new paying customers in the period.</p>
+
+<p>In Marketing + Sales, include <strong>everything</strong>:<br><ul><li>Ads (Facebook, Google Ads, LinkedIn)</li><li>Salaries of the sales and marketing teams</li><li>Tools (CRM, marketing automation, attribution)</li><li>Contractor fees, consultants</li><li>Content, design, video production</li></ul></p>
+
+<p><strong>Pitfall:</strong> Blended CAC vs Paid CAC.</p>
+
+<table><thead><tr><th>Type</th><th>What it includes</th><th>When to show it</th></tr></thead><tbody><tr><td></td><td>Blended CAC</td><td>All spend / all new customers (including organic)</td><td>Investor pitch (looks better)</td><td></td></tr><tr><td></td><td>Paid CAC</td><td>Paid channels only / paid customers only</td><td>Operational decisions (the real picture)</td><td></td></tr></tbody></table>
+<strong>Blended is always lower than Paid.</strong> If you use Blended in a pitch, be ready to explain Paid too. Top VCs ask for both.
+
+<h2>3. LTV:CAC — what ratio is healthy</h2>
+
+<table><thead><tr><th>LTV:CAC</th><th>What it means</th></tr></thead><tbody><tr><td></td><td><strong><1</strong></td><td>Every new customer is a loss. The business model is broken</td><td></td></tr><tr><td></td><td><strong>1-3</strong></td><td>Below par. Only acceptable if growth is the priority over unit economics (early stage)</td><td></td></tr><tr><td></td><td><strong>≥3</strong></td><td>Healthy SaaS unit economics</td><td></td></tr><tr><td></td><td><strong>>5</strong></td><td>Great, but you may be under-investing in marketing — competitors will take the market</td><td></td></tr><tr><td></td><td><strong>>8-10</strong></td><td>You're definitely under-investing. Hire sales/marketing now</td><td></td></tr></tbody></table>
+<strong>The magic number 3</strong> was introduced by David Skok (<a href="https://www.forentrepreneurs.com/">forentrepreneurs.com</a>) in 2010. It's been empirically confirmed across thousands of SaaS cases.
+
+<p>Why <strong>3</strong>, not 2 or 4? Because:<br><ul><li>1× — break-even (on paper, ignoring COGS, support, churn)</li><li>2× — break-even after real costs</li><li>3× — buffer for unpredictable churn / margin compression</li><li>≥3 = sustainable growth</li></ul></p>
+
+<h2>4. <strong>CAC Payback Period</strong> — why LTV:CAC isn't enough</h2>
+
+<p>LTV:CAC = 5 sounds great. But if payback = 36 months, you'll hit a cash crunch before the customer ever pays back.</p>
+
+<pre><code class="language-">CAC Payback = CAC / (MRR per customer × Gross Margin)
+</code></pre>
+
+<p>Benchmarks:<br><ul><li>B2B SaaS SMB: <12 months</li><li>B2B SaaS Mid-market: 12-18 months</li><li>B2B SaaS Enterprise: 18-24 months</li><li>B2C: usually <6 months</li></ul></p>
+
+<p><strong>Real-world example:</strong><br><ul><li>LTV = $10,000</li><li>CAC = $2,000 → LTV:CAC = 5× ✓</li><li>MRR per customer = $200</li><li>Gross Margin = 80%</li></ul></p>
+
+<p>Payback = 2000 / (200 × 0.80) = 2000 / 160 = <strong>12.5 months</strong></p>
+
+<p>Healthy SaaS. If payback >24 months — even with LTV:CAC = 5, cash flow is problematic.</p>
+
+<h2>5. Goal mode — the reverse calculation</h2>
+
+<p>A frequently useful question: "<strong>With a target LTV:CAC = 3 and my LTV of $5,000, what's the maximum CAC I can afford?</strong>"</p>
+
+<p>Answer: $5,000 / 3 = <strong>$1,667</strong></p>
+
+<p>If your actual CAC is higher, you need to either lower it or raise LTV.</p>
+
+<p>The calculator below can run this in reverse — set a target LTV:CAC and it shows the required CAC at your LTV.</p>
+
+<h2>6. How to improve LTV:CAC</h2>
+
+<h3>Lower CAC</h3>
+1. <strong>Organic channels</strong> — SEO, content, sharing, referrals. This lowers blended CAC at scale
+2. <strong>Referral programs</strong> — referral CAC is usually 30-50% of paid CAC
+3. <strong>Conversion optimization</strong> — every +10% to funnel CR = -10% to CAC
+4. <strong>Brand awareness</strong> — a brand lowers CPC and CPM on paid
+5. <strong>Self-serve onboarding for SMB</strong> — removes sales cost
+
+<h3>Raise LTV</h3>
+1. <strong>Reduce churn</strong> — onboarding, customer success, health scoring
+2. <strong>Raise AOV / ARPA</strong> — upsells, bundles, premium tiers
+3. <strong>Increase frequency</strong> — email flows, retention campaigns
+4. <strong>Long contracts</strong> — annual prepay cuts churn ×12
+5. <strong>Expansion revenue</strong> — NRR-driven (see the separate post)
+
+<h2>7. When LTV:CAC is MISLEADING</h2>
+
+<ul><li><strong>Too short a history</strong> — LTV is calculated on 12 months of data, but customers may churn after 18</li><li><strong>Margin not included</strong> — gross LTV vs net LTV (after COGS)</li><li><strong>Discount rate</strong> — a future $1 is worth less than today's; for long-tail LTV apply NPV</li><li><strong>Cohort skew</strong> — one large customer distorts the all-customers average</li></ul>
+
+<h2>Real-world: common mistakes</h2>
+
+<p><strong>Mistake 1:</strong> "We have LTV:CAC = 8"<br>→ Ask: blended or paid? Paid is usually much lower.</p>
+
+<p><strong>Mistake 2:</strong> "We're growing exponentially, LTV:CAC doesn't matter"<br>→ It does. Without a healthy LTV:CAC, growth = accelerating toward bankruptcy. (RIP Casper, MoviePass.)</p>
+
+<p><strong>Mistake 3:</strong> "LTV:CAC = 12 — awesome!"<br>→ Most likely CAC is understated (sales team not included), or LTV is miscalculated (churn not accounted for).</p>
+
+<h2>Bottom line</h2>
+
+<p>LTV:CAC is a <strong>simple but critical</strong> metric. Calculate both: gross + paid CAC. Triangulate with CAC Payback Period. If LTV:CAC ≥3 AND payback <18 months → you have healthy SaaS unit economics and can scale.</p>
+
+<p><strong>Calculate your LTV:CAC below</strong> — the built-in calculator shows the ratio, the benchmark and the reverse calculation (target LTV:CAC → required CAC).</p>
+
+<p>---</p>
+
+<h3>Further resources</h3>
+
+<ul><li><a href="/en/ltv">/en/ltv</a> — LTV calculator on its own</li><li><a href="/en/cac">/en/cac</a> — CAC calculator on its own</li><li><a href="/en/cacPayback">/en/cacPayback</a> — CAC Payback Period</li><li><a href="https://www.forentrepreneurs.com/saas-metrics-2/">David Skok's original post on LTV:CAC</a></li><li><a href="/en/burnMultiple">/en/burnMultiple</a> — Burn Multiple, the macro capital-efficiency metric</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Calculate it right here:</strong>
+  <iframe src="https://metricstree.vercel.app/ltv_cac?embed=1" width="100%" height="650" loading="lazy" title="MetricTree ltv_cac calculator"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Open the full version: <a href="https://metricstree.vercel.app/ltv_cac" target="_blank">https://metricstree.vercel.app/ltv_cac</a></p>
+</div>
+<div class="share-row">
+  Share:
+  <a href="https://twitter.com/intent/tweet?text=LTV%20vs%20CAC%20%E2%80%94%20a%20step-by-step%20guide%20to%20startup%20unit%20economics&url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fltv-cac-unit-economics" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fltv-cac-unit-economics" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fltv-cac-unit-economics&text=LTV%20vs%20CAC%20%E2%80%94%20a%20step-by-step%20guide%20to%20startup%20unit%20economics" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/en/blog/">All posts</a> · <a href="/en">Calculator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>
