@@ -111,6 +111,7 @@ body{margin:0;background:var(--bg);color:var(--text-1);font-family:-apple-system
 </style>
 
 <script src="/theme-sync.js" defer></script>
+<script src="/ab-test.js" defer></script>
 </head>
 <body>
 <nav class="nav">
@@ -423,7 +424,24 @@ function pickWinner() {
 
 function attachHandlers() {
   const startBtn = document.getElementById('start-btn');
-  if (startBtn) startBtn.addEventListener('click', () => { state.step = 'quiz'; render(); });
+  if (startBtn) {
+    startBtn.addEventListener('click', () => {
+      // A/B conversion: user actually started the quiz
+      if (window.ABTest) window.ABTest.convert('quiz_intro_cta', 'start_quiz');
+      state.step = 'quiz'; render();
+    });
+    // A/B test the CTA text on the intro screen — first running experiment for proof-of-concept.
+    if (window.ABTest) {
+      window.ABTest.experiment('quiz_intro_cta', {
+        variants: [
+          'Начать (90 секунд)',
+          'Найти моё слабое место →',
+          'Пройти бесплатно'
+        ],
+        apply: function (variant) { startBtn.textContent = variant; }
+      });
+    }
+  }
 
   const backBtn = document.getElementById('back-btn');
   if (backBtn) backBtn.addEventListener('click', () => {
@@ -477,6 +495,8 @@ function attachHandlers() {
         })
       });
     } catch (e) {}
+    // A/B: quiz completion + email submitted = deep funnel conversion
+    if (window.ABTest) window.ABTest.convert('quiz_intro_cta', 'email_submitted');
     // Show success regardless (graceful: maybe Resend not configured, but lead saved in KV / sent to Telegram)
     form.style.display = 'none';
     document.getElementById('email-success').style.display = 'block';
