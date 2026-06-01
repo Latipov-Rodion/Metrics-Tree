@@ -20,6 +20,8 @@
     { "source": "/industries/:slug/", "destination": "/industries/:slug/index.html" },
     { "source": "/industries/:slug/:metric", "destination": "/industries/:slug/:metric.html" },
     { "source": "/report", "destination": "/report.html" },
+    { "source": "/quiz", "destination": "/quiz.html" },
+    { "source": "/glossary", "destination": "/glossary.html" },
     { "source": "/blog", "destination": "/blog/index.html" },
     { "source": "/blog/", "destination": "/blog/index.html" },
     { "source": "/blog/burn-multiple-saas-2026", "destination": "/blog/burn-multiple-saas-2026.html" },

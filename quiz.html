@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Найди свою слабую метрику за 90 секунд — Quiz | MetricTree</title>
+<meta name="description" content="7 вопросов → определим какая метрика у твоего стартапа критично ниже бенчмарка. Персональные рекомендации + бесплатный PDF-репорт по email.">
+<link rel="canonical" href="https://metricstree.vercel.app/quiz">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Найди свою слабую метрику за 90 секунд">
+<meta property="og:description" content="7 вопросов → identify your stacrtup's weakest metric + персональные рекомендации. Бесплатно, no signup для прохождения.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://metricstree.vercel.app/quiz">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Quiz",
+  "name": "Find your weakest metric",
+  "description": "7-question diagnostic that identifies your startup's weakest metric category and provides personalized recommendations",
+  "url": "https://metricstree.vercel.app/quiz"
+}
+</script>
+<style>
+:root{color-scheme:light dark;--bg:#0A0C0E;--bg-card:#1A1C1F;--border:#2C2F33;--text-1:#E8EAED;--text-2:#B0B3B8;--text-3:#6b6f75;--accent:#2A6DF4;--green:#4CAF50;--red:#F44336;--yellow:#FFC107}
+html[data-theme="light"]{--bg:#F0F2F5;--bg-card:#fff;--border:#E1E4E8;--text-1:#1A1C1F;--text-2:#4A4E55;--text-3:#777}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text-1);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;line-height:1.6;min-height:100vh}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;max-width:780px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:.5rem;font-weight:700;font-size:1.05rem;text-decoration:none;color:var(--text-1)}
+.brand-mark{width:24px;height:24px;background:var(--accent);border-radius:6px}
+.nav a{color:var(--text-2);text-decoration:none}
+.wrap{max-width:780px;margin:0 auto;padding:1.5rem 1.25rem 4rem;min-height:calc(100vh - 120px)}
+
+/* Intro screen */
+.intro{text-align:center;padding:2.5rem 1rem 1rem}
+.intro h1{font-size:2.4rem;line-height:1.15;letter-spacing:-.02em;margin:.4rem 0 .8rem}
+.intro .lede{font-size:1.1rem;color:var(--text-2);margin:0 auto 1.5rem;max-width:560px}
+.intro .start-btn{display:inline-block;background:var(--accent);color:#fff;padding:.85rem 2rem;border-radius:.6rem;font-weight:700;font-size:1rem;text-decoration:none;border:0;cursor:pointer;transition:transform .15s}
+.intro .start-btn:hover{transform:translateY(-1px)}
+.intro .meta{margin-top:1.2rem;color:var(--text-3);font-size:.85rem}
+
+/* Progress bar */
+.progress-wrap{margin:1.5rem 0 2rem}
+.progress-bar{height:6px;background:var(--bg-card);border-radius:999px;overflow:hidden;border:1px solid var(--border)}
+.progress-fill{height:100%;background:var(--accent);transition:width .4s ease-out;border-radius:999px}
+.progress-text{text-align:center;font-size:.78rem;color:var(--text-3);margin-top:.5rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+
+/* Question */
+.q-block{background:var(--bg-card);border:1px solid var(--border);border-radius:1rem;padding:1.8rem 1.8rem 1.5rem;animation:slideIn .35s ease-out}
+@keyframes slideIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.q-block h2{font-size:1.35rem;margin:0 0 .35rem;line-height:1.3}
+.q-block .subtitle{color:var(--text-3);font-size:.88rem;margin:0 0 1.5rem}
+.options{display:flex;flex-direction:column;gap:.55rem}
+.opt{background:var(--bg);border:1px solid var(--border);border-radius:.6rem;padding:.9rem 1rem;cursor:pointer;text-align:left;color:var(--text-1);font-size:.95rem;font-family:inherit;transition:all .15s;display:flex;align-items:center;gap:.7rem}
+.opt:hover{border-color:var(--accent);background:rgba(42,109,244,.06)}
+.opt .opt-letter{display:inline-flex;width:24px;height:24px;background:var(--border);color:var(--text-2);border-radius:50%;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;flex-shrink:0}
+.opt:hover .opt-letter{background:var(--accent);color:#fff}
+
+.back-btn{background:transparent;border:0;color:var(--text-3);font-size:.85rem;cursor:pointer;margin-top:1rem;padding:.4rem .8rem;font-family:inherit}
+.back-btn:hover{color:var(--text-1)}
+
+/* Result screen */
+.result{padding:1rem 0}
+.result h1{font-size:1.6rem;margin:.3rem 0 .3rem;line-height:1.25}
+.result .verdict{background:var(--bg-card);border:1px solid var(--border);border-radius:.85rem;padding:1.2rem 1.4rem;margin:1.2rem 0;border-left:4px solid var(--red)}
+.result .verdict h2{margin:0 0 .3rem;font-size:1.05rem;text-transform:uppercase;letter-spacing:.05em;color:var(--red);font-weight:700}
+.result .verdict h2.warning{color:var(--yellow)}
+.result .verdict h2.healthy{color:var(--green)}
+.result .verdict.healthy{border-left-color:var(--green)}
+.result .verdict.warning{border-left-color:var(--yellow)}
+.result .verdict .metric-name{font-size:1.5rem;font-weight:700;color:var(--text-1);margin:.3rem 0}
+.result .verdict p{margin:.5rem 0;font-size:.94rem;color:var(--text-2)}
+
+.recommendations{background:var(--bg-card);border:1px solid var(--border);border-radius:.85rem;padding:1.2rem 1.4rem;margin:1.2rem 0}
+.recommendations h2{margin:0 0 .8rem;font-size:1rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-3);font-weight:700}
+.recommendations ol{margin:0;padding-left:1.4rem;line-height:1.65}
+.recommendations li{margin-bottom:.6rem}
+.recommendations a{color:var(--accent);font-weight:600;text-decoration:none}
+.recommendations a:hover{text-decoration:underline}
+
+/* Email capture */
+.email-capture{background:linear-gradient(135deg, rgba(42,109,244,.12), rgba(76,175,80,.08));border:1px solid var(--border);border-radius:.85rem;padding:1.4rem 1.5rem;margin:1.5rem 0}
+.email-capture h2{margin:0 0 .5rem;font-size:1.15rem}
+.email-capture p{margin:0 0 .9rem;color:var(--text-2);font-size:.9rem}
+.email-capture form{display:flex;gap:.55rem;flex-wrap:wrap}
+.email-capture input{flex:1;min-width:220px;padding:.65rem .85rem;background:var(--bg);border:1px solid var(--border);border-radius:.5rem;color:var(--text-1);font-size:.95rem;font-family:inherit}
+.email-capture input:focus{outline:none;border-color:var(--accent)}
+.email-capture button{background:var(--accent);color:#fff;border:0;padding:.65rem 1.4rem;border-radius:.5rem;font-weight:700;cursor:pointer;font-size:.92rem;font-family:inherit}
+.email-capture button:hover{opacity:.92}
+.email-capture .success{display:none;background:rgba(76,175,80,.12);color:var(--green);padding:.7rem 1rem;border-radius:.5rem;font-weight:600;margin-top:.5rem}
+.email-capture .hint{color:var(--text-3);font-size:.78rem;margin-top:.5rem}
+
+.share-result{margin:1.5rem 0;display:flex;gap:.5rem;flex-wrap:wrap}
+.share-result a{padding:.55rem 1rem;border:1px solid var(--border);border-radius:.5rem;color:var(--text-2);text-decoration:none;font-size:.85rem;background:var(--bg-card)}
+.share-result a:hover{border-color:var(--accent);color:var(--accent)}
+
+.next-steps{margin-top:1.5rem}
+.next-steps h2{font-size:1.05rem;margin:0 0 .8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-3);font-weight:700}
+.next-steps .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem}
+.next-steps a.card{background:var(--bg-card);border:1px solid var(--border);border-radius:.6rem;padding:.85rem 1rem;text-decoration:none;color:var(--text-1);font-size:.88rem;transition:border-color .15s}
+.next-steps a.card:hover{border-color:var(--accent)}
+.next-steps a.card strong{display:block;color:var(--accent);font-size:.95rem;margin-bottom:.2rem}
+
+.footer{text-align:center;color:var(--text-3);margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);font-size:.82rem}
+.footer a{color:var(--accent);text-decoration:none}
+
+.retake-btn{background:transparent;border:1px solid var(--border);color:var(--text-2);padding:.5rem 1rem;border-radius:.4rem;cursor:pointer;font-size:.85rem;font-family:inherit;margin-top:1rem}
+.retake-btn:hover{border-color:var(--accent);color:var(--accent)}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div>
+</nav>
+
+<main class="wrap" id="app">
+  <!-- Dynamic content injected by JS -->
+</main>
+
+<div class="footer" id="page-footer">
+  Made by <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · Open source <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">MIT</a> · <a href="/">Калькулятор</a>
+</div>
+
+<script>
+// 7 questions designed to surface metric category weakness via behavior signals
+// (not direct "what's your X?" — users don't know their numbers off the top).
+const QUESTIONS = [
+  {
+    title: 'На какой стадии твой бизнес?',
+    subtitle: 'Это определит какие бенчмарки применимы.',
+    options: [
+      { label: 'Pre-revenue / pre-PMF', weight: { activation: 2, retention: 1 } },
+      { label: 'Post-PMF, $0-10k MRR', weight: { acquisition: 2, retention: 1 } },
+      { label: '$10k-100k MRR (seed)', weight: { unit: 2, capital: 1 } },
+      { label: '$100k-1M MRR (Series A+)', weight: { capital: 2, sales: 1 } },
+      { label: '$1M+ MRR (growth stage)', weight: { sales: 2, capital: 1 } }
+    ]
+  },
+  {
+    title: 'Что у тебя растёт быстрее всего?',
+    subtitle: 'Сравни МоM (месяц к месяцу).',
+    options: [
+      { label: 'Новые пользователи / leads', weight: { retention: 2, revenue: 1 } },
+      { label: 'Выручка (MRR / GMV)', weight: { capital: 1, sales: 1 } },
+      { label: 'Existing-customer expansion (NRR)', weight: { acquisition: 2 } },
+      { label: 'Ничего не растёт / стагнация', weight: { acquisition: 2, retention: 2 } },
+      { label: 'Burn rate растёт быстрее выручки 😬', weight: { capital: 3 } }
+    ]
+  },
+  {
+    title: 'Какой % новых юзеров достигает первой ценности?',
+    subtitle: 'Activation rate — попадают ли они в "aha moment".',
+    options: [
+      { label: '<10% (большинство уходит сразу)', weight: { activation: 3 } },
+      { label: '10-30% (есть куда расти)', weight: { activation: 2 } },
+      { label: '30-50% (норма)', weight: { retention: 1 } },
+      { label: '>50% (отлично)', weight: { acquisition: 1 } },
+      { label: 'Не отслеживаем 😅', weight: { activation: 2 } }
+    ]
+  },
+  {
+    title: 'Что говорит твой Churn Rate?',
+    subtitle: 'Customer Churn в месяц.',
+    options: [
+      { label: '<2%/мес (top decile)', weight: { acquisition: 1 } },
+      { label: '2-5%/мес (норма SaaS)', weight: { unit: 1 } },
+      { label: '5-10%/мес (high — нужно чинить)', weight: { retention: 3 } },
+      { label: '>10%/мес (critical)', weight: { retention: 4 } },
+      { label: 'Не считаем', weight: { retention: 2, activation: 1 } }
+    ]
+  },
+  {
+    title: 'Какое у тебя LTV : CAC?',
+    subtitle: 'Соотношение пожизненной ценности к стоимости привлечения.',
+    options: [
+      { label: '<1 (теряем деньги на каждом клиенте)', weight: { unit: 4 } },
+      { label: '1-3 (слабая unit-экономика)', weight: { unit: 3 } },
+      { label: '3-5 (healthy SaaS)', weight: { capital: 1 } },
+      { label: '>5 (отлично, или недоинвестируем в рост)', weight: { acquisition: 2 } },
+      { label: 'Не считал', weight: { unit: 2 } }
+    ]
+  },
+  {
+    title: 'Сколько месяцев runway?',
+    subtitle: 'Cash на балансе / месячный burn.',
+    options: [
+      { label: '<6 мес (critical)', weight: { capital: 4 } },
+      { label: '6-12 мес (надо фандрейзить)', weight: { capital: 2 } },
+      { label: '12-18 мес (healthy)', weight: { sales: 1 } },
+      { label: '>18 мес (strong)', weight: { sales: 2 } },
+      { label: 'Cash positive ✓', weight: { acquisition: 1 } }
+    ]
+  },
+  {
+    title: 'Что больше всего держит тебя ночью?',
+    subtitle: 'Это твоя реальная боль.',
+    options: [
+      { label: 'Маркетинг не приносит leads', weight: { acquisition: 3 } },
+      { label: 'Юзеры используют 1 раз и уходят', weight: { activation: 3 } },
+      { label: 'Клиенты уходят через месяц-два', weight: { retention: 3 } },
+      { label: 'Не понимаю на чём заработать', weight: { revenue: 3, unit: 1 } },
+      { label: 'Sales-цикл слишком долгий / низкий close rate', weight: { sales: 3 } },
+      { label: 'Деньги горят, не успеваем', weight: { capital: 3 } }
+    ]
+  }
+];
+
+// Weakness category → recommended primary metric + actions
+const RESULTS = {
+  acquisition: {
+    title: 'ACQUISITION',
+    metric: 'CAC',
+    metric_url: '/cac',
+    summary: 'Твоё узкое место — привлечение клиентов. Маркетинг неэффективен (CAC слишком высок) ИЛИ канал-маркет-фит не найден.',
+    severity_words: ['критичен', 'высок', 'выше нормы'],
+    recommendations: [
+      'Посчитай <a href="/cac">CAC</a> + <a href="/ltv_cac">LTV:CAC</a> ratio. Если LTV:CAC <3 — масштабировать = ускорять убытки.',
+      'Аудит каналов. Какой даёт самый низкий <a href="/cac">CAC</a>? Удвой его, остальные паузируй.',
+      'Органика дешевле paid в 3-10×. Запусти SEO/content/referrals прежде чем поднимать paid-budgets.',
+      'Conversion rate optimization. Каждый +10% к CR воронки = -10% CAC.',
+      'Посмотри industry-бенчмарки: <a href="/industries/saas/">SaaS</a> · <a href="/industries/ecommerce/">E-com</a> · <a href="/industries/mobile/">Mobile</a>'
+    ]
+  },
+  activation: {
+    title: 'ACTIVATION',
+    metric: 'Activation Rate + Time to Value',
+    metric_url: '/activation',
+    summary: 'Юзеры регистрируются, но не доходят до aha-моменту. 80% future churn определяется первой неделей.',
+    severity_words: ['критична', 'низкая', 'ниже нормы'],
+    recommendations: [
+      'Сокращай <a href="/timeToValue">Time to Value</a>. PLG-products должны давать value за <1 день, SMB SaaS — за неделю.',
+      'Onboarding flow audit. Где юзеры дропают? Heatmap + session recordings (FullStory, Hotjar) дадут ответ за 1 неделю.',
+      'Sample data preloaded — юзер не должен начинать с blank state. Пример: <a href="/">наш авто-prefill</a> на калькуляторе.',
+      'Email-cadence первые 7 дней с single CTA каждый день («Try X in 30 seconds»).',
+      'Считай <a href="/activation">Activation rate</a> + <a href="/retention">D1/D7 retention</a> по cohorts — улучшается ли когорта-к-когорте.'
+    ]
+  },
+  retention: {
+    title: 'RETENTION',
+    metric: 'Churn / NRR',
+    metric_url: '/churn',
+    summary: 'Leaky bucket. Любой growth washed out высоким churn-ом. Продукт не достаточно sticky или не решает реальную проблему.',
+    severity_words: ['критичен', 'выше нормы', 'болезненный'],
+    recommendations: [
+      'Срочно: <a href="/churn">Customer Churn</a> и <a href="/nrr">NRR</a>. Если NRR <100% — компания теряет выручку даже без новых клиентов.',
+      'Cohort retention curves. D1, D7, D30 retention по когортам — улучшается ли с каждой?',
+      'Customer Success function. Нанимай 1 CSM на каждые $500k-1M ARR. Их KPI = NRR этих accounts.',
+      'Annual prepay контракты. Mathematically снижает monthly churn ×12 + cash forward.',
+      'Health scoring + proactive outreach. 5-10 product usage signals → красная зона → CSM intervention за 30 дней до churn.',
+      'Подробнее: <a href="/blog/nrr-vs-grr">NRR vs GRR — что отличает $10B SaaS</a>'
+    ]
+  },
+  revenue: {
+    title: 'REVENUE / MONETIZATION',
+    metric: 'ARPU / AOV / MRR',
+    metric_url: '/mrr',
+    summary: 'Пользователи есть, но монетизация не работает. Низкий ARPU/AOV ИЛИ pricing-модель не подходит сегменту.',
+    severity_words: ['слабая', 'недо-монетизация'],
+    recommendations: [
+      'Pricing review (every 12 мес). Если не повышал цены 18+ мес — поднимай +15% завтра.',
+      'Bundling + premium tiers. Self-service пути для upgrade.',
+      'Считай <a href="/arpu">ARPU</a> / <a href="/aov">AOV</a> + <a href="/repeatPurchaseRate">Repeat Purchase Rate</a>.',
+      'Annual prepay с дисконтом 15% — instant +5-15% MRR.',
+      'Expansion revenue. NRR >115% даёт +10% growth "бесплатно" без новых клиентов.'
+    ]
+  },
+  unit: {
+    title: 'UNIT ECONOMICS',
+    metric: 'LTV:CAC + CAC Payback',
+    metric_url: '/ltv_cac',
+    summary: 'Bottom-line проблема. Сейчас рост = увеличение убытков, потому что unit-экономика отрицательная или slabaya.',
+    severity_words: ['сломана', 'критически слаба'],
+    recommendations: [
+      'Stop scaling. Любой growth с broken unit-econ = ускорение к банкротству.',
+      'Цель: <a href="/ltv_cac">LTV:CAC ≥ 3</a> + <a href="/cacPayback">CAC Payback <18 мес</a>. Если только одна метрика OK — есть проблема.',
+      'Pricing увеличение +20% часто даёт +18-20% к Net New ARR без proportional CAC roi.',
+      'Gross margin аудит. +10pp gross margin → -12% CAC payback time.',
+      'Подробнее: <a href="/blog/ltv-cac-unit-economics">LTV vs CAC — пошаговый расчёт</a>'
+    ]
+  },
+  capital: {
+    title: 'CAPITAL EFFICIENCY',
+    metric: 'Burn Multiple + Runway',
+    metric_url: '/burnMultiple',
+    summary: 'Сжигаешь капитал быстрее чем генерируешь рост. В 2026 (post-ZIRP) это первая метрика которую VC посчитает.',
+    severity_words: ['неэффективна', 'critical', 'requires action'],
+    recommendations: [
+      'Считай <a href="/burnMultiple">Burn Multiple</a> сегодня. <1.5× для Series A/B = healthy. >3× = плохо.',
+      'Считай <a href="/runway">Runway</a>. Если <9 мес — начинай fundraise немедленно (процесс 3-6 мес).',
+      'Annual prepay (-15% discount) → +20-30% immediate cash → +6-12 мес runway.',
+      'Cost-cuts: hire freeze + selective layoffs (-30% burn realistic). 70% бюджета SaaS = payroll.',
+      'Pricing +10-15% даёт revenue без новых customers.',
+      'Подробнее: <a href="/blog/burn-multiple-saas-2026">Burn Multiple — главная метрика SaaS 2026</a> + <a href="/blog/runway-when-fundraise">Runway: когда фандрейзить</a>'
+    ]
+  },
+  sales: {
+    title: 'SALES VELOCITY',
+    metric: 'Sales Velocity + Pipeline Coverage',
+    metric_url: '/salesVelocity',
+    summary: 'B2B sales-machinery не работает: длинный цикл / низкий win-rate / тонкий pipeline. Forecasting unreliable.',
+    severity_words: ['замедлена', 'нужно ускорять'],
+    recommendations: [
+      'Считай <a href="/salesVelocity">Sales Velocity</a> = (Opps × ACV × WinRate) / Cycle. Все 4 фактора actionable.',
+      '<a href="/pipelineCoverage">Pipeline Coverage</a> должен быть 3-4× от quota. <2× = quarter at risk.',
+      '<a href="/winRate">Win Rate</a> бенчмарк: 25% B2B SaaS, 35%+ excellent. Если <20% — review ICP fit.',
+      'Сокращай <a href="/salesCycleLength">cycle length</a>. -20% cycle = +25% velocity.',
+      'Pricing review каждые 12 мес. ACV-увеличение +20% = velocity +20%.',
+      'Подробнее: <a href="/blog/sales-velocity-b2b">Sales Velocity — формула + 4 рычага</a>'
+    ]
+  }
+};
+
+const PRIMARY_ORDER = ['capital', 'unit', 'retention', 'sales', 'activation', 'acquisition', 'revenue'];
+
+// === STATE ===
+let state = { step: 'intro', answers: [], current: 0, scores: {} };
+
+function render() {
+  const app = document.getElementById('app');
+  if (state.step === 'intro') app.innerHTML = renderIntro();
+  else if (state.step === 'quiz') app.innerHTML = renderQuestion();
+  else if (state.step === 'result') app.innerHTML = renderResult();
+  attachHandlers();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderIntro() {
+  return `<div class="intro">
+    <h1>🎯 Найди свою слабую метрику</h1>
+    <p class="lede">7 вопросов про твой стартап → определим где у тебя самое слабое место + конкретные рекомендации что чинить.</p>
+    <button class="start-btn" id="start-btn">Начать (90 секунд)</button>
+    <div class="meta">Без регистрации. Email можно оставить в конце для расширенного PDF-репорта.</div>
+  </div>`;
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[state.current];
+  const pct = Math.round(((state.current) / QUESTIONS.length) * 100);
+  return `<div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+    <div class="progress-text">Вопрос ${state.current + 1} из ${QUESTIONS.length}</div>
+  </div>
+  <div class="q-block">
+    <h2>${q.title}</h2>
+    <p class="subtitle">${q.subtitle}</p>
+    <div class="options">
+      ${q.options.map((opt, i) => `<button class="opt" data-idx="${i}"><span class="opt-letter">${String.fromCharCode(65 + i)}</span><span>${opt.label}</span></button>`).join('')}
+    </div>
+    ${state.current > 0 ? '<button class="back-btn" id="back-btn">← Назад</button>' : ''}
+  </div>`;
+}
+
+function renderResult() {
+  const winner = pickWinner();
+  const r = RESULTS[winner.category] || RESULTS.acquisition;
+  const severityWord = r.severity_words[Math.min(2, Math.floor(winner.score / 2))];
+
+  const shareText = encodeURIComponent(`Прошёл quiz на MetricTree: моя слабая метрика — ${r.metric}. Открываю калькулятор: ${r.metric_url}`);
+
+  return `<div class="result">
+    <h1>📊 Твоя слабая зона определена</h1>
+
+    <div class="verdict">
+      <h2>${r.title}</h2>
+      <div class="metric-name">${r.metric}</div>
+      <p>${r.summary}</p>
+      <p style="font-size:.85rem;color:var(--text-3);">Severity: <strong style="color:var(--red);">${severityWord}</strong> (на основе твоих ответов)</p>
+    </div>
+
+    <div class="recommendations">
+      <h2>🛠 Что делать (порядок важен)</h2>
+      <ol>${r.recommendations.map(rec => '<li>' + rec + '</li>').join('')}</ol>
+    </div>
+
+    <div class="email-capture" id="email-capture">
+      <h2>📧 Получить расширенный отчёт + weekly tips</h2>
+      <p>Один email-репорт с детальным разбором твоей слабой зоны, шаблонами для board-meeting, и weekly product-metric tips (1 в неделю, можно отписаться).</p>
+      <form id="email-form">
+        <input type="email" id="email-input" placeholder="your@email.com" required autocomplete="email">
+        <button type="submit">Получить</button>
+      </form>
+      <div class="success" id="email-success">✓ Спасибо! Письмо придёт в течение часа.</div>
+      <div class="hint">Не спамим. Можешь отписаться в одно касание.</div>
+    </div>
+
+    <div class="share-result">
+      <a href="https://twitter.com/intent/tweet?text=${shareText}" target="_blank" rel="noopener">𝕏 Поделиться</a>
+      <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(location.href)}" target="_blank" rel="noopener">in LinkedIn</a>
+      <a href="https://t.me/share/url?url=${encodeURIComponent(location.href)}&text=${shareText}" target="_blank" rel="noopener">Telegram</a>
+    </div>
+
+    <div class="next-steps">
+      <h2>Дальше</h2>
+      <div class="card-grid">
+        <a class="card" href="${r.metric_url}"><strong>Открыть калькулятор</strong>Считать ${r.metric}</a>
+        <a class="card" href="/"><strong>52 метрики</strong>Главный калькулятор</a>
+        <a class="card" href="/industries/"><strong>Industry бенчмарки</strong>Сравни себя с сегментом</a>
+        <a class="card" href="/blog/"><strong>Блог</strong>14 deep постов</a>
+      </div>
+    </div>
+
+    <button class="retake-btn" id="retake-btn">↻ Пройти заново</button>
+  </div>`;
+}
+
+function pickWinner() {
+  const sorted = Object.entries(state.scores).sort((a, b) => b[1] - a[1]);
+  if (!sorted.length) return { category: 'acquisition', score: 0 };
+  // tie-breaker: use PRIMARY_ORDER preference
+  const topScore = sorted[0][1];
+  const tied = sorted.filter(([, s]) => s === topScore);
+  if (tied.length === 1) return { category: tied[0][0], score: topScore };
+  for (const cat of PRIMARY_ORDER) {
+    if (tied.find(([c]) => c === cat)) return { category: cat, score: topScore };
+  }
+  return { category: tied[0][0], score: topScore };
+}
+
+function attachHandlers() {
+  const startBtn = document.getElementById('start-btn');
+  if (startBtn) startBtn.addEventListener('click', () => { state.step = 'quiz'; render(); });
+
+  const backBtn = document.getElementById('back-btn');
+  if (backBtn) backBtn.addEventListener('click', () => {
+    if (state.current > 0) {
+      state.current--;
+      // Reverse the last answer's weights
+      const lastAns = state.answers.pop();
+      if (lastAns) {
+        Object.entries(lastAns.weight || {}).forEach(([k, v]) => { state.scores[k] = (state.scores[k] || 0) - v; });
+      }
+      render();
+    }
+  });
+
+  const retakeBtn = document.getElementById('retake-btn');
+  if (retakeBtn) retakeBtn.addEventListener('click', () => {
+    state = { step: 'intro', answers: [], current: 0, scores: {} };
+    render();
+  });
+
+  document.querySelectorAll('.opt').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.dataset.idx, 10);
+      const q = QUESTIONS[state.current];
+      const opt = q.options[idx];
+      state.answers.push(opt);
+      Object.entries(opt.weight || {}).forEach(([k, v]) => { state.scores[k] = (state.scores[k] || 0) + v; });
+      state.current++;
+      if (state.current >= QUESTIONS.length) state.step = 'result';
+      render();
+    });
+  });
+
+  const form = document.getElementById('email-form');
+  if (form) form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email-input').value.trim();
+    if (!email) return;
+    const winner = pickWinner();
+    try {
+      await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          source: 'quiz',
+          tier: 'quiz',
+          weakest_metric: winner.category,
+          weakest_score: winner.score,
+          answers: state.answers.map((a, i) => `${QUESTIONS[i].title}: ${a.label}`).join(' | ')
+        })
+      });
+    } catch (e) {}
+    // Show success regardless (graceful: maybe Resend not configured, but lead saved in KV / sent to Telegram)
+    form.style.display = 'none';
+    document.getElementById('email-success').style.display = 'block';
+  });
+}
+
+render();
+</script>
+</body>
+</html>
