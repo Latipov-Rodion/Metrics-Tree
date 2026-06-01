@@ -415,6 +415,7 @@ function generateSitemap() {
   const standalone = [
     'press', 'embed', 'changelog', 'api-docs', 'benchmarks',
     'vs-profitwell', 'vs-baremetrics', 'vs-causal', 'vs-chartmogul',
+    'vs-geckoboard', 'vs-finmodelslab',
   ];
   for (const p of standalone) {
     urls.push(urlNode(`${SITE}/${p}`, { priority: '0.6', changefreq: 'monthly' }));
