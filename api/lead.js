@@ -114,7 +114,11 @@ export default async function handler(req) {
   try {
     const ct = req.headers.get('content-type') || '';
     if (ct.includes('application/json')) {
-      lead = await req.json();
+      const raw = await req.json();
+      // Apply the same length cap as the formData path (abuse protection).
+      for (const [k, v] of Object.entries(raw || {})) {
+        lead[k] = (typeof v === 'string') ? truncate(v) : v;
+      }
     } else {
       const fd = await req.formData();
       fd.forEach((v, k) => { lead[k] = truncate(v); });
@@ -165,6 +169,30 @@ export default async function handler(req) {
   // Graceful: if neither configured, skip silently — Telegram + Resend still fire.
   const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
   const kvToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+
+  // Best-effort anti-spam: cap submissions per IP per hour when KV is available.
+  // Degrades to a no-op without KV, and never blocks delivery on a KV error.
+  if (kvUrl && kvToken && lead.ip) {
+    try {
+      const rlKey = `rl:lead:${lead.ip}`;
+      const incr = await fetch(`${kvUrl}/incr/${encodeURIComponent(rlKey)}`, {
+        method: 'POST', headers: { Authorization: `Bearer ${kvToken}` },
+      }).then(r => r.json()).catch(() => null);
+      const count = incr && typeof incr.result === 'number' ? incr.result : 0;
+      if (count === 1) {
+        await fetch(`${kvUrl}/expire/${encodeURIComponent(rlKey)}/3600`, {
+          method: 'POST', headers: { Authorization: `Bearer ${kvToken}` },
+        }).catch(() => {});
+      }
+      if (count > 10) {
+        return new Response(JSON.stringify({ error: 'Too many requests — try again later' }), {
+          status: 429,
+          headers: { 'Content-Type': 'application/json', 'Retry-After': '3600' },
+        });
+      }
+    } catch (e) { /* throttle must never block legitimate delivery */ }
+  }
+
   if (kvUrl && kvToken) {
     try {
       lead.ts = new Date().toISOString();

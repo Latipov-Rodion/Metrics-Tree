@@ -26,7 +26,10 @@ function timingSafeEqual(a, b) {
 
 export default async function handler(req) {
   const url = new URL(req.url);
-  const secret = url.searchParams.get('secret') || '';
+  // Prefer the Authorization: Bearer header (not written to access logs / history);
+  // fall back to ?secret= for manual curl use.
+  const authHeader = req.headers.get('authorization') || '';
+  const secret = authHeader.replace(/^Bearer\s+/i, '').trim() || url.searchParams.get('secret') || '';
   const adminSecret = process.env.ADMIN_SECRET;
 
   if (!adminSecret) {
@@ -99,8 +102,12 @@ export default async function handler(req) {
     const rows = [cols.join(',')];
     leads.forEach(l => {
       rows.push(cols.map(c => {
-        const v = (l[c] ?? '').toString().replace(/"/g, '""');
-        return v.includes(',') || v.includes('\n') ? `"${v}"` : v;
+        let v = (l[c] ?? '').toString();
+        // Defuse CSV formula injection (attacker-controlled email/company opened
+        // in Excel/Sheets): prefix a leading =, +, -, @, tab or CR with a quote.
+        if (/^[=+\-@\t\r]/.test(v)) v = "'" + v;
+        v = v.replace(/"/g, '""');
+        return /[",\n]/.test(v) ? `"${v}"` : v;
       }).join(','));
     });
     return new Response(rows.join('\n'), {
