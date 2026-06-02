@@ -97,7 +97,7 @@ h2 { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; padding-bottom: 0.3rem; border-
 <div id="content"></div>
 
 <div class="footer">
-  <div>Powered by <a href="https://metricstree.vercel.app/">MetricTree</a> — open-source калькулятор 52 продуктовых метрик</div>
+  <div>Powered by <a href="https://metricstree.vercel.app/">MetricTree</a> — open-source калькулятор 48 продуктовых метрик</div>
   <div>© 2026 · MIT License</div>
 </div>
 
@@ -107,6 +107,10 @@ h2 { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; padding-bottom: 0.3rem; border-
   const metricsParam = params.get('metrics') || '';
   const companyParam = params.get('company') || '';
   const titleParam = params.get('title') || '';
+
+  // Escape any value before it goes into innerHTML — the `metrics` param (metric
+  // id, input keys) and the API's echoed error text are attacker-controllable.
+  const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
   if (titleParam) document.getElementById('report-title').textContent = titleParam;
   if (companyParam) {
@@ -160,9 +164,9 @@ h2 { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; padding-bottom: 0.3rem; border-
       const isBad = r.rating && ['bad','critical','losing','decaying','high','low','unprofitable','below_min','below_norm'].includes(r.rating);
       const cls = isGood ? 'good' : isBad ? 'bad' : '';
       return `<div class="summary-card ${cls}">
-        <div class="label">${r.metric}</div>
-        <div class="value">${r.result || '—'}${r.unit ? ' ' + r.unit : ''}</div>
-        <div class="insight">${(r.insight || '').slice(0, 70)}</div>
+        <div class="label">${esc(r.metric)}</div>
+        <div class="value">${esc(r.result || '—')}${r.unit ? ' ' + esc(r.unit) : ''}</div>
+        <div class="insight">${esc((r.insight || '').slice(0, 70))}</div>
       </div>`;
     }).join('');
 
@@ -172,19 +176,19 @@ h2 { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; padding-bottom: 0.3rem; border-
     // Detailed blocks
     html += '<h2>Детальный анализ</h2>';
     html += results.map(r => {
-      if (r.error) return `<div class="metric-block"><h3>${r.id}</h3><div class="error">Error: ${r.error}</div></div>`;
+      if (r.error) return `<div class="metric-block"><h3>${esc(r.id)}</h3><div class="error">Error: ${esc(r.error)}</div></div>`;
       const inputsStr = Object.entries(r.inputs || {}).map(([k,v]) => `${k}=${v}`).join(', ');
       return `<div class="metric-block">
         <div class="metric-head">
-          <h3>${r.metric}</h3>
-          <span class="formula">${r.formula || ''}</span>
+          <h3>${esc(r.metric)}</h3>
+          <span class="formula">${esc(r.formula || '')}</span>
         </div>
         <div class="result-row">
-          <span class="result-val">${r.result || '—'}${r.unit ? ' ' + r.unit : ''}</span>
-          ${r.rating ? `<span class="rating rating-${r.rating}">${r.rating.replace(/_/g, ' ')}</span>` : ''}
+          <span class="result-val">${esc(r.result || '—')}${r.unit ? ' ' + esc(r.unit) : ''}</span>
+          ${r.rating ? `<span class="rating rating-${esc(r.rating)}">${esc(r.rating.replace(/_/g, ' '))}</span>` : ''}
         </div>
-        <div class="insight">${r.insight || ''}</div>
-        <div class="inputs">Inputs: ${inputsStr}</div>
+        <div class="insight">${esc(r.insight || '')}</div>
+        <div class="inputs">Inputs: ${esc(inputsStr)}</div>
       </div>`;
     }).join('');
 
