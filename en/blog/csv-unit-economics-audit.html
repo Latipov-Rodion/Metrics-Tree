@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>A 30-second unit-economics audit | MetricTree Blog</title>
+<meta name="description" content="How to run your unit economics through a calculator in half a minute: pull values from a spreadsheet, get LTV, CAC, LTV:CAC, Payback and benchmarks at once — no Excel formulas.">
+<meta name="keywords" content="unit economics audit, csv metrics import, ltv cac payback, check unit economics, metrics calculator">
+<link rel="canonical" href="https://metricstree.vercel.app/en/blog/csv-unit-economics-audit">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/csv-unit-economics-audit">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/csv-unit-economics-audit">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/csv-unit-economics-audit">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="A 30-second unit-economics audit">
+<meta property="og:description" content="How to run your unit economics through a calculator in half a minute: pull values from a spreadsheet, get LTV, CAC, LTV:CAC, Payback and benchmarks at once — no Excel formulas.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/en/blog/csv-unit-economics-audit">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-06-02">
+<meta property="article:author" content="Rodion Latipov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A 30-second unit-economics audit">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "A 30-second unit-economics audit",
+  "description": "How to run your unit economics through a calculator in half a minute: pull values from a spreadsheet, get LTV, CAC, LTV:CAC, Payback and benchmarks at once — no Excel formulas.",
+  "datePublished": "2026-06-02",
+  "author": {
+    "@type": "Person",
+    "name": "Rodion Latipov",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/en/blog/csv-unit-economics-audit"
+  },
+  "keywords": "unit economics audit, csv metrics import, ltv cac payback, check unit economics, metrics calculator",
+  "inLanguage": "en"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/en" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/en/blog/">Blog</a> · <a href="/en">Calculator →</a></div>
+</nav>
+<article>
+<h1>A 30-second unit-economics audit</h1>
+<div class="meta">2026-06-02 · by <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a></div>
+<h1>A 30-second unit-economics audit</h1>
+
+<p>Once a quarter (and more often before a round) you need to quickly answer: "<strong>is our unit economics healthy right now?</strong>" Usually that means opening Excel, recalling the formulas for LTV, CAC and Payback, checking you didn't mix up monthly and annual churn, and matching it against benchmarks from memory.</p>
+
+<p>There's a faster way. If your values are already in a spreadsheet — run them through a calculator and get the result + the norm in 30 seconds.</p>
+
+<h2>What an audit measures</h2>
+
+<p>The minimum set that answers "is the economics healthy":</p>
+
+<table><thead><tr><th>Metric</th><th>Formula</th><th>Healthy norm</th></tr></thead><tbody><tr><td></td><td><strong>LTV</strong></td><td>ARPA / Monthly Churn (or AOV × frequency × lifetime)</td><td>contextual</td><td></td></tr><tr><td></td><td><strong>CAC</strong></td><td>(Marketing + Sales) / new customers</td><td>contextual</td><td></td></tr><tr><td></td><td><strong>LTV:CAC</strong></td><td>LTV / CAC</td><td><strong>≥ 3</strong></td><td></td></tr><tr><td></td><td><strong>CAC Payback</strong></td><td>CAC / (MRR per customer × Gross Margin)</td><td><strong>< 18 months</strong></td><td></td></tr><tr><td></td><td><strong>Gross Margin</strong></td><td>(Revenue − COGS) / Revenue</td><td>75–85%</td><td></td></tr></tbody></table>
+<strong>The health rule:</strong> <code>LTV:CAC ≥ 3</code> <strong>AND</strong> <code>CAC Payback < 18 months</code>. If only one holds — there's a problem, and fixing it is the quarter's priority.
+
+<h2>How to run spreadsheet values</h2>
+
+<p>1. Gather the inputs you need in one row: <code>aov</code>, <code>freq</code>, <code>life</code> (or <code>ltv</code>, <code>cac</code> directly).<br>2. Open the relevant calculator — e.g. <a href="/en/ltv_cac">LTV:CAC</a>.<br>3. Enter the values (or pass them straight in the URL — see below) and get the result, benchmark and interpretation.</p>
+
+<p><strong>Passing values via the URL</strong> is the fastest way for a repeatable audit. Each input is encoded by its key:</p>
+
+<pre><code class="language-">/en/ltv?aov=2500&amp;freq=4&amp;life=3
+/en/cac?spend=50000&amp;customers=200
+/en/ltv_cac?ltv=9000&amp;cac=3000
+</code></pre>
+
+<p>Save these links in Notion next to your spreadsheet — next quarter you just swap the numbers in the URL.</p>
+
+<h2>Reverse audit: "what CAC can we afford?"</h2>
+
+<p>It's often more useful to calculate not "what is" but "what should be". Open <a href="/en/ltv_cac">LTV:CAC</a>, enable <strong>Goal mode</strong> and set a target:</p>
+
+<p>> With LTV $9,000 and a target LTV:CAC = 3 → the maximum affordable CAC = <strong>$3,000</strong>.</p>
+
+<p>If your actual CAC is higher, you have a concrete goal: either lower CAC or raise LTV. That turns an abstract "audit" into an action plan.</p>
+
+<h2>Common mistakes an audit catches</h2>
+
+<p>1. <strong>Blended vs Paid CAC</strong> — calculate both. Blended (with organic) is always lower; operational decisions need Paid.<br>2. <strong>Customer churn instead of Revenue churn</strong> in LTV — if small customers leave while big ones grow, use Revenue churn.<br>3. <strong>LTV:CAC = 5, but Payback = 30 months</strong> — great on paper, a cash crunch in reality. That's why the audit always includes Payback.<br>4. <strong>Gross margin ignored</strong> — Payback is calculated through margin; without it the number is optimistic.</p>
+
+<h2>Audit checklist (save it)</h2>
+
+<ul><li>[ ] LTV calculated on Revenue churn (not Customer churn)</li><li>[ ] CAC includes sales+marketing salaries, not just ads</li><li>[ ] LTV:CAC ≥ 3</li><li>[ ] CAC Payback < 18 months (SMB < 12)</li><li>[ ] Gross Margin included in Payback</li><li>[ ] Ran Goal mode: target LTV:CAC → required CAC</li></ul>
+
+<h2>Bottom line</h2>
+
+<p>A unit-economics audit isn't "open Excel for an hour" — it's <strong>30 seconds</strong> on a couple of calculators when the inputs are already in a spreadsheet. Save URL links with the input keys next to your data, and every quarter the audit takes exactly as long as typing in the new numbers.</p>
+
+<p><strong>Run your LTV:CAC below</strong> — the built-in calculator shows the ratio, the benchmark and the reverse calculation (target → required CAC).</p>
+
+<p>---</p>
+
+<h3>Further resources</h3>
+
+<ul><li><a href="/en/ltv_cac">/en/ltv_cac</a> — LTV:CAC + Goal mode</li><li><a href="/en/cacPayback">/en/cacPayback</a> — CAC Payback Period</li><li><a href="/en/grossMargin">/en/grossMargin</a> — Gross Margin</li><li><a href="/en/blog/ltv-cac-unit-economics">/en/blog/ltv-cac-unit-economics</a> — LTV vs CAC step by step</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Calculate it right here:</strong>
+  <iframe src="https://metricstree.vercel.app/ltv_cac?embed=1" width="100%" height="650" loading="lazy" title="MetricTree ltv_cac calculator"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Open the full version: <a href="https://metricstree.vercel.app/ltv_cac" target="_blank">https://metricstree.vercel.app/ltv_cac</a></p>
+</div>
+<div class="share-row">
+  Share:
+  <a href="https://twitter.com/intent/tweet?text=A%2030-second%20unit-economics%20audit&url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fcsv-unit-economics-audit" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fcsv-unit-economics-audit" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fcsv-unit-economics-audit&text=A%2030-second%20unit-economics%20audit" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/en/blog/">All posts</a> · <a href="/en">Calculator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

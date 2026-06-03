@@ -55,3 +55,18 @@ jobs:
         with:
           node-version: '20'
       - run: node --test test/*.test.mjs
+
+  # After a production deploy (push to main), notify Bing/Yandex via IndexNow.
+  # Best-effort: a failed ping never fails the pipeline (it's a notification,
+  # not a correctness gate). Skipped on pull_request runs.
+  indexnow:
+    name: Ping IndexNow (Bing/Yandex)
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node notify-indexnow.mjs
+        continue-on-error: true
