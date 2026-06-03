@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Forecast SaaS metrics without Excel — a 6–24 month projection | MetricTree Blog</title>
+<meta name="description" content="How to forecast MRR, ARR and growth without spreadsheets: set the current value and rate, see the 6–24 month curve, and check whether the path to $1M ARR is realistic.">
+<meta name="keywords" content="mrr forecast, forecast saas metrics, revenue growth projection, t2d3, arr projection without excel">
+<link rel="canonical" href="https://metricstree.vercel.app/en/blog/forecast-saas-metrics">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/forecast-saas-metrics">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/forecast-saas-metrics">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/forecast-saas-metrics">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Forecast SaaS metrics without Excel — a 6–24 month projection">
+<meta property="og:description" content="How to forecast MRR, ARR and growth without spreadsheets: set the current value and rate, see the 6–24 month curve, and check whether the path to $1M ARR is realistic.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/en/blog/forecast-saas-metrics">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-06-01">
+<meta property="article:author" content="Rodion Latipov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Forecast SaaS metrics without Excel — a 6–24 month projection">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Forecast SaaS metrics without Excel — a 6–24 month projection",
+  "description": "How to forecast MRR, ARR and growth without spreadsheets: set the current value and rate, see the 6–24 month curve, and check whether the path to $1M ARR is realistic.",
+  "datePublished": "2026-06-01",
+  "author": {
+    "@type": "Person",
+    "name": "Rodion Latipov",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/en/blog/forecast-saas-metrics"
+  },
+  "keywords": "mrr forecast, forecast saas metrics, revenue growth projection, t2d3, arr projection without excel",
+  "inLanguage": "en"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/en" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/en/blog/">Blog</a> · <a href="/en">Calculator →</a></div>
+</nav>
+<article>
+<h1>Forecast SaaS metrics without Excel — a 6–24 month projection</h1>
+<div class="meta">2026-06-01 · by <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a></div>
+<h1>Forecast SaaS metrics without Excel — a 6–24 month projection</h1>
+
+<p>"When do we hit $1M ARR?" — the question asked at every board meeting. Usually the answer lives in an Excel sheet with a compound-interest formula that no one but its author understands.</p>
+
+<p>A growth forecast is one formula, and it doesn't need Excel. All you need is the current value and the monthly rate.</p>
+
+<h2>The forecast math in one line</h2>
+
+<p>> <strong>MRR in N months = MRR_now × (1 + rate)^N</strong></p>
+
+<p>This is compound interest. That's exactly why a small difference in the monthly rate becomes a huge difference over a year:</p>
+
+<table><thead><tr><th>MoM rate</th><th>After 12 mo</th><th>After 24 mo</th></tr></thead><tbody><tr><td></td><td>5%</td><td>×1.80</td><td>×3.23</td><td></td></tr><tr><td></td><td>10%</td><td>×3.14</td><td>×9.85</td><td></td></tr><tr><td></td><td>15%</td><td>×5.35</td><td>×28.6</td><td></td></tr><tr><td></td><td>20%</td><td>×8.92</td><td>×79.5</td><td></td></tr></tbody></table>
+Each +1pp of monthly rate compounds into tens of percent over a year — which is why "nudging" the rate matters more than it seems.
+
+<h2>How to build a forecast in a minute</h2>
+
+<p>1. Open <a href="/en/mrrGrowthRate">MRR Growth Rate</a>.<br>2. Enter the start and end MRR for a month — the calculator shows your <strong>MoM rate</strong>.<br>3. Look at the projection: where revenue lands in 6–24 months at that rate.<br>4. Move the rate and watch the curve change — these are What-If scenarios with not a single formula.</p>
+
+<p><strong>Tip:</strong> use a <strong>trailing 3-month average</strong> rate, not the last month — one big contract distorts the forecast.</p>
+
+<h2>Check against T2D3 — is the path to $100M realistic?</h2>
+
+<p><strong>T2D3</strong> (Triple, Triple, Double, Double, Double) is the benchmark trajectory from $1M → $100M ARR in 5 years:</p>
+
+<table><thead><tr><th>Year</th><th>ARR</th><th>YoY</th><th>≈ MoM</th></tr></thead><tbody><tr><td></td><td>1</td><td>$3M</td><td>3×</td><td>~9.5%</td><td></td></tr><tr><td></td><td>2</td><td>$9M</td><td>3×</td><td>~9.5%</td><td></td></tr><tr><td></td><td>3</td><td>$18M</td><td>2×</td><td>~6%</td><td></td></tr><tr><td></td><td>4</td><td>$36M</td><td>2×</td><td>~6%</td><td></td></tr><tr><td></td><td>5</td><td>$72M</td><td>2×</td><td>~6%</td><td></td></tr></tbody></table>
+If your forecast at the current rate lands well below this curve, that's a signal to the board: either accelerate growth or revisit the round's target. A forecast turns "we hope to grow" into a concrete number and date.
+
+<h2>Where a forecast is MISLEADING</h2>
+
+<p>1. <strong>The rate isn't constant</strong> — at scale the curve always slows (you can't hold 20% MoM at $100M ARR). A fixed-rate forecast is optimistic over a long horizon.<br>2. <strong>Small base</strong> — $5k→$7k = 40% MoM, but it isn't repeatable.<br>3. <strong>Seasonality</strong> — Q4 e-commerce ≠ Q1 SaaS; normalize.<br>4. <strong>Churn isn't in a pure growth forecast</strong> — high MoM with high churn = fragile growth (cross-check with <a href="/en/quickRatio">Quick Ratio</a>).</p>
+
+<p>So a forecast isn't a promise but a <strong>range of scenarios</strong>: conservative (−churn effect), base (trailing average) and optimistic.</p>
+
+<h2>Bottom line</h2>
+
+<p>Forecasting SaaS metrics doesn't need Excel — it's one compound-interest formula the calculator builds for you over 6–24 months. Set the current value and trailing rate, check the curve against T2D3, move the rate for scenarios — and the board meeting gets an honest number instead of "we hope".</p>
+
+<p><strong>Calculate your MRR Growth and projection below</strong> — the built-in calculator shows the rate, the projection and a stage benchmark.</p>
+
+<p>---</p>
+
+<h3>Further resources</h3>
+
+<ul><li><a href="/en/mrrGrowthRate">/en/mrrGrowthRate</a> — MRR Growth Rate + projection</li><li><a href="/en/mrr">/en/mrr</a> — MRR · <a href="/en/arr">/en/arr</a> — ARR (MRR × 12)</li><li><a href="/en/quickRatio">/en/quickRatio</a> — Quick Ratio (growth durability)</li><li><a href="/en/blog/mrr-growth-rate-yc">/en/blog/mrr-growth-rate-yc</a> — why YC looks for 5-7% MoM</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Calculate it right here:</strong>
+  <iframe src="https://metricstree.vercel.app/mrrGrowthRate?embed=1" width="100%" height="650" loading="lazy" title="MetricTree mrrGrowthRate calculator"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Open the full version: <a href="https://metricstree.vercel.app/mrrGrowthRate" target="_blank">https://metricstree.vercel.app/mrrGrowthRate</a></p>
+</div>
+<div class="share-row">
+  Share:
+  <a href="https://twitter.com/intent/tweet?text=Forecast%20SaaS%20metrics%20without%20Excel%20%E2%80%94%20a%206%E2%80%9324%20month%20projection&url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fforecast-saas-metrics" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fforecast-saas-metrics" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fforecast-saas-metrics&text=Forecast%20SaaS%20metrics%20without%20Excel%20%E2%80%94%20a%206%E2%80%9324%20month%20projection" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/en/blog/">All posts</a> · <a href="/en">Calculator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>
