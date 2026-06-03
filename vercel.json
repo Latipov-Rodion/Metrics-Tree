@@ -11,6 +11,8 @@
     { "source": "/vs-chartmogul", "destination": "/vs-chartmogul.html" },
     { "source": "/vs-geckoboard", "destination": "/vs-geckoboard.html" },
     { "source": "/vs-finmodelslab", "destination": "/vs-finmodelslab.html" },
+    { "source": "/vs-databox", "destination": "/vs-databox.html" },
+    { "source": "/vs-klipfolio", "destination": "/vs-klipfolio.html" },
     { "source": "/press", "destination": "/press.html" },
     { "source": "/admin", "destination": "/admin.html" },
     { "source": "/embed", "destination": "/embed.html" },

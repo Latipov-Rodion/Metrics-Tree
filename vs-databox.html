@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>MetricTree vs Databox: бесплатный калькулятор метрик vs платный дашборд | MetricTree</title>
+<meta name="description" content="Сравнение MetricTree и Databox: 48 метрик с формулами и бенчмарками без регистрации vs платные KPI-дашборды с интеграциями. Что выбрать для расчёта vs мониторинга.">
+<link rel="canonical" href="https://metricstree.vercel.app/vs-databox">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="MetricTree vs Databox — calculator vs dashboard">
+<meta property="og:description" content="Databox — платная платформа KPI-дашбордов с интеграциями. MetricTree — бесплатный калькулятор 48 метрик с формулами и бенчмарками, без signup.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/vs-databox">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MetricTree vs Databox">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Чем MetricTree отличается от Databox?", "acceptedAnswer": { "@type": "Answer", "text": "MetricTree — бесплатный калькулятор 48 продуктовых метрик с формулами, отраслевыми бенчмарками и интерпретацией, без регистрации, на 3 языках. Databox — платная платформа KPI-дашбордов, которая подключается к источникам данных (Google Analytics, HubSpot, Stripe и др.) и собирает метрики на дашборды для постоянного мониторинга. MetricTree отвечает «как посчитать и какая норма», Databox — «как свести данные команды в один дашборд»." } },
+    { "@type": "Question", "name": "Можно ли использовать MetricTree бесплатно?", "acceptedAnswer": { "@type": "Answer", "text": "Да, MetricTree полностью бесплатный навсегда, open-source MIT, без регистрации и подключения данных. У Databox есть ограниченный free-tier, но полноценные функции — на платных планах." } },
+    { "@type": "Question", "name": "Считает ли Databox метрики по формулам с бенчмарками?", "acceptedAnswer": { "@type": "Answer", "text": "Databox визуализирует и агрегирует данные из подключённых источников, но не объясняет формулы и не даёт отраслевых порогов с источниками. MetricTree даёт формулу, порог (плохо/средне/хорошо), интерпретацию и обратный расчёт (Goal mode) для каждой из 48 метрик." } },
+    { "@type": "Question", "name": "Можно ли встроить MetricTree в блог или Notion?", "acceptedAnswer": { "@type": "Answer", "text": "Да, любую метрику можно встроить через iframe в блог, Notion, Substack — в меню → «Скопировать embed-код». Databox ориентирован на внутренние дашборды, а не на встраиваемые публичные калькуляторы." } }
+  ]
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; --red:#F44336; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; padding:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.6; }
+.wrap { max-width: 880px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:880px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; display:inline-block; }
+.nav a { color:var(--text-2); text-decoration:none; font-weight:500; }
+.nav a:hover { color:var(--text-1); }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.85rem; letter-spacing:-0.02em; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.5rem; }
+.lede { font-size: 1.1rem; color: var(--text-2); margin: 0 0 2rem; }
+.cta-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 1rem; padding: 1.4rem 1.5rem; margin: 1.5rem 0; }
+.cta-box a.btn { display:inline-block; background: var(--accent); color:#fff; padding:0.6rem 1.2rem; border-radius:0.5rem; text-decoration:none; font-weight:600; margin-top:0.5rem; }
+.cta-box a.btn:hover { opacity:0.92; }
+table { width:100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.92rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 0.75rem; overflow:hidden; }
+th, td { padding: 0.6rem 0.85rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; color: var(--text-1); font-size:0.82rem; text-transform:uppercase; letter-spacing:0.04em; }
+td:not(:first-child) { text-align: center; }
+tr:last-child td { border-bottom: 0; }
+.yes { color: var(--green); font-weight: 700; }
+.no { color: var(--red); font-weight: 700; }
+.partial { color: #FFC107; font-weight: 700; }
+.cell-strong { background: rgba(76,175,80,0.06); }
+ul { padding-left: 1.25rem; }
+li { margin-bottom: 0.4rem; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.faq { margin-top: 2.5rem; }
+.faq details { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.6rem; padding: 0.85rem 1rem; margin-bottom: 0.5rem; }
+.faq summary { cursor: pointer; font-weight: 600; color: var(--text-1); }
+.faq details[open] summary { margin-bottom: 0.6rem; }
+.footer { text-align: center; color: var(--text-3); margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+</style>
+<script src="/theme-sync.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/">Калькулятор →</a></div>
+</nav>
+
+<main class="wrap">
+<h1>MetricTree vs Databox — калькулятор метрик vs дашборд</h1>
+<p class="lede">Databox — платная платформа KPI-дашбордов с интеграциями к источникам данных. MetricTree — бесплатный калькулятор 48 метрик с формулами и бенчмарками, без регистрации. Это инструменты для разных задач: разовый расчёт и понимание нормы vs постоянный мониторинг данных.</p>
+
+<div class="cta-box">
+  <strong>TL;DR:</strong> Нужно посчитать LTV, CAC, NRR, Burn Multiple или Rule of 40 и понять, нормальный ли результат — открой MetricTree, ничего не подключая. Нужно свести метрики из Stripe/GA/HubSpot в живой дашборд для команды — это Databox. Инструменты дополняют друг друга: один считает и объясняет норму, другой мониторит данные.
+  <br><a class="btn" href="/">Открыть MetricTree →</a>
+</div>
+
+<h2>Сравнение по фичам</h2>
+<table>
+<thead><tr><th>Фича</th><th>Databox</th><th>MetricTree</th></tr></thead>
+<tbody>
+<tr><td>Бесплатно навсегда</td><td><span class="partial">ограниченный free-tier</span></td><td class="cell-strong"><span class="yes">✓ MIT</span></td></tr>
+<tr><td>Без регистрации</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">✓</span></td></tr>
+<tr><td>Готовые калькуляторы метрик</td><td><span class="no">✗</span></td><td class="cell-strong"><strong>48</strong></td></tr>
+<tr><td>Формулы + бенчмарки с источниками</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">✓ Sacks, Hamid, OpenView</span></td></tr>
+<tr><td>Интерпретация результата</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">✓ порог + инсайт</span></td></tr>
+<tr><td>Goal mode (обратный расчёт)</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">✓ 32 сценария</span></td></tr>
+<tr><td>What-If слайдеры</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">✓</span></td></tr>
+<tr><td>Forecast charts</td><td><span class="partial">через данные</span></td><td class="cell-strong"><span class="yes">✓ 6–24 мес</span></td></tr>
+<tr><td>Embed iframe в блог / Notion</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">✓</span></td></tr>
+<tr><td>3 языка (RU / EN / UZ)</td><td><span class="no">EN only</span></td><td class="cell-strong"><span class="yes">✓</span></td></tr>
+<tr><td>Open source</td><td><span class="no">✗</span></td><td class="cell-strong"><span class="yes">✓ MIT</span></td></tr>
+<tr><td>Live-дашборды с авто-обновлением</td><td class="cell-strong"><span class="yes">✓</span></td><td><span class="no">✗</span></td></tr>
+<tr><td>Интеграции с источниками данных</td><td class="cell-strong"><span class="yes">✓ 100+</span></td><td><span class="no">✗</span></td></tr>
+<tr><td>Goals / scorecards по реальным данным</td><td class="cell-strong"><span class="yes">✓</span></td><td><span class="no">✗</span></td></tr>
+</tbody>
+</table>
+
+<h2>Когда выбирать MetricTree</h2>
+<ul>
+<li>Нужен <strong>разовый расчёт</strong> метрики для презентации, board-meeting или инвестор-апдейта</li>
+<li>Хочешь понять <strong>формулу и норму</strong>: «какой Burn Multiple считается здоровым в 2026?»</li>
+<li>Считаешь метрику <strong>из данных в Excel/Notion</strong> и нужна правильная формула + бенчмарк</li>
+<li>Нужен <strong>обратный расчёт</strong>: «какой max CAC при target LTV:CAC = 3?»</li>
+<li>Нужен <strong>встраиваемый виджет</strong> калькулятора в блог или Notion</li>
+<li>Команда <strong>не англоязычная</strong> — нужен русский или узбекский</li>
+</ul>
+
+<h2>Когда выбирать Databox</h2>
+<ul>
+<li>Нужен <strong>постоянный дашборд</strong> с живыми данными из Stripe, GA, HubSpot, CRM</li>
+<li>Нужны <strong>goals и scorecards</strong> по реальным данным команды</li>
+<li>Хочешь <strong>авто-обновляемые</strong> метрики без ручного ввода</li>
+<li>Команда готова на <strong>платный план</strong> за интеграции и мониторинг</li>
+</ul>
+<p>Инструменты дополняют друг друга: MetricTree — чтобы понять формулу и норму метрики, Databox — чтобы потом отслеживать её на дашборде.</p>
+
+<h2>Цена</h2>
+<table>
+<tbody>
+<tr><td><strong>MetricTree Free</strong></td><td>$0 навсегда</td><td>48 метрик, embed, 3 языка</td></tr>
+<tr><td>MetricTree Pro (скоро)</td><td>$9/мес</td><td>PDF-отчёты, custom-branded embed, API</td></tr>
+<tr><td>Databox</td><td>free-tier + платные планы</td><td>Дашборды, интеграции, goals</td></tr>
+</tbody>
+</table>
+
+<div class="cta-box">
+  <strong>Попробуй прямо сейчас:</strong> калькулятор уже заполнен примерными значениями — увидишь результат + инсайт за 1 секунду.
+  <br><a class="btn" href="/">Открыть MetricTree →</a>
+</div>
+
+<h2 class="faq">FAQ</h2>
+<div class="faq">
+  <details><summary>Чем MetricTree отличается от Databox?</summary><p>MetricTree — бесплатный калькулятор 48 метрик с формулами, бенчмарками и интерпретацией, без регистрации, на 3 языках. Databox — платная платформа KPI-дашбордов с интеграциями. MetricTree отвечает «как посчитать и какая норма», Databox — «как свести данные команды в дашборд».</p></details>
+  <details><summary>Можно ли использовать MetricTree бесплатно?</summary><p>Да, полностью бесплатно навсегда, open-source MIT, без подключения данных. У Databox есть ограниченный free-tier, полноценные функции — на платных планах.</p></details>
+  <details><summary>Считает ли Databox метрики по формулам с бенчмарками?</summary><p>Нет, Databox визуализирует данные из источников. Формулы, пороги и бенчмарки с источниками даёт MetricTree.</p></details>
+  <details><summary>Можно ли встроить MetricTree в блог?</summary><p>Да, в меню → «Скопировать embed-код» формируется готовый iframe. Работает в Notion, Substack, Medium, WordPress.</p></details>
+  <details><summary>MetricTree open-source?</summary><p>Да, MIT-лицензия. Код на <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank" rel="noopener">GitHub</a>. Можно self-host на свой домен.</p></details>
+</div>
+
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a> · <a href="/">Главная</a>
+</div>
+</main>
+</body>
+</html>
