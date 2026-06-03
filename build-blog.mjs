@@ -189,6 +189,7 @@ h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
 p { margin: 0.85rem 0; }
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
 ul, ol { padding-left: 1.4rem; }
 li { margin: 0.3rem 0; }
 code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
