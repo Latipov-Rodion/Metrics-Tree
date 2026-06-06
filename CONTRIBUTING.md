@@ -11,7 +11,7 @@ source-of-truth model and the sync points in detail.
 ## Project model in one minute
 
 - **`index.html`** is the source of truth for the whole app (HTML + CSS + JS +
-  all 48 metric definitions + i18n, inline).
+  all 69 metric definitions + i18n, inline).
 - **`build.mjs`** regenerates the 49 per-metric SEO pages (`ltv.html`, …) and
   `sitemap.xml` from `index.html`. **Never hand-edit a generated page.**
 - **`build-blog.mjs`** turns `blog-src/*.md` (RU) and `blog-src/en/*.md` (EN)

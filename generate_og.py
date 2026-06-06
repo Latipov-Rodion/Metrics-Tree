@@ -68,7 +68,7 @@ def main():
     d.text((pad_x, 140), 'MetricTree', fill=TEXT, font=load_font(120, bold=True))
 
     # Subtitle
-    d.text((pad_x, 290), '48 product metrics calculator', fill=TEXT, font=load_font(40))
+    d.text((pad_x, 290), '69 product metrics calculator', fill=TEXT, font=load_font(40))
 
     # Formula chip
     chip_x, chip_y = pad_x, 360

@@ -7,11 +7,11 @@
 
 ## 1. Tagline (60 char max)
 
-**Primary:** `48 product metrics, 1 free calculator, 3 languages`
+**Primary:** `69 product metrics, 1 free calculator, 3 languages`
 
 **Backup:**
 - `LTV, CAC, MRR, NRR, Burn Multiple — calculate any metric in 1 click`
-- `The unit-economics calculator I always wanted. 48 metrics, no signup.`
+- `The unit-economics calculator I always wanted. 69 metrics, no signup.`
 - `Calculate any product metric. Reverse it. Embed it. Free forever.`
 
 ---
@@ -25,7 +25,7 @@
 > I got tired of re-Googling, so I built **MetricTree**.
 >
 > **What it does:**
-> - **48 product metrics** in 7 sections (B2C, B2B SaaS, AARRR, Finance & Sales, Growth, QA, Support)
+> - **69 product metrics** in 7 sections (B2C, B2B SaaS, AARRR, Finance & Sales, Growth, QA, Support)
 > - Each metric has a **formula**, **industry benchmarks** with **source citations** (OpenView, Bessemer, David Sacks, Mamoon Hamid, Bain), and a **plain-language insight** when you enter your numbers
 > - **🎯 Goal mode** — reverse calculations: «I want LTV:CAC = 3, my LTV is $15k — what's the max CAC?» (16 metrics × ~32 reverse scenarios)
 > - **💡 What-if sliders** — drag inputs in real time
@@ -51,7 +51,7 @@
 
 ## 3. Long description (PH "What is X?" field, ~500 chars)
 
-> MetricTree is a free calculator for **48 product metrics** that PMs, marketers, finance leads, and founders use weekly: LTV, CAC, MRR, NRR, NPS, Burn Multiple, Runway, Sales Velocity, Rule of 40, AOV, RPR, Engagement Rate, and more.
+> MetricTree is a free calculator for **69 product metrics** that PMs, marketers, finance leads, and founders use weekly: LTV, CAC, MRR, NRR, NPS, Burn Multiple, Runway, Sales Velocity, Rule of 40, AOV, RPR, Engagement Rate, and more.
 >
 > Each metric has a formula, industry benchmarks across 5 verticals with source citations (OpenView, Bessemer, David Sacks), and a plain-language insight. **Goal mode** runs the formula in reverse. **What-if sliders** for real-time scenarios. **Forecast charts** for projections. **Embed mode** drops any calculator into your blog. **CSV import** for batch-filling.
 >
@@ -83,7 +83,7 @@ Reach out 7+ days before launch. Do NOT post first ourselves.
 5. **Hiten Shah** — SaaS founder community
 
 DM template:
-> Hey [name], I built a free calculator for 48 product metrics (LTV, CAC, MRR, Burn Multiple, Rule of 40 — basically everything PMs Google weekly). 3 languages, embed mode, Goal mode for reverse calculations, CSV import, Telegram bot companion. Open-source, no signup. Would you be willing to hunt it on PH? I'd handle all the prep — you just hit publish. Happy to send the assets pack if helpful.
+> Hey [name], I built a free calculator for 69 product metrics (LTV, CAC, MRR, Burn Multiple, Rule of 40 — basically everything PMs Google weekly). 3 languages, embed mode, Goal mode for reverse calculations, CSV import, Telegram bot companion. Open-source, no signup. Would you be willing to hunt it on PH? I'd handle all the prep — you just hit publish. Happy to send the assets pack if helpful.
 
 ---
 
@@ -142,7 +142,7 @@ DM template:
 
 ### LinkedIn (English)
 
-> 48 product metrics. 1 calculator. 3 languages. 0 signup.
+> 69 product metrics. 1 calculator. 3 languages. 0 signup.
 >
 > I built MetricTree because every week I'd Google «what's a healthy SaaS Quick Ratio» — same 5 formulas, no calculator that handled them all.
 >
@@ -156,7 +156,7 @@ DM template:
 
 ### LinkedIn (Russian)
 
-> 48 продуктовых метрик в одном калькуляторе. Бесплатно, без регистрации.
+> 69 продуктовых метрик в одном калькуляторе. Бесплатно, без регистрации.
 >
 > Я устал каждую неделю гуглить «какая нормальная Burn Multiple для SaaS» — построил MetricTree.
 >
@@ -180,7 +180,7 @@ DM template:
 - Quick Ratio (Mamoon Hamid)?
 - Rule of 40 break-even?
 
-Got tired of it. Built MetricTree → 48 metrics, free, no signup. 🧵
+Got tired of it. Built MetricTree → 69 metrics, free, no signup. 🧵
 
 2/ Each metric has 3 things: formula, industry benchmarks (cited from OpenView/Bessemer/Sacks), and plain-language insight when you enter your numbers.
 

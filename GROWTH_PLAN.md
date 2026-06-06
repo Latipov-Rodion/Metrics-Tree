@@ -36,7 +36,7 @@
 
 | Конкурент | Что есть | Что у нас лучше | Что у них лучше |
 |-----------|----------|-----------------|-----------------|
-| **Profitwell / Paddle Free Calculators** | LTV, CAC, churn — ~6 калькуляторов, нужен signup для save | 48 метрик vs 6, no signup, 3 языка, embed, Goal mode | Бренд + DA 75 + давно в Google |
+| **Profitwell / Paddle Free Calculators** | LTV, CAC, churn — ~6 калькуляторов, нужен signup для save | 69 метрик vs 6, no signup, 3 языка, embed, Goal mode | Бренд + DA 75 + давно в Google |
 | **Baremetrics Calculator** | LTV + CAC только. Маркетинговая воронка | Гораздо шире охват | DA 70 |
 | **ChartMogul Resources** | Только статьи, не калькуляторы | Интерактивный inline-calc vs только текст | DA 78, известный бренд |
 | **Geckoboard / Klipfolio** | Дашборды (платно). Калькуляторов нет | Бесплатно + калькуляторы | Реальный продакт vs калькулятор |
@@ -56,7 +56,7 @@
 
 ### ✨ Уникальные преимущества MetricTree
 
-**Положение на рынке:** «**Единственный бесплатный калькулятор 48 метрик с обратным расчётом, на 3 языках, без signup, с embed-режимом**».
+**Положение на рынке:** «**Единственный бесплатный калькулятор 69 метрик с обратным расчётом, на 3 языках, без signup, с embed-режимом**».
 
 Никто из конкурентов не имеет ВСЕХ этих фич одновременно:
 
@@ -64,7 +64,7 @@
 |------|:----:|:----:|:----:|:----:|:----:|
 | Бесплатно | freemium | ❌ | ❌ | freemium | ✅ навсегда |
 | No signup | ❌ | ❌ | ❌ | ❌ | ✅ |
-| Количество метрик | 6 | 2 | 0 | плагины | **48** |
+| Количество метрик | 6 | 2 | 0 | плагины | **69** |
 | Goal mode (обратный расчёт) | ❌ | ❌ | ❌ | да | ✅ + 32 сценария |
 | What-If слайдеры | ❌ | ❌ | ❌ | да | ✅ |
 | Forecast charts | ❌ | да | ❌ | да | ✅ |
@@ -81,7 +81,7 @@
 
 **5 ключевых differentiators для маркетинга:**
 
-1. **«В одном месте, чего больше нигде нет»** — 48 метрик vs 6 у Profitwell
+1. **«В одном месте, чего больше нигде нет»** — 69 метрик vs 6 у Profitwell
 2. **«Считает в обратную сторону»** — Goal mode у одного только Causal, но он платный
 3. **«Бесплатно, навсегда, без регистрации»** — пользователи устали от signup walls
 4. **«Готовый виджет в твой блог/Notion»** — embed-mode уникален в категории
@@ -214,7 +214,7 @@
 #### Comparison-страницы (high-intent traffic)
 
 Создай отдельные landing-страницы:
-- `/vs-profitwell` — «MetricTree vs ProfitWell: free vs paid, 48 vs 6 metrics»
+- `/vs-profitwell` — «MetricTree vs ProfitWell: free vs paid, 69 vs 6 metrics»
 - `/vs-baremetrics` — same
 - `/vs-causal` — «Open-source альтернатива Causal»
 
@@ -227,7 +227,7 @@
 1. Найди статьи которые ссылаются на `profitwell calculator` или `baremetrics calculator`:
    - Ahrefs / Semrush (бесплатные trial)
    - Или: Google `inurl:saas-metrics intext:profitwell`
-2. Свяжись с авторами: «У вас ссылка на устаревший Profitwell calculator. Я сделал бесплатную альтернативу с 48 метриками — вот: ...»
+2. Свяжись с авторами: «У вас ссылка на устаревший Profitwell calculator. Я сделал бесплатную альтернативу с 69 метриками — вот: ...»
 3. Цель: 5-10 backlinks/месяц с DA 40+
 
 ---
@@ -252,7 +252,7 @@
 Это превратит каждого блогера в твой backlink-генератор.
 
 #### Reddit AMA
-В r/SaaS, r/startups: «I built a free 48-metric calculator — AMA». Если повезёт = 1000+ upvotes + Hacker News attention.
+В r/SaaS, r/startups: «I built a free 69-metric calculator — AMA». Если повезёт = 1000+ upvotes + Hacker News attention.
 
 #### Free metric audits в обмен на testimonial
 Предложи 10 SaaS-фаундерам бесплатный 30-мин audit unit-экономики. В обмен — testimonial + permission цитировать. Эти testimonials → on landing page → конверсия Pro waitlist выше.

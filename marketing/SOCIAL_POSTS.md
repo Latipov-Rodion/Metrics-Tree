@@ -14,9 +14,9 @@
 - Magic Number для SaaS?
 - Quick Ratio (Mamoon Hamid)?
 
-Десятки калькуляторов знают по 5 формул. Никто не знает все 48. 🧵
+Десятки калькуляторов знают по 5 формул. Никто не знает все 69. 🧵
 
-2/ Поэтому построил **MetricTree** — бесплатный open-source калькулятор 48 продуктовых метрик: https://metricstree.vercel.app/
+2/ Поэтому построил **MetricTree** — бесплатный open-source калькулятор 69 продуктовых метрик: https://metricstree.vercel.app/
 
 Killer features:
 🎯 Goal mode — обратный расчёт
@@ -29,7 +29,7 @@ Killer features:
 ✗ Profitwell — 6 калькуляторов за signup
 ✗ Baremetrics — $129/мес для дашборда
 ✗ Causal — полная фин-модель платформа
-✓ MetricTree — $0 навсегда, 48 метрик, MIT open source
+✓ MetricTree — $0 навсегда, 69 метрик, MIT open source
 
 4/ Бенчмарки цитируют первоисточники:
 - Burn Multiple ← David Sacks
@@ -244,9 +244,9 @@ Deep guide: https://metricstree.vercel.app/blog/runway-when-fundraise
 ✗ Quick Ratio (Mamoon Hamid)?
 ✗ Rule of 40 break-even?
 
-Десятки калькуляторов знают по 5 формул. Никто не знает все 48.
+Десятки калькуляторов знают по 5 формул. Никто не знает все 69.
 
-Поэтому собрал **MetricTree** — open-source калькулятор 48 продуктовых метрик: https://metricstree.vercel.app/
+Поэтому собрал **MetricTree** — open-source калькулятор 69 продуктовых метрик: https://metricstree.vercel.app/
 
 🎯 Goal mode (обратный расчёт): «хочу LTV:CAC = 3, какой max CAC?»
 💡 What-if слайдеры — drag input → live-пересчёт
@@ -274,10 +274,10 @@ For 3 years I've been Googling the same product metric formulas every single wee
 - What's the Burn Multiple threshold (David Sacks)?
 - LTV:CAC for early-stage SaaS?
 
-Got tired of it. Built **MetricTree** — free open-source calculator for 48 product metrics: https://metricstree.vercel.app/
+Got tired of it. Built **MetricTree** — free open-source calculator for 69 product metrics: https://metricstree.vercel.app/
 
 What's different:
-✓ 48 metrics in one place (vs Profitwell's 6 free)
+✓ 69 metrics in one place (vs Profitwell's 6 free)
 ✓ Goal mode (reverse calc): «I want LTV:CAC = 3, my LTV is $15k — what's max CAC?»
 ✓ Industry benchmarks with cited sources (OpenView, Bessemer, Sacks, Hamid, Bain)
 ✓ What-If sliders + Forecast charts (6-24 mo)
@@ -375,7 +375,7 @@ Deep dive: https://metricstree.vercel.app/blog/nrr-vs-grr
 Поэтому добавил в MetricTree **Embed Builder** (https://metricstree.vercel.app/embed):
 
 Выбираешь:
-- Метрику (любая из 48)
+- Метрику (любая из 69)
 - Язык (RU / EN / UZ)
 - Размер (compact / standard / full)
 - Валюту по умолчанию
@@ -399,7 +399,7 @@ Builder: https://metricstree.vercel.app/embed
 
 ## HACKER NEWS «Show HN»
 
-**Title:** Show HN: MetricTree – Open-source calculator for 48 product metrics
+**Title:** Show HN: MetricTree – Open-source calculator for 69 product metrics
 
 **URL:** https://metricstree.vercel.app/
 
@@ -408,7 +408,7 @@ Hi HN,
 
 I'm Rodion, CEO of a logistics startup in Tashkent. For 3 years I've been re-Googling the same product metric formulas every week — what's a healthy SaaS Quick Ratio, what's the Burn Multiple threshold, LTV:CAC for early-stage. Got tired of it, built MetricTree.
 
-What it is: free open-source calculator for 48 product metrics (LTV, CAC, MRR, NRR, NPS, Burn Multiple, Rule of 40, Magic Number, Quick Ratio, Sales Velocity, and more) with industry benchmarks cited from OpenView, Bessemer, David Sacks, Mamoon Hamid.
+What it is: free open-source calculator for 69 product metrics (LTV, CAC, MRR, NRR, NPS, Burn Multiple, Rule of 40, Magic Number, Quick Ratio, Sales Velocity, and more) with industry benchmarks cited from OpenView, Bessemer, David Sacks, Mamoon Hamid.
 
 Things I'm proud of:
 - Goal mode: reverse calculations. «I want LTV:CAC = 3, my LTV is $15k — what's the max CAC?» — runs the formula backwards
@@ -433,14 +433,14 @@ Happy to answer questions.
 
 ## REDDIT (3 posts)
 
-### r/SaaS — «Built a free 48-metric calculator over weekends»
+### r/SaaS — «Built a free 69-metric calculator over weekends»
 
-**Title:** I built a free open-source calculator for 48 SaaS metrics — would love your feedback
+**Title:** I built a free open-source calculator for 69 SaaS metrics — would love your feedback
 
 After 3 years of Googling the same formulas every week (Burn Multiple, Quick Ratio, Rule of 40, etc.), I built MetricTree: https://metricstree.vercel.app/
 
 What's there:
-- 48 metrics including all the SaaS classics (LTV, CAC, MRR, NRR, GRR, Churn, Burn Multiple, Magic Number, Quick Ratio, Rule of 40)
+- 69 metrics including all the SaaS classics (LTV, CAC, MRR, NRR, GRR, Churn, Burn Multiple, Magic Number, Quick Ratio, Rule of 40)
 - Goal mode (reverse calc) — unique feature
 - Industry benchmarks cited (Sacks, Hamid, OpenView, Bessemer)
 - 14 deep blog posts on top metrics
@@ -456,11 +456,11 @@ GitHub: https://github.com/Latipov-Rodion/Metrics-Tree
 
 ### r/ProductManagement — «Open-source tool for PMs»
 
-**Title:** [Tool] Free calculator for 48 product metrics — instant benchmark, no signup
+**Title:** [Tool] Free calculator for 69 product metrics — instant benchmark, no signup
 
 PMs spend too much time looking up formulas. Built this to fix it: https://metricstree.vercel.app/
 
-- 48 metrics in 7 sections (B2C, B2B SaaS, AARRR, Growth, Finance, QA, Support)
+- 69 metrics in 7 sections (B2C, B2B SaaS, AARRR, Growth, Finance, QA, Support)
 - Each shows: formula + your result + industry benchmark + plain-English interpretation
 - Goal mode for reverse calculations
 - Embed in your Notion / Confluence pages
@@ -471,13 +471,13 @@ What's missing for your workflow?
 
 ---
 
-### r/startups — «Free open-source 48-metric calculator»
+### r/startups — «Free open-source 69-metric calculator»
 
-**Title:** Built a free 48-metric calc — alternative to Profitwell ($0 vs signup-walled), Causal ($0 vs $250/mo)
+**Title:** Built a free 69-metric calc — alternative to Profitwell ($0 vs signup-walled), Causal ($0 vs $250/mo)
 
 For founders pre-revenue or who just want quick calculations without setting up dashboards:
 
-MetricTree (https://metricstree.vercel.app/) — 48 product metrics, Goal mode, What-If sliders, Forecast charts, embed for blogs.
+MetricTree (https://metricstree.vercel.app/) — 69 product metrics, Goal mode, What-If sliders, Forecast charts, embed for blogs.
 
 Cited benchmarks (OpenView, Bessemer, Sacks, Hamid).
 
@@ -491,7 +491,7 @@ Feedback welcome, especially on what metrics are missing for your stage.
 
 ### Анонс в канал «Продакты»:
 
-📊 **MetricTree — открытый калькулятор 48 продуктовых метрик**
+📊 **MetricTree — открытый калькулятор 69 продуктовых метрик**
 
 Бесплатно, без регистрации, на 3 языках (RU/EN/UZ).
 
@@ -514,7 +514,7 @@ Open source MIT.
 
 Запустилась бесплатная альтернатива Profitwell / Baremetrics / Causal — для тех, у кого ещё нет Stripe-данных для дашбордов, но нужны точные SaaS-расчёты:
 
-**MetricTree** — 48 метрик, Goal mode, embed для блогов: metricstree.vercel.app
+**MetricTree** — 69 метрик, Goal mode, embed для блогов: metricstree.vercel.app
 
 14 deep блог-постов по топ-метрикам уже там. Free, MIT.
 
@@ -522,7 +522,7 @@ Open source MIT.
 
 Запускаем MetricTree на ProductHunt [дата TBD].
 
-Open-source калькулятор 48 продуктовых метрик с поддержкой русского + узбекского. Уникальное позиционирование — первый CIS-локализованный SaaS-инструмент в категории.
+Open-source калькулятор 69 продуктовых метрик с поддержкой русского + узбекского. Уникальное позиционирование — первый CIS-локализованный SaaS-инструмент в категории.
 
 → metricstree.vercel.app
 
