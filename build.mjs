@@ -11,6 +11,17 @@ const ROOT = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z
 const SITE = 'https://metricstree.vercel.app';
 
 const META = {
+  // — Batch +10 —
+  wau:                { title: 'WAU калькулятор (Weekly Active Users) — формула и нормы', desc: 'WAU — уникальные пользователи за 7 дней. Промежуточное звено между DAU и MAU. Stickiness через DAU/WAU и WAU/MAU.', q: 'Что такое WAU?', a: 'Weekly Active Users — уникальные пользователи за последние 7 дней. Для рабочих инструментов WAU ближе к MAU, для соцсетей — к DAU.' },
+  netNewMrr:          { title: 'Net New MRR калькулятор — чистый прирост MRR за месяц', desc: 'Net New MRR = New + Expansion − Churned − Contraction. Чистый прирост подписочной выручки за месяц. Главный пульс роста SaaS.', q: 'Что такое Net New MRR?', a: 'Net New MRR = New + Expansion − Churned − Contraction MRR — чистое изменение MRR за месяц. Должен быть положительным и расти MoM; высокая доля Expansion удешевляет рост.' },
+  contributionMargin: { title: 'Contribution Margin калькулятор — маржинальная прибыль', desc: 'Contribution Margin = (Выручка − Переменные затраты) / Выручка × 100%. Сколько каждый доллар продаж даёт на покрытие постоянных расходов и прибыль.', q: 'Что такое Contribution Margin?', a: 'Контрибуционная маржа = (Выручка − Переменные затраты) / Выручка × 100%. Норма 20–40%, для SaaS — 70–85%. База для точки безубыточности.' },
+  gmv:                { title: 'GMV калькулятор (Gross Merchandise Value) — оборот', desc: 'GMV = Кол-во заказов × AOV. Суммарная стоимость проданного за период. Метрика масштаба маркетплейсов и e-commerce. Выручка = GMV × Take Rate.', q: 'Что такое GMV?', a: 'Gross Merchandise Value — оборот всех продаж до комиссий и возвратов = Заказы × AOV. Это не выручка: реальный доход платформы = GMV × Take Rate.' },
+  takeRate:           { title: 'Take Rate калькулятор — комиссия маркетплейса от GMV', desc: 'Take Rate = (Выручка платформы / GMV) × 100%. Доля оборота, которую маркетплейс оставляет себе. Норма 10–20%, >30% — риск оттока продавцов.', q: 'Что такое Take Rate?', a: 'Take Rate = (Выручка платформы / GMV) × 100% — доля оборота, которую платформа берёт себе (комиссии, реклама, подписки). Норма 10–20%, сильно 20–30%.' },
+  quotaAttainment:    { title: 'Quota Attainment калькулятор — выполнение плана продаж', desc: 'Quota Attainment = (Факт / Квота) × 100%. Процент выполнения плана репом или командой. Здоровая планка: 60–70% репов выполняют квоту.', q: 'Что такое Quota Attainment?', a: 'Quota Attainment = (Факт продаж / Квота) × 100%. Если 60–70% репов выполняют квоту — планка здоровая. Если >90% перевыполняют — квоты занижены.' },
+  cpm:                { title: 'CPM калькулятор — Cost Per Mille, стоимость 1000 показов', desc: 'CPM = (Затраты / Показы) × 1000. Стоимость 1000 показов рекламы. Ориентиры: дисплей $1–5, соцсети $5–15, видео $10–30.', q: 'Что такое CPM?', a: 'CPM (Cost Per Mille) = (Затраты на рекламу / Показы) × 1000 — стоимость тысячи показов. Оценивайте вместе с CTR и CR: дешёвый CPM ≠ дешёвый клиент.' },
+  cartAbandonment:    { title: 'Cart Abandonment Rate калькулятор — брошенные корзины', desc: 'Cart Abandonment = (1 − Покупки / Корзины) × 100%. Среднее по индустрии ~70%. Как снизить процент брошенных корзин в e-commerce.', q: 'Что такое Cart Abandonment Rate?', a: 'Доля созданных корзин без покупки = (1 − Покупки / Корзины) × 100%. Средне ~70%. Снижают: гость-чекаут, прозрачная доставка, email-возвраты.' },
+  mer:                { title: 'MER калькулятор (Marketing Efficiency Ratio) — blended ROAS', desc: 'MER = Общая выручка / Общие маркетинговые затраты. Blended-эффективность маркетинга по всему бизнесу. DTC-ориентир: 2–3 норма, >5 отлично.', q: 'Что такое MER?', a: 'MER (Marketing Efficiency Ratio) = Общая выручка / Общие маркетинговые затраты. В отличие от ROAS считается по всему бизнесу. DTC: <2 слабо, 3–5 хорошо.' },
+  ces:                { title: 'CES калькулятор (Customer Effort Score) — формула и нормы', desc: 'CES = Сумма оценок усилий / Кол-во ответов (шкала 1–7). Насколько легко клиенту решить вопрос. Сильный предиктор лояльности.', q: 'Что такое CES?', a: 'Customer Effort Score — средняя оценка усилия клиента по шкале 1–7. <5 — высокое трение, >6 — отлично. Низкое усилие удерживает лучше «восторга».' },
   // B2C
   dau:           { title: 'DAU Calculator (Daily Active Users) — формула, отраслевые пороги', desc: 'Рассчитайте Daily Active Users. Формула, отраслевые бенчмарки, инсайт. Связано: MAU, Stickiness. Бесплатно.', q: 'Что такое DAU?', a: 'Daily Active Users — уникальные пользователи продукта за сутки. Сама по себе DAU — счётчик; оценивать стоит через Stickiness (DAU/MAU) и MoM-рост.' },
   mau:           { title: 'MAU Calculator (Monthly Active Users) — формула и пороги', desc: 'Расчёт MAU. Формула, отраслевые бенчмарки, связь с Stickiness и Retention. Бесплатно.', q: 'Что такое MAU?', a: 'Monthly Active Users — уникальные пользователи за 30 дней. Здоровье считается через Stickiness и YoY-рост.' },
@@ -135,6 +146,16 @@ const META = {
 // (the client-side renderRelated also writes the same data to #relatedBlock for users).
 // Each entry: { id: target-metric-id, note: short reason this metric is related (RU) }.
 const RELATED = {
+  wau: [{ id: 'dau', note: 'DAU/WAU — внутринедельная липкость' }, { id: 'mau', note: 'WAU/MAU — недельное удержание' }, { id: 'stickiness', note: 'родственная метрика' }],
+  netNewMrr: [{ id: 'mrr', note: 'компоненты — изменения MRR' }, { id: 'mrrGrowthRate', note: 'Net New MRR определяет рост' }, { id: 'quickRatio', note: 'те же компоненты New/Expansion/Churn' }],
+  contributionMargin: [{ id: 'grossMargin', note: 'родственная маржа' }, { id: 'runway', note: 'маржа влияет на burn' }, { id: 'ltv_cac', note: 'маржа входит в окупаемость' }],
+  gmv: [{ id: 'takeRate', note: 'выручка = GMV × Take Rate' }, { id: 'aov', note: 'GMV = заказы × AOV' }, { id: 'revenue', note: 'GMV ≠ выручка платформы' }],
+  takeRate: [{ id: 'gmv', note: 'знаменатель формулы' }, { id: 'grossMargin', note: 'take rate влияет на маржу' }, { id: 'revenue', note: 'выручка платформы — числитель' }],
+  quotaAttainment: [{ id: 'salesVelocity', note: 'скорость закрытия квоты' }, { id: 'winRate', note: 'win rate влияет на attainment' }, { id: 'pipelineCoverage', note: 'мало pipeline — недобор квоты' }],
+  cpm: [{ id: 'cpc', note: 'CPM и CPC — пара по стоимости' }, { id: 'ctr', note: 'CPM / CTR определяет CPC' }, { id: 'roas', note: 'дешёвый охват ≠ дешёвый результат' }],
+  cartAbandonment: [{ id: 'cr', note: 'брошенные корзины снижают CR' }, { id: 'bounceRate', note: 'трение → выше bounce' }, { id: 'aov', note: 'возврат корзин растит выручку' }],
+  mer: [{ id: 'roas', note: 'MER — blended-версия ROAS' }, { id: 'cac', note: 'MER ↑ при низком CAC' }, { id: 'ltv_cac', note: 'связан с unit-экономикой' }],
+  ces: [{ id: 'csat', note: 'низкое усилие → высокий CSAT' }, { id: 'nps', note: 'усилие предсказывает лояльность' }, { id: 'fcr', note: 'FCR снижает усилие клиента' }],
   dau: [{ id: 'mau', note: 'нужен для расчёта Stickiness' }, { id: 'stickiness', note: 'Stickiness = DAU / MAU' }],
   mau: [{ id: 'stickiness', note: 'Stickiness = DAU / MAU' }, { id: 'arpu', note: 'ARPU считается по активным' }],
   stickiness: [{ id: 'dau', note: 'числитель формулы' }, { id: 'mau', note: 'знаменатель формулы' }, { id: 'retention', note: 'связана с удержанием' }],
@@ -188,6 +209,9 @@ const RELATED = {
 
 // Short display names for related-block anchor text (full metric title is too long).
 const SHORT_NAME = {
+  wau: 'WAU', netNewMrr: 'Net New MRR', contributionMargin: 'Contribution Margin', gmv: 'GMV',
+  takeRate: 'Take Rate', quotaAttainment: 'Quota Attainment', cpm: 'CPM',
+  cartAbandonment: 'Cart Abandonment', mer: 'MER', ces: 'CES',
   dau: 'DAU', mau: 'MAU', stickiness: 'Stickiness', retention: 'Retention',
   ltv: 'LTV', cac: 'CAC', ltv_cac: 'LTV:CAC', arpu: 'ARPU', churn: 'Churn Rate',
   mrr: 'MRR', arr: 'ARR', acv: 'ACV', grr: 'GRR', nrr: 'NRR', cacPayback: 'CAC Payback',
