@@ -475,6 +475,11 @@ function generateSitemap() {
     }
   }
 
+  // Flagship interactive driver-tree page (/tree) — high priority, self-contained.
+  if (fs.existsSync(path.join(ROOT, 'tree.html'))) {
+    urls.push(urlNode(`${SITE}/tree`, { priority: '0.9', changefreq: 'weekly' }));
+  }
+
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${urls.join('\n')}

@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Дерево Метрик — интерактивный driver-tree | MetricTree</title>
+    <meta name="description" content="Интерактивное дерево метрик (driver-tree): North-Star метрика раскладывается на драйверы. Меняйте листовые показатели — пересчёт каскадом вверх до корня в реальном времени. 3 готовых дерева: выручка e-commerce, Net New MRR → ARR, LTV:CAC.">
+    <meta name="keywords" content="дерево метрик, driver tree, дерево драйверов, North Star метрика, декомпозиция метрик, выручка визиты конверсия AOV, Net New MRR ARR, LTV CAC, unit economics, MetricTree">
+    <meta name="author" content="Родион Латыпов">
+    <meta name="theme-color" content="#0A0C0E" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#F0F2F5" media="(prefers-color-scheme: light)">
+    <link rel="canonical" href="https://metricstree.vercel.app/tree">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.ico">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta property="og:title" content="Дерево Метрик — интерактивный driver-tree | MetricTree">
+    <meta property="og:description" content="North-Star метрика раскладывается на драйверы. Меняйте листовые показатели — пересчёт каскадом вверх до корня в реальном времени. 3 готовых дерева: e-commerce выручка, Net New MRR → ARR, LTV:CAC.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://metricstree.vercel.app/tree">
+    <meta property="og:site_name" content="MetricTree">
+    <meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Дерево Метрик — интерактивный driver-tree MetricTree">
+    <meta property="og:locale" content="ru_RU">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Дерево Метрик — интерактивный driver-tree | MetricTree">
+    <meta name="twitter:description" content="North-Star метрика раскладывается на драйверы. Меняйте листы — пересчёт каскадом вверх до корня в реальном времени.">
+    <meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Дерево Метрик — MetricTree",
+      "url": "https://metricstree.vercel.app/tree",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Интерактивное дерево метрик (driver-tree): North-Star метрика раскладывается на драйверы с пересчётом каскадом вверх до корня."
+    }
+    </script>
+    <style>
+        :root {
+            --bg:           #0A0C0E;
+            --bg-card:      #1A1C1F;
+            --bg-input:     #0A0C0E;
+            --bg-hover:     #252830;
+            --bg-active:    #162040;
+            --border:       #2C2F33;
+            --border-input: #353a40;
+            --text-1:       #E8EAED;
+            --text-2:       #B0B3B8;
+            --text-3:       #85898f;
+            --accent:       #2A6DF4;
+            --accent-dim:   rgba(42,109,244,0.15);
+            --accent-glow:  rgba(42,109,244,0.25);
+            --red:          #F44336;
+            --green:        #4CAF50;
+            --yellow:       #FFC107;
+            --shadow-sm:    0 1px 4px rgba(0,0,0,0.4);
+            --shadow-md:    0 4px 16px rgba(0,0,0,0.5);
+            --radius-sm:    0.5rem;
+            --radius-md:    0.75rem;
+            --radius-lg:    1rem;
+            --radius-xl:    1.2rem;
+            --transition:   0.18s ease;
+        }
+        html[data-theme="light"] {
+            --bg:           #F0F2F5;
+            --bg-card:      #FFFFFF;
+            --bg-input:     #F7F8FA;
+            --bg-hover:     #EEF0F4;
+            --bg-active:    #E0EAFF;
+            --border:       #DDE0E6;
+            --border-input: #C8CBD2;
+            --text-1:       #14171C;
+            --text-2:       #4A5060;
+            --text-3:       #6e6e6e;
+            --accent:       #1A56DB;
+            --accent-dim:   rgba(26,86,219,0.1);
+            --accent-glow:  rgba(26,86,219,0.2);
+            --red:          #D32F2F;
+            --green:        #2E7D32;
+            --yellow:       #E65100;
+            --shadow-sm:    0 1px 4px rgba(0,0,0,0.08);
+            --shadow-md:    0 4px 16px rgba(0,0,0,0.12);
+        }
+        /* Respect OS preference when no explicit theme is chosen */
+        @media (prefers-color-scheme: light) {
+            html:not([data-theme]) {
+                --bg:#F0F2F5; --bg-card:#FFFFFF; --bg-input:#F7F8FA; --bg-hover:#EEF0F4;
+                --bg-active:#E0EAFF; --border:#DDE0E6; --border-input:#C8CBD2;
+                --text-1:#14171C; --text-2:#4A5060; --text-3:#6e6e6e; --accent:#1A56DB;
+                --accent-dim:rgba(26,86,219,0.1); --accent-glow:rgba(26,86,219,0.2);
+                --red:#D32F2F; --green:#2E7D32; --yellow:#E65100;
+                --shadow-sm:0 1px 4px rgba(0,0,0,0.08); --shadow-md:0 4px 16px rgba(0,0,0,0.12);
+            }
+        }
+        * { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text-1);
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.5;
+        }
+        a { color: var(--accent); }
+        .skip-link {
+            position: absolute; left: -999px; top: 0; z-index: 100;
+            background: var(--accent); color: #fff; padding: 0.6rem 1rem; border-radius: var(--radius-sm);
+        }
+        .skip-link:focus { left: 0.5rem; top: 0.5rem; }
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+
+        header.site-header {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 1rem; padding: 0.85rem 1.25rem;
+            border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 20;
+            background: color-mix(in srgb, var(--bg) 86%, transparent);
+            backdrop-filter: saturate(140%) blur(10px);
+        }
+        .brand { display: flex; align-items: center; gap: 0.55rem; text-decoration: none; color: var(--text-1); font-weight: 800; font-size: 1.05rem; letter-spacing: -0.01em; }
+        .brand .logo { font-size: 1.25rem; }
+        .header-actions { display: flex; align-items: center; gap: 0.5rem; }
+        .ghost-btn {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: var(--bg-card); border: 1px solid var(--border); color: var(--text-1);
+            padding: 0.45rem 0.7rem; border-radius: var(--radius-sm); font-size: 0.85rem; font-weight: 600;
+            cursor: pointer; text-decoration: none; transition: var(--transition);
+        }
+        .ghost-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+        main { max-width: 1180px; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
+        .hero h1 { font-size: clamp(1.5rem, 4vw, 2.1rem); margin: 0.5rem 0 0.4rem; letter-spacing: -0.02em; }
+        .hero p.lede { color: var(--text-2); max-width: 70ch; margin: 0 0 1.25rem; font-size: 0.98rem; }
+
+        .selector { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.4rem; }
+        .tree-tab {
+            display: flex; flex-direction: column; align-items: flex-start; gap: 0.15rem;
+            background: var(--bg-card); border: 1px solid var(--border); color: var(--text-1);
+            padding: 0.7rem 0.95rem; border-radius: var(--radius-md); cursor: pointer;
+            text-align: left; transition: var(--transition); min-width: 210px; flex: 1 1 210px;
+        }
+        .tree-tab:hover { border-color: var(--accent); }
+        .tree-tab[aria-selected="true"] { border-color: var(--accent); background: var(--accent-dim); box-shadow: 0 0 0 3px var(--accent-glow); }
+        .tree-tab .tt-title { font-weight: 700; font-size: 0.95rem; }
+        .tree-tab .tt-sub { font-size: 0.78rem; color: var(--text-2); }
+
+        .root-summary {
+            display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1.2rem;
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+            padding: 1rem 1.2rem; margin-bottom: 1.4rem;
+        }
+        .root-summary .rs-label { font-size: 0.82rem; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; }
+        .root-summary .rs-value { font-size: clamp(1.6rem, 5vw, 2.4rem); font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
+        .root-summary .rs-formula { font-family: 'JetBrains Mono','Menlo',monospace; font-size: 0.82rem; color: var(--text-3); }
+
+        /* Tree canvas */
+        .tree-wrap { position: relative; overflow-x: auto; padding: 0.5rem 0 1rem; }
+        .tree-canvas { position: relative; min-width: 640px; }
+        svg.connectors { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
+        svg.connectors path { fill: none; stroke: var(--border); stroke-width: 2; transition: stroke 0.3s ease, stroke-width 0.3s ease; }
+        svg.connectors path.lit { stroke: var(--accent); stroke-width: 3; }
+
+        .tree-level { display: flex; justify-content: center; gap: clamp(0.6rem, 2vw, 1.6rem); position: relative; z-index: 1; margin-bottom: clamp(2rem, 5vw, 3.2rem); }
+        .tree-level:last-child { margin-bottom: 0; }
+
+        .node {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md);
+            padding: 0.7rem 0.85rem; width: clamp(150px, 22vw, 210px); box-shadow: var(--shadow-sm);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.18s ease; position: relative;
+        }
+        .node.root { border-color: var(--accent); }
+        .node.computed { background: linear-gradient(180deg, var(--bg-card), color-mix(in srgb, var(--accent-dim) 40%, var(--bg-card))); }
+        .node.flash { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+        .node .n-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.15rem; display: flex; align-items: center; gap: 0.35rem; }
+        .node .n-badge { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.1rem 0.35rem; border-radius: 999px; color: var(--text-2); background: var(--bg-hover); }
+        .node .n-formula { font-family: 'JetBrains Mono','Menlo',monospace; font-size: 0.7rem; color: var(--text-3); margin-bottom: 0.4rem; word-break: break-word; }
+        .node .n-value { font-size: 1.15rem; font-weight: 800; color: var(--text-1); font-variant-numeric: tabular-nums; }
+        .node.root .n-value { color: var(--accent); }
+        .node .n-unit { font-size: 0.72rem; color: var(--text-2); font-weight: 600; margin-left: 0.2rem; }
+        .node input[type="number"] {
+            width: 100%; margin-top: 0.2rem; padding: 0.4rem 0.5rem;
+            background: var(--bg-input); border: 1px solid var(--border-input); color: var(--text-1);
+            border-radius: var(--radius-sm); font-size: 0.95rem; font-weight: 700; font-variant-numeric: tabular-nums;
+        }
+        .node input[type="number"]:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+        .node .n-help { font-size: 0.68rem; color: var(--text-3); margin-top: 0.25rem; }
+
+        .legend { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.6rem 0 0; font-size: 0.8rem; color: var(--text-2); }
+        .legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+        .legend i { width: 14px; height: 14px; border-radius: 4px; display: inline-block; border: 1px solid var(--border); }
+        .legend i.leaf { background: var(--bg-card); }
+        .legend i.comp { background: var(--accent-dim); border-color: var(--accent); }
+
+        footer { border-top: 1px solid var(--border); margin-top: 2.5rem; padding: 1.4rem 1.25rem; color: var(--text-3); font-size: 0.82rem; text-align: center; }
+        footer a { color: var(--text-2); }
+
+        @media (max-width: 720px) {
+            .tree-canvas { min-width: 560px; }
+            .tree-tab { min-width: 100%; flex-basis: 100%; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, svg.connectors path, .node { transition: none !important; }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#main">К содержанию</a>
+    <header class="site-header">
+        <a class="brand" href="/" aria-label="MetricTree — на главную">
+            <span class="logo" aria-hidden="true">🌳</span> MetricTree
+        </a>
+        <div class="header-actions">
+            <a class="ghost-btn" href="/" title="На главную — калькуляторы метрик">← Калькуляторы</a>
+            <button class="ghost-btn" id="themeToggle" type="button" aria-label="Переключить тему" title="Переключить тему">🌓 Тема</button>
+        </div>
+    </header>
+
+    <main id="main">
+        <section class="hero">
+            <h1>Дерево Метрик</h1>
+            <p class="lede">Интерактивный <strong>driver-tree</strong>: North-Star метрика раскладывается на драйверы. Меняйте значения в листовых полях ввода — пересчёт идёт каскадом вверх до корня в реальном времени, а изменённый путь подсвечивается.</p>
+        </section>
+
+        <div class="selector" role="tablist" aria-label="Выбор дерева метрик" id="selector"></div>
+
+        <div class="root-summary" aria-live="polite">
+            <span class="rs-label">North-Star</span>
+            <span class="rs-value" id="rootValue">—</span>
+            <span class="rs-formula" id="rootFormula"></span>
+        </div>
+
+        <div class="tree-wrap">
+            <div class="tree-canvas" id="canvas">
+                <svg class="connectors" id="connectors" aria-hidden="true"></svg>
+                <div id="levels"></div>
+            </div>
+        </div>
+
+        <div class="legend" aria-hidden="true">
+            <span><i class="comp"></i> Вычисляемый узел (read-only)</span>
+            <span><i class="leaf"></i> Лист — поле ввода</span>
+            <span>Подсветка = путь пересчёта до корня</span>
+        </div>
+    </main>
+
+    <footer>
+        <p>Часть проекта <a href="/">MetricTree</a> — калькуляторы продуктовых метрик с формулами и порогами.
+        Все расчёты идут локально в браузере. <a href="/glossary">Глоссарий</a> · <a href="/benchmarks">Бенчмарки</a></p>
+    </footer>
+
+    <script>
+    (function () {
+        "use strict";
+
+        /* ---------- helpers ---------- */
+        function sanitizeNumber(v) {
+            if (v === null || v === undefined) return 0;
+            var n = parseFloat(String(v).replace(/\s|,/g, function (m) { return m === ',' ? '.' : ''; }));
+            return isFinite(n) ? n : 0;
+        }
+        var nfInt = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 0 });
+        var nf2 = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 2 });
+        function fmtNumber(n) {
+            if (!isFinite(n)) return '—';
+            return Math.abs(n) >= 100 ? nfInt.format(Math.round(n)) : nf2.format(n);
+        }
+        function formatByUnit(n, unit) {
+            if (!isFinite(n)) return '—';
+            if (unit === '$') return '$' + fmtNumber(n);
+            if (unit === '%') return nf2.format(n) + '%';
+            if (unit === 'x' || unit === '×') return nf2.format(n) + '×';
+            return fmtNumber(n) + (unit ? ' ' + unit : '');
+        }
+
+        /* ---------- tree definitions ----------
+           Each tree: ordered list of nodes.
+           - leaf node: { id, name, formula, unit, value }   (has numeric value, editable)
+           - computed node: { id, name, formula, unit, deps:[ids], calc:(get)=>number }
+           Order: leaves/lower nodes first, root last (topological so calc deps resolve).
+           Layout `levels` lists node ids row by row (root row first, leaves last). */
+        var TREES = {
+            ecom: {
+                title: 'E-commerce Revenue',
+                sub: 'Revenue = Visitors × CR × AOV × (1 + Repeat)',
+                rootId: 'revenue',
+                rootLabel: 'Выручка (Revenue)',
+                levels: [
+                    ['revenue'],
+                    ['orders', 'repeatFactor'],
+                    ['visitors', 'cr', 'aov']
+                ],
+                nodes: {
+                    visitors:    { name: 'Visitors', formula: 'входной показатель', unit: 'визитов', leaf: true, value: 50000, help: 'Уникальные визиты за период' },
+                    cr:          { name: 'Conversion Rate', formula: 'входной показатель', unit: '%', leaf: true, value: 2.5, help: 'Доля визитов с заказом' },
+                    aov:         { name: 'AOV', formula: 'входной показатель', unit: '$', leaf: true, value: 60, help: 'Средний чек' },
+                    repeatFactor:{ name: 'Repeat factor', formula: 'входной показатель', unit: 'x', leaf: true, value: 0.3, help: 'Доля повторных покупок (0.3 = +30%)' },
+                    orders:      { name: 'Orders', formula: 'Visitors × CR', unit: 'заказов', deps: ['visitors', 'cr'], calc: function (g) { return g('visitors') * g('cr') / 100; } },
+                    revenue:     { name: 'Revenue', formula: 'Orders × AOV × (1 + Repeat)', unit: '$', deps: ['orders', 'aov', 'repeatFactor'], calc: function (g) { return g('orders') * g('aov') * (1 + g('repeatFactor')); } }
+                }
+            },
+            saas: {
+                title: 'SaaS Net New MRR → ARR',
+                sub: 'NetNewMRR = New + Expansion − Churned − Contraction; ARR = MRR × 12',
+                rootId: 'arr',
+                rootLabel: 'ARR',
+                levels: [
+                    ['arr'],
+                    ['endingMRR'],
+                    ['startMRR', 'netNewMRR'],
+                    ['newMRR', 'expansionMRR', 'churnedMRR', 'contractionMRR']
+                ],
+                nodes: {
+                    startMRR:       { name: 'Starting MRR', formula: 'входной показатель', unit: '$', leaf: true, value: 100000, help: 'MRR на начало периода' },
+                    newMRR:         { name: 'New MRR', formula: 'входной показатель', unit: '$', leaf: true, value: 12000, help: 'От новых клиентов' },
+                    expansionMRR:   { name: 'Expansion MRR', formula: 'входной показатель', unit: '$', leaf: true, value: 5000, help: 'Апсейл / расширение' },
+                    churnedMRR:     { name: 'Churned MRR', formula: 'входной показатель', unit: '$', leaf: true, value: 4000, help: 'Потеряно из-за оттока' },
+                    contractionMRR: { name: 'Contraction MRR', formula: 'входной показатель', unit: '$', leaf: true, value: 1500, help: 'Даунгрейды' },
+                    netNewMRR:      { name: 'Net New MRR', formula: 'New + Expansion − Churned − Contraction', unit: '$', deps: ['newMRR', 'expansionMRR', 'churnedMRR', 'contractionMRR'], calc: function (g) { return g('newMRR') + g('expansionMRR') - g('churnedMRR') - g('contractionMRR'); } },
+                    endingMRR:      { name: 'Ending MRR', formula: 'Starting MRR + Net New MRR', unit: '$', deps: ['startMRR', 'netNewMRR'], calc: function (g) { return g('startMRR') + g('netNewMRR'); } },
+                    arr:            { name: 'ARR', formula: 'Ending MRR × 12', unit: '$', deps: ['endingMRR'], calc: function (g) { return g('endingMRR') * 12; } }
+                }
+            },
+            unit: {
+                title: 'Unit economics LTV:CAC',
+                sub: 'LTV = AOV × Frequency × Lifetime; CAC = Spend / NewCustomers; ratio = LTV / CAC',
+                rootId: 'ratio',
+                rootLabel: 'LTV : CAC',
+                levels: [
+                    ['ratio'],
+                    ['ltv', 'cac'],
+                    ['aovU', 'frequency', 'lifetime', 'spend', 'newCust']
+                ],
+                nodes: {
+                    aovU:      { name: 'AOV', formula: 'входной показатель', unit: '$', leaf: true, value: 75, help: 'Средний чек' },
+                    frequency: { name: 'Frequency', formula: 'входной показатель', unit: '/год', leaf: true, value: 4, help: 'Покупок в год' },
+                    lifetime:  { name: 'Lifetime', formula: 'входной показатель', unit: 'лет', leaf: true, value: 3, help: 'Срок жизни клиента, лет' },
+                    spend:     { name: 'Marketing Spend', formula: 'входной показатель', unit: '$', leaf: true, value: 50000, help: 'Затраты на привлечение' },
+                    newCust:   { name: 'New Customers', formula: 'входной показатель', unit: 'клиентов', leaf: true, value: 500, help: 'Привлечено клиентов' },
+                    ltv:       { name: 'LTV', formula: 'AOV × Frequency × Lifetime', unit: '$', deps: ['aovU', 'frequency', 'lifetime'], calc: function (g) { return g('aovU') * g('frequency') * g('lifetime'); } },
+                    cac:       { name: 'CAC', formula: 'Spend / New Customers', unit: '$', deps: ['spend', 'newCust'], calc: function (g) { return g('newCust') > 0 ? g('spend') / g('newCust') : 0; } },
+                    ratio:     { name: 'LTV : CAC', formula: 'LTV / CAC', unit: 'x', deps: ['ltv', 'cac'], calc: function (g) { return g('cac') > 0 ? g('ltv') / g('cac') : 0; } }
+                }
+            }
+        };
+
+        /* ---------- state ---------- */
+        var currentKey = 'ecom';
+        var values = {};       // id -> numeric value (leaves: input; computed: last computed)
+        var nodeEls = {};      // id -> { card, valueEl }
+        var levelEls = {};     // id -> level element
+        var flashTimer = null;
+
+        var selectorEl = document.getElementById('selector');
+        var levelsEl = document.getElementById('levels');
+        var connectorsEl = document.getElementById('connectors');
+        var rootValueEl = document.getElementById('rootValue');
+        var rootFormulaEl = document.getElementById('rootFormula');
+
+        function getVal(id) { return values[id]; }
+
+        /* Recompute every computed node bottom-up. Because `levels` lists root first
+           and leaves last, we evaluate computed nodes from the last level upward so
+           that dependencies (lower in the tree) are already up to date. */
+        function recomputeAll() {
+            var tree = TREES[currentKey];
+            // leaves already in `values`; compute non-leaf nodes from deepest level up.
+            for (var L = tree.levels.length - 1; L >= 0; L--) {
+                var row = tree.levels[L];
+                for (var i = 0; i < row.length; i++) {
+                    var id = row[i];
+                    var node = tree.nodes[id];
+                    if (!node.leaf) {
+                        values[id] = node.calc(getVal);
+                    }
+                }
+            }
+        }
+
+        function renderValues() {
+            var tree = TREES[currentKey];
+            Object.keys(nodeEls).forEach(function (id) {
+                var node = tree.nodes[id];
+                var v = values[id];
+                if (nodeEls[id].valueEl) {
+                    nodeEls[id].valueEl.firstChild.nodeValue = formatByUnit(v, node.unit);
+                }
+            });
+            var root = tree.nodes[tree.rootId];
+            rootValueEl.textContent = formatByUnit(values[tree.rootId], root.unit);
+            rootFormulaEl.textContent = root.formula;
+        }
+
+        /* Build the path of ancestors from a leaf up to the root, for highlighting. */
+        function ancestorsOf(leafId) {
+            var tree = TREES[currentKey];
+            var path = {};
+            path[leafId] = true;
+            var changed = true;
+            // walk upward: a node is on the path if any of its deps is on the path
+            while (changed) {
+                changed = false;
+                Object.keys(tree.nodes).forEach(function (id) {
+                    var node = tree.nodes[id];
+                    if (node.deps && !path[id]) {
+                        for (var i = 0; i < node.deps.length; i++) {
+                            if (path[node.deps[i]]) { path[id] = true; changed = true; break; }
+                        }
+                    }
+                });
+            }
+            return path;
+        }
+
+        function flashPath(leafId) {
+            var path = ancestorsOf(leafId);
+            if (flashTimer) { clearTimeout(flashTimer); clearFlash(); }
+            Object.keys(path).forEach(function (id) {
+                if (nodeEls[id]) nodeEls[id].card.classList.add('flash');
+            });
+            // light up connectors whose child is on the path
+            var paths = connectorsEl.querySelectorAll('path');
+            for (var i = 0; i < paths.length; i++) {
+                var childId = paths[i].getAttribute('data-child');
+                if (path[childId]) paths[i].classList.add('lit');
+            }
+            flashTimer = setTimeout(clearFlash, 900);
+        }
+        function clearFlash() {
+            var flashed = levelsEl.querySelectorAll('.node.flash');
+            for (var i = 0; i < flashed.length; i++) flashed[i].classList.remove('flash');
+            var lit = connectorsEl.querySelectorAll('path.lit');
+            for (var j = 0; j < lit.length; j++) lit[j].classList.remove('lit');
+        }
+
+        function onLeafInput(id, inputEl) {
+            values[id] = sanitizeNumber(inputEl.value);
+            recomputeAll();
+            renderValues();
+            flashPath(id);
+        }
+
+        /* ---------- build DOM for a tree ---------- */
+        function buildTree(key) {
+            currentKey = key;
+            var tree = TREES[key];
+            values = {};
+            nodeEls = {};
+            levelEls = {};
+            levelsEl.innerHTML = '';
+
+            // seed leaf values
+            Object.keys(tree.nodes).forEach(function (id) {
+                if (tree.nodes[id].leaf) values[id] = tree.nodes[id].value;
+            });
+            recomputeAll();
+
+            tree.levels.forEach(function (row, rowIndex) {
+                var levelDiv = document.createElement('div');
+                levelDiv.className = 'tree-level';
+                row.forEach(function (id) {
+                    var node = tree.nodes[id];
+                    var isRoot = id === tree.rootId;
+                    var card = document.createElement('div');
+                    card.className = 'node' + (isRoot ? ' root' : '') + (node.leaf ? ' leaf' : ' computed');
+                    card.id = 'node-' + id;
+                    card.setAttribute('role', 'group');
+                    card.setAttribute('aria-label', node.name);
+
+                    var nameDiv = document.createElement('div');
+                    nameDiv.className = 'n-name';
+                    nameDiv.appendChild(document.createTextNode(node.name));
+                    var badge = document.createElement('span');
+                    badge.className = 'n-badge';
+                    badge.textContent = node.leaf ? 'ввод' : (isRoot ? 'North-Star' : 'расчёт');
+                    nameDiv.appendChild(badge);
+                    card.appendChild(nameDiv);
+
+                    var formulaDiv = document.createElement('div');
+                    formulaDiv.className = 'n-formula';
+                    formulaDiv.textContent = node.formula;
+                    card.appendChild(formulaDiv);
+
+                    if (node.leaf) {
+                        var label = document.createElement('label');
+                        label.className = 'sr-only';
+                        label.setAttribute('for', 'inp-' + id);
+                        label.style.position = 'absolute';
+                        label.style.left = '-9999px';
+                        label.textContent = node.name + (node.unit ? ', ' + node.unit : '');
+                        card.appendChild(label);
+
+                        var unitSpan = document.createElement('div');
+                        unitSpan.className = 'n-unit';
+                        unitSpan.textContent = node.unit;
+                        card.appendChild(unitSpan);
+
+                        var input = document.createElement('input');
+                        input.type = 'number';
+                        input.id = 'inp-' + id;
+                        input.step = 'any';
+                        input.min = '0';
+                        input.value = String(node.value);
+                        input.setAttribute('inputmode', 'decimal');
+                        input.setAttribute('aria-label', node.name + (node.unit ? ' (' + node.unit + ')' : ''));
+                        input.addEventListener('input', (function (nid, el) {
+                            return function () { onLeafInput(nid, el); };
+                        })(id, input));
+                        card.appendChild(input);
+
+                        if (node.help) {
+                            var help = document.createElement('div');
+                            help.className = 'n-help';
+                            help.textContent = node.help;
+                            card.appendChild(help);
+                        }
+                        nodeEls[id] = { card: card, valueEl: null };
+                    } else {
+                        var valueDiv = document.createElement('div');
+                        valueDiv.className = 'n-value';
+                        valueDiv.appendChild(document.createTextNode(formatByUnit(values[id], node.unit)));
+                        var u = document.createElement('span');
+                        u.className = 'n-unit';
+                        u.textContent = node.unit;
+                        valueDiv.appendChild(u);
+                        card.appendChild(valueDiv);
+                        nodeEls[id] = { card: card, valueEl: valueDiv };
+                    }
+
+                    levelEls[id] = levelDiv;
+                    levelDiv.appendChild(card);
+                });
+                levelsEl.appendChild(levelDiv);
+            });
+
+            renderValues();
+            // draw connectors after layout settles
+            requestAnimationFrame(drawConnectors);
+        }
+
+        /* ---------- SVG connectors (parent computed node -> each dependency) ---------- */
+        function drawConnectors() {
+            var tree = TREES[currentKey];
+            var canvas = document.getElementById('canvas');
+            var crect = canvas.getBoundingClientRect();
+            connectorsEl.setAttribute('viewBox', '0 0 ' + crect.width + ' ' + crect.height);
+            connectorsEl.setAttribute('width', crect.width);
+            connectorsEl.setAttribute('height', crect.height);
+            var paths = '';
+            Object.keys(tree.nodes).forEach(function (id) {
+                var node = tree.nodes[id];
+                if (!node.deps) return;
+                var parentCard = nodeEls[id] && nodeEls[id].card;
+                if (!parentCard) return;
+                var pr = parentCard.getBoundingClientRect();
+                var px = pr.left - crect.left + pr.width / 2;
+                var py = pr.top - crect.top + pr.height; // bottom-center of parent
+                node.deps.forEach(function (childId) {
+                    var childCard = nodeEls[childId] && nodeEls[childId].card;
+                    if (!childCard) return;
+                    var cr = childCard.getBoundingClientRect();
+                    var cx = cr.left - crect.left + cr.width / 2;
+                    var cy = cr.top - crect.top; // top-center of child
+                    var midY = (py + cy) / 2;
+                    paths += '<path data-child="' + childId + '" d="M' + px + ',' + py +
+                             ' C' + px + ',' + midY + ' ' + cx + ',' + midY + ' ' + cx + ',' + cy + '"></path>';
+                });
+            });
+            connectorsEl.innerHTML = paths;
+        }
+
+        /* ---------- selector tabs ---------- */
+        function buildSelector() {
+            Object.keys(TREES).forEach(function (key) {
+                var t = TREES[key];
+                var tab = document.createElement('button');
+                tab.className = 'tree-tab';
+                tab.type = 'button';
+                tab.setAttribute('role', 'tab');
+                tab.setAttribute('aria-selected', key === currentKey ? 'true' : 'false');
+                tab.dataset.key = key;
+                var title = document.createElement('span');
+                title.className = 'tt-title';
+                title.textContent = t.title;
+                var sub = document.createElement('span');
+                sub.className = 'tt-sub';
+                sub.textContent = t.sub;
+                tab.appendChild(title);
+                tab.appendChild(sub);
+                tab.addEventListener('click', function () { selectTree(key); });
+                selectorEl.appendChild(tab);
+            });
+        }
+        function selectTree(key) {
+            var tabs = selectorEl.querySelectorAll('.tree-tab');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].setAttribute('aria-selected', tabs[i].dataset.key === key ? 'true' : 'false');
+            }
+            buildTree(key);
+        }
+
+        /* ---------- theme toggle ---------- */
+        document.getElementById('themeToggle').addEventListener('click', function () {
+            var html = document.documentElement;
+            var cur = html.getAttribute('data-theme');
+            if (!cur) {
+                // currently following OS pref; flip to the opposite of what OS shows
+                var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+                cur = prefersLight ? 'light' : 'dark';
+            }
+            var next = cur === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            try { localStorage.setItem('mt-theme', next); } catch (e) {}
+            requestAnimationFrame(drawConnectors);
+        });
+        (function initTheme() {
+            try {
+                var saved = localStorage.getItem('mt-theme');
+                if (saved === 'light' || saved === 'dark') document.documentElement.setAttribute('data-theme', saved);
+            } catch (e) {}
+        })();
+
+        /* ---------- init ---------- */
+        buildSelector();
+        buildTree(currentKey);
+        window.addEventListener('resize', function () { requestAnimationFrame(drawConnectors); });
+        window.addEventListener('load', function () { requestAnimationFrame(drawConnectors); });
+    })();
+    </script>
+</body>
+</html>

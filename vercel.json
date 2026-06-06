@@ -124,6 +124,7 @@
     { "source": "/mrrGrowthRate", "destination": "/mrrGrowthRate.html" },
     { "source": "/salesCycleLength", "destination": "/salesCycleLength.html" },
     { "source": "/engagementRate", "destination": "/engagementRate.html" },
+    { "source": "/tree", "destination": "/tree.html" },
     { "source": "/m/:metricId", "destination": "/index.html" },
     { "source": "/en", "destination": "/index.html" },
     { "source": "/uz", "destination": "/index.html" },
@@ -176,6 +177,7 @@
     { "source": "/en/bugRate", "destination": "/bugRate.html" },
     { "source": "/en/testCoverage", "destination": "/testCoverage.html" },
     { "source": "/en/defectDensity", "destination": "/defectDensity.html" },
+    { "source": "/en/tree", "destination": "/tree.html" },
     { "source": "/uz/dau", "destination": "/dau.html" },
     { "source": "/uz/mau", "destination": "/mau.html" },
     { "source": "/uz/stickiness", "destination": "/stickiness.html" },
@@ -224,7 +226,8 @@
     { "source": "/uz/revenue", "destination": "/revenue.html" },
     { "source": "/uz/bugRate", "destination": "/bugRate.html" },
     { "source": "/uz/testCoverage", "destination": "/testCoverage.html" },
-    { "source": "/uz/defectDensity", "destination": "/defectDensity.html" }
+    { "source": "/uz/defectDensity", "destination": "/defectDensity.html" },
+    { "source": "/uz/tree", "destination": "/tree.html" }
   ],
   "headers": [
     {
