@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>CPM калькулятор — Cost Per Mille, стоимость 1000 показов | MetricTree</title>
+    <meta name="description" content="CPM = (Затраты / Показы) × 1000. Стоимость 1000 показов рекламы. Ориентиры: дисплей $1–5, соцсети $5–15, видео $10–30.">
+    <meta name="keywords" content="калькулятор LTV онлайн, как рассчитать CAC, формула MRR ARR, что такое Churn Rate, NPS калькулятор, DAU MAU stickiness, ROAS формула, Burn Multiple калькулятор, Magic Number SaaS, Rule of 40, Quick Ratio SaaS, продуктовые метрики, unit economics, MetricTree">
+    <meta name="author" content="Родион Латыпов">
+    <meta name="theme-color" content="#0A0C0E" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#F0F2F5" media="(prefers-color-scheme: light)">
+    <link rel="canonical" href="https://metricstree.vercel.app/cpm">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.ico">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <meta property="og:title" content="CPM калькулятор — Cost Per Mille, стоимость 1000 показов | MetricTree">
+    <meta property="og:description" content="CPM = (Затраты / Показы) × 1000. Стоимость 1000 показов рекламы. Ориентиры: дисплей $1–5, соцсети $5–15, видео $10–30.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://metricstree.vercel.app/cpm">
+    <meta property="og:site_name" content="MetricTree">
+    <meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="MetricTree — калькулятор 48 продуктовых метрик: LTV, CAC, MRR, NPS, Burn Multiple, Runway">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="uz_UZ">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CPM калькулятор — Cost Per Mille, стоимость 1000 показов | MetricTree">
+    <meta name="twitter:description" content="CPM = (Затраты / Показы) × 1000. Стоимость 1000 показов рекламы. Ориентиры: дисплей $1–5, соцсети $5–15, видео $10–30.">
+    <meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "MetricTree",
+      "alternateName": ["Калькулятор продуктовых метрик", "Product Metrics Calculator", "Mahsulot metrikalari kalkulyatori"],
+      "url": "https://metricstree.vercel.app/",
+      "description": "Бесплатный онлайн-калькулятор 48 продуктовых метрик: LTV, CAC, MRR, ARR, Churn Rate, DAU, ROAS, NPS, Burn Multiple, Magic Number, Rule of 40, Quick Ratio с формулами и интерпретацией результатов.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "author": { "@type": "Person", "name": "Родион Латыпов", "url": "https://www.linkedin.com/in/rodion-latipov" },
+      "inLanguage": ["ru", "en", "uz"],
+      "featureList": [
+        "48 product metrics in 8 sections",
+        "Goal mode — reverse calculations",
+        "What-If sliders for real-time scenarios",
+        "Forecast charts (6–24 months)",
+        "Compare 2 metrics side-by-side",
+        "CSV import for batch fill",
+        "5 industry templates (SaaS, e-com, mobile, media, universal)",
+        "Embed mode for blogs",
+        "3 languages: RU / EN / UZ",
+        "4 currencies: $ / € / ₽ / £",
+        "Open source MIT license"
+      ],
+      "keywords": "LTV, CAC, MRR, ARR, Churn Rate, DAU, MAU, ROAS, NPS, CSAT, Burn Multiple, Magic Number, Rule of 40, Quick Ratio, SaaS метрики, продуктовые метрики"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "MetricTree",
+      "url": "https://metricstree.vercel.app/",
+      "logo": "https://metricstree.vercel.app/og-image.png",
+      "founder": { "@type": "Person", "name": "Родион Латыпов", "url": "https://www.linkedin.com/in/rodion-latipov" },
+      "sameAs": [
+        "https://github.com/Latipov-Rodion/Metrics-Tree",
+        "https://www.linkedin.com/in/rodion-latipov"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "MetricTree",
+      "alternateName": "Калькулятор продуктовых метрик",
+      "url": "https://metricstree.vercel.app/",
+      "inLanguage": "ru",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": { "@type": "EntryPoint", "urlTemplate": "https://metricstree.vercel.app/?q={search_term_string}" },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Как рассчитать LTV (Lifetime Value)?", "acceptedAnswer": { "@type": "Answer", "text": "LTV = AOV × Частота покупок в год × Среднее время жизни клиента (лет). Например: AOV $2 500 × 4 покупки × 3 года = $30 000. Главное — соотношение LTV : CAC ≥ 3 : 1." } },
+        { "@type": "Question", "name": "Как рассчитать CAC (Customer Acquisition Cost)?", "acceptedAnswer": { "@type": "Answer", "text": "CAC = Затраты на маркетинг и продажи / Количество новых платящих клиентов за период. Норма: LTV должен быть минимум в 3 раза больше CAC, окупаемость CAC для SaaS — до 12–18 месяцев." } },
+        { "@type": "Question", "name": "Как рассчитать MRR (Monthly Recurring Revenue)?", "acceptedAnswer": { "@type": "Answer", "text": "MRR — сумма всех ежемесячных подписок. ARR = MRR × 12. Здоровый MoM-рост MRR для растущего SaaS — 10–20% в месяц." } },
+        { "@type": "Question", "name": "Что такое Churn Rate и как его считать?", "acceptedAnswer": { "@type": "Answer", "text": "Churn Rate = Ушедшие пользователи / Всего пользователей на начало периода × 100%. Норма для B2B SaaS — <2% в месяц, для мобильных приложений — до 10%." } },
+        { "@type": "Question", "name": "Как рассчитать NPS (Net Promoter Score)?", "acceptedAnswer": { "@type": "Answer", "text": "NPS = % Промоутеров (оценки 9–10) − % Детракторов (оценки 0–6). Хороший NPS — выше 30, очень высокий — выше 50, мирового уровня — выше 70." } },
+        { "@type": "Question", "name": "Что такое ROAS и как его посчитать?", "acceptedAnswer": { "@type": "Answer", "text": "ROAS = Выручка от рекламы / Затраты на рекламу. Норма для e-commerce — более 4× (400%), для SaaS — более 3× (300%)." } },
+        { "@type": "Question", "name": "Что такое Burn Multiple и как его считать?", "acceptedAnswer": { "@type": "Answer", "text": "Burn Multiple = Net Burn / Net New ARR (David Sacks). Показывает, сколько $ сжигаем, чтобы сгенерировать $1 нового годового дохода. <1 — отлично, 1–1.5 — хорошо, 1.5–2 — приемлемо, >2 — нужно оптимизировать unit-economics." } },
+        { "@type": "Question", "name": "Что такое Magic Number в SaaS?", "acceptedAnswer": { "@type": "Answer", "text": "Magic Number = (Net New ARR за квартал × 4) / S&M расходы за квартал. Показывает эффективность Sales & Marketing. Хорошо: >1, отлично: >1.5. Меньше 0.5 — пересмотрите воронку." } },
+        { "@type": "Question", "name": "Что такое Rule of 40?", "acceptedAnswer": { "@type": "Answer", "text": "Rule of 40 = Темп роста выручки YoY (%) + Маржа EBITDA или FCF (%). Здоровый SaaS поддерживает сумму ≥ 40% независимо от баланса роста и прибыльности. Выше 60% — top decile." } },
+        { "@type": "Question", "name": "Что такое SaaS Quick Ratio?", "acceptedAnswer": { "@type": "Answer", "text": "Quick Ratio (Mamoon Hamid) = (New MRR + Expansion MRR) / (Churned MRR + Contraction MRR). Показывает устойчивость роста: на каждый $ потерянной выручки — сколько $ новой. Хорошо: 2–4, отлично для SaaS: >4." } },
+        { "@type": "Question", "name": "Что такое LTV : CAC и какая норма?", "acceptedAnswer": { "@type": "Answer", "text": "LTV : CAC = LTV / CAC. <1 — бизнес убыточен; 1–3 — ниже нормы; ≥3 — здоровая unit-экономика; >5 — отлично, но возможно недоинвестируете в рост." } },
+        { "@type": "Question", "name": "Как рассчитать Stickiness?", "acceptedAnswer": { "@type": "Answer", "text": "Stickiness = DAU / MAU × 100%. Доля месячной аудитории, возвращающейся ежедневно. Норма: >20%, хорошо: >40%, для SaaS отлично: >50%." } },
+        { "@type": "Question", "name": "Как считать NRR (Net Revenue Retention)?", "acceptedAnswer": { "@type": "Answer", "text": "NRR = (Начальный MRR + Апселы − Отток) / Начальный MRR × 100%. NRR > 100% означает рост за счёт существующих клиентов без учёта новых. Отличный SaaS: >120%." } }
+      ]
+    }
+    </script>
+    <link rel="stylesheet" href="/app.css">
+    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+    <!-- Vercel Speed Insights -->
+    <script>
+        window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+    <script>
+        // Vercel Web Analytics custom events. window.va is provided by the insights
+        // script above; queue calls before it loads. No PII — only metric ids / sources.
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+        window.track = function (name, data) { try { window.va('event', { name: name, data: data || {} }); } catch (e) {} };
+    </script>
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Что такое CPM?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "CPM (Cost Per Mille) = (Затраты на рекламу / Показы) × 1000 — стоимость тысячи показов. Оценивайте вместе с CTR и CR: дешёвый CPM ≠ дешёвый клиент."
+      }
+    }
+  ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Как рассчитать CPM",
+  "description": "CPM = (Затраты / Показы) × 1000. Стоимость 1000 показов рекламы. Ориентиры: дисплей $1–5, соцсети $5–15, видео $10–30.",
+  "totalTime": "PT1M",
+  "step": [
+    {
+      "@type": "HowToStep",
+      "position": 1,
+      "name": "Откройте калькулятор",
+      "text": "Перейдите на https://metricstree.vercel.app/cpm — калькулятор уже заполнен примером.",
+      "url": "https://metricstree.vercel.app/cpm"
+    },
+    {
+      "@type": "HowToStep",
+      "position": 2,
+      "name": "Введите ваши значения",
+      "text": "Замените примерные значения на свои данные. Калькулятор пересчитывает результат в реальном времени."
+    },
+    {
+      "@type": "HowToStep",
+      "position": 3,
+      "name": "Сравните с бенчмарком",
+      "text": "CPM (Cost Per Mille) = (Затраты на рекламу / Показы) × 1000 — стоимость тысячи показов. Оценивайте вместе с CTR и CR: дешёвый CPM ≠ дешёвый клиент."
+    }
+  ]
+}
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "MetricTree",
+      "item": "https://metricstree.vercel.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "CPM",
+      "item": "https://metricstree.vercel.app/cpm"
+    }
+  ]
+}
+    </script>
+    <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/cpm">
+    <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/cpm">
+    <link rel="alternate" hreflang="uz" href="https://metricstree.vercel.app/uz/cpm">
+    <link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/cpm">
+
+<script src="/theme-sync.js" defer></script>
+</head>
+<body>
+<script>
+// CRITICAL: global delegated close-handler for ALL modal overlays.
+// Runs BEFORE the main IIFE so it can never be broken by errors there.
+// Closes any .modal-overlay when its .modal-cancel button is clicked,
+// when the backdrop is clicked, or when Escape is pressed.
+(function bulletproofModalClose() {
+    document.addEventListener('click', function(e) {
+        // Cancel/close button inside any modal
+        const cancel = e.target.closest('.modal-cancel, .dashboard-close, .templates-close, .compare-close');
+        if (cancel) {
+            const overlay = cancel.closest('.modal-overlay, .dashboard-overlay, .templates-overlay, .compare-overlay');
+            if (overlay) {
+                overlay.classList.remove('show', 'open');
+                if (overlay.classList.contains('templates-overlay')) overlay.style.display = 'none';
+                if (overlay.classList.contains('dashboard-overlay') || overlay.classList.contains('compare-overlay')) {
+                    document.body.style.overflow = '';
+                }
+            }
+            return;
+        }
+        // Backdrop click (clicked the overlay itself, not children)
+        if (e.target.classList && (e.target.classList.contains('modal-overlay') || e.target.classList.contains('templates-overlay'))) {
+            e.target.classList.remove('show');
+            if (e.target.classList.contains('templates-overlay')) e.target.style.display = 'none';
+        }
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key !== 'Escape') return;
+        // Close the topmost open modal
+        const openModals = document.querySelectorAll('.modal-overlay.show, .templates-overlay[style*="flex"], .dashboard-overlay.open, .compare-overlay.open');
+        openModals.forEach(m => {
+            m.classList.remove('show', 'open');
+            if (m.classList.contains('templates-overlay')) m.style.display = 'none';
+            if (m.classList.contains('dashboard-overlay') || m.classList.contains('compare-overlay')) {
+                document.body.style.overflow = '';
+            }
+        });
+    });
+})();
+</script>
+<a href="#metricCard" class="skip-link">Перейти к калькулятору</a>
+<div class="container">
+    <header class="header" role="banner">
+        <div class="header-left">
+            <h1>MetricTree — Калькулятор продуктовых метрик</h1>
+            <div class="subtitle">
+                <span data-t="header.creator">Создатель:</span>
+                <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank" rel="noopener">Родион Латыпов</a>
+                <span data-t="header.subtitle_role">· BizDev, Sales, Product, Troubleshooter, Advisor, Consultant</span>
+            </div>
+        </div>
+        <div class="header-right">
+            <a class="dashboard-btn" href="/tree" title="Дерево метрик — интерактивный driver-tree" style="text-decoration:none;">🌳 <span data-t="btn.tree">Дерево метрик</span></a>
+            <button class="dashboard-btn" id="dashboardBtn" data-t-attr-title="btn.dashboard_tt" title="Unit-economics дашборд (Ctrl+D)">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <span data-t="btn.dashboard">Дашборд</span>
+        </button>
+        <div class="lang-toggle" role="group" aria-label="Язык интерфейса">
+            <button class="lang-btn active" data-lang="ru" title="Русский">RU</button>
+            <button class="lang-btn" data-lang="en" title="English">EN</button>
+            <button class="lang-btn" data-lang="uz" title="Oʻzbekcha">UZ</button>
+        </div>
+        <div class="currency-toggle" role="group" aria-label="Валюта отображения">
+            <button class="currency-btn active" data-currency="$" title="Доллар США" aria-label="Установить валюту: доллар">$</button>
+            <button class="currency-btn" data-currency="€" title="Евро" aria-label="Установить валюту: евро">€</button>
+            <button class="currency-btn" data-currency="₽" title="Российский рубль" aria-label="Установить валюту: рубль">₽</button>
+            <button class="currency-btn" data-currency="£" title="Фунт стерлингов" aria-label="Установить валюту: фунт">£</button>
+        </div>
+        <button class="theme-toggle" id="themeToggle" data-t-attr-title="btn.theme_tt" data-t-attr-aria-label="btn.theme_tt" title="Переключить тему" aria-label="Переключить тему">🌙</button>
+            <div class="search-wrap" role="search">
+                <span class="search-icon" aria-hidden="true">🔍</span>
+                <label for="searchInput" class="visually-hidden">Поиск метрики</label>
+                <input type="search" class="search-input" id="searchInput" placeholder="Поиск метрики…" autocomplete="off" aria-label="Поиск метрики (нажмите / для фокуса)">
+                <button class="search-clear" id="searchClear" title="Очистить поиск" aria-label="Очистить поиск">×</button>
+                <div class="search-dropdown" id="searchDropdown" role="listbox" aria-label="Результаты поиска"></div>
+            </div>
+            <button class="share-btn" id="shareLinkBtn" data-t-attr-title="btn.share_url_tt" title="Поделиться ссылкой на эту метрику">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                <span class="share-btn-text" data-t="btn.share_text">Поделиться</span>
+            </button>
+            <div class="more-menu-wrap">
+                <button class="more-menu-btn" id="moreMenuBtn" title="Дополнительно" aria-label="Дополнительные действия" aria-haspopup="true" aria-expanded="false">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+                </button>
+                <div class="more-menu-pop" id="moreMenuPop" role="menu">
+                    <button id="csvExportBtn" role="menuitem" data-t="menu.csv">📄 Экспорт в CSV</button>
+                    <button id="csvImportBtn" role="menuitem" data-t="menu.csv_import">📥 Импорт из CSV</button>
+                    <button id="compare2Btn" role="menuitem" data-t="menu.compare2">🔀 Сравнить 2 метрики</button>
+                    <button id="pdfExportBtn" role="menuitem"><span data-t="menu.pdf">📑 PDF-отчёт</span><span class="menu-pro-badge">PRO</span></button>
+                    <button id="snapshotMenuBtn" role="menuitem"><span data-t="menu.snapshot">💾 Сохранить снимок</span><kbd>Ctrl+S</kbd></button>
+                    <button id="searchMenuBtn" role="menuitem"><span data-t="menu.search">🔍 Поиск метрики</span><kbd>/</kbd></button>
+                    <button id="helpMenuBtn" role="menuitem"><span data-t="menu.help">❓ Справка и горячие клавиши</span><kbd>?</kbd></button>
+                    <button id="embedMenuBtn" role="menuitem" data-t="menu.embed">🔗 Скопировать embed-код</button>
+                    <button id="aboutMenuBtn" role="menuitem" data-t="menu.about">ℹ️ О продукте</button>
+                    <button id="pricingMenuBtn" role="menuitem" data-t="menu.pricing">💎 Pro / Team тарифы</button>
+                    <button id="clearAllBtn" role="menuitem" style="color:var(--red)" data-t="menu.clear_all">🗑 Очистить все данные</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Onboarding bar (first visit) -->
+    <div class="onboarding-bar onboarding-bar-rich" id="onboardingBar" style="display:none;">
+        <div class="onboarding-content">
+            <div class="onboarding-headline" data-t="onboard.headline">👋 48 метрик, формулы, отраслевые пороги. Бесплатно, без регистрации.</div>
+            <div class="onboarding-steps">
+                <span class="onboarding-step"><span class="onboarding-step-num">1</span> <span data-t="onboard.step_pick">Выберите метрику</span></span>
+                <span class="onboarding-sep">→</span>
+                <span class="onboarding-step"><span class="onboarding-step-num">2</span> <span data-t="onboard.step_enter">Введите числа</span></span>
+                <span class="onboarding-sep">→</span>
+                <span class="onboarding-step"><span class="onboarding-step-num">3</span> <span data-t="onboard.step_insight">Получите инсайт</span></span>
+            </div>
+            <div class="onboarding-cta-row">
+                <button class="onboarding-cta primary" id="onboardingTemplatesBtn" data-t="onboard.cta_template">📦 Начать с шаблона</button>
+                <button class="onboarding-cta" id="onboardingDemoBtn" data-t="onboard.cta_demo">▶ Попробовать на примере (LTV:CAC)</button>
+                <button class="onboarding-cta ghost" id="onboardingHelpBtn" data-t="onboard.cta_help">❓ Все возможности</button>
+            </div>
+        </div>
+        <button class="onboarding-dismiss" id="onboardingDismiss" data-t-attr-title="onboard.dismiss_title" title="Скрыть приветствие">×</button>
+    </div>
+
+    <nav class="sections-nav-wrap" aria-label="Разделы метрик">
+        <div class="sections-nav" id="sectionsNav" role="tablist">
+            <div class="section-card active" data-section="b2c" role="tab" tabindex="0" aria-selected="true"><h3>B2C</h3><p>DAU, MAU, LTV, CAC, ARPU, ARPDAU, AOV, RPR, Churn, Stickiness, LTV:CAC, Retention</p></div>
+            <div class="section-card" data-section="b2b" role="tab" tabindex="0" aria-selected="false"><h3>B2B</h3><p>MRR, ARR, ACV, GRR, NRR, CAC Payback, Burn Multiple, Magic Number, Rule of 40, Quick Ratio</p></div>
+            <div class="section-card" data-section="sales" role="tab" tabindex="0" aria-selected="false"><h3>AARRR</h3><p>Acquisition · Activation · Retention · Referral · Revenue · Time to Value</p></div>
+            <div class="section-card" data-section="finance" role="tab" tabindex="0" aria-selected="false"><h3>Finance &amp; Sales</h3><p>Gross Margin · Runway · Burn Rate · Sales Velocity · Win Rate · Pipeline Coverage · Cycle Length · MRR Growth</p></div>
+            <div class="section-card" data-section="growth" role="tab" tabindex="0" aria-selected="false"><h3>Growth</h3><p>CR · ROAS · CPC · Bounce · CTR · Engagement Rate</p></div>
+            <div class="section-card" data-section="qa" role="tab" tabindex="0" aria-selected="false"><h3>QA</h3><p>Bug Rate · Test Coverage · Defect Density</p></div>
+            <div class="section-card" data-section="support" role="tab" tabindex="0" aria-selected="false"><h3>Support</h3><p>CSAT · NPS · FCR · SLA</p></div>
+        </div>
+    </nav>
+
+    <!-- Compare snapshots overlay -->
+    <div class="compare-overlay" id="compareOverlay">
+        <div class="container">
+            <div class="compare-header">
+                <div class="compare-title" id="compareTitle">Сравнение снимков</div>
+                <button class="compare-close" id="compareClose">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                    Закрыть
+                </button>
+            </div>
+            <div id="compareContent"></div>
+        </div>
+    </div>
+
+    <!-- Dashboard overlay -->
+    <div class="dashboard-overlay" id="dashboardOverlay">
+        <div class="container">
+            <div class="dashboard-header">
+                <div class="dashboard-title">Unit-economics дашборд</div>
+                <div class="dashboard-header-actions">
+                    <button class="ai-insight-btn" id="aiInsightBtn" data-t-attr-title="btn.ai_insight_tt" title="ИИ найдёт главный рычаг роста по вашим метрикам">
+                        🤖 <span data-t="btn.ai_insight">AI-диагностика</span>
+                    </button>
+                    <button class="dashboard-close" id="dashboardClose">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        <span data-t="btn.close">Закрыть</span>
+                    </button>
+                </div>
+            </div>
+            <div id="aiInsightPanel" class="ai-insight-panel" style="display:none;"></div>
+            <div id="dashboardContent"></div>
+        </div>
+    </div>
+
+    <!-- Templates modal -->
+    <div class="templates-overlay" id="templatesOverlay" style="display:none;">
+        <div class="templates-modal">
+            <div class="templates-modal-title" data-t="templates.title">Шаблоны сценариев</div>
+            <div class="templates-modal-sub" data-t="templates.subtitle">Выберите шаблон — все метрики заполнятся реалистичными значениями для анализа</div>
+            <div class="templates-grid" id="templatesGrid"></div>
+            <button class="templates-close" id="templatesClose" data-t="btn.cancel">Отмена</button>
+        </div>
+    </div>
+
+    <!-- Industry selector -->
+    <div class="industry-bar" id="industryBar">
+        <span class="industry-label" data-t="industry.label">Отрасль:</span>
+        <div class="industry-pills" id="industryPills">
+            <button class="templates-btn" id="templatesBtn">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <span data-t="industry.templates">Шаблоны</span>
+            </button>
+            <button class="industry-pill active" data-industry="universal" data-t="industry.universal">Универсальные</button>
+            <button class="industry-pill" data-industry="saas" data-t="industry.saas">SaaS</button>
+            <button class="industry-pill" data-industry="ecom" data-t="industry.ecom">E-commerce</button>
+            <button class="industry-pill" data-industry="mobile" data-t="industry.mobile">Мобайл</button>
+            <button class="industry-pill" data-industry="media" data-t="industry.media">Медиа</button>
+        </div>
+    </div>
+
+    <!-- Mobile metric chips (shown instead of sidebar on mobile) -->
+    <div class="metric-chips" id="metricChips"></div>
+
+    <main class="metrics-area" id="main">
+        <aside class="metrics-list" id="metricsList" aria-label="Список метрик в разделе">
+            <h4 id="sectionTitle">Метрики B2C</h4>
+            <div id="metricsListItems" role="list"></div>
+            <div class="no-results" id="noResults">Ничего не найдено</div>
+        </aside>
+        <article class="metric-card" id="metricCard" tabindex="-1">
+            <div class="metric-header">
+                <div class="metric-header-left">
+                    <h2 id="metricName"></h2>
+                    <span class="metric-formula-inline" id="formulaInline"></span>
+                </div>
+                <div class="benchmarks" id="benchmarks"></div>
+            </div>
+            <div class="metric-description" id="metricDesc"></div>
+            <div class="inputs-toolbar">
+                <button class="reset-metric-btn" id="resetMetricBtn" type="button" title="Очистить значения текущей метрики (только эту)" aria-label="Сбросить значения текущей метрики">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><polyline points="3 4 3 10 9 10"/></svg>
+                    <span data-t="btn.reset">Сбросить</span>
+                </button>
+            </div>
+            <div id="inputFields"></div>
+            <div class="validation-error" id="validationError" role="alert" aria-live="polite"></div>
+            <div class="result-block" id="resultBlock" style="display:none;" role="region" aria-label="Результат расчёта" aria-live="polite">
+                <div class="result-main">
+                    <div class="result-left">
+                        <span class="result-label" data-t="metric.result_label">Результат:</span>
+                        <span class="result-value" id="resultValue"></span>
+                    </div>
+                    <div class="result-right">
+                        <div class="insight-message" id="insightMessage"></div>
+                        <button class="copy-btn" id="copyBtn" data-t-attr-title="btn.copy_tt" title="Копировать результат (Ctrl+C)">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            <span data-t="btn.copy">Копировать</span>
+                        </button>
+                        <button class="social-share-btn" id="shareTwitterBtn" data-t-attr-title="btn.share_tw_tt" title="Поделиться расчётом в X (Twitter)" aria-label="Share on X">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                        </button>
+                        <button class="social-share-btn" id="shareLinkedinBtn" data-t-attr-title="btn.share_li_tt" title="Поделиться расчётом в LinkedIn" aria-label="Share on LinkedIn">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </button>
+                        <button class="export-btn" id="exportPngBtn" data-t-attr-title="btn.png_tt" title="Скачать карточку как PNG">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <span data-t="btn.png">PNG</span>
+                        </button>
+                        <button class="snapshot-btn" id="snapshotBtn" data-t-attr-title="btn.save_tt" title="Сохранить снимок расчёта">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                            <span data-t="btn.save">Сохранить</span>
+                        </button>
+                        <button class="example-btn" id="exampleBtn" data-t-attr-title="btn.example_tt" title="Заполнить примерными значениями" onclick="window.fillExampleValues&&window.fillExampleValues()">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>
+                            <span data-t="btn.example">Пример</span>
+                        </button>
+                        <button class="whatif-btn" id="whatifBtn" data-t-attr-title="btn.whatif_tt" title="Анализ «Что если?»">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+                            <span data-t="btn.whatif">Что если?</span>
+                        </button>
+                        <button class="goal-btn" id="goalBtn" data-t-attr-title="btn.goal_tt" title="Обратный расчёт: задайте цель — получите нужное значение" style="display:none;">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                            <span data-t="btn.goal">Цель</span>
+                        </button>
+                        <button class="forecast-btn" id="forecastBtn" data-t-attr-title="btn.forecast_tt" title="Прогноз на 6–24 мес" style="display:none;">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
+                            <span data-t="btn.forecast">Прогноз</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="whatif-panel" id="whatifPanel"></div>
+                <div class="goal-panel" id="goalPanel"></div>
+                <div class="forecast-panel" id="forecastPanel"></div>
+            </div>
+            <div class="snapshots-block" id="snapshotsBlock" style="display:none;"></div>
+            <div class="related-block" id="relatedBlock" style="display:none;"></div>
+            <div id="deepContentSlot"></div>
+        </article>
+    </main>
+    <div class="embed-footer" aria-hidden="true">
+        Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 48 продуктовых метрик с формулами
+    </div>
+</div>
+
+<!-- Help / shortcuts modal -->
+<div class="modal-overlay" id="helpOverlay" role="dialog" aria-labelledby="helpTitle" aria-modal="true">
+    <div class="modal" style="max-width:560px;">
+        <h3 id="helpTitle" style="display:flex;align-items:center;gap:0.5rem;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Горячие клавиши и фичи
+        </h3>
+        <div class="help-grid">
+            <div class="help-section">
+                <div class="help-section-title">Навигация</div>
+                <div class="help-row"><kbd>↑</kbd> / <kbd>↓</kbd><span>Метрика выше / ниже</span></div>
+                <div class="help-row"><kbd>←</kbd> / <kbd>→</kbd><span>Предыдущий / следующий раздел</span></div>
+                <div class="help-row"><kbd>/</kbd><span>Поиск метрики</span></div>
+                <div class="help-row"><kbd>Esc</kbd><span>Закрыть модалку / снять фокус</span></div>
+            </div>
+            <div class="help-section">
+                <div class="help-section-title">Действия</div>
+                <div class="help-row"><kbd>Ctrl</kbd> + <kbd>S</kbd><span>Сохранить снимок</span></div>
+                <div class="help-row"><kbd>Ctrl</kbd> + <kbd>D</kbd><span>Открыть дашборд</span></div>
+                <div class="help-row"><kbd>?</kbd><span>Эта справка</span></div>
+            </div>
+            <div class="help-section">
+                <div class="help-section-title">Что есть в инструменте</div>
+                <div class="help-row no-kbd"><span class="help-feature">🎯 Цель</span><span>Обратный расчёт — задайте цель, получите нужное входное значение</span></div>
+                <div class="help-row no-kbd"><span class="help-feature">💡 Что если?</span><span>Слайдеры для what-if анализа в реальном времени</span></div>
+                <div class="help-row no-kbd"><span class="help-feature">📦 Шаблоны</span><span>5 готовых сценариев (SaaS-стартап, зрелый SaaS, e-com, mobile, медиа)</span></div>
+                <div class="help-row no-kbd"><span class="help-feature">🌐 Отрасли</span><span>Универсальные / SaaS / E-com / Mobile / Медиа пороги</span></div>
+                <div class="help-row no-kbd"><span class="help-feature">📊 Дашборд</span><span>Все рассчитанные метрики на одной странице</span></div>
+                <div class="help-row no-kbd"><span class="help-feature">💾 Снимки</span><span>До 8 версий на метрику, сравнение, переименование</span></div>
+                <div class="help-row no-kbd"><span class="help-feature">🔗 Чистые URL</span><span>Каждая метрика — отдельная страница: <code>/ltv</code>, <code>/cac</code>...</span></div>
+                <div class="help-row no-kbd"><span class="help-feature">💱 Валюта</span><span>$ / € / ₽ / £ переключатель в шапке</span></div>
+            </div>
+        </div>
+        <div class="modal-btns" style="justify-content:flex-end;">
+            <button class="modal-cancel" id="helpClose" data-t="btn.close">Закрыть</button>
+        </div>
+    </div>
+</div>
+
+<!-- Модалка подтверждения очистки -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+        <h3 data-t="modal.clear_title">Очистить все данные?</h3>
+        <p data-t="modal.clear_text">Все введённые значения во всех метриках будут удалены. Это действие нельзя отменить.</p>
+        <div class="modal-btns">
+            <button class="modal-cancel" id="modalCancel" data-t="btn.cancel">Отмена</button>
+            <button class="modal-confirm" id="modalConfirm" data-t="btn.confirm_clear">Очистить</button>
+        </div>
+    </div>
+</div>
+
+<script src="/app.js"></script>
+
+<!-- CSV Import modal -->
+<div class="modal-overlay" id="csvImportOverlay" role="dialog" aria-labelledby="csvImportTitle" aria-modal="true">
+    <div class="modal" style="max-width:640px;">
+        <h3 id="csvImportTitle" data-t="csvimport.title">📥 Импорт значений из CSV</h3>
+        <p class="csv-import-sub" data-t="csvimport.subtitle">Вставьте данные в формате `metric_id,value` (или `metric.key=value`, по одной строке). Ключи полей: aov, freq, life, cost, customers, mrr, и т.д. Мы автозаполним все соответствующие поля.</p>
+        <textarea id="csvImportText" class="csv-import-text" rows="9" data-t-attr-placeholder="csvimport.placeholder" placeholder="Пример:&#10;mrr,100000&#10;cac,1500&#10;ltv,15000&#10;churn lost,150&#10;churn total,2000"></textarea>
+        <div class="csv-import-hint">
+            <strong>Поддерживаемые форматы:</strong> CSV (<code>key,value</code>) · TSV (<code>key\tvalue</code>) · ENV (<code>key=value</code>). Для метрик с несколькими полями используйте <code>metric_id field_key,value</code> или <code>metric_id.field_key=value</code>.
+        </div>
+        <div class="modal-btns">
+            <button class="modal-cancel" id="csvImportClose" data-t="btn.cancel">Отмена</button>
+            <button class="modal-confirm" id="csvImportRun" data-t="csvimport.parse">Распарсить и заполнить</button>
+        </div>
+    </div>
+</div>
+
+<!-- Compare 2 metrics modal -->
+<div class="modal-overlay" id="compare2Overlay" role="dialog" aria-labelledby="compare2Title" aria-modal="true">
+    <div class="modal" style="max-width:1100px;max-height:90vh;display:flex;flex-direction:column;">
+        <h3 id="compare2Title" data-t="compare2.title">🔀 Сравнение двух метрик</h3>
+        <div class="compare2-controls">
+            <span data-t="compare2.choose">Выберите вторую метрику:</span>
+            <select id="compare2Select" class="compare2-select" aria-label="Выберите вторую метрику для сравнения"></select>
+        </div>
+        <div class="compare2-grid" id="compare2Grid" style="overflow-y:auto;flex:1;"></div>
+        <div class="modal-btns" style="justify-content:flex-end;">
+            <button class="modal-cancel" id="compare2Close" data-t="btn.close">Закрыть</button>
+        </div>
+    </div>
+</div>
+
+<!-- Pricing modal — Free / Pro / Team -->
+<div class="modal-overlay" id="pricingOverlay" role="dialog" aria-labelledby="pricingTitle" aria-modal="true">
+    <div class="modal pricing-modal">
+        <h3 id="pricingTitle" data-t="pricing.title">💎 Тарифы MetricTree</h3>
+        <p class="pricing-sub" data-t="pricing.subtitle">Текущий калькулятор — бесплатный навсегда. Pro и Team — для команд и продвинутых сценариев. Сейчас собираем waitlist — оставьте email, чтобы получить ранний доступ + 50% off на первый год.</p>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-tier" data-t="pricing.tier_free">Free</div>
+                <div class="pricing-price"><span class="pricing-amount">$0</span><span class="pricing-per" data-t="pricing.forever">навсегда</span></div>
+                <ul class="pricing-feats">
+                    <li data-t="pricing.f_47">✓ Все 48 метрик</li>
+                    <li data-t="pricing.f_goal">✓ Goal mode (~32 reverse-calc)</li>
+                    <li data-t="pricing.f_whatif">✓ What-If слайдеры</li>
+                    <li data-t="pricing.f_industry">✓ Отраслевые пороги (5 индустрий)</li>
+                    <li data-t="pricing.f_3lang">✓ 3 языка (RU / EN / UZ)</li>
+                    <li data-t="pricing.f_snaps">✓ До 8 снимков на метрику (локально)</li>
+                    <li data-t="pricing.f_csv">✓ CSV экспорт</li>
+                    <li data-t="pricing.f_embed">✓ Embed-режим (iframe)</li>
+                    <li data-t="pricing.f_clean_urls">✓ Чистые URL для шаринга</li>
+                </ul>
+                <button class="pricing-cta current" disabled data-t="pricing.current_plan">Текущий план</button>
+            </div>
+
+            <div class="pricing-card pricing-card-pro">
+                <div class="pricing-badge" data-t="pricing.badge_popular">Популярный</div>
+                <div class="pricing-tier" data-t="pricing.tier_pro">Pro</div>
+                <div class="pricing-price"><span class="pricing-amount">$9</span><span class="pricing-per" data-t="pricing.per_month">/мес</span></div>
+                <div class="pricing-discount" data-t="pricing.discount_year">или $79/год — экономия 27%</div>
+                <ul class="pricing-feats">
+                    <li data-t="pricing.f_all_free">✓ Всё из Free</li>
+                    <li data-t="pricing.f_account">✓ Аккаунт + sync между устройствами</li>
+                    <li data-t="pricing.f_unlimited_snaps">✓ Безлимитные снимки</li>
+                    <li data-t="pricing.f_pdf">✓ <strong>PDF мульти-метрические отчёты</strong> (для board / investor)</li>
+                    <li data-t="pricing.f_brand_embed">✓ <strong>Custom-branded embed</strong> (свой логотип/цвет)</li>
+                    <li data-t="pricing.f_no_watermark">✓ Без MetricTree-watermark в embed</li>
+                    <li data-t="pricing.f_api_1k">✓ API 1000 calls/мес</li>
+                    <li data-t="pricing.f_email_digest">✓ Weekly email digest по твоим метрикам</li>
+                    <li data-t="pricing.f_forecast">✓ Forecast-графики на What-If (6/12 мес)</li>
+                </ul>
+                <button class="pricing-cta primary" id="proWaitlistBtn" data-t="pricing.cta_waitlist">Получить -50% при запуске →</button>
+            </div>
+
+            <div class="pricing-card">
+                <div class="pricing-tier" data-t="pricing.tier_team">Team</div>
+                <div class="pricing-price"><span class="pricing-amount">$49</span><span class="pricing-per" data-t="pricing.per_month_5seats">/мес за 5 мест</span></div>
+                <div class="pricing-discount" data-t="pricing.team_extra">$8/мес за каждое дополнительное</div>
+                <ul class="pricing-feats">
+                    <li data-t="pricing.f_all_pro">✓ Всё из Pro</li>
+                    <li data-t="pricing.f_workspace">✓ Shared workspace команды</li>
+                    <li data-t="pricing.f_audit">✓ Audit log активности</li>
+                    <li data-t="pricing.f_white_label">✓ Полный white-label embed</li>
+                    <li data-t="pricing.f_sso">✓ SSO (Google Workspace / Okta)</li>
+                    <li data-t="pricing.f_api_10k">✓ API 10 000 calls/мес</li>
+                    <li data-t="pricing.f_priority">✓ Priority support</li>
+                    <li data-t="pricing.f_custom_metrics">✓ Кастомные метрики</li>
+                </ul>
+                <button class="pricing-cta" id="teamWaitlistBtn" data-t="pricing.cta_waitlist_team">Получить -50% при запуске →</button>
+            </div>
+        </div>
+
+        <!-- Waitlist email form (Formspree) -->
+        <div class="waitlist-form" id="waitlistForm" style="display:none;">
+            <h4 data-t="waitlist.title">📬 Оставьте email — пришлём, когда Pro/Team запустятся</h4>
+            <p class="waitlist-sub" data-t="waitlist.sub">Не спамим. Один email при релизе + промокод -50% на первый год.</p>
+            <form action="/api/lead" method="POST" id="waitlistFormEl">
+                <input type="hidden" name="_subject" value="MetricTree Pro waitlist signup">
+                <input type="hidden" name="tier" id="waitlistTier" value="pro">
+                <input type="email" name="email" placeholder="your@email.com" required class="waitlist-email" autocomplete="email">
+                <select name="role" class="waitlist-role">
+                    <option value="">Кем работаете?</option>
+                    <option value="founder">Founder / CEO</option>
+                    <option value="pm">Product Manager</option>
+                    <option value="growth">Growth / Marketing</option>
+                    <option value="finance">Finance / FP&A</option>
+                    <option value="analyst">Analyst</option>
+                    <option value="investor">Investor / VC</option>
+                    <option value="other">Другое</option>
+                </select>
+                <button type="submit" class="waitlist-submit" data-t="waitlist.submit">Подписаться на waitlist</button>
+            </form>
+            <div class="waitlist-success" id="waitlistSuccess" style="display:none;" data-t="waitlist.success">✓ Спасибо! Письмо придёт за 7 дней до запуска.</div>
+        </div>
+
+        <div class="modal-btns" style="justify-content:flex-end;">
+            <button class="modal-cancel" id="pricingClose" data-t="btn.close">Закрыть</button>
+        </div>
+    </div>
+</div>
+
+<!-- About modal (also serves SEO — Googlebot sees this content in DOM) -->
+<div class="modal-overlay" id="aboutOverlay" role="dialog" aria-labelledby="aboutTitle" aria-modal="true">
+    <div class="modal about-modal">
+        <h3 id="aboutTitle" data-t="about.title">О продукте MetricTree</h3>
+        <div class="about-body">
+            <p data-t="about.intro">MetricTree — бесплатный онлайн-калькулятор 48 продуктовых метрик для продакт-менеджеров, маркетологов, аналитиков и фаундеров. Рассчитайте LTV, CAC, MRR, ARR, Churn Rate, DAU, MAU, Stickiness, ROAS, NPS, CSAT, Burn Multiple, Runway, Sales Velocity и другие метрики с формулами, отраслевыми порогами и интерпретацией результата.</p>
+
+            <h4 data-t="about.h_sections">Метрики по разделам</h4>
+            <p><strong data-t="about.s_b2c">B2C:</strong> DAU, MAU, Stickiness, Retention, LTV, CAC, LTV:CAC, ARPU, ARPDAU, Churn Rate.</p>
+            <p><strong data-t="about.s_b2b">B2B SaaS:</strong> MRR, ARR, ACV, GRR, NRR, CAC Payback, Burn Multiple, Magic Number, Rule of 40, Quick Ratio.</p>
+            <p><strong data-t="about.s_aarrr">AARRR:</strong> Acquisition, Activation, Retention, Referral (K-factor), Revenue, Time to Value.</p>
+            <p><strong data-t="about.s_finance">Finance &amp; Sales:</strong> Gross Margin, Runway, Burn Rate, Sales Velocity, Win Rate, Pipeline Coverage.</p>
+            <p><strong data-t="about.s_growth">Growth:</strong> CR, ROAS, CPC, CTR, Bounce Rate.</p>
+            <p><strong data-t="about.s_qa">QA:</strong> Bug Rate, Test Coverage, Defect Density.</p>
+            <p><strong data-t="about.s_support">Support:</strong> CSAT, NPS, FCR, SLA.</p>
+
+            <h4 data-t="about.h_features">Возможности</h4>
+            <ul>
+                <li data-t="about.feat_thresholds"><strong>Отраслевые пороги</strong> для 36 метрик (SaaS / E-commerce / Mobile / Media / универсальные).</li>
+                <li data-t="about.feat_goal"><strong>🎯 Goal mode</strong> — обратные расчёты для 16 метрик (~32 сценария): «Хочу LTV:CAC=3 — какой максимум CAC?»</li>
+                <li data-t="about.feat_whatif"><strong>💡 What-if анализ</strong> — слайдеры для каждого входа в реальном времени.</li>
+                <li data-t="about.feat_templates"><strong>📦 Шаблоны</strong> — 5 готовых сценариев (Стартап SaaS, Зрелый SaaS, E-commerce, Mobile, Медиа).</li>
+                <li data-t="about.feat_dashboard"><strong>📊 Дашборд</strong> со всеми рассчитанными метриками на одной странице.</li>
+                <li data-t="about.feat_snapshots"><strong>💾 Снимки</strong> до 8 версий на метрику с переименованием и сравнением.</li>
+                <li data-t="about.feat_urls"><strong>🔗 Чистые URL</strong> — 44 страницы с уникальной мета и JSON-LD.</li>
+                <li data-t="about.feat_currency"><strong>💱 Валюты</strong> — $ / € / ₽ / £.</li>
+                <li data-t="about.feat_embed"><strong>🔗 Embed-режим</strong> — встроить любой калькулятор через iframe одной строкой.</li>
+                <li data-t="about.feat_export"><strong>📄 Экспорт</strong> — CSV всех метрик, PNG отдельной карточки.</li>
+                <li data-t="about.feat_i18n"><strong>🌐 3 языка</strong> — русский, English, oʻzbekcha.</li>
+            </ul>
+
+            <h4 data-t="about.h_faq">Часто задаваемые вопросы</h4>
+            <p><strong data-t="about.q_ltv">Как рассчитать LTV?</strong> <span data-t="about.a_ltv">LTV = AOV × Частота покупок в год × Время жизни клиента (лет). LTV должен быть минимум в 3 раза больше CAC.</span></p>
+            <p><strong data-t="about.q_cac">Как рассчитать CAC?</strong> <span data-t="about.a_cac">CAC = Маркетинговые затраты / Количество новых клиентов. Норма окупаемости CAC для SaaS — до 12–18 месяцев.</span></p>
+            <p><strong data-t="about.q_nrr">Что такое NRR?</strong> <span data-t="about.a_nrr">NRR показывает рост выручки от существующих клиентов с учётом апселов и оттока. NRR выше 100% — рост без новых клиентов. Отличный для SaaS — выше 120%.</span></p>
+            <p><strong data-t="about.q_churn">Что такое Churn Rate?</strong> <span data-t="about.a_churn">Churn Rate — процент клиентов, покинувших продукт за период. Для SaaS норма — менее 2% в месяц, для мобильных приложений — до 10%.</span></p>
+            <p><strong data-t="about.q_burn">Что такое Burn Multiple?</strong> <span data-t="about.a_burn">Burn Multiple = Net Burn / Net New ARR (David Sacks). Меньше 1 — отлично, 1–1.5 — хорошо, больше 2 — нужно оптимизировать.</span></p>
+            <p><strong data-t="about.q_rule40">Что такое Rule of 40?</strong> <span data-t="about.a_rule40">Rule of 40 = Темп роста выручки YoY (%) + Маржа EBITDA (%). Здоровый SaaS поддерживает сумму ≥ 40%.</span></p>
+            <p><strong data-t="about.q_runway">Что такое Runway?</strong> <span data-t="about.a_runway">Runway = Кэш / Среднемесячное сжигание. Сколько месяцев компания проживёт. Менее 6 — критично, 12–18 — норма.</span></p>
+
+            <h4 data-t="about.h_author">Автор</h4>
+            <p data-t="about.author">Создано <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank" rel="noopener">Родионом Латыповым</a> — BizDev, Sales, Product, Troubleshooter, Advisor, Consultant.</p>
+            <p><a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank" rel="noopener">GitHub</a> · MIT License · <span data-t="about.no_signup">без регистрации, без трекинга персональных данных</span></p>
+
+            <h4 data-t="about.h_pricing">Тарифы</h4>
+            <p data-t="about.pricing_intro">Калькулятор бесплатный навсегда. Pro и Team — для команд и продвинутых сценариев (PDF-отчёты, custom-branded embed, API, sync между устройствами, weekly digest).</p>
+            <p><button class="about-pricing-cta" id="aboutPricingBtn" data-t="about.pricing_cta">💎 Посмотреть тарифы и записаться в waitlist →</button></p>
+
+            <h4 data-t="about.h_newsletter">📬 Метрика недели</h4>
+            <p data-t="about.newsletter_intro">Раз в неделю — глубокий разбор одной метрики: история, кейсы, anti-patterns, отраслевые бенчмарки. Бесплатно, без спама.</p>
+            <form action="/api/lead" method="POST" id="newsletterFormAbout" class="newsletter-inline">
+                <input type="hidden" name="_subject" value="MetricTree Newsletter signup (about modal)">
+                <input type="hidden" name="source" value="about-modal">
+                <input type="email" name="email" placeholder="your@email.com" required class="newsletter-email" autocomplete="email">
+                <button type="submit" class="newsletter-submit" data-t="newsletter.subscribe">Подписаться</button>
+            </form>
+            <div class="newsletter-success" id="newsletterAboutSuccess" style="display:none;" data-t="newsletter.success">✓ Подписка оформлена. Первый выпуск придёт через несколько дней.</div>
+        </div>
+        <div class="modal-btns" style="justify-content:flex-end;">
+            <button class="modal-cancel" id="aboutClose" data-t="btn.close">Закрыть</button>
+        </div>
+    </div>
+</div>
+
+<footer class="site-footer container" role="contentinfo">
+    <div class="site-footer-brand">
+        <span class="site-footer-brand-mark"></span>
+        MetricTree · 48 product metrics calculator
+    </div>
+    <div class="site-footer-links">
+        <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="/blog/">Blog</a>
+        <a href="/quiz">Quiz</a>
+        <a href="/glossary">Glossary</a>
+        <a href="/industries/">Industries</a>
+        <a href="/api-docs">API</a>
+        <a href="/embed">Embed</a>
+        <a href="/vs-profitwell">vs Profitwell</a>
+        <a href="/press">Press kit</a>
+        <a href="/changelog">Changelog</a>
+        <a href="#" id="footerAbout" data-t="footer.about">О продукте</a>
+        <a href="#" id="footerPricing" data-t="footer.pricing">Pro / Team</a>
+        <a href="#" id="footerHelp" data-t="footer.help">Справка</a>
+        <a href="/benchmarks" data-t="footer.cheatsheet">PDF-шпаргалка</a>
+    </div>
+    <div class="footer-leadmagnet" style="width:100%;max-width:560px;margin:0.5rem auto 0;text-align:center;">
+        <strong style="display:block;font-size:0.9rem;color:var(--text-1);margin-bottom:0.5rem;" data-t="cheatsheet.title">📥 Бесплатная PDF-шпаргалка: 48 метрик с формулами и порогами</strong>
+        <form action="/api/lead" method="POST" id="cheatsheetFormEl" style="display:flex;gap:0.45rem;flex-wrap:wrap;justify-content:center;">
+            <input type="hidden" name="source" value="pdf_benchmarks">
+            <input type="hidden" name="_subject" value="MetricTree PDF cheat sheet download">
+            <input type="email" name="email" required placeholder="you@company.com" aria-label="Email" data-t-attr-placeholder="cheatsheet.placeholder" autocomplete="email" style="flex:1;min-width:200px;padding:0.55rem 0.7rem;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg);color:var(--text-1);font-size:0.9rem;">
+            <button type="submit" data-t="cheatsheet.cta" style="padding:0.55rem 1rem;border:0;border-radius:var(--radius-sm);background:var(--accent);color:#fff;font-weight:600;font-size:0.9rem;cursor:pointer;">Получить PDF →</button>
+        </form>
+        <div id="cheatsheetSuccess" style="display:none;font-size:0.88rem;margin-top:0.5rem;">
+            <span data-t="cheatsheet.success">✓ Готово!</span> <a href="/benchmarks" target="_blank" rel="noopener" style="color:var(--accent);" data-t="cheatsheet.open">Открыть шпаргалку и сохранить в PDF →</a>
+        </div>
+    </div>
+    <form action="/api/lead" method="POST" id="newsletterFormFooter" class="site-footer-news">
+        <input type="hidden" name="_subject" value="MetricTree Newsletter signup (footer)">
+        <input type="hidden" name="source" value="footer">
+        <input type="email" name="email" placeholder="📬 Метрика недели — email" required autocomplete="email">
+        <button type="submit" data-t="footer.subscribe">Подписаться</button>
+    </form>
+</footer>
+</body>
+</html>
