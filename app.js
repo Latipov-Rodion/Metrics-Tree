@@ -8,6 +8,17 @@ window.I18N_UI = {
     'header.subtitle_role': 'BizDev, Sales, Product, Troubleshooter, Advisor, Consultant',
     'header.creator': 'Creator:',
     'btn.dashboard': 'Dashboard',
+    'btn.close': 'Close',
+    'btn.ai_insight': 'AI diagnosis',
+    'btn.ai_insight_tt': 'AI finds your #1 growth lever from your metrics',
+    'ai.loading': 'Analyzing your metrics…',
+    'ai.error': 'Could not get a diagnosis. Try again.',
+    'ai.no_metrics': 'Fill in some metrics first (Churn, Runway, LTV:CAC) to get a diagnosis.',
+    'ai.lever_label': 'Fix this first',
+    'ai.projection_label': 'Projection',
+    'ai.secondary_label': 'Then look at',
+    'ai.source_ai': 'AI analysis',
+    'ai.source_fallback': 'Rule-based analysis',
     'btn.share': 'Share',
     'btn.share_text': 'Share',
     'btn.copied': '✓ Copied',
@@ -246,6 +257,17 @@ window.I18N_UI = {
     'header.subtitle_role': 'BizDev, Sales, Product, Troubleshooter, Advisor, Consultant',
     'header.creator': 'Yaratuvchi:',
     'btn.dashboard': 'Boshqaruv paneli',
+    'btn.close': 'Yopish',
+    'btn.ai_insight': 'AI-tashxis',
+    'btn.ai_insight_tt': 'AI metrikalaringiz bo‘yicha asosiy o‘sish richagini topadi',
+    'ai.loading': 'Metrikalar tahlil qilinmoqda…',
+    'ai.error': 'Tashxis olinmadi. Qayta urinib ko‘ring.',
+    'ai.no_metrics': 'Avval ba’zi metrikalarni to‘ldiring (Churn, Runway, LTV:CAC).',
+    'ai.lever_label': 'Avval shuni tuzating',
+    'ai.projection_label': 'Prognoz',
+    'ai.secondary_label': 'Keyin qarang',
+    'ai.source_ai': 'AI tahlili',
+    'ai.source_fallback': 'Qoidaga asoslangan tahlil',
     'btn.share': 'Ulashish',
     'btn.share_text': 'Ulashish',
     'btn.copied': '✓ Nusxalandi',
@@ -4560,6 +4582,106 @@ window._tTooltip = function(ruText) {
     document.getElementById('dashboardBtn').addEventListener('click', openDashboard);
     document.getElementById('dashboardClose').addEventListener('click', closeDashboard);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDashboard(); });
+
+    // ---- AI-ДИАГНОСТИКА ("Что чинить первым") ----
+    // Gathers the currently-computed metric values from the dashboard state and
+    // asks /api/insight for the single highest-leverage fix. Works with or
+    // without ANTHROPIC_API_KEY on the server (rule-based fallback otherwise).
+    function gatherDashboardMetrics() {
+        const out = {};
+        Object.values(metricsData).forEach(section => {
+            section.metrics.forEach(metric => {
+                const saved = storedValues[metric.id] || {};
+                if (!metric.inputs || metric.inputs.length === 0) return;
+                const vals = {};
+                let allFilled = true;
+                metric.inputs.forEach(inp => {
+                    const raw = saved[inp.key];
+                    const num = raw !== undefined && raw !== ''
+                        ? parseFloat(String(raw).replace(/[  ]/g, '')) : null;
+                    if (num === null || isNaN(num)) allFilled = false;
+                    vals[inp.key] = num;
+                });
+                if (!allFilled) return;
+                try {
+                    const result = metric.calculate(vals);
+                    const n = parseFloat(result);
+                    if (result !== null && isFinite(n)) out[metric.id] = n;
+                } catch (e) {}
+            });
+        });
+        return out;
+    }
+
+    function escapeAiHtml(s) {
+        return String(s == null ? '' : s)
+            .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function renderAiInsight(data) {
+        const panel = document.getElementById('aiInsightPanel');
+        const sourceTxt = data.source === 'ai'
+            ? t('ai.source_ai', 'AI-анализ')
+            : t('ai.source_fallback', 'Анализ по правилам');
+        let html = '<div class="ai-accent"></div>';
+        html += `<div class="ai-insight-lever-label">${escapeAiHtml(t('ai.lever_label', 'Чинить первым'))}</div>`;
+        html += `<div class="ai-insight-lever">${escapeAiHtml(data.lever || '')}</div>`;
+        if (data.diagnosis) html += `<div class="ai-insight-diagnosis">${escapeAiHtml(data.diagnosis)}</div>`;
+        if (data.projection) {
+            html += `<div class="ai-insight-projection"><b>${escapeAiHtml(t('ai.projection_label', 'Прогноз'))}:</b> ${escapeAiHtml(data.projection)}</div>`;
+        }
+        if (Array.isArray(data.secondary) && data.secondary.length) {
+            html += `<div class="ai-insight-secondary-label">${escapeAiHtml(t('ai.secondary_label', 'Затем посмотрите'))}</div>`;
+            html += '<div class="ai-insight-secondary">' +
+                data.secondary.map(s => `<span>${escapeAiHtml(s)}</span>`).join('') + '</div>';
+        }
+        html += `<div class="ai-insight-source">${escapeAiHtml(sourceTxt)}</div>`;
+        panel.innerHTML = html;
+        panel.style.display = '';
+    }
+
+    let aiInsightLoading = false;
+    async function runAiInsight() {
+        if (aiInsightLoading) return;
+        const panel = document.getElementById('aiInsightPanel');
+        const btn = document.getElementById('aiInsightBtn');
+        saveCurrentValues();
+        const metrics = gatherDashboardMetrics();
+
+        if (Object.keys(metrics).length === 0) {
+            panel.innerHTML = `<div class="ai-insight-error">${escapeAiHtml(t('ai.no_metrics', 'Сначала заполните метрики (Churn, Runway, LTV:CAC), чтобы получить диагноз.'))}</div>`;
+            panel.style.display = '';
+            return;
+        }
+
+        aiInsightLoading = true;
+        if (btn) btn.disabled = true;
+        panel.style.display = '';
+        panel.innerHTML = `<div class="ai-insight-loading"><span class="ai-insight-spinner"></span>${escapeAiHtml(t('ai.loading', 'Анализируем ваши метрики…'))}</div>`;
+
+        const lang = window._currentLang ? window._currentLang() : 'ru';
+        try {
+            const resp = await fetch('/api/insight', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ metrics, lang }),
+            });
+            const data = await resp.json();
+            if (!resp.ok || !data || !data.lever) {
+                throw new Error('bad response');
+            }
+            renderAiInsight(data);
+            if (window.track) window.track('ai_insight', { source: data.source, lang });
+        } catch (e) {
+            panel.innerHTML = `<div class="ai-insight-error">${escapeAiHtml(t('ai.error', 'Не удалось получить диагноз. Попробуйте ещё раз.'))}</div>`;
+        } finally {
+            aiInsightLoading = false;
+            if (btn) btn.disabled = false;
+        }
+    }
+
+    const aiInsightBtn = document.getElementById('aiInsightBtn');
+    if (aiInsightBtn) aiInsightBtn.addEventListener('click', runAiInsight);
 
     // ---- WHAT-IF ANALYSIS ----
     const whatifBtn = document.getElementById('whatifBtn');

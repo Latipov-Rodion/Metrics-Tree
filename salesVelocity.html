@@ -348,11 +348,17 @@
         <div class="container">
             <div class="dashboard-header">
                 <div class="dashboard-title">Unit-economics дашборд</div>
-                <button class="dashboard-close" id="dashboardClose">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                    Закрыть
-                </button>
+                <div class="dashboard-header-actions">
+                    <button class="ai-insight-btn" id="aiInsightBtn" data-t-attr-title="btn.ai_insight_tt" title="ИИ найдёт главный рычаг роста по вашим метрикам">
+                        🤖 <span data-t="btn.ai_insight">AI-диагностика</span>
+                    </button>
+                    <button class="dashboard-close" id="dashboardClose">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        <span data-t="btn.close">Закрыть</span>
+                    </button>
+                </div>
             </div>
+            <div id="aiInsightPanel" class="ai-insight-panel" style="display:none;"></div>
             <div id="dashboardContent"></div>
         </div>
     </div>

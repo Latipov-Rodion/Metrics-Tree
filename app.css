@@ -479,6 +479,56 @@
         }
         .dashboard-empty-state p { font-size: 0.9rem; margin-bottom: 0.5rem; }
         .dashboard-empty-state small { font-size: 0.78rem; }
+
+        /* ----- AI-диагностика ----- */
+        .dashboard-header-actions { display: inline-flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .ai-insight-btn {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            padding: 0.4rem 0.9rem; background: var(--accent); color: #fff;
+            border: 1px solid var(--accent); border-radius: var(--radius-sm);
+            font-size: 0.8rem; font-weight: 600; cursor: pointer;
+            transition: opacity var(--transition), filter var(--transition);
+        }
+        .ai-insight-btn:hover { filter: brightness(1.08); }
+        .ai-insight-btn:disabled { opacity: 0.6; cursor: default; filter: none; }
+        .ai-insight-panel {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius-md); padding: 1rem 1.1rem; margin-bottom: 1.25rem;
+            position: relative; overflow: hidden;
+        }
+        .ai-insight-panel .ai-accent { position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); }
+        .ai-insight-loading { display: flex; align-items: center; gap: 0.6rem; color: var(--text-2); font-size: 0.85rem; }
+        .ai-insight-spinner {
+            width: 15px; height: 15px; border: 2px solid var(--border);
+            border-top-color: var(--accent); border-radius: 50%;
+            animation: ai-spin 0.7s linear infinite;
+        }
+        @keyframes ai-spin { to { transform: rotate(360deg); } }
+        .ai-insight-lever-label {
+            font-size: 0.66rem; font-weight: 700; letter-spacing: 0.07em;
+            text-transform: uppercase; color: var(--accent); margin-bottom: 0.3rem;
+        }
+        .ai-insight-lever { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3; }
+        .ai-insight-diagnosis { font-size: 0.85rem; color: var(--text-2); line-height: 1.5; margin-bottom: 0.6rem; }
+        .ai-insight-projection {
+            font-size: 0.82rem; color: var(--text); line-height: 1.45;
+            background: var(--bg); border-radius: var(--radius-sm);
+            padding: 0.5rem 0.7rem; margin-bottom: 0.6rem;
+        }
+        .ai-insight-projection b { font-weight: 700; }
+        .ai-insight-secondary-label {
+            font-size: 0.66rem; font-weight: 700; letter-spacing: 0.06em;
+            text-transform: uppercase; color: var(--text-3); margin-bottom: 0.3rem;
+        }
+        .ai-insight-secondary { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .ai-insight-secondary span {
+            font-size: 0.74rem; color: var(--text-2);
+            background: var(--bg); border: 1px solid var(--border);
+            border-radius: 999px; padding: 0.2rem 0.6rem;
+        }
+        .ai-insight-source { margin-top: 0.7rem; font-size: 0.68rem; color: var(--text-3); }
+        .ai-insight-error { font-size: 0.85rem; color: var(--red); }
+
         @media (max-width: 480px) {
             .dashboard-grid { grid-template-columns: repeat(2, 1fr); }
             .templates-grid { grid-template-columns: 1fr; }
