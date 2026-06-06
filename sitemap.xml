@@ -109,4 +109,15 @@
   <url><loc>https://metricstree.vercel.app/uz/runway</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://metricstree.vercel.app/uz/burnMultiple</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://metricstree.vercel.app/uz/nps</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <!-- Batch +10 metrics -->
+  <url><loc>https://metricstree.vercel.app/wau</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://metricstree.vercel.app/netNewMrr</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://metricstree.vercel.app/contributionMargin</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://metricstree.vercel.app/gmv</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://metricstree.vercel.app/takeRate</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://metricstree.vercel.app/quotaAttainment</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://metricstree.vercel.app/cpm</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://metricstree.vercel.app/cartAbandonment</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://metricstree.vercel.app/mer</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://metricstree.vercel.app/ces</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>

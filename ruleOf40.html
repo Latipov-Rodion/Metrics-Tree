@@ -3003,7 +3003,28 @@ window.I18N_M = {
   fcr:        { en: { name: 'FCR', formula: '(Resolved on first contact / All tickets) × 100%', description: 'First Contact Resolution — percentage of tickets resolved on the first contact.' },
                 uz: { name: 'FCR', formula: '(Birinchi murojaatda hal qilinganlar / Barcha ticketlar) × 100%', description: 'First Contact Resolution — birinchi murojaatda hal qilingan murojaatlar foizi.' } },
   sla:        { en: { name: 'SLA', formula: '(Tickets within SLA / All) × 100%', description: 'Service Level Agreement — share of tickets handled within agreed-upon timeframes.' },
-                uz: { name: 'SLA', formula: '(SLA ichidagi ticketlar / Barchasi) × 100%', description: 'Service Level Agreement — kelishilgan muddatlar ichida ko‘rib chiqilgan murojaatlar ulushi.' } }
+                uz: { name: 'SLA', formula: '(SLA ichidagi ticketlar / Barchasi) × 100%', description: 'Service Level Agreement — kelishilgan muddatlar ichida ko‘rib chiqilgan murojaatlar ulushi.' } },
+  // — Batch +10 —
+  wau:        { en: { name: 'WAU', formula: 'Unique users in the last 7 days', description: 'Weekly Active Users — unique users active in the last 7 days. The middle ground between DAU and MAU.' },
+                uz: { name: 'WAU', formula: 'Oxirgi 7 kundagi noyob foydalanuvchilar', description: 'Weekly Active Users — oxirgi 7 kunda faol noyob foydalanuvchilar. DAU va MAU orasidagi oraliq.' } },
+  netNewMrr:  { en: { name: 'Net New MRR', formula: 'New + Expansion − Churned − Contraction MRR', description: 'Net monthly change in MRR: new + expansion minus churn and downgrades. The core pulse of subscription growth.' },
+                uz: { name: 'Net New MRR', formula: 'New + Expansion − Churned − Contraction MRR', description: 'MRR ning oylik sof o‘zgarishi: yangi + kengayish minus churn va daungreydlar. Obuna o‘sishining asosiy puls metrikasi.' } },
+  contributionMargin: { en: { name: 'Contribution Margin', formula: '(Revenue − Variable costs) / Revenue × 100%', description: 'Share of revenue left after variable costs — how much each sale contributes to fixed costs and profit.' },
+                        uz: { name: 'Contribution Margin', formula: '(Tushum − O‘zgaruvchan xarajatlar) / Tushum × 100%', description: 'O‘zgaruvchan xarajatlardan keyin qoladigan tushum ulushi — har bir sotuv qat‘iy xarajat va foydaga qancha hissa qo‘shishi.' } },
+  gmv:        { en: { name: 'GMV', formula: 'Orders × Average Order Value', description: 'Gross Merchandise Value — total value of goods sold over a period before fees and returns. Scale metric for marketplaces and e-commerce.' },
+                uz: { name: 'GMV', formula: 'Buyurtmalar × O‘rtacha chek (AOV)', description: 'Gross Merchandise Value — davr davomida sotilgan tovarlarning umumiy qiymati (komissiya va qaytarishlardan oldin). Marketpleys va e-commerce uchun masshtab metrikasi.' } },
+  takeRate:   { en: { name: 'Take Rate', formula: '(Platform revenue / GMV) × 100%', description: 'Share of GMV a marketplace keeps as revenue (commissions, ads, subscriptions, payment fees). The platform’s main monetization lever.' },
+                uz: { name: 'Take Rate', formula: '(Platforma tushumi / GMV) × 100%', description: 'Marketpleys o‘ziga tushum sifatida qoldiradigan GMV ulushi (komissiya, reklama, obuna, to‘lov yig‘imlari). Platformaning asosiy monetizatsiya richagi.' } },
+  quotaAttainment: { en: { name: 'Quota Attainment', formula: '(Actual sales / Quota) × 100%', description: 'Percentage of a sales rep or team hitting their target. Core health and quota-realism indicator for a sales org.' },
+                     uz: { name: 'Quota Attainment', formula: '(Haqiqiy sotuv / Kvota) × 100%', description: 'Sotuvchi yoki jamoaning rejani bajarish foizi. Sotuv tashkilotining salomatligi va kvota realligi ko‘rsatkichi.' } },
+  cpm:        { en: { name: 'CPM', formula: '(Ad spend / Impressions) × 1000', description: 'Cost Per Mille — cost of 1000 ad impressions. Core reach-cost metric for display and social advertising.' },
+                uz: { name: 'CPM', formula: '(Reklama xarajati / Ko‘rsatishlar) × 1000', description: 'Cost Per Mille — 1000 ta reklama ko‘rsatish narxi. Displey va ijtimoiy reklama uchun asosiy qamrov narxi metrikasi.' } },
+  cartAbandonment: { en: { name: 'Cart Abandonment Rate', formula: '(1 − Purchases / Carts) × 100%', description: 'Share of created carts that did not end in a purchase. A key checkout-friction indicator in e-commerce.' },
+                     uz: { name: 'Cart Abandonment Rate', formula: '(1 − Xaridlar / Savatlar) × 100%', description: 'Xaridga aylanmagan savatlar ulushi. E-commerce’da checkout ishqalanishining asosiy ko‘rsatkichi.' } },
+  mer:        { en: { name: 'MER (Marketing Efficiency Ratio)', formula: 'Total revenue / Total marketing spend', description: 'Blended marketing efficiency — revenue per $1 of total ad spend across the whole business, not a single campaign.' },
+                uz: { name: 'MER (Marketing Efficiency Ratio)', formula: 'Umumiy tushum / Umumiy marketing xarajati', description: 'Blended marketing samaradorligi — butun biznes bo‘yicha har $1 reklama xarajatiga tushum, alohida kampaniya emas.' } },
+  ces:        { en: { name: 'CES (Customer Effort Score)', formula: 'Sum of effort ratings / Responses (1–7)', description: 'Customer Effort Score — how easy it was for the customer to resolve their issue (1–7 scale). Strong loyalty predictor.' },
+                uz: { name: 'CES (Customer Effort Score)', formula: 'Harakat baholari yig‘indisi / Javoblar (1–7)', description: 'Customer Effort Score — mijozga muammosini hal qilish qanchalik oson bo‘lgani (1–7 shkala). Sodiqlikning kuchli prediktori.' } }
 };
 
 // ============================================================
@@ -3011,6 +3032,31 @@ window.I18N_M = {
 // 132 unique insight messages × {en, uz}. Russian → fallback.
 // ============================================================
 window.I18N_INSIGHTS = {
+  // — Batch +10 (WAU, Net New MRR, Contribution Margin, GMV, Take Rate, Quota Attainment, CPM, Cart Abandonment, MER, CES) —
+  'WAU — счётчик; смотрите DAU/WAU (внутринедельная липкость) и WAU/MAU. Для рабочих инструментов WAU ближе к MAU, для соцсетей — к DAU.': { en: 'WAU is a counter; look at DAU/WAU (intra-week stickiness) and WAU/MAU. For work tools WAU is closer to MAU; for social apps, closer to DAU.', uz: 'WAU — hisoblagich; DAU/WAU (hafta ichidagi stickiness) va WAU/MAU ni qarang. Ish vositalari uchun WAU MAU ga, ijtimoiy ilovalar uchun DAU ga yaqin.' },
+  'Отрицательный Net New MRR — выручка сжимается: отток и даунгрейды перевешивают рост.': { en: 'Negative Net New MRR — revenue is contracting: churn and downgrades outweigh growth.', uz: 'Salbiy Net New MRR — tushum qisqarmoqda: churn va daungreydlar o‘sishdan ustun.' },
+  'Околонулевой прирост — рост съедается оттоком. Работайте над retention и expansion.': { en: 'Near-zero growth — growth is eaten by churn. Work on retention and expansion.', uz: 'Nolga yaqin o‘sish — o‘sishni churn yeb qo‘ymoqda. Retention va expansion ustida ishlang.' },
+  'Положительный прирост MRR. Следите за долей Expansion — она удешевляет рост (см. Quick Ratio).': { en: 'Positive MRR growth. Watch the Expansion share — it makes growth cheaper (see Quick Ratio).', uz: 'Musbat MRR o‘sishi. Expansion ulushini kuzating — u o‘sishni arzonlashtiradi (Quick Ratio ga qarang).' },
+  'Низкая маржинальность — заказ почти не покрывает постоянные расходы. Поднимайте цены или режьте переменные затраты.': { en: 'Low contribution margin — each order barely covers fixed costs. Raise prices or cut variable costs.', uz: 'Past kontribyutsion marja — har bir buyurtma qat‘iy xarajatlarni zo‘rg‘a qoplaydi. Narxni oshiring yoki o‘zgaruvchan xarajatlarni qisqartiring.' },
+  'Средняя маржа. Норма для retail/marketplace; для SaaS должно быть выше.': { en: 'Average margin. Normal for retail/marketplace; for SaaS it should be higher.', uz: 'O‘rtacha marja. Retail/marketpleys uchun normal; SaaS uchun yuqoriroq bo‘lishi kerak.' },
+  'Высокая контрибуционная маржа — здоровая unit-экономика и быстрый выход в прибыль.': { en: 'High contribution margin — healthy unit economics and a fast path to profit.', uz: 'Yuqori kontribyutsion marja — sog‘lom unit-iqtisodiyot va foydaga tez yo‘l.' },
+  'GMV — оборот, а не выручка. Реальный доход платформы = GMV × Take Rate. Смотрите рост GMV вместе с маржинальностью.': { en: 'GMV is turnover, not revenue. Real platform income = GMV × Take Rate. Watch GMV growth alongside margin.', uz: 'GMV — aylanma, tushum emas. Platformaning haqiqiy daromadi = GMV × Take Rate. GMV o‘sishini marja bilan birga kuzating.' },
+  'Низкий take rate. Норма для high-GMV категорий (электроника, трэвел). Ищите доп-монетизацию: реклама, подписки, финуслуги.': { en: 'Low take rate. Normal for high-GMV categories (electronics, travel). Add monetization: ads, subscriptions, fintech.', uz: 'Past take rate. Yuqori GMV toifalari uchun normal (elektronika, sayohat). Qo‘shimcha monetizatsiya qidiring: reklama, obuna, fintech.' },
+  'Здоровый take rate для маркетплейса — баланс монетизации и удержания продавцов.': { en: 'Healthy marketplace take rate — a balance of monetization and seller retention.', uz: 'Marketpleys uchun sog‘lom take rate — monetizatsiya va sotuvchilarni ushlab turish muvozanati.' },
+  'Высокий take rate — риск ухода продавцов в прямые каналы. Оправдан только при сильном спросе и lock-in.': { en: 'High take rate — risk of sellers leaving for direct channels. Justified only with strong demand and lock-in.', uz: 'Yuqori take rate — sotuvchilar to‘g‘ridan-to‘g‘ri kanallarga ketishi xavfi. Faqat kuchli talab va lock-in bilan oqlanadi.' },
+  'Недовыполнение квоты. Проверьте качество pipeline, enablement и реалистичность плана.': { en: 'Quota miss. Check pipeline quality, enablement, and whether the target is realistic.', uz: 'Kvota bajarilmadi. Pipeline sifati, enablement va reja realligini tekshiring.' },
+  'Близко к плану. Если так у большинства репов — квоты, возможно, завышены.': { en: 'Close to target. If most reps land here, the quota may be set too high.', uz: 'Rejaga yaqin. Agar ko‘pchilik repda shunday bo‘lsa, kvota juda yuqori bo‘lishi mumkin.' },
+  'Квота выполнена. Если 90%+ репов перевыполняют — планку стоит поднять.': { en: 'Quota hit. If 90%+ of reps overachieve, raise the bar.', uz: 'Kvota bajarildi. Agar replarning 90%+ i ortig‘i bilan bajarsa, plankani oshiring.' },
+  'CPM — стоимость охвата, а не результата. Оценивайте вместе с CTR и CR: дешёвый CPM при низком CTR дороже в пересчёте на клиента (CAC).': { en: 'CPM is the cost of reach, not results. Judge it with CTR and CR: a cheap CPM with low CTR is more expensive per customer (CAC).', uz: 'CPM — qamrov narxi, natija emas. Uni CTR va CR bilan baholang: past CTR bilan arzon CPM mijoz hisobiga qimmatroq (CAC).' },
+  'Высокий процент брошенных корзин. Уберите трение: гость-чекаут, прозрачная доставка, больше способов оплаты, email-возвраты.': { en: 'High cart abandonment. Remove friction: guest checkout, transparent shipping, more payment options, email recovery.', uz: 'Savat tashlash yuqori. Ishqalanishni oling: mehmon checkout, shaffof yetkazib berish, ko‘proq to‘lov usullari, email qaytarish.' },
+  'Около среднего по индустрии (~70%). Тестируйте упрощение чекаута и ретаргетинг.': { en: 'Around the industry average (~70%). Test a simpler checkout and retargeting.', uz: 'Soha o‘rtachasiga yaqin (~70%). Soddaroq checkout va retargetingni sinab ko‘ring.' },
+  'Низкая для e-commerce доля брошенных корзин — чекаут работает хорошо.': { en: 'Low cart abandonment for e-commerce — checkout works well.', uz: 'E-commerce uchun past savat tashlash — checkout yaxshi ishlaydi.' },
+  'Маркетинг съедает маржу. При MER <2 в DTC рост обычно убыточен — пересмотрите каналы и AOV.': { en: 'Marketing eats the margin. With MER <2 in DTC, growth is usually unprofitable — review channels and AOV.', uz: 'Marketing marjani yeydi. DTC’da MER <2 bo‘lsa, o‘sish odatda zararli — kanallar va AOV ni qayta ko‘ring.' },
+  'Норма. Следите за трендом MER и связкой с контрибуционной маржой.': { en: 'Normal. Watch the MER trend and its link to contribution margin.', uz: 'Normal. MER tendentsiyasi va uning kontribyutsion marja bilan bog‘liqligini kuzating.' },
+  'Эффективный blended-маркетинг. Можно осторожно масштабировать бюджет, пока MER держится.': { en: 'Efficient blended marketing. You can carefully scale budget while MER holds.', uz: 'Samarali blended marketing. MER ushlab turilsa, byudjetni ehtiyotkorlik bilan masshtablash mumkin.' },
+  'Высокое усилие клиента — сильный предиктор оттока. Убирайте трение в саппорте и продукте.': { en: 'High customer effort — a strong churn predictor. Remove friction in support and product.', uz: 'Mijoz harakati yuqori — churn ning kuchli prediktori. Support va mahsulotdagi ishqalanishni oling.' },
+  'Норма. Низкое усилие удерживает лучше, чем «восторг» — ищите узкие места.': { en: 'Normal. Low effort retains better than “delight” — look for bottlenecks.', uz: 'Normal. Past harakat “zavq”dan ko‘ra yaxshiroq ushlab turadi — to‘siqlarni qidiring.' },
+  'Клиентам легко — отличный предиктор лояльности и повторных покупок.': { en: 'Customers find it easy — an excellent predictor of loyalty and repeat purchases.', uz: 'Mijozlarga oson — sodiqlik va takroriy xaridlarning ajoyib prediktori.' },
   // — DAU / MAU / Acquisition / Revenue / ARR / MRR / LTV (advisory) —
   'DAU — счётчик; «норма» зависит от стадии. Смотрите Stickiness (DAU/MAU) и MoM-рост.': { en: 'DAU is a counter; the "norm" depends on the stage. Look at Stickiness (DAU/MAU) and MoM growth.', uz: 'DAU — bu hisoblagich; "norma" bosqichga bog‘liq. Stickiness (DAU/MAU) va MoM o‘sishni qarang.' },
   'MAU — счётчик; контекст важен. Сравнивайте через Stickiness, Retention и YoY-рост.': { en: 'MAU is a counter; context matters. Compare via Stickiness, Retention and YoY growth.', uz: 'MAU — hisoblagich; kontekst muhim. Stickiness, Retention va YoY o‘sish orqali taqqoslang.' },
@@ -4079,6 +4125,16 @@ window._tTooltip = function(ruText) {
                         if (val > 5) return { color: '#FFC107', text: 'Отток выше среднего. Улучшайте поддержку и продукт.' };
                         return { color: '#4CAF50', text: 'Низкий отток — отличная лояльность!' };
                     }
+                },
+                {
+                    id: 'wau', name: 'WAU',
+                    formula: 'Уникальные пользователи за неделю',
+                    description: 'Weekly Active Users — уникальные пользователи, взаимодействовавшие с продуктом за последние 7 дней. Промежуточное звено между DAU и MAU.',
+                    threshold: 'Метрика-счётчик. Оценивайте через DAU/WAU и WAU/MAU',
+                    inputs: [{ label: 'Уникальные пользователи (неделя)', placeholder: '32000', key: 'users', min: 0 }],
+                    calculate: v => { const u = sanitizeNumber(v.users); return u !== null ? u : null; },
+                    unit: 'чел',
+                    insight: val => ({ color: '#2A6DF4', text: 'WAU — счётчик; смотрите DAU/WAU (внутринедельная липкость) и WAU/MAU. Для рабочих инструментов WAU ближе к MAU, для соцсетей — к DAU.' })
                 }
             ]
         },
@@ -4300,6 +4356,32 @@ window._tTooltip = function(ruText) {
                         if (val > 24) return { color: '#F44336', text: 'Окупаемость > 2 лет — слишком долго.' };
                         if (val > 12) return { color: '#FFC107', text: 'Окупаемость > года — нормально для B2B.' };
                         return { color: '#4CAF50', text: 'Быстрая окупаемость — отлично!' };
+                    }
+                },
+                {
+                    id: 'netNewMrr', name: 'Net New MRR',
+                    formula: 'New + Expansion − Churned − Contraction MRR',
+                    description: 'Чистый прирост MRR за месяц: новые + расширение минус отток и даунгрейды. Главный пульс роста подписочной выручки.',
+                    threshold: 'Должен быть положительным и расти MoM. Отрицательный = выручка сжимается',
+                    inputs: [
+                        { label: 'New MRR (новые клиенты), $', placeholder: '40000', key: 'newMrr', min: 0, help: 'MRR от новых платящих клиентов за месяц.' },
+                        { label: 'Expansion MRR (апселы), $', placeholder: '12000', key: 'expansion', min: 0, help: 'Прирост MRR от апгрейдов и доп-мест существующих клиентов.' },
+                        { label: 'Churned MRR (отток), $', placeholder: '9000', key: 'churned', min: 0, help: 'MRR полностью ушедших клиентов.' },
+                        { label: 'Contraction MRR (даунгрейды), $', placeholder: '3000', key: 'contraction', min: 0, help: 'Снижение MRR от даунгрейдов без полного ухода.' }
+                    ],
+                    calculate: v => {
+                        const n = sanitizeNumber(v.newMrr);
+                        const e = sanitizeNumber(v.expansion);
+                        const c = sanitizeNumber(v.churned);
+                        const ct = sanitizeNumber(v.contraction);
+                        if (n === null || e === null || c === null || ct === null) return null;
+                        return (n + e - c - ct).toFixed(2);
+                    },
+                    unit: '$',
+                    insight: val => {
+                        if (val < 0) return { color: '#F44336', text: 'Отрицательный Net New MRR — выручка сжимается: отток и даунгрейды перевешивают рост.' };
+                        if (val < 1) return { color: '#FFC107', text: 'Околонулевой прирост — рост съедается оттоком. Работайте над retention и expansion.' };
+                        return { color: '#4CAF50', text: 'Положительный прирост MRR. Следите за долей Expansion — она удешевляет рост (см. Quick Ratio).' };
                     }
                 }
             ]
@@ -4603,6 +4685,90 @@ window._tTooltip = function(ruText) {
                         if (val < 20) return { color: '#4CAF50', text: 'Хороший рост — большинство YC-стартапов в этом диапазоне.' };
                         return { color: '#4CAF50', text: 'Отличный рост — top-tier SaaS уровень.' };
                     }
+                },
+                {
+                    id: 'contributionMargin', name: 'Contribution Margin',
+                    formula: '(Выручка − Переменные затраты) / Выручка × 100%',
+                    description: 'Маржинальная прибыль — доля выручки, остающаяся после переменных затрат. Показывает, сколько каждый доллар продаж даёт на покрытие постоянных расходов и прибыль.',
+                    threshold: 'Плохо: <20%, Средне: 20–40%, Хорошо: 40–60%, Отлично: >60%',
+                    inputs: [
+                        { label: 'Выручка, $', placeholder: '100000', key: 'revenue', min: 0 },
+                        { label: 'Переменные затраты, $', placeholder: '45000', key: 'variableCosts', min: 0, help: 'Затраты, растущие с объёмом: сырьё, доставка, платёжные комиссии, hosting на клиента, sales-комиссии.' }
+                    ],
+                    calculate: v => {
+                        const r = sanitizeNumber(v.revenue);
+                        const c = sanitizeNumber(v.variableCosts);
+                        if (r === null || c === null || r <= 0) return null;
+                        return (((r - c) / r) * 100).toFixed(1);
+                    },
+                    unit: '%',
+                    insight: val => {
+                        if (val < 20) return { color: '#F44336', text: 'Низкая маржинальность — заказ почти не покрывает постоянные расходы. Поднимайте цены или режьте переменные затраты.' };
+                        if (val < 40) return { color: '#FFC107', text: 'Средняя маржа. Норма для retail/marketplace; для SaaS должно быть выше.' };
+                        return { color: '#4CAF50', text: 'Высокая контрибуционная маржа — здоровая unit-экономика и быстрый выход в прибыль.' };
+                    }
+                },
+                {
+                    id: 'gmv', name: 'GMV',
+                    formula: 'Кол-во заказов × Средний чек (AOV)',
+                    description: 'Gross Merchandise Value — суммарная стоимость всех проданных товаров/услуг за период до вычета комиссий и возвратов. Метрика масштаба для маркетплейсов и e-commerce.',
+                    threshold: 'Счётчик масштаба. Важна динамика MoM/YoY и связка с Take Rate',
+                    inputs: [
+                        { label: 'Количество заказов', placeholder: '12000', key: 'orders', min: 0 },
+                        { label: 'Средний чек (AOV), $', placeholder: '65', key: 'aov', min: 0 }
+                    ],
+                    calculate: v => {
+                        const o = sanitizeNumber(v.orders);
+                        const a = sanitizeNumber(v.aov);
+                        if (o === null || a === null) return null;
+                        return (o * a).toFixed(2);
+                    },
+                    unit: '$',
+                    insight: val => ({ color: '#2A6DF4', text: 'GMV — оборот, а не выручка. Реальный доход платформы = GMV × Take Rate. Смотрите рост GMV вместе с маржинальностью.' })
+                },
+                {
+                    id: 'takeRate', name: 'Take Rate',
+                    formula: '(Выручка платформы / GMV) × 100%',
+                    description: 'Доля оборота (GMV), которую маркетплейс оставляет себе как выручку: комиссии, реклама, подписки, платёжные сборы. Главный рычаг монетизации платформы.',
+                    threshold: 'Маркетплейсы: 10–20% норма, 20–30% сильно; >30% риск оттока продавцов',
+                    inputs: [
+                        { label: 'Выручка платформы, $', placeholder: '120000', key: 'platformRevenue', min: 0, help: 'Комиссии + реклама + подписки + платёжные сборы, оставшиеся у платформы.' },
+                        { label: 'GMV (оборот), $', placeholder: '780000', key: 'gmv', min: 1 }
+                    ],
+                    calculate: v => {
+                        const r = sanitizeNumber(v.platformRevenue);
+                        const g = sanitizeNumber(v.gmv);
+                        if (r === null || g === null || g <= 0) return null;
+                        return ((r / g) * 100).toFixed(1);
+                    },
+                    unit: '%',
+                    insight: val => {
+                        if (val < 10) return { color: '#FFC107', text: 'Низкий take rate. Норма для high-GMV категорий (электроника, трэвел). Ищите доп-монетизацию: реклама, подписки, финуслуги.' };
+                        if (val < 25) return { color: '#4CAF50', text: 'Здоровый take rate для маркетплейса — баланс монетизации и удержания продавцов.' };
+                        return { color: '#F44336', text: 'Высокий take rate — риск ухода продавцов в прямые каналы. Оправдан только при сильном спросе и lock-in.' };
+                    }
+                },
+                {
+                    id: 'quotaAttainment', name: 'Quota Attainment',
+                    formula: '(Факт продаж / Квота) × 100%',
+                    description: 'Процент выполнения плана продаж репом или командой. Базовый показатель здоровья sales-организации и реалистичности квот.',
+                    threshold: 'Реп: >100% отлично; команда: 60–70% репов выполняют квоту — норма',
+                    inputs: [
+                        { label: 'Факт продаж, $', placeholder: '420000', key: 'actual', min: 0 },
+                        { label: 'Квота (план), $', placeholder: '500000', key: 'quota', min: 1 }
+                    ],
+                    calculate: v => {
+                        const a = sanitizeNumber(v.actual);
+                        const q = sanitizeNumber(v.quota);
+                        if (a === null || q === null || q <= 0) return null;
+                        return ((a / q) * 100).toFixed(1);
+                    },
+                    unit: '%',
+                    insight: val => {
+                        if (val < 70) return { color: '#F44336', text: 'Недовыполнение квоты. Проверьте качество pipeline, enablement и реалистичность плана.' };
+                        if (val < 100) return { color: '#FFC107', text: 'Близко к плану. Если так у большинства репов — квоты, возможно, завышены.' };
+                        return { color: '#4CAF50', text: 'Квота выполнена. Если 90%+ репов перевыполняют — планку стоит поднять.' };
+                    }
                 }
             ]
         },
@@ -4740,6 +4906,68 @@ window._tTooltip = function(ruText) {
                         if (val < 3) return { color: '#FFC107', text: 'Норма для большинства брендов в Instagram/X.' };
                         if (val < 6) return { color: '#4CAF50', text: 'Хороший engagement — комьюнити вовлечено.' };
                         return { color: '#4CAF50', text: 'Отличный engagement — top-tier creator-уровень.' };
+                    }
+                },
+                {
+                    id: 'cpm', name: 'CPM',
+                    formula: '(Затраты на рекламу / Показы) × 1000',
+                    description: 'Cost Per Mille — стоимость 1000 показов рекламы. Базовая метрика стоимости охвата в медийной и соцсетевой рекламе.',
+                    threshold: 'Дисплей $1–5, соцсети $5–15, видео/OLV $10–30 (зависит от гео и таргета)',
+                    inputs: [
+                        { label: 'Затраты на рекламу, $', placeholder: '5000', key: 'spend', min: 0 },
+                        { label: 'Показы (impressions)', placeholder: '800000', key: 'impressions', min: 1 }
+                    ],
+                    calculate: v => {
+                        const s = sanitizeNumber(v.spend);
+                        const i = sanitizeNumber(v.impressions);
+                        if (s === null || i === null || i <= 0) return null;
+                        return ((s / i) * 1000).toFixed(2);
+                    },
+                    unit: '$',
+                    insight: val => ({ color: '#2A6DF4', text: 'CPM — стоимость охвата, а не результата. Оценивайте вместе с CTR и CR: дешёвый CPM при низком CTR дороже в пересчёте на клиента (CAC).' })
+                },
+                {
+                    id: 'cartAbandonment', name: 'Cart Abandonment Rate',
+                    formula: '(1 − Покупки / Корзины) × 100%',
+                    description: 'Доля созданных корзин, не завершившихся покупкой. Один из главных индикаторов трения на чекауте в e-commerce.',
+                    threshold: 'Средне по индустрии ~70%. Хорошо: <60%, Тревожно: >75%',
+                    inputs: [
+                        { label: 'Покупки (завершённые заказы)', placeholder: '2400', key: 'purchases', min: 0 },
+                        { label: 'Созданные корзины', placeholder: '8000', key: 'carts', min: 1 }
+                    ],
+                    calculate: v => {
+                        const p = sanitizeNumber(v.purchases);
+                        const c = sanitizeNumber(v.carts);
+                        if (p === null || c === null || c <= 0) return null;
+                        return ((1 - p / c) * 100).toFixed(1);
+                    },
+                    unit: '%',
+                    insight: val => {
+                        if (val > 75) return { color: '#F44336', text: 'Высокий процент брошенных корзин. Уберите трение: гость-чекаут, прозрачная доставка, больше способов оплаты, email-возвраты.' };
+                        if (val > 60) return { color: '#FFC107', text: 'Около среднего по индустрии (~70%). Тестируйте упрощение чекаута и ретаргетинг.' };
+                        return { color: '#4CAF50', text: 'Низкая для e-commerce доля брошенных корзин — чекаут работает хорошо.' };
+                    }
+                },
+                {
+                    id: 'mer', name: 'MER (Marketing Efficiency Ratio)',
+                    formula: 'Общая выручка / Общие маркетинговые затраты',
+                    description: 'Blended-эффективность маркетинга: сколько выручки приносит каждый доллар суммарных рекламных затрат. В отличие от ROAS считается по всему бизнесу, а не по кампании.',
+                    threshold: 'DTC-ориентир: <2 слабо, 2–3 норма, 3–5 хорошо, >5 отлично',
+                    inputs: [
+                        { label: 'Общая выручка, $', placeholder: '300000', key: 'totalRevenue', min: 0 },
+                        { label: 'Общие маркетинговые затраты, $', placeholder: '90000', key: 'totalSpend', min: 1 }
+                    ],
+                    calculate: v => {
+                        const r = sanitizeNumber(v.totalRevenue);
+                        const s = sanitizeNumber(v.totalSpend);
+                        if (r === null || s === null || s <= 0) return null;
+                        return (r / s).toFixed(2);
+                    },
+                    unit: '×',
+                    insight: val => {
+                        if (val < 2) return { color: '#F44336', text: 'Маркетинг съедает маржу. При MER <2 в DTC рост обычно убыточен — пересмотрите каналы и AOV.' };
+                        if (val < 3) return { color: '#FFC107', text: 'Норма. Следите за трендом MER и связкой с контрибуционной маржой.' };
+                        return { color: '#4CAF50', text: 'Эффективный blended-маркетинг. Можно осторожно масштабировать бюджет, пока MER держится.' };
                     }
                 }
             ]
@@ -4908,6 +5136,28 @@ window._tTooltip = function(ruText) {
                         if (val < 90) return { color: '#F44336', text: 'Нарушение SLA. Увеличьте ресурсы поддержки.' };
                         if (val < 98) return { color: '#FFC107', text: 'SLA близко к норме. Оптимизируйте процессы.' };
                         return { color: '#4CAF50', text: 'SLA выполняется — отлично!' };
+                    }
+                },
+                {
+                    id: 'ces', name: 'CES (Customer Effort Score)',
+                    formula: 'Сумма оценок усилий / Кол-во ответов (шкала 1–7)',
+                    description: 'Customer Effort Score — насколько легко клиенту было решить свой вопрос. Респонденты оценивают утверждение «компания упростила решение» по шкале 1–7. Сильный предиктор лояльности.',
+                    threshold: 'Шкала 1–7: <5 высокое трение, 5–6 норма, >6 отлично',
+                    inputs: [
+                        { label: 'Сумма оценок усилий', placeholder: '780', key: 'sumScores', min: 0, help: 'Сумма всех ответов по шкале 1–7 (где 7 = «очень легко»).' },
+                        { label: 'Количество ответов', placeholder: '130', key: 'responses', min: 1 }
+                    ],
+                    calculate: v => {
+                        const s = sanitizeNumber(v.sumScores);
+                        const r = sanitizeNumber(v.responses);
+                        if (s === null || r === null || r <= 0) return null;
+                        return (s / r).toFixed(1);
+                    },
+                    unit: 'балл',
+                    insight: val => {
+                        if (val < 5) return { color: '#F44336', text: 'Высокое усилие клиента — сильный предиктор оттока. Убирайте трение в саппорте и продукте.' };
+                        if (val < 6) return { color: '#FFC107', text: 'Норма. Низкое усилие удерживает лучше, чем «восторг» — ищите узкие места.' };
+                        return { color: '#4CAF50', text: 'Клиентам легко — отличный предиктор лояльности и повторных покупок.' };
                     }
                 }
             ]
@@ -5210,6 +5460,76 @@ window._tTooltip = function(ruText) {
             ecom:      'Brand посты: 1–3% норма',
             mobile:    'Push notification engagement: 3–8% норма',
             media:     'Editorial: 4–8% хорошо, viral >10%',
+        },
+        wau: {
+            universal: 'Счётчик. Смотрите DAU/WAU и WAU/MAU',
+            saas:      'Для рабочих инструментов WAU ≈ 50–80% от MAU',
+            ecom:      'Менее релевантно — смотрите частоту покупок',
+            mobile:    'WAU/MAU 40–70% — норма для соцсетей и daily-апп',
+            media:     'WAU важна для контента с недельным циклом',
+        },
+        netNewMrr: {
+            universal: 'Должен быть положительным и расти MoM',
+            saas:      'Здоровье: доля Expansion растёт, Churned MRR < 1–2%/мес',
+            ecom:      'Менее релевантно — используйте выручку и RPR',
+            mobile:    'Подписочные F2P/apps: следите за net adds MRR',
+            media:     'Подписочное медиа: положительный Net New MRR каждый месяц',
+        },
+        contributionMargin: {
+            universal: 'Плохо: <20%, Норма: 20–40%, Хорошо: 40–60%, Отлично: >60%',
+            saas:      'Обычно 70–85% (близко к gross margin)',
+            ecom:      'Fashion 35–55%, Beauty 50–70%, Electronics 15–30%',
+            mobile:    'F2P: 60–80% после store-комиссии и платёжки',
+            media:     'Подписка: 60–80%, реклама: 50–70%',
+        },
+        gmv: {
+            universal: 'Счётчик оборота. Важна динамика MoM/YoY и Take Rate',
+            saas:      'Менее релевантно — используйте MRR/ARR',
+            ecom:      'Главная метрика масштаба; смотрите рост MoM/YoY',
+            mobile:    'Релевантно для in-app маркетплейсов',
+            media:     'Менее релевантно — используйте выручку',
+        },
+        takeRate: {
+            universal: 'Маркетплейсы: 10–20% норма, 20–30% сильно, >30% риск',
+            saas:      'Менее релевантно — это marketplace-метрика',
+            ecom:      'Goods-маркетплейсы 10–20%, услуги 20–30%',
+            mobile:    'App-маркетплейсы: 15–30% (после store-fee)',
+            media:     'Контент-платформы: 30–50% (выше из-за дистрибуции)',
+        },
+        quotaAttainment: {
+            universal: 'Реп: >100% отлично; команда: 60–70% репов в квоте — норма',
+            saas:      'B2B SaaS: 60–70% репов выполняют квоту — здоровая планка',
+            ecom:      'B2B-направление e-com: аналогично SaaS',
+            mobile:    'B2B mobile sales: 60–70% репов в квоте',
+            media:     'Ad sales: 65–75% репов выполняют план',
+        },
+        cpm: {
+            universal: 'Дисплей: $1–5, Соцсети: $5–15, Видео: $10–30',
+            saas:      'B2B LinkedIn: $15–40, Google Display: $2–8',
+            ecom:      'Meta/Instagram: $5–12, TikTok: $3–10, Display: $1–5',
+            mobile:    'In-app/UAC: $2–8, rewarded video eCPM: $5–20',
+            media:     'Programmatic display: $1–4, premium video: $10–25',
+        },
+        cartAbandonment: {
+            universal: 'Среднее ~70%. Хорошо: <60%, Тревожно: >75%',
+            saas:      'Менее релевантно — смотрите trial→paid CR',
+            ecom:      'Fashion 68–72%, Beauty 65–70%, Electronics 75–82%',
+            mobile:    'Mobile web выше desktop: 78–85% — типично',
+            media:     'Менее релевантно для подписочного медиа',
+        },
+        mer: {
+            universal: 'DTC: <2 слабо, 2–3 норма, 3–5 хорошо, >5 отлично',
+            saas:      'Менее релевантно — CAC Payback / Magic Number',
+            ecom:      'DTC blended MER: 2.5–4 здоровый; на масштабе ≥ 3',
+            mobile:    'UA-тяжёлые: 1.5–3; смотрите вместе с LTV',
+            media:     'Подписочное медиа: 3–6 на зрелой базе',
+        },
+        ces: {
+            universal: 'Шкала 1–7: <5 плохо, 5–6 норма, >6 отлично',
+            saas:      'B2B SaaS support: цель ≥ 5.5; топ-команды > 6',
+            ecom:      'Чекаут/возвраты: цель ≥ 6 (минимум усилий)',
+            mobile:    'In-app support: ≥ 5.5; трение убивает retention',
+            media:     'Подписка/биллинг: ≥ 6 — лёгкость отмены/смены тарифа',
         },
     };
 
@@ -6027,7 +6347,37 @@ window._tTooltip = function(ruText) {
                             { s:'b2c', id:'ltv',       note:'Высокий RPR → высокий LTV' }],
         engagementRate:[{ s:'b2c', id:'stickiness',  note:'Engagement ≠ Stickiness, но связаны' },
                         { s:'growth', id:'ctr',       note:'CTR — engagement рекламы' },
-                        { s:'support', id:'csat',     note:'High engagement → high satisfaction' }]
+                        { s:'support', id:'csat',     note:'High engagement → high satisfaction' }],
+        wau:          [{ s:'b2c', id:'dau',          note:'DAU/WAU — внутринедельная липкость' },
+                       { s:'b2c', id:'mau',          note:'WAU/MAU — недельное удержание' },
+                       { s:'b2c', id:'stickiness',   note:'Stickiness — родственная метрика' }],
+        netNewMrr:    [{ s:'b2b', id:'mrr',          note:'компоненты — изменения MRR' },
+                       { s:'finance', id:'mrrGrowthRate', note:'Net New MRR определяет рост' },
+                       { s:'b2b', id:'quickRatio',   note:'те же компоненты New/Expansion/Churn' }],
+        contributionMargin:[{ s:'finance', id:'grossMargin', note:'Gross Margin — родственная маржа' },
+                            { s:'finance', id:'runway',  note:'маржа влияет на скорость burn' },
+                            { s:'b2c', id:'ltv_cac',     note:'маржа входит в окупаемость' }],
+        gmv:          [{ s:'finance', id:'takeRate',  note:'выручка = GMV × Take Rate' },
+                       { s:'b2c', id:'aov',           note:'GMV = заказы × AOV' },
+                       { s:'sales', id:'revenue',     note:'GMV ≠ выручка платформы' }],
+        takeRate:     [{ s:'finance', id:'gmv',       note:'знаменатель формулы' },
+                       { s:'finance', id:'grossMargin', note:'take rate влияет на маржу' },
+                       { s:'sales', id:'revenue',     note:'выручка платформы = числитель' }],
+        quotaAttainment:[{ s:'finance', id:'salesVelocity', note:'скорость закрытия квоты' },
+                         { s:'finance', id:'winRate',  note:'win rate влияет на attainment' },
+                         { s:'finance', id:'pipelineCoverage', note:'мало pipeline — недобор квоты' }],
+        cpm:          [{ s:'growth', id:'cpc',        note:'CPM и CPC — пара по стоимости' },
+                       { s:'growth', id:'ctr',        note:'CPM / CTR определяет CPC' },
+                       { s:'growth', id:'roas',       note:'дешёвый охват ≠ дешёвый результат' }],
+        cartAbandonment:[{ s:'growth', id:'cr',       note:'брошенные корзины снижают CR' },
+                         { s:'growth', id:'bounceRate', note:'трение → выше bounce' },
+                         { s:'b2c', id:'aov',          note:'возврат корзин растит выручку' }],
+        mer:          [{ s:'growth', id:'roas',       note:'MER — blended-версия ROAS' },
+                       { s:'b2c', id:'cac',           note:'MER ↑ при низком CAC' },
+                       { s:'b2c', id:'ltv_cac',       note:'MER связан с unit-экономикой' }],
+        ces:          [{ s:'support', id:'csat',      note:'низкое усилие → высокий CSAT' },
+                       { s:'support', id:'nps',       note:'усилие предсказывает лояльность' },
+                       { s:'support', id:'fcr',       note:'FCR снижает усилие клиента' }]
     };
 
     const relatedBlockEl = document.getElementById('relatedBlock');

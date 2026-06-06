@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>ROAS калькулятор — Return on Ad Spend, формула | MetricTree</title>
-    <meta name="description" content="ROAS = Выручка от рекламы / Затраты. Норма e-com >4x, SaaS >3x. Goal-режим: max бюджет при target ROAS.">
+    <title>WAU калькулятор (Weekly Active Users) — формула и нормы | MetricTree</title>
+    <meta name="description" content="WAU — уникальные пользователи за 7 дней. Промежуточное звено между DAU и MAU. Stickiness через DAU/WAU и WAU/MAU.">
     <meta name="keywords" content="калькулятор LTV онлайн, как рассчитать CAC, формула MRR ARR, что такое Churn Rate, NPS калькулятор, DAU MAU stickiness, ROAS формула, Burn Multiple калькулятор, Magic Number SaaS, Rule of 40, Quick Ratio SaaS, продуктовые метрики, unit economics, MetricTree">
     <meta name="author" content="Родион Латыпов">
     <meta name="theme-color" content="#0A0C0E" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#F0F2F5" media="(prefers-color-scheme: light)">
-    <link rel="canonical" href="https://metricstree.vercel.app/roas">
+    <link rel="canonical" href="https://metricstree.vercel.app/wau">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="alternate icon" href="/favicon.ico">
     <link rel="manifest" href="/manifest.webmanifest">
-    <meta property="og:title" content="ROAS калькулятор — Return on Ad Spend, формула | MetricTree">
-    <meta property="og:description" content="ROAS = Выручка от рекламы / Затраты. Норма e-com >4x, SaaS >3x. Goal-режим: max бюджет при target ROAS.">
+    <meta property="og:title" content="WAU калькулятор (Weekly Active Users) — формула и нормы | MetricTree">
+    <meta property="og:description" content="WAU — уникальные пользователи за 7 дней. Промежуточное звено между DAU и MAU. Stickiness через DAU/WAU и WAU/MAU.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://metricstree.vercel.app/roas">
+    <meta property="og:url" content="https://metricstree.vercel.app/wau">
     <meta property="og:site_name" content="MetricTree">
     <meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
     <meta property="og:image:type" content="image/png">
@@ -31,8 +31,8 @@
     <!-- Yandex Webmaster verification — get yours at webmaster.yandex.ru -->
     <meta name="yandex-verification" content="REPLACE_WITH_YANDEX_VERIFICATION_CODE">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ROAS калькулятор — Return on Ad Spend, формула | MetricTree">
-    <meta name="twitter:description" content="ROAS = Выручка от рекламы / Затраты. Норма e-com >4x, SaaS >3x. Goal-режим: max бюджет при target ROAS.">
+    <meta name="twitter:title" content="WAU калькулятор (Weekly Active Users) — формула и нормы | MetricTree">
+    <meta name="twitter:description" content="WAU — уникальные пользователи за 7 дней. Промежуточное звено между DAU и MAU. Stickiness через DAU/WAU и WAU/MAU.">
     <meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
     <script type="application/ld+json">
     {
@@ -2045,34 +2045,10 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Чем ROAS отличается от ROI?",
+      "name": "Что такое WAU?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "ROAS = Выручка / Ad Spend. ROI = (Прибыль − Затраты) / Затраты. ROAS — gross, до маржи. ROI — net, после COGS. ROAS быстрее для тактики, ROI точнее для стратегии."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Какой ROAS считается хорошим?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "E-commerce: >4× норма, >6× отлично (с учётом 60–70% маржи). SaaS: >3× (длинный LTV компенсирует). Mobile gaming: >1.5× (быстрая монетизация). Главное — break-even ROAS = 1 / Gross Margin."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Что такое break-even ROAS?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Break-even ROAS = 1 / Gross Margin. При 70% марже break-even ROAS = 1.43×. Ниже этого — каждая кампания убыточна. Это floor, target должен быть в 2–3× выше break-even."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Как повысить ROAS?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "(1) creatives — A/B-тесты, 80% улучшений идёт оттуда; (2) landing page conversion (CR×ROAS); (3) audience targeting (lookalikes от high-LTV); (4) AOV-апселы; (5) убрать broad-match low-intent keywords."
+        "text": "Weekly Active Users — уникальные пользователи за последние 7 дней. Для рабочих инструментов WAU ближе к MAU, для соцсетей — к DAU."
       }
     }
   ]
@@ -2082,16 +2058,16 @@
 {
   "@context": "https://schema.org",
   "@type": "HowTo",
-  "name": "Как рассчитать ROAS",
-  "description": "ROAS = Выручка от рекламы / Затраты. Норма e-com >4x, SaaS >3x. Goal-режим: max бюджет при target ROAS.",
+  "name": "Как рассчитать WAU",
+  "description": "WAU — уникальные пользователи за 7 дней. Промежуточное звено между DAU и MAU. Stickiness через DAU/WAU и WAU/MAU.",
   "totalTime": "PT1M",
   "step": [
     {
       "@type": "HowToStep",
       "position": 1,
       "name": "Откройте калькулятор",
-      "text": "Перейдите на https://metricstree.vercel.app/roas — калькулятор уже заполнен примером.",
-      "url": "https://metricstree.vercel.app/roas"
+      "text": "Перейдите на https://metricstree.vercel.app/wau — калькулятор уже заполнен примером.",
+      "url": "https://metricstree.vercel.app/wau"
     },
     {
       "@type": "HowToStep",
@@ -2103,15 +2079,15 @@
       "@type": "HowToStep",
       "position": 3,
       "name": "Сравните с бенчмарком",
-      "text": "ROAS = Выручка от рекламы / Затраты. E-commerce норма >4× (400%), SaaS — >3×. Goal-режим даст max бюджет при заданной target-доходности."
+      "text": "Weekly Active Users — уникальные пользователи за последние 7 дней. Для рабочих инструментов WAU ближе к MAU, для соцсетей — к DAU."
     }
   ]
 }
     </script>
-    <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/roas">
-    <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/roas">
-    <link rel="alternate" hreflang="uz" href="https://metricstree.vercel.app/uz/roas">
-    <link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/roas">
+    <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/wau">
+    <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/wau">
+    <link rel="alternate" hreflang="uz" href="https://metricstree.vercel.app/uz/wau">
+    <link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/wau">
 </head>
 <body>
 <script>
@@ -8825,9 +8801,9 @@ window._tTooltip = function(ruText) {
 <aside class="related-static" data-spa-replace="true" aria-label="Связанные метрики" style="max-width:900px;margin:2rem auto 1rem;padding:1rem 1.25rem;border-top:1px solid var(--border,#2C2F33);font-size:0.85rem;color:var(--text-2,#B0B3B8);">
   <h3 style="font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-3,#6b6f75);margin:0 0 0.5rem;">См. также</h3>
   <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0.4rem 1rem;">
-      <li><a href="/cr"><strong>Conversion Rate</strong></a> — CR — компонент ROAS</li>
-      <li><a href="/cpc"><strong>CPC</strong></a> — CPC влияет на ROAS</li>
-      <li><a href="/cac"><strong>CAC</strong></a> — CAC = CPC / CR</li>
+      <li><a href="/dau"><strong>DAU</strong></a> — DAU/WAU — внутринедельная липкость</li>
+      <li><a href="/mau"><strong>MAU</strong></a> — WAU/MAU — недельное удержание</li>
+      <li><a href="/stickiness"><strong>Stickiness</strong></a> — родственная метрика</li>
   </ul>
 </aside>
 <script>document.querySelectorAll('aside[data-spa-replace]').forEach(el => { /* visually hide once JS loads — kept in DOM for crawlers */ el.style.display = 'none'; });</script>
