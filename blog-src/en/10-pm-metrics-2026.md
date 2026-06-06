@@ -159,7 +159,7 @@ The calculators on metricstree automatically show the benchmark next to your res
 
 There are dozens of metrics in the SaaS world. These 10 are the **base kit for any PM** in B2B SaaS or a B2C product. Know the formulas by heart, track them weekly, and you'll spot problems 2-3 months before they show up in revenue.
 
-**Calculate yours on [metricstree.vercel.app](/en)** — all 48 metrics, free, no signup.
+**Calculate yours on [metricstree.vercel.app](/en)** — all 69 metrics, free, no signup.
 
 ---
 

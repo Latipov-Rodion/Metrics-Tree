@@ -11,6 +11,17 @@ const ROOT = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z
 const SITE = 'https://metricstree.vercel.app';
 
 const META = {
+  // — Batch +10 (CPA, CPL, CPI, ARPPU, Open Rate, CTOR, Feature Adoption, LVR, Cash Conversion Score, Avg Resolution Time) —
+  cpa:                { title: 'CPA калькулятор (Cost Per Action) — формула и нормы', desc: 'CPA = Затраты / Целевые действия. Стоимость одного целевого действия (покупка, заявка). Оценивайте вместе с CR и LTV.', q: 'Что такое CPA?', a: 'CPA (Cost Per Action) = Затраты / Число целевых действий. В отличие от CPC учитывает результаты, а не клики. Дешёвый CPA при плохом качестве лидов дороже в пересчёте на клиента.' },
+  cpl:                { title: 'CPL калькулятор (Cost Per Lead) — стоимость лида', desc: 'CPL = Затраты / Количество лидов. Стоимость привлечения одного лида. Имеет смысл только вместе с качеством лидов и конверсией в сделку.', q: 'Что такое CPL?', a: 'CPL (Cost Per Lead) = Затраты / Количество лидов. Оценивайте вместе с конверсией лида в клиента и итоговым CAC: дешёвый CPL при низком качестве раздувает CAC.' },
+  cpi:                { title: 'CPI калькулятор (Cost Per Install) — стоимость установки', desc: 'CPI = Затраты на привлечение / Установки. Базовая метрика mobile UA. Сравнивайте с LTV и ARPPU, чтобы установки окупались.', q: 'Что такое CPI?', a: 'CPI (Cost Per Install) = Затраты / Установки приложения. Имеет смысл только в связке с LTV/ARPPU и retention: дешёвая установка без монетизации убыточна.' },
+  arppu:              { title: 'ARPPU калькулятор — средняя выручка с платящего', desc: 'ARPPU = Выручка / Платящие пользователи. В отличие от ARPU считается только по платящим. Ключевая метрика монетизации F2P и freemium.', q: 'Что такое ARPPU?', a: 'ARPPU = Выручка / Платящие пользователи. Считается только по платящим, поэтому всегда выше ARPU. Для F2P смотрите вместе с долей платящих (PUR) и LTV.' },
+  openRate:           { title: 'Email Open Rate калькулятор — процент открытий писем', desc: 'Open Rate = (Открытия / Доставлено) × 100%. Доля открытых писем. Норма 15–25%, хорошо >25%. Зависит от темы, отправителя и репутации домена.', q: 'Что такое Open Rate?', a: 'Email Open Rate = (Открытия / Доставлено) × 100% — доля открытых писем. Норма 15–25%, хорошо >25%. Следите дальше за CTOR, а не только за открытиями.' },
+  ctor:               { title: 'CTOR калькулятор (Click-To-Open Rate) — формула и нормы', desc: 'CTOR = (Уникальные клики / Уникальные открытия) × 100%. Не зависит от Open Rate и точнее измеряет качество контента письма. Норма 10–20%.', q: 'Что такое CTOR?', a: 'CTOR (Click-To-Open Rate) = (Уникальные клики / Уникальные открытия) × 100%. В отличие от CTR не зависит от Open Rate. Норма 10–20%, хорошо >20%.' },
+  featureAdoption:    { title: 'Feature Adoption Rate калькулятор — адопция фич', desc: 'Feature Adoption = (Пользователи фичи / Активные) × 100%. Доля активных, начавших использовать фичу. Норма 20–40%, хорошо >40%.', q: 'Что такое Feature Adoption Rate?', a: 'Feature Adoption Rate = (Пользователи фичи / Активные пользователи) × 100%. Показывает, находит ли новая функциональность спрос. Норма 20–40%, хорошо >40%.' },
+  leadVelocityRate:   { title: 'Lead Velocity Rate калькулятор (LVR) — темп роста лидов', desc: 'LVR = ((Лиды тек. − пред. месяца) / пред. месяца) × 100%. Опережающий индикатор будущей выручки. Здоровый темп >10% MoM.', q: 'Что такое Lead Velocity Rate?', a: 'LVR = ((Лиды текущего − Лиды прошлого месяца) / Лиды прошлого месяца) × 100% — темп роста квал. лидов MoM. Опережающий индикатор роста ARR; норма >10%.' },
+  cashConversionScore:{ title: 'Cash Conversion Score калькулятор (CCS) — капиталоэффективность', desc: 'CCS = Текущий ARR / Чистый сожжённый капитал (Bessemer). Сколько ARR построено на каждый сожжённый доллар. >1 — elite.', q: 'Что такое Cash Conversion Score?', a: 'CCS (Bessemer) = Текущий ARR / Чистый сожжённый капитал. Измеряет капиталоэффективность: <0.5 слабо, 0.5–1 норма, >1 — уровень elite.' },
+  avgResolutionTime:  { title: 'Avg Resolution Time калькулятор — среднее время решения', desc: 'Avg Resolution Time = Суммарное время решения / Решённые тикеты. Среднее время закрытия тикета. Меньше — лучше; зависит от приоритета.', q: 'Что такое Avg Resolution Time?', a: 'Среднее время решения = Суммарное время решения / Число решённых тикетов. Меньше — лучше, но оценивайте по приоритетам: P1 решают быстрее. Смотрите с FCR, SLA, CSAT.' },
   // — Batch +10 —
   wau:                { title: 'WAU калькулятор (Weekly Active Users) — формула и нормы', desc: 'WAU — уникальные пользователи за 7 дней. Промежуточное звено между DAU и MAU. Stickiness через DAU/WAU и WAU/MAU.', q: 'Что такое WAU?', a: 'Weekly Active Users — уникальные пользователи за последние 7 дней. Для рабочих инструментов WAU ближе к MAU, для соцсетей — к DAU.' },
   netNewMrr:          { title: 'Net New MRR калькулятор — чистый прирост MRR за месяц', desc: 'Net New MRR = New + Expansion − Churned − Contraction. Чистый прирост подписочной выручки за месяц. Главный пульс роста SaaS.', q: 'Что такое Net New MRR?', a: 'Net New MRR = New + Expansion − Churned − Contraction MRR — чистое изменение MRR за месяц. Должен быть положительным и расти MoM; высокая доля Expansion удешевляет рост.' },
@@ -146,6 +157,16 @@ const META = {
 // (the client-side renderRelated also writes the same data to #relatedBlock for users).
 // Each entry: { id: target-metric-id, note: short reason this metric is related (RU) }.
 const RELATED = {
+  cpa: [{ id: 'cpc', note: 'CPC × CR ≈ CPA' }, { id: 'cr', note: 'CR превращает клики в действия' }, { id: 'cac', note: 'CAC — стоимость платящего клиента' }],
+  cpl: [{ id: 'cpa', note: 'CPL и CPA — пара по воронке' }, { id: 'cac', note: 'лиды конвертируются в CAC' }, { id: 'cr', note: 'CR лида в клиента' }],
+  cpi: [{ id: 'cpa', note: 'CPI — install-версия CPA' }, { id: 'cac', note: 'install ≠ платящий клиент' }, { id: 'arpu', note: 'CPI окупается через ARPU/ARPPU' }],
+  arppu: [{ id: 'arpu', note: 'ARPU считается по всем активным' }, { id: 'ltv', note: 'ARPPU — компонент LTV платящих' }, { id: 'arpdau', note: 'ARPDAU — дневной аналог' }],
+  openRate: [{ id: 'ctor', note: 'CTOR — следующий шаг после открытия' }, { id: 'ctr', note: 'CTR письма по доставленным' }, { id: 'cr', note: 'открытия ведут к конверсии' }],
+  ctor: [{ id: 'openRate', note: 'знаменатель — открытия письма' }, { id: 'ctr', note: 'CTOR vs CTR письма' }, { id: 'cr', note: 'клики ведут к конверсии' }],
+  featureAdoption: [{ id: 'activation', note: 'адопция — после активации' }, { id: 'retention', note: 'адопция фич растит Retention' }, { id: 'stickiness', note: 'фичи усиливают липкость' }],
+  leadVelocityRate: [{ id: 'mrrGrowthRate', note: 'лиды → будущий рост MRR' }, { id: 'pipelineCoverage', note: 'лиды наполняют pipeline' }, { id: 'salesVelocity', note: 'скорость закрытия лидов' }],
+  cashConversionScore: [{ id: 'burnMultiple', note: 'Burn Multiple — обратный угол' }, { id: 'magicNumber', note: 'эффективность роста' }, { id: 'runway', note: 'burn определяет runway' }],
+  avgResolutionTime: [{ id: 'fcr', note: 'FCR снижает время решения' }, { id: 'sla', note: 'SLA задаёт целевые сроки' }, { id: 'csat', note: 'быстрое решение растит CSAT' }],
   wau: [{ id: 'dau', note: 'DAU/WAU — внутринедельная липкость' }, { id: 'mau', note: 'WAU/MAU — недельное удержание' }, { id: 'stickiness', note: 'родственная метрика' }],
   netNewMrr: [{ id: 'mrr', note: 'компоненты — изменения MRR' }, { id: 'mrrGrowthRate', note: 'Net New MRR определяет рост' }, { id: 'quickRatio', note: 'те же компоненты New/Expansion/Churn' }],
   contributionMargin: [{ id: 'grossMargin', note: 'родственная маржа' }, { id: 'runway', note: 'маржа влияет на burn' }, { id: 'ltv_cac', note: 'маржа входит в окупаемость' }],
@@ -209,6 +230,9 @@ const RELATED = {
 
 // Short display names for related-block anchor text (full metric title is too long).
 const SHORT_NAME = {
+  cpa: 'CPA', cpl: 'CPL', cpi: 'CPI', arppu: 'ARPPU', openRate: 'Open Rate',
+  ctor: 'CTOR', featureAdoption: 'Feature Adoption', leadVelocityRate: 'Lead Velocity Rate',
+  cashConversionScore: 'Cash Conversion Score', avgResolutionTime: 'Avg Resolution Time',
   wau: 'WAU', netNewMrr: 'Net New MRR', contributionMargin: 'Contribution Margin', gmv: 'GMV',
   takeRate: 'Take Rate', quotaAttainment: 'Quota Attainment', cpm: 'CPM',
   cartAbandonment: 'Cart Abandonment', mer: 'MER', ces: 'CES',

@@ -117,7 +117,7 @@ window.I18N_UI = {
     'help.feat_clean_urls': 'Each metric is its own page: /ltv, /cac, …',
     'help.feat_currency_label': '💱 Currency',
     'help.feat_currency': '$ / € / ₽ / £ switcher in the header',
-    'onboard.headline': '👋 48 metrics, formulas, industry benchmarks. Free, no signup.',
+    'onboard.headline': '👋 69 metrics, formulas, industry benchmarks. Free, no signup.',
     'onboard.step_pick': 'Pick a metric',
     'onboard.step_enter': 'Enter numbers',
     'onboard.step_insight': 'Get an insight',
@@ -149,7 +149,7 @@ window.I18N_UI = {
     'templates.metrics_count': 'Fills ',
     'templates.metrics_count_suffix': ' metrics',
     'about.title': 'About MetricTree',
-    'about.intro': 'MetricTree is a free online calculator of 48 product metrics for product managers, marketers, analysts, and founders. Compute LTV, CAC, MRR, ARR, Churn Rate, DAU, MAU, Stickiness, ROAS, NPS, CSAT, Burn Multiple, Runway, Sales Velocity and more — with formulas, industry benchmarks, and result interpretation.',
+    'about.intro': 'MetricTree is a free online calculator of 69 product metrics for product managers, marketers, analysts, and founders. Compute LTV, CAC, MRR, ARR, Churn Rate, DAU, MAU, Stickiness, ROAS, NPS, CSAT, Burn Multiple, Runway, Sales Velocity and more — with formulas, industry benchmarks, and result interpretation.',
     'about.h_sections': 'Metrics by section',
     'about.h_features': 'Features',
     'about.h_faq': 'Frequently asked questions',
@@ -203,7 +203,7 @@ window.I18N_UI = {
     'footer.help': 'Help',
     'footer.subscribe': 'Subscribe',
     'footer.cheatsheet': 'PDF cheat sheet',
-    'cheatsheet.title': '📥 Free PDF cheat sheet: 48 metrics with formulas and benchmarks',
+    'cheatsheet.title': '📥 Free PDF cheat sheet: 69 metrics with formulas and benchmarks',
     'cheatsheet.placeholder': 'you@company.com',
     'cheatsheet.cta': 'Get the PDF →',
     'cheatsheet.success': '✓ Done!',
@@ -222,7 +222,7 @@ window.I18N_UI = {
     'pricing.current_plan': 'Current plan',
     'pricing.cta_waitlist': 'Get -50% on launch →',
     'pricing.cta_waitlist_team': 'Get -50% on launch →',
-    'pricing.f_47': '✓ All 48 metrics',
+    'pricing.f_47': '✓ All 69 metrics',
     'pricing.f_goal': '✓ Goal mode (~32 reverse-calc)',
     'pricing.f_whatif': '✓ What-if sliders',
     'pricing.f_industry': '✓ Industry benchmarks (5 verticals)',
@@ -366,7 +366,7 @@ window.I18N_UI = {
     'help.feat_clean_urls': 'Har bir metrika alohida sahifa: /ltv, /cac, …',
     'help.feat_currency_label': '💱 Valyuta',
     'help.feat_currency': '$ / € / ₽ / £ — shapkadagi pereklyuchatel',
-    'onboard.headline': '👋 47 ta metrika, formulalar, soha bo‘yicha bencharklar. Bepul, ro‘yxatdan o‘tishsiz.',
+    'onboard.headline': '👋 69 ta metrika, formulalar, soha bo‘yicha bencharklar. Bepul, ro‘yxatdan o‘tishsiz.',
     'onboard.step_pick': 'Metrikani tanlang',
     'onboard.step_enter': 'Sonlarni kiriting',
     'onboard.step_insight': 'Insight oling',
@@ -398,7 +398,7 @@ window.I18N_UI = {
     'templates.metrics_count': 'To‘ldiradi: ',
     'templates.metrics_count_suffix': ' ta metrika',
     'about.title': 'MetricTree haqida',
-    'about.intro': 'MetricTree — bu mahsulot menejerlari, marketologlar, analitiklar va asoschilar uchun 48 ta mahsulot metrikasini hisoblovchi bepul onlayn kalkulyator. LTV, CAC, MRR, ARR, Churn, DAU, MAU, Stickiness, ROAS, NPS, CSAT, Burn Multiple, Runway, Sales Velocity va boshqalarni formulalar, soha bencharklari va natija talqini bilan hisoblang.',
+    'about.intro': 'MetricTree — bu mahsulot menejerlari, marketologlar, analitiklar va asoschilar uchun 69 ta mahsulot metrikasini hisoblovchi bepul onlayn kalkulyator. LTV, CAC, MRR, ARR, Churn, DAU, MAU, Stickiness, ROAS, NPS, CSAT, Burn Multiple, Runway, Sales Velocity va boshqalarni formulalar, soha bencharklari va natija talqini bilan hisoblang.',
     'about.h_sections': 'Bo‘limlar bo‘yicha metrikalar',
     'about.h_features': 'Imkoniyatlar',
     'about.h_faq': 'Tez-tez beriladigan savollar',
@@ -465,7 +465,7 @@ window.I18N_UI = {
     'pricing.current_plan': 'Joriy reja',
     'pricing.cta_waitlist': 'Ishga tushganda -50% olish →',
     'pricing.cta_waitlist_team': 'Ishga tushganda -50% olish →',
-    'pricing.f_47': '✓ Barcha 48 metrika',
+    'pricing.f_47': '✓ Barcha 69 metrika',
     'pricing.f_goal': '✓ Maqsad rejimi (~32 teskari hisob)',
     'pricing.f_whatif': '✓ What-if sliderlari',
     'pricing.f_industry': '✓ Soha bencharklari (5 vertikal)',
@@ -499,6 +499,27 @@ window.I18N_UI = {
 };
 
 window.I18N_M = {
+  // — Batch +10 (CPA, CPL, CPI, ARPPU, Open Rate, CTOR, Feature Adoption, LVR, Cash Conversion Score, Avg Resolution Time) —
+  cpa:        { en: { name: 'CPA', formula: 'Spend / Target actions (conversions)', description: 'Cost Per Action — cost of one target action (purchase, signup, request). Unlike CPC it counts results, not clicks. Judge it with CR and LTV.' },
+                uz: { name: 'CPA', formula: 'Xarajat / Maqsadli amallar (konversiyalar)', description: 'Cost Per Action — bitta maqsadli amal (xarid, ro‘yxatdan o‘tish, ariza) narxi. CPC dan farqli, kliklarni emas, natijalarni hisoblaydi. CR va LTV bilan baholang.' } },
+  cpl:        { en: { name: 'CPL', formula: 'Spend / Number of leads', description: 'Cost Per Lead — cost of acquiring one lead. Only meaningful together with lead quality and lead-to-customer conversion.' },
+                uz: { name: 'CPL', formula: 'Xarajat / Lidlar soni', description: 'Cost Per Lead — bitta lid jalb qilish narxi. Faqat lid sifati va lidning mijozga konversiyasi bilan birga ma’noga ega.' } },
+  cpi:        { en: { name: 'CPI', formula: 'Acquisition spend / Installs', description: 'Cost Per Install — cost of one app install. A core mobile UA metric; compare with LTV/ARPPU so installs pay back.' },
+                uz: { name: 'CPI', formula: 'Jalb qilish xarajati / O‘rnatishlar', description: 'Cost Per Install — bitta ilova o‘rnatish narxi. Mobil UA ning asosiy metrikasi; o‘rnatishlar o‘zini qoplashi uchun LTV/ARPPU bilan solishtiring.' } },
+  arppu:      { en: { name: 'ARPPU', formula: 'Revenue / Paying users', description: 'Average Revenue Per Paying User — revenue per paying user only, not diluted by free audience. A key metric for free-to-play and freemium.' },
+                uz: { name: 'ARPPU', formula: 'Tushum / To‘lovchi foydalanuvchilar', description: 'Average Revenue Per Paying User — faqat to‘lovchilarga to‘g‘ri keladigan o‘rtacha tushum, bepul auditoriya bilan suyultirilmaydi. F2P va freemium uchun muhim metrika.' } },
+  openRate:   { en: { name: 'Email Open Rate', formula: '(Opens / Delivered) × 100%', description: 'Share of delivered emails that were opened. A basic email metric driven by subject line, sender and domain reputation.' },
+                uz: { name: 'Email Open Rate', formula: '(Ochilishlar / Yetkazilgan) × 100%', description: 'Yetkazilgan xatlarning ochilgan ulushi. Mavzu, jo‘natuvchi va domen obro‘siga bog‘liq asosiy email metrikasi.' } },
+  ctor:       { en: { name: 'CTOR', formula: '(Unique clicks / Unique opens) × 100%', description: 'Click-To-Open Rate — share of openers who clicked a link. Unlike plain CTR it does not depend on Open Rate and better measures email content.' },
+                uz: { name: 'CTOR', formula: '(Noyob kliklar / Noyob ochilishlar) × 100%', description: 'Click-To-Open Rate — xatni ochganlarning klik qilgan ulushi. Oddiy CTR dan farqli, Open Rate ga bog‘liq emas va xat kontentini yaxshiroq o‘lchaydi.' } },
+  featureAdoption: { en: { name: 'Feature Adoption Rate', formula: '(Feature users / Active users) × 100%', description: 'Share of active users who started using a specific feature. Shows whether new functionality finds demand and justifies its build cost.' },
+                     uz: { name: 'Feature Adoption Rate', formula: '(Funksiya foydalanuvchilari / Faol foydalanuvchilar) × 100%', description: 'Muayyan funksiyadan foydalana boshlagan faol foydalanuvchilar ulushi. Yangi funksionallik talabga ega ekanini va ishlab chiqishni oqlashini ko‘rsatadi.' } },
+  leadVelocityRate: { en: { name: 'Lead Velocity Rate', formula: '((Leads this month − Leads last month) / Leads last month) × 100%', description: 'LVR — month-over-month growth in qualified leads. A leading indicator of future revenue: today’s leads become deals and ARR after the sales cycle.' },
+                      uz: { name: 'Lead Velocity Rate', formula: '((Shu oy lidlari − O‘tgan oy lidlari) / O‘tgan oy lidlari) × 100%', description: 'LVR — malakali lidlarning oydan-oyga o‘sishi. Kelajakdagi tushumning yetakchi indikatori: bugungi lidlar sotuv siklidan keyin bitim va ARR ga aylanadi.' } },
+  cashConversionScore: { en: { name: 'Cash Conversion Score', formula: 'Current ARR / Net capital consumed', description: 'CCS (Bessemer) — how much ARR a company built per dollar of capital burned. Measures capital efficiency: higher means less money to build revenue.' },
+                         uz: { name: 'Cash Conversion Score', formula: 'Joriy ARR / Sof sarflangan kapital', description: 'CCS (Bessemer) — kompaniya har bir sarflangan dollarga qancha ARR qurgani. Kapital samaradorligini o‘lchaydi: qancha yuqori — tushum qurish uchun shuncha kam pul.' } },
+  avgResolutionTime: { en: { name: 'Avg Resolution Time', formula: 'Total resolution time / Resolved tickets', description: 'Average time to fully resolve a ticket (creation to close). Lower is better; norms depend heavily on priority — P1/critical resolve faster.' },
+                       uz: { name: 'Avg Resolution Time', formula: 'Umumiy yechish vaqti / Yechilgan tiketlar', description: 'Tiketni to‘liq yechishning o‘rtacha vaqti (yaratilishdan yopilishgacha). Kamroq — yaxshiroq; me’yor prioritetga bog‘liq — P1/critical tezroq yechiladi.' } },
   // — Batch +10 —
   wau:        { en: { name: 'WAU', formula: 'Unique users in the last 7 days', description: 'Weekly Active Users — unique users active in the last 7 days. The middle ground between DAU and MAU.' },
                 uz: { name: 'WAU', formula: 'Oxirgi 7 kundagi noyob foydalanuvchilar', description: 'Weekly Active Users — oxirgi 7 kunda faol noyob foydalanuvchilar. DAU va MAU orasidagi oraliq.' } },
@@ -622,6 +643,27 @@ window.I18N_M = {
 // 132 unique insight messages × {en, uz}. Russian → fallback.
 // ============================================================
 window.I18N_INSIGHTS = {
+  // — Batch +10 (CPA, CPL, CPI, ARPPU, Open Rate, CTOR, Feature Adoption, LVR, Cash Conversion Score, Avg Resolution Time) —
+  'CPA сам по себе ничего не говорит — оценивайте в связке с CR и LTV. Дешёвый CPA при плохом качестве лидов дороже в пересчёте на клиента.': { en: 'CPA alone tells you nothing — judge it with CR and LTV. A cheap CPA with poor lead quality is more expensive per customer.', uz: 'CPA o‘zicha hech nima demaydi — uni CR va LTV bilan baholang. Past sifatli lidlar bilan arzon CPA mijoz hisobiga qimmatroq.' },
+  'CPL оценивайте вместе с конверсией лида в клиента и итоговым CAC. Дешёвый CPL при низком качестве лидов раздувает CAC.': { en: 'Judge CPL together with lead-to-customer conversion and final CAC. A cheap CPL with low lead quality inflates CAC.', uz: 'CPL ni lidning mijozga konversiyasi va yakuniy CAC bilan birga baholang. Past sifatli lidlar bilan arzon CPL CAC ni shishiradi.' },
+  'CPI имеет смысл только в связке с LTV/ARPPU и retention. Дешёвая установка без удержания и монетизации убыточна.': { en: 'CPI only makes sense alongside LTV/ARPPU and retention. A cheap install without retention and monetization is unprofitable.', uz: 'CPI faqat LTV/ARPPU va retention bilan birga ma’noga ega. Ushlab turish va monetizatsiyasiz arzon o‘rnatish zararli.' },
+  'ARPPU считается только по платящим — он всегда выше ARPU. Для F2P смотрите его вместе с долей платящих (PUR) и LTV.': { en: 'ARPPU counts only payers — it is always higher than ARPU. For F2P, view it with the paying share (PUR) and LTV.', uz: 'ARPPU faqat to‘lovchilar bo‘yicha hisoblanadi — u har doim ARPU dan yuqori. F2P uchun uni to‘lovchilar ulushi (PUR) va LTV bilan ko‘ring.' },
+  'Низкий Open Rate. Работайте над темой письма, отправителем и репутацией домена.': { en: 'Low Open Rate. Work on the subject line, sender, and domain reputation.', uz: 'Past Open Rate. Xat mavzusi, jo‘natuvchi va domen obro‘si ustida ishlang.' },
+  'Норма. Тестируйте темы и сегментацию; следите за CTOR, а не только за открытиями.': { en: 'Normal. Test subject lines and segmentation; watch CTOR, not just opens.', uz: 'Normal. Mavzu va segmentatsiyani sinab ko‘ring; faqat ochilishlarni emas, CTOR ni kuzating.' },
+  'Высокий Open Rate — аудитория вовлечена. Смотрите дальше на CTOR и конверсию.': { en: 'High Open Rate — the audience is engaged. Look further at CTOR and conversion.', uz: 'Yuqori Open Rate — auditoriya jalb qilingan. Keyin CTOR va konversiyaga qarang.' },
+  'Низкий CTOR — контент письма не цепляет. Улучшайте оффер, CTA и релевантность.': { en: 'Low CTOR — the email content does not land. Improve the offer, CTA, and relevance.', uz: 'Past CTOR — xat kontenti ta’sir qilmayapti. Taklif, CTA va dolzarblikni yaxshilang.' },
+  'Норма. CTOR не зависит от Open Rate — тестируйте контент и расположение CTA.': { en: 'Normal. CTOR is independent of Open Rate — test content and CTA placement.', uz: 'Normal. CTOR Open Rate ga bog‘liq emas — kontent va CTA joylashuvini sinab ko‘ring.' },
+  'Высокий CTOR — контент письма попадает в цель. Хороший сигнал для конверсии.': { en: 'High CTOR — the email content hits the mark. A good signal for conversion.', uz: 'Yuqori CTOR — xat kontenti nishonga tegadi. Konversiya uchun yaxshi signal.' },
+  'Низкая адопция фичи. Проверьте discoverability, онбординг и реальную ценность функции.': { en: 'Low feature adoption. Check discoverability, onboarding, and the feature’s real value.', uz: 'Past funksiya adopsiyasi. Discoverability, onboarding va funksiyaning haqiqiy qiymatini tekshiring.' },
+  'Средняя адопция. Подсветите фичу в UI и свяжите с ключевыми сценариями.': { en: 'Average adoption. Surface the feature in the UI and tie it to key use cases.', uz: 'O‘rtacha adopsiya. Funksiyani UI da ko‘rsating va asosiy stsenariylar bilan bog‘lang.' },
+  'Высокая адопция — фича попала в потребность. Следите за её влиянием на Retention.': { en: 'High adoption — the feature met a real need. Watch its impact on Retention.', uz: 'Yuqori adopsiya — funksiya ehtiyojga tushdi. Uning Retention ga ta’sirini kuzating.' },
+  'Поток лидов падает — через цикл продажи это ударит по выручке. Усиливайте demand gen.': { en: 'Lead flow is falling — after the sales cycle this will hit revenue. Strengthen demand gen.', uz: 'Lidlar oqimi pasaymoqda — sotuv siklidan keyin bu tushumga uradi. Demand gen ni kuchaytiring.' },
+  'Рост лидов слабый. LVR — опережающий индикатор: разгоняйте верх воронки заранее.': { en: 'Lead growth is weak. LVR is a leading indicator — ramp the top of the funnel early.', uz: 'Lidlar o‘sishi zaif. LVR — yetakchi indikator: voronka tepasini oldindan kuchaytiring.' },
+  'Лиды растут уверенно — здоровый предвестник будущего роста ARR.': { en: 'Leads are growing steadily — a healthy precursor to future ARR growth.', uz: 'Lidlar barqaror o‘smoqda — kelajakdagi ARR o‘sishining sog‘lom darakchisi.' },
+  'Капитал сжигается быстрее, чем строится ARR. Повышайте эффективность роста или режьте burn.': { en: 'Capital burns faster than ARR is built. Improve growth efficiency or cut burn.', uz: 'Kapital ARR qurilishidan tezroq sarflanmoqda. O‘sish samaradorligini oshiring yoki burn ni qisqartiring.' },
+  'Норма. Каждый доллар burn пока даёт меньше доллара ARR — двигайтесь к CCS > 1.': { en: 'Normal. Each dollar of burn still yields less than a dollar of ARR — move toward CCS > 1.', uz: 'Normal. Har bir burn dollari hozircha bir dollardan kam ARR beradi — CCS > 1 ga intiling.' },
+  'Капиталоэффективный рост (CCS > 1 — уровень elite по Bessemer).': { en: 'Capital-efficient growth (CCS > 1 — elite tier per Bessemer).', uz: 'Kapital samarali o‘sish (CCS > 1 — Bessemer bo‘yicha elite daraja).' },
+  'Чем меньше — тем лучше, но оценивайте по приоритетам: для P1/critical нужны часы, для рутинных запросов норма выше. Смотрите вместе с FCR, SLA и CSAT.': { en: 'Lower is better, but judge by priority: P1/critical need hours, routine requests allow more. View it with FCR, SLA, and CSAT.', uz: 'Kamroq — yaxshiroq, lekin prioritet bo‘yicha baholang: P1/critical uchun soatlar kerak, oddiy so‘rovlar uchun me’yor yuqoriroq. Uni FCR, SLA va CSAT bilan ko‘ring.' },
   // — Batch +10 (WAU, Net New MRR, Contribution Margin, GMV, Take Rate, Quota Attainment, CPM, Cart Abandonment, MER, CES) —
   'WAU — счётчик; смотрите DAU/WAU (внутринедельная липкость) и WAU/MAU. Для рабочих инструментов WAU ближе к MAU, для соцсетей — к DAU.': { en: 'WAU is a counter; look at DAU/WAU (intra-week stickiness) and WAU/MAU. For work tools WAU is closer to MAU; for social apps, closer to DAU.', uz: 'WAU — hisoblagich; DAU/WAU (hafta ichidagi stickiness) va WAU/MAU ni qarang. Ish vositalari uchun WAU MAU ga, ijtimoiy ilovalar uchun DAU ga yaqin.' },
   'Отрицательный Net New MRR — выручка сжимается: отток и даунгрейды перевешивают рост.': { en: 'Negative Net New MRR — revenue is contracting: churn and downgrades outweigh growth.', uz: 'Salbiy Net New MRR — tushum qisqarmoqda: churn va daungreydlar o‘sishdan ustun.' },
@@ -1725,6 +1767,46 @@ window._tTooltip = function(ruText) {
                     calculate: v => { const u = sanitizeNumber(v.users); return u !== null ? u : null; },
                     unit: 'чел',
                     insight: val => ({ color: '#2A6DF4', text: 'WAU — счётчик; смотрите DAU/WAU (внутринедельная липкость) и WAU/MAU. Для рабочих инструментов WAU ближе к MAU, для соцсетей — к DAU.' })
+                },
+                {
+                    id: 'arppu', name: 'ARPPU',
+                    formula: 'Выручка / Платящие пользователи',
+                    description: 'Average Revenue Per Paying User — средняя выручка с одного платящего пользователя. В отличие от ARPU считается только по платящим и не размывается бесплатной аудиторией. Ключевая метрика для free-to-play и freemium.',
+                    threshold: 'Сравнивайте с ARPU и LTV; для F2P — ключевая метрика монетизации',
+                    inputs: [
+                        { label: 'Выручка за период, $', placeholder: '120000', key: 'revenue', min: 0, help: 'Суммарная выручка с платящих за тот же период.' },
+                        { label: 'Платящие пользователи', placeholder: '2400', key: 'payingUsers', min: 1, help: 'Только уникальные платящие пользователи (не все активные). ARPPU = выручка / платящие.' }
+                    ],
+                    calculate: v => {
+                        const r = sanitizeNumber(v.revenue);
+                        const p = sanitizeNumber(v.payingUsers);
+                        if (r === null || p === null || p <= 0) return null;
+                        return (r / p).toFixed(2);
+                    },
+                    unit: '$',
+                    insight: val => ({ color: '#2A6DF4', text: 'ARPPU считается только по платящим — он всегда выше ARPU. Для F2P смотрите его вместе с долей платящих (PUR) и LTV.' })
+                },
+                {
+                    id: 'featureAdoption', name: 'Feature Adoption Rate',
+                    formula: '(Пользователи фичи / Активные пользователи) × 100%',
+                    description: 'Доля активных пользователей, начавших использовать конкретную фичу. Показывает, насколько новая функциональность находит спрос и оправдывает вложенную разработку.',
+                    threshold: 'Плохо: <20%, Средне: 20–40%, Хорошо: >40%',
+                    inputs: [
+                        { label: 'Пользователи, использующие фичу', placeholder: '1800', key: 'adopted', min: 0, help: 'Уникальные активные пользователи, хоть раз воспользовавшиеся фичей за период.' },
+                        { label: 'Всего активных пользователей', placeholder: '6000', key: 'active', min: 1, help: 'Все активные пользователи продукта за тот же период (база сравнения).' }
+                    ],
+                    calculate: v => {
+                        const a = sanitizeNumber(v.adopted);
+                        const t = sanitizeNumber(v.active);
+                        if (a === null || t === null || t <= 0) return null;
+                        return ((a / t) * 100).toFixed(1);
+                    },
+                    unit: '%',
+                    insight: val => {
+                        if (val < 20) return { color: '#F44336', text: 'Низкая адопция фичи. Проверьте discoverability, онбординг и реальную ценность функции.' };
+                        if (val < 40) return { color: '#FFC107', text: 'Средняя адопция. Подсветите фичу в UI и свяжите с ключевыми сценариями.' };
+                        return { color: '#4CAF50', text: 'Высокая адопция — фича попала в потребность. Следите за её влиянием на Retention.' };
+                    }
                 }
             ]
         },
@@ -1972,6 +2054,50 @@ window._tTooltip = function(ruText) {
                         if (val < 0) return { color: '#F44336', text: 'Отрицательный Net New MRR — выручка сжимается: отток и даунгрейды перевешивают рост.' };
                         if (val < 1) return { color: '#FFC107', text: 'Околонулевой прирост — рост съедается оттоком. Работайте над retention и expansion.' };
                         return { color: '#4CAF50', text: 'Положительный прирост MRR. Следите за долей Expansion — она удешевляет рост (см. Quick Ratio).' };
+                    }
+                },
+                {
+                    id: 'leadVelocityRate', name: 'Lead Velocity Rate',
+                    formula: '((Лиды тек. месяца − Лиды пред. месяца) / Лиды пред. месяца) × 100%',
+                    description: 'LVR — темп роста числа квалифицированных лидов месяц к месяцу. Опережающий индикатор будущей выручки: лиды сегодня превращаются в сделки и ARR через цикл продажи.',
+                    threshold: 'Плохо: <0%, Средне: 0–10%, Хорошо: >10%',
+                    inputs: [
+                        { label: 'Квал. лиды в текущем месяце', placeholder: '420', key: 'thisMonth', min: 0, help: 'Число квалифицированных лидов (MQL/SQL) за текущий месяц.' },
+                        { label: 'Квал. лиды в прошлом месяце', placeholder: '380', key: 'lastMonth', min: 1, help: 'То же число за предыдущий месяц — база сравнения.' }
+                    ],
+                    calculate: v => {
+                        const t = sanitizeNumber(v.thisMonth);
+                        const l = sanitizeNumber(v.lastMonth);
+                        if (t === null || l === null || l <= 0) return null;
+                        return (((t - l) / l) * 100).toFixed(1);
+                    },
+                    unit: '%',
+                    insight: val => {
+                        if (val < 0) return { color: '#F44336', text: 'Поток лидов падает — через цикл продажи это ударит по выручке. Усиливайте demand gen.' };
+                        if (val < 10) return { color: '#FFC107', text: 'Рост лидов слабый. LVR — опережающий индикатор: разгоняйте верх воронки заранее.' };
+                        return { color: '#4CAF50', text: 'Лиды растут уверенно — здоровый предвестник будущего роста ARR.' };
+                    }
+                },
+                {
+                    id: 'cashConversionScore', name: 'Cash Conversion Score',
+                    formula: 'Текущий ARR / Чистый сожжённый капитал',
+                    description: 'CCS (Bessemer) — сколько ARR компания построила на каждый сожжённый доллар. Измеряет капиталоэффективность: чем выше, тем меньше денег нужно для построения выручки.',
+                    threshold: 'Плохо: <0.5, Средне: 0.5–1, Хорошо: >1 (elite)',
+                    inputs: [
+                        { label: 'Текущий ARR, $', placeholder: '8000000', key: 'arr', min: 0, help: 'Годовая регулярная выручка на текущий момент.' },
+                        { label: 'Чистый сожжённый капитал, $', placeholder: '6000000', key: 'capitalConsumed', min: 1, help: 'Net capital consumed: суммарно привлечённый капитал минус текущий кэш на счетах.' }
+                    ],
+                    calculate: v => {
+                        const a = sanitizeNumber(v.arr);
+                        const c = sanitizeNumber(v.capitalConsumed);
+                        if (a === null || c === null || c <= 0) return null;
+                        return (a / c).toFixed(2);
+                    },
+                    unit: '×',
+                    insight: val => {
+                        if (val < 0.5) return { color: '#F44336', text: 'Капитал сжигается быстрее, чем строится ARR. Повышайте эффективность роста или режьте burn.' };
+                        if (val < 1) return { color: '#FFC107', text: 'Норма. Каждый доллар burn пока даёт меньше доллара ARR — двигайтесь к CCS > 1.' };
+                        return { color: '#4CAF50', text: 'Капиталоэффективный рост (CCS > 1 — уровень elite по Bessemer).' };
                     }
                 }
             ]
@@ -2559,6 +2685,104 @@ window._tTooltip = function(ruText) {
                         if (val < 3) return { color: '#FFC107', text: 'Норма. Следите за трендом MER и связкой с контрибуционной маржой.' };
                         return { color: '#4CAF50', text: 'Эффективный blended-маркетинг. Можно осторожно масштабировать бюджет, пока MER держится.' };
                     }
+                },
+                {
+                    id: 'cpa', name: 'CPA',
+                    formula: 'Затраты / Целевые действия (конверсии)',
+                    description: 'Cost Per Action — стоимость одного целевого действия (покупка, регистрация, заявка). В отличие от CPC учитывает только результаты, а не клики.',
+                    threshold: 'Оценивайте вместе с CR и LTV; «дешёвый» CPA ≠ качественный трафик',
+                    inputs: [
+                        { label: 'Затраты, $', placeholder: '8000', key: 'spend', min: 0, help: 'Полные затраты на канал/кампанию за период.' },
+                        { label: 'Целевые действия (конверсии)', placeholder: '320', key: 'actions', min: 1, help: 'Число совершённых целевых действий (покупки, заявки, регистрации).' }
+                    ],
+                    calculate: v => {
+                        const s = sanitizeNumber(v.spend);
+                        const a = sanitizeNumber(v.actions);
+                        if (s === null || a === null || a <= 0) return null;
+                        return (s / a).toFixed(2);
+                    },
+                    unit: '$',
+                    insight: val => ({ color: '#2A6DF4', text: 'CPA сам по себе ничего не говорит — оценивайте в связке с CR и LTV. Дешёвый CPA при плохом качестве лидов дороже в пересчёте на клиента.' })
+                },
+                {
+                    id: 'cpl', name: 'CPL',
+                    formula: 'Затраты / Количество лидов',
+                    description: 'Cost Per Lead — стоимость привлечения одного лида. Базовая метрика эффективности лидогенерации; имеет смысл только вместе с качеством лидов и конверсией в сделку.',
+                    threshold: 'Оценивайте с CR лида в клиента и CAC; дешёвый CPL ≠ дешёвый клиент',
+                    inputs: [
+                        { label: 'Затраты, $', placeholder: '12000', key: 'spend', min: 0, help: 'Полные затраты на лидогенерацию за период.' },
+                        { label: 'Количество лидов', placeholder: '600', key: 'leads', min: 1, help: 'Число полученных лидов (заявок/контактов) за тот же период.' }
+                    ],
+                    calculate: v => {
+                        const s = sanitizeNumber(v.spend);
+                        const l = sanitizeNumber(v.leads);
+                        if (s === null || l === null || l <= 0) return null;
+                        return (s / l).toFixed(2);
+                    },
+                    unit: '$',
+                    insight: val => ({ color: '#2A6DF4', text: 'CPL оценивайте вместе с конверсией лида в клиента и итоговым CAC. Дешёвый CPL при низком качестве лидов раздувает CAC.' })
+                },
+                {
+                    id: 'cpi', name: 'CPI',
+                    formula: 'Затраты на привлечение / Установки',
+                    description: 'Cost Per Install — стоимость одной установки приложения. Базовая метрика mobile UA; сравнивается с LTV и ARPPU, чтобы установки окупались.',
+                    threshold: 'Оценивайте вместе с LTV/ARPPU и retention; дешёвая установка ≠ платящий пользователь',
+                    inputs: [
+                        { label: 'Затраты на привлечение, $', placeholder: '15000', key: 'spend', min: 0, help: 'Рекламный бюджет на UA-кампанию за период.' },
+                        { label: 'Установки', placeholder: '7500', key: 'installs', min: 1, help: 'Число установок приложения, атрибутированных кампании.' }
+                    ],
+                    calculate: v => {
+                        const s = sanitizeNumber(v.spend);
+                        const i = sanitizeNumber(v.installs);
+                        if (s === null || i === null || i <= 0) return null;
+                        return (s / i).toFixed(2);
+                    },
+                    unit: '$',
+                    insight: val => ({ color: '#2A6DF4', text: 'CPI имеет смысл только в связке с LTV/ARPPU и retention. Дешёвая установка без удержания и монетизации убыточна.' })
+                },
+                {
+                    id: 'openRate', name: 'Email Open Rate',
+                    formula: '(Открытия / Доставлено) × 100%',
+                    description: 'Доля доставленных писем, которые были открыты. Базовая метрика email-маркетинга; зависит от темы письма, отправителя и репутации домена.',
+                    threshold: 'Плохо: <15%, Средне: 15–25%, Хорошо: >25%',
+                    inputs: [
+                        { label: 'Открытия писем', placeholder: '4200', key: 'opens', min: 0, help: 'Число открытий (уникальных или всех — будьте последовательны).' },
+                        { label: 'Доставлено писем', placeholder: '20000', key: 'delivered', min: 1, help: 'Письма, дошедшие до инбокса (отправлено минус bounce).' }
+                    ],
+                    calculate: v => {
+                        const o = sanitizeNumber(v.opens);
+                        const d = sanitizeNumber(v.delivered);
+                        if (o === null || d === null || d <= 0) return null;
+                        return ((o / d) * 100).toFixed(1);
+                    },
+                    unit: '%',
+                    insight: val => {
+                        if (val < 15) return { color: '#F44336', text: 'Низкий Open Rate. Работайте над темой письма, отправителем и репутацией домена.' };
+                        if (val < 25) return { color: '#FFC107', text: 'Норма. Тестируйте темы и сегментацию; следите за CTOR, а не только за открытиями.' };
+                        return { color: '#4CAF50', text: 'Высокий Open Rate — аудитория вовлечена. Смотрите дальше на CTOR и конверсию.' };
+                    }
+                },
+                {
+                    id: 'ctor', name: 'CTOR',
+                    formula: '(Уникальные клики / Уникальные открытия) × 100%',
+                    description: 'Click-To-Open Rate — доля открывших письмо, которые кликнули по ссылке. В отличие от обычного CTR не зависит от Open Rate и точнее измеряет качество контента письма.',
+                    threshold: 'Плохо: <10%, Средне: 10–20%, Хорошо: >20%',
+                    inputs: [
+                        { label: 'Уникальные клики', placeholder: '900', key: 'clicks', min: 0, help: 'Уникальные клики по ссылкам внутри письма.' },
+                        { label: 'Уникальные открытия', placeholder: '4200', key: 'opens', min: 1, help: 'Уникальные открытия письма — знаменатель CTOR.' }
+                    ],
+                    calculate: v => {
+                        const c = sanitizeNumber(v.clicks);
+                        const o = sanitizeNumber(v.opens);
+                        if (c === null || o === null || o <= 0) return null;
+                        return ((c / o) * 100).toFixed(1);
+                    },
+                    unit: '%',
+                    insight: val => {
+                        if (val < 10) return { color: '#F44336', text: 'Низкий CTOR — контент письма не цепляет. Улучшайте оффер, CTA и релевантность.' };
+                        if (val < 20) return { color: '#FFC107', text: 'Норма. CTOR не зависит от Open Rate — тестируйте контент и расположение CTA.' };
+                        return { color: '#4CAF50', text: 'Высокий CTOR — контент письма попадает в цель. Хороший сигнал для конверсии.' };
+                    }
                 }
             ]
         },
@@ -2749,6 +2973,24 @@ window._tTooltip = function(ruText) {
                         if (val < 6) return { color: '#FFC107', text: 'Норма. Низкое усилие удерживает лучше, чем «восторг» — ищите узкие места.' };
                         return { color: '#4CAF50', text: 'Клиентам легко — отличный предиктор лояльности и повторных покупок.' };
                     }
+                },
+                {
+                    id: 'avgResolutionTime', name: 'Avg Resolution Time',
+                    formula: 'Суммарное время решения / Решённые тикеты',
+                    description: 'Среднее время полного решения тикета (от создания до закрытия). Чем меньше — тем лучше. Норма сильно зависит от приоритета: P1/critical решают быстрее, чем общие запросы.',
+                    threshold: 'Меньше — лучше. Зависит от приоритета: P1 быстрее, рутинные запросы дольше',
+                    inputs: [
+                        { label: 'Суммарное время решения, ч', placeholder: '960', key: 'totalHours', min: 0, help: 'Сумма часов на решение всех закрытых тикетов за период.' },
+                        { label: 'Решённые тикеты', placeholder: '240', key: 'ticketsResolved', min: 1, help: 'Число закрытых (решённых) тикетов за тот же период.' }
+                    ],
+                    calculate: v => {
+                        const h = sanitizeNumber(v.totalHours);
+                        const t = sanitizeNumber(v.ticketsResolved);
+                        if (h === null || t === null || t <= 0) return null;
+                        return (h / t).toFixed(1);
+                    },
+                    unit: 'ч',
+                    insight: val => ({ color: '#2A6DF4', text: 'Чем меньше — тем лучше, но оценивайте по приоритетам: для P1/critical нужны часы, для рутинных запросов норма выше. Смотрите вместе с FCR, SLA и CSAT.' })
                 }
             ]
         }
@@ -2764,6 +3006,76 @@ window._tTooltip = function(ruText) {
     // Для метрик, где пороги сильно зависят от отрасли.
     // Формат: { metricId: { industry: 'строка для renderBenchmarks' } }
     const INDUSTRY_THRESHOLDS = {
+        cpa: {
+            universal: 'Зависит от LTV: CPA должен быть кратно ниже ценности действия',
+            saas:      'B2B trial/демо: $30–$150; оценивайте с trial→paid CR',
+            ecom:      'Покупка: $5–$40 в зависимости от AOV и маржи',
+            mobile:    'Регистрация/первая покупка: $1–$20, сравнивайте с LTV',
+            media:     'Подписка/регистрация: $2–$25; важна окупаемость через ARPU',
+        },
+        cpl: {
+            universal: 'Зависит от качества лида и конверсии в клиента',
+            saas:      'B2B SaaS: $20–$200 за MQL; смотрите CR лида в сделку',
+            ecom:      'Менее релевантно — чаще считают CPA на покупку',
+            mobile:    'Менее релевантно — для apps считают CPI/CPA',
+            media:     'Подписка/рассылка: $1–$15 за лид',
+        },
+        cpi: {
+            universal: 'Метрика mobile UA; оценивайте с LTV/ARPPU и retention',
+            saas:      'Менее релевантно — это mobile-метрика',
+            ecom:      'Shopping-apps: $1–$5; ROAS важнее самого CPI',
+            mobile:    'Gaming $1–$5, non-gaming $2–$8 (зависит от гео и ОС)',
+            media:     'Контент-apps: $1–$4; ключевое — окупаемость через подписку',
+        },
+        arppu: {
+            universal: 'Всегда выше ARPU; смотрите вместе с долей платящих (PUR)',
+            saas:      'B2B: ARPPU ≈ ACV/12; растёт через апселы и тарифы',
+            ecom:      'ARPPU ≈ AOV × частота на платящего клиента',
+            mobile:    'F2P: $5–$50/мес у платящих; «киты» сильно сдвигают среднее',
+            media:     'Подписка: близко к цене тарифа; апселлы поднимают ARPPU',
+        },
+        openRate: {
+            universal: 'Плохо: <15%, Норма: 15–25%, Хорошо: >25%',
+            saas:      'B2B-рассылки: 20–35% (триггерные письма выше)',
+            ecom:      'Промо-рассылки: 15–25%; брошенная корзина выше',
+            mobile:    'Onboarding/триггеры: 25–45%; смотрите вместе с push',
+            media:     'Newsletters: 30–50% у лояльной аудитории',
+        },
+        ctor: {
+            universal: 'Плохо: <10%, Норма: 10–20%, Хорошо: >20%',
+            saas:      'B2B: 10–20%; триггерные письма выше',
+            ecom:      'Промо: 8–15%; зависит от оффера и сегментации',
+            mobile:    'Onboarding-серии: 15–25%',
+            media:     'Newsletters: 12–22% у вовлечённой аудитории',
+        },
+        featureAdoption: {
+            universal: 'Плохо: <20%, Норма: 20–40%, Хорошо: >40%',
+            saas:      'Core-фичи >40%; вспомогательные 10–25% — норма',
+            ecom:      'Wishlist/отзывы 15–30%; зависит от сценария',
+            mobile:    'Новая фича за первый месяц: 20–40% активных',
+            media:     'Плейлисты/подписки на авторов: 25–45%',
+        },
+        leadVelocityRate: {
+            universal: 'Плохо: <0%, Норма: 0–10%, Хорошо: >10% MoM',
+            saas:      'Растущий B2B SaaS: 10–20%+ MoM — здоровый темп',
+            ecom:      'Менее релевантно — чаще считают рост заказов',
+            mobile:    'Менее релевантно — UA измеряют установками',
+            media:     'B2B ad sales: 5–15% MoM — норма',
+        },
+        cashConversionScore: {
+            universal: 'Плохо: <0.5, Норма: 0.5–1, Хорошо: >1 (elite)',
+            saas:      'Bessemer: >1 — elite, 0.5–1 — норма, <0.5 — неэффективно',
+            ecom:      'Менее релевантно — используйте contribution margin и ROIC',
+            mobile:    'Менее релевантно — смотрите ROAS и payback',
+            media:     'Менее релевантно — оцените unit-экономику подписки',
+        },
+        avgResolutionTime: {
+            universal: 'Меньше — лучше. Зависит от приоритета и канала',
+            saas:      'B2B: P1 < 4ч, обычные тикеты < 24–48ч',
+            ecom:      'Розница: < 24ч для большинства обращений',
+            mobile:    'In-app саппорт: первые ответы быстрее, решение < 24ч',
+            media:     'Подписочное медиа: < 24–48ч для большинства запросов',
+        },
         wau: {
             universal: 'Счётчик. Смотрите DAU/WAU и WAU/MAU',
             saas:      'Для рабочих инструментов WAU ≈ 50–80% от MAU',
@@ -3817,6 +4129,36 @@ window._tTooltip = function(ruText) {
 
     // ---- RELATED METRICS ----
     const RELATED = {
+        cpa:          [{ s:'growth', id:'cpc',        note:'CPC × CR ≈ CPA' },
+                       { s:'growth', id:'cr',         note:'CR превращает клики в действия' },
+                       { s:'b2c', id:'cac',           note:'CAC — стоимость платящего клиента' }],
+        cpl:          [{ s:'growth', id:'cpa',        note:'CPL и CPA — пара по воронке' },
+                       { s:'b2c', id:'cac',           note:'лиды конвертируются в CAC' },
+                       { s:'growth', id:'cr',         note:'CR лида в клиента' }],
+        cpi:          [{ s:'growth', id:'cpa',        note:'CPI — install-версия CPA' },
+                       { s:'b2c', id:'cac',           note:'install ≠ платящий клиент' },
+                       { s:'b2c', id:'arpu',          note:'CPI окупается через ARPU/ARPPU' }],
+        arppu:        [{ s:'b2c', id:'arpu',          note:'ARPU считается по всем активным' },
+                       { s:'b2c', id:'ltv',           note:'ARPPU — компонент LTV платящих' },
+                       { s:'b2c', id:'arpdau',        note:'ARPDAU — дневной аналог' }],
+        openRate:     [{ s:'growth', id:'ctor',       note:'CTOR — следующий шаг после открытия' },
+                       { s:'growth', id:'ctr',        note:'CTR письма по доставленным' },
+                       { s:'growth', id:'cr',         note:'открытия ведут к конверсии' }],
+        ctor:         [{ s:'growth', id:'openRate',   note:'знаменатель — открытия письма' },
+                       { s:'growth', id:'ctr',        note:'CTOR vs CTR письма' },
+                       { s:'growth', id:'cr',         note:'клики ведут к конверсии' }],
+        featureAdoption:[{ s:'sales', id:'activation', note:'адопция — после активации' },
+                         { s:'b2c', id:'retention',   note:'адопция фич растит Retention' },
+                         { s:'b2c', id:'stickiness',  note:'фичи усиливают липкость' }],
+        leadVelocityRate:[{ s:'finance', id:'mrrGrowthRate', note:'лиды → будущий рост MRR' },
+                          { s:'finance', id:'pipelineCoverage', note:'лиды наполняют pipeline' },
+                          { s:'finance', id:'salesVelocity', note:'скорость закрытия лидов' }],
+        cashConversionScore:[{ s:'finance', id:'burnMultiple', note:'Burn Multiple — обратный угол' },
+                             { s:'finance', id:'magicNumber', note:'эффективность роста' },
+                             { s:'finance', id:'runway',  note:'burn определяет runway' }],
+        avgResolutionTime:[{ s:'support', id:'fcr',    note:'FCR снижает время решения' },
+                           { s:'support', id:'sla',    note:'SLA задаёт целевые сроки' },
+                           { s:'support', id:'csat',   note:'быстрое решение растит CSAT' }],
         wau:          [{ s:'b2c', id:'dau',          note:'DAU/WAU — внутринедельная липкость' },
                        { s:'b2c', id:'mau',          note:'WAU/MAU — недельное удержание' },
                        { s:'b2c', id:'stickiness',   note:'Stickiness — родственная метрика' }],

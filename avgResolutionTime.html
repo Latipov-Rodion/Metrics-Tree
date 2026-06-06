@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>ROAS калькулятор — Return on Ad Spend, формула | MetricTree</title>
-    <meta name="description" content="ROAS = Выручка от рекламы / Затраты. Норма e-com >4x, SaaS >3x. Goal-режим: max бюджет при target ROAS.">
+    <title>Avg Resolution Time калькулятор — среднее время решения | MetricTree</title>
+    <meta name="description" content="Avg Resolution Time = Суммарное время решения / Решённые тикеты. Среднее время закрытия тикета. Меньше — лучше; зависит от приоритета.">
     <meta name="keywords" content="калькулятор LTV онлайн, как рассчитать CAC, формула MRR ARR, что такое Churn Rate, NPS калькулятор, DAU MAU stickiness, ROAS формула, Burn Multiple калькулятор, Magic Number SaaS, Rule of 40, Quick Ratio SaaS, продуктовые метрики, unit economics, MetricTree">
     <meta name="author" content="Родион Латыпов">
     <meta name="theme-color" content="#0A0C0E" media="(prefers-color-scheme: dark)">
     <meta name="theme-color" content="#F0F2F5" media="(prefers-color-scheme: light)">
-    <link rel="canonical" href="https://metricstree.vercel.app/roas">
+    <link rel="canonical" href="https://metricstree.vercel.app/avgResolutionTime">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="alternate icon" href="/favicon.ico">
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <meta property="og:title" content="ROAS калькулятор — Return on Ad Spend, формула | MetricTree">
-    <meta property="og:description" content="ROAS = Выручка от рекламы / Затраты. Норма e-com >4x, SaaS >3x. Goal-режим: max бюджет при target ROAS.">
+    <meta property="og:title" content="Avg Resolution Time калькулятор — среднее время решения | MetricTree">
+    <meta property="og:description" content="Avg Resolution Time = Суммарное время решения / Решённые тикеты. Среднее время закрытия тикета. Меньше — лучше; зависит от приоритета.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://metricstree.vercel.app/roas">
+    <meta property="og:url" content="https://metricstree.vercel.app/avgResolutionTime">
     <meta property="og:site_name" content="MetricTree">
     <meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
     <meta property="og:image:type" content="image/png">
@@ -28,8 +28,8 @@
     <meta property="og:locale:alternate" content="en_US">
     <meta property="og:locale:alternate" content="uz_UZ">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ROAS калькулятор — Return on Ad Spend, формула | MetricTree">
-    <meta name="twitter:description" content="ROAS = Выручка от рекламы / Затраты. Норма e-com >4x, SaaS >3x. Goal-режим: max бюджет при target ROAS.">
+    <meta name="twitter:title" content="Avg Resolution Time калькулятор — среднее время решения | MetricTree">
+    <meta name="twitter:description" content="Avg Resolution Time = Суммарное время решения / Решённые тикеты. Среднее время закрытия тикета. Меньше — лучше; зависит от приоритета.">
     <meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
     <script type="application/ld+json">
     {
@@ -131,34 +131,10 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Чем ROAS отличается от ROI?",
+      "name": "Что такое Avg Resolution Time?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "ROAS = Выручка / Ad Spend. ROI = (Прибыль − Затраты) / Затраты. ROAS — gross, до маржи. ROI — net, после COGS. ROAS быстрее для тактики, ROI точнее для стратегии."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Какой ROAS считается хорошим?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "E-commerce: >4× норма, >6× отлично (с учётом 60–70% маржи). SaaS: >3× (длинный LTV компенсирует). Mobile gaming: >1.5× (быстрая монетизация). Главное — break-even ROAS = 1 / Gross Margin."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Что такое break-even ROAS?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Break-even ROAS = 1 / Gross Margin. При 70% марже break-even ROAS = 1.43×. Ниже этого — каждая кампания убыточна. Это floor, target должен быть в 2–3× выше break-even."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Как повысить ROAS?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "(1) creatives — A/B-тесты, 80% улучшений идёт оттуда; (2) landing page conversion (CR×ROAS); (3) audience targeting (lookalikes от high-LTV); (4) AOV-апселы; (5) убрать broad-match low-intent keywords."
+        "text": "Среднее время решения = Суммарное время решения / Число решённых тикетов. Меньше — лучше, но оценивайте по приоритетам: P1 решают быстрее. Смотрите с FCR, SLA, CSAT."
       }
     }
   ]
@@ -168,16 +144,16 @@
 {
   "@context": "https://schema.org",
   "@type": "HowTo",
-  "name": "Как рассчитать ROAS",
-  "description": "ROAS = Выручка от рекламы / Затраты. Норма e-com >4x, SaaS >3x. Goal-режим: max бюджет при target ROAS.",
+  "name": "Как рассчитать Avg Resolution Time",
+  "description": "Avg Resolution Time = Суммарное время решения / Решённые тикеты. Среднее время закрытия тикета. Меньше — лучше; зависит от приоритета.",
   "totalTime": "PT1M",
   "step": [
     {
       "@type": "HowToStep",
       "position": 1,
       "name": "Откройте калькулятор",
-      "text": "Перейдите на https://metricstree.vercel.app/roas — калькулятор уже заполнен примером.",
-      "url": "https://metricstree.vercel.app/roas"
+      "text": "Перейдите на https://metricstree.vercel.app/avgResolutionTime — калькулятор уже заполнен примером.",
+      "url": "https://metricstree.vercel.app/avgResolutionTime"
     },
     {
       "@type": "HowToStep",
@@ -189,7 +165,7 @@
       "@type": "HowToStep",
       "position": 3,
       "name": "Сравните с бенчмарком",
-      "text": "ROAS = Выручка от рекламы / Затраты. E-commerce норма >4× (400%), SaaS — >3×. Goal-режим даст max бюджет при заданной target-доходности."
+      "text": "Среднее время решения = Суммарное время решения / Число решённых тикетов. Меньше — лучше, но оценивайте по приоритетам: P1 решают быстрее. Смотрите с FCR, SLA, CSAT."
     }
   ]
 }
@@ -208,16 +184,18 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "ROAS",
-      "item": "https://metricstree.vercel.app/roas"
+      "name": "Avg Resolution Time",
+      "item": "https://metricstree.vercel.app/avgResolutionTime"
     }
   ]
 }
     </script>
-    <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/roas">
-    <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/roas">
-    <link rel="alternate" hreflang="uz" href="https://metricstree.vercel.app/uz/roas">
-    <link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/roas">
+    <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/avgResolutionTime">
+    <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/avgResolutionTime">
+    <link rel="alternate" hreflang="uz" href="https://metricstree.vercel.app/uz/avgResolutionTime">
+    <link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/avgResolutionTime">
+
+<script src="/theme-sync.js" defer></script>
 </head>
 <body>
 <script>

@@ -131,7 +131,7 @@ async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         '<b>📊 MetricTree bot</b>\n\n'
         'Quick calculators for 9 popular product metrics. Tap a button for usage, '
         'or send <code>/ltv 2500 4 3</code> directly.\n\n'
-        f'For the full 48-metric calculator with Goal mode, What-If, and 3 languages: {WEB}'
+        f'For the full 69-metric calculator with Goal mode, What-If, and 3 languages: {WEB}'
     )
     await update.message.reply_html(text, reply_markup=_kb_main())
 
@@ -147,7 +147,7 @@ async def cmd_help(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def cmd_web(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_html(f'🌐 Full 48-metric calculator: {WEB}\n\nFeatures: Goal mode, What-If sliders, Forecast charts, 5 industry presets, 4 currencies, 3 languages, embed mode, free forever.')
+    await update.message.reply_html(f'🌐 Full 69-metric calculator: {WEB}\n\nFeatures: Goal mode, What-If sliders, Forecast charts, 5 industry presets, 4 currencies, 3 languages, embed mode, free forever.')
 
 
 async def metric_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
