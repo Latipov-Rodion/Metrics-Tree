@@ -28,7 +28,7 @@ application logic script is shared.
 1. Move the single `<style>…</style>` block from index.html into **`/app.css`**.
 2. Replace it with `<link rel="stylesheet" href="/app.css">`.
 3. `build.mjs` already only rewrites `<head>` meta + appends JSON-LD/SEO — the
-   `<link>` propagates to all 49 pages unchanged. No generator logic change needed
+   `<link>` propagates to all 69 pages unchanged. No generator logic change needed
    beyond confirming the per-metric pages reference `/app.css`.
 4. `vercel.json`: add a cache header for `/app.css` (e.g. `max-age=86400,
    stale-while-revalidate=604800`; or content-hash the filename for immutable).
