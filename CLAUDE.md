@@ -2,6 +2,17 @@
 
 Guidance for AI assistants (Claude Code and others) working in this repository.
 
+> **⚠️ Read [`PROJECT_STATE.md`](PROJECT_STATE.md) first** — current snapshot (69 metrics,
+> `/tree` driver-tree, `/api/insight` AI), the full "how to add a metric" checklist, the
+> CI/build pipeline, and gotchas.
+>
+> **Architecture correction:** after a perf refactor, the app JS + **all metric data**
+> (`metricsData`, `I18N_M`, `I18N_INSIGHTS`, `INDUSTRY_THRESHOLDS`, `RELATED`, `GOAL_QUESTIONS`,
+> `DEEP_CONTENT`, `BENCHMARK_SOURCES`, `SCENARIO_TEMPLATES`) now live in **`/app.js`**, loaded by
+> `index.html` — they are **no longer inlined in `index.html`**. `build.mjs` generates **69**
+> per-metric pages + `sitemap.xml` + `benchmarks.html` from its `META` map. Parts of the layout
+> description below predate this refactor — trust `PROJECT_STATE.md` where they disagree.
+
 ## What this project is
 
 **MetricTree** (metricstree.vercel.app) is a free online calculator for 69 product
