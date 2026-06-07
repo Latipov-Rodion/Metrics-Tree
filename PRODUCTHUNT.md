@@ -27,7 +27,7 @@
 > **What it does:**
 > - **69 product metrics** in 7 sections (B2C, B2B SaaS, AARRR, Finance & Sales, Growth, QA, Support)
 > - Each metric has a **formula**, **industry benchmarks** with **source citations** (OpenView, Bessemer, David Sacks, Mamoon Hamid, Bain), and a **plain-language insight** when you enter your numbers
-> - **🎯 Goal mode** — reverse calculations: «I want LTV:CAC = 3, my LTV is $15k — what's the max CAC?» (16 metrics × ~32 reverse scenarios)
+> - **🎯 Goal mode** — reverse calculations: «I want LTV:CAC = 3, my LTV is $15k — what's the max CAC?» (14 metrics × ~21 reverse scenarios)
 > - **💡 What-if sliders** — drag inputs in real time
 > - **📈 Forecast charts** — project MRR, ARR, Churn 6/12/24 months
 > - **🔀 Compare 2 metrics** — side-by-side view of any two metrics
@@ -190,7 +190,7 @@ It doesn't just compute — it tells you if you're crushing it, on track, or in 
 
 «I want LTV:CAC = 3, my LTV is $15k — what's max CAC?»
 
-Click the 🎯 icon, type 3, get $5000. 16 metrics × 32 reverse scenarios.
+Click the 🎯 icon, type 3, get $5000. 14 metrics × 21 reverse scenarios.
 
 4/ Other extras nobody asked for but everyone needs:
 - 📈 Forecast charts (6–24 mo SVG)
