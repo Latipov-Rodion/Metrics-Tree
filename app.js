@@ -499,6 +499,17 @@ window.I18N_UI = {
 };
 
 window.I18N_M = {
+  // — i18n parity fix: metrics that had no EN/UZ entry (aov, repeatPurchaseRate, salesCycleLength, mrrGrowthRate, engagementRate) —
+  aov:        { en: { name: 'AOV', formula: 'Revenue in period / Number of orders', description: 'Average Order Value — the average basket. A foundational e-commerce and retail metric.' },
+                uz: { name: 'AOV', formula: 'Davr tushumi / Buyurtmalar soni', description: 'Average Order Value — o‘rtacha chek. E-commerce va chakana savdoning asosiy metrikasi.' } },
+  repeatPurchaseRate: { en: { name: 'Repeat Purchase Rate', formula: 'Customers with ≥2 orders / All customers × 100%', description: 'Repeat Purchase Rate (RPR) — the share of customers who made at least 2 purchases. The key e-commerce loyalty indicator.' },
+                uz: { name: 'Repeat Purchase Rate', formula: '2+ buyurtmali mijozlar / Barcha mijozlar × 100%', description: 'Repeat Purchase Rate (RPR) — kamida 2 marta xarid qilgan mijozlar ulushi. E-commerce sodiqligining asosiy ko‘rsatkichi.' } },
+  salesCycleLength: { en: { name: 'Sales Cycle Length', formula: 'Average days from opportunity-created to closed-won', description: 'The average time to close a B2B deal. Shorter → higher Sales Velocity, lower CAC Payback.' },
+                uz: { name: 'Sales Cycle Length', formula: 'Opportunity yaratilgandan closed-won gacha o‘rtacha kunlar', description: 'B2B bitimni yopishning o‘rtacha vaqti. Qisqaroq → Sales Velocity yuqori, CAC Payback past.' } },
+  mrrGrowthRate: { en: { name: 'MRR Growth Rate', formula: '(End MRR − Start MRR) / Start MRR × 100%', description: 'The MRR growth rate over a period. The key SaaS health metric — more important than absolute MRR.' },
+                uz: { name: 'MRR Growth Rate', formula: '(Davr oxiri MRR − Davr boshi MRR) / Davr boshi MRR × 100%', description: 'Davr davomida MRR o‘sish sur’ati. SaaS sog‘lig‘ining asosiy metrikasi — mutloq MRR dan muhimroq.' } },
+  engagementRate: { en: { name: 'Engagement Rate', formula: '(Active interactions / Reach) × 100%', description: 'Engagement Rate — the share of the audience that actively interacted (like / comment / share / click). The key SMM and content-marketing metric.' },
+                uz: { name: 'Engagement Rate', formula: '(Faol o‘zaro ta’sirlar / Qamrov) × 100%', description: 'Engagement Rate — faol o‘zaro ta’sir qilgan auditoriya ulushi (layk / izoh / ulashish / klik). SMM va kontent-marketingning asosiy metrikasi.' } },
   // — Batch +10 (CPA, CPL, CPI, ARPPU, Open Rate, CTOR, Feature Adoption, LVR, Cash Conversion Score, Avg Resolution Time) —
   cpa:        { en: { name: 'CPA', formula: 'Spend / Target actions (conversions)', description: 'Cost Per Action — cost of one target action (purchase, signup, request). Unlike CPC it counts results, not clicks. Judge it with CR and LTV.' },
                 uz: { name: 'CPA', formula: 'Xarajat / Maqsadli amallar (konversiyalar)', description: 'Cost Per Action — bitta maqsadli amal (xarid, ro‘yxatdan o‘tish, ariza) narxi. CPC dan farqli, kliklarni emas, natijalarni hisoblaydi. CR va LTV bilan baholang.' } },
