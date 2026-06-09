@@ -162,7 +162,7 @@ window.I18N_UI = {
     'about.s_qa': 'QA:',
     'about.s_support': 'Support:',
     'about.feat_thresholds': '<strong>Industry benchmarks</strong> for 61 metrics (SaaS / E-commerce / Mobile / Media / universal).',
-    'about.feat_goal': '<strong>🎯 Goal mode</strong> — reverse calculations for 14 metrics (~21 scenarios): "I want LTV:CAC=3 — what is the max CAC?"',
+    'about.feat_goal': '<strong>🎯 Goal mode</strong> — reverse calculations for 25 metrics (32 scenarios): "I want LTV:CAC=3 — what is the max CAC?"',
     'about.feat_whatif': '<strong>💡 What-if analysis</strong> — real-time sliders for every input.',
     'about.feat_templates': '<strong>📦 Templates</strong> — 5 preset scenarios (Startup SaaS, Mature SaaS, E-commerce, Mobile, Media).',
     'about.feat_dashboard': '<strong>📊 Dashboard</strong> with all computed metrics on one page.',
@@ -223,7 +223,7 @@ window.I18N_UI = {
     'pricing.cta_waitlist': 'Get -50% on launch →',
     'pricing.cta_waitlist_team': 'Get -50% on launch →',
     'pricing.f_47': '✓ All 69 metrics',
-    'pricing.f_goal': '✓ Goal mode (~21 reverse-calc)',
+    'pricing.f_goal': '✓ Goal mode (32 reverse-calc)',
     'pricing.f_whatif': '✓ What-if sliders',
     'pricing.f_industry': '✓ Industry benchmarks (5 verticals)',
     'pricing.f_3lang': '✓ 3 languages (RU / EN / UZ)',
@@ -411,7 +411,7 @@ window.I18N_UI = {
     'about.s_qa': 'QA:',
     'about.s_support': 'Qo‘llab-quvvatlash:',
     'about.feat_thresholds': '<strong>Soha bencharklari</strong> 61 ta metrika uchun (SaaS / E-tijorat / Mobil / Media / universal).',
-    'about.feat_goal': '<strong>🎯 Maqsad rejimi</strong> — 14 ta metrika uchun teskari hisob (~21 ta stsenariy): "LTV:CAC=3 kerak — maksimal CAC qancha?"',
+    'about.feat_goal': '<strong>🎯 Maqsad rejimi</strong> — 25 ta metrika uchun teskari hisob (32 ta stsenariy): "LTV:CAC=3 kerak — maksimal CAC qancha?"',
     'about.feat_whatif': '<strong>💡 What-if tahlili</strong> — har bir kirish uchun sliderlar real vaqtda.',
     'about.feat_templates': '<strong>📦 Shablonlar</strong> — 5 ta tayyor stsenariy (Startap SaaS, Yetuk SaaS, E-tijorat, Mobil, Media).',
     'about.feat_dashboard': '<strong>📊 Dashboard</strong> — barcha hisoblangan metrikalar bir sahifada.',
@@ -466,7 +466,7 @@ window.I18N_UI = {
     'pricing.cta_waitlist': 'Ishga tushganda -50% olish →',
     'pricing.cta_waitlist_team': 'Ishga tushganda -50% olish →',
     'pricing.f_47': '✓ Barcha 69 metrika',
-    'pricing.f_goal': '✓ Maqsad rejimi (~21 teskari hisob)',
+    'pricing.f_goal': '✓ Maqsad rejimi (32 teskari hisob)',
     'pricing.f_whatif': '✓ What-if sliderlari',
     'pricing.f_industry': '✓ Soha bencharklari (5 vertikal)',
     'pricing.f_3lang': '✓ 3 til (RU / EN / UZ)',
@@ -1259,7 +1259,69 @@ window.I18N_GOAL = {
   'Меньше выручки — ARPDAU ниже целевого.': { en: 'Less revenue — ARPDAU below target.', uz: 'Kamroq tushum — ARPDAU maqsaddan past.' },
   'Минимум дневной выручки': { en: 'Minimum daily revenue', uz: 'Minimal kunlik tushum' },
   'DAU': { en: 'DAU', uz: 'DAU' },
-  'Целевой ARPDAU': { en: 'Target ARPDAU', uz: 'Maqsadli ARPDAU' }
+  'Целевой ARPDAU': { en: 'Target ARPDAU', uz: 'Maqsadli ARPDAU' },
+
+  // === New-metric goal mode (CPA / CPL / CPI / CPM / MER / Take Rate / Contribution Margin / Quota / Cart Abandonment / Open Rate / CTOR) ===
+  'При затратах и целевом CPA — сколько нужно целевых действий?': { en: 'Given spend and target CPA — how many actions are needed?', uz: 'Sarf va maqsadli CPA bo‘yicha — nechta maqsadli harakat kerak?' },
+  'Меньше действий — CPA выше целевого.': { en: 'Fewer actions — CPA above target.', uz: 'Kamroq harakat — CPA maqsaddan yuqori.' },
+  'Минимум целевых действий': { en: 'Minimum actions', uz: 'Minimal harakatlar' },
+  'Затраты': { en: 'Spend', uz: 'Sarf' },
+  'Целевой CPA': { en: 'Target CPA', uz: 'Maqsadli CPA' },
+
+  'При затратах и целевом CPL — сколько нужно лидов?': { en: 'Given spend and target CPL — how many leads are needed?', uz: 'Sarf va maqsadli CPL bo‘yicha — nechta lid kerak?' },
+  'Меньше лидов — CPL выше целевого.': { en: 'Fewer leads — CPL above target.', uz: 'Kamroq lid — CPL maqsaddan yuqori.' },
+  'Минимум лидов': { en: 'Minimum leads', uz: 'Minimal lidlar' },
+  'Целевой CPL': { en: 'Target CPL', uz: 'Maqsadli CPL' },
+
+  'При затратах и целевом CPI — сколько нужно установок?': { en: 'Given spend and target CPI — how many installs are needed?', uz: 'Sarf va maqsadli CPI bo‘yicha — nechta o‘rnatish kerak?' },
+  'Меньше установок — CPI выше целевого.': { en: 'Fewer installs — CPI above target.', uz: 'Kamroq o‘rnatish — CPI maqsaddan yuqori.' },
+  'Минимум установок': { en: 'Minimum installs', uz: 'Minimal o‘rnatishlar' },
+  'Целевой CPI': { en: 'Target CPI', uz: 'Maqsadli CPI' },
+
+  'При показах и целевом CPM — какой максимум затрат?': { en: 'Given impressions and target CPM — what is the maximum spend?', uz: 'Ko‘rsatishlar va maqsadli CPM bo‘yicha — maksimal sarf qancha?' },
+  'Тратите больше — CPM выше целевого.': { en: 'Spend more — CPM above target.', uz: 'Ko‘proq sarflasangiz — CPM maqsaddan yuqori.' },
+  'Показы': { en: 'Impressions', uz: 'Ko‘rsatishlar' },
+  'Целевой CPM': { en: 'Target CPM', uz: 'Maqsadli CPM' },
+
+  'При маркетинговых затратах и целевом MER — какая нужна выручка?': { en: 'Given marketing spend and target MER — what revenue is needed?', uz: 'Marketing sarfi va maqsadli MER bo‘yicha — qancha tushum kerak?' },
+  'Меньше выручки — MER ниже целевого.': { en: 'Less revenue — MER below target.', uz: 'Kamroq tushum — MER maqsaddan past.' },
+  'Маркетинговые затраты': { en: 'Marketing spend', uz: 'Marketing sarfi' },
+  'Целевой MER': { en: 'Target MER', uz: 'Maqsadli MER' },
+
+  'При GMV и целевом Take Rate — какая нужна выручка платформы?': { en: 'Given GMV and target Take Rate — what platform revenue is needed?', uz: 'GMV va maqsadli Take Rate bo‘yicha — platforma tushumi qancha kerak?' },
+  'Меньше выручки — Take Rate ниже целевого.': { en: 'Less revenue — Take Rate below target.', uz: 'Kamroq tushum — Take Rate maqsaddan past.' },
+  'Минимум выручки платформы': { en: 'Minimum platform revenue', uz: 'Minimal platforma tushumi' },
+  'GMV (оборот)': { en: 'GMV', uz: 'GMV (aylanma)' },
+  'Целевой Take Rate': { en: 'Target Take Rate', uz: 'Maqsadli Take Rate' },
+
+  'При выручке и целевой Contribution Margin — какой максимум переменных затрат?': { en: 'Given revenue and target Contribution Margin — what is the maximum variable cost?', uz: 'Tushum va maqsadli Contribution Margin bo‘yicha — o‘zgaruvchan xarajatlar maksimumi qancha?' },
+  'Переменные затраты ниже — маржа выше целевой.': { en: 'Lower variable costs — margin above target.', uz: 'O‘zgaruvchan xarajatlar pastroq — marja maqsaddan yuqori.' },
+  'Максимум переменных затрат': { en: 'Maximum variable costs', uz: 'Maksimal o‘zgaruvchan xarajatlar' },
+  'Целевая Contribution Margin': { en: 'Target Contribution Margin', uz: 'Maqsadli Contribution Margin' },
+
+  'При квоте и целевом выполнении — сколько нужно продать?': { en: 'Given quota and target attainment — how much must you sell?', uz: 'Kvota va maqsadli bajarish bo‘yicha — qancha sotish kerak?' },
+  'Меньше продаж — выполнение ниже целевого.': { en: 'Fewer sales — attainment below target.', uz: 'Kamroq sotuv — bajarish maqsaddan past.' },
+  'Минимум факта продаж': { en: 'Minimum actual sales', uz: 'Minimal haqiqiy sotuv' },
+  'Квота (план)': { en: 'Quota (plan)', uz: 'Kvota (reja)' },
+  'Целевое выполнение': { en: 'Target attainment', uz: 'Maqsadli bajarish' },
+
+  'При корзинах и целевом проценте брошенных — сколько нужно покупок?': { en: 'Given carts and target abandonment rate — how many purchases are needed?', uz: 'Savatlar va maqsadli tashlab ketish foizi bo‘yicha — nechta xarid kerak?' },
+  'Меньше покупок — выше процент брошенных корзин.': { en: 'Fewer purchases — higher cart abandonment rate.', uz: 'Kamroq xarid — savat tashlab ketish foizi yuqoriroq.' },
+  'Минимум покупок': { en: 'Minimum purchases', uz: 'Minimal xaridlar' },
+  'Созданные корзины': { en: 'Carts created', uz: 'Yaratilgan savatlar' },
+  'Целевой % брошенных': { en: 'Target abandonment %', uz: 'Maqsadli tashlab ketish %' },
+
+  'При доставленных письмах и целевом Open Rate — сколько нужно открытий?': { en: 'Given delivered emails and target Open Rate — how many opens are needed?', uz: 'Yetkazilgan xatlar va maqsadli Open Rate bo‘yicha — nechta ochilish kerak?' },
+  'Меньше открытий — Open Rate ниже целевого.': { en: 'Fewer opens — Open Rate below target.', uz: 'Kamroq ochilish — Open Rate maqsaddan past.' },
+  'Минимум открытий': { en: 'Minimum opens', uz: 'Minimal ochilishlar' },
+  'Доставлено писем': { en: 'Emails delivered', uz: 'Yetkazilgan xatlar' },
+  'Целевой Open Rate': { en: 'Target Open Rate', uz: 'Maqsadli Open Rate' },
+
+  'При открытиях и целевом CTOR — сколько нужно кликов?': { en: 'Given opens and target CTOR — how many clicks are needed?', uz: 'Ochilishlar va maqsadli CTOR bo‘yicha — nechta klik kerak?' },
+  'Меньше кликов — CTOR ниже целевого.': { en: 'Fewer clicks — CTOR below target.', uz: 'Kamroq klik — CTOR maqsaddan past.' },
+  'Минимум кликов': { en: 'Minimum clicks', uz: 'Minimal kliklar' },
+  'Уникальные открытия': { en: 'Unique opens', uz: 'Noyob ochilishlar' },
+  'Целевой CTOR': { en: 'Target CTOR', uz: 'Maqsadli CTOR' }
 };
 
 window._tGoal = function(ruText) {
@@ -5796,6 +5858,138 @@ window._tTooltip = function(ruText) {
                 solveFor: { label: 'Минимум дневной выручки', unit: '$' },
                 hint: 'Меньше выручки — ARPDAU ниже целевого.',
                 formula: v => v.dau * v.target
+            }
+        ],
+        cpa: [
+            {
+                ask: 'При затратах и целевом CPA — сколько нужно целевых действий?',
+                fixed: [
+                    { key: 'spend', label: 'Затраты', placeholder: '8000', unit: '$' },
+                    { key: 'target', label: 'Целевой CPA', placeholder: '25', unit: '$' }
+                ],
+                solveFor: { label: 'Минимум целевых действий', unit: '' },
+                hint: 'Меньше действий — CPA выше целевого.',
+                formula: v => v.target > 0 ? v.spend / v.target : null
+            }
+        ],
+        cpl: [
+            {
+                ask: 'При затратах и целевом CPL — сколько нужно лидов?',
+                fixed: [
+                    { key: 'spend', label: 'Затраты', placeholder: '12000', unit: '$' },
+                    { key: 'target', label: 'Целевой CPL', placeholder: '20', unit: '$' }
+                ],
+                solveFor: { label: 'Минимум лидов', unit: '' },
+                hint: 'Меньше лидов — CPL выше целевого.',
+                formula: v => v.target > 0 ? v.spend / v.target : null
+            }
+        ],
+        cpi: [
+            {
+                ask: 'При затратах и целевом CPI — сколько нужно установок?',
+                fixed: [
+                    { key: 'spend', label: 'Затраты', placeholder: '15000', unit: '$' },
+                    { key: 'target', label: 'Целевой CPI', placeholder: '2', unit: '$' }
+                ],
+                solveFor: { label: 'Минимум установок', unit: '' },
+                hint: 'Меньше установок — CPI выше целевого.',
+                formula: v => v.target > 0 ? v.spend / v.target : null
+            }
+        ],
+        cpm: [
+            {
+                ask: 'При показах и целевом CPM — какой максимум затрат?',
+                fixed: [
+                    { key: 'impressions', label: 'Показы', placeholder: '800000', unit: '' },
+                    { key: 'target', label: 'Целевой CPM', placeholder: '8', unit: '$' }
+                ],
+                solveFor: { label: 'Максимум затрат', unit: '$' },
+                hint: 'Тратите больше — CPM выше целевого.',
+                formula: v => (v.impressions > 0 && v.target >= 0) ? v.impressions * v.target / 1000 : null
+            }
+        ],
+        mer: [
+            {
+                ask: 'При маркетинговых затратах и целевом MER — какая нужна выручка?',
+                fixed: [
+                    { key: 'totalSpend', label: 'Маркетинговые затраты', placeholder: '90000', unit: '$' },
+                    { key: 'target', label: 'Целевой MER', placeholder: '3', unit: '×' }
+                ],
+                solveFor: { label: 'Минимум выручки', unit: '$' },
+                hint: 'Меньше выручки — MER ниже целевого.',
+                formula: v => v.totalSpend >= 0 ? v.totalSpend * v.target : null
+            }
+        ],
+        takeRate: [
+            {
+                ask: 'При GMV и целевом Take Rate — какая нужна выручка платформы?',
+                fixed: [
+                    { key: 'gmv', label: 'GMV (оборот)', placeholder: '780000', unit: '$' },
+                    { key: 'target', label: 'Целевой Take Rate', placeholder: '15', unit: '%' }
+                ],
+                solveFor: { label: 'Минимум выручки платформы', unit: '$' },
+                hint: 'Меньше выручки — Take Rate ниже целевого.',
+                formula: v => v.gmv > 0 ? v.gmv * (v.target / 100) : null
+            }
+        ],
+        contributionMargin: [
+            {
+                ask: 'При выручке и целевой Contribution Margin — какой максимум переменных затрат?',
+                fixed: [
+                    { key: 'revenue', label: 'Выручка', placeholder: '100000', unit: '$' },
+                    { key: 'target', label: 'Целевая Contribution Margin', placeholder: '40', unit: '%' }
+                ],
+                solveFor: { label: 'Максимум переменных затрат', unit: '$' },
+                hint: 'Переменные затраты ниже — маржа выше целевой.',
+                formula: v => (v.revenue > 0 && v.target >= 0) ? v.revenue * (1 - v.target / 100) : null
+            }
+        ],
+        quotaAttainment: [
+            {
+                ask: 'При квоте и целевом выполнении — сколько нужно продать?',
+                fixed: [
+                    { key: 'quota', label: 'Квота (план)', placeholder: '500000', unit: '$' },
+                    { key: 'target', label: 'Целевое выполнение', placeholder: '100', unit: '%' }
+                ],
+                solveFor: { label: 'Минимум факта продаж', unit: '$' },
+                hint: 'Меньше продаж — выполнение ниже целевого.',
+                formula: v => v.quota > 0 ? v.quota * (v.target / 100) : null
+            }
+        ],
+        cartAbandonment: [
+            {
+                ask: 'При корзинах и целевом проценте брошенных — сколько нужно покупок?',
+                fixed: [
+                    { key: 'carts', label: 'Созданные корзины', placeholder: '8000', unit: '' },
+                    { key: 'target', label: 'Целевой % брошенных', placeholder: '60', unit: '%' }
+                ],
+                solveFor: { label: 'Минимум покупок', unit: '' },
+                hint: 'Меньше покупок — выше процент брошенных корзин.',
+                formula: v => (v.carts > 0 && v.target >= 0 && v.target <= 100) ? v.carts * (1 - v.target / 100) : null
+            }
+        ],
+        openRate: [
+            {
+                ask: 'При доставленных письмах и целевом Open Rate — сколько нужно открытий?',
+                fixed: [
+                    { key: 'delivered', label: 'Доставлено писем', placeholder: '20000', unit: '' },
+                    { key: 'target', label: 'Целевой Open Rate', placeholder: '25', unit: '%' }
+                ],
+                solveFor: { label: 'Минимум открытий', unit: '' },
+                hint: 'Меньше открытий — Open Rate ниже целевого.',
+                formula: v => v.delivered > 0 ? v.delivered * (v.target / 100) : null
+            }
+        ],
+        ctor: [
+            {
+                ask: 'При открытиях и целевом CTOR — сколько нужно кликов?',
+                fixed: [
+                    { key: 'opens', label: 'Уникальные открытия', placeholder: '4200', unit: '' },
+                    { key: 'target', label: 'Целевой CTOR', placeholder: '20', unit: '%' }
+                ],
+                solveFor: { label: 'Минимум кликов', unit: '' },
+                hint: 'Меньше кликов — CTOR ниже целевого.',
+                formula: v => v.opens > 0 ? v.opens * (v.target / 100) : null
             }
         ]
     };
