@@ -654,6 +654,29 @@ window.I18N_M = {
 // 132 unique insight messages × {en, uz}. Russian → fallback.
 // ============================================================
 window.I18N_INSIGHTS = {
+  // — Batch +5 (AOV, Repeat Purchase Rate, Sales Cycle Length, MRR Growth Rate, Engagement Rate) —
+  'Низкий AOV. Bundle, апселы или free-shipping threshold помогут.': { en: 'Low AOV. Bundles, upsells, or a free-shipping threshold will help.', uz: 'Past AOV. Bundle, apsel yoki bepul yetkazib berish chegarasi yordam beradi.' },
+  'Норма для среднего e-com. Тестируйте upsell/cross-sell.': { en: 'Normal for mid-range e-commerce. Test upsell/cross-sell.', uz: 'O‘rtacha e-commerce uchun normal. Upsell/cross-sell ni sinab ko‘ring.' },
+  'Хороший AOV — премиум-сегмент.': { en: 'Good AOV — premium segment.', uz: 'Yaxshi AOV — premium segment.' },
+  'Высокий AOV — luxury / B2B-уровень.': { en: 'High AOV — luxury / B2B level.', uz: 'Yuqori AOV — luxury / B2B daraja.' },
+  'Низкий RPR. Email/SMS-маркетинг и loyalty-программы помогут.': { en: 'Low RPR. Email/SMS marketing and loyalty programs will help.', uz: 'Past RPR. Email/SMS marketing va loyalty dasturlari yordam beradi.' },
+  'Ниже нормы. Работайте над second-purchase эксперимент.': { en: 'Below norm. Work on the second-purchase experiment.', uz: 'Normadan past. Second-purchase eksperimenti ustida ishlang.' },
+  'Норма для среднего e-com.': { en: 'Normal for mid-range e-commerce.', uz: 'O‘rtacha e-commerce uchun normal.' },
+  'Хороший RPR — лояльность построена.': { en: 'Good RPR — loyalty is established.', uz: 'Yaxshi RPR — sodiqlik qurilgan.' },
+  'Отличный RPR — мирового уровня (Amazon, Apple).': { en: 'Excellent RPR — world-class (Amazon, Apple).', uz: 'Ajoyib RPR — jahon darajasida (Amazon, Apple).' },
+  'Короткий цикл — типично для SMB / PLG / inbound.': { en: 'Short cycle — typical for SMB / PLG / inbound.', uz: 'Qisqa sikl — SMB / PLG / inbound uchun odatiy.' },
+  'Норма для Mid-market B2B SaaS.': { en: 'Normal for mid-market B2B SaaS.', uz: 'Mid-market B2B SaaS uchun normal.' },
+  'Enterprise-цикл. Контролируйте через Pipeline Coverage.': { en: 'Enterprise cycle. Control it via Pipeline Coverage.', uz: 'Enterprise sikl. Pipeline Coverage orqali nazorat qiling.' },
+  'Очень длинный цикл — рискованно для cash flow. Сегментируйте сделки.': { en: 'Very long cycle — risky for cash flow. Segment your deals.', uz: 'Juda uzun sikl — cash flow uchun xavfli. Bitimlarni segmentlang.' },
+  'Отрицательный рост — выручка падает. Срочно анализ.': { en: 'Negative growth — revenue is falling. Analyze urgently.', uz: 'Salbiy o‘sish — tushum tushmoqda. Zudlik bilan tahlil qiling.' },
+  'Медленный рост. Для растущего SaaS нужно >10% MoM.': { en: 'Slow growth. A growing SaaS needs >10% MoM.', uz: 'Sekin o‘sish. O‘suvchi SaaS uchun >10% MoM kerak.' },
+  'Норма. Хорошие SaaS делают >10% MoM.': { en: 'Normal. Good SaaS companies do >10% MoM.', uz: 'Normal. Yaxshi SaaS kompaniyalar >10% MoM qiladi.' },
+  'Хороший рост — большинство YC-стартапов в этом диапазоне.': { en: 'Good growth — most YC startups are in this range.', uz: 'Yaxshi o‘sish — ko‘pchilik YC startaplari shu oraliqda.' },
+  'Отличный рост — top-tier SaaS уровень.': { en: 'Excellent growth — top-tier SaaS level.', uz: 'Ajoyib o‘sish — top-tier SaaS daraja.' },
+  'Низкий engagement. Контент не цепляет — пересмотрите формат/темы.': { en: 'Low engagement. Content does not land — rethink format/topics.', uz: 'Past engagement. Kontent ta’sir qilmayapti — format/mavzularni qayta ko‘ring.' },
+  'Норма для большинства брендов в Instagram/X.': { en: 'Normal for most brands on Instagram/X.', uz: 'Instagram/X dagi ko‘pchilik brendlar uchun normal.' },
+  'Хороший engagement — комьюнити вовлечено.': { en: 'Good engagement — the community is involved.', uz: 'Yaxshi engagement — hamjamiyat jalb qilingan.' },
+  'Отличный engagement — top-tier creator-уровень.': { en: 'Excellent engagement — top-tier creator level.', uz: 'Ajoyib engagement — top-tier creator daraja.' },
   // — Batch +10 (CPA, CPL, CPI, ARPPU, Open Rate, CTOR, Feature Adoption, LVR, Cash Conversion Score, Avg Resolution Time) —
   'CPA сам по себе ничего не говорит — оценивайте в связке с CR и LTV. Дешёвый CPA при плохом качестве лидов дороже в пересчёте на клиента.': { en: 'CPA alone tells you nothing — judge it with CR and LTV. A cheap CPA with poor lead quality is more expensive per customer.', uz: 'CPA o‘zicha hech nima demaydi — uni CR va LTV bilan baholang. Past sifatli lidlar bilan arzon CPA mijoz hisobiga qimmatroq.' },
   'CPL оценивайте вместе с конверсией лида в клиента и итоговым CAC. Дешёвый CPL при низком качестве лидов раздувает CAC.': { en: 'Judge CPL together with lead-to-customer conversion and final CAC. A cheap CPL with low lead quality inflates CAC.', uz: 'CPL ni lidning mijozga konversiyasi va yakuniy CAC bilan birga baholang. Past sifatli lidlar bilan arzon CPL CAC ni shishiradi.' },
