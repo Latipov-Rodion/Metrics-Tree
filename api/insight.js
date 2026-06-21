@@ -461,6 +461,37 @@ export default async function handler(req) {
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
 
+  // Best-effort per-IP rate limit. Guards the paid Anthropic call against abuse
+  // and runaway cost when ANTHROPIC_API_KEY is set. Uses Vercel KV / Upstash Redis
+  // if configured (env vars are either KV_REST_API_* legacy or UPSTASH_REDIS_REST_*
+  // new Marketplace integration — try both). Degrades to a no-op without KV, and
+  // never blocks a legitimate request on a KV error (the rule-engine fallback is free).
+  const kvUrl = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+  const kvToken = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+  const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || '';
+  if (apiKey && kvUrl && kvToken && ip) {
+    try {
+      const rlKey = `rl:insight:${ip}`;
+      const incr = await fetch(`${kvUrl}/incr/${encodeURIComponent(rlKey)}`, {
+        method: 'POST', headers: { Authorization: `Bearer ${kvToken}` },
+      }).then(r => r.json()).catch(() => null);
+      const hits = incr && typeof incr.result === 'number' ? incr.result : 0;
+      if (hits === 1) {
+        await fetch(`${kvUrl}/expire/${encodeURIComponent(rlKey)}/3600`, {
+          method: 'POST', headers: { Authorization: `Bearer ${kvToken}` },
+        }).catch(() => {});
+      }
+      // ~30 AI diagnoses per IP per hour — generous for real use, caps cost abuse.
+      if (hits > 30) {
+        return jsonResponse(
+          { error: 'Too many requests — try again later', source: 'rate-limit' },
+          429,
+          { 'Retry-After': '3600' },
+        );
+      }
+    } catch (e) { /* throttle must never block a legitimate request */ }
+  }
+
   // AI mode — best effort. Any failure/timeout falls through to the rule engine.
   if (apiKey) {
     try {
