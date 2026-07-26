@@ -5183,7 +5183,16 @@ window._tTooltip = function(ruText) {
                 featureAdoption:{ adopted:2400, active:6000 },
                 leadVelocityRate:{ thisMonth:660, lastMonth:600 },
                 cashConversionScore:{ arr:600000, capitalConsumed:700000 },
-                avgResolutionTime:{ totalHours:1600, ticketsResolved:200 }
+                avgResolutionTime:{ totalHours:1600, ticketsResolved:200 },
+                arpdau:{ dailyRevenue:1650, dau:800 }, aov:{ revenue:50000, orders:125 },
+                repeatPurchaseRate:{ repeat:700, total:1000 }, timeToValue:{ days:5 },
+                grossMargin:{ revenue:50000, cogs:11000 }, runway:{ cash:900000, burn:50000 },
+                burnRate:{ expenses:100000, revenue:50000 },
+                salesVelocity:{ opps:60, acv:6000, winRate:22, cycle:45 },
+                winRate:{ won:22, total:100 }, pipelineCoverage:{ pipeline:1800000, quota:600000 },
+                salesCycleLength:{ totalDays:2700, wonCount:60 },
+                mrrGrowthRate:{ startMrr:46700, endMrr:50000 },
+                engagementRate:{ engagements:180, reach:6000 }
             }
         },
         {
@@ -5222,7 +5231,16 @@ window._tTooltip = function(ruText) {
                 featureAdoption:{ adopted:48000, active:65000 },
                 leadVelocityRate:{ thisMonth:5300, lastMonth:5000 },
                 cashConversionScore:{ arr:24000000, capitalConsumed:18000000 },
-                avgResolutionTime:{ totalHours:800, ticketsResolved:200 }
+                avgResolutionTime:{ totalHours:800, ticketsResolved:200 },
+                arpdau:{ dailyRevenue:66000, dau:18000 }, aov:{ revenue:2000000, orders:2500 },
+                repeatPurchaseRate:{ repeat:880, total:1000 }, timeToValue:{ days:14 },
+                grossMargin:{ revenue:2000000, cogs:360000 }, runway:{ cash:6000000, burn:125000 },
+                burnRate:{ expenses:2125000, revenue:2000000 },
+                salesVelocity:{ opps:250, acv:24000, winRate:28, cycle:90 },
+                winRate:{ won:28, total:100 }, pipelineCoverage:{ pipeline:18000000, quota:6000000 },
+                salesCycleLength:{ totalDays:22500, wonCount:250 },
+                mrrGrowthRate:{ startMrr:1942000, endMrr:2000000 },
+                engagementRate:{ engagements:1300, reach:65000 }
             }
         },
         {
@@ -5256,7 +5274,16 @@ window._tTooltip = function(ruText) {
                 arppu:{ revenue:280000, payingUsers:5000 },
                 openRate:{ opens:32000, delivered:80000 }, ctor:{ clicks:4000, opens:32000 },
                 featureAdoption:{ adopted:50000, active:80000 },
-                avgResolutionTime:{ totalHours:1200, ticketsResolved:200 }
+                avgResolutionTime:{ totalHours:1200, ticketsResolved:200 },
+                arpdau:{ dailyRevenue:9300, dau:12000 }, aov:{ revenue:280000, orders:80 },
+                repeatPurchaseRate:{ repeat:280, total:1000 }, timeToValue:{ days:2 },
+                grossMargin:{ revenue:280000, cogs:168000 }, runway:{ cash:1200000, burn:60000 },
+                burnRate:{ expenses:340000, revenue:280000 },
+                salesVelocity:{ opps:40, acv:3360, winRate:30, cycle:14 },
+                winRate:{ won:30, total:100 }, pipelineCoverage:{ pipeline:2520000, quota:840000 },
+                salesCycleLength:{ totalDays:560, wonCount:40 },
+                mrrGrowthRate:{ startMrr:269000, endMrr:280000 },
+                engagementRate:{ engagements:2000, reach:80000 }
             }
         },
         {
@@ -5289,7 +5316,16 @@ window._tTooltip = function(ruText) {
                 cpa:{ spend:375000, actions:12500 },
                 openRate:{ opens:90000, delivered:250000 }, ctor:{ clicks:11000, opens:90000 },
                 featureAdoption:{ adopted:120000, active:250000 },
-                avgResolutionTime:{ totalHours:1800, ticketsResolved:200 }
+                avgResolutionTime:{ totalHours:1800, ticketsResolved:200 },
+                arpdau:{ dailyRevenue:25000, dau:80000 }, aov:{ revenue:749000, orders:2140 },
+                repeatPurchaseRate:{ repeat:350, total:1000 }, timeToValue:{ days:1 },
+                grossMargin:{ revenue:750000, cogs:225000 }, runway:{ cash:3000000, burn:150000 },
+                burnRate:{ expenses:900000, revenue:750000 },
+                salesVelocity:{ opps:50, acv:1800, winRate:20, cycle:21 },
+                winRate:{ won:20, total:100 }, pipelineCoverage:{ pipeline:6750000, quota:2250000 },
+                salesCycleLength:{ totalDays:1050, wonCount:50 },
+                mrrGrowthRate:{ startMrr:708000, endMrr:750000 },
+                engagementRate:{ engagements:10000, reach:250000 }
             }
         },
         {
@@ -5322,7 +5358,16 @@ window._tTooltip = function(ruText) {
                 arppu:{ revenue:200000, payingUsers:20000 },
                 openRate:{ opens:700000, delivered:2000000 }, ctor:{ clicks:80000, opens:700000 },
                 featureAdoption:{ adopted:600000, active:2000000 },
-                avgResolutionTime:{ totalHours:2400, ticketsResolved:200 }
+                avgResolutionTime:{ totalHours:2400, ticketsResolved:200 },
+                arpdau:{ dailyRevenue:6600, dau:350000 }, aov:{ revenue:200000, orders:1000 },
+                repeatPurchaseRate:{ repeat:450, total:1000 }, timeToValue:{ days:1 },
+                grossMargin:{ revenue:200000, cogs:100000 }, runway:{ cash:1000000, burn:50000 },
+                burnRate:{ expenses:250000, revenue:200000 },
+                salesVelocity:{ opps:60, acv:2400, winRate:25, cycle:30 },
+                winRate:{ won:25, total:100 }, pipelineCoverage:{ pipeline:1800000, quota:600000 },
+                salesCycleLength:{ totalDays:1800, wonCount:60 },
+                mrrGrowthRate:{ startMrr:196000, endMrr:200000 },
+                engagementRate:{ engagements:100000, reach:2000000 }
             }
         }
     ];
