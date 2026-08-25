@@ -6413,7 +6413,6 @@ window._tTooltip = function(ruText) {
         quickRatio:    [{ label: 'Mamoon Hamid (originated)', url: 'https://medium.com/@mamoonha/the-quick-ratio-a-better-way-to-look-at-saas-growth-4d3a76a86d9' }, { label: 'OpenView 2024', url: 'https://openviewpartners.com/2024-saas-benchmarks-report/' }],
         runway:        [{ label: 'YC Startup School', url: 'https://www.startupschool.org/' }, { label: 'a16z benchmarks', url: 'https://a16z.com/' }],
         mrrGrowthRate: [{ label: 'Y Combinator (T2D3 framework)', url: 'https://blog.ycombinator.com/' }, { label: 'David Sacks T2D3', url: 'https://medium.com/craft-ventures/t2d3-the-saas-growth-blueprint-2c6e2d8f6c8d' }],
-        rule_of_40:    [{ label: 'BVP', url: 'https://www.bvp.com/atlas/the-rule-of-40' }],
         salesVelocity: [{ label: 'Salesforce State of Sales 2024', url: 'https://www.salesforce.com/resources/research-reports/state-of-sales/' }],
         winRate:       [{ label: 'Gong B2B sales benchmarks', url: 'https://www.gong.io/research/' }, { label: 'HubSpot State of Sales', url: 'https://www.hubspot.com/state-of-sales' }],
         pipelineCoverage:[{ label: 'Gartner B2B benchmarks', url: 'https://www.gartner.com/' }],
