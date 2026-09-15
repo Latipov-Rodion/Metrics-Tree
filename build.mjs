@@ -252,15 +252,19 @@ const SHORT_NAME = {
 };
 
 // Pull the Russian formula / description / threshold straight out of the metricsData
-// object in index.html so the SEO prose can never drift from the live calculator.
+// object so the SEO prose can never drift from the live calculator.
+// NOTE: metricsData lives in app.js (it used to be inlined in index.html before the
+// perf refactor). `dataSrc` must therefore be the contents of app.js — passing
+// index.html silently yields null for every metric, which is exactly the regression
+// assertExtractionWorks() below now guards against.
 // metricsData uses single-quoted strings with no escaped apostrophes (an unescaped
 // ' would be a JS syntax error), so [^']* is a safe capture.
-function extractMetricData(template, id) {
+function extractMetricData(dataSrc, id) {
   const re = new RegExp(
     `id: '${id}', name: '([^']*)',[\\s\\S]*?formula: '([^']*)',[\\s\\S]*?description: '([^']*)'` +
     `(?:,[\\s\\S]*?threshold: '([^']*)')?`
   );
-  const m = template.match(re);
+  const m = dataSrc.match(re);
   if (!m) return null;
   return { name: m[1], formula: m[2], description: m[3], threshold: m[4] || '' };
 }
@@ -272,8 +276,8 @@ const esc = s => String(s == null ? '' : s)
 // page. Mirrors the FAQ JSON-LD (Google wants structured data to match visible text),
 // adds the live formula/description/benchmark, and surfaces internal links as real
 // anchors (not JS-hidden), fixing the thin/duplicate-content risk across the 49 clones.
-function renderSeoSection(template, id, meta) {
-  const data = extractMetricData(template, id);
+function renderSeoSection(dataSrc, id, meta) {
+  const data = extractMetricData(dataSrc, id);
   if (!data) return '';
   const shortName = SHORT_NAME[id] || data.name;
 
@@ -309,7 +313,7 @@ ${relHtml}
     </section>`;
 }
 
-function buildHtml(template, id, meta) {
+function buildHtml(template, dataSrc, id, meta) {
   const url = `${SITE}/${id}`;
   const title = meta.title + ' | MetricTree';
   const desc = meta.desc;
@@ -412,7 +416,7 @@ ${JSON.stringify(breadcrumbJson, null, 2)}
   // Visible per-metric SEO content (formula, benchmarks, FAQ, related links) injected
   // before </main>. Replaces the old JS-hidden "See also" block: this content stays
   // visible after hydration, matches the FAQ JSON-LD, and gives each clone unique prose.
-  const seoSection = renderSeoSection(template, id, meta);
+  const seoSection = renderSeoSection(dataSrc, id, meta);
   if (seoSection) {
     html = html.replace('</main>', seoSection + '\n    </main>');
   }
@@ -541,10 +545,12 @@ ${urls.join('\n')}
 // formula + industry benchmark, pulled from metricsData so it never drifts. Served
 // at /benchmarks; the homepage email-gates it (fires the `lead` analytics event,
 // then opens this page for "Save as PDF"). Self-contained — no app bundle, fast.
-function generateBenchmarksPage(template) {
+function generateBenchmarksPage(dataSrc) {
+  let extracted = 0;
   const rows = Object.keys(META).map(id => {
-    const d = extractMetricData(template, id);
+    const d = extractMetricData(dataSrc, id);
     if (!d) return '';
+    extracted++;
     const name = SHORT_NAME[id] || d.name;
     return `      <tr>
         <td class="m-name">${esc(name)}</td>
@@ -553,7 +559,9 @@ function generateBenchmarksPage(template) {
       </tr>`;
   }).filter(Boolean).join('\n');
 
-  const count = Object.keys(META).length;
+  // Count the rows we actually rendered — not META.length. A mismatch used to be
+  // invisible: the page advertised "69 metrics" above an empty table.
+  const count = extracted;
   const today = new Date().toISOString().slice(0, 10);
 
   const html = `<!DOCTYPE html>
@@ -591,6 +599,8 @@ function generateBenchmarksPage(template) {
     tr { page-break-inside: avoid; }
   }
 </style>
+
+<script src="/theme-sync.js" defer></script>
 </head>
 <body>
   <header>
@@ -619,19 +629,38 @@ ${rows}
   return count;
 }
 
+// Fail loudly if the metric data can no longer be read. Without this the build still
+// "succeeds": every per-metric page just loses its unique SEO section and
+// benchmarks.html renders an empty table under a "69 metrics" heading — which is
+// exactly what happened silently after metricsData moved from index.html to app.js.
+function assertExtractionWorks(dataSrc) {
+  const ids = Object.keys(META);
+  const missing = ids.filter(id => !extractMetricData(dataSrc, id));
+  if (missing.length) {
+    console.error(
+      `::error::build.mjs could not extract metricsData for ${missing.length}/${ids.length} metrics ` +
+      `(first missing: ${missing.slice(0, 5).join(', ')}). ` +
+      `Check that APP_JS still contains the metricsData object in the expected single-quoted form.`
+    );
+    process.exit(1);
+  }
+}
+
 function main() {
-  const indexPath = path.join(ROOT, 'index.html');
-  const template = fs.readFileSync(indexPath, 'utf8');
+  const template = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+  // Metric definitions live in app.js, NOT index.html (post perf-refactor).
+  const dataSrc = fs.readFileSync(path.join(ROOT, 'app.js'), 'utf8');
+  assertExtractionWorks(dataSrc);
 
   let generated = 0;
   for (const [id, meta] of Object.entries(META)) {
-    const out = buildHtml(template, id, meta);
+    const out = buildHtml(template, dataSrc, id, meta);
     fs.writeFileSync(path.join(ROOT, `${id}.html`), out);
     generated++;
   }
   console.log(`✓ Generated ${generated} per-metric HTML files`);
 
-  const benchCount = generateBenchmarksPage(template);
+  const benchCount = generateBenchmarksPage(dataSrc);
   console.log(`✓ Generated benchmarks.html (${benchCount} metrics)`);
 
   const sitemapUrls = generateSitemap();

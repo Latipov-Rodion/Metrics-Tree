@@ -111,7 +111,11 @@
     }
     </script>
     <link rel="stylesheet" href="/app.css">
-    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+    <!-- Vercel Web Analytics — first-party route. Requires Web Analytics to be
+         ENABLED for the project in the Vercel dashboard; until then it 404s and
+         no data is collected. Served same-origin, so it satisfies the existing
+         CSP (script-src 'self', connect-src 'self') and survives ad blockers. -->
+    <script defer src="/_vercel/insights/script.js"></script>
     <!-- Vercel Speed Insights -->
     <script>
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -467,6 +471,25 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
             <div id="deepContentSlot"></div>
         </article>
+    
+    <section class="metric-seo" aria-label="О метрике AOV">
+      <h2>Что такое AOV</h2>
+      <p>Average Order Value — средний чек. Базовая метрика e-commerce и розницы.</p>
+      <h3>Формула расчёта AOV</h3>
+      <p><span class="seo-formula">Выручка за период / Количество заказов</span></p>
+      <h3>Отраслевые бенчмарки</h3>
+      <p>E-com средний: $50–$150, Премиум: &gt;$200, Маркетплейс: $20–$80</p>
+      <h3>Частые вопросы про AOV</h3>
+      <div class="seo-faq">
+        <details><summary>Что такое AOV?</summary><p>AOV = Total Revenue / Number of Orders. Средний чек — базовая метрика e-commerce. Низкий AOV → апселы, бандлы, free-shipping threshold.</p></details>
+      </div>
+      <h3>Связанные метрики</h3>
+      <ul class="seo-related">
+        <li><a href="/arpu">ARPU</a></li>
+        <li><a href="/ltv">LTV</a></li>
+        <li><a href="/repeatPurchaseRate">Repeat Purchase Rate</a></li>
+      </ul>
+    </section>
     </main>
     <div class="embed-footer" aria-hidden="true">
         Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 69 продуктовых метрик с формулами

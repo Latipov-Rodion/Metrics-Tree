@@ -54,6 +54,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+      # app.js IS the application (all UI logic + all metric data) but nothing in
+      # the pipeline parses it as JavaScript, so a syntax error there used to pass
+      # every job green and ship a blank calculator. Parse it, plus the edge
+      # functions and the build scripts, before running the tests.
+      - name: Syntax-check application and API sources
+        run: |
+          node --check app.js
+          node --check ab-test.js
+          for f in api/*.js; do node --check "$f"; done
+          for f in *.mjs; do node --check "$f"; done
       - run: node --test test/*.test.mjs
 
   # After a production deploy (push to main), notify Bing/Yandex via IndexNow.

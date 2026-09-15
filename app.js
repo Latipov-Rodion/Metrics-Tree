@@ -912,12 +912,258 @@ window.I18N_THRESH = {
   'Метрика-счётчик. Оценивайте динамику MoM и через Stickiness': { en: 'Counter metric. Evaluate MoM dynamics and via Stickiness', uz: 'Hisoblagich metrika. MoM dinamikani va Stickiness orqali baholang' },
   'Главное — соотношение к CAC: LTV:CAC > 3 норма, > 5 отлично': { en: 'Main thing — ratio to CAC: LTV:CAC > 3 norm, > 5 excellent', uz: 'Asosiy narsa — CAC ga nisbat: LTV:CAC > 3 norma, > 5 ajoyib' },
   'Главное — MoM-рост: норма >5%, хорошо >10%, отлично >20%': { en: 'Main thing — MoM growth: norm >5%, good >10%, excellent >20%', uz: 'Asosiy narsa — MoM o‘sish: norma >5%, yaxshi >10%, ajoyib >20%' },
-  'Главное — YoY-рост и NRR. Молодой SaaS: T2D3 (3x к ARR за 2 года)': { en: 'Main thing — YoY growth and NRR. Young SaaS: T2D3 (3x ARR in 2 years)', uz: 'Asosiy — YoY o‘sish va NRR. Yosh SaaS: T2D3 (2 yilda 3x ARR)' },
+  'Главное — YoY-рост и NRR. Молодой SaaS: T2D3 — 3x, 3x, затем 2x, 2x, 2x': { en: 'Main thing — YoY growth and NRR. Young SaaS: T2D3 — 3x, 3x, then 2x, 2x, 2x', uz: 'Asosiy — YoY o‘sish va NRR. Yosh SaaS: T2D3 — 3x, 3x, keyin 2x, 2x, 2x' },
   'Метрика-счётчик. Контекст: рост MoM/YoY, маржа, Rule of 40': { en: 'Counter metric. Context: MoM/YoY growth, margin, Rule of 40', uz: 'Hisoblagich metrika. Kontekst: MoM/YoY o‘sish, marja, Rule of 40' },
   'Метрика-счётчик. Оценивайте через CAC, конверсии и MoM-динамику': { en: 'Counter metric. Evaluate via CAC, conversion, and MoM dynamics', uz: 'Hisoblagich metrika. CAC, konversiya va MoM dinamika orqali baholang' },
   'Контекст: сравнивайте период к периоду; рост важнее абсолюта': { en: 'Context: compare period over period; growth matters more than absolute', uz: 'Kontekst: davrdan davrga taqqoslang; o‘sish absolyutdan muhim' },
 
   // INDUSTRY_THRESHOLDS values — translated by exact RU
+
+  // Prose benchmark guidance — batch 4/4.
+  'B2B mobile: 30–90 дней': { en: 'B2B mobile: 30–90 days', uz: 'B2B mobile: 30–90 kun' },
+  'Ad sales: 30–90 дней': { en: 'Ad sales: 30–90 days', uz: 'Ad sales: 30–90 kun' },
+  'MoM: <5% низко, 5–10% норма, 10–20% хорошо, >20% отлично': { en: 'MoM: <5% low, 5–10% normal, 10–20% good, >20% excellent', uz: 'MoM: <5% past, 5–10% normal, 10–20% yaxshi, >20% ajoyib' },
+  'Менее релевантно для не-подписочных моделей': { en: 'Less relevant for non-subscription models', uz: 'Obunasiz modellar uchun kamroq dolzarb' },
+  'F2P/SaaS hybrid: 10–25% MoM на growth-фазе': { en: 'F2P/SaaS hybrid: 10–25% MoM in the growth phase', uz: 'F2P/SaaS gibrid: growth fazasida 10–25% MoM' },
+  'Подписочное медиа: 5–15% MoM норма': { en: 'Subscription media: 5–15% MoM is normal', uz: 'Obunali media: 5–15% MoM — normal' },
+  'E-com среднее: $50–$150, Премиум >$200': { en: 'E-commerce average: $50–$150, Premium >$200', uz: 'E-commerce o‘rtacha: $50–$150, Premium >$200' },
+  'Менее релевантно — используйте ACV': { en: 'Less relevant — use ACV', uz: 'Kamroq dolzarb — ACV dan foydalaning' },
+  'Fashion: $80–$200, Beauty: $40–$120, Electronics: >$200, Маркетплейс: $20–$80': { en: 'Fashion: $80–$200, Beauty: $40–$120, Electronics: >$200, Marketplace: $20–$80', uz: 'Fashion: $80–$200, Beauty: $40–$120, Electronics: >$200, Marketpleys: $20–$80' },
+  'In-app purchases: $5–$30': { en: 'In-app purchases: $5–$30', uz: 'In-app purchases: $5–$30' },
+  'Подписка: $5–$15/мес → $60–$180/год': { en: 'Subscription: $5–$15/mo → $60–$180/yr', uz: 'Obuna: $5–$15/oy → $60–$180/yil' },
+  'Не применимо — используйте Retention / NRR': { en: 'Not applicable — use Retention / NRR', uz: 'Qo‘llanilmaydi — Retention / NRR dan foydalaning' },
+  'Fashion 25–35%, Beauty 35–50%, Subscription >70%': { en: 'Fashion 25–35%, Beauty 35–50%, Subscription >70%', uz: 'Fashion 25–35%, Beauty 35–50%, Subscription >70%' },
+  'In-app repeat purchase 15–30%': { en: 'In-app repeat purchase 15–30%', uz: 'In-app repeat purchase 15–30%' },
+  'Менее релевантно — используйте Retention': { en: 'Less relevant — use Retention', uz: 'Kamroq dolzarb — Retention dan foydalaning' },
+  '<1% плохо, 1–3% норма, 3–6% хорошо, >6% отлично': { en: '<1% bad, 1–3% normal, 3–6% good, >6% excellent', uz: '<1% yomon, 1–3% normal, 3–6% yaxshi, >6% ajoyib' },
+  'B2B-контент: 2–5% хорошо': { en: 'B2B content: 2–5% is good', uz: 'B2B kontent: 2–5% yaxshi' },
+  'Brand посты: 1–3% норма': { en: 'Brand posts: 1–3% is normal', uz: 'Brend postlar: 1–3% normal' },
+  'Push notification engagement: 3–8% норма': { en: 'Push notification engagement: 3–8% is normal', uz: 'Push bildirishnoma engagement: 3–8% normal' },
+  'Editorial: 4–8% хорошо, viral >10%': { en: 'Editorial: 4–8% good, viral >10%', uz: 'Editorial: 4–8% yaxshi, viral >10%' },
+  'E-com средний: $50–$150, Премиум: >$200, Маркетплейс: $20–$80': { en: 'E-commerce average: $50–$150, Premium: >$200, Marketplace: $20–$80', uz: 'E-commerce o‘rtacha: $50–$150, Premium: >$200, Marketpleys: $20–$80' },
+  'Метрика-счётчик. Оценивайте через DAU/WAU и WAU/MAU': { en: 'A counter metric. Judge it via DAU/WAU and WAU/MAU', uz: 'Hisoblagich metrika. DAU/WAU va WAU/MAU orqali baholang' },
+  'Сравнивайте с ARPU и LTV; для F2P — ключевая метрика монетизации': { en: 'Compare with ARPU and LTV; for F2P it is the key monetization metric', uz: 'ARPU va LTV bilan taqqoslang; F2P uchun — asosiy monetizatsiya metrikasi' },
+  'Отлично: <1, Хорошо: 1–1.5, Норма: 1.5–2, Плохо: 2–3, Ужасно: >3': { en: 'Excellent: <1, Good: 1–1.5, Normal: 1.5–2, Bad: 2–3, Terrible: >3', uz: 'Ajoyib: <1, Yaxshi: 1–1.5, Normal: 1.5–2, Yomon: 2–3, Juda yomon: >3' },
+  'Должен быть положительным и расти MoM. Отрицательный = выручка сжимается': { en: 'Should be positive and growing MoM. Negative = revenue is contracting', uz: 'Musbat bo‘lishi va MoM o‘sishi kerak. Salbiy = tushum qisqarmoqda' },
+  'Мгновенно: <1 день, быстро: 1–7 дней, норма: 7–30 дней, медленно: >30': { en: 'Instant: <1 day, fast: 1–7 days, normal: 7–30 days, slow: >30', uz: 'Bir zumda: <1 kun, tez: 1–7 kun, normal: 7–30 kun, sekin: >30' },
+  'SaaS: >75%, E-com: >40%, Hardware: >30%': { en: 'SaaS: >75%, E-commerce: >40%, Hardware: >30%', uz: 'SaaS: >75%, E-commerce: >40%, Hardware: >30%' },
+  '<6 мес критично, 6–12 рискованно, 12–18 норма, >18 здорово': { en: '<6 mo critical, 6–12 risky, 12–18 normal, >18 healthy', uz: '<6 oy kritik, 6–12 xavfli, 12–18 normal, >18 sog‘lom' },
+  'B2B SaaS: <15% плохо, 15–25% норма, 25–35% хорошо, >35% отлично': { en: 'B2B SaaS: <15% bad, 15–25% normal, 25–35% good, >35% excellent', uz: 'B2B SaaS: <15% yomon, 15–25% normal, 25–35% yaxshi, >35% ajoyib' },
+  'B2B SMB: <30 дней, Mid-market: 30–90, Enterprise: 90–180+': { en: 'B2B SMB: <30 days, Mid-market: 30–90, Enterprise: 90–180+', uz: 'B2B SMB: <30 kun, Mid-market: 30–90, Enterprise: 90–180+' },
+  'MoM: норма >5%, хорошо >10%, отлично >20%; YoY: норма >50%, T2D3 >100%': { en: 'MoM: normal >5%, good >10%, excellent >20%; YoY: normal >50%, T2D3 >100%', uz: 'MoM: normal >5%, yaxshi >10%, ajoyib >20%; YoY: normal >50%, T2D3 >100%' },
+  'Счётчик масштаба. Важна динамика MoM/YoY и связка с Take Rate': { en: 'A scale counter. What matters is MoM/YoY dynamics and the link to Take Rate', uz: 'Masshtab hisoblagichi. MoM/YoY dinamikasi va Take Rate bilan bog‘liqlik muhim' },
+  'Маркетплейсы: 10–20% норма, 20–30% сильно; >30% риск оттока продавцов': { en: 'Marketplaces: 10–20% normal, 20–30% strong; >30% risks seller churn', uz: 'Marketpleyslar: 10–20% normal, 20–30% kuchli; >30% sotuvchilar ketishi xavfi' },
+  'Реп: >100% отлично; команда: 60–70% репов выполняют квоту — норма': { en: 'Per rep: >100% excellent; team: 60–70% of reps hitting quota is normal', uz: 'Rep bo‘yicha: >100% ajoyib; jamoa: replarning 60–70% kvotani bajarishi — normal' },
+  'SaaS: <$5 хорошо, e-com: <$1 хорошо': { en: 'SaaS: <$5 good, e-commerce: <$1 good', uz: 'SaaS: <$5 yaxshi, e-commerce: <$1 yaxshi' },
+  'Email: >20% хорошо. Баннеры: >0.1%. Поиск: >2%': { en: 'Email: >20% good. Banners: >0.1%. Search: >2%', uz: 'Email: >20% yaxshi. Bannerlar: >0.1%. Qidiruv: >2%' },
+  'Соцсети: <1% плохо, 1–3% норма, 3–6% хорошо, >6% отлично': { en: 'Social: <1% bad, 1–3% normal, 3–6% good, >6% excellent', uz: 'Ijtimoiy tarmoqlar: <1% yomon, 1–3% normal, 3–6% yaxshi, >6% ajoyib' },
+  'Дисплей $1–5, соцсети $5–15, видео/OLV $10–30 (зависит от гео и таргета)': { en: 'Display $1–5, social $5–15, video/OLV $10–30 (depends on geo and targeting)', uz: 'Display $1–5, ijtimoiy tarmoqlar $5–15, video/OLV $10–30 (geo va targetga bog‘liq)' },
+  'Средне по индустрии ~70%. Хорошо: <60%, Тревожно: >75%': { en: 'Industry average ~70%. Good: <60%, Concerning: >75%', uz: 'Soha o‘rtachasi ~70%. Yaxshi: <60%, Xavotirli: >75%' },
+  'DTC-ориентир: <2 слабо, 2–3 норма, 3–5 хорошо, >5 отлично': { en: 'DTC guideline: <2 weak, 2–3 normal, 3–5 good, >5 excellent', uz: 'DTC mo‘ljali: <2 zaif, 2–3 normal, 3–5 yaxshi, >5 ajoyib' },
+  'Оценивайте вместе с CR и LTV; «дешёвый» CPA ≠ качественный трафик': { en: 'Judge it with CR and LTV; a "cheap" CPA is not quality traffic', uz: 'CR va LTV bilan baholang; “arzon” CPA ≠ sifatli trafik' },
+  'Оценивайте с CR лида в клиента и CAC; дешёвый CPL ≠ дешёвый клиент': { en: 'Judge it with lead-to-customer CR and CAC; a cheap CPL is not a cheap customer', uz: 'Liddan mijozga CR va CAC bilan baholang; arzon CPL ≠ arzon mijoz' },
+  'Оценивайте вместе с LTV/ARPPU и retention; дешёвая установка ≠ платящий пользователь': { en: 'Judge it with LTV/ARPPU and retention; a cheap install is not a paying user', uz: 'LTV/ARPPU va retention bilan baholang; arzon o‘rnatish ≠ to‘lovchi foydalanuvchi' },
+  'Шкала 1–7: <5 высокое трение, 5–6 норма, >6 отлично': { en: 'Scale 1–7: <5 high friction, 5–6 normal, >6 excellent', uz: '1–7 shkala: <5 yuqori ishqalanish, 5–6 normal, >6 ajoyib' },
+  'Меньше — лучше. Зависит от приоритета: P1 быстрее, рутинные запросы дольше': { en: 'Lower is better. Depends on priority: P1 faster, routine requests longer', uz: 'Kamroq — yaxshiroq. Prioritetga bog‘liq: P1 tezroq, oddiy so‘rovlar uzoqroq' },
+
+  // Prose benchmark guidance — batch 3/4.
+  'Здоровье: доля Expansion растёт, Churned MRR < 1–2%/мес': { en: 'Healthy: the Expansion share grows, Churned MRR < 1–2%/mo', uz: 'Sog‘lom: Expansion ulushi o‘sadi, Churned MRR < 1–2%/oy' },
+  'Менее релевантно — используйте выручку и RPR': { en: 'Less relevant — use revenue and RPR', uz: 'Kamroq dolzarb — tushum va RPR dan foydalaning' },
+  'Подписочные F2P/apps: следите за net adds MRR': { en: 'Subscription F2P/apps: watch net adds MRR', uz: 'Obunali F2P/ilovalar: net adds MRR ni kuzating' },
+  'Подписочное медиа: положительный Net New MRR каждый месяц': { en: 'Subscription media: positive Net New MRR every month', uz: 'Obunali media: har oy musbat Net New MRR' },
+  'Обычно 70–85% (близко к gross margin)': { en: 'Typically 70–85% (close to gross margin)', uz: 'Odatda 70–85% (gross marjaga yaqin)' },
+  'Fashion 35–55%, Beauty 50–70%, Electronics 15–30%': { en: 'Fashion 35–55%, Beauty 50–70%, Electronics 15–30%', uz: 'Fashion 35–55%, Beauty 50–70%, Electronics 15–30%' },
+  'F2P: 60–80% после store-комиссии и платёжки': { en: 'F2P: 60–80% after store commission and payment fees', uz: 'F2P: do‘kon komissiyasi va to‘lovdan keyin 60–80%' },
+  'Подписка: 60–80%, реклама: 50–70%': { en: 'Subscription: 60–80%, advertising: 50–70%', uz: 'Obuna: 60–80%, reklama: 50–70%' },
+  'Счётчик оборота. Важна динамика MoM/YoY и Take Rate': { en: 'A turnover counter. What matters is MoM/YoY dynamics and Take Rate', uz: 'Aylanma hisoblagichi. MoM/YoY dinamikasi va Take Rate muhim' },
+  'Менее релевантно — используйте MRR/ARR': { en: 'Less relevant — use MRR/ARR', uz: 'Kamroq dolzarb — MRR/ARR dan foydalaning' },
+  'Главная метрика масштаба; смотрите рост MoM/YoY': { en: 'The primary scale metric; watch MoM/YoY growth', uz: 'Asosiy masshtab metrikasi; MoM/YoY o‘sishni kuzating' },
+  'Релевантно для in-app маркетплейсов': { en: 'Relevant for in-app marketplaces', uz: 'In-app marketpleyslar uchun dolzarb' },
+  'Менее релевантно — используйте выручку': { en: 'Less relevant — use revenue', uz: 'Kamroq dolzarb — tushumdan foydalaning' },
+  'Маркетплейсы: 10–20% норма, 20–30% сильно, >30% риск': { en: 'Marketplaces: 10–20% normal, 20–30% strong, >30% risky', uz: 'Marketpleyslar: 10–20% normal, 20–30% kuchli, >30% xavfli' },
+  'Менее релевантно — это marketplace-метрика': { en: 'Less relevant — this is a marketplace metric', uz: 'Kamroq dolzarb — bu marketpleys metrikasi' },
+  'Goods-маркетплейсы 10–20%, услуги 20–30%': { en: 'Goods marketplaces 10–20%, services 20–30%', uz: 'Tovar marketpleyslari 10–20%, xizmatlar 20–30%' },
+  'App-маркетплейсы: 15–30% (после store-fee)': { en: 'App marketplaces: 15–30% (after store fee)', uz: 'Ilova marketpleyslari: 15–30% (store-fee dan keyin)' },
+  'Контент-платформы: 30–50% (выше из-за дистрибуции)': { en: 'Content platforms: 30–50% (higher due to distribution)', uz: 'Kontent platformalari: 30–50% (distributsiya tufayli yuqoriroq)' },
+  'Реп: >100% отлично; команда: 60–70% репов в квоте — норма': { en: 'Per rep: >100% excellent; team: 60–70% of reps at quota is normal', uz: 'Rep bo‘yicha: >100% ajoyib; jamoa: replarning 60–70% kvotada — normal' },
+  'B2B SaaS: 60–70% репов выполняют квоту — здоровая планка': { en: 'B2B SaaS: 60–70% of reps hitting quota is a healthy bar', uz: 'B2B SaaS: replarning 60–70% kvotani bajarishi — sog‘lom planka' },
+  'B2B-направление e-com: аналогично SaaS': { en: 'The B2B arm of e-commerce: same as SaaS', uz: 'E-commerce’ning B2B yo‘nalishi: SaaS bilan bir xil' },
+  'B2B mobile sales: 60–70% репов в квоте': { en: 'B2B mobile sales: 60–70% of reps at quota', uz: 'B2B mobile sales: replarning 60–70% kvotada' },
+  'Ad sales: 65–75% репов выполняют план': { en: 'Ad sales: 65–75% of reps hit plan', uz: 'Ad sales: replarning 65–75% rejani bajaradi' },
+  'Дисплей: $1–5, Соцсети: $5–15, Видео: $10–30': { en: 'Display: $1–5, Social: $5–15, Video: $10–30', uz: 'Display: $1–5, Ijtimoiy tarmoqlar: $5–15, Video: $10–30' },
+  'Meta/Instagram: $5–12, TikTok: $3–10, Display: $1–5': { en: 'Meta/Instagram: $5–12, TikTok: $3–10, Display: $1–5', uz: 'Meta/Instagram: $5–12, TikTok: $3–10, Display: $1–5' },
+  'In-app/UAC: $2–8, rewarded video eCPM: $5–20': { en: 'In-app/UAC: $2–8, rewarded video eCPM: $5–20', uz: 'In-app/UAC: $2–8, rewarded video eCPM: $5–20' },
+  'Programmatic display: $1–4, premium video: $10–25': { en: 'Programmatic display: $1–4, premium video: $10–25', uz: 'Programmatic display: $1–4, premium video: $10–25' },
+  'Среднее ~70%. Хорошо: <60%, Тревожно: >75%': { en: 'Average ~70%. Good: <60%, Concerning: >75%', uz: 'O‘rtacha ~70%. Yaxshi: <60%, Xavotirli: >75%' },
+  'Менее релевантно — смотрите trial→paid CR': { en: 'Less relevant — look at trial→paid CR', uz: 'Kamroq dolzarb — trial→paid CR ga qarang' },
+  'Fashion 68–72%, Beauty 65–70%, Electronics 75–82%': { en: 'Fashion 68–72%, Beauty 65–70%, Electronics 75–82%', uz: 'Fashion 68–72%, Beauty 65–70%, Electronics 75–82%' },
+  'Mobile web выше desktop: 78–85% — типично': { en: 'Mobile web runs higher than desktop: 78–85% is typical', uz: 'Mobil veb desktopdan yuqori: 78–85% — odatiy' },
+  'Менее релевантно для подписочного медиа': { en: 'Less relevant for subscription media', uz: 'Obunali media uchun kamroq dolzarb' },
+  'DTC: <2 слабо, 2–3 норма, 3–5 хорошо, >5 отлично': { en: 'DTC: <2 weak, 2–3 normal, 3–5 good, >5 excellent', uz: 'DTC: <2 zaif, 2–3 normal, 3–5 yaxshi, >5 ajoyib' },
+  'Менее релевантно — CAC Payback / Magic Number': { en: 'Less relevant — use CAC Payback / Magic Number', uz: 'Kamroq dolzarb — CAC Payback / Magic Number' },
+  'DTC blended MER: 2.5–4 здоровый; на масштабе ≥ 3': { en: 'DTC blended MER: 2.5–4 is healthy; ≥ 3 at scale', uz: 'DTC blended MER: 2.5–4 sog‘lom; masshtabda ≥ 3' },
+  'UA-тяжёлые: 1.5–3; смотрите вместе с LTV': { en: 'UA-heavy: 1.5–3; review together with LTV', uz: 'UA-og‘ir: 1.5–3; LTV bilan birga qarang' },
+  'Подписочное медиа: 3–6 на зрелой базе': { en: 'Subscription media: 3–6 on a mature base', uz: 'Obunali media: yetuk bazada 3–6' },
+  'Шкала 1–7: <5 плохо, 5–6 норма, >6 отлично': { en: 'Scale 1–7: <5 bad, 5–6 normal, >6 excellent', uz: '1–7 shkala: <5 yomon, 5–6 normal, >6 ajoyib' },
+  'B2B SaaS support: цель ≥ 5.5; топ-команды > 6': { en: 'B2B SaaS support: target ≥ 5.5; top teams > 6', uz: 'B2B SaaS support: maqsad ≥ 5.5; top jamoalar > 6' },
+  'Чекаут/возвраты: цель ≥ 6 (минимум усилий)': { en: 'Checkout/returns: target ≥ 6 (minimum effort)', uz: 'Checkout/qaytarishlar: maqsad ≥ 6 (minimal harakat)' },
+  'In-app support: ≥ 5.5; трение убивает retention': { en: 'In-app support: ≥ 5.5; friction kills retention', uz: 'In-app support: ≥ 5.5; ishqalanish retention’ni o‘ldiradi' },
+  'Подписка/биллинг: ≥ 6 — лёгкость отмены/смены тарифа': { en: 'Subscription/billing: ≥ 6 — easy to cancel or switch plan', uz: 'Obuna/billing: ≥ 6 — bekor qilish/tarif almashtirish osonligi' },
+  'Free-to-play: $0.05–$5, Premium: $0.5–$20': { en: 'Free-to-play: $0.05–$5, Premium: $0.5–$20', uz: 'Free-to-play: $0.05–$5, Premium: $0.5–$20' },
+  'B2B SMB <30 дней, Mid-market 30–90, Enterprise 90–180+': { en: 'B2B SMB <30 days, Mid-market 30–90, Enterprise 90–180+', uz: 'B2B SMB <30 kun, Mid-market 30–90, Enterprise 90–180+' },
+  'PLG: <14 дней, SMB: 14–60, Mid-market: 60–120, Enterprise: 120–365': { en: 'PLG: <14 days, SMB: 14–60, Mid-market: 60–120, Enterprise: 120–365', uz: 'PLG: <14 kun, SMB: 14–60, Mid-market: 60–120, Enterprise: 120–365' },
+  'Менее релевантно — циклы измеряются в днях': { en: 'Less relevant — cycles are measured in days', uz: 'Kamroq dolzarb — sikllar kunlarda o‘lchanadi' },
+
+  // Prose benchmark guidance — batch 2/4.
+  'B2B SaaS: $20–$200 за MQL; смотрите CR лида в сделку': { en: 'B2B SaaS: $20–$200 per MQL; watch lead-to-deal CR', uz: 'B2B SaaS: MQL uchun $20–$200; liddan bitimga CR ni kuzating' },
+  'Менее релевантно — чаще считают CPA на покупку': { en: 'Less relevant — CPA per purchase is the usual measure', uz: 'Kamroq dolzarb — odatda xarid uchun CPA hisoblanadi' },
+  'Менее релевантно — для apps считают CPI/CPA': { en: 'Less relevant — apps use CPI/CPA', uz: 'Kamroq dolzarb — ilovalar uchun CPI/CPA hisoblanadi' },
+  'Подписка/рассылка: $1–$15 за лид': { en: 'Subscription/newsletter: $1–$15 per lead', uz: 'Obuna/axborotnoma: lid uchun $1–$15' },
+  'Метрика mobile UA; оценивайте с LTV/ARPPU и retention': { en: 'A mobile UA metric; judge it with LTV/ARPPU and retention', uz: 'Mobile UA metrikasi; LTV/ARPPU va retention bilan baholang' },
+  'Менее релевантно — это mobile-метрика': { en: 'Less relevant — this is a mobile metric', uz: 'Kamroq dolzarb — bu mobil metrika' },
+  'Shopping-apps: $1–$5; ROAS важнее самого CPI': { en: 'Shopping apps: $1–$5; ROAS matters more than CPI itself', uz: 'Shopping ilovalar: $1–$5; ROAS CPI ning o‘zidan muhimroq' },
+  'Gaming $1–$5, non-gaming $2–$8 (зависит от гео и ОС)': { en: 'Gaming $1–$5, non-gaming $2–$8 (depends on geo and OS)', uz: 'Gaming $1–$5, non-gaming $2–$8 (geo va OS ga bog‘liq)' },
+  'Контент-apps: $1–$4; ключевое — окупаемость через подписку': { en: 'Content apps: $1–$4; what matters is payback via subscription', uz: 'Kontent ilovalar: $1–$4; asosiysi — obuna orqali qoplanish' },
+  'Всегда выше ARPU; смотрите вместе с долей платящих (PUR)': { en: 'Always higher than ARPU; review with the paying share (PUR)', uz: 'Har doim ARPU dan yuqori; to‘lovchilar ulushi (PUR) bilan birga qarang' },
+  'B2B: ARPPU ≈ ACV/12; растёт через апселы и тарифы': { en: 'B2B: ARPPU ≈ ACV/12; grows via upsells and pricing tiers', uz: 'B2B: ARPPU ≈ ACV/12; apsel va tariflar orqali o‘sadi' },
+  'ARPPU ≈ AOV × частота на платящего клиента': { en: 'ARPPU ≈ AOV × frequency per paying customer', uz: 'ARPPU ≈ AOV × to‘lovchi mijozga chastota' },
+  'F2P: $5–$50/мес у платящих; «киты» сильно сдвигают среднее': { en: 'F2P: $5–$50/mo among payers; whales skew the average heavily', uz: 'F2P: to‘lovchilarda oyiga $5–$50; “kitlar” o‘rtachani kuchli siljitadi' },
+  'Подписка: близко к цене тарифа; апселлы поднимают ARPPU': { en: 'Subscription: close to the plan price; upsells lift ARPPU', uz: 'Obuna: tarif narxiga yaqin; apsellar ARPPU ni ko‘taradi' },
+  'B2B-рассылки: 20–35% (триггерные письма выше)': { en: 'B2B newsletters: 20–35% (triggered emails higher)', uz: 'B2B axborotnomalar: 20–35% (trigger xatlar yuqoriroq)' },
+  'Промо-рассылки: 15–25%; брошенная корзина выше': { en: 'Promo emails: 15–25%; abandoned cart is higher', uz: 'Promo xatlar: 15–25%; tashlangan savat yuqoriroq' },
+  'Onboarding/триггеры: 25–45%; смотрите вместе с push': { en: 'Onboarding/triggers: 25–45%; review together with push', uz: 'Onboarding/triggerlar: 25–45%; push bilan birga qarang' },
+  'Newsletters: 30–50% у лояльной аудитории': { en: 'Newsletters: 30–50% with a loyal audience', uz: 'Newsletterlar: sodiq auditoriyada 30–50%' },
+  'B2B: 10–20%; триггерные письма выше': { en: 'B2B: 10–20%; triggered emails higher', uz: 'B2B: 10–20%; trigger xatlar yuqoriroq' },
+  'Промо: 8–15%; зависит от оффера и сегментации': { en: 'Promo: 8–15%; depends on the offer and segmentation', uz: 'Promo: 8–15%; taklif va segmentatsiyaga bog‘liq' },
+  'Onboarding-серии: 15–25%': { en: 'Onboarding series: 15–25%', uz: 'Onboarding seriyalari: 15–25%' },
+  'Newsletters: 12–22% у вовлечённой аудитории': { en: 'Newsletters: 12–22% with an engaged audience', uz: 'Newsletterlar: jalb qilingan auditoriyada 12–22%' },
+  'Core-фичи >40%; вспомогательные 10–25% — норма': { en: 'Core features >40%; secondary ones 10–25% is normal', uz: 'Asosiy funksiyalar >40%; yordamchilari 10–25% — normal' },
+  'Wishlist/отзывы 15–30%; зависит от сценария': { en: 'Wishlist/reviews 15–30%; depends on the use case', uz: 'Wishlist/sharhlar 15–30%; stsenariyga bog‘liq' },
+  'Новая фича за первый месяц: 20–40% активных': { en: 'A new feature in its first month: 20–40% of actives', uz: 'Yangi funksiya birinchi oyda: faollarning 20–40%' },
+  'Плейлисты/подписки на авторов: 25–45%': { en: 'Playlists/creator follows: 25–45%', uz: 'Pleylistlar/mualliflarga obuna: 25–45%' },
+  'Растущий B2B SaaS: 10–20%+ MoM — здоровый темп': { en: 'Growing B2B SaaS: 10–20%+ MoM is a healthy pace', uz: 'O‘suvchi B2B SaaS: 10–20%+ MoM — sog‘lom sur’at' },
+  'Менее релевантно — чаще считают рост заказов': { en: 'Less relevant — order growth is the usual measure', uz: 'Kamroq dolzarb — odatda buyurtmalar o‘sishi hisoblanadi' },
+  'Менее релевантно — UA измеряют установками': { en: 'Less relevant — UA is measured in installs', uz: 'Kamroq dolzarb — UA o‘rnatishlar bilan o‘lchanadi' },
+  'B2B ad sales: 5–15% MoM — норма': { en: 'B2B ad sales: 5–15% MoM is normal', uz: 'B2B ad sales: 5–15% MoM — normal' },
+  'Bessemer: >1 — elite, 0.5–1 — норма, <0.5 — неэффективно': { en: 'Bessemer: >1 elite, 0.5–1 normal, <0.5 inefficient', uz: 'Bessemer: >1 — elite, 0.5–1 — normal, <0.5 — samarasiz' },
+  'Менее релевантно — используйте contribution margin и ROIC': { en: 'Less relevant — use contribution margin and ROIC', uz: 'Kamroq dolzarb — contribution margin va ROIC dan foydalaning' },
+  'Менее релевантно — смотрите ROAS и payback': { en: 'Less relevant — look at ROAS and payback', uz: 'Kamroq dolzarb — ROAS va payback ga qarang' },
+  'Менее релевантно — оцените unit-экономику подписки': { en: 'Less relevant — assess the subscription unit economics', uz: 'Kamroq dolzarb — obunaning yunit-iqtisodini baholang' },
+  'Меньше — лучше. Зависит от приоритета и канала': { en: 'Lower is better. Depends on priority and channel', uz: 'Kamroq — yaxshiroq. Prioritet va kanalga bog‘liq' },
+  'B2B: P1 < 4ч, обычные тикеты < 24–48ч': { en: 'B2B: P1 < 4h, routine tickets < 24–48h', uz: 'B2B: P1 < 4 soat, oddiy ticketlar < 24–48 soat' },
+  'Розница: < 24ч для большинства обращений': { en: 'Retail: < 24h for most requests', uz: 'Chakana: ko‘pchilik murojaatlar uchun < 24 soat' },
+  'In-app саппорт: первые ответы быстрее, решение < 24ч': { en: 'In-app support: first replies faster, resolution < 24h', uz: 'In-app support: birinchi javoblar tezroq, yechim < 24 soat' },
+  'Подписочное медиа: < 24–48ч для большинства запросов': { en: 'Subscription media: < 24–48h for most requests', uz: 'Obunali media: ko‘pchilik so‘rovlar uchun < 24–48 soat' },
+  'Счётчик. Смотрите DAU/WAU и WAU/MAU': { en: 'Counter. Look at DAU/WAU and WAU/MAU', uz: 'Hisoblagich. DAU/WAU va WAU/MAU ga qarang' },
+  'Для рабочих инструментов WAU ≈ 50–80% от MAU': { en: 'For work tools WAU ≈ 50–80% of MAU', uz: 'Ish vositalari uchun WAU ≈ MAU ning 50–80%' },
+  'Менее релевантно — смотрите частоту покупок': { en: 'Less relevant — look at purchase frequency', uz: 'Kamroq dolzarb — xaridlar chastotasiga qarang' },
+  'WAU/MAU 40–70% — норма для соцсетей и daily-апп': { en: 'WAU/MAU 40–70% is normal for social and daily-use apps', uz: 'WAU/MAU 40–70% — ijtimoiy va kunlik ilovalar uchun normal' },
+  'WAU важна для контента с недельным циклом': { en: 'WAU matters for content on a weekly cycle', uz: 'WAU haftalik siklli kontent uchun muhim' },
+  'Должен быть положительным и расти MoM': { en: 'Should be positive and growing MoM', uz: 'Musbat bo‘lishi va MoM o‘sishi kerak' },
+
+  // Prose benchmark guidance — batch 1/4.
+  'Счётчик — «нормы» нет. Сравнивайте через Stickiness (DAU/MAU) и YoY-рост': { en: 'Counter — there is no "norm". Compare via Stickiness (DAU/MAU) and YoY growth', uz: 'Hisoblagich — “norma” yo‘q. Stickiness (DAU/MAU) va YoY o‘sish orqali taqqoslang' },
+  'Считайте активных по продуктовому действию, а не по логину; смотрите с NRR': { en: 'Count actives by a product action, not by login; review alongside NRR', uz: 'Faollarni login bo‘yicha emas, mahsulot harakati bo‘yicha sanang; NRR bilan ko‘ring' },
+  'Менее показателен — ключевые метрики: сессии, CR, Repeat Purchase Rate': { en: 'Less indicative — the key metrics are sessions, CR, Repeat Purchase Rate', uz: 'Kamroq ko‘rsatkichli — asosiy metrikalar: sessiyalar, CR, Repeat Purchase Rate' },
+  'Ключевой знаменатель для Stickiness; здоровый DAU/MAU для соцприложений >20%': { en: 'The key denominator for Stickiness; a healthy DAU/MAU for social apps is >20%', uz: 'Stickiness uchun asosiy maxraj; ijtimoiy ilovalar uchun sog‘lom DAU/MAU >20%' },
+  'Смотрите вместе с частотой визитов и глубиной просмотра': { en: 'Review together with visit frequency and page depth', uz: 'Tashriflar chastotasi va ko‘rish chuqurligi bilan birga qarang' },
+  'Счётчик — зрелость задаётся YoY-ростом и Rule of 40 (рост + маржа ≥ 40%)': { en: 'Counter — maturity is set by YoY growth and Rule of 40 (growth + margin ≥ 40%)', uz: 'Hisoblagich — yetuklik YoY o‘sish va Rule of 40 (o‘sish + marja ≥ 40%) bilan belgilanadi' },
+  'Менее релевантно — в e-com считают GMV и выручку, а не ARR': { en: 'Less relevant — e-commerce tracks GMV and revenue, not ARR', uz: 'Kamroq dolzarb — e-commerce’da GMV va tushum hisoblanadi, ARR emas' },
+  'Применимо к подписочным приложениям; иначе смотрите ARPDAU × DAU': { en: 'Applies to subscription apps; otherwise look at ARPDAU × DAU', uz: 'Obuna ilovalariga tegishli; aks holda ARPDAU × DAU ga qarang' },
+  'Подписочная выручка в годовом выражении; следите за Churn подписок': { en: 'Subscription revenue on an annual basis; watch subscription Churn', uz: 'Yillik ifodadagi obuna tushumi; obuna Churn’ini kuzating' },
+  'Задаёт модель продаж: чем выше ACV, тем длиннее цикл и дороже sales': { en: 'Sets the sales model: the higher the ACV, the longer the cycle and the costlier sales', uz: 'Sotuv modelini belgilaydi: ACV qancha yuqori bo‘lsa, sikl uzunroq va sotuv qimmatroq' },
+  'PLG/SMB: <$5K, Mid-market: $15–50K, Enterprise: $100K+': { en: 'PLG/SMB: <$5K, Mid-market: $15–50K, Enterprise: $100K+', uz: 'PLG/SMB: <$5K, Mid-market: $15–50K, Enterprise: $100K+' },
+  'Менее релевантно — аналог для розницы это AOV': { en: 'Less relevant — the retail equivalent is AOV', uz: 'Kamroq dolzarb — chakana savdodagi muqobili — AOV' },
+  'Менее релевантно — для apps смотрите ARPPU и LTV': { en: 'Less relevant — for apps look at ARPPU and LTV', uz: 'Kamroq dolzarb — ilovalar uchun ARPPU va LTV ga qarang' },
+  'B2B-подписки/лицензии: обычно $5–50K в год': { en: 'B2B subscriptions/licences: typically $5–50K per year', uz: 'B2B obuna/litsenziyalar: odatda yiliga $5–50K' },
+  'Счётчик — качество важнее объёма. Оценивайте с CAC, Activation и LTV:CAC': { en: 'Counter — quality beats volume. Judge it with CAC, Activation and LTV:CAC', uz: 'Hisoblagich — sifat hajmdan muhim. CAC, Activation va LTV:CAC bilan baholang' },
+  'Смотрите не регистрации, а долю доходящих до активации и trial→paid': { en: 'Look not at sign-ups but at the share reaching activation and trial→paid', uz: 'Ro‘yxatdan o‘tishga emas, aktivatsiyaga va trial→paid ga yetganlar ulushiga qarang' },
+  'Ключевое — CAC на первый заказ и окупаемость через Repeat Purchase Rate': { en: 'What matters is CAC on the first order and payback via Repeat Purchase Rate', uz: 'Asosiysi — birinchi buyurtma uchun CAC va Repeat Purchase Rate orqali qoplanish' },
+  'Инсталлы без retention D1/D7 бессмысленны — считайте вместе с CPI': { en: 'Installs without D1/D7 retention are meaningless — count them with CPI', uz: 'D1/D7 retention’siz o‘rnatishlar ma’nosiz — ularni CPI bilan birga sanang' },
+  'Регистрации важны в связке с конверсией в платную подписку': { en: 'Sign-ups matter only alongside conversion to a paid subscription', uz: 'Ro‘yxatdan o‘tishlar pullik obunaga konversiya bilan birga muhim' },
+  'Счётчик — здоровье задают рост, маржа и unit-экономика, а не абсолют': { en: 'Counter — health comes from growth, margin and unit economics, not the absolute', uz: 'Hisoblagich — salomatlikni o‘sish, marja va yunit-iqtisod belgilaydi, absolyut emas' },
+  'Смотрите на MRR/ARR и его состав (New / Expansion / Churned)': { en: 'Look at MRR/ARR and its composition (New / Expansion / Churned)', uz: 'MRR/ARR va uning tarkibiga qarang (New / Expansion / Churned)' },
+  'Разделяйте gross и net revenue (возвраты, скидки); следите за маржой': { en: 'Separate gross and net revenue (returns, discounts); watch the margin', uz: 'Gross va net tushumni ajrating (qaytarishlar, chegirmalar); marjani kuzating' },
+  'Разделяйте IAP, подписки и рекламу — у них разная маржинальность': { en: 'Separate IAP, subscriptions and ads — their margins differ', uz: 'IAP, obuna va reklamani ajrating — ularning marjasi har xil' },
+  'Разделяйте подписочную и рекламную выручку; у рекламы выше волатильность': { en: 'Separate subscription and advertising revenue; ads are more volatile', uz: 'Obuna va reklama tushumini ajrating; reklama volatilligi yuqoriroq' },
+  'Оценивается только через Runway и Burn Multiple, а не в абсолюте': { en: 'Judge it only via Runway and Burn Multiple, never in absolute terms', uz: 'Faqat Runway va Burn Multiple orqali baholanadi, absolyut holda emas' },
+  'Считайте net burn; целевой Burn Multiple <1.5 (Sacks: <1 — отлично)': { en: 'Use net burn; target a Burn Multiple <1.5 (Sacks: <1 is excellent)', uz: 'Net burn’ni hisoblang; maqsadli Burn Multiple <1.5 (Sacks: <1 — ajoyib)' },
+  'Учитывайте оборотный капитал и закупку товара — это тоже отток кэша': { en: 'Include working capital and inventory purchases — they are cash outflow too', uz: 'Aylanma mablag‘ va tovar xaridini hisobga oling — bu ham pul chiqimi' },
+  'Основной burn — UA-бюджет; контролируйте через окупаемость LTV/CPI': { en: 'The main burn is the UA budget; control it via LTV/CPI payback', uz: 'Asosiy burn — UA byudjeti; uni LTV/CPI qoplanishi orqali nazorat qiling' },
+  'Контент-производство — главная статья; смотрите на выручку с контента': { en: 'Content production is the main line item; look at revenue per content', uz: 'Kontent ishlab chiqarish — asosiy modda; kontentdan tushumga qarang' },
+  'Плохо: >5 баг/1000 строк, Норма: 1–5, Хорошо: <1': { en: 'Bad: >5 bugs/1000 lines, Norm: 1–5, Good: <1', uz: 'Yomon: >5 bug/1000 qator, Norma: 1–5, Yaxshi: <1' },
+  'Зрелые команды держат <1 на 1000 строк при code review и CI': { en: 'Mature teams hold <1 per 1000 lines with code review and CI', uz: 'Yetuk jamoalar code review va CI bilan 1000 qatorga <1 ushlab turadi' },
+  'Критично для чекаута — баги там напрямую бьют по конверсии': { en: 'Critical for checkout — bugs there hit conversion directly', uz: 'Checkout uchun kritik — u yerdagi buglar konversiyaga to‘g‘ridan-to‘g‘ri uradi' },
+  'Учитывайте crash-free rate (цель >99.5%) как отдельный сигнал': { en: 'Track crash-free rate (target >99.5%) as a separate signal', uz: 'Crash-free rate’ni (maqsad >99.5%) alohida signal sifatida hisobga oling' },
+  'Ключевое — стабильность плеера и скорость отдачи контента': { en: 'What matters is player stability and content delivery speed', uz: 'Asosiysi — pleyer barqarorligi va kontent yetkazish tezligi' },
+  'Плохо: >5 дефектов/KLOC, Норма: 1–5, Хорошо: <1 (уровень зрелых команд)': { en: 'Bad: >5 defects/KLOC, Norm: 1–5, Good: <1 (mature-team level)', uz: 'Yomon: >5 nuqson/KLOC, Norma: 1–5, Yaxshi: <1 (yetuk jamoalar darajasi)' },
+  'Индустриальная норма ~1–3/KLOC; <0.5 — уровень high-maturity': { en: 'The industry norm is ~1–3/KLOC; <0.5 is high-maturity level', uz: 'Soha normasi ~1–3/KLOC; <0.5 — high-maturity darajasi' },
+  'Считайте отдельно для платёжного и чекаут-контура — там цена дефекта выше': { en: 'Count separately for the payment and checkout paths — a defect costs more there', uz: 'To‘lov va checkout konturi uchun alohida sanang — u yerda nuqson narxi yuqoriroq' },
+  'Смотрите вместе с crash-free sessions и рейтингом в сторах': { en: 'Review together with crash-free sessions and store ratings', uz: 'Crash-free sessions va do‘kon reytinglari bilan birga qarang' },
+  'Приоритет — дефекты воспроизведения и раздачи контента': { en: 'Priority goes to playback and content-delivery defects', uz: 'Ustuvorlik — ijro va kontent tarqatish nuqsonlari' },
+  'Зависит от LTV: CPA должен быть кратно ниже ценности действия': { en: 'Depends on LTV: CPA must be several times below the value of the action', uz: 'LTV ga bog‘liq: CPA harakat qiymatidan bir necha barobar past bo‘lishi kerak' },
+  'B2B trial/демо: $30–$150; оценивайте с trial→paid CR': { en: 'B2B trial/demo: $30–$150; judge it with trial→paid CR', uz: 'B2B trial/demo: $30–$150; trial→paid CR bilan baholang' },
+  'Покупка: $5–$40 в зависимости от AOV и маржи': { en: 'Purchase: $5–$40 depending on AOV and margin', uz: 'Xarid: $5–$40, AOV va marjaga qarab' },
+  'Регистрация/первая покупка: $1–$20, сравнивайте с LTV': { en: 'Sign-up/first purchase: $1–$20, compare against LTV', uz: 'Ro‘yxatdan o‘tish/birinchi xarid: $1–$20, LTV bilan taqqoslang' },
+  'Подписка/регистрация: $2–$25; важна окупаемость через ARPU': { en: 'Subscription/sign-up: $2–$25; payback via ARPU is what matters', uz: 'Obuna/ro‘yxatdan o‘tish: $2–$25; ARPU orqali qoplanish muhim' },
+  'Зависит от качества лида и конверсии в клиента': { en: 'Depends on lead quality and conversion to customer', uz: 'Lid sifati va mijozga konversiyaga bog‘liq' },
+
+  // Formulaic band strings (label: value) — mechanically translated, numbers untouched.
+  'Плохо: <15%, Норма: 15–25%, Хорошо: >25%': { en: 'Bad: <15%, Norm: 15–25%, Good: >25%', uz: 'Yomon: <15%, Norma: 15–25%, Yaxshi: >25%' },
+  'Плохо: <10%, Норма: 10–20%, Хорошо: >20%': { en: 'Bad: <10%, Norm: 10–20%, Good: >20%', uz: 'Yomon: <10%, Norma: 10–20%, Yaxshi: >20%' },
+  'Плохо: <20%, Норма: 20–40%, Хорошо: >40%': { en: 'Bad: <20%, Norm: 20–40%, Good: >40%', uz: 'Yomon: <20%, Norma: 20–40%, Yaxshi: >40%' },
+  'Плохо: <0%, Норма: 0–10%, Хорошо: >10% MoM': { en: 'Bad: <0%, Norm: 0–10%, Good: >10% MoM', uz: 'Yomon: <0%, Norma: 0–10%, Yaxshi: >10% MoM' },
+  'Плохо: <0.5, Норма: 0.5–1, Хорошо: >1 (elite)': { en: 'Bad: <0.5, Norm: 0.5–1, Good: >1 (elite)', uz: 'Yomon: <0.5, Norma: 0.5–1, Yaxshi: >1 (elite)' },
+  'Плохо: <20%, Норма: 20–40%, Хорошо: 40–60%, Отлично: >60%': { en: 'Bad: <20%, Norm: 20–40%, Good: 40–60%, Excellent: >60%', uz: 'Yomon: <20%, Norma: 20–40%, Yaxshi: 40–60%, Ajoyib: >60%' },
+  'Плохо: <2%, Норма: 2–8%, Хорошо: >8%': { en: 'Bad: <2%, Norm: 2–8%, Good: >8%', uz: 'Yomon: <2%, Norma: 2–8%, Yaxshi: >8%' },
+  'Плохо: <10%, Норма: 20–30%, Хорошо: 30–50%, Отлично: >50%': { en: 'Bad: <10%, Norm: 20–30%, Good: 30–50%, Excellent: >50%', uz: 'Yomon: <10%, Norma: 20–30%, Yaxshi: 30–50%, Ajoyib: >50%' },
+  'Плохо: <10%, Средне: 10–25%, Хорошо: >25%': { en: 'Bad: <10%, Average: 10–25%, Good: >25%', uz: 'Yomon: <10%, O‘rtacha: 10–25%, Yaxshi: >25%' },
+  'Плохо: <30%, Средне: 30–60%, Хорошо: >60%': { en: 'Bad: <30%, Average: 30–60%, Good: >60%', uz: 'Yomon: <30%, O‘rtacha: 30–60%, Yaxshi: >60%' },
+  'Плохо: >$800, Средне: $300–$800, Хорошо: <$300': { en: 'Bad: >$800, Average: $300–$800, Good: <$300', uz: 'Yomon: >$800, O‘rtacha: $300–$800, Yaxshi: <$300' },
+  'Плохо: <1, Средне: 1–3, Хорошо: >3': { en: 'Bad: <1, Average: 1–3, Good: >3', uz: 'Yomon: <1, O‘rtacha: 1–3, Yaxshi: >3' },
+  'Плохо: <$10, Средне: $10–$50, Хорошо: >$50': { en: 'Bad: <$10, Average: $10–$50, Good: >$50', uz: 'Yomon: <$10, O‘rtacha: $10–$50, Yaxshi: >$50' },
+  'Плохо: >10%, Средне: 5–10%, Хорошо: <5%': { en: 'Bad: >10%, Average: 5–10%, Good: <5%', uz: 'Yomon: >10%, O‘rtacha: 5–10%, Yaxshi: <5%' },
+  'Плохо: <20%, Средне: 20–40%, Хорошо: >40%': { en: 'Bad: <20%, Average: 20–40%, Good: >40%', uz: 'Yomon: <20%, O‘rtacha: 20–40%, Yaxshi: >40%' },
+  'Плохо: <$5k, Средне: $5k–$20k, Хорошо: >$20k': { en: 'Bad: <$5k, Average: $5k–$20k, Good: >$20k', uz: 'Yomon: <$5k, O‘rtacha: $5k–$20k, Yaxshi: >$20k' },
+  'Плохо: <80%, Средне: 80–95%, Хорошо: >95%': { en: 'Bad: <80%, Average: 80–95%, Good: >95%', uz: 'Yomon: <80%, O‘rtacha: 80–95%, Yaxshi: >95%' },
+  'Плохо: >24 мес, Средне: 12–24 мес, Хорошо: <12 мес': { en: 'Bad: >24 мес, Average: 12–24 мес, Good: <12 мес', uz: 'Yomon: >24 мес, O‘rtacha: 12–24 мес, Yaxshi: <12 мес' },
+  'Плохо: <0%, Средне: 0–10%, Хорошо: >10%': { en: 'Bad: <0%, Average: 0–10%, Good: >10%', uz: 'Yomon: <0%, O‘rtacha: 0–10%, Yaxshi: >10%' },
+  'Плохо: <0.5, Средне: 0.5–1, Хорошо: >1 (elite)': { en: 'Bad: <0.5, Average: 0.5–1, Good: >1 (elite)', uz: 'Yomon: <0.5, O‘rtacha: 0.5–1, Yaxshi: >1 (elite)' },
+  'Плохо: <0.5, Средне: 0.5–1, Хорошо: >1': { en: 'Bad: <0.5, Average: 0.5–1, Good: >1', uz: 'Yomon: <0.5, O‘rtacha: 0.5–1, Yaxshi: >1' },
+  'Плохо: <20%, Средне: 20–40%, Хорошо: 40–60%, Отлично: >60%': { en: 'Bad: <20%, Average: 20–40%, Good: 40–60%, Excellent: >60%', uz: 'Yomon: <20%, O‘rtacha: 20–40%, Yaxshi: 40–60%, Ajoyib: >60%' },
+  'Плохо: <1%, Средне: 1–3%, Хорошо: >3%': { en: 'Bad: <1%, Average: 1–3%, Good: >3%', uz: 'Yomon: <1%, O‘rtacha: 1–3%, Yaxshi: >3%' },
+  'Плохо: >70%, Средне: 40–70%, Хорошо: <40%': { en: 'Bad: >70%, Average: 40–70%, Good: <40%', uz: 'Yomon: >70%, O‘rtacha: 40–70%, Yaxshi: <40%' },
+  'Плохо: <10%, Средне: 10–20%, Хорошо: >20%': { en: 'Bad: <10%, Average: 10–20%, Good: >20%', uz: 'Yomon: <10%, O‘rtacha: 10–20%, Yaxshi: >20%' },
+  'Плохо: >5, Средне: 2–5, Хорошо: <2': { en: 'Bad: >5, Average: 2–5, Good: <2', uz: 'Yomon: >5, O‘rtacha: 2–5, Yaxshi: <2' },
+  'Плохо: <50%, Средне: 50–80%, Хорошо: >80%': { en: 'Bad: <50%, Average: 50–80%, Good: >80%', uz: 'Yomon: <50%, O‘rtacha: 50–80%, Yaxshi: >80%' },
+  'Плохо: <0, Средне: 0–30, Хорошо: >30, Отлично: >50': { en: 'Bad: <0, Average: 0–30, Good: >30, Excellent: >50', uz: 'Yomon: <0, O‘rtacha: 0–30, Yaxshi: >30, Ajoyib: >50' },
+  'Плохо: <60%, Средне: 60–80%, Хорошо: >80%': { en: 'Bad: <60%, Average: 60–80%, Good: >80%', uz: 'Yomon: <60%, O‘rtacha: 60–80%, Yaxshi: >80%' },
+  'Плохо: <90%, Средне: 90–98%, Хорошо: >98%': { en: 'Bad: <90%, Average: 90–98%, Good: >98%', uz: 'Yomon: <90%, O‘rtacha: 90–98%, Yaxshi: >98%' },
+
+  // Corrected benchmark strings (mobile D30 was 3x too harsh vs the industries page,
+  // LinkedIn CPM contradicted its own longread, Open Rate did not state its MPP basis).
+  'Плохо: <3% D30, Норма: 3–8%, Хорошо: >8% (медиана D30 ≈ 4–6%)': { en: 'Bad: <3% D30, Norm: 3–8%, Good: >8% (median D30 ≈ 4–6%)', uz: 'Yomon: <3% D30, Norma: 3–8%, Yaxshi: >8% (D30 medianasi ≈ 4–6%)' },
+  'B2B LinkedIn: $30–60, Google Display: $2–8': { en: 'B2B LinkedIn: $30–60, Google Display: $2–8', uz: 'B2B LinkedIn: $30–60, Google Display: $2–8' },
+  'Плохо: <15%, Средне: 15–25%, Хорошо: >25% («чистый» OR; с Apple MPP отчётные 35–45%)': { en: 'Bad: <15%, Average: 15–25%, Good: >25% (clean OR; with Apple MPP reported opens run 35–45%)', uz: 'Yomon: <15%, O‘rtacha: 15–25%, Yaxshi: >25% (“toza” OR; Apple MPP bilan hisobot 35–45%)' },
+
+  // T2D3 (corrected: triple-triple-double-double-double — 9x ARR over the first
+  // two years, not 3x; originated by Neeraj Agrawal at Battery Ventures).
+  'T2D3-траектория: triple-triple-double-double-double от $1–2M ARR': { en: 'T2D3 trajectory: triple-triple-double-double-double from $1–2M ARR', uz: 'T2D3 trayektoriyasi: triple-triple-double-double-double $1–2M ARR dan' },
+  'YC-ориентир: 5–7% MoM; T2D3 — 200% YoY два года, затем 100% YoY три года': { en: 'YC guideline: 5–7% MoM; T2D3 — 200% YoY for two years, then 100% YoY for three', uz: 'YC mo‘ljali: 5–7% MoM; T2D3 — ikki yil 200% YoY, keyin uch yil 100% YoY' },
+
+  // Aligned benchmark strings (see the INDUSTRY_THRESHOLDS fix: these labels were
+  // contradicting each metric's own threshold + insight() colour bands).
+  'Отлично: <$1, Норма: $1–$5, Плохо: >$5': { en: 'Excellent: <$1, Norm: $1–$5, Bad: >$5', uz: 'Ajoyib: <$1, Norma: $1–$5, Yomon: >$5' },
+  'Плохо: <2x, Средне: 2–4x, Хорошо: >4x': { en: 'Bad: <2x, Average: 2–4x, Good: >4x', uz: 'Yomon: <2x, O‘rtacha: 2–4x, Yaxshi: >4x' },
+  'Плохо: <1.5x, Норма: 1.5–4x, Хорошо: >4x': { en: 'Bad: <1.5x, Norm: 1.5–4x, Good: >4x', uz: 'Yomon: <1.5x, Norma: 1.5–4x, Yaxshi: >4x' },
+  'Плохо: <2x, Норма: 2–5x, Хорошо: >5x': { en: 'Bad: <2x, Norm: 2–5x, Good: >5x', uz: 'Yomon: <2x, Norma: 2–5x, Yaxshi: >5x' },
+  'Плохо: <1x, Норма: 1–2.5x, Хорошо: >2.5x': { en: 'Bad: <1x, Norm: 1–2.5x, Good: >2.5x', uz: 'Yomon: <1x, Norma: 1–2.5x, Yaxshi: >2.5x' },
+  'Плохо: <1.2x, Норма: 1.2–3x, Хорошо: >3x': { en: 'Bad: <1.2x, Norm: 1.2–3x, Good: >3x', uz: 'Yomon: <1.2x, Norma: 1.2–3x, Yaxshi: >3x' },
+  'Хорошо: <5%/мес, Средне: 5–10%/мес, Плохо: >10%/мес': { en: 'Good: <5%/mo, Average: 5–10%/mo, Bad: >10%/mo', uz: 'Yaxshi: <5%/oy, O‘rtacha: 5–10%/oy, Yomon: >10%/oy' },
+  'Хорошо: <$300, Средне: $300–$800, Плохо: >$800 (ориентир: CAC < LTV/3)': { en: 'Good: <$300, Average: $300–$800, Bad: >$800 (guideline: CAC < LTV/3)', uz: 'Yaxshi: <$300, O‘rtacha: $300–$800, Yomon: >$800 (mo‘ljal: CAC < LTV/3)' },
+  'Плохо: <100%, Средне: 100–120%, Хорошо: >120%': { en: 'Bad: <100%, Average: 100–120%, Good: >120%', uz: 'Yomon: <100%, O‘rtacha: 100–120%, Yaxshi: >120%' },
+  'Плохо: <70%, Средне: 70–85%, Хорошо: >85%': { en: 'Bad: <70%, Average: 70–85%, Good: >85%', uz: 'Yomon: <70%, O‘rtacha: 70–85%, Yaxshi: >85%' },
+  'Плохо: <0.5, Средне: 0.5–1, Хорошо: >1 (вирусный рост)': { en: 'Bad: <0.5, Average: 0.5–1, Good: >1 (viral growth)', uz: 'Yomon: <0.5, O‘rtacha: 0.5–1, Yaxshi: >1 (viral o‘sish)' },
   // CTR
   'Плохо: <1%, Норма: 1–3%, Хорошо: >3%': { en: 'Bad: <1%, Norm: 1–3%, Good: >3%', uz: 'Yomon: <1%, Norma: 1–3%, Yaxshi: >3%' },
   'Плохо: <1%, Норма: 2–5%, Хорошо: >5%': { en: 'Bad: <1%, Norm: 2–5%, Good: >5%', uz: 'Yomon: <1%, Norma: 2–5%, Yaxshi: >5%' },
@@ -1923,7 +2169,7 @@ window._tTooltip = function(ruText) {
                     id: 'arr', name: 'ARR',
                     formula: 'MRR × 12',
                     description: 'Annual Recurring Revenue — годовая регулярная выручка.',
-                    threshold: 'Главное — YoY-рост и NRR. Молодой SaaS: T2D3 (3x к ARR за 2 года)',
+                    threshold: 'Главное — YoY-рост и NRR. Молодой SaaS: T2D3 — 3x, 3x, затем 2x, 2x, 2x',
                     inputs: [{ label: 'MRR, $', placeholder: '45000', key: 'mrr', min: 0 }],
                     calculate: v => { const m = sanitizeNumber(v.mrr); return m !== null ? (m * 12).toFixed(2) : null; },
                     unit: '$',
@@ -2024,18 +2270,18 @@ window._tTooltip = function(ruText) {
                 },
                 {
                     id: 'magicNumber', name: 'Magic Number',
-                    formula: '(Net New ARR × 4) / S&M расходы за квартал',
+                    formula: 'Net New ARR за квартал / S&M расходы за квартал',
                     description: 'Эффективность Sales & Marketing: сколько $ нового ARR в год даёт каждый $, потраченный на S&M (Scale Venture Partners).',
                     threshold: 'Плохо: <0.5, Норма: 0.5–1, Хорошо: 1–1.5, Отлично: >1.5',
                     inputs: [
-                        { label: 'Net New ARR за квартал, $', placeholder: '500000', key: 'newArr', min: 0, help: 'Прирост ARR за конкретный квартал (×4 в формуле даёт annualized).' },
+                        { label: 'Net New ARR за квартал, $', placeholder: '500000', key: 'newArr', min: 0, help: 'Прирост ARR за конкретный квартал. ARR — уже годовая величина, поэтому дополнительно аннуализировать её не нужно.' },
                         { label: 'Расходы на Sales & Marketing за квартал, $', placeholder: '400000', key: 'sm', min: 0.01, help: 'Полный S&M cost: payroll команды + платформы + реклама + комиссии. По P&L, не по cash.' }
                     ],
                     calculate: v => {
                         const a = sanitizeNumber(v.newArr);
                         const sm = sanitizeNumber(v.sm);
                         if (a === null || sm === null || sm <= 0) return null;
-                        return ((a * 4) / sm).toFixed(2);
+                        return (a / sm).toFixed(2);
                     },
                     unit: '',
                     insight: val => {
@@ -2349,7 +2595,13 @@ window._tTooltip = function(ruText) {
                         const c = sanitizeNumber(v.cash);
                         const b = sanitizeNumber(v.burn);
                         if (c === null || b === null) return null;
-                        if (b <= 0) return '∞';
+                        // Return the NUMBER Infinity, not the string '∞': every caller
+                        // (main result, dashboard, Compare-2) tests `=== Infinity`, and
+                        // parseFloat('∞') is NaN — which made the main view skip insight()
+                        // entirely, the dashboard drop the metric, and Compare-2 print
+                        // "NaN мес" under a green "healthy runway" verdict.
+                        // api/calc.js already returns Infinity here.
+                        if (b <= 0) return Infinity;
                         return (c / b).toFixed(1);
                     },
                     unit: 'мес',
@@ -2840,7 +3092,7 @@ window._tTooltip = function(ruText) {
                     id: 'openRate', name: 'Email Open Rate',
                     formula: '(Открытия / Доставлено) × 100%',
                     description: 'Доля доставленных писем, которые были открыты. Базовая метрика email-маркетинга; зависит от темы письма, отправителя и репутации домена.',
-                    threshold: 'Плохо: <15%, Средне: 15–25%, Хорошо: >25%',
+                    threshold: 'Плохо: <15%, Средне: 15–25%, Хорошо: >25% («чистый» OR; с Apple MPP отчётные 35–45%)',
                     inputs: [
                         { label: 'Открытия писем', placeholder: '4200', key: 'opens', min: 0, help: 'Число открытий (уникальных или всех — будьте последовательны).' },
                         { label: 'Доставлено писем', placeholder: '20000', key: 'delivered', min: 1, help: 'Письма, дошедшие до инбокса (отправлено минус bounce).' }
@@ -3050,7 +3302,7 @@ window._tTooltip = function(ruText) {
                 },
                 {
                     id: 'ces', name: 'CES (Customer Effort Score)',
-                    formula: 'Сумма оценок усилий / Кол-во ответов (шкала 1–7)',
+                    formula: 'Сумма оценок лёгкости / Кол-во ответов (шкала 1–7, где 7 — «было легко»)',
                     description: 'Customer Effort Score — насколько легко клиенту было решить свой вопрос. Респонденты оценивают утверждение «компания упростила решение» по шкале 1–7. Сильный предиктор лояльности.',
                     threshold: 'Шкала 1–7: <5 высокое трение, 5–6 норма, >6 отлично',
                     inputs: [
@@ -3272,7 +3524,7 @@ window._tTooltip = function(ruText) {
         },
         cpm: {
             universal: 'Дисплей: $1–5, Соцсети: $5–15, Видео: $10–30',
-            saas:      'B2B LinkedIn: $15–40, Google Display: $2–8',
+            saas:      'B2B LinkedIn: $30–60, Google Display: $2–8',
             ecom:      'Meta/Instagram: $5–12, TikTok: $3–10, Display: $1–5',
             mobile:    'In-app/UAC: $2–8, rewarded video eCPM: $5–20',
             media:     'Programmatic display: $1–4, premium video: $10–25',
@@ -3299,25 +3551,25 @@ window._tTooltip = function(ruText) {
             media:     'Подписка/биллинг: ≥ 6 — лёгкость отмены/смены тарифа',
         },
         ctr: {
-            universal: 'Плохо: <1%, Норма: 1–3%, Хорошо: >3%',
+            universal: 'Плохо: <0.5%, Норма: 0.5–2%, Хорошо: >2%',
             saas:      'Плохо: <1%, Норма: 2–5%, Хорошо: >5%',
             ecom:      'Плохо: <0.5%, Норма: 1–2%, Хорошо: >2%',
             mobile:    'Плохо: <0.5%, Норма: 1–3%, Хорошо: >3%',
             media:     'Плохо: <2%, Норма: 3–8%, Хорошо: >8%',
         },
         cpc: {
-            universal: 'Отлично: <$0.5, Норма: $0.5–$2, Плохо: >$2',
+            universal: 'Отлично: <$1, Норма: $1–$5, Плохо: >$5',
             saas:      'Отлично: <$2, Норма: $2–$8, Плохо: >$8',
             ecom:      'Отлично: <$0.3, Норма: $0.3–$1.2, Плохо: >$1.2',
             mobile:    'Отлично: <$0.2, Норма: $0.2–$1, Плохо: >$1',
             media:     'Отлично: <$0.15, Норма: $0.15–$0.6, Плохо: >$0.6',
         },
         roas: {
-            universal: 'Плохо: <100%, Норма: 100–200%, Хорошо: >300%',
-            saas:      'Плохо: <150%, Норма: 150–400%, Хорошо: >400%',
-            ecom:      'Плохо: <200%, Норма: 200–500%, Хорошо: >500%',
-            mobile:    'Плохо: <100%, Норма: 100–250%, Хорошо: >250%',
-            media:     'Плохо: <120%, Норма: 120–300%, Хорошо: >300%',
+            universal: 'Плохо: <2x, Средне: 2–4x, Хорошо: >4x',
+            saas:      'Плохо: <1.5x, Норма: 1.5–4x, Хорошо: >4x',
+            ecom:      'Плохо: <2x, Норма: 2–5x, Хорошо: >5x',
+            mobile:    'Плохо: <1x, Норма: 1–2.5x, Хорошо: >2.5x',
+            media:     'Плохо: <1.2x, Норма: 1.2–3x, Хорошо: >3x',
         },
         cr: {
             universal: 'Плохо: <1%, Норма: 1–3%, Хорошо: >3%',
@@ -3334,7 +3586,7 @@ window._tTooltip = function(ruText) {
             media:     'Хорошо: <55%, Норма: 55–80%, Плохо: >80%',
         },
         churn: {
-            universal: 'Отлично: <1%/мес, Норма: 1–5%/мес, Плохо: >5%/мес',
+            universal: 'Хорошо: <5%/мес, Средне: 5–10%/мес, Плохо: >10%/мес',
             saas:      'Отлично: <0.5%/мес, Норма: 0.5–2%/мес, Плохо: >2%/мес',
             ecom:      'Отлично: <3%/мес, Норма: 3–8%/мес, Плохо: >8%/мес',
             mobile:    'Отлично: <5%/мес, Норма: 5–15%/мес, Плохо: >15%/мес',
@@ -3348,7 +3600,7 @@ window._tTooltip = function(ruText) {
             media:     'Норма: LTV > 2×CAC, Хорошо: LTV > 4×CAC',
         },
         cac: {
-            universal: 'Отлично: CAC < LTV/3, Норма: CAC < LTV/2, Плохо: CAC > LTV/2',
+            universal: 'Хорошо: <$300, Средне: $300–$800, Плохо: >$800 (ориентир: CAC < LTV/3)',
             saas:      'Отлично: Окупаемость <6 мес, Норма: 6–18 мес, Плохо: >18 мес',
             ecom:      'Отлично: CAC < $5, Норма: $5–$25, Плохо: >$25',
             mobile:    'Отлично: CAC < $1, Норма: $1–$5, Плохо: >$5',
@@ -3376,14 +3628,14 @@ window._tTooltip = function(ruText) {
             media:     'Норма: MoM рост >3%, Хорошо: >10%',
         },
         nrr: {
-            universal: 'Плохо: <80%, Норма: 80–100%, Хорошо: 100–120%, Отлично: >120%',
+            universal: 'Плохо: <100%, Средне: 100–120%, Хорошо: >120%',
             saas:      'Плохо: <90%, Норма: 90–100%, Хорошо: 100–120%, Отлично: >130%',
             ecom:      'Плохо: <70%, Норма: 70–90%, Хорошо: >100%',
             mobile:    'Плохо: <75%, Норма: 75–95%, Хорошо: >100%',
             media:     'Плохо: <80%, Норма: 80–100%, Хорошо: >110%',
         },
         csat: {
-            universal: 'Плохо: <60%, Норма: 60–80%, Хорошо: >80%',
+            universal: 'Плохо: <70%, Средне: 70–85%, Хорошо: >85%',
             saas:      'Плохо: <70%, Норма: 70–85%, Хорошо: >85%',
             ecom:      'Плохо: <65%, Норма: 65–85%, Хорошо: >85%',
             mobile:    'Плохо: <60%, Норма: 60–80%, Хорошо: >80%',
@@ -3400,7 +3652,7 @@ window._tTooltip = function(ruText) {
             universal: 'Плохо: <30%, Норма: 30–60%, Хорошо: >60%',
             saas:      'Плохо: <70%, Норма: 70–85%, Хорошо: >85% (по логин когортам D30)',
             ecom:      'Плохо: <20%, Норма: 20–40%, Хорошо: >40% (повторная покупка 90д)',
-            mobile:    'Плохо: <15% D30, Норма: 15–30%, Хорошо: >30%',
+            mobile:    'Плохо: <3% D30, Норма: 3–8%, Хорошо: >8% (медиана D30 ≈ 4–6%)',
             media:     'Плохо: <25%, Норма: 25–50%, Хорошо: >50%',
         },
         retention_aarrr: {
@@ -3418,7 +3670,7 @@ window._tTooltip = function(ruText) {
             media:     'Плохо: <20%, Норма: 20–45%, Хорошо: >45%',
         },
         referral: {
-            universal: 'Плохо: <0.3, Норма: 0.3–1, Хорошо: >1 (вирусный рост)',
+            universal: 'Плохо: <0.5, Средне: 0.5–1, Хорошо: >1 (вирусный рост)',
             saas:      'Плохо: <0.2, Норма: 0.2–0.6, Хорошо: >0.6, Виральность: >1',
             ecom:      'Плохо: <0.15, Норма: 0.15–0.5, Хорошо: >0.5',
             mobile:    'Плохо: <0.4, Норма: 0.4–1, Хорошо: >1',
@@ -3559,7 +3811,7 @@ window._tTooltip = function(ruText) {
         },
         mrrGrowthRate: {
             universal: 'MoM: <5% низко, 5–10% норма, 10–20% хорошо, >20% отлично',
-            saas:      'YC-стандарт: 5–7% MoM минимум; T2D3 = 100% YoY за 3 года',
+            saas:      'YC-ориентир: 5–7% MoM; T2D3 — 200% YoY два года, затем 100% YoY три года',
             ecom:      'Менее релевантно для не-подписочных моделей',
             mobile:    'F2P/SaaS hybrid: 10–25% MoM на growth-фазе',
             media:     'Подписочное медиа: 5–15% MoM норма',
@@ -5167,8 +5419,8 @@ window._tTooltip = function(ruText) {
                 acquisition:{ new:400 }, activation:{ activated:160, total:400 },
                 retention_aarrr:{ ret:120, new:400 }, referral:{ invited:40, active:200 },
                 revenue:{ rev:50000 },
-                cr:{ conversions:40, visitors:2000 }, roas:{ revenue:80000, spend:45000 },
-                cpc:{ spend:45000, clicks:9000 }, ctr:{ clicks:360, impressions:18000 },
+                cr:{ conversions:40, visitors:2000 }, roas:{ revenue:16000, spend:9000 },
+                cpc:{ spend:9000, clicks:1800 }, ctr:{ clicks:360, impressions:18000 },
                 bounceRate:{ bounced:4800, total:10000 },
                 bugRate:{ bugs:18, size:8 }, testCoverage:{ covered:65, total:100 },
                 defectDensity:{ defects:25, kloc:8 },
@@ -5178,12 +5430,21 @@ window._tTooltip = function(ruText) {
                 contributionMargin:{ revenue:50000, variableCosts:9000 },
                 quotaAttainment:{ actual:540000, quota:600000 },
                 mer:{ totalRevenue:50000, totalSpend:12000 }, ces:{ sumScores:600, responses:200 },
-                cpa:{ spend:45000, actions:400 }, cpl:{ spend:45000, leads:600 },
+                cpa:{ spend:9000, actions:80 }, cpl:{ spend:9000, leads:120 },
                 openRate:{ opens:2200, delivered:6000 }, ctor:{ clicks:280, opens:2200 },
                 featureAdoption:{ adopted:2400, active:6000 },
                 leadVelocityRate:{ thisMonth:660, lastMonth:600 },
                 cashConversionScore:{ arr:600000, capitalConsumed:700000 },
-                avgResolutionTime:{ totalHours:1600, ticketsResolved:200 }
+                avgResolutionTime:{ totalHours:1600, ticketsResolved:200 },
+                arpdau:{ dailyRevenue:1650, dau:800 }, aov:{ revenue:50000, orders:125 },
+                repeatPurchaseRate:{ repeat:700, total:1000 }, timeToValue:{ days:5 },
+                grossMargin:{ revenue:50000, cogs:7500 }, runway:{ cash:900000, burn:50000 },
+                burnRate:{ expenses:100000, revenue:50000 },
+                salesVelocity:{ opps:60, acv:6000, winRate:22, cycle:45 },
+                winRate:{ won:22, total:100 }, pipelineCoverage:{ pipeline:1800000, quota:600000 },
+                salesCycleLength:{ totalDays:2700, wonCount:60 },
+                mrrGrowthRate:{ startMrr:46700, endMrr:50000 },
+                engagementRate:{ engagements:180, reach:6000 }
             }
         },
         {
@@ -5206,8 +5467,8 @@ window._tTooltip = function(ruText) {
                 acquisition:{ new:2000 }, activation:{ activated:1400, total:2000 },
                 retention_aarrr:{ ret:1600, new:2000 }, referral:{ invited:400, active:1000 },
                 revenue:{ rev:2000000 },
-                cr:{ conversions:300, visitors:5000 }, roas:{ revenue:3000000, spend:750000 },
-                cpc:{ spend:750000, clicks:120000 }, ctr:{ clicks:6000, impressions:150000 },
+                cr:{ conversions:300, visitors:5000 }, roas:{ revenue:1500000, spend:375000 },
+                cpc:{ spend:375000, clicks:60000 }, ctr:{ clicks:6000, impressions:150000 },
                 bounceRate:{ bounced:3200, total:10000 },
                 bugRate:{ bugs:8, size:40 }, testCoverage:{ covered:88, total:100 },
                 defectDensity:{ defects:12, kloc:40 },
@@ -5217,12 +5478,21 @@ window._tTooltip = function(ruText) {
                 contributionMargin:{ revenue:2000000, variableCosts:300000 },
                 quotaAttainment:{ actual:23000000, quota:24000000 },
                 mer:{ totalRevenue:2000000, totalSpend:400000 }, ces:{ sumScores:360, responses:200 },
-                cpa:{ spend:750000, actions:5000 }, cpl:{ spend:750000, leads:5000 },
+                cpa:{ spend:375000, actions:2500 }, cpl:{ spend:375000, leads:2500 },
                 openRate:{ opens:26000, delivered:65000 }, ctor:{ clicks:3500, opens:26000 },
                 featureAdoption:{ adopted:48000, active:65000 },
                 leadVelocityRate:{ thisMonth:5300, lastMonth:5000 },
                 cashConversionScore:{ arr:24000000, capitalConsumed:18000000 },
-                avgResolutionTime:{ totalHours:800, ticketsResolved:200 }
+                avgResolutionTime:{ totalHours:800, ticketsResolved:200 },
+                arpdau:{ dailyRevenue:66000, dau:18000 }, aov:{ revenue:2000000, orders:2500 },
+                repeatPurchaseRate:{ repeat:880, total:1000 }, timeToValue:{ days:14 },
+                grossMargin:{ revenue:2000000, cogs:250000 }, runway:{ cash:6000000, burn:125000 },
+                burnRate:{ expenses:2125000, revenue:2000000 },
+                salesVelocity:{ opps:250, acv:24000, winRate:28, cycle:90 },
+                winRate:{ won:28, total:100 }, pipelineCoverage:{ pipeline:18000000, quota:6000000 },
+                salesCycleLength:{ totalDays:22500, wonCount:250 },
+                mrrGrowthRate:{ startMrr:1942000, endMrr:2000000 },
+                engagementRate:{ engagements:1300, reach:65000 }
             }
         },
         {
@@ -5241,8 +5511,8 @@ window._tTooltip = function(ruText) {
                 acquisition:{ new:5000 }, activation:{ activated:2500, total:5000 },
                 retention_aarrr:{ ret:1500, new:5000 }, referral:{ invited:500, active:2500 },
                 revenue:{ rev:280000 },
-                cr:{ conversions:300, visitors:10000 }, roas:{ revenue:1120000, spend:280000 },
-                cpc:{ spend:280000, clicks:140000 }, ctr:{ clicks:7000, impressions:350000 },
+                cr:{ conversions:300, visitors:10000 }, roas:{ revenue:224000, spend:56000 },
+                cpc:{ spend:56000, clicks:28000 }, ctr:{ clicks:7000, impressions:350000 },
                 bounceRate:{ bounced:3200, total:10000 },
                 bugRate:{ bugs:10, size:15 }, testCoverage:{ covered:72, total:100 },
                 defectDensity:{ defects:15, kloc:15 },
@@ -5250,13 +5520,22 @@ window._tTooltip = function(ruText) {
                 fcr:{ resolved:165, total:200 }, sla:{ met:180, total:200 },
                 wau:{ users:28000 }, contributionMargin:{ revenue:280000, variableCosts:168000 },
                 gmv:{ orders:5000, aov:3500 }, takeRate:{ platformRevenue:35000, gmv:280000 },
-                cpm:{ spend:280000, impressions:35000000 }, cartAbandonment:{ purchases:300, carts:1000 },
+                cpm:{ spend:56000, impressions:7000000 }, cartAbandonment:{ purchases:300, carts:1000 },
                 mer:{ totalRevenue:280000, totalSpend:70000 }, ces:{ sumScores:700, responses:200 },
-                cpa:{ spend:280000, actions:5000 }, cpl:{ spend:280000, leads:4000 },
+                cpa:{ spend:56000, actions:1000 }, cpl:{ spend:56000, leads:800 },
                 arppu:{ revenue:280000, payingUsers:5000 },
                 openRate:{ opens:32000, delivered:80000 }, ctor:{ clicks:4000, opens:32000 },
                 featureAdoption:{ adopted:50000, active:80000 },
-                avgResolutionTime:{ totalHours:1200, ticketsResolved:200 }
+                avgResolutionTime:{ totalHours:1200, ticketsResolved:200 },
+                arpdau:{ dailyRevenue:9300, dau:12000 }, aov:{ revenue:280000, orders:80 },
+                repeatPurchaseRate:{ repeat:280, total:1000 }, timeToValue:{ days:2 },
+                grossMargin:{ revenue:280000, cogs:140000 }, runway:{ cash:1200000, burn:60000 },
+                burnRate:{ expenses:340000, revenue:280000 },
+                salesVelocity:{ opps:40, acv:3360, winRate:30, cycle:14 },
+                winRate:{ won:30, total:100 }, pipelineCoverage:{ pipeline:2520000, quota:840000 },
+                salesCycleLength:{ totalDays:560, wonCount:40 },
+                mrrGrowthRate:{ startMrr:269000, endMrr:280000 },
+                engagementRate:{ engagements:2000, reach:80000 }
             }
         },
         {
@@ -5275,21 +5554,30 @@ window._tTooltip = function(ruText) {
                 acquisition:{ new:30000 }, activation:{ activated:18000, total:30000 },
                 retention_aarrr:{ ret:9000, new:30000 }, referral:{ invited:9000, active:15000 },
                 revenue:{ rev:750000 },
-                cr:{ conversions:1500, visitors:30000 }, roas:{ revenue:1500000, spend:375000 },
-                cpc:{ spend:375000, clicks:250000 }, ctr:{ clicks:12500, impressions:500000 },
+                cr:{ conversions:1500, visitors:30000 }, roas:{ revenue:600000, spend:187500 },
+                cpc:{ spend:187500, clicks:125000 }, ctr:{ clicks:12500, impressions:500000 },
                 bounceRate:{ bounced:4000, total:10000 },
                 bugRate:{ bugs:22, size:20 }, testCoverage:{ covered:78, total:100 },
                 defectDensity:{ defects:30, kloc:20 },
                 csat:{ pos:155, total:200 }, nps:{ promoters:60, detractors:40, total:200 },
                 fcr:{ resolved:150, total:200 }, sla:{ met:170, total:200 },
                 wau:{ users:150000 }, contributionMargin:{ revenue:750000, variableCosts:225000 },
-                cpm:{ spend:375000, impressions:75000000 }, cpi:{ spend:375000, installs:150000 },
+                cpm:{ spend:187500, impressions:37500000 }, cpi:{ spend:187500, installs:75000 },
                 arppu:{ revenue:750000, payingUsers:12500 },
                 mer:{ totalRevenue:750000, totalSpend:250000 }, ces:{ sumScores:800, responses:200 },
-                cpa:{ spend:375000, actions:12500 },
+                cpa:{ spend:187500, actions:6250 },
                 openRate:{ opens:90000, delivered:250000 }, ctor:{ clicks:11000, opens:90000 },
                 featureAdoption:{ adopted:120000, active:250000 },
-                avgResolutionTime:{ totalHours:1800, ticketsResolved:200 }
+                avgResolutionTime:{ totalHours:1800, ticketsResolved:200 },
+                arpdau:{ dailyRevenue:25000, dau:80000 }, aov:{ revenue:749000, orders:2140 },
+                repeatPurchaseRate:{ repeat:350, total:1000 }, timeToValue:{ days:1 },
+                grossMargin:{ revenue:750000, cogs:190000 }, runway:{ cash:3000000, burn:150000 },
+                burnRate:{ expenses:900000, revenue:750000 },
+                salesVelocity:{ opps:50, acv:1800, winRate:20, cycle:21 },
+                winRate:{ won:20, total:100 }, pipelineCoverage:{ pipeline:6750000, quota:2250000 },
+                salesCycleLength:{ totalDays:1050, wonCount:50 },
+                mrrGrowthRate:{ startMrr:708000, endMrr:750000 },
+                engagementRate:{ engagements:10000, reach:250000 }
             }
         },
         {
@@ -5299,7 +5587,7 @@ window._tTooltip = function(ruText) {
                 dau:{ users:350000 }, mau:{ users:2000000 },
                 stickiness:{ dau:350000, mau:2000000 }, retention:{ end:400, start:1000 },
                 ltv:{ aov:200, freq:12, life:4 }, cac:{ cost:30000, customers:100 },
-                ltv_cac:{ ltv:9600, cac:300 }, arpu:{ revenue:2000000, users:2000000 },
+                ltv_cac:{ ltv:9600, cac:300 }, arpu:{ revenue:200000, users:2000000 },
                 churn:{ lost:100000, total:2000000 },
                 mrr:{ mrr:200000 }, arr:{ mrr:200000 },
                 acv:{ total:2400, years:1 }, grr:{ start:200000, churn:12000 },
@@ -5308,21 +5596,30 @@ window._tTooltip = function(ruText) {
                 acquisition:{ new:50000 }, activation:{ activated:15000, total:50000 },
                 retention_aarrr:{ ret:10000, new:50000 }, referral:{ invited:5000, active:25000 },
                 revenue:{ rev:200000 },
-                cr:{ conversions:2000, visitors:50000 }, roas:{ revenue:600000, spend:200000 },
-                cpc:{ spend:200000, clicks:200000 }, ctr:{ clicks:20000, impressions:500000 },
+                cr:{ conversions:2000, visitors:50000 }, roas:{ revenue:150000, spend:70000 },
+                cpc:{ spend:70000, clicks:70000 }, ctr:{ clicks:20000, impressions:500000 },
                 bounceRate:{ bounced:6500, total:10000 },
                 bugRate:{ bugs:5, size:12 }, testCoverage:{ covered:55, total:100 },
                 defectDensity:{ defects:8, kloc:12 },
                 csat:{ pos:145, total:200 }, nps:{ promoters:40, detractors:50, total:200 },
                 fcr:{ resolved:155, total:200 }, sla:{ met:175, total:200 },
                 wau:{ users:800000 }, contributionMargin:{ revenue:200000, variableCosts:100000 },
-                cpm:{ spend:200000, impressions:50000000 },
+                cpm:{ spend:70000, impressions:17500000 },
                 mer:{ totalRevenue:200000, totalSpend:80000 }, ces:{ sumScores:900, responses:200 },
-                cpa:{ spend:200000, actions:2000 }, cpl:{ spend:200000, leads:4000 },
+                cpa:{ spend:70000, actions:700 }, cpl:{ spend:70000, leads:1400 },
                 arppu:{ revenue:200000, payingUsers:20000 },
                 openRate:{ opens:700000, delivered:2000000 }, ctor:{ clicks:80000, opens:700000 },
                 featureAdoption:{ adopted:600000, active:2000000 },
-                avgResolutionTime:{ totalHours:2400, ticketsResolved:200 }
+                avgResolutionTime:{ totalHours:2400, ticketsResolved:200 },
+                arpdau:{ dailyRevenue:6600, dau:350000 }, aov:{ revenue:200000, orders:1000 },
+                repeatPurchaseRate:{ repeat:450, total:1000 }, timeToValue:{ days:1 },
+                grossMargin:{ revenue:200000, cogs:80000 }, runway:{ cash:1000000, burn:50000 },
+                burnRate:{ expenses:250000, revenue:200000 },
+                salesVelocity:{ opps:60, acv:2400, winRate:25, cycle:30 },
+                winRate:{ won:25, total:100 }, pipelineCoverage:{ pipeline:1800000, quota:600000 },
+                salesCycleLength:{ totalDays:1800, wonCount:60 },
+                mrrGrowthRate:{ startMrr:196000, endMrr:200000 },
+                engagementRate:{ engagements:100000, reach:2000000 }
             }
         }
     ];
@@ -5622,9 +5919,9 @@ window._tTooltip = function(ruText) {
                     <span class="whatif-lbl">${inp.label}</span>
                     <input type="range" class="whatif-slider"
                         data-key="${inp.key}"
-                        data-base="${cur}"
+                        data-base="${escapeHtml(cur)}"
                         min="${minV}" max="${maxV}" step="${step}"
-                        value="${cur}">
+                        value="${escapeHtml(cur)}">
                     <span class="whatif-val" id="wival-${inp.key}">${formatWhatIfVal(cur)}</span>
                 </div>`;
         });
@@ -6120,7 +6417,7 @@ window._tTooltip = function(ruText) {
                 return `
                     <div class="goal-input-row">
                         <label for="goal-${f.key}">${_tg(f.label)}${u ? ', ' + u : ''}</label>
-                        <input type="text" id="goal-${f.key}" data-key="${f.key}" value="${prefill}" placeholder="${formatNum(f.placeholder)}" inputmode="decimal" autocomplete="off">
+                        <input type="text" id="goal-${f.key}" data-key="${f.key}" value="${escapeHtml(prefill)}" placeholder="${formatNum(f.placeholder)}" inputmode="decimal" autocomplete="off">
                     </div>`;
             }).join('');
             const solveUnit = getCurrencyForUnit(q.solveFor.unit);
@@ -6289,9 +6586,9 @@ window._tTooltip = function(ruText) {
             uz: `<h4>MER nima</h4><p>Marketing Efficiency Ratio = Umumiy tushum / Umumiy marketing xarajati. Barcha kanallar bo'yicha blended ROAS. E-com: 3–5× sog'lom, &lt; 2× zarar.</p>`
         },
         ces: {
-            ru: `<h4>Что такое CES</h4><p>Customer Effort Score = <b>Средний балл усилия</b>, которое клиент приложил, чтобы решить свой вопрос (обычно по шкале 1–7, где 1 — «очень легко», 7 — «очень трудно»; в части реализаций — наоборот). Метрика отвечает на вопрос «насколько легко иметь с нами дело».</p><h4>Почему CES сильнее предсказывает лояльность, чем CSAT/NPS</h4><p>Классическое исследование <a href="https://hbr.org/2010/07/stop-trying-to-delight-your-customers" target="_blank" rel="noopener">«Stop Trying to Delight Your Customers» (HBR / CEB, 2010)</a> показало: снижение усилия удерживает клиентов лучше, чем «восхищение». 96% клиентов с высоким усилием становятся менее лояльными; с низким — только 9%. CES — лучший предиктор повторной покупки в сервисных взаимодействиях.</p><h4>Шкала и интерпретация</h4><ul><li>Шкала 1–7: средний CES <b>≤ 3</b> — отлично (низкое усилие), 3–5 — средне, &gt; 5 — высокое трение.</li><li>Замеряют сразу после взаимодействия (после тикета, после онбординга, после покупки).</li></ul><h4>Связь с другими метриками</h4><p>Высокий CES (много усилия) → низкий <a href="/fcr">FCR</a> и высокий <a href="/avgResolutionTime">Avg Resolution Time</a> → рост <a href="/churn">churn</a>. CES — операционный рычаг: уменьшая усилие в поддержке и онбординге, вы напрямую улучшаете <a href="/nps">NPS</a> и удержание.</p>`,
-            en: `<h4>What CES is</h4><p>Customer Effort Score = <b>average effort</b> a customer spent to resolve their issue (usually 1–7, 1 = very easy). Answers "how easy are we to deal with".</p><h4>Why CES predicts loyalty</h4><p><a href="https://hbr.org/2010/07/stop-trying-to-delight-your-customers" target="_blank" rel="noopener">HBR / CEB (2010)</a>: reducing effort retains better than delight. 96% of high-effort customers become less loyal vs 9% of low-effort.</p><h4>Scale</h4><ul><li>1–7: <b>≤ 3</b> excellent, 3–5 mid, &gt; 5 high friction.</li></ul><p>High CES → low <a href="/en/fcr">FCR</a>, high <a href="/en/avgResolutionTime">resolution time</a>, more <a href="/en/churn">churn</a>.</p>`,
-            uz: `<h4>CES nima</h4><p>Customer Effort Score — mijoz muammosini hal qilish uchun sarflagan o'rtacha kuch (1–7). HBR (2010): kuchni kamaytirish sodiqlikni yaxshilaydi. ≤ 3 a'lo.</p>`
+            ru: `<h4>Что такое CES</h4><p>Customer Effort Score = <b>средняя оценка того, насколько легко</b> клиенту было решить свой вопрос (по шкале 1–7 в формулировке CES 2.0: «компания помогла решить вопрос легко», где 7 — «полностью согласен», 1 — «совсем не согласен». Больше — лучше). Метрика отвечает на вопрос «насколько легко иметь с нами дело».</p><h4>Почему CES сильнее предсказывает лояльность, чем CSAT/NPS</h4><p>Классическое исследование <a href="https://hbr.org/2010/07/stop-trying-to-delight-your-customers" target="_blank" rel="noopener">«Stop Trying to Delight Your Customers» (HBR / CEB, 2010)</a> показало: снижение усилия удерживает клиентов лучше, чем «восхищение». 96% клиентов с высоким усилием становятся менее лояльными; с низким — только 9%. CES — лучший предиктор повторной покупки в сервисных взаимодействиях.</p><h4>Шкала и интерпретация</h4><ul><li>Шкала 1–7: средний CES <b>&gt; 6</b> — отлично (клиенту легко), 5–6 — норма, <b>&lt; 5</b> — высокое трение.</li><li>Замеряют сразу после взаимодействия (после тикета, после онбординга, после покупки).</li></ul><h4>Связь с другими метриками</h4><p>Низкий CES (много усилия) → низкий <a href="/fcr">FCR</a> и высокий <a href="/avgResolutionTime">Avg Resolution Time</a> → рост <a href="/churn">churn</a>. CES — операционный рычаг: уменьшая усилие в поддержке и онбординге, вы напрямую улучшаете <a href="/nps">NPS</a> и удержание.</p>`,
+            en: `<h4>What CES is</h4><p>Customer Effort Score = <b>average rating of how easy</b> it was for the customer to resolve their issue (1–7 in the CES 2.0 wording: "the company made it easy to resolve my issue", where 7 = strongly agree. Higher is better). Answers "how easy are we to deal with".</p><h4>Why CES predicts loyalty</h4><p><a href="https://hbr.org/2010/07/stop-trying-to-delight-your-customers" target="_blank" rel="noopener">HBR / CEB (2010)</a>: reducing effort retains better than delight. 96% of high-effort customers become less loyal vs 9% of low-effort.</p><h4>Scale</h4><ul><li>1–7: <b>&gt; 6</b> excellent (effortless), 5–6 normal, <b>&lt; 5</b> high friction.</li></ul><p>Low CES → low <a href="/en/fcr">FCR</a>, high <a href="/en/avgResolutionTime">resolution time</a>, more <a href="/en/churn">churn</a>.</p>`,
+            uz: `<h4>CES nima</h4><p>Customer Effort Score — CES 2.0 formulasi: «kompaniya muammoni hal qilishni osonlashtirdi», 1–7 shkala, 7 — «to‘liq roziman». Ko‘proq — yaxshiroq. HBR (2010): kuchni kamaytirish sodiqlikni yaxshilaydi. &gt; 6 — a‘lo, 5–6 — normal, &lt; 5 — yuqori ishqalanish.</p>`
         },
         cpa: {
             ru: `<h4>Что такое CPA</h4><p>Cost Per Action (Acquisition) = <b>Затраты / Целевые действия</b> — стоимость одного целевого действия: регистрация, заявка, установка, покупка. Универсальная performance-метрика; конкретный смысл зависит от того, что вы назначили «action».</p><h4>CPA vs CAC</h4><p><a href="/cac">CAC</a> — это всегда стоимость <i>платящего клиента</i> и включает зарплаты sales/marketing. CPA — стоимость любого определённого действия (часто промежуточного — лида или регистрации) и обычно считается только по media spend. CPA лида × конверсия в оплату ≈ часть CAC.</p><h4>Где живёт в воронке</h4><p>Цепочка: <a href="/cpm">CPM</a> → <a href="/ctr">CTR</a> → <a href="/cpc">CPC</a> → <a href="/cr">CR</a> → <b>CPA</b>. CPA = CPC / CR. Поэтому снизить CPA можно двумя путями: дешевле трафик (CPC) или выше конверсия лендинга (CR). Часто второе дешевле.</p><h4>Целевой CPA</h4><p>Потолок CPA задаётся юнит-экономикой: target CPA ≤ <a href="/ltv">LTV</a> × целевая маржа / (LTV:CAC). Для e-commerce ориентир — CPA ≤ <a href="/aov">AOV</a> × <a href="/contributionMargin">contribution margin</a> / целевой ROAS. Если CPA растёт быстрее AOV — масштабирование убыточно.</p>`,
@@ -6367,8 +6664,7 @@ window._tTooltip = function(ruText) {
         ruleOf40:      [{ label: 'Bessemer Venture Partners', url: 'https://www.bvp.com/atlas/the-rule-of-40' }, { label: 'Brad Feld 2015 (originated)', url: 'https://feld.com/archives/2015/02/rule-40-healthy-saas-company/' }],
         quickRatio:    [{ label: 'Mamoon Hamid (originated)', url: 'https://medium.com/@mamoonha/the-quick-ratio-a-better-way-to-look-at-saas-growth-4d3a76a86d9' }, { label: 'OpenView 2024', url: 'https://openviewpartners.com/2024-saas-benchmarks-report/' }],
         runway:        [{ label: 'YC Startup School', url: 'https://www.startupschool.org/' }, { label: 'a16z benchmarks', url: 'https://a16z.com/' }],
-        mrrGrowthRate: [{ label: 'Y Combinator (T2D3 framework)', url: 'https://blog.ycombinator.com/' }, { label: 'David Sacks T2D3', url: 'https://medium.com/craft-ventures/t2d3-the-saas-growth-blueprint-2c6e2d8f6c8d' }],
-        rule_of_40:    [{ label: 'BVP', url: 'https://www.bvp.com/atlas/the-rule-of-40' }],
+        mrrGrowthRate: [{ label: 'Neeraj Agrawal, Battery Ventures — T2D3 (originated)', url: 'https://www.battery.com/' }, { label: 'David Sacks / Craft Ventures — T2D3 blueprint', url: 'https://medium.com/craft-ventures/t2d3-the-saas-growth-blueprint-2c6e2d8f6c8d' }],
         salesVelocity: [{ label: 'Salesforce State of Sales 2024', url: 'https://www.salesforce.com/resources/research-reports/state-of-sales/' }],
         winRate:       [{ label: 'Gong B2B sales benchmarks', url: 'https://www.gong.io/research/' }, { label: 'HubSpot State of Sales', url: 'https://www.hubspot.com/state-of-sales' }],
         pipelineCoverage:[{ label: 'Gartner B2B benchmarks', url: 'https://www.gartner.com/' }],
@@ -6762,7 +7058,15 @@ window._tTooltip = function(ruText) {
     initIndustry();
     initCurrency();
     initLang();
+    // First pass translates what the parser has already produced (header, controls).
     applyStaticTranslations();
+    // <script src="/app.js"> sits in the middle of <body>, so ~2/3 of the [data-t]
+    // nodes (About, Pricing, CSV-import, Compare-2, footer, forms) do not exist yet.
+    // Re-run once the document is parsed, or those stay Russian for EN/UZ visitors
+    // until the language button is clicked. Same deferral the bind* helpers below use.
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applyStaticTranslations);
+    }
     updateSectionBadges();
     // Bind About modal close/escape (open trigger is in more-menu init)
     // NOTE: aboutOverlay HTML is AFTER this script tag, so we must wait for DOMContentLoaded.
@@ -6993,7 +7297,7 @@ window._tTooltip = function(ruText) {
         const inputsHtml = m.inputs.map(inp => `
             <div class="c2-input-row">
                 <label>${localizeLabel(inp.label)}</label>
-                <input type="text" data-mid="${m.id}" data-key="${inp.key}" value="${vals[inp.key]}" placeholder="${formatNum(inp.placeholder)}" inputmode="decimal">
+                <input type="text" data-mid="${m.id}" data-key="${inp.key}" value="${escapeHtml(vals[inp.key])}" placeholder="${formatNum(inp.placeholder)}" inputmode="decimal">
             </div>
         `).join('');
         return `<div class="compare2-col">

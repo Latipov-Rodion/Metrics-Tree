@@ -67,7 +67,7 @@ const TERMS = [
   { term: 'Bookings', short: 'Total contract value (multi-year). ≠ Revenue (which is recognized over time).', category: 'financial' },
   { term: 'CAC Recovery', short: 'Synonym for CAC Payback Period.', category: 'financial' },
   { term: 'CAGR', short: 'Compound Annual Growth Rate — geometric mean YoY.', category: 'financial' },
-  { term: 'Cash Conversion Score', short: 'Net New ARR + Existing ARR / Total Capital Raised. Bessemer framework.', category: 'financial' },
+  { term: 'Cash Conversion Score', short: 'Current ARR / (Total capital raised − cash on hand). Bessemer framework.', category: 'financial' },
   { term: 'COGS', short: 'Cost of Goods Sold. SaaS: hosting + support + COA payment processing.', category: 'financial' },
   { term: 'Cohort', short: 'Group of customers/users tracked together (e.g. acquired in same month).', category: 'financial' },
   { term: 'Contraction MRR', short: 'MRR loss from existing customers (downgrades, seat reductions).', category: 'financial' },

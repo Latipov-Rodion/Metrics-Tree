@@ -111,7 +111,11 @@
     }
     </script>
     <link rel="stylesheet" href="/app.css">
-    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+    <!-- Vercel Web Analytics — first-party route. Requires Web Analytics to be
+         ENABLED for the project in the Vercel dashboard; until then it 404s and
+         no data is collected. Served same-origin, so it satisfies the existing
+         CSP (script-src 'self', connect-src 'self') and survives ad blockers. -->
+    <script defer src="/_vercel/insights/script.js"></script>
     <!-- Vercel Speed Insights -->
     <script>
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -194,8 +198,6 @@
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/avgResolutionTime">
     <link rel="alternate" hreflang="uz" href="https://metricstree.vercel.app/uz/avgResolutionTime">
     <link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/avgResolutionTime">
-
-<script src="/theme-sync.js" defer></script>
 </head>
 <body>
 <script>
@@ -469,6 +471,25 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
             <div id="deepContentSlot"></div>
         </article>
+    
+    <section class="metric-seo" aria-label="О метрике Avg Resolution Time">
+      <h2>Что такое Avg Resolution Time</h2>
+      <p>Среднее время полного решения тикета (от создания до закрытия). Чем меньше — тем лучше. Норма сильно зависит от приоритета: P1/critical решают быстрее, чем общие запросы.</p>
+      <h3>Формула расчёта Avg Resolution Time</h3>
+      <p><span class="seo-formula">Суммарное время решения / Решённые тикеты</span></p>
+      <h3>Отраслевые бенчмарки</h3>
+      <p>Меньше — лучше. Зависит от приоритета: P1 быстрее, рутинные запросы дольше</p>
+      <h3>Частые вопросы про Avg Resolution Time</h3>
+      <div class="seo-faq">
+        <details><summary>Что такое Avg Resolution Time?</summary><p>Среднее время решения = Суммарное время решения / Число решённых тикетов. Меньше — лучше, но оценивайте по приоритетам: P1 решают быстрее. Смотрите с FCR, SLA, CSAT.</p></details>
+      </div>
+      <h3>Связанные метрики</h3>
+      <ul class="seo-related">
+        <li><a href="/fcr">FCR</a></li>
+        <li><a href="/sla">SLA</a></li>
+        <li><a href="/csat">CSAT</a></li>
+      </ul>
+    </section>
     </main>
     <div class="embed-footer" aria-hidden="true">
         Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 69 продуктовых метрик с формулами

@@ -111,7 +111,11 @@
     }
     </script>
     <link rel="stylesheet" href="/app.css">
-    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+    <!-- Vercel Web Analytics — first-party route. Requires Web Analytics to be
+         ENABLED for the project in the Vercel dashboard; until then it 404s and
+         no data is collected. Served same-origin, so it satisfies the existing
+         CSP (script-src 'self', connect-src 'self') and survives ad blockers. -->
+    <script defer src="/_vercel/insights/script.js"></script>
     <!-- Vercel Speed Insights -->
     <script>
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -491,6 +495,28 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
             <div id="deepContentSlot"></div>
         </article>
+    
+    <section class="metric-seo" aria-label="О метрике Burn Multiple">
+      <h2>Что такое Burn Multiple</h2>
+      <p>Сколько $ сжигаем, чтобы сгенерировать $1 новой годовой выручки. Метрика капитальной эффективности SaaS (David Sacks). Отрицательный burn = компания cash-flow positive.</p>
+      <h3>Формула расчёта Burn Multiple</h3>
+      <p><span class="seo-formula">Net Burn / Net New ARR</span></p>
+      <h3>Отраслевые бенчмарки</h3>
+      <p>Отлично: &lt;1, Хорошо: 1–1.5, Норма: 1.5–2, Плохо: 2–3, Ужасно: &gt;3</p>
+      <h3>Частые вопросы про Burn Multiple</h3>
+      <div class="seo-faq">
+        <details><summary>Кто придумал Burn Multiple?</summary><p>David Sacks (Craft Ventures, бывший COO PayPal, основатель Yammer) — концепция популяризирована в 2020 в его эссе. Стандартная метрика капитальной эффективности post-ZIRP эпохи.</p></details>
+        <details><summary>Какая норма Burn Multiple?</summary><p>&lt;1× — Amazing (PayPal-уровень). 1–1.5× — Great. 1.5–2× — Good. 2–3× — Suspect. &gt;3× — Bad (компания сжигает капитал неэффективно).</p></details>
+        <details><summary>Чем Burn Multiple лучше Magic Number?</summary><p>Magic Number мерит только эффективность S&amp;M. Burn Multiple — всю компанию: продукт, маркетинг, sales, ops. Это финальный показатель: насколько эффективно превращаете капитал в рост ARR.</p></details>
+        <details><summary>Как улучшить Burn Multiple?</summary><p>(1) сократить burn (увольнения, ефактеры R&amp;D), (2) ускорить New ARR через высоко-конверсионные каналы, (3) повысить Expansion ARR (NRR), (4) пересмотреть pricing. Цель — &lt;1.5× до Series B/C.</p></details>
+      </div>
+      <h3>Связанные метрики</h3>
+      <ul class="seo-related">
+        <li><a href="/magicNumber">Magic Number</a></li>
+        <li><a href="/ruleOf40">Rule of 40</a></li>
+        <li><a href="/arr">ARR</a></li>
+      </ul>
+    </section>
     </main>
     <div class="embed-footer" aria-hidden="true">
         Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 69 продуктовых метрик с формулами

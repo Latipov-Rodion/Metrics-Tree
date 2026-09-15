@@ -111,7 +111,11 @@
     }
     </script>
     <link rel="stylesheet" href="/app.css">
-    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+    <!-- Vercel Web Analytics — first-party route. Requires Web Analytics to be
+         ENABLED for the project in the Vercel dashboard; until then it 404s and
+         no data is collected. Served same-origin, so it satisfies the existing
+         CSP (script-src 'self', connect-src 'self') and survives ad blockers. -->
+    <script defer src="/_vercel/insights/script.js"></script>
     <!-- Vercel Speed Insights -->
     <script>
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -491,6 +495,28 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
             <div id="deepContentSlot"></div>
         </article>
+    
+    <section class="metric-seo" aria-label="О метрике MRR">
+      <h2>Что такое MRR</h2>
+      <p>Monthly Recurring Revenue — регулярная месячная выручка.</p>
+      <h3>Формула расчёта MRR</h3>
+      <p><span class="seo-formula">Сумма месячной выручки с подписок</span></p>
+      <h3>Отраслевые бенчмарки</h3>
+      <p>Главное — MoM-рост: норма &gt;5%, хорошо &gt;10%, отлично &gt;20%</p>
+      <h3>Частые вопросы про MRR</h3>
+      <div class="seo-faq">
+        <details><summary>Как считать MRR?</summary><p>MRR = сумма всех активных подписок, нормализованная по месяцу. Annual contract $12000 = $1000 MRR. Не включайте one-time fees, setup-платежи, transactional revenue.</p></details>
+        <details><summary>Чем MRR отличается от ARR?</summary><p>ARR = MRR × 12. ARR используется для отчётности перед инвесторами и enterprise-сделок. MRR — для еженедельного/месячного operating-цикла команды. Compounded growth обычно меряют через MRR.</p></details>
+        <details><summary>Какие компоненты MRR Movement важно отслеживать?</summary><p>New MRR (новые клиенты), Expansion MRR (апселы существующих), Churned MRR (отток), Contraction MRR (downgrade). Net New MRR = New + Expansion − Churned − Contraction. Это база для Quick Ratio и Burn Multiple.</p></details>
+        <details><summary>Какой MoM рост MRR здоровый?</summary><p>Seed/early: 15–20% MoM. Series A: 10–15%. Growth: 5–10%. T2D3 (3× за 2 года) — стандарт для top-tier VC-фондированных SaaS. YC бенчмарк: 5–7% MoM минимум.</p></details>
+      </div>
+      <h3>Связанные метрики</h3>
+      <ul class="seo-related">
+        <li><a href="/arr">ARR</a></li>
+        <li><a href="/nrr">NRR</a></li>
+        <li><a href="/grr">GRR</a></li>
+      </ul>
+    </section>
     </main>
     <div class="embed-footer" aria-hidden="true">
         Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 69 продуктовых метрик с формулами

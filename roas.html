@@ -111,7 +111,11 @@
     }
     </script>
     <link rel="stylesheet" href="/app.css">
-    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+    <!-- Vercel Web Analytics — first-party route. Requires Web Analytics to be
+         ENABLED for the project in the Vercel dashboard; until then it 404s and
+         no data is collected. Served same-origin, so it satisfies the existing
+         CSP (script-src 'self', connect-src 'self') and survives ad blockers. -->
+    <script defer src="/_vercel/insights/script.js"></script>
     <!-- Vercel Speed Insights -->
     <script>
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -491,6 +495,28 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
             <div id="deepContentSlot"></div>
         </article>
+    
+    <section class="metric-seo" aria-label="О метрике ROAS">
+      <h2>Что такое ROAS</h2>
+      <p>Return on Ad Spend — возврат с рекламных расходов. Сколько выручки приносит каждый вложенный рубль/доллар.</p>
+      <h3>Формула расчёта ROAS</h3>
+      <p><span class="seo-formula">Выручка от рекламы / Затраты на рекламу</span></p>
+      <h3>Отраслевые бенчмарки</h3>
+      <p>Плохо: &lt;2x, Средне: 2–4x, Хорошо: &gt;4x</p>
+      <h3>Частые вопросы про ROAS</h3>
+      <div class="seo-faq">
+        <details><summary>Чем ROAS отличается от ROI?</summary><p>ROAS = Выручка / Ad Spend. ROI = (Прибыль − Затраты) / Затраты. ROAS — gross, до маржи. ROI — net, после COGS. ROAS быстрее для тактики, ROI точнее для стратегии.</p></details>
+        <details><summary>Какой ROAS считается хорошим?</summary><p>E-commerce: &gt;4× норма, &gt;6× отлично (с учётом 60–70% маржи). SaaS: &gt;3× (длинный LTV компенсирует). Mobile gaming: &gt;1.5× (быстрая монетизация). Главное — break-even ROAS = 1 / Gross Margin.</p></details>
+        <details><summary>Что такое break-even ROAS?</summary><p>Break-even ROAS = 1 / Gross Margin. При 70% марже break-even ROAS = 1.43×. Ниже этого — каждая кампания убыточна. Это floor, target должен быть в 2–3× выше break-even.</p></details>
+        <details><summary>Как повысить ROAS?</summary><p>(1) creatives — A/B-тесты, 80% улучшений идёт оттуда; (2) landing page conversion (CR×ROAS); (3) audience targeting (lookalikes от high-LTV); (4) AOV-апселы; (5) убрать broad-match low-intent keywords.</p></details>
+      </div>
+      <h3>Связанные метрики</h3>
+      <ul class="seo-related">
+        <li><a href="/cr">Conversion Rate</a></li>
+        <li><a href="/cpc">CPC</a></li>
+        <li><a href="/cac">CAC</a></li>
+      </ul>
+    </section>
     </main>
     <div class="embed-footer" aria-hidden="true">
         Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 69 продуктовых метрик с формулами

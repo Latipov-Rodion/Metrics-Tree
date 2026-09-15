@@ -111,7 +111,11 @@
     }
     </script>
     <link rel="stylesheet" href="/app.css">
-    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+    <!-- Vercel Web Analytics — first-party route. Requires Web Analytics to be
+         ENABLED for the project in the Vercel dashboard; until then it 404s and
+         no data is collected. Served same-origin, so it satisfies the existing
+         CSP (script-src 'self', connect-src 'self') and survives ad blockers. -->
+    <script defer src="/_vercel/insights/script.js"></script>
     <!-- Vercel Speed Insights -->
     <script>
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -194,8 +198,6 @@
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/ctor">
     <link rel="alternate" hreflang="uz" href="https://metricstree.vercel.app/uz/ctor">
     <link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/ctor">
-
-<script src="/theme-sync.js" defer></script>
 </head>
 <body>
 <script>
@@ -469,6 +471,25 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
             <div id="deepContentSlot"></div>
         </article>
+    
+    <section class="metric-seo" aria-label="О метрике CTOR">
+      <h2>Что такое CTOR</h2>
+      <p>Click-To-Open Rate — доля открывших письмо, которые кликнули по ссылке. В отличие от обычного CTR не зависит от Open Rate и точнее измеряет качество контента письма.</p>
+      <h3>Формула расчёта CTOR</h3>
+      <p><span class="seo-formula">(Уникальные клики / Уникальные открытия) × 100%</span></p>
+      <h3>Отраслевые бенчмарки</h3>
+      <p>Плохо: &lt;10%, Средне: 10–20%, Хорошо: &gt;20%</p>
+      <h3>Частые вопросы про CTOR</h3>
+      <div class="seo-faq">
+        <details><summary>Что такое CTOR?</summary><p>CTOR (Click-To-Open Rate) = (Уникальные клики / Уникальные открытия) × 100%. В отличие от CTR не зависит от Open Rate. Норма 10–20%, хорошо &gt;20%.</p></details>
+      </div>
+      <h3>Связанные метрики</h3>
+      <ul class="seo-related">
+        <li><a href="/openRate">Open Rate</a></li>
+        <li><a href="/ctr">CTR</a></li>
+        <li><a href="/cr">Conversion Rate</a></li>
+      </ul>
+    </section>
     </main>
     <div class="embed-footer" aria-hidden="true">
         Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 69 продуктовых метрик с формулами
