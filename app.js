@@ -912,12 +912,17 @@ window.I18N_THRESH = {
   'Метрика-счётчик. Оценивайте динамику MoM и через Stickiness': { en: 'Counter metric. Evaluate MoM dynamics and via Stickiness', uz: 'Hisoblagich metrika. MoM dinamikani va Stickiness orqali baholang' },
   'Главное — соотношение к CAC: LTV:CAC > 3 норма, > 5 отлично': { en: 'Main thing — ratio to CAC: LTV:CAC > 3 norm, > 5 excellent', uz: 'Asosiy narsa — CAC ga nisbat: LTV:CAC > 3 norma, > 5 ajoyib' },
   'Главное — MoM-рост: норма >5%, хорошо >10%, отлично >20%': { en: 'Main thing — MoM growth: norm >5%, good >10%, excellent >20%', uz: 'Asosiy narsa — MoM o‘sish: norma >5%, yaxshi >10%, ajoyib >20%' },
-  'Главное — YoY-рост и NRR. Молодой SaaS: T2D3 (3x к ARR за 2 года)': { en: 'Main thing — YoY growth and NRR. Young SaaS: T2D3 (3x ARR in 2 years)', uz: 'Asosiy — YoY o‘sish va NRR. Yosh SaaS: T2D3 (2 yilda 3x ARR)' },
+  'Главное — YoY-рост и NRR. Молодой SaaS: T2D3 — 3x, 3x, затем 2x, 2x, 2x': { en: 'Main thing — YoY growth and NRR. Young SaaS: T2D3 — 3x, 3x, then 2x, 2x, 2x', uz: 'Asosiy — YoY o‘sish va NRR. Yosh SaaS: T2D3 — 3x, 3x, keyin 2x, 2x, 2x' },
   'Метрика-счётчик. Контекст: рост MoM/YoY, маржа, Rule of 40': { en: 'Counter metric. Context: MoM/YoY growth, margin, Rule of 40', uz: 'Hisoblagich metrika. Kontekst: MoM/YoY o‘sish, marja, Rule of 40' },
   'Метрика-счётчик. Оценивайте через CAC, конверсии и MoM-динамику': { en: 'Counter metric. Evaluate via CAC, conversion, and MoM dynamics', uz: 'Hisoblagich metrika. CAC, konversiya va MoM dinamika orqali baholang' },
   'Контекст: сравнивайте период к периоду; рост важнее абсолюта': { en: 'Context: compare period over period; growth matters more than absolute', uz: 'Kontekst: davrdan davrga taqqoslang; o‘sish absolyutdan muhim' },
 
   // INDUSTRY_THRESHOLDS values — translated by exact RU
+
+  // T2D3 (corrected: triple-triple-double-double-double — 9x ARR over the first
+  // two years, not 3x; originated by Neeraj Agrawal at Battery Ventures).
+  'T2D3-траектория: triple-triple-double-double-double от $1–2M ARR': { en: 'T2D3 trajectory: triple-triple-double-double-double from $1–2M ARR', uz: 'T2D3 trayektoriyasi: triple-triple-double-double-double $1–2M ARR dan' },
+  'YC-ориентир: 5–7% MoM; T2D3 — 200% YoY два года, затем 100% YoY три года': { en: 'YC guideline: 5–7% MoM; T2D3 — 200% YoY for two years, then 100% YoY for three', uz: 'YC mo‘ljali: 5–7% MoM; T2D3 — ikki yil 200% YoY, keyin uch yil 100% YoY' },
 
   // Aligned benchmark strings (see the INDUSTRY_THRESHOLDS fix: these labels were
   // contradicting each metric's own threshold + insight() colour bands).
@@ -1937,7 +1942,7 @@ window._tTooltip = function(ruText) {
                     id: 'arr', name: 'ARR',
                     formula: 'MRR × 12',
                     description: 'Annual Recurring Revenue — годовая регулярная выручка.',
-                    threshold: 'Главное — YoY-рост и NRR. Молодой SaaS: T2D3 (3x к ARR за 2 года)',
+                    threshold: 'Главное — YoY-рост и NRR. Молодой SaaS: T2D3 — 3x, 3x, затем 2x, 2x, 2x',
                     inputs: [{ label: 'MRR, $', placeholder: '45000', key: 'mrr', min: 0 }],
                     calculate: v => { const m = sanitizeNumber(v.mrr); return m !== null ? (m * 12).toFixed(2) : null; },
                     unit: '$',
@@ -3579,7 +3584,7 @@ window._tTooltip = function(ruText) {
         },
         mrrGrowthRate: {
             universal: 'MoM: <5% низко, 5–10% норма, 10–20% хорошо, >20% отлично',
-            saas:      'YC-стандарт: 5–7% MoM минимум; T2D3 = 100% YoY за 3 года',
+            saas:      'YC-ориентир: 5–7% MoM; T2D3 — 200% YoY два года, затем 100% YoY три года',
             ecom:      'Менее релевантно для не-подписочных моделей',
             mobile:    'F2P/SaaS hybrid: 10–25% MoM на growth-фазе',
             media:     'Подписочное медиа: 5–15% MoM норма',
@@ -6432,7 +6437,7 @@ window._tTooltip = function(ruText) {
         ruleOf40:      [{ label: 'Bessemer Venture Partners', url: 'https://www.bvp.com/atlas/the-rule-of-40' }, { label: 'Brad Feld 2015 (originated)', url: 'https://feld.com/archives/2015/02/rule-40-healthy-saas-company/' }],
         quickRatio:    [{ label: 'Mamoon Hamid (originated)', url: 'https://medium.com/@mamoonha/the-quick-ratio-a-better-way-to-look-at-saas-growth-4d3a76a86d9' }, { label: 'OpenView 2024', url: 'https://openviewpartners.com/2024-saas-benchmarks-report/' }],
         runway:        [{ label: 'YC Startup School', url: 'https://www.startupschool.org/' }, { label: 'a16z benchmarks', url: 'https://a16z.com/' }],
-        mrrGrowthRate: [{ label: 'Y Combinator (T2D3 framework)', url: 'https://blog.ycombinator.com/' }, { label: 'David Sacks T2D3', url: 'https://medium.com/craft-ventures/t2d3-the-saas-growth-blueprint-2c6e2d8f6c8d' }],
+        mrrGrowthRate: [{ label: 'Neeraj Agrawal, Battery Ventures — T2D3 (originated)', url: 'https://www.battery.com/' }, { label: 'David Sacks / Craft Ventures — T2D3 blueprint', url: 'https://medium.com/craft-ventures/t2d3-the-saas-growth-blueprint-2c6e2d8f6c8d' }],
         salesVelocity: [{ label: 'Salesforce State of Sales 2024', url: 'https://www.salesforce.com/resources/research-reports/state-of-sales/' }],
         winRate:       [{ label: 'Gong B2B sales benchmarks', url: 'https://www.gong.io/research/' }, { label: 'HubSpot State of Sales', url: 'https://www.hubspot.com/state-of-sales' }],
         pipelineCoverage:[{ label: 'Gartner B2B benchmarks', url: 'https://www.gartner.com/' }],
