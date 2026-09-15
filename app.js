@@ -2363,7 +2363,13 @@ window._tTooltip = function(ruText) {
                         const c = sanitizeNumber(v.cash);
                         const b = sanitizeNumber(v.burn);
                         if (c === null || b === null) return null;
-                        if (b <= 0) return '∞';
+                        // Return the NUMBER Infinity, not the string '∞': every caller
+                        // (main result, dashboard, Compare-2) tests `=== Infinity`, and
+                        // parseFloat('∞') is NaN — which made the main view skip insight()
+                        // entirely, the dashboard drop the metric, and Compare-2 print
+                        // "NaN мес" under a green "healthy runway" verdict.
+                        // api/calc.js already returns Infinity here.
+                        if (b <= 0) return Infinity;
                         return (c / b).toFixed(1);
                     },
                     unit: 'мес',
