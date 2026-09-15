@@ -919,6 +919,12 @@ window.I18N_THRESH = {
 
   // INDUSTRY_THRESHOLDS values — translated by exact RU
 
+  // Corrected benchmark strings (mobile D30 was 3x too harsh vs the industries page,
+  // LinkedIn CPM contradicted its own longread, Open Rate did not state its MPP basis).
+  'Плохо: <3% D30, Норма: 3–8%, Хорошо: >8% (медиана D30 ≈ 4–6%)': { en: 'Bad: <3% D30, Norm: 3–8%, Good: >8% (median D30 ≈ 4–6%)', uz: 'Yomon: <3% D30, Norma: 3–8%, Yaxshi: >8% (D30 medianasi ≈ 4–6%)' },
+  'B2B LinkedIn: $30–60, Google Display: $2–8': { en: 'B2B LinkedIn: $30–60, Google Display: $2–8', uz: 'B2B LinkedIn: $30–60, Google Display: $2–8' },
+  'Плохо: <15%, Средне: 15–25%, Хорошо: >25% («чистый» OR; с Apple MPP отчётные 35–45%)': { en: 'Bad: <15%, Average: 15–25%, Good: >25% (clean OR; with Apple MPP reported opens run 35–45%)', uz: 'Yomon: <15%, O‘rtacha: 15–25%, Yaxshi: >25% (“toza” OR; Apple MPP bilan hisobot 35–45%)' },
+
   // T2D3 (corrected: triple-triple-double-double-double — 9x ARR over the first
   // two years, not 3x; originated by Neeraj Agrawal at Battery Ventures).
   'T2D3-траектория: triple-triple-double-double-double от $1–2M ARR': { en: 'T2D3 trajectory: triple-triple-double-double-double from $1–2M ARR', uz: 'T2D3 trayektoriyasi: triple-triple-double-double-double $1–2M ARR dan' },
@@ -2865,7 +2871,7 @@ window._tTooltip = function(ruText) {
                     id: 'openRate', name: 'Email Open Rate',
                     formula: '(Открытия / Доставлено) × 100%',
                     description: 'Доля доставленных писем, которые были открыты. Базовая метрика email-маркетинга; зависит от темы письма, отправителя и репутации домена.',
-                    threshold: 'Плохо: <15%, Средне: 15–25%, Хорошо: >25%',
+                    threshold: 'Плохо: <15%, Средне: 15–25%, Хорошо: >25% («чистый» OR; с Apple MPP отчётные 35–45%)',
                     inputs: [
                         { label: 'Открытия писем', placeholder: '4200', key: 'opens', min: 0, help: 'Число открытий (уникальных или всех — будьте последовательны).' },
                         { label: 'Доставлено писем', placeholder: '20000', key: 'delivered', min: 1, help: 'Письма, дошедшие до инбокса (отправлено минус bounce).' }
@@ -3297,7 +3303,7 @@ window._tTooltip = function(ruText) {
         },
         cpm: {
             universal: 'Дисплей: $1–5, Соцсети: $5–15, Видео: $10–30',
-            saas:      'B2B LinkedIn: $15–40, Google Display: $2–8',
+            saas:      'B2B LinkedIn: $30–60, Google Display: $2–8',
             ecom:      'Meta/Instagram: $5–12, TikTok: $3–10, Display: $1–5',
             mobile:    'In-app/UAC: $2–8, rewarded video eCPM: $5–20',
             media:     'Programmatic display: $1–4, premium video: $10–25',
@@ -3425,7 +3431,7 @@ window._tTooltip = function(ruText) {
             universal: 'Плохо: <30%, Норма: 30–60%, Хорошо: >60%',
             saas:      'Плохо: <70%, Норма: 70–85%, Хорошо: >85% (по логин когортам D30)',
             ecom:      'Плохо: <20%, Норма: 20–40%, Хорошо: >40% (повторная покупка 90д)',
-            mobile:    'Плохо: <15% D30, Норма: 15–30%, Хорошо: >30%',
+            mobile:    'Плохо: <3% D30, Норма: 3–8%, Хорошо: >8% (медиана D30 ≈ 4–6%)',
             media:     'Плохо: <25%, Норма: 25–50%, Хорошо: >50%',
         },
         retention_aarrr: {
