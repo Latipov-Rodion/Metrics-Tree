@@ -9,17 +9,26 @@ const ROOT = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z
 
 // Pages that need theme-sync. Skip per-metric .html (they share index.html theme system)
 // and skip index.html (it has its own complete theme machinery).
+// Per-metric page ids are derived from metricsData in app.js rather than hardcoded.
+// The old hardcoded list had drifted to 49 of 69 ids, so the 20 metrics added later
+// were NOT skipped: they got a redundant /theme-sync.js that the other 49 never had,
+// and because build.mjs regenerates those pages from index.html (stripping it) while
+// this script re-adds it, the committed artifacts depended on which script ran last —
+// which is why the CI "artifacts in sync" job failed depending on build order.
+function metricPageNames() {
+  const appJs = fs.readFileSync(path.join(ROOT, 'app.js'), 'utf8');
+  const ids = [...appJs.matchAll(/^\s{20}id: '([A-Za-z_0-9]+)'/gm)].map(m => m[1]);
+  if (ids.length < 60) {
+    console.error(`::error::inject-theme-sync: only ${ids.length} metric ids found in app.js — refusing to run with a stale skip list.`);
+    process.exit(1);
+  }
+  return ids.map(id => `${id}.html`);
+}
+
 const SKIP_FILES = new Set([
   'index.html',
   // per-metric pages — they share index.html's theme system
-  ...['dau','mau','stickiness','retention','ltv','cac','ltv_cac','arpu','churn',
-      'mrr','arr','acv','grr','nrr','cacPayback','burnMultiple','magicNumber',
-      'ruleOf40','quickRatio','acquisition','activation','retention_aarrr',
-      'referral','revenue','cr','roas','cpc','ctr','bounceRate','bugRate',
-      'testCoverage','defectDensity','csat','nps','fcr','sla','grossMargin',
-      'runway','burnRate','salesVelocity','winRate','pipelineCoverage',
-      'timeToValue','arpdau','salesCycleLength','mrrGrowthRate','aov',
-      'repeatPurchaseRate','engagementRate'].map(m => `${m}.html`)
+  ...metricPageNames(),
 ]);
 
 const INJECTION = '\n<script src="/theme-sync.js" defer></script>';

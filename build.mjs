@@ -599,6 +599,8 @@ function generateBenchmarksPage(dataSrc) {
     tr { page-break-inside: avoid; }
   }
 </style>
+
+<script src="/theme-sync.js" defer></script>
 </head>
 <body>
   <header>
