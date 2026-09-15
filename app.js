@@ -2024,18 +2024,18 @@ window._tTooltip = function(ruText) {
                 },
                 {
                     id: 'magicNumber', name: 'Magic Number',
-                    formula: '(Net New ARR × 4) / S&M расходы за квартал',
+                    formula: 'Net New ARR за квартал / S&M расходы за квартал',
                     description: 'Эффективность Sales & Marketing: сколько $ нового ARR в год даёт каждый $, потраченный на S&M (Scale Venture Partners).',
                     threshold: 'Плохо: <0.5, Норма: 0.5–1, Хорошо: 1–1.5, Отлично: >1.5',
                     inputs: [
-                        { label: 'Net New ARR за квартал, $', placeholder: '500000', key: 'newArr', min: 0, help: 'Прирост ARR за конкретный квартал (×4 в формуле даёт annualized).' },
+                        { label: 'Net New ARR за квартал, $', placeholder: '500000', key: 'newArr', min: 0, help: 'Прирост ARR за конкретный квартал. ARR — уже годовая величина, поэтому дополнительно аннуализировать её не нужно.' },
                         { label: 'Расходы на Sales & Marketing за квартал, $', placeholder: '400000', key: 'sm', min: 0.01, help: 'Полный S&M cost: payroll команды + платформы + реклама + комиссии. По P&L, не по cash.' }
                     ],
                     calculate: v => {
                         const a = sanitizeNumber(v.newArr);
                         const sm = sanitizeNumber(v.sm);
                         if (a === null || sm === null || sm <= 0) return null;
-                        return ((a * 4) / sm).toFixed(2);
+                        return (a / sm).toFixed(2);
                     },
                     unit: '',
                     insight: val => {
@@ -5667,9 +5667,9 @@ window._tTooltip = function(ruText) {
                     <span class="whatif-lbl">${inp.label}</span>
                     <input type="range" class="whatif-slider"
                         data-key="${inp.key}"
-                        data-base="${cur}"
+                        data-base="${escapeHtml(cur)}"
                         min="${minV}" max="${maxV}" step="${step}"
-                        value="${cur}">
+                        value="${escapeHtml(cur)}">
                     <span class="whatif-val" id="wival-${inp.key}">${formatWhatIfVal(cur)}</span>
                 </div>`;
         });
@@ -6165,7 +6165,7 @@ window._tTooltip = function(ruText) {
                 return `
                     <div class="goal-input-row">
                         <label for="goal-${f.key}">${_tg(f.label)}${u ? ', ' + u : ''}</label>
-                        <input type="text" id="goal-${f.key}" data-key="${f.key}" value="${prefill}" placeholder="${formatNum(f.placeholder)}" inputmode="decimal" autocomplete="off">
+                        <input type="text" id="goal-${f.key}" data-key="${f.key}" value="${escapeHtml(prefill)}" placeholder="${formatNum(f.placeholder)}" inputmode="decimal" autocomplete="off">
                     </div>`;
             }).join('');
             const solveUnit = getCurrencyForUnit(q.solveFor.unit);
@@ -6806,7 +6806,15 @@ window._tTooltip = function(ruText) {
     initIndustry();
     initCurrency();
     initLang();
+    // First pass translates what the parser has already produced (header, controls).
     applyStaticTranslations();
+    // <script src="/app.js"> sits in the middle of <body>, so ~2/3 of the [data-t]
+    // nodes (About, Pricing, CSV-import, Compare-2, footer, forms) do not exist yet.
+    // Re-run once the document is parsed, or those stay Russian for EN/UZ visitors
+    // until the language button is clicked. Same deferral the bind* helpers below use.
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', applyStaticTranslations);
+    }
     updateSectionBadges();
     // Bind About modal close/escape (open trigger is in more-menu init)
     // NOTE: aboutOverlay HTML is AFTER this script tag, so we must wait for DOMContentLoaded.
@@ -7037,7 +7045,7 @@ window._tTooltip = function(ruText) {
         const inputsHtml = m.inputs.map(inp => `
             <div class="c2-input-row">
                 <label>${localizeLabel(inp.label)}</label>
-                <input type="text" data-mid="${m.id}" data-key="${inp.key}" value="${vals[inp.key]}" placeholder="${formatNum(inp.placeholder)}" inputmode="decimal">
+                <input type="text" data-mid="${m.id}" data-key="${inp.key}" value="${escapeHtml(vals[inp.key])}" placeholder="${formatNum(inp.placeholder)}" inputmode="decimal">
             </div>
         `).join('');
         return `<div class="compare2-col">

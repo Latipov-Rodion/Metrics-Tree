@@ -111,7 +111,11 @@
     }
     </script>
     <link rel="stylesheet" href="/app.css">
-    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+    <!-- Vercel Web Analytics — first-party route. Requires Web Analytics to be
+         ENABLED for the project in the Vercel dashboard; until then it 404s and
+         no data is collected. Served same-origin, so it satisfies the existing
+         CSP (script-src 'self', connect-src 'self') and survives ad blockers. -->
+    <script defer src="/_vercel/insights/script.js"></script>
     <!-- Vercel Speed Insights -->
     <script>
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -194,8 +198,6 @@
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/ces">
     <link rel="alternate" hreflang="uz" href="https://metricstree.vercel.app/uz/ces">
     <link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/ces">
-
-<script src="/theme-sync.js" defer></script>
 </head>
 <body>
 <script>
@@ -469,6 +471,25 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
             <div id="deepContentSlot"></div>
         </article>
+    
+    <section class="metric-seo" aria-label="О метрике CES">
+      <h2>Что такое CES</h2>
+      <p>Customer Effort Score — насколько легко клиенту было решить свой вопрос. Респонденты оценивают утверждение «компания упростила решение» по шкале 1–7. Сильный предиктор лояльности.</p>
+      <h3>Формула расчёта CES</h3>
+      <p><span class="seo-formula">Сумма оценок усилий / Кол-во ответов (шкала 1–7)</span></p>
+      <h3>Отраслевые бенчмарки</h3>
+      <p>Шкала 1–7: &lt;5 высокое трение, 5–6 норма, &gt;6 отлично</p>
+      <h3>Частые вопросы про CES</h3>
+      <div class="seo-faq">
+        <details><summary>Что такое CES?</summary><p>Customer Effort Score — средняя оценка усилия клиента по шкале 1–7. &lt;5 — высокое трение, &gt;6 — отлично. Низкое усилие удерживает лучше «восторга».</p></details>
+      </div>
+      <h3>Связанные метрики</h3>
+      <ul class="seo-related">
+        <li><a href="/csat">CSAT</a></li>
+        <li><a href="/nps">NPS</a></li>
+        <li><a href="/fcr">FCR</a></li>
+      </ul>
+    </section>
     </main>
     <div class="embed-footer" aria-hidden="true">
         Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 69 продуктовых метрик с формулами
