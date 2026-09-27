@@ -798,7 +798,7 @@ window.I18N_INSIGHTS = {
 
   // — Magic Number —
   'Низкий Magic Number — сократите S&M, исправьте воронку.': { en: 'Low Magic Number — cut S&M, fix the funnel.', uz: 'Past Magic Number — S&M ni qisqartiring, voronkani tuzating.' },
-  'Нормально, но окупаемость S&M >2 лет.': { en: 'Acceptable, but S&M payback is >2 years.', uz: 'Qabul qilinadigan, lekin S&M qaytimi >2 yil.' },
+  'Нормально, но окупаемость S&M 1–2 года.': { en: 'Acceptable, but S&M payback is 1–2 years.', uz: 'Qabul qilinadigan, lekin S&M qaytimi 1–2 yil.' },
   'Хорошо — инвестируйте в рост.': { en: 'Good — invest in growth.', uz: 'Yaxshi — o‘sishga investitsiya qiling.' },
   'Отлично — масштабируйте S&M агрессивно!': { en: 'Excellent — scale S&M aggressively!', uz: 'Ajoyib — S&M ni agressiv masshtablashtiring!' },
 
@@ -875,6 +875,7 @@ window.I18N_INSIGHTS = {
 
   // — Finance & Sales —
   'Низкая маржа. Проверьте unit-economics — каждая продажа теряет деньги.': { en: 'Low margin. Check unit economics — every sale loses money.', uz: 'Past marja. Unit-iqtisodiyotni tekshiring — har bir sotuv pul yo‘qotadi.' },
+  'Низкая маржа — после прямых затрат мало остаётся на R&D, маркетинг и прибыль. Проверьте цены и COGS.': { en: 'Low margin — little is left after direct costs for R&D, marketing and profit. Review pricing and COGS.', uz: 'Past marja — to‘g‘ridan-to‘g‘ri xarajatlardan keyin R&D, marketing va foyda uchun kam qoladi. Narxlar va COGSni tekshiring.' },
   'Норма для commerce/hardware. Для SaaS — слишком низко.': { en: 'Norm for commerce/hardware. Too low for SaaS.', uz: 'Commerce/hardware uchun norma. SaaS uchun juda past.' },
   'Хорошая маржа — SaaS-уровень.': { en: 'Good margin — SaaS-grade.', uz: 'Yaxshi marja — SaaS darajasi.' },
   'Отличная маржа — мирового класса SaaS (>80%).': { en: 'Excellent margin — world-class SaaS (>80%).', uz: 'Ajoyib marja — jahon darajasidagi SaaS (>80%).' },
@@ -1134,7 +1135,7 @@ window.I18N_THRESH = {
   'Плохо: <1%, Средне: 1–3%, Хорошо: >3%': { en: 'Bad: <1%, Average: 1–3%, Good: >3%', uz: 'Yomon: <1%, O‘rtacha: 1–3%, Yaxshi: >3%' },
   'Плохо: >70%, Средне: 40–70%, Хорошо: <40%': { en: 'Bad: >70%, Average: 40–70%, Good: <40%', uz: 'Yomon: >70%, O‘rtacha: 40–70%, Yaxshi: <40%' },
   'Плохо: <10%, Средне: 10–20%, Хорошо: >20%': { en: 'Bad: <10%, Average: 10–20%, Good: >20%', uz: 'Yomon: <10%, O‘rtacha: 10–20%, Yaxshi: >20%' },
-  'Плохо: >5, Средне: 2–5, Хорошо: <2': { en: 'Bad: >5, Average: 2–5, Good: <2', uz: 'Yomon: >5, O‘rtacha: 2–5, Yaxshi: <2' },
+  'Плохо: >5, Средне: 1–5, Хорошо: <1': { en: 'Bad: >5, Average: 1–5, Good: <1', uz: 'Yomon: >5, O‘rtacha: 1–5, Yaxshi: <1' },
   'Плохо: <50%, Средне: 50–80%, Хорошо: >80%': { en: 'Bad: <50%, Average: 50–80%, Good: >80%', uz: 'Yomon: <50%, O‘rtacha: 50–80%, Yaxshi: >80%' },
   'Плохо: <0, Средне: 0–30, Хорошо: >30, Отлично: >50': { en: 'Bad: <0, Average: 0–30, Good: >30, Excellent: >50', uz: 'Yomon: <0, O‘rtacha: 0–30, Yaxshi: >30, Ajoyib: >50' },
   'Плохо: <60%, Средне: 60–80%, Хорошо: >80%': { en: 'Bad: <60%, Average: 60–80%, Good: >80%', uz: 'Yomon: <60%, O‘rtacha: 60–80%, Yaxshi: >80%' },
@@ -2264,7 +2265,7 @@ window._tTooltip = function(ruText) {
                         if (val < 1) return { color: '#4CAF50', text: 'Отличный Burn Multiple — высокая капитальная эффективность.' };
                         if (val < 1.5) return { color: '#4CAF50', text: 'Хороший Burn Multiple — инвесторам нравится.' };
                         if (val < 2) return { color: '#FFC107', text: 'Норма для роста; можно оптимизировать.' };
-                        if (val < 3) return { color: '#FFC107', text: 'Высокий burn — пересмотрите unit-economics.' };
+                        if (val < 3) return { color: '#F44336', text: 'Высокий burn — пересмотрите unit-economics.' };
                         return { color: '#F44336', text: 'Критично: каждый $ роста стоит >$3 burn.' };
                     }
                 },
@@ -2286,7 +2287,7 @@ window._tTooltip = function(ruText) {
                     unit: '',
                     insight: val => {
                         if (val < 0.5) return { color: '#F44336', text: 'Низкий Magic Number — сократите S&M, исправьте воронку.' };
-                        if (val < 1) return { color: '#FFC107', text: 'Нормально, но окупаемость S&M >2 лет.' };
+                        if (val < 1) return { color: '#FFC107', text: 'Нормально, но окупаемость S&M 1–2 года.' };
                         if (val < 1.5) return { color: '#4CAF50', text: 'Хорошо — инвестируйте в рост.' };
                         return { color: '#4CAF50', text: 'Отлично — масштабируйте S&M агрессивно!' };
                     }
@@ -2576,8 +2577,9 @@ window._tTooltip = function(ruText) {
                     },
                     unit: '%',
                     insight: val => {
-                        if (val < 30) return { color: '#F44336', text: 'Низкая маржа. Проверьте unit-economics — каждая продажа теряет деньги.' };
-                        if (val < 60) return { color: '#FFC107', text: 'Норма для commerce/hardware. Для SaaS — слишком низко.' };
+                        if (val < 0) return { color: '#F44336', text: 'Низкая маржа. Проверьте unit-economics — каждая продажа теряет деньги.' };
+                        if (val < 40) return { color: '#F44336', text: 'Низкая маржа — после прямых затрат мало остаётся на R&D, маркетинг и прибыль. Проверьте цены и COGS.' };
+                        if (val < 70) return { color: '#FFC107', text: 'Норма для commerce/hardware. Для SaaS — слишком низко.' };
                         if (val < 80) return { color: '#4CAF50', text: 'Хорошая маржа — SaaS-уровень.' };
                         return { color: '#4CAF50', text: 'Отличная маржа — мирового класса SaaS (>80%).' };
                     }
@@ -2808,7 +2810,7 @@ window._tTooltip = function(ruText) {
                     unit: '%',
                     insight: val => {
                         if (val < 10) return { color: '#FFC107', text: 'Низкий take rate. Норма для high-GMV категорий (электроника, трэвел). Ищите доп-монетизацию: реклама, подписки, финуслуги.' };
-                        if (val < 25) return { color: '#4CAF50', text: 'Здоровый take rate для маркетплейса — баланс монетизации и удержания продавцов.' };
+                        if (val <= 30) return { color: '#4CAF50', text: 'Здоровый take rate для маркетплейса — баланс монетизации и удержания продавцов.' };
                         return { color: '#F44336', text: 'Высокий take rate — риск ухода продавцов в прямые каналы. Оправдан только при сильном спросе и lock-in.' };
                     }
                 },
@@ -3141,7 +3143,7 @@ window._tTooltip = function(ruText) {
                     id: 'bugRate', name: 'Bug Rate',
                     formula: 'Количество багов / Размер (KLOC или спринт)',
                     description: 'Частота обнаружения дефектов. Можно считать на 1000 строк кода или на спринт.',
-                    threshold: 'Плохо: >5, Средне: 2–5, Хорошо: <2',
+                    threshold: 'Плохо: >5, Средне: 1–5, Хорошо: <1',
                     inputs: [
                         { label: 'Количество багов', placeholder: '27', key: 'bugs', min: 0 },
                         { label: 'Размер (тыс. строк кода / кол-во спринтов)', placeholder: '15', key: 'size', min: 0.01 }
@@ -3155,7 +3157,7 @@ window._tTooltip = function(ruText) {
                     unit: 'багов/KLOC',
                     insight: val => {
                         if (val > 5) return { color: '#F44336', text: 'Высокая плотность багов. Нужно улучшить тестирование.' };
-                        if (val > 2) return { color: '#FFC107', text: 'Средняя плотность. Можно улучшить.' };
+                        if (val >= 1) return { color: '#FFC107', text: 'Средняя плотность. Можно улучшить.' };
                         return { color: '#4CAF50', text: 'Низкая плотность — качественный код.' };
                     }
                 },
@@ -3185,7 +3187,7 @@ window._tTooltip = function(ruText) {
                     id: 'defectDensity', name: 'Defect Density',
                     formula: 'Количество дефектов / KLOC',
                     description: 'Плотность дефектов на тысячу строк кода.',
-                    threshold: 'Плохо: >5, Средне: 2–5, Хорошо: <2',
+                    threshold: 'Плохо: >5, Средне: 1–5, Хорошо: <1',
                     inputs: [
                         { label: 'Дефекты', placeholder: '42', key: 'defects', min: 0 },
                         { label: 'KLOC (тыс. строк кода)', placeholder: '20', key: 'kloc', min: 0.01 }
@@ -3199,7 +3201,7 @@ window._tTooltip = function(ruText) {
                     unit: 'дефектов/KLOC',
                     insight: val => {
                         if (val > 5) return { color: '#F44336', text: 'Высокая плотность. Проведите ревью.' };
-                        if (val > 2) return { color: '#FFC107', text: 'Средняя плотность. Нормально.' };
+                        if (val >= 1) return { color: '#FFC107', text: 'Средняя плотность. Нормально.' };
                         return { color: '#4CAF50', text: 'Низкая плотность — код чист.' };
                     }
                 }
