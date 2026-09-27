@@ -7806,10 +7806,15 @@ window._tGoal = function(ruText) {
             if (!storedValues[mid]) storedValues[mid] = {};
             storedValues[mid][key] = inp.value.replace(/\s/g, '');
             saveToLS(storedValues);
+            // Keep the caret where the user is typing (re-render rebuilds the inputs).
+            const caret = inp.selectionStart;
             renderBoth();
-            // Focus the same input after re-render
             const newInp = grid.querySelector(`input[data-mid="${mid}"][data-key="${key}"]`);
-            if (newInp) { newInp.focus(); try { newInp.setSelectionRange(newInp.value.length, newInp.value.length); } catch (_) {} }
+            if (newInp) {
+                newInp.focus();
+                const pos = caret == null ? newInp.value.length : Math.min(caret, newInp.value.length);
+                try { newInp.setSelectionRange(pos, pos); } catch (_) {}
+            }
         };
         sel.onchange = renderBoth;
         renderBoth();
