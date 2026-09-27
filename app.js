@@ -1214,8 +1214,8 @@ window.I18N_THRESH = {
   // CAC
   'Отлично: CAC < LTV/3, Норма: CAC < LTV/2, Плохо: CAC > LTV/2': { en: 'Excellent: CAC < LTV/3, Norm: CAC < LTV/2, Bad: CAC > LTV/2', uz: 'Ajoyib: CAC < LTV/3, Norma: CAC < LTV/2, Yomon: CAC > LTV/2' },
   'Отлично: Окупаемость <6 мес, Норма: 6–18 мес, Плохо: >18 мес': { en: 'Excellent: Payback <6 mo, Norm: 6–18 mo, Bad: >18 mo', uz: 'Ajoyib: Qaytim <6 oy, Norma: 6–18 oy, Yomon: >18 oy' },
-  'Отлично: CAC < $5, Норма: $5–$25, Плохо: >$25': { en: 'Excellent: CAC < $5, Norm: $5–$25, Bad: >$25', uz: 'Ajoyib: CAC < $5, Norma: $5–$25, Yomon: >$25' },
-  'Отлично: CAC < $1, Норма: $1–$5, Плохо: >$5': { en: 'Excellent: CAC < $1, Norm: $1–$5, Bad: >$5', uz: 'Ajoyib: CAC < $1, Norma: $1–$5, Yomon: >$5' },
+  'Отлично: CAC < $30, Норма: $30–$100, Плохо: >$100 (ориентир: окупается с 1–2 заказов)': { en: 'Excellent: CAC < $30, Norm: $30–$100, Bad: >$100 (guideline: pays back within 1–2 orders)', uz: 'Ajoyib: CAC < $30, Norma: $30–$100, Yomon: >$100 (mo‘ljal: 1–2 buyurtmada qoplanadi)' },
+  'Отлично: CAC < $20, Норма: $20–$60, Плохо: >$60 (платящий пользователь; цена установки — это CPI)': { en: 'Excellent: CAC < $20, Norm: $20–$60, Bad: >$60 (paying user; cost per install is CPI)', uz: 'Ajoyib: CAC < $20, Norma: $20–$60, Yomon: >$60 (to‘lovchi foydalanuvchi; o‘rnatish narxi — bu CPI)' },
   'Отлично: CAC < $2, Норма: $2–$10, Плохо: >$10': { en: 'Excellent: CAC < $2, Norm: $2–$10, Bad: >$10', uz: 'Ajoyib: CAC < $2, Norma: $2–$10, Yomon: >$10' },
 
   // DAU (Stickiness-based)
@@ -3602,8 +3602,8 @@ window._tTooltip = function(ruText) {
         cac: {
             universal: 'Хорошо: <$300, Средне: $300–$800, Плохо: >$800 (ориентир: CAC < LTV/3)',
             saas:      'Отлично: Окупаемость <6 мес, Норма: 6–18 мес, Плохо: >18 мес',
-            ecom:      'Отлично: CAC < $5, Норма: $5–$25, Плохо: >$25',
-            mobile:    'Отлично: CAC < $1, Норма: $1–$5, Плохо: >$5',
+            ecom:      'Отлично: CAC < $30, Норма: $30–$100, Плохо: >$100 (ориентир: окупается с 1–2 заказов)',
+            mobile:    'Отлично: CAC < $20, Норма: $20–$60, Плохо: >$60 (платящий пользователь; цена установки — это CPI)',
             media:     'Отлично: CAC < $2, Норма: $2–$10, Плохо: >$10',
         },
         dau: {
