@@ -6050,23 +6050,29 @@ window._tTooltip = function(ruText) {
                 ask: 'При CAC, MRR на клиента и целевом payback — какая нужна маржа?',
                 fixed: [
                     { key: 'cac', label: 'CAC', placeholder: '1200', unit: '$' },
-                    { key: 'mrr', label: 'MRR на клиента', placeholder: '150', unit: '$' },
+                    { key: 'mrrPerCustomer', label: 'MRR на клиента', placeholder: '150', unit: '$' },
                     { key: 'targetMonths', label: 'Целевой payback', placeholder: '12', unit: 'мес' }
                 ],
                 solveFor: { label: 'Минимум маржи', unit: '%' },
                 hint: 'При меньшей марже окупаемость превысит целевую.',
-                formula: v => (v.mrr > 0 && v.targetMonths > 0) ? Math.min(100, (v.cac / (v.mrr * v.targetMonths)) * 100) : null
+                // >100% margin is unreachable — show «—» instead of clamping to a
+                // 100% that would still miss the target.
+                formula: v => {
+                    if (!(v.mrrPerCustomer > 0 && v.targetMonths > 0 && v.cac >= 0)) return null;
+                    const m = (v.cac / (v.mrrPerCustomer * v.targetMonths)) * 100;
+                    return m <= 100 ? m : null;
+                }
             },
             {
                 ask: 'При MRR на клиента, марже и целевом payback — какой максимум CAC?',
                 fixed: [
-                    { key: 'mrr', label: 'MRR на клиента', placeholder: '150', unit: '$' },
+                    { key: 'mrrPerCustomer', label: 'MRR на клиента', placeholder: '150', unit: '$' },
                     { key: 'margin', label: 'Маржа', placeholder: '80', unit: '%' },
                     { key: 'targetMonths', label: 'Целевой payback', placeholder: '12', unit: 'мес' }
                 ],
                 solveFor: { label: 'Максимум CAC', unit: '$' },
                 hint: 'CAC ниже — payback укладывается в целевой.',
-                formula: v => (v.mrr > 0 && v.margin > 0 && v.targetMonths > 0) ? v.mrr * (v.margin/100) * v.targetMonths : null
+                formula: v => (v.mrrPerCustomer > 0 && v.margin > 0 && v.margin <= 100 && v.targetMonths > 0) ? v.mrrPerCustomer * (v.margin/100) * v.targetMonths : null
             }
         ],
         burnMultiple: [
@@ -6078,7 +6084,7 @@ window._tTooltip = function(ruText) {
                 ],
                 solveFor: { label: 'Минимум Net New ARR', unit: '$' },
                 hint: 'При большем приросте ARR — Burn Multiple ниже целевого.',
-                formula: v => (v.targetBM > 0) ? v.burn / v.targetBM : null
+                formula: v => (v.targetBM > 0 && v.burn > 0) ? v.burn / v.targetBM : null
             },
             {
                 ask: 'При Net New ARR и целевом Burn Multiple — какой максимум Net Burn?',
@@ -6144,7 +6150,7 @@ window._tTooltip = function(ruText) {
                 ],
                 solveFor: { label: 'Минимум конверсий', unit: '' },
                 hint: 'Целое число ≥ этого даст требуемый CR.',
-                formula: v => v.visitors * (v.target / 100)
+                formula: v => (v.visitors > 0 && v.target >= 0 && v.target <= 100) ? v.visitors * (v.target / 100) : null
             },
             {
                 ask: 'При конверсиях и целевом CR — сколько нужно посетителей (максимум)?',
@@ -6154,7 +6160,7 @@ window._tTooltip = function(ruText) {
                 ],
                 solveFor: { label: 'Максимум посетителей', unit: '' },
                 hint: 'Большее число посетителей — CR ниже целевого.',
-                formula: v => v.target > 0 ? v.conversions / (v.target / 100) : null
+                formula: v => (v.target > 0 && v.target <= 100 && v.conversions >= 0) ? v.conversions / (v.target / 100) : null
             }
         ],
         churn: [
@@ -6166,7 +6172,7 @@ window._tTooltip = function(ruText) {
                 ],
                 solveFor: { label: 'Максимум ушедших', unit: '' },
                 hint: 'Больше ушедших — Churn выше целевого.',
-                formula: v => v.total * (v.target / 100)
+                formula: v => (v.total > 0 && v.target >= 0 && v.target <= 100) ? v.total * (v.target / 100) : null
             }
         ],
         nrr: [
@@ -6179,7 +6185,7 @@ window._tTooltip = function(ruText) {
                 ],
                 solveFor: { label: 'Минимум апселов', unit: '$' },
                 hint: 'При меньших апселах NRR не достигнет цели.',
-                formula: v => v.start > 0 ? (v.target / 100 - 1) * v.start + v.churn : null
+                formula: v => v.start > 0 ? Math.max(0, (v.target / 100 - 1) * v.start + v.churn) : null
             }
         ],
         runway: [
@@ -6213,7 +6219,7 @@ window._tTooltip = function(ruText) {
                 ],
                 solveFor: { label: 'Максимум COGS', unit: '$' },
                 hint: 'COGS ниже этого — маржа выше целевой.',
-                formula: v => (v.revenue > 0 && v.target >= 0) ? v.revenue * (1 - v.target/100) : null
+                formula: v => (v.revenue > 0 && v.target >= 0 && v.target <= 100) ? v.revenue * (1 - v.target/100) : null
             }
         ],
         salesVelocity: [
@@ -6239,7 +6245,7 @@ window._tTooltip = function(ruText) {
                 ],
                 solveFor: { label: 'Максимум lost', unit: '' },
                 hint: 'Lost больше — win rate ниже целевого. Улучшайте qualification.',
-                formula: v => v.target > 0 ? v.won * (100 / v.target - 1) : null
+                formula: v => (v.target > 0 && v.target <= 100 && v.won >= 0) ? v.won * (100 / v.target - 1) : null
             }
         ],
         pipelineCoverage: [
@@ -6347,7 +6353,7 @@ window._tTooltip = function(ruText) {
                 ],
                 solveFor: { label: 'Максимум переменных затрат', unit: '$' },
                 hint: 'Переменные затраты ниже — маржа выше целевой.',
-                formula: v => (v.revenue > 0 && v.target >= 0) ? v.revenue * (1 - v.target / 100) : null
+                formula: v => (v.revenue > 0 && v.target >= 0 && v.target <= 100) ? v.revenue * (1 - v.target / 100) : null
             }
         ],
         quotaAttainment: [
@@ -6383,7 +6389,7 @@ window._tTooltip = function(ruText) {
                 ],
                 solveFor: { label: 'Минимум открытий', unit: '' },
                 hint: 'Меньше открытий — Open Rate ниже целевого.',
-                formula: v => v.delivered > 0 ? v.delivered * (v.target / 100) : null
+                formula: v => (v.delivered > 0 && v.target >= 0 && v.target <= 100) ? v.delivered * (v.target / 100) : null
             }
         ],
         ctor: [
@@ -6395,7 +6401,7 @@ window._tTooltip = function(ruText) {
                 ],
                 solveFor: { label: 'Минимум кликов', unit: '' },
                 hint: 'Меньше кликов — CTOR ниже целевого.',
-                formula: v => v.opens > 0 ? v.opens * (v.target / 100) : null
+                formula: v => (v.opens > 0 && v.target >= 0 && v.target <= 100) ? v.opens * (v.target / 100) : null
             }
         ]
     };
