@@ -27,6 +27,8 @@
     { "source": "/industries/:slug/", "destination": "/industries/:slug/index.html" },
     { "source": "/industries/:slug/:metric", "destination": "/industries/:slug/:metric.html" },
     { "source": "/report", "destination": "/report.html" },
+    { "source": "/en/report", "destination": "/report.html" },
+    { "source": "/uz/report", "destination": "/report.html" },
     { "source": "/quiz", "destination": "/quiz.html" },
     { "source": "/glossary", "destination": "/glossary.html" },
     { "source": "/admin/experiments", "destination": "/experiments.html" },
