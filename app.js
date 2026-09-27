@@ -2188,6 +2188,10 @@ window._tGoal = function(ruText) {
         if (currentLang === 'uz') return n + ' ta metrika';
         return n + ' ' + pluralRu(n, ruForms || ['метрика', 'метрики', 'метрик']);
     }
+    // a11y: insight() returns fixed hexes that fail WCAG AA as text (#4CAF50 on white = 2.6:1).
+    // Map them to theme-aware CSS tokens (app.css --v-good/--v-warn/--v-bad/--accent-text).
+    const VERDICT_VARS = { '#4caf50': 'var(--v-good)', '#ffc107': 'var(--v-warn)', '#f44336': 'var(--v-bad)', '#2a6df4': 'var(--accent-text)' };
+    function verdictColor(c) { return VERDICT_VARS[String(c || '').toLowerCase()] || c; }
     function initCurrency() {
         document.querySelectorAll('.currency-btn').forEach(btn => {
             btn.classList.toggle('active', btn.dataset.currency === currentCurrency);
@@ -4419,12 +4423,12 @@ window._tGoal = function(ruText) {
         const isFinite = numericResult === Infinity || (!isNaN(numericResult) && Number.isFinite(numericResult));
         if ((isFinite || numericResult === Infinity) && metric.insight) {
             const ins = metric.insight(numericResult);
-            resultValue.style.color = ins.color;
+            resultValue.style.color = verdictColor(ins.color);
             insightMessage.textContent = window._tInsight ? window._tInsight(ins.text) : ins.text;
-            insightMessage.style.borderLeftColor = ins.color;
+            insightMessage.style.borderLeftColor = verdictColor(ins.color);
             insightMessage.style.display = '';
         } else {
-            resultValue.style.color = 'var(--accent)';
+            resultValue.style.color = 'var(--accent-text)';
             insightMessage.textContent = '';
             insightMessage.style.display = 'none';
         }
@@ -5389,7 +5393,7 @@ window._tGoal = function(ruText) {
 
         // Result value
         const rawText = (resultValue.textContent || '').trim();
-        const insightColor = resultValue.style.color || (isDark ? '#E8EAED' : '#14171C');
+        const insightColor = (resultValue.style.color && getComputedStyle(resultValue).color) || (isDark ? '#E8EAED' : '#14171C');
         ctx.font = `800 68px ${sans}`; ctx.fillStyle = insightColor;
         ctx.fillText(rawText, P, 290);
 
@@ -5664,7 +5668,7 @@ window._tGoal = function(ruText) {
                 ).join('');
                 return `<div class="compare-col">
                     <div class="compare-col-title">${label}</div>
-                    <div class="compare-result-val" style="color:var(--accent)">${escapeHtml(relocalizeUnitSuffix(snap.displayResult, metric))}${unit.trim() && !relocalizeUnitSuffix(snap.displayResult, metric).includes(unit.trim()) ? unit : ''}</div>
+                    <div class="compare-result-val" style="color:var(--accent-text)">${escapeHtml(relocalizeUnitSuffix(snap.displayResult, metric))}${unit.trim() && !relocalizeUnitSuffix(snap.displayResult, metric).includes(unit.trim()) ? unit : ''}</div>
                     <div class="snapshot-meta">${formatSnapDate(snap.ts)}</div>
                     <div style="margin-top:0.6rem">${inputRows}</div>
                 </div>`;
@@ -6157,11 +6161,11 @@ window._tGoal = function(ruText) {
                         const num = isInf ? Infinity : parseFloat(result);
                         if (result !== null && (isInf || !isNaN(num))) {
                             hasAny = true;
-                            let color = 'var(--accent)';
+                            let color = 'var(--accent-text)';
                             let insightText = '';
                             if (metric.insight) {
                                 const ins = metric.insight(num);
-                                color = ins.color;
+                                color = verdictColor(ins.color);
                                 insightText = window._tInsight ? window._tInsight(ins.text) : ins.text;
                             }
                             const unit = metric.unit ? ` ${localizeUnit(metric.unit)}` : '';
@@ -7733,7 +7737,7 @@ window._tGoal = function(ruText) {
         const localizedName = tm(m.id, 'name', m.name);
         const localizedFormula = tm(m.id, 'formula', m.formula);
         const localizedDescr = tm(m.id, 'description', m.description);
-        let result = '—', insight = '', color = 'var(--accent)';
+        let result = '—', insight = '', color = 'var(--accent-text)';
         // Compute if all filled
         const allFilled = m.inputs.every(inp => {
             const raw = (vals[inp.key] || '').toString().replace(/\s/g, '');
@@ -7748,7 +7752,7 @@ window._tGoal = function(ruText) {
                     result = formatSmart(parseFloat(r)) + (m.unit ? ' ' + localizeUnit(m.unit) : '');
                     if (m.insight) {
                         const ins = m.insight(parseFloat(r));
-                        color = ins.color;
+                        color = verdictColor(ins.color);
                         insight = window._tInsight ? window._tInsight(ins.text) : ins.text;
                     }
                 }
