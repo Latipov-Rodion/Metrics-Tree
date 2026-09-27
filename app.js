@@ -1639,13 +1639,11 @@ window.I18N_TOOLTIP = {
   'Нормализованная месячная выручка. Годовые контракты делятся на 12. Не включает one-time / setup fees.': { en: 'Normalized monthly revenue. Annual contracts are divided by 12. Excludes one-time / setup fees.', uz: 'Normalashtirilgan oylik tushum. Yillik shartnomalar 12 ga bo‘linadi. One-time / setup to‘lovlarisiz.' },
 
   // Burn Multiple
-  'Чистое сжигание = Operating cash burn − все Non-operating inflows. Обычно считают за квартал.': { en: 'Net burn = Operating cash burn − all non-operating inflows. Usually computed quarterly.', uz: 'Net burn = Operating cash burn − barcha non-operating tushumlar. Odatda choraklik hisoblanadi.' },
-  'Чистое сжигание за период = Все денежные траты − Все денежные поступления. Если cash-positive — введите отрицательное число.': { en: 'Net burn for the period = all cash spend − all cash inflows. If cash-positive, enter a negative number.', uz: 'Davr uchun net burn = barcha pul xarajati − barcha pul tushumi. Cash-positive bo‘lsa, manfiy son kiriting.' },
-  'Net New ARR = Конечный ARR − Начальный ARR. Включает new + expansion − churn − contraction.': { en: 'Net New ARR = Ending ARR − Starting ARR. Includes new + expansion − churn − contraction.', uz: 'Net New ARR = Yakuniy ARR − Boshlang‘ich ARR. New + expansion − churn − contraction ni o‘z ichiga oladi.' },
+  'Net Cash Burn за период = Все денежные траты − Все денежные поступления. Если cash-positive — введите отрицательное число.': { en: 'Net cash burn for the period = all cash spend − all cash inflows. If cash-positive, enter a negative number.', uz: 'Davr uchun net cash burn = barcha pul xarajati − barcha pul tushumi. Cash-positive bo‘lsa, manfiy son kiriting.' },
   'Прирост ARR за период: Конечный − Начальный ARR. Включает new + expansion, минус churn и contraction.': { en: 'ARR growth for the period: Ending − Starting ARR. Includes new + expansion, minus churn and contraction.', uz: 'Davr uchun ARR o‘sishi: Yakuniy − Boshlang‘ich ARR. New + expansion, minus churn va contraction.' },
 
   // Magic Number
-  'Прирост ARR за конкретный квартал (×4 в формуле даёт annualized).': { en: 'ARR growth for a specific quarter (×4 in the formula yields annualized).', uz: 'Aniq chorak uchun ARR o‘sishi (formuladagi ×4 yillik qiymatni beradi).' },
+  'Прирост ARR за конкретный квартал. ARR — уже годовая величина, поэтому дополнительно аннуализировать её не нужно.': { en: 'ARR growth for a specific quarter. ARR is already an annual figure, so it needs no further annualizing.', uz: 'Aniq chorak uchun ARR o‘sishi. ARR allaqachon yillik ko‘rsatkich, shuning uchun uni qo‘shimcha yillikka aylantirish shart emas.' },
   'Полный S&M cost: payroll команды + платформы + реклама + комиссии. По P&L, не по cash.': { en: 'Full S&M cost: team payroll + tools + ads + commissions. Per P&L, not cash basis.', uz: 'To‘liq S&M xarajat: jamoa maoshi + platformalar + reklama + komissiyalar. P&L bo‘yicha, cash bo‘yicha emas.' },
 
   // Rule of 40
