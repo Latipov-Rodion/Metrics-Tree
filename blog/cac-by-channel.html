@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>CAC по каналам — как посчитать стоимость привлечения клиента для каждого канала | MetricTree Blog</title>
+<meta name="description" content="Как считать CAC по каналам (контекст, соцсети, SEO, outbound, рефералы): формула, какие затраты включать, пример расчёта для SaaS, окупаемость по каналам, нормы и типичные ошибки.">
+<meta name="keywords" content="cac по каналам, стоимость привлечения клиента по каналам, как посчитать cac, cac формула, blended cac, paid cac, cac benchmarks">
+<link rel="canonical" href="https://metricstree.vercel.app/blog/cac-by-channel">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/cac-by-channel">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/cac-by-channel">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/cac-by-channel">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="CAC по каналам — как посчитать стоимость привлечения клиента для каждого канала">
+<meta property="og:description" content="Как считать CAC по каналам (контекст, соцсети, SEO, outbound, рефералы): формула, какие затраты включать, пример расчёта для SaaS, окупаемость по каналам, нормы и типичные ошибки.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/blog/cac-by-channel">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-09-24">
+<meta property="article:author" content="Родион Латыпов">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CAC по каналам — как посчитать стоимость привлечения клиента для каждого канала">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "CAC по каналам — как посчитать стоимость привлечения клиента для каждого канала",
+  "description": "Как считать CAC по каналам (контекст, соцсети, SEO, outbound, рефералы): формула, какие затраты включать, пример расчёта для SaaS, окупаемость по каналам, нормы и типичные ошибки.",
+  "datePublished": "2026-09-24",
+  "author": {
+    "@type": "Person",
+    "name": "Родион Латыпов",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/blog/cac-by-channel"
+  },
+  "keywords": "cac по каналам, стоимость привлечения клиента по каналам, как посчитать cac, cac формула, blended cac, paid cac, cac benchmarks",
+  "inLanguage": "ru"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div>
+</nav>
+<article>
+<h1>CAC по каналам — как посчитать стоимость привлечения клиента для каждого канала</h1>
+<div class="meta">2026-09-24 · автор: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a></div>
+<h1>CAC по каналам — как посчитать стоимость привлечения клиента для каждого канала</h1>
+
+<p>Средний CAC по компании — полезная цифра для инвестора, но почти бесполезная для маркетолога. За ней прячется канал, который приводит клиентов за $200, и канал, где каждый клиент стоит $1 500. Решения о бюджете принимаются по каналам — значит, и CAC надо считать по каналам.</p>
+
+<h2>Формула</h2>
+
+<p><strong>CAC канала = Все затраты на канал за период / Новые платящие клиенты из канала за тот же период</strong></p>
+
+<p>«Все затраты» — это не только рекламный бюджет:<br><ul><li>медиа-расходы (клики, показы, размещения);</li><li>агентство и фрилансеры;</li><li>производство контента и креативов;</li><li>инструменты (SEO-сервисы, CRM, базы контактов);</li><li>доля зарплат команды, которая работает на этот канал.</li></ul></p>
+
+<p>Отсюда три разных CAC, которые важно не путать:</p>
+
+<table><thead><tr><th>Вид</th><th>Что в числителе</th><th>Для чего</th></tr></thead><tbody><tr><td></td><td><strong>Blended CAC</strong></td><td>Все затраты на маркетинг и продажи / все новые клиенты (включая органику)</td><td>Юнит-экономика компании, отчёт инвестору</td><td></td></tr><tr><td></td><td><strong>Paid CAC</strong></td><td>Затраты на платные каналы / клиенты из платных каналов</td><td>Решения о рекламном бюджете</td><td></td></tr><tr><td></td><td><strong>CAC канала</strong></td><td>Затраты конкретного канала / его клиенты</td><td>Перераспределение бюджета между каналами</td><td></td></tr></tbody></table>
+Blended CAC всегда выглядит лучше paid CAC, потому что органические клиенты «бесплатно» снижают среднее. Показывать инвестору только blended, не упоминая paid, — частая и заметная ошибка.
+
+<h2>Пример расчёта: B2B SaaS за квартал</h2>
+
+<table><thead><tr><th>Канал</th><th>Затраты</th><th>Новые клиенты</th><th>CAC</th></tr></thead><tbody><tr><td></td><td>Контекстная реклама (бюджет $30 000 + агентство $3 000)</td><td>$33 000</td><td>60</td><td><strong>$550</strong></td><td></td></tr><tr><td></td><td>LinkedIn Ads</td><td>$20 000</td><td>16</td><td><strong>$1 250</strong></td><td></td></tr><tr><td></td><td>SEO и контент (авторы $9 000 + инструменты $1 000 + 0.5 ставки $9 000)</td><td>$19 000</td><td>38</td><td><strong>$500</strong></td><td></td></tr><tr><td></td><td>Outbound (2 SDR $30 000 + инструменты $3 000)</td><td>$33 000</td><td>22</td><td><strong>$1 500</strong></td><td></td></tr><tr><td></td><td>Реферальная программа (вознаграждения)</td><td>$4 000</td><td>20</td><td><strong>$200</strong></td><td></td></tr><tr><td></td><td><strong>Итого (blended)</strong></td><td><strong>$109 000</strong></td><td><strong>156</strong></td><td><strong>≈ $699</strong></td><td></td></tr></tbody></table>
+Blended CAC ≈ $699 — это «средне» по базовой шкале калькулятора MetricTree ($300–$800; хорошо — <$300, плохо — >$800). Но разброс между каналами — больше чем в 7 раз.
+
+<h2>CAC сам по себе не говорит, какой канал лучше</h2>
+
+<p>Дорогой канал может быть лучшим, если он приводит более ценных клиентов. Поэтому CAC канала всегда переводят в <strong>окупаемость</strong>:</p>
+
+<p><strong>CAC Payback = CAC / (MRR на клиента × валовая маржа)</strong></p>
+
+<p>Допустим, валовая маржа 80%, большинство каналов приводят клиентов с MRR $120 (маржинальный доход $96/мес), а outbound — более крупных клиентов с MRR $300 ($240/мес):</p>
+
+<table><thead><tr><th>Канал</th><th>CAC</th><th>MRR клиента</th><th>Окупаемость</th></tr></thead><tbody><tr><td></td><td>Реферальная программа</td><td>$200</td><td>$120</td><td><strong>2.1 мес</strong></td><td></td></tr><tr><td></td><td>SEO и контент</td><td>$500</td><td>$120</td><td><strong>5.2 мес</strong></td><td></td></tr><tr><td></td><td>Контекстная реклама</td><td>$550</td><td>$120</td><td><strong>5.7 мес</strong></td><td></td></tr><tr><td></td><td>Outbound</td><td>$1 500</td><td>$300</td><td><strong>6.3 мес</strong></td><td></td></tr><tr><td></td><td>LinkedIn Ads</td><td>$1 250</td><td>$120</td><td><strong>13.0 мес</strong></td><td></td></tr></tbody></table>
+Outbound по CAC — самый дорогой канал, а по окупаемости — в одной группе с контекстом. А LinkedIn с окупаемостью 13 месяцев попадает в «норму» для SaaS (хорошо — <12 мес, норма — 12–18, плохо — >18), но это первый кандидат на оптимизацию. Посчитать окупаемость — <a href="/cacPayback">/cacPayback</a>.
+
+<p>Итоговый критерий — отношение LTV к CAC по каналу: ориентир для большинства моделей — LTV > 3× CAC (<a href="/ltv_cac">/ltv_cac</a>).</p>
+
+<h2>Типичные различия между каналами</h2>
+
+<p>Абсолютные цифры CAC сильно зависят от ниши, гео и чека, поэтому универсальных «норм по каналам» не существует. Но закономерности устойчивы:</p>
+
+<ul><li><strong>Рефералы и сарафан</strong> — обычно самый дешёвый CAC и лучший retention, но плохо масштабируются по желанию.</li><li><strong>SEO и контент</strong> — низкий CAC на горизонте года, но первые месяцы затраты идут без клиентов. Считайте CAC с учётом задержки.</li><li><strong>Контекстная реклама</strong> — быстро масштабируется, CAC растёт вместе с бюджетом и конкуренцией в аукционе.</li><li><strong>Таргет в соцсетях</strong> — дешёвый клик, часто более низкая конверсия в платящих в B2B.</li><li><strong>Outbound и продажи</strong> — высокий CAC, но и крупнее чек; оценивайте только через окупаемость.</li></ul>
+
+<p>Промежуточные ориентиры из калькуляторов MetricTree для B2B SaaS: CPC — $2–$8 норма, CPL — $20–$200 за MQL, CPA на триал или демо — $30–$150. Сами по себе они не решают ничего: дешёвый лид, который не конвертируется в клиента, дороже дорогого, который конвертируется. Отчёты о CAC по индустриям и каналам публикуют, например, First Page Sage и HubSpot (State of Marketing), — используйте их только как грубый ориентир: методики расчёта у всех разные.</p>
+
+<h2>Типичные ошибки</h2>
+
+<h3>1. Считать только рекламный бюджет</h3>
+Без зарплат, агентства и инструментов SEO и outbound выглядят почти бесплатными. Правильный CAC канала включает всё, что исчезнет, если канал выключить.
+
+<h3>2. Лиды и триалы вместо платящих клиентов</h3>
+CAC — это стоимость <strong>клиента</strong>. Стоимость лида — это CPL (<a href="/cpl">/cpl</a>), стоимость действия — CPA (<a href="/cpa">/cpa</a>).
+
+<h3>3. Игнорировать задержку</h3>
+Затраты на SEO в январе приводят клиентов в мае, outbound-сделка закрывается через 2–3 месяца. Сопоставляйте затраты и клиентов с учётом цикла сделки, иначе новый канал всегда будет выглядеть провальным, а сворачиваемый — прекрасным.
+
+<h3>4. Last-click атрибуция</h3>
+Клиент прочитал статью, увидел ретаргетинг и пришёл по брендовому запросу. Last-click отдаст всё контексту, и SEO будет недооценён. Используйте хотя бы опрос «откуда вы о нас узнали» как второй источник.
+
+<h3>5. Средний CAC вместо предельного</h3>
+Если канал приносит клиентов по $550, это не значит, что следующие $10 000 бюджета дадут их по той же цене. С ростом бюджета CAC почти всегда растёт. Тестируйте масштабирование шагами.
+
+<h3>6. Один MRR для всех каналов</h3>
+Каналы приводят разных клиентов. Считайте ARPA и retention по каналам — иначе окупаемость будет неверной.
+
+<h2>Частые вопросы</h2>
+
+<h3>Включать ли зарплаты в CAC?</h3>
+Да — в той доле, в которой сотрудники работают на привлечение. Без зарплат CAC каналов с большой ручной работой (SEO, outbound) будет занижен в разы.
+
+<h3>Как часто пересчитывать CAC по каналам?</h3>
+Ежемесячно для платных каналов и ежеквартально для SEO и outbound, где задержка между затратами и клиентами длиннее.
+
+<h2>Итог</h2>
+
+<p>Считайте CAC отдельно по каждому каналу, включайте в него все затраты, сопоставляйте с платящими клиентами с учётом задержки — и принимайте решения по окупаемости и LTV:CAC, а не по самому CAC. Blended CAC оставьте для отчёта инвестору, а бюджет распределяйте по канальной таблице.</p>
+
+<p><strong>Посчитайте CAC каждого канала в калькуляторе ниже</strong>, а затем окупаемость — в <a href="/cacPayback">/cacPayback</a>. Формулы и пороги для CAC, CPL, CPA, LTV:CAC и ещё 65 метрик собраны в бесплатной <a href="/benchmarks">PDF-шпаргалке</a>.</p>
+
+<p>---</p>
+
+<h3>Дополнительные ресурсы</h3>
+
+<ul><li><a href="/cac">/cac</a> — калькулятор CAC</li><li><a href="/cacPayback">/cacPayback</a> — окупаемость CAC</li><li><a href="/ltv_cac">/ltv_cac</a> — соотношение LTV:CAC</li><li><a href="/cpl">/cpl</a> — стоимость лида</li><li><a href="/blog/cac-payback-period">/blog/cac-payback-period</a> — почему CAC Payback важнее LTV:CAC</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Считай прямо здесь:</strong>
+  <iframe src="https://metricstree.vercel.app/cac?embed=1" width="100%" height="650" loading="lazy" title="MetricTree cac калькулятор"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Открыть в полной версии: <a href="https://metricstree.vercel.app/cac" target="_blank">https://metricstree.vercel.app/cac</a></p>
+</div>
+<div class="share-row">
+  Поделиться:
+  <a href="https://twitter.com/intent/tweet?text=CAC%20%D0%BF%D0%BE%20%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB%D0%B0%D0%BC%20%E2%80%94%20%D0%BA%D0%B0%D0%BA%20%D0%BF%D0%BE%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C%20%D0%BF%D1%80%D0%B8%D0%B2%D0%BB%D0%B5%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BA%D0%BB%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%BA%D0%B0%D0%B6%D0%B4%D0%BE%D0%B3%D0%BE%20%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB%D0%B0&url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fcac-by-channel" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fcac-by-channel" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fcac-by-channel&text=CAC%20%D0%BF%D0%BE%20%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB%D0%B0%D0%BC%20%E2%80%94%20%D0%BA%D0%B0%D0%BA%20%D0%BF%D0%BE%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%20%D1%81%D1%82%D0%BE%D0%B8%D0%BC%D0%BE%D1%81%D1%82%D1%8C%20%D0%BF%D1%80%D0%B8%D0%B2%D0%BB%D0%B5%D1%87%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BA%D0%BB%D0%B8%D0%B5%D0%BD%D1%82%D0%B0%20%D0%B4%D0%BB%D1%8F%20%D0%BA%D0%B0%D0%B6%D0%B4%D0%BE%D0%B3%D0%BE%20%D0%BA%D0%B0%D0%BD%D0%B0%D0%BB%D0%B0" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="/blog/">Все посты</a> · <a href="/">Калькулятор</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

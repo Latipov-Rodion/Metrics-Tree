@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Retention rate — formula, worked example and benchmarks by industry | MetricTree Blog</title>
+<meta name="description" content="How to calculate retention rate: the customer retention rate (CRR) formula and Day-N cohort retention, a worked example, benchmarks for SaaS, e-commerce, mobile apps and media, and common mistakes.">
+<meta name="keywords" content="retention rate, customer retention rate, retention formula, retention benchmarks, d30 retention, retention by industry, how to calculate retention">
+<link rel="canonical" href="https://metricstree.vercel.app/en/blog/retention-rate-benchmarks">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/retention-rate-benchmarks">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/retention-rate-benchmarks">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/retention-rate-benchmarks">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Retention rate — formula, worked example and benchmarks by industry">
+<meta property="og:description" content="How to calculate retention rate: the customer retention rate (CRR) formula and Day-N cohort retention, a worked example, benchmarks for SaaS, e-commerce, mobile apps and media, and common mistakes.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/en/blog/retention-rate-benchmarks">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-09-20">
+<meta property="article:author" content="Rodion Latipov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Retention rate — formula, worked example and benchmarks by industry">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Retention rate — formula, worked example and benchmarks by industry",
+  "description": "How to calculate retention rate: the customer retention rate (CRR) formula and Day-N cohort retention, a worked example, benchmarks for SaaS, e-commerce, mobile apps and media, and common mistakes.",
+  "datePublished": "2026-09-20",
+  "author": {
+    "@type": "Person",
+    "name": "Rodion Latipov",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/en/blog/retention-rate-benchmarks"
+  },
+  "keywords": "retention rate, customer retention rate, retention formula, retention benchmarks, d30 retention, retention by industry, how to calculate retention",
+  "inLanguage": "en"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/en" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/en/blog/">Blog</a> · <a href="/en">Calculator →</a></div>
+</nav>
+<article>
+<h1>Retention rate — formula, worked example and benchmarks by industry</h1>
+<div class="meta">2026-09-20 · by <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a></div>
+<h1>Retention rate — formula, worked example and benchmarks by industry</h1>
+
+<p>Retention is the share of users or customers who are still with your product after a given period. It is the most honest product metric there is: you can't buy it with ad spend, and it directly drives LTV, CAC payback and whether your growth eventually plateaus.</p>
+
+<p>If retention is weak, marketing becomes a leaky bucket: you pay to acquire people who leave before they pay you back.</p>
+
+<h2>Two retention formulas — and when to use each</h2>
+
+<h3>1. Customer Retention Rate (CRR) — for a customer base</h3>
+
+<p><strong>CRR = (E − N) / S × 100%</strong></p>
+
+<ul><li><strong>S</strong> — customers at the start of the period</li><li><strong>E</strong> — customers at the end of the period</li><li><strong>N</strong> — new customers acquired during the period</li></ul>
+
+<p>The key step is subtracting new customers. Otherwise a strong sales month masks the churn.</p>
+
+<h3>2. Cohort (Day-N) retention — for product usage</h3>
+
+<p><strong>Retention D(N) = Users from the cohort active on day N / Cohort size × 100%</strong></p>
+
+<p>A cohort is everyone who started on the same day or week. You track D1, D7, D30, D90. This is the standard in mobile and product analytics (it's how Amplitude, Mixpanel and AppsFlyer report it).</p>
+
+<p>The MetricTree calculator at <a href="/en/retention">/en/retention</a> computes the base version: users active at the end of the period / cohort users at the start.</p>
+
+<h2>Worked example: SaaS</h2>
+
+<p>A B2B tool, one month:<br><ul><li>Start of month: <strong>400</strong> paying accounts</li><li>New accounts: <strong>30</strong></li><li>End of month: <strong>418</strong></li></ul></p>
+
+<p>CRR = (418 − 30) / 400 = 388 / 400 = <strong>97%</strong></p>
+
+<p>So monthly churn = 100% − 97% = <strong>3%</strong>. Looks fine at first glance. But annual retention at that churn rate is ≈ 0.97^12 ≈ <strong>69%</strong> — almost a third of customers gone within a year. For SaaS, monthly churn above 2% is already a warning zone (see <a href="/en/churn">/en/churn</a>).</p>
+
+<h2>Worked example: mobile app</h2>
+
+<p>A weekly cohort of <strong>1,200</strong> installs:</p>
+
+<table><thead><tr><th>Day</th><th>Active</th><th>Retention</th></tr></thead><tbody><tr><td></td><td>D1</td><td>480</td><td>40%</td><td></td></tr><tr><td></td><td>D7</td><td>216</td><td>18%</td><td></td></tr><tr><td></td><td>D30</td><td>72</td><td>6%</td><td></td></tr></tbody></table>
+D30 = 6% is <strong>normal</strong> for mobile apps (the market median sits around 4–6%). What matters more is whether the curve flattens. If the drop between D30 and D90 almost stops, the product has a core audience you can scale.
+
+<h2>Retention benchmarks by industry</h2>
+
+<p>These thresholds match the ones the MetricTree calculator uses when you pick an industry:</p>
+
+<table><thead><tr><th>Industry</th><th>What is measured</th><th>Poor</th><th>Normal</th><th>Good</th></tr></thead><tbody><tr><td></td><td><strong>Universal</strong></td><td>Retention over the period</td><td><30%</td><td>30–60%</td><td>>60%</td><td></td></tr><tr><td></td><td><strong>SaaS</strong></td><td>Accounts, D30</td><td><70%</td><td>70–85%</td><td>>85%</td><td></td></tr><tr><td></td><td><strong>E-commerce</strong></td><td>Repeat purchase within 90 days</td><td><20%</td><td>20–40%</td><td>>40%</td><td></td></tr><tr><td></td><td><strong>Mobile apps</strong></td><td>D30</td><td><3%</td><td>3–8%</td><td>>8%</td><td></td></tr><tr><td></td><td><strong>Media / content</strong></td><td>Retention over the period</td><td><25%</td><td>25–50%</td><td>>50%</td><td></td></tr></tbody></table>
+Why such a huge spread? Because these are different events. A SaaS customer pays a subscription and leaves deliberately; a mobile user simply forgets the app; in e-commerce "retention" means a repeat purchase, which depends on how often people need the product at all.
+
+<p><strong>Compare yourself only against your own industry and the same definition of retention.</strong> D30 for a mobile game and D30 for B2B SaaS are different metrics that share a name.</p>
+
+<p>Public reports with retention curves by category: Amplitude's Product Benchmarks Report, AppsFlyer's mobile retention reports, and Mixpanel's benchmark reports. Their methodologies differ — compare the shape of the curve and the order of magnitude, not decimal points.</p>
+
+<h2>How retention connects to other metrics</h2>
+
+<ul><li><strong>Churn = 1 − Retention</strong> for the same period. Track both — <a href="/en/churn">churn calculator</a>.</li><li><strong>NRR</strong> is retention measured in money: it includes upsells and downgrades. You can lose 5% of customers and still run 110% NRR (see <a href="/en/nrr">/en/nrr</a>).</li><li><strong>Stickiness (DAU/MAU)</strong> shows how often retained users actually use the product. High retention with low DAU/MAU means the product is tolerated, not loved (<a href="/en/stickiness">/en/stickiness</a>).</li><li><strong>LTV</strong> depends directly on retention: at 3% monthly churn the average lifetime is ≈ 1 / 0.03 ≈ 33 months; at 6% it's ≈ 17.</li></ul>
+
+<h2>6 common retention mistakes</h2>
+
+<h3>1. Not subtracting new customers</h3>
+The most common one. If new customers leak into the numerator, retention can exceed 100% and churn becomes invisible.
+
+<h3>2. Mixing periods</h3>
+97% monthly retention and 69% annual retention describe the same company. Always state the period and never compare your monthly number with someone else's annual one.
+
+<h3>3. Counting a login as "active"</h3>
+A user who logged in and did nothing is not retained. Define the key action (sent a report, placed an order, played a track) and measure retention on that.
+
+<h3>4. Averaging all cohorts together</h3>
+A blended retention number hides the trend. If recent cohorts retain worse than older ones, your product or traffic quality is degrading — and the average won't show it.
+
+<h3>5. Confusing logos and revenue</h3>
+Logo retention (how many customers stayed) and revenue retention (how much revenue stayed) can diverge. Losing one large customer barely moves logo retention but hurts revenue.
+
+<h3>6. Cohorts that are too small</h3>
+Retention on a 50-person cohort is noise. For product decisions, use cohorts of at least a few hundred users or roll weeks up into months.
+
+<h2>4 levers to improve retention</h2>
+
+<ul><li><strong>Onboarding to the aha moment.</strong> Most churn happens in the first days. Shorten the path to first value — it's usually the fastest D1 and D7 win.</li><li><strong>Habits and triggers.</strong> Notifications and emails tied to what the user actually did, not to the marketing calendar.</li><li><strong>Traffic quality.</strong> Cheap acquisition channels often bring users who retain worse. Measure retention by source.</li><li><strong>Early churn signals.</strong> Activity usually drops 2–4 weeks before someone leaves — that's when you can still step in. More in our guide on <a href="/en/blog/churn-reduction-saas">reducing SaaS churn</a>.</li></ul>
+
+<h2>FAQ</h2>
+
+<h3>What is a good retention rate?</h3>
+It depends on the industry and the definition. For SaaS, account retention above 85% at D30 is good; for mobile apps, D30 above 8%; for e-commerce, more than 40% repeat buyers within 90 days. The calculator's universal guideline is above 60% for the period.
+
+<h3>How is retention different from churn?</h3>
+They are two sides of the same metric over the same period: retention is who stayed, churn is who left. 97% monthly retention = 3% monthly churn.
+
+<h3>How often should I measure retention?</h3>
+For a daily-use product — D1/D7/D30 on weekly cohorts. For a subscription business — monthly, on paying accounts. For e-commerce — quarterly, via the repeat purchase rate.
+
+<h3>Can retention be above 100%?</h3>
+Customer (logo) retention — no. If you got more than 100%, you probably didn't subtract new customers. Only revenue retention (NRR) can exceed 100%, thanks to upsells.
+
+<h2>Bottom line</h2>
+
+<p>Retention is the foundation of unit economics. Calculate it correctly (without new customers, on a key action, by cohort), compare it only with your industry's norm, and check whether the curve flattens. Everything else — LTV, CAC payback, NRR — is built on top of this number.</p>
+
+<p><strong>Calculate your retention in the calculator below</strong> — it scores the result for the industry you choose. And if you want the formulas and thresholds for every metric in one place, grab the free <a href="/benchmarks">PDF cheat sheet covering 69 metrics</a>.</p>
+
+<p>---</p>
+
+<h3>Further resources</h3>
+
+<ul><li><a href="/en/retention">/en/retention</a> — retention rate calculator</li><li><a href="/en/retention_aarrr">/en/retention_aarrr</a> — AARRR retention (Day-N cohorts)</li><li><a href="/en/churn">/en/churn</a> — churn calculator</li><li><a href="/en/nrr">/en/nrr</a> — Net Revenue Retention</li><li><a href="/en/blog/dau-mau-stickiness">/en/blog/dau-mau-stickiness</a> — DAU/MAU and stickiness</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Calculate it right here:</strong>
+  <iframe src="https://metricstree.vercel.app/retention?embed=1" width="100%" height="650" loading="lazy" title="MetricTree retention calculator"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Open the full version: <a href="https://metricstree.vercel.app/retention" target="_blank">https://metricstree.vercel.app/retention</a></p>
+</div>
+<div class="share-row">
+  Share:
+  <a href="https://twitter.com/intent/tweet?text=Retention%20rate%20%E2%80%94%20formula%2C%20worked%20example%20and%20benchmarks%20by%20industry&url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fretention-rate-benchmarks" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fretention-rate-benchmarks" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fretention-rate-benchmarks&text=Retention%20rate%20%E2%80%94%20formula%2C%20worked%20example%20and%20benchmarks%20by%20industry" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/en/blog/">All posts</a> · <a href="/en">Calculator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

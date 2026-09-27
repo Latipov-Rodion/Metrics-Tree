@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>CAC by channel — how to calculate customer acquisition cost for each channel | MetricTree Blog</title>
+<meta name="description" content="How to calculate CAC by channel (search ads, social, SEO, outbound, referrals): the formula, which costs to include, a worked SaaS example, payback by channel, benchmarks and common mistakes.">
+<meta name="keywords" content="cac by channel, customer acquisition cost by channel, how to calculate cac, cac formula, blended cac, paid cac, cac benchmarks">
+<link rel="canonical" href="https://metricstree.vercel.app/en/blog/cac-by-channel">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/cac-by-channel">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/cac-by-channel">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/cac-by-channel">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="CAC by channel — how to calculate customer acquisition cost for each channel">
+<meta property="og:description" content="How to calculate CAC by channel (search ads, social, SEO, outbound, referrals): the formula, which costs to include, a worked SaaS example, payback by channel, benchmarks and common mistakes.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/en/blog/cac-by-channel">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-09-24">
+<meta property="article:author" content="Rodion Latipov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CAC by channel — how to calculate customer acquisition cost for each channel">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "CAC by channel — how to calculate customer acquisition cost for each channel",
+  "description": "How to calculate CAC by channel (search ads, social, SEO, outbound, referrals): the formula, which costs to include, a worked SaaS example, payback by channel, benchmarks and common mistakes.",
+  "datePublished": "2026-09-24",
+  "author": {
+    "@type": "Person",
+    "name": "Rodion Latipov",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/en/blog/cac-by-channel"
+  },
+  "keywords": "cac by channel, customer acquisition cost by channel, how to calculate cac, cac formula, blended cac, paid cac, cac benchmarks",
+  "inLanguage": "en"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/en" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/en/blog/">Blog</a> · <a href="/en">Calculator →</a></div>
+</nav>
+<article>
+<h1>CAC by channel — how to calculate customer acquisition cost for each channel</h1>
+<div class="meta">2026-09-24 · by <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a></div>
+<h1>CAC by channel — how to calculate customer acquisition cost for each channel</h1>
+
+<p>Company-wide average CAC is a useful number for investors and an almost useless one for marketers. It hides a channel that brings customers for $200 and another where each customer costs $1,500. Budget decisions are made per channel — so CAC has to be calculated per channel too.</p>
+
+<h2>Formula</h2>
+
+<p><strong>Channel CAC = All costs of the channel for the period / New paying customers from the channel in the same period</strong></p>
+
+<p>"All costs" means more than the ad budget:<br><ul><li>media spend (clicks, impressions, placements);</li><li>agencies and freelancers;</li><li>content and creative production;</li><li>tools (SEO software, CRM, contact databases);</li><li>the share of salaries of the people working on that channel.</li></ul></p>
+
+<p>This gives three different CACs that you shouldn't mix up:</p>
+
+<table><thead><tr><th>Type</th><th>Numerator</th><th>Used for</th></tr></thead><tbody><tr><td></td><td><strong>Blended CAC</strong></td><td>All sales and marketing cost / all new customers (including organic)</td><td>Company unit economics, investor reporting</td><td></td></tr><tr><td></td><td><strong>Paid CAC</strong></td><td>Paid channel cost / customers from paid channels</td><td>Ad budget decisions</td><td></td></tr><tr><td></td><td><strong>Channel CAC</strong></td><td>One channel's cost / its customers</td><td>Reallocating budget between channels</td><td></td></tr></tbody></table>
+Blended CAC always looks better than paid CAC because organic customers "for free" pull the average down. Showing investors only blended CAC without paid CAC is a common and very visible mistake.
+
+<h2>Worked example: B2B SaaS, one quarter</h2>
+
+<table><thead><tr><th>Channel</th><th>Cost</th><th>New customers</th><th>CAC</th></tr></thead><tbody><tr><td></td><td>Search ads (budget $30,000 + agency $3,000)</td><td>$33,000</td><td>60</td><td><strong>$550</strong></td><td></td></tr><tr><td></td><td>LinkedIn Ads</td><td>$20,000</td><td>16</td><td><strong>$1,250</strong></td><td></td></tr><tr><td></td><td>SEO and content (writers $9,000 + tools $1,000 + 0.5 FTE $9,000)</td><td>$19,000</td><td>38</td><td><strong>$500</strong></td><td></td></tr><tr><td></td><td>Outbound (2 SDRs $30,000 + tools $3,000)</td><td>$33,000</td><td>22</td><td><strong>$1,500</strong></td><td></td></tr><tr><td></td><td>Referral program (rewards)</td><td>$4,000</td><td>20</td><td><strong>$200</strong></td><td></td></tr><tr><td></td><td><strong>Total (blended)</strong></td><td><strong>$109,000</strong></td><td><strong>156</strong></td><td><strong>≈ $699</strong></td><td></td></tr></tbody></table>
+Blended CAC ≈ $699 is "average" on the MetricTree calculator's base scale ($300–$800; good is <$300, poor is >$800). But the spread between channels is more than 7×.
+
+<h2>CAC alone doesn't tell you which channel is best</h2>
+
+<p>An expensive channel can be the best one if it brings more valuable customers. That's why channel CAC is always converted into <strong>payback</strong>:</p>
+
+<p><strong>CAC Payback = CAC / (MRR per customer × gross margin)</strong></p>
+
+<p>Say gross margin is 80%, most channels bring customers at $120 MRR ($96/month contribution), while outbound brings larger customers at $300 MRR ($240/month):</p>
+
+<table><thead><tr><th>Channel</th><th>CAC</th><th>Customer MRR</th><th>Payback</th></tr></thead><tbody><tr><td></td><td>Referral program</td><td>$200</td><td>$120</td><td><strong>2.1 months</strong></td><td></td></tr><tr><td></td><td>SEO and content</td><td>$500</td><td>$120</td><td><strong>5.2 months</strong></td><td></td></tr><tr><td></td><td>Search ads</td><td>$550</td><td>$120</td><td><strong>5.7 months</strong></td><td></td></tr><tr><td></td><td>Outbound</td><td>$1,500</td><td>$300</td><td><strong>6.3 months</strong></td><td></td></tr><tr><td></td><td>LinkedIn Ads</td><td>$1,250</td><td>$120</td><td><strong>13.0 months</strong></td><td></td></tr></tbody></table>
+Outbound has the highest CAC, yet its payback is in the same group as search ads. LinkedIn at 13 months falls into the "normal" range for SaaS (good is <12 months, normal 12–18, poor >18), but it's the first candidate for optimization. Calculate payback at <a href="/en/cacPayback">/en/cacPayback</a>.
+
+<p>The final test is LTV to CAC per channel: for most models the guideline is LTV > 3× CAC (<a href="/en/ltv_cac">/en/ltv_cac</a>).</p>
+
+<h2>Typical differences between channels</h2>
+
+<p>Absolute CAC depends heavily on niche, geography and deal size, so universal "per-channel benchmarks" don't exist. But the patterns are stable:</p>
+
+<ul><li><strong>Referrals and word of mouth</strong> — usually the lowest CAC and the best retention, but hard to scale on demand.</li><li><strong>SEO and content</strong> — low CAC over a one-year horizon, but the first months are spend without customers. Account for the lag.</li><li><strong>Search ads</strong> — scale quickly; CAC rises with budget and auction competition.</li><li><strong>Paid social</strong> — cheap clicks, often lower conversion to paying customers in B2B.</li><li><strong>Outbound and sales</strong> — high CAC but larger deals; judge them only by payback.</li></ul>
+
+<p>Intermediate benchmarks from the MetricTree calculators for B2B SaaS: CPC of $2–$8 is normal, CPL of $20–$200 per MQL, CPA per trial or demo of $30–$150. On their own they decide nothing: a cheap lead that never converts into a customer costs more than an expensive one that does. Reports on CAC by industry and channel are published by, for example, First Page Sage and HubSpot (State of Marketing) — treat them only as rough guidance, since everyone's methodology differs.</p>
+
+<h2>Common mistakes</h2>
+
+<h3>1. Counting only the ad budget</h3>
+Without salaries, agencies and tools, SEO and outbound look almost free. Correct channel CAC includes everything that would disappear if you switched the channel off.
+
+<h3>2. Leads and trials instead of paying customers</h3>
+CAC is the cost of a <strong>customer</strong>. The cost of a lead is CPL (<a href="/en/cpl">/en/cpl</a>); the cost of an action is CPA (<a href="/en/cpa">/en/cpa</a>).
+
+<h3>3. Ignoring the lag</h3>
+SEO spend in January brings customers in May; an outbound deal closes 2–3 months later. Match costs and customers taking the sales cycle into account — otherwise a new channel always looks like a failure and the one you're winding down looks great.
+
+<h3>4. Last-click attribution</h3>
+A customer read an article, saw a retargeting ad and came in through a branded search. Last-click gives all the credit to search ads, and SEO is undervalued. Use at least a "how did you hear about us" survey as a second source.
+
+<h3>5. Average CAC instead of marginal CAC</h3>
+If a channel brings customers at $550, it doesn't mean the next $10,000 of budget will buy them at the same price. CAC almost always rises with budget. Test scaling in steps.
+
+<h3>6. One MRR for every channel</h3>
+Channels bring different customers. Measure ARPA and retention by channel — otherwise your payback figures are wrong.
+
+<h2>FAQ</h2>
+
+<h3>Should salaries be included in CAC?</h3>
+Yes — in proportion to the time people spend on acquisition. Without salaries, the CAC of labour-heavy channels (SEO, outbound) is understated several times over.
+
+<h3>How often should CAC by channel be recalculated?</h3>
+Monthly for paid channels, and quarterly for SEO and outbound, where the lag between spend and customers is longer.
+
+<h2>Bottom line</h2>
+
+<p>Calculate CAC separately for each channel, include every cost, match it to paying customers with the lag in mind — and decide on payback and LTV:CAC, not on CAC itself. Keep blended CAC for investor reporting, and allocate budget from the per-channel table.</p>
+
+<p><strong>Calculate each channel's CAC in the calculator below</strong>, then its payback at <a href="/en/cacPayback">/en/cacPayback</a>. Formulas and thresholds for CAC, CPL, CPA, LTV:CAC and 65 more metrics are in the free <a href="/benchmarks">PDF cheat sheet</a>.</p>
+
+<p>---</p>
+
+<h3>Further resources</h3>
+
+<ul><li><a href="/en/cac">/en/cac</a> — CAC calculator</li><li><a href="/en/cacPayback">/en/cacPayback</a> — CAC payback</li><li><a href="/en/ltv_cac">/en/ltv_cac</a> — LTV:CAC ratio</li><li><a href="/en/cpl">/en/cpl</a> — cost per lead</li><li><a href="/en/blog/cac-payback-period">/en/blog/cac-payback-period</a> — why CAC Payback matters more than LTV:CAC</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Calculate it right here:</strong>
+  <iframe src="https://metricstree.vercel.app/cac?embed=1" width="100%" height="650" loading="lazy" title="MetricTree cac calculator"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Open the full version: <a href="https://metricstree.vercel.app/cac" target="_blank">https://metricstree.vercel.app/cac</a></p>
+</div>
+<div class="share-row">
+  Share:
+  <a href="https://twitter.com/intent/tweet?text=CAC%20by%20channel%20%E2%80%94%20how%20to%20calculate%20customer%20acquisition%20cost%20for%20each%20channel&url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fcac-by-channel" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fcac-by-channel" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fcac-by-channel&text=CAC%20by%20channel%20%E2%80%94%20how%20to%20calculate%20customer%20acquisition%20cost%20for%20each%20channel" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/en/blog/">All posts</a> · <a href="/en">Calculator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ROAS vs ROMI — how to calculate both and what ROAS you need to break even | MetricTree Blog</title>
+<meta name="description" content="ROAS = revenue / ad spend, ROMI = (gross profit − marketing cost) / marketing cost. Formulas, a worked example, break-even ROAS from your margin, benchmarks and common mistakes.">
+<meta name="keywords" content="roas, romi, roas vs romi, how to calculate roas, romi formula, break-even roas, return on ad spend, return on marketing investment">
+<link rel="canonical" href="https://metricstree.vercel.app/en/blog/roas-vs-romi">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/roas-vs-romi">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/roas-vs-romi">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/roas-vs-romi">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="ROAS vs ROMI — how to calculate both and what ROAS you need to break even">
+<meta property="og:description" content="ROAS = revenue / ad spend, ROMI = (gross profit − marketing cost) / marketing cost. Formulas, a worked example, break-even ROAS from your margin, benchmarks and common mistakes.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/en/blog/roas-vs-romi">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-09-22">
+<meta property="article:author" content="Rodion Latipov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ROAS vs ROMI — how to calculate both and what ROAS you need to break even">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ROAS vs ROMI — how to calculate both and what ROAS you need to break even",
+  "description": "ROAS = revenue / ad spend, ROMI = (gross profit − marketing cost) / marketing cost. Formulas, a worked example, break-even ROAS from your margin, benchmarks and common mistakes.",
+  "datePublished": "2026-09-22",
+  "author": {
+    "@type": "Person",
+    "name": "Rodion Latipov",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/en/blog/roas-vs-romi"
+  },
+  "keywords": "roas, romi, roas vs romi, how to calculate roas, romi formula, break-even roas, return on ad spend, return on marketing investment",
+  "inLanguage": "en"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/en" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/en/blog/">Blog</a> · <a href="/en">Calculator →</a></div>
+</nav>
+<article>
+<h1>ROAS vs ROMI — how to calculate both and what ROAS you need to break even</h1>
+<div class="meta">2026-09-22 · by <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a></div>
+<h1>ROAS vs ROMI — how to calculate both and what ROAS you need to break even</h1>
+
+<p>"Our ROAS is 350%, ads are paying off" is one of the most expensive sentences in marketing. ROAS shows revenue per dollar of ad spend, but says nothing about profit. A store running 3.5x ROAS may be making money on every campaign — or losing it. Margin decides. ROMI answers the question the owner actually cares about: how much profit did marketing generate?</p>
+
+<h2>Formulas</h2>
+
+<p><strong>ROAS (Return on Ad Spend) = Revenue from ads / Ad spend</strong></p>
+
+<p>Expressed as a multiplier (3.5x) or a percentage (350%). Calculated per campaign, channel or ad.</p>
+
+<p><strong>ROMI (Return on Marketing Investment) = (Gross profit from marketing − Marketing cost) / Marketing cost × 100%</strong></p>
+
+<p>Gross profit = revenue × margin (ideally contribution margin: after COGS, shipping, payment fees and returns).</p>
+
+<p>The key differences:</p>
+
+<table><thead><tr><th>Parameter</th><th>ROAS</th><th>ROMI</th></tr></thead><tbody><tr><td></td><td>Numerator</td><td>Revenue</td><td>Profit minus cost</td><td></td></tr><tr><td></td><td>Denominator</td><td>Ad budget only</td><td>All marketing cost (ads, agency, creative, tools)</td><td></td></tr><tr><td></td><td>Break-even point</td><td>Depends on margin</td><td>Always 0%</td><td></td></tr><tr><td></td><td>Used for</td><td>Optimizing campaigns and bids</td><td>Deciding whether to invest in marketing at all</td><td></td></tr></tbody></table>
+<h2>Worked example</h2>
+
+<p>An online store, one month:<br><ul><li>Ad spend: <strong>$20,000</strong></li><li>Attributed revenue: <strong>$70,000</strong></li><li>Contribution margin: <strong>35%</strong></li></ul></p>
+
+<p>ROAS = 70,000 / 20,000 = <strong>3.5x</strong></p>
+
+<p>Profit from sales = 70,000 × 0.35 = $24,500<br>ROMI = (24,500 − 20,000) / 20,000 = <strong>22.5%</strong></p>
+
+<p>Marketing pays off: every ad dollar came back and brought another 22.5 cents of profit.</p>
+
+<p>Now the same 3.5x ROAS, but with a <strong>25%</strong> margin (say, a discount-heavy sale):</p>
+
+<p>Profit = 70,000 × 0.25 = $17,500<br>ROMI = (17,500 − 20,000) / 20,000 = <strong>−12.5%</strong></p>
+
+<p>ROAS didn't move, yet the campaign now loses money. That's why ROAS without margin is a half-truth.</p>
+
+<h2>Break-even ROAS: the one formula every marketer needs</h2>
+
+<p><strong>Break-even ROAS = 1 / Margin</strong></p>
+
+<table><thead><tr><th>Contribution margin</th><th>Break-even ROAS</th></tr></thead><tbody><tr><td></td><td>20%</td><td>5.0x</td><td></td></tr><tr><td></td><td>25%</td><td>4.0x</td><td></td></tr><tr><td></td><td>35%</td><td>2.86x</td><td></td></tr><tr><td></td><td>50%</td><td>2.0x</td><td></td></tr><tr><td></td><td>70%</td><td>1.43x</td><td></td></tr></tbody></table>
+Calculate this number once for your product mix and keep it in view. Anything below it means you're buying revenue at a loss. Work out your margin with the <a href="/en/contributionMargin">/en/contributionMargin</a> calculator.
+
+<h2>ROAS benchmarks by industry</h2>
+
+<p>The industry thresholds used by the MetricTree <a href="/en/roas">/en/roas</a> calculator:</p>
+
+<table><thead><tr><th>Industry</th><th>Poor</th><th>Normal</th><th>Good</th></tr></thead><tbody><tr><td></td><td><strong>Universal</strong></td><td><2x</td><td>2–4x</td><td>>4x</td><td></td></tr><tr><td></td><td><strong>E-commerce</strong></td><td><2x</td><td>2–5x</td><td>>5x</td><td></td></tr><tr><td></td><td><strong>SaaS</strong></td><td><1.5x</td><td>1.5–4x</td><td>>4x</td><td></td></tr><tr><td></td><td><strong>Mobile apps</strong></td><td><1x</td><td>1–2.5x</td><td>>2.5x</td><td></td></tr><tr><td></td><td><strong>Media</strong></td><td><1.2x</td><td>1.2–3x</td><td>>3x</td><td></td></tr></tbody></table>
+Why are SaaS and mobile thresholds lower? Because ROAS there is usually measured on first-period revenue, while customers pay for months. A 1.5x first-month ROAS on a subscription can be an excellent campaign if the customer stays two years. For these models look at CAC payback too — <a href="/en/cacPayback">/en/cacPayback</a>.
+
+<p>In our example, 3.5x is normal for e-commerce, and at a 35% margin the campaign is profitable. At a 25% margin the same "normal" number loses money: the break-even threshold is 4x.</p>
+
+<h2>MER — an honesty check for ROAS</h2>
+
+<p>Ad platforms tend to claim credit: overlapping attribution, view-through conversions, buyers who would have purchased anyway. The sum of ROAS across all ad accounts is often larger than your real revenue.</p>
+
+<p>The check is <strong>MER (Marketing Efficiency Ratio) = Total revenue / Total marketing spend</strong>. DTC guideline: <2 weak, 2–3 normal, 3–5 good, >5 excellent. If platform ROAS keeps rising while MER stays flat, attribution is fooling you. Calculator — <a href="/en/mer">/en/mer</a>.</p>
+
+<h2>ROMI with LTV</h2>
+
+<p>For businesses with repeat purchases or subscriptions, ROMI on the first order understates the effect. A fairer version:</p>
+
+<p><strong>ROMI (LTV) = (LTV × margin × new customers − Marketing cost) / Marketing cost</strong></p>
+
+<p>But be careful: LTV is a forecast. Use a conservative horizon (for example, 12 months) and validate it against real cohorts. Otherwise it's easy to "prove" that anything pays off.</p>
+
+<h2>Common mistakes</h2>
+
+<h3>1. Calculating ROMI on revenue instead of profit</h3>
+"ROMI = (revenue − cost) / cost" is just ROAS minus one, not ROMI. With that formula a loss-making campaign looks profitable.
+
+<h3>2. Ignoring indirect costs</h3>
+Agency fees, creative production, tools, the performance team's salaries. They're not in ROAS, but they belong in ROMI.
+
+<h3>3. Trusting platform attribution 100%</h3>
+Last-click and view-through inflate the numbers. Cross-check with MER and, where possible, incrementality tests (switching a channel off in some regions).
+
+<h3>4. One margin for the whole catalog</h3>
+If ads mostly sell low-margin products, the store's average margin overstates ROMI. Use the margin of the products the campaign actually sold.
+
+<h3>5. Comparing ROAS across business models</h3>
+2x in a mobile game and 2x in an electronics store are completely different results. Compare against your industry's norm and your own break-even threshold.
+
+<h3>6. Optimizing for ROAS alone</h3>
+The highest ROAS almost always comes at the smallest budget (warm audiences, branded search). The goal is maximum profit, not the maximum ratio.
+
+<h2>FAQ</h2>
+
+<h3>What is a good ROAS?</h3>
+One that sits above your break-even threshold (1 / margin) with room for indirect costs. As an industry guideline: 2–5x is normal for e-commerce and above 5x is good; 1.5–4x is normal for SaaS.
+
+<h3>Does 100% ROAS mean the ads paid off?</h3>
+No. A 1x (100%) ROAS means revenue equals ad spend. But that revenue still has to cover COGS, shipping and fees — so the campaign loses money at almost any margin.
+
+<h3>Can I calculate ROMI for SEO and content?</h3>
+Yes, with the same formula: writers' salaries, tools and contractors go in the denominator; profit from organic customers goes in the numerator. Use a longer horizon for SEO — 6–12 months or more.
+
+<h3>How is ROAS different from MER and CAC?</h3>
+ROAS measures the efficiency of a specific campaign or channel based on attribution data. MER measures the efficiency of all marketing against the company's real revenue, with no attribution. CAC answers a different question: what one new customer costs, not how much revenue an ad dollar brought in. In e-commerce it's worth keeping all three on one dashboard.
+
+<h2>Bottom line</h2>
+
+<p>ROAS is an operating metric for optimizing campaigns. ROMI is a financial metric for deciding how much to invest in marketing. Margin connects them: know your break-even ROAS, check ad platforms against MER, and calculate ROMI on profit, not revenue.</p>
+
+<p><strong>Calculate your campaign's ROAS in the calculator below</strong> and compare it with your break-even threshold. Formulas and benchmarks for ROAS, MER, CAC and 66 more metrics are in the free <a href="/benchmarks">PDF cheat sheet</a>.</p>
+
+<p>---</p>
+
+<h3>Further resources</h3>
+
+<ul><li><a href="/en/roas">/en/roas</a> — ROAS calculator</li><li><a href="/en/mer">/en/mer</a> — Marketing Efficiency Ratio</li><li><a href="/en/contributionMargin">/en/contributionMargin</a> — contribution margin for break-even ROAS</li><li><a href="/en/cac">/en/cac</a> — customer acquisition cost</li><li><a href="/en/blog/aov-ecommerce-growth">/en/blog/aov-ecommerce-growth</a> — how to grow average order value</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Calculate it right here:</strong>
+  <iframe src="https://metricstree.vercel.app/roas?embed=1" width="100%" height="650" loading="lazy" title="MetricTree roas calculator"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Open the full version: <a href="https://metricstree.vercel.app/roas" target="_blank">https://metricstree.vercel.app/roas</a></p>
+</div>
+<div class="share-row">
+  Share:
+  <a href="https://twitter.com/intent/tweet?text=ROAS%20vs%20ROMI%20%E2%80%94%20how%20to%20calculate%20both%20and%20what%20ROAS%20you%20need%20to%20break%20even&url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Froas-vs-romi" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Froas-vs-romi" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Froas-vs-romi&text=ROAS%20vs%20ROMI%20%E2%80%94%20how%20to%20calculate%20both%20and%20what%20ROAS%20you%20need%20to%20break%20even" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/en/blog/">All posts</a> · <a href="/en">Calculator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

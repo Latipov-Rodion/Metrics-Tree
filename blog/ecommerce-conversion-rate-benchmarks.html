@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Конверсия интернет-магазина — нормы по шагам воронки e-commerce и как её посчитать | MetricTree Blog</title>
+<meta name="description" content="Какая конверсия интернет-магазина считается нормальной: формула CR, воронка от сессии до заказа, пример расчёта, нормы по конверсии, брошенным корзинам и отказам, типичные ошибки.">
+<meta name="keywords" content="конверсия интернет-магазина, конверсия e-commerce, нормальная конверсия сайта, воронка интернет-магазина, конверсия в покупку, брошенные корзины, cr интернет-магазина">
+<link rel="canonical" href="https://metricstree.vercel.app/blog/ecommerce-conversion-rate-benchmarks">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/ecommerce-conversion-rate-benchmarks">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/ecommerce-conversion-rate-benchmarks">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/ecommerce-conversion-rate-benchmarks">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Конверсия интернет-магазина — нормы по шагам воронки e-commerce и как её посчитать">
+<meta property="og:description" content="Какая конверсия интернет-магазина считается нормальной: формула CR, воронка от сессии до заказа, пример расчёта, нормы по конверсии, брошенным корзинам и отказам, типичные ошибки.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/blog/ecommerce-conversion-rate-benchmarks">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-09-25">
+<meta property="article:author" content="Родион Латыпов">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Конверсия интернет-магазина — нормы по шагам воронки e-commerce и как её посчитать">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Конверсия интернет-магазина — нормы по шагам воронки e-commerce и как её посчитать",
+  "description": "Какая конверсия интернет-магазина считается нормальной: формула CR, воронка от сессии до заказа, пример расчёта, нормы по конверсии, брошенным корзинам и отказам, типичные ошибки.",
+  "datePublished": "2026-09-25",
+  "author": {
+    "@type": "Person",
+    "name": "Родион Латыпов",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/blog/ecommerce-conversion-rate-benchmarks"
+  },
+  "keywords": "конверсия интернет-магазина, конверсия e-commerce, нормальная конверсия сайта, воронка интернет-магазина, конверсия в покупку, брошенные корзины, cr интернет-магазина",
+  "inLanguage": "ru"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div>
+</nav>
+<article>
+<h1>Конверсия интернет-магазина — нормы по шагам воронки e-commerce и как её посчитать</h1>
+<div class="meta">2026-09-25 · автор: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a></div>
+<h1>Конверсия интернет-магазина — нормы по шагам воронки e-commerce и как её посчитать</h1>
+
+<p>«Какая конверсия нормальная для интернет-магазина?» — один из самых частых вопросов в e-commerce. Короткий ответ: 1–4% сессий заканчиваются заказом. Длинный ответ полезнее: одна итоговая цифра почти ничего не говорит о том, где вы теряете покупателей. Смотреть нужно на воронку по шагам.</p>
+
+<h2>Формула</h2>
+
+<p><strong>Конверсия (CR) = Заказы / Сессии × 100%</strong></p>
+
+<p>Иногда считают на пользователей, а не на сессии — тогда цифра выше, потому что один человек заходит несколько раз перед покупкой. Главное — выбрать одно определение и не менять его.</p>
+
+<p>Калькулятор <a href="/cr">/cr</a> считает базовый вариант: целевые действия / посетители.</p>
+
+<h2>Воронка e-commerce по шагам</h2>
+
+<p>Типичная воронка интернет-магазина:</p>
+
+<ul><li><strong>Сессия</strong> → посетитель зашёл на сайт</li><li><strong>Просмотр карточки товара</strong></li><li><strong>Добавление в корзину</strong></li><li><strong>Начало оформления заказа</strong> (checkout)</li><li><strong>Заказ</strong></li></ul>
+
+<p>У каждого шага своя конверсия и свои причины потерь: на первом шаге — нерелевантный трафик и медленная загрузка, на карточке — фото, цена и отзывы, в корзине — стоимость доставки и неожиданные платежи, в оформлении — длинные формы и обязательная регистрация.</p>
+
+<h2>Пример расчёта</h2>
+
+<p>Магазин за месяц:</p>
+
+<table><thead><tr><th>Шаг</th><th>Количество</th><th>Конверсия шага</th><th>От сессий</th></tr></thead><tbody><tr><td></td><td>Сессии</td><td>100 000</td><td>—</td><td>100%</td><td></td></tr><tr><td></td><td>Просмотр карточки</td><td>55 000</td><td>55%</td><td>55%</td><td></td></tr><tr><td></td><td>Добавление в корзину</td><td>8 000</td><td>14.5%</td><td>8%</td><td></td></tr><tr><td></td><td>Начало оформления</td><td>4 000</td><td>50%</td><td>4%</td><td></td></tr><tr><td></td><td>Заказ</td><td>2 200</td><td>55%</td><td>2.2%</td><td></td></tr></tbody></table>
+<strong>CR = 2 200 / 100 000 = 2.2%</strong> — в пределах нормы для e-commerce.
+
+<p><strong>Брошенные корзины = 1 − 2 200 / 8 000 = 72.5%</strong> — около среднего по рынку, чуть хуже 70%.</p>
+
+<p>При среднем чеке $60 выручка = 2 200 × $60 = <strong>$132 000</strong>.</p>
+
+<p>Теперь сценарий: убираем сюрприз со стоимостью доставки (показываем её на карточке) и включаем гостевое оформление. Допустим, доля брошенных корзин падает до <strong>65%</strong>:</p>
+
+<p>Заказы = 8 000 × 0.35 = <strong>2 800</strong> → CR = <strong>2.8%</strong>, выручка = <strong>$168 000</strong> (+$36 000, +27%) — без единого дополнительного доллара на трафик.</p>
+
+<h2>Нормы для e-commerce</h2>
+
+<p>Пороги, которые использует MetricTree для индустрии e-commerce:</p>
+
+<table><thead><tr><th>Метрика</th><th>Плохо</th><th>Норма</th><th>Хорошо</th></tr></thead><tbody><tr><td></td><td><strong>Конверсия в заказ (CR)</strong></td><td><1%</td><td>1–4%</td><td>>4%</td><td></td></tr><tr><td></td><td><strong>Брошенные корзины</strong></td><td>>75% (тревожно)</td><td>~70% (среднее)</td><td><60%</td><td></td></tr><tr><td></td><td><strong>Показатель отказов</strong></td><td>>55%</td><td>30–55%</td><td><30%</td><td></td></tr><tr><td></td><td><strong>Повторные покупки</strong></td><td><10%</td><td>20–30%</td><td>30–50% (>50% отлично)</td><td></td></tr></tbody></table>
+Брошенные корзины по категориям: fashion 68–72%, beauty 65–70%, электроника 75–82%. На мобильном вебе доля брошенных корзин выше, чем на десктопе: 78–85% — типично.
+
+<p>Среднее значение около 70% совпадает с многолетними исследованиями Baymard Institute — это самый цитируемый источник по брошенным корзинам и UX оформления заказа. Там же подробно разобраны причины: дополнительные расходы на этапе оформления, обязательная регистрация, долгая доставка, длинная форма.</p>
+
+<p>Почему у разных магазинов конверсия отличается в разы:<br><ul><li><strong>Средний чек.</strong> Дорогие покупки (электроника, мебель) обдумывают дольше — CR ниже, но и AOV выше.</li><li><strong>Трафик.</strong> Брендовый и email-трафик конвертируется в разы лучше холодного таргета.</li><li><strong>Устройство.</strong> Мобильный трафик обычно конвертируется хуже десктопа при большей доле сессий.</li><li><strong>Повторные покупатели.</strong> У магазина с высокой долей возвращающихся клиентов CR выше.</li></ul></p>
+
+<h2>Типичные ошибки</h2>
+
+<h3>1. Сравнивать себя с чужой нишей</h3>
+CR 1.5% в мебели может быть отличным результатом, а в расходниках — слабым. Сравнивайте с нормой своей категории и со своей динамикой.
+
+<h3>2. Смотреть на CR без среднего чека</h3>
+Рост конверсии за счёт скидок часто сопровождается падением AOV и маржи. Смотрите выручку на сессию = CR × AOV (<a href="/aov">/aov</a>).
+
+<h3>3. Считать брошенные корзины от сессий</h3>
+Правильная база — созданные корзины, а не все визиты. Иначе вы смешаете проблемы корзины с проблемами карточки и трафика. Калькулятор — <a href="/cartAbandonment">/cartAbandonment</a>.
+
+<h3>4. Не чистить ботов и внутренний трафик</h3>
+Боты, сотрудники и тестовые заказы занижают или завышают CR. Отфильтруйте их в аналитике до расчёта.
+
+<h3>5. Усреднять все источники и устройства</h3>
+Средняя конверсия 2.2% может складываться из 4% на десктопе и 1.2% на мобильных. Проблема в мобильном оформлении не будет видна в среднем.
+
+<h3>6. Игнорировать сезонность</h3>
+Конверсия в ноябре во время распродаж и в феврале — разные рынки. Сравнивайте год к году или со скользящим средним.
+
+<h2>Что поднимает конверсию быстрее всего</h2>
+
+<ul><li><strong>Прозрачная стоимость доставки</strong> до корзины — главная причина брошенных корзин.</li><li><strong>Гостевое оформление</strong> без обязательной регистрации.</li><li><strong>Короткая форма и автозаполнение</strong> адреса, популярные способы оплаты.</li><li><strong>Скорость загрузки</strong> карточки и корзины на мобильных.</li><li><strong>Отзывы и фото</strong> на карточке — работают на шаге «просмотр → корзина».</li><li><strong>Письма о брошенной корзине</strong> — возвращают часть покупателей почти бесплатно.</li></ul>
+
+<h2>Как искать узкое место в воронке</h2>
+
+<p>Сравнивайте не итоговую конверсию, а каждый шаг с собственной историей и с соседними сегментами:</p>
+
+<ul><li><strong>Мало просмотров карточек</strong> при нормальном трафике — проблема с релевантностью трафика или с навигацией и поиском по каталогу.</li><li><strong>Мало добавлений в корзину</strong> — цена, фото, отзывы, наличие размеров, сроки доставки на карточке.</li><li><strong>Много брошенных корзин</strong> — неожиданные расходы, обязательная регистрация, мало способов оплаты.</li><li><strong>Низкая конверсия оформления</strong> — длинная форма, ошибки валидации, медленная страница оплаты.</li></ul>
+
+<p>Удобный приём — считать потенциальный эффект: сколько заказов вы получите, если подтянуть один шаг до уровня нормы. В примере выше снижение брошенных корзин на 7.5 п.п. дало +27% выручки. Начинайте со шага, где такой прирост максимален при минимальной стоимости изменения.</p>
+
+<h2>Частые вопросы</h2>
+
+<h3>Какая средняя конверсия интернет-магазина?</h3>
+Около 1–4% сессий; ниже 1% — повод искать проблему, выше 4% — хороший результат. Сильно зависит от категории, среднего чека и источника трафика.
+
+<h3>Считать конверсию от сессий или от пользователей?</h3>
+Оба варианта корректны. Сессионная конверсия ниже и чаще используется в веб-аналитике. Главное — не смешивать их при сравнении периодов.
+
+<h3>Почему конверсия на мобильных ниже?</h3>
+Маленький экран, неудобный ввод адреса и карты, медленная загрузка и привычка «присматривать» товар с телефона, а покупать с компьютера. Часть мобильных сессий конвертируется позже на другом устройстве — поэтому смотрите и кросс-девайсную атрибуцию, а не только мобильный CR.
+
+<h2>Итог</h2>
+
+<p>Нормальная конверсия интернет-магазина — 1–4%, хорошая — выше 4%, но итоговая цифра важна меньше, чем воронка по шагам. Найдите шаг с самой большой потерей относительно нормы, исправьте его и считайте эффект в выручке на сессию, а не только в процентах конверсии.</p>
+
+<p><strong>Посчитайте конверсию своего магазина в калькуляторе ниже</strong>, затем проверьте <a href="/cartAbandonment">брошенные корзины</a> и <a href="/bounceRate">отказы</a>. Бесплатная <a href="/benchmarks">PDF-шпаргалка</a> с формулами и нормами для 69 метрик поможет собрать полный дашборд воронки.</p>
+
+<p>---</p>
+
+<h3>Дополнительные ресурсы</h3>
+
+<ul><li><a href="/cr">/cr</a> — калькулятор конверсии</li><li><a href="/cartAbandonment">/cartAbandonment</a> — брошенные корзины</li><li><a href="/aov">/aov</a> — средний чек</li><li><a href="/repeatPurchaseRate">/repeatPurchaseRate</a> — доля повторных покупок</li><li><a href="/blog/aov-ecommerce-growth">/blog/aov-ecommerce-growth</a> — как растить средний чек</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Считай прямо здесь:</strong>
+  <iframe src="https://metricstree.vercel.app/cr?embed=1" width="100%" height="650" loading="lazy" title="MetricTree cr калькулятор"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Открыть в полной версии: <a href="https://metricstree.vercel.app/cr" target="_blank">https://metricstree.vercel.app/cr</a></p>
+</div>
+<div class="share-row">
+  Поделиться:
+  <a href="https://twitter.com/intent/tweet?text=%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B0%20%E2%80%94%20%D0%BD%D0%BE%D1%80%D0%BC%D1%8B%20%D0%BF%D0%BE%20%D1%88%D0%B0%D0%B3%D0%B0%D0%BC%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD%D0%BA%D0%B8%20e-commerce%20%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D0%B5%D1%91%20%D0%BF%D0%BE%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C&url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fecommerce-conversion-rate-benchmarks" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fecommerce-conversion-rate-benchmarks" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fecommerce-conversion-rate-benchmarks&text=%D0%9A%D0%BE%D0%BD%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%BD%D0%B5%D1%82-%D0%BC%D0%B0%D0%B3%D0%B0%D0%B7%D0%B8%D0%BD%D0%B0%20%E2%80%94%20%D0%BD%D0%BE%D1%80%D0%BC%D1%8B%20%D0%BF%D0%BE%20%D1%88%D0%B0%D0%B3%D0%B0%D0%BC%20%D0%B2%D0%BE%D1%80%D0%BE%D0%BD%D0%BA%D0%B8%20e-commerce%20%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D0%B5%D1%91%20%D0%BF%D0%BE%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="/blog/">Все посты</a> · <a href="/">Калькулятор</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>
