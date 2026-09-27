@@ -4764,6 +4764,10 @@ window._tTooltip = function(ruText) {
         return null;
     }
 
+    function langPrefix() {
+        return currentLang === 'en' || currentLang === 'uz' ? '/' + currentLang : '';
+    }
+
     function buildShareURL(opts) {
         const useClean = opts && opts.clean;
         const metric = getCurrentMetric();
@@ -4784,17 +4788,20 @@ window._tTooltip = function(ruText) {
         const origin = window.location.origin;
         if (useClean && currentMetricId) {
             const qs = params.toString();
-            return `${origin}/${currentMetricId}${qs ? '?' + qs : ''}`;
+            return `${origin}${langPrefix()}/${currentMetricId}${qs ? '?' + qs : ''}`;
         }
         params.set('s', currentSection);
         params.set('m', currentMetricId);
-        return `${origin}/?${params.toString()}`;
+        return `${origin}${langPrefix() || '/'}?${params.toString()}`;
     }
 
     // \u041E\u0431\u043D\u043E\u0432\u0438\u0442\u044C \u0430\u0434\u0440\u0435\u0441\u043D\u0443\u044E \u0441\u0442\u0440\u043E\u043A\u0443 \u0434\u043E \u0447\u0438\u0441\u0442\u043E\u0433\u043E URL \u0431\u0435\u0437 \u043F\u0435\u0440\u0435\u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0438
     function syncCleanURL() {
         if (!currentMetricId) return;
-        const path = '/' + currentMetricId;
+        // Keep the language prefix: /en/cac, /uz/cac. Dropping it sent EN/UZ users
+        // (and anyone they shared the link with) to the Russian page on reload.
+        // Also runs on a language switch (via renderMetricCard), so the URL follows it.
+        const path = langPrefix() + '/' + currentMetricId;
         const search = window.location.search;
         const newUrl = path + search + window.location.hash;
         // \u041E\u0431\u043D\u043E\u0432\u043B\u044F\u0435\u043C \u0442\u043E\u043B\u044C\u043A\u043E \u0435\u0441\u043B\u0438 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0442\u0435\u043B\u044C\u043D\u043E \u043E\u0442\u043B\u0438\u0447\u0430\u0435\u0442\u0441\u044F, \u0447\u0442\u043E\u0431\u044B \u043D\u0435 \u043F\u043B\u043E\u0434\u0438\u0442\u044C history-\u0437\u0430\u043F\u0438\u0441\u0438
@@ -7136,7 +7143,7 @@ window._tTooltip = function(ruText) {
                 if (window.track) window.track('lead', { source: source });
                 formEl.style.display = 'none';
                 if (successEl) successEl.style.display = 'block';
-                showToast('✓ ' + (window._t ? window._t('newsletter.success', 'Подписка оформлена!') : 'Subscribed!'), 'success');
+                showToast('✓ ' + (window._t ? window._t('newsletter.success', 'Подписка оформлена!') : 'Subscribed!').replace(/^✓\s*/, ''), 'success');
             } else {
                 // Fallback path: open mailto so the lead reaches Rodion even when Formspree is down/unregistered.
                 openMailtoFallback(source, formData);
@@ -7339,26 +7346,25 @@ window._tTooltip = function(ruText) {
 
         const renderBoth = () => {
             grid.innerHTML = renderCompare2Card(currentMid) + renderCompare2Card(sel.value);
-            // Wire up input live updates per card
-            grid.querySelectorAll('input').forEach(inp => {
-                inp.addEventListener('input', () => {
-                    const mid = inp.dataset.mid;
-                    const key = inp.dataset.key;
-                    if (!storedValues[mid]) storedValues[mid] = {};
-                    storedValues[mid][key] = inp.value.replace(/\s/g, '');
-                    saveToLS(storedValues);
-                    // Re-render only — quick
-                    grid.innerHTML = renderCompare2Card(currentMid) + renderCompare2Card(sel.value);
-                    grid.querySelectorAll('input').forEach(ii => {
-                        ii.addEventListener('input', arguments.callee);
-                    });
-                    // Focus the same input after re-render
-                    const newInp = grid.querySelector(`input[data-mid="${mid}"][data-key="${key}"]`);
-                    if (newInp) { newInp.focus(); newInp.setSelectionRange(newInp.value.length, newInp.value.length); }
-                });
-            });
         };
-        sel.addEventListener('change', renderBoth);
+        // One delegated listener on the grid (assigned, not added, so reopening the
+        // modal never stacks handlers). The old per-input handler re-bound itself via
+        // arguments.callee — inside an arrow that resolved to openCompare2, so every
+        // keystroke reopened the modal and dropped the input's focus and value.
+        grid.oninput = (e) => {
+            const inp = e.target;
+            if (!inp.matches || !inp.matches('input[data-mid][data-key]')) return;
+            const mid = inp.dataset.mid;
+            const key = inp.dataset.key;
+            if (!storedValues[mid]) storedValues[mid] = {};
+            storedValues[mid][key] = inp.value.replace(/\s/g, '');
+            saveToLS(storedValues);
+            renderBoth();
+            // Focus the same input after re-render
+            const newInp = grid.querySelector(`input[data-mid="${mid}"][data-key="${key}"]`);
+            if (newInp) { newInp.focus(); try { newInp.setSelectionRange(newInp.value.length, newInp.value.length); } catch (_) {} }
+        };
+        sel.onchange = renderBoth;
         renderBoth();
         ov.classList.add('show');
     }
@@ -7421,7 +7427,7 @@ window._tTooltip = function(ruText) {
                 if (ok) {
                     formEl.style.display = 'none';
                     if (successEl) successEl.style.display = 'block';
-                    showToast('✓ ' + (window._t ? window._t('waitlist.success', 'Спасибо! Письмо придёт за 7 дней до запуска.') : 'Подписка оформлена'), 'success');
+                    showToast('✓ ' + (window._t ? window._t('waitlist.success', 'Спасибо! Письмо придёт за 7 дней до запуска.') : 'Подписка оформлена').replace(/^✓\s*/, ''), 'success');
                 } else {
                     // Mailto fallback — lead reaches Rodion even when Formspree is down/unregistered.
                     openMailtoFallback('pro-waitlist', data);
