@@ -53,6 +53,8 @@ def calc_ltv(args):
 
 def calc_cac(args):
     spend, customers = map(float, args)
+    if customers <= 0:
+        return None, 'New customers must be > 0'
     v = spend / customers
     return v, f'${spend:,.0f} / {customers:.0f} customers = <b>${v:,.0f}</b> CAC\nSaaS payback norm: 12–18 months.'
 
@@ -62,12 +64,16 @@ def calc_mrr(args):
 
 def calc_churn(args):
     lost, total = map(float, args)
+    if total <= 0:
+        return None, 'Total must be > 0'
     pct = (lost / total) * 100
     rating = 'excellent' if pct < 2 else 'normal' if pct < 5 else 'high'
     return pct, f'{lost:.0f} / {total:.0f} = <b>{pct:.1f}%</b> Churn Rate\nSaaS norm: <2%/mo · This: <b>{rating}</b>'
 
 def calc_nps(args):
     promoters, detractors, total = map(float, args)
+    if total <= 0:
+        return None, 'Total respondents must be > 0'
     nps = ((promoters - detractors) / total) * 100
     rating = 'world-class (>70)' if nps > 70 else 'excellent (>50)' if nps > 50 else 'good (>30)' if nps > 30 else 'low'
     return nps, f'({promoters:.0f} − {detractors:.0f}) / {total:.0f} × 100 = <b>{nps:.1f}</b> NPS\n{rating}'
@@ -85,7 +91,7 @@ def calc_ltv_cac(args):
     if cac <= 0:
         return None, 'CAC must be > 0'
     r = ltv / cac
-    rating = 'excellent' if r > 5 else 'healthy' if r >= 3 else 'below norm' if r > 1 else 'losing money'
+    rating = 'excellent' if r > 5 else 'healthy' if r >= 3 else 'below norm' if r >= 1 else 'losing money'
     return r, f'${ltv:,.0f} / ${cac:,.0f} = <b>{r:.2f}x</b> LTV:CAC\n{rating} (target ≥ 3:1)'
 
 def calc_burn_mult(args):
@@ -101,6 +107,10 @@ def calc_rule40(args):
     s = growth + margin
     rating = 'top decile (>60)' if s > 60 else 'healthy' if s >= 40 else 'below Rule of 40'
     return s, f'Growth {growth}% + Margin {margin}% = <b>{s:.1f}%</b>\n{rating}'
+
+# Bot command → web page slug, where the short command differs from the metric id
+# (/burn and /rule40 used to link to non-existent /burn and /rule40 pages).
+WEB_PATH = {'ltvcac': 'ltv_cac', 'burn': 'burnMultiple', 'rule40': 'ruleOf40'}
 
 METRICS = {
     'ltv':          (calc_ltv,       3, 'AOV freq lifetime',           'LTV — Lifetime Value'),
@@ -166,7 +176,7 @@ async def metric_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     except Exception as e:
         await update.message.reply_html(f'Error: <code>{escape(str(e))}</code>\nUsage: <code>/{cmd} {args_hint}</code>')
         return
-    web_link = f'{WEB}/{cmd if cmd != "ltvcac" else "ltv_cac"}'
+    web_link = f'{WEB}/{WEB_PATH.get(cmd, cmd)}'
     await update.message.reply_html(f'<b>{name}</b>\n{msg}\n\n🌐 Full version: {web_link}')
 
 
@@ -181,7 +191,7 @@ async def callback_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         cmd = q.data.split(':', 1)[1]
         _, arity, args_hint, name = METRICS[cmd]
         example_args = ' '.join(['100' for _ in range(arity)])
-        web_path = cmd if cmd != 'ltvcac' else 'ltv_cac'
+        web_path = WEB_PATH.get(cmd, cmd)
         text = (
             f'<b>{name}</b>\n\n'
             f'Usage: <code>/{cmd} {args_hint}</code>\n'
