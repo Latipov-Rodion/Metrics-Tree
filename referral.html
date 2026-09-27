@@ -198,6 +198,8 @@
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/referral">
     <link rel="alternate" hreflang="uz" href="https://metricstree.vercel.app/uz/referral">
     <link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/referral">
+
+<script src="/theme-sync.js" defer></script>
 </head>
 <body>
 <script>
@@ -240,11 +242,11 @@
     });
 })();
 </script>
-<a href="#metricCard" class="skip-link">Перейти к калькулятору</a>
+<a href="#metricCard" class="skip-link" data-t="skip.to_calc">Перейти к калькулятору</a>
 <div class="container">
     <header class="header" role="banner">
         <div class="header-left">
-            <h1>MetricTree — Калькулятор продуктовых метрик</h1>
+            <h1 data-t="header.h1">MetricTree — Калькулятор продуктовых метрик</h1>
             <div class="subtitle">
                 <span data-t="header.creator">Создатель:</span>
                 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank" rel="noopener">Родион Латыпов</a>
@@ -252,7 +254,7 @@
             </div>
         </div>
         <div class="header-right">
-            <a class="dashboard-btn" href="/tree" title="Дерево метрик — интерактивный driver-tree" style="text-decoration:none;">🌳 <span data-t="btn.tree">Дерево метрик</span></a>
+            <a class="dashboard-btn" href="/tree" data-t-attr-title="btn.tree_tt" title="Дерево метрик — интерактивный driver-tree" style="text-decoration:none;">🌳 <span data-t="btn.tree">Дерево метрик</span></a>
             <button class="dashboard-btn" id="dashboardBtn" data-t-attr-title="btn.dashboard_tt" title="Unit-economics дашборд (Ctrl+D)">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
             <span data-t="btn.dashboard">Дашборд</span>
@@ -769,7 +771,7 @@
     <form action="/api/lead" method="POST" id="newsletterFormFooter" class="site-footer-news">
         <input type="hidden" name="_subject" value="MetricTree Newsletter signup (footer)">
         <input type="hidden" name="source" value="footer">
-        <input type="email" name="email" placeholder="📬 Метрика недели — email" required autocomplete="email">
+        <input type="email" name="email" placeholder="📬 Метрика недели — email" data-t-attr-placeholder="footer.newsletter_ph" aria-label="Email" required autocomplete="email">
         <button type="submit" data-t="footer.subscribe">Подписаться</button>
     </form>
 </footer>

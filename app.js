@@ -208,6 +208,24 @@ window.I18N_UI = {
     'cheatsheet.cta': 'Get the PDF →',
     'cheatsheet.success': '✓ Done!',
     'cheatsheet.open': 'Open the cheat sheet and save as PDF →',
+    'header.h1': 'MetricTree — Product Metrics Calculator',
+    'skip.to_calc': 'Skip to calculator',
+    'btn.tree': 'Metric Tree',
+    'btn.tree_tt': 'Metric Tree — interactive driver tree',
+    'footer.newsletter_ph': '📬 Metric of the week — email',
+    'tooltip.field_hint': 'Field hint',
+    'snapshots.rename_tt': 'Click to rename',
+    'snapshots.delete_tt': 'Delete snapshot',
+    'snapshots.saved': '💾 Snapshot saved',
+    'templates.applied': '✓ Template “{name}” applied: {count}',
+    'forecast.rate_mom': 'MoM growth',
+    'forecast.rate_nrr': 'Annual NRR',
+    'forecast.rate_arr': 'MoM ARR growth',
+    'forecast.monthly_burn': 'Monthly burn',
+    'forecast.rate_from_calc': 'Rate taken from the calculation:',
+    'list.has_values': 'Has saved values',
+    'section.total_tt': '{n} metrics in this section',
+    'section.filled_tt': '{a} of {b} filled',
     'pricing.title': '💎 MetricTree Plans',
     'pricing.subtitle': 'The current calculator is free forever. Pro and Team are for teams and advanced scenarios. We are building a waitlist now — leave your email to get early access + 50% off the first year.',
     'pricing.tier_free': 'Free',
@@ -451,6 +469,30 @@ window.I18N_UI = {
     'footer.pricing': 'Pro / Team',
     'footer.help': 'Yordam',
     'footer.subscribe': 'Obuna',
+    'footer.cheatsheet': 'PDF-shpargalka',
+    'cheatsheet.title': '📥 Bepul PDF-shpargalka: formulalar va me’yorlar bilan 69 ta metrika',
+    'cheatsheet.placeholder': 'siz@kompaniya.uz',
+    'cheatsheet.cta': 'PDF ni olish →',
+    'cheatsheet.success': '✓ Tayyor!',
+    'cheatsheet.open': 'Shpargalkani ochib, PDF sifatida saqlang →',
+    'header.h1': 'MetricTree — Mahsulot metrikalari kalkulyatori',
+    'skip.to_calc': 'Kalkulyatorga o‘tish',
+    'btn.tree': 'Metrikalar daraxti',
+    'btn.tree_tt': 'Metrikalar daraxti — interaktiv driver-tree',
+    'footer.newsletter_ph': '📬 Hafta metrikasi — email',
+    'tooltip.field_hint': 'Maydon bo‘yicha izoh',
+    'snapshots.rename_tt': 'Nomini o‘zgartirish uchun bosing',
+    'snapshots.delete_tt': 'Snapshotni o‘chirish',
+    'snapshots.saved': '💾 Snapshot saqlandi',
+    'templates.applied': '✓ «{name}» shabloni qo‘llandi: {count}',
+    'forecast.rate_mom': 'MoM o‘sish',
+    'forecast.rate_nrr': 'Yillik NRR',
+    'forecast.rate_arr': 'ARR ning MoM o‘sishi',
+    'forecast.monthly_burn': 'Oylik sarf (burn)',
+    'forecast.rate_from_calc': 'Sur’at hisob-kitobdan olingan:',
+    'list.has_values': 'Saqlangan qiymatlar bor',
+    'section.total_tt': 'Bo‘limda {n} ta metrika',
+    'section.filled_tt': '{b} tadan {a} tasi to‘ldirilgan',
     'pricing.title': '💎 MetricTree tariflari',
     'pricing.subtitle': 'Joriy kalkulyator abadiy bepul. Pro va Team — jamoalar va ilg‘or stsenariylar uchun. Hozir waitlist yig‘moqdamiz — birinchi yilga -50% chegirma uchun email qoldiring.',
     'pricing.tier_free': 'Free',
@@ -647,6 +689,416 @@ window.I18N_M = {
                 uz: { name: 'FCR', formula: '(Birinchi murojaatda hal qilinganlar / Barcha ticketlar) × 100%', description: 'First Contact Resolution — birinchi murojaatda hal qilingan murojaatlar foizi.' } },
   sla:        { en: { name: 'SLA', formula: '(Tickets within SLA / All) × 100%', description: 'Service Level Agreement — share of tickets handled within agreed-upon timeframes.' },
                 uz: { name: 'SLA', formula: '(SLA ichidagi ticketlar / Barchasi) × 100%', description: 'Service Level Agreement — kelishilgan muddatlar ichida ko‘rib chiqilgan murojaatlar ulushi.' } }
+};
+
+// ============================================================
+// I18N_INPUTS — EN/UZ for every calculator input, keyed by metricId → input key
+// (NOT by the Russian text, so editing a RU label never silently drops the
+// translation). Shape: { label: {en, uz}, help?: {en, uz} }. RU lives in
+// metricsData. A test (test/i18n-drift.test.mjs) asserts full coverage.
+// Keep "$" in labels — localizeLabel() swaps it for the selected currency.
+// ============================================================
+window.I18N_INPUTS = {
+  // ---- B2C ----
+  dau: {
+    users: { label: { en: 'Unique users (day)', uz: 'Noyob foydalanuvchilar (kun)' } },
+  },
+  mau: {
+    users: { label: { en: 'Unique users (month)', uz: 'Noyob foydalanuvchilar (oy)' } },
+  },
+  stickiness: {
+    dau: { label: { en: 'DAU (daily actives)', uz: 'DAU (kunlik faol)' } },
+    mau: { label: { en: 'MAU (monthly actives)', uz: 'MAU (oylik faol)' } },
+  },
+  retention: {
+    end:   { label: { en: 'Active users at end of period', uz: 'Davr oxiridagi faol foydalanuvchilar' } },
+    start: { label: { en: 'Users at start of period (cohort)', uz: 'Davr boshidagi foydalanuvchilar (kogorta)' } },
+  },
+  ltv: {
+    aov:  { label: { en: 'Average order value (AOV), $', uz: 'O‘rtacha chek (AOV), $' },
+            help:  { en: 'Average Order Value: total revenue / number of orders for the same period. Not the same as ARPU.', uz: 'Average Order Value: davrdagi umumiy tushum / shu davrdagi buyurtmalar soni. ARPU bilan adashtirmang.' } },
+    freq: { label: { en: 'Purchases per year', uz: 'Yiliga xaridlar soni' },
+            help:  { en: 'How many times a year an average customer buys. For subscriptions = 12 (monthly) or 1 (annual).', uz: 'O‘rtacha mijoz yiliga necha marta xarid qiladi. Obuna uchun = 12 (oylik) yoki 1 (yillik).' } },
+    life: { label: { en: 'Average customer lifetime (years)', uz: 'Mijozning o‘rtacha umri (yil)' },
+            help:  { en: 'If you know annual churn: life ≈ 1 / churn. At 80% retention — life ≈ 5 years.', uz: 'Yillik churn ma’lum bo‘lsa: umr ≈ 1 / churn. 80% retention da — umr ≈ 5 yil.' } },
+  },
+  cac: {
+    cost:      { label: { en: 'Marketing spend, $', uz: 'Marketing xarajatlari, $' },
+                 help:  { en: 'Full acquisition cost: ads + sales + content + marketing team salaries. Count everything, not just the performance budget.', uz: 'Jalb qilishning to‘liq xarajati: reklama + sotuv + kontent + marketing jamoasi maoshi. Faqat performance byudjetni emas, hammasini hisobga oling.' } },
+    customers: { label: { en: 'New customers', uz: 'Yangi mijozlar' },
+                 help:  { en: 'Only paying customers acquired in the same period. Not signups or trials.', uz: 'Faqat shu davrda jalb qilingan to‘lovchi mijozlar. Ro‘yxatdan o‘tganlar yoki trial bilan adashtirmang.' } },
+  },
+  ltv_cac: {
+    ltv: { label: { en: 'LTV (customer lifetime value), $', uz: 'LTV (mijoz qiymati), $' } },
+    cac: { label: { en: 'CAC (acquisition cost), $', uz: 'CAC (jalb qilish narxi), $' } },
+  },
+  arpu: {
+    revenue: { label: { en: 'Total revenue, $', uz: 'Umumiy tushum, $' } },
+    users:   { label: { en: 'Number of active users', uz: 'Faol foydalanuvchilar soni' } },
+  },
+  arpdau: {
+    dailyRevenue: { label: { en: 'Daily revenue, $', uz: 'Kunlik tushum, $' },
+                    help:  { en: 'Average product revenue per day (payments + ads).', uz: 'Mahsulotning kunlik o‘rtacha tushumi (to‘lovlar + reklama).' } },
+    dau:          { label: { en: 'DAU', uz: 'DAU' },
+                    help:  { en: 'Unique daily active users for the same period.', uz: 'Shu davrdagi noyob kunlik faol foydalanuvchilar.' } },
+  },
+  aov: {
+    revenue: { label: { en: 'Total revenue, $', uz: 'Umumiy tushum, $' },
+               help:  { en: 'Gross revenue for the period (before deductions).', uz: 'Davr uchun yalpi tushum (chegirmalarsiz).' } },
+    orders:  { label: { en: 'Number of orders', uz: 'Buyurtmalar soni' },
+               help:  { en: 'Completed (paid) orders in the same period.', uz: 'Shu davrda yakunlangan (to‘langan) buyurtmalar soni.' } },
+  },
+  repeatPurchaseRate: {
+    repeat: { label: { en: 'Customers with 2+ orders', uz: '2+ buyurtmali mijozlar' },
+              help:  { en: 'Unique customers who placed 2 or more orders in the period.', uz: 'Davr davomida 2 yoki undan ko‘p buyurtma bergan noyob mijozlar.' } },
+    total:  { label: { en: 'Total unique customers', uz: 'Jami noyob mijozlar' },
+              help:  { en: 'All customers with at least 1 order in the period.', uz: 'Davr davomida kamida 1 ta buyurtma bergan barcha mijozlar.' } },
+  },
+  churn: {
+    lost:  { label: { en: 'Churned users', uz: 'Ketgan foydalanuvchilar' },
+             help:  { en: 'Customer churn (unsubscribed / cancelled). Not revenue churn — that is measured via GRR.', uz: 'Mijozlar churn i (obunani bekor qilganlar). Revenue churn bilan adashtirmang — u GRR orqali hisoblanadi.' } },
+    total: { label: { en: 'Total users at start of period', uz: 'Davr boshidagi jami foydalanuvchilar' },
+             help:  { en: 'Size of the active subscriber base on day one of the period. New users who join during the period are not counted.', uz: 'Davrning birinchi kunidagi faol obunachilar bazasi. Davr ichida qo‘shilgan yangilar hisobga olinmaydi.' } },
+  },
+  wau: {
+    users: { label: { en: 'Unique users (week)', uz: 'Noyob foydalanuvchilar (hafta)' } },
+  },
+  arppu: {
+    revenue:     { label: { en: 'Revenue for the period, $', uz: 'Davr tushumi, $' },
+                   help:  { en: 'Total revenue from paying users in the same period.', uz: 'Shu davrda to‘lovchi foydalanuvchilardan olingan jami tushum.' } },
+    payingUsers: { label: { en: 'Paying users', uz: 'To‘lovchi foydalanuvchilar' },
+                   help:  { en: 'Unique paying users only (not all actives). ARPPU = revenue / paying users.', uz: 'Faqat noyob to‘lovchi foydalanuvchilar (barcha faollar emas). ARPPU = tushum / to‘lovchilar.' } },
+  },
+  featureAdoption: {
+    adopted: { label: { en: 'Users of the feature', uz: 'Funksiyadan foydalanuvchilar' },
+               help:  { en: 'Unique active users who used the feature at least once in the period.', uz: 'Davr davomida funksiyadan kamida bir marta foydalangan noyob faol foydalanuvchilar.' } },
+    active:  { label: { en: 'Total active users', uz: 'Jami faol foydalanuvchilar' },
+               help:  { en: 'All active users of the product in the same period (the baseline).', uz: 'Shu davrdagi mahsulotning barcha faol foydalanuvchilari (taqqoslash bazasi).' } },
+  },
+  // ---- B2B ----
+  mrr: {
+    mrr: { label: { en: 'Total MRR, $', uz: 'Jami MRR, $' },
+           help:  { en: 'Normalized monthly revenue. Annual contracts are divided by 12. Excludes one-time / setup fees.', uz: 'Normallashtirilgan oylik tushum. Yillik shartnomalar 12 ga bo‘linadi. One-time / setup to‘lovlari kirmaydi.' } },
+  },
+  arr: {
+    mrr: { label: { en: 'MRR, $', uz: 'MRR, $' } },
+  },
+  acv: {
+    total: { label: { en: 'Total contract value, $', uz: 'Shartnoma summasi, $' } },
+    years: { label: { en: 'Contract length (years)', uz: 'Muddati (yil)' } },
+  },
+  grr: {
+    start: { label: { en: 'Starting MRR, $', uz: 'Boshlang‘ich MRR, $' } },
+    churn: { label: { en: 'MRR lost (downgrades + churn), $', uz: 'Yo‘qotilgan MRR (downgrade + ketish), $' } },
+  },
+  nrr: {
+    start:  { label: { en: 'Starting MRR, $', uz: 'Boshlang‘ich MRR, $' },
+              help:  { en: 'MRR from existing customers on day one of the period (excluding new ones).', uz: 'Davrning birinchi kunidagi mavjud mijozlardan MRR (yangilarisiz).' } },
+    upsell: { label: { en: 'Expansion (new MRR from existing customers), $', uz: 'Apsellar (mavjud mijozlardan yangi MRR), $' },
+              help:  { en: 'Expansion MRR: plan upgrades + extra seats + additional products sold to the existing base.', uz: 'Expansion MRR: tarif apgreydlari + qo‘shimcha seat lar + mavjud bazaga qo‘shimcha mahsulotlar.' } },
+    churn:  { label: { en: 'MRR churn, $', uz: 'MRR churn, $' },
+              help:  { en: 'Gross MRR churn: lost customers + downgrades (contraction). Only losses within the existing cohort.', uz: 'Gross MRR churn: ketgan mijozlar + downgrade lar (contraction). Faqat mavjud kogortadagi yo‘qotishlar.' } },
+  },
+  burnMultiple: {
+    burn:   { label: { en: 'Net burn (negative if cash-positive), $', uz: 'Net burn (cash-positive bo‘lsa manfiy), $' },
+              help:  { en: 'Net cash burn for the period = all cash spent − all cash received. If cash-positive, enter a negative number.', uz: 'Davr uchun net cash burn = barcha pul xarajatlari − barcha pul tushumlari. Cash-positive bo‘lsa, manfiy son kiriting.' } },
+    newArr: { label: { en: 'Net new ARR (ARR growth over the same period), $', uz: 'Net new ARR (shu davrdagi ARR o‘sishi), $' },
+              help:  { en: 'ARR growth for the period: ending − starting ARR. Includes new + expansion, minus churn and contraction.', uz: 'Davr uchun ARR o‘sishi: yakuniy − boshlang‘ich ARR. New + expansion, minus churn va contraction.' } },
+  },
+  magicNumber: {
+    newArr: { label: { en: 'Net new ARR for the quarter, $', uz: 'Chorak uchun net new ARR, $' },
+              help:  { en: 'ARR growth over a specific quarter. ARR is already an annual figure, so no further annualization is needed.', uz: 'Aniq bir chorakdagi ARR o‘sishi. ARR allaqachon yillik ko‘rsatkich, shuning uchun uni qo‘shimcha yillikka aylantirish shart emas.' } },
+    sm:     { label: { en: 'Sales & Marketing spend for the quarter, $', uz: 'Chorak uchun Sales & Marketing xarajatlari, $' },
+              help:  { en: 'Full S&M cost: team payroll + tools + ads + commissions. On a P&L basis, not cash.', uz: 'To‘liq S&M xarajati: jamoa maoshi + platformalar + reklama + komissiyalar. P&L bo‘yicha, cash bo‘yicha emas.' } },
+  },
+  ruleOf40: {
+    growth: { label: { en: 'Revenue growth YoY, %', uz: 'Tushum o‘sishi YoY, %' },
+              help:  { en: 'Year over year. Either ARR growth or revenue growth works.', uz: 'Yildan-yilga. ARR growth yoki revenue growth dan foydalanish mumkin.' } },
+    margin: { label: { en: 'EBITDA (or FCF) margin, %', uz: 'EBITDA (yoki FCF) marjasi, %' },
+              help:  { en: 'EBITDA margin or FCF margin (free cash flow / revenue). Can be negative.', uz: 'EBITDA marja yoki FCF marja (erkin pul oqimi / tushum). Manfiy bo‘lishi mumkin.' } },
+  },
+  quickRatio: {
+    newMrr:      { label: { en: 'New MRR (new customers), $', uz: 'New MRR (yangi mijozlar), $' },
+                   help:  { en: 'MRR from new paying customers in the period.', uz: 'Davrdagi yangi to‘lovchi mijozlardan MRR.' } },
+    expansion:   { label: { en: 'Expansion MRR (upsells to existing), $', uz: 'Expansion MRR (mavjudlarga apsell), $' },
+                   help:  { en: 'MRR growth from existing customers: plan upgrades, seat expansion, additional products.', uz: 'Mavjud mijozlardan MRR o‘sishi: tarif apgreydi, seat kengayishi, qo‘shimcha mahsulotlar.' } },
+    churned:     { label: { en: 'Churned MRR (lost customers), $', uz: 'Churned MRR (ketganlar), $' },
+                   help:  { en: 'MRR of customers who left (full loss).', uz: 'Ketgan mijozlarning MRR i (to‘liq yo‘qotish).' } },
+    contraction: { label: { en: 'Contraction MRR (downgrades), $', uz: 'Contraction MRR (downgrade lar), $' },
+                   help:  { en: 'MRR reduction from retained customers (plan downgrade, fewer seats).', uz: 'Qolgan mijozlarda MRR qisqarishi (tarif downgrade, kamroq seat).' } },
+  },
+  cacPayback: {
+    cac:            { label: { en: 'CAC, $', uz: 'CAC, $' } },
+    mrrPerCustomer: { label: { en: 'MRR per customer, $', uz: 'Bir mijozga MRR, $' } },
+    margin:         { label: { en: 'Gross margin (%, 0–100)', uz: 'Marjinallik (%, 0–100)' } },
+  },
+  netNewMrr: {
+    newMrr:      { label: { en: 'New MRR (new customers), $', uz: 'New MRR (yangi mijozlar), $' },
+                   help:  { en: 'MRR from new paying customers in the month.', uz: 'Oy davomida yangi to‘lovchi mijozlardan MRR.' } },
+    expansion:   { label: { en: 'Expansion MRR (upsells), $', uz: 'Expansion MRR (apsellar), $' },
+                   help:  { en: 'MRR growth from upgrades and extra seats of existing customers.', uz: 'Mavjud mijozlarning apgreydlari va qo‘shimcha o‘rinlaridan MRR o‘sishi.' } },
+    churned:     { label: { en: 'Churned MRR (lost), $', uz: 'Churned MRR (ketish), $' },
+                   help:  { en: 'MRR of customers who left entirely.', uz: 'To‘liq ketgan mijozlarning MRR i.' } },
+    contraction: { label: { en: 'Contraction MRR (downgrades), $', uz: 'Contraction MRR (downgrade lar), $' },
+                   help:  { en: 'MRR decrease from downgrades without a full churn.', uz: 'To‘liq ketmasdan downgrade lar hisobiga MRR kamayishi.' } },
+  },
+  leadVelocityRate: {
+    thisMonth: { label: { en: 'Qualified leads this month', uz: 'Joriy oydagi malakali lidlar' },
+                 help:  { en: 'Number of qualified leads (MQL/SQL) this month.', uz: 'Joriy oydagi malakali lidlar (MQL/SQL) soni.' } },
+    lastMonth: { label: { en: 'Qualified leads last month', uz: 'O‘tgan oydagi malakali lidlar' },
+                 help:  { en: 'The same count for the previous month — the baseline.', uz: 'O‘tgan oy uchun xuddi shu son — taqqoslash bazasi.' } },
+  },
+  cashConversionScore: {
+    arr:             { label: { en: 'Current ARR, $', uz: 'Joriy ARR, $' },
+                       help:  { en: 'Annual recurring revenue as of now.', uz: 'Hozirgi paytdagi yillik takroriy tushum.' } },
+    capitalConsumed: { label: { en: 'Net capital consumed, $', uz: 'Sarflangan sof kapital, $' },
+                       help:  { en: 'Net capital consumed: total capital raised minus current cash in the bank.', uz: 'Net capital consumed: jami jalb qilingan kapital minus hisobdagi joriy pul.' } },
+  },
+  // ---- AARRR ----
+  acquisition: {
+    new: { label: { en: 'New users', uz: 'Yangi foydalanuvchilar' } },
+  },
+  activation: {
+    activated: { label: { en: 'Activated users', uz: 'Faollashgan foydalanuvchilar' } },
+    total:     { label: { en: 'Total new users', uz: 'Jami yangi foydalanuvchilar' } },
+  },
+  retention_aarrr: {
+    ret: { label: { en: 'Returning users', uz: 'Qaytgan foydalanuvchilar' } },
+    new: { label: { en: 'New users in the cohort', uz: 'Kogortadagi yangi foydalanuvchilar' } },
+  },
+  referral: {
+    invited: { label: { en: 'Invited (signed up via invite)', uz: 'Taklif qilinganlar (taklif orqali ro‘yxatdan o‘tgan)' } },
+    active:  { label: { en: 'Active users who sent invites', uz: 'Taklif yuborgan faol foydalanuvchilar' } },
+  },
+  revenue: {
+    rev: { label: { en: 'Revenue, $', uz: 'Tushum, $' } },
+  },
+  timeToValue: {
+    days: { label: { en: 'Average time to Aha (days)', uz: 'Aha gacha o‘rtacha vaqt (kun)' },
+            help:  { en: 'Median (not mean!) time from signup to the key activation event.', uz: 'Ro‘yxatdan o‘tishdan asosiy faollashuv hodisasigacha bo‘lgan mediana (o‘rtacha emas!) vaqt.' } },
+  },
+  // ---- Finance & Sales ----
+  grossMargin: {
+    revenue: { label: { en: 'Revenue, $', uz: 'Tushum, $' },
+               help:  { en: 'Total revenue for the period.', uz: 'Davr uchun umumiy tushum.' } },
+    cogs:    { label: { en: 'COGS (direct costs), $', uz: 'COGS (bevosita xarajatlar), $' },
+               help:  { en: 'Direct costs of delivering the product: hosting, customer support, payment processing, infrastructure. Excludes R&D and S&M.', uz: 'Mahsulotni yetkazishning bevosita xarajatlari: hosting, mijozlarni qo‘llab-quvvatlash, to‘lov processingi, infratuzilma. R&D va S&M kirmaydi.' } },
+  },
+  runway: {
+    cash: { label: { en: 'Cash in the bank, $', uz: 'Hisobdagi pul, $' },
+            help:  { en: 'Current cash balance + liquid assets.', uz: 'Joriy pul qoldig‘i + likvid aktivlar.' } },
+    burn: { label: { en: 'Average monthly net burn, $', uz: 'O‘rtacha oylik sarf (Net Burn), $' },
+            help:  { en: 'Average net burn over the last 3–6 months. If cash-positive, runway is infinite.', uz: 'Oxirgi 3–6 oydagi o‘rtacha Net Burn. Cash-positive bo‘lsa, runway cheksiz.' } },
+  },
+  burnRate: {
+    expenses: { label: { en: 'Average monthly expenses, $', uz: 'O‘rtacha oylik xarajatlar, $' },
+                help:  { en: 'All cash expenses for the month: payroll, rent, infrastructure, marketing.', uz: 'Oylik barcha pul xarajatlari: maosh, ijara, infratuzilma, marketing.' } },
+    revenue:  { label: { en: 'Average monthly revenue, $', uz: 'O‘rtacha oylik tushum, $' },
+                help:  { en: 'Cash actually collected (collected revenue), not billings.', uz: 'Haqiqatda tushgan pul (collected revenue), billing emas.' } },
+  },
+  salesVelocity: {
+    opps:    { label: { en: 'Active opportunities', uz: 'Faol opportunity lar' },
+               help:  { en: 'Number of active deals in the pipeline for the period.', uz: 'Davr uchun voronkadagi faol bitimlar soni.' } },
+    acv:     { label: { en: 'ACV (average contract), $', uz: 'ACV (o‘rtacha shartnoma), $' },
+               help:  { en: 'Annual Contract Value — average annual value of a closed deal.', uz: 'Annual Contract Value — yopilgan bitimning o‘rtacha yillik qiymati.' } },
+    winRate: { label: { en: 'Win rate, %', uz: 'Win Rate, %' },
+               help:  { en: 'Share of deals that close as won. 20–30% is typical for B2B SaaS.', uz: 'Yutuq bilan yopiladigan bitimlar ulushi. B2B SaaS uchun 20–30% odatiy.' } },
+    cycle:   { label: { en: 'Sales cycle length (days)', uz: 'Sikl davomiyligi (kun)' },
+               help:  { en: 'Average time from opportunity creation to closed-won.', uz: 'Opportunity yaratilgandan closed-won gacha o‘rtacha vaqt.' } },
+  },
+  winRate: {
+    won:   { label: { en: 'Closed won', uz: 'Closed Won (yutilgan)' },
+             help:  { en: 'Deals closed as won in the period.', uz: 'Davr davomida muvaffaqiyatli yopilgan bitimlar.' } },
+    total: { label: { en: 'Total closed (won + lost)', uz: 'Jami yopilgan (won + lost)' },
+             help:  { en: 'All deals closed in the period (won + lost). Open opportunities are excluded.', uz: 'Davrda yopilgan barcha bitimlar (won + lost). Ochiq opportunity lar hisobga olinmaydi.' } },
+  },
+  pipelineCoverage: {
+    pipeline: { label: { en: 'Pipeline value, $', uz: 'Pipeline qiymati, $' },
+                help:  { en: 'Sum of ACV/TCV of all active opportunities at the end of the period.', uz: 'Davr oxiridagi barcha faol opportunity larning ACV/TCV yig‘indisi.' } },
+    quota:    { label: { en: 'Revenue target, $', uz: 'Tushum bo‘yicha maqsad, $' },
+                help:  { en: 'Target new revenue (new ARR / new bookings) for the period.', uz: 'Davr uchun maqsadli yangi tushum (new ARR / new bookings).' } },
+  },
+  salesCycleLength: {
+    totalDays: { label: { en: 'Total days across all closed deals', uz: 'Barcha yopilgan bitimlar bo‘yicha kunlar yig‘indisi' },
+                 help:  { en: 'Sum of days from opportunity creation to closed-won across all deals won in the period.', uz: 'Davrdagi barcha yutilgan bitimlar bo‘yicha opportunity yaratilgandan closed-won gacha kunlar yig‘indisi.' } },
+    wonCount:  { label: { en: 'Number of deals won', uz: 'Yopilgan bitimlar soni (won)' },
+                 help:  { en: 'Closed-won deals in the period only.', uz: 'Faqat davrdagi closed-won bitimlar.' } },
+  },
+  mrrGrowthRate: {
+    startMrr: { label: { en: 'MRR at start of period, $', uz: 'Davr boshidagi MRR, $' },
+                help:  { en: 'MRR on the first day of the period.', uz: 'Davrning birinchi kunidagi MRR.' } },
+    endMrr:   { label: { en: 'MRR at end of period, $', uz: 'Davr oxiridagi MRR, $' },
+                help:  { en: 'MRR on the last day of the same period (new + expansion, minus churn).', uz: 'Shu davrning oxirgi kunidagi MRR (yangilar, apsellar, minus churn).' } },
+  },
+  contributionMargin: {
+    revenue:       { label: { en: 'Revenue, $', uz: 'Tushum, $' } },
+    variableCosts: { label: { en: 'Variable costs, $', uz: 'O‘zgaruvchan xarajatlar, $' },
+                     help:  { en: 'Costs that scale with volume: materials, shipping, payment fees, per-customer hosting, sales commissions.', uz: 'Hajm bilan o‘sadigan xarajatlar: xomashyo, yetkazib berish, to‘lov komissiyalari, mijoz boshiga hosting, sotuv komissiyalari.' } },
+  },
+  gmv: {
+    orders: { label: { en: 'Number of orders', uz: 'Buyurtmalar soni' } },
+    aov:    { label: { en: 'Average order value (AOV), $', uz: 'O‘rtacha chek (AOV), $' } },
+  },
+  takeRate: {
+    platformRevenue: { label: { en: 'Platform revenue, $', uz: 'Platforma tushumi, $' },
+                       help:  { en: 'Commissions + ads + subscriptions + payment fees retained by the platform.', uz: 'Platformada qoladigan komissiyalar + reklama + obunalar + to‘lov yig‘imlari.' } },
+    gmv:             { label: { en: 'GMV (gross merchandise value), $', uz: 'GMV (aylanma), $' } },
+  },
+  quotaAttainment: {
+    actual: { label: { en: 'Actual sales, $', uz: 'Haqiqiy sotuvlar, $' } },
+    quota:  { label: { en: 'Quota (plan), $', uz: 'Kvota (reja), $' } },
+  },
+  // ---- Growth ----
+  cr: {
+    conversions: { label: { en: 'Target actions (conversions)', uz: 'Maqsadli amallar (konversiyalar)' } },
+    visitors:    { label: { en: 'Total visitors', uz: 'Jami tashrifchilar' } },
+  },
+  roas: {
+    revenue: { label: { en: 'Ad revenue, $', uz: 'Reklamadan tushum, $' },
+               help:  { en: 'Attributed revenue from a specific campaign / channel. Only what can be tracked back to the ad.', uz: 'Aniq kampaniya / kanaldan atributlangan tushum. Faqat reklamagacha kuzatib boriladigan qism.' } },
+    spend:   { label: { en: 'Ad spend, $', uz: 'Reklama xarajatlari, $' },
+               help:  { en: 'Full media spend: budgets + agency fees + production. Excludes team salaries.', uz: 'To‘liq media spend: byudjetlar + agentlik komissiyalari + production. Jamoa maoshlari kirmaydi.' } },
+  },
+  cpc: {
+    spend:  { label: { en: 'Ad spend, $', uz: 'Reklama xarajatlari, $' } },
+    clicks: { label: { en: 'Number of clicks', uz: 'Kliklar soni' } },
+  },
+  ctr: {
+    clicks:      { label: { en: 'Number of clicks', uz: 'Kliklar soni' } },
+    impressions: { label: { en: 'Number of impressions', uz: 'Ko‘rsatishlar soni' } },
+  },
+  bounceRate: {
+    bounced: { label: { en: 'Single-page sessions', uz: 'Bir sahifali sessiyalar' } },
+    total:   { label: { en: 'Total sessions', uz: 'Jami sessiyalar' } },
+  },
+  engagementRate: {
+    engagements: { label: { en: 'Engagements (likes + comments + shares + clicks)', uz: 'O‘zaro ta’sirlar (layk + izoh + ulashish + klik)' },
+                   help:  { en: 'Total active interactions with the post(s) in the period.', uz: 'Davr davomida post(lar) bilan faol o‘zaro ta’sirlarning umumiy soni.' } },
+    reach:       { label: { en: 'Reach', uz: 'Qamrov (Reach)' },
+                   help:  { en: 'Unique users who saw the content (not impressions — those are different numbers).', uz: 'Kontentni ko‘rgan noyob foydalanuvchilar (impressions emas — bular turli sonlar).' } },
+  },
+  cpm: {
+    spend:       { label: { en: 'Ad spend, $', uz: 'Reklama xarajatlari, $' } },
+    impressions: { label: { en: 'Impressions', uz: 'Ko‘rsatishlar (impressions)' } },
+  },
+  cartAbandonment: {
+    purchases: { label: { en: 'Purchases (completed orders)', uz: 'Xaridlar (yakunlangan buyurtmalar)' } },
+    carts:     { label: { en: 'Carts created', uz: 'Yaratilgan savatlar' } },
+  },
+  mer: {
+    totalRevenue: { label: { en: 'Total revenue, $', uz: 'Umumiy tushum, $' } },
+    totalSpend:   { label: { en: 'Total marketing spend, $', uz: 'Umumiy marketing xarajatlari, $' } },
+  },
+  cpa: {
+    spend:   { label: { en: 'Spend, $', uz: 'Xarajatlar, $' },
+               help:  { en: 'Full channel / campaign spend for the period.', uz: 'Davr uchun kanal/kampaniyaga ketgan to‘liq xarajat.' } },
+    actions: { label: { en: 'Target actions (conversions)', uz: 'Maqsadli amallar (konversiyalar)' },
+               help:  { en: 'Number of completed target actions (purchases, requests, signups).', uz: 'Bajarilgan maqsadli amallar soni (xaridlar, arizalar, ro‘yxatdan o‘tishlar).' } },
+  },
+  cpl: {
+    spend: { label: { en: 'Spend, $', uz: 'Xarajatlar, $' },
+             help:  { en: 'Full lead-generation spend for the period.', uz: 'Davr uchun lidogeneratsiyaga ketgan to‘liq xarajat.' } },
+    leads: { label: { en: 'Number of leads', uz: 'Lidlar soni' },
+             help:  { en: 'Number of leads (requests / contacts) received in the same period.', uz: 'Shu davrda olingan lidlar (arizalar / kontaktlar) soni.' } },
+  },
+  cpi: {
+    spend:    { label: { en: 'Acquisition spend, $', uz: 'Jalb qilish xarajatlari, $' },
+                help:  { en: 'Ad budget for the UA campaign in the period.', uz: 'Davr uchun UA kampaniyasining reklama byudjeti.' } },
+    installs: { label: { en: 'Installs', uz: 'O‘rnatishlar' },
+                help:  { en: 'App installs attributed to the campaign.', uz: 'Kampaniyaga atributlangan ilova o‘rnatishlari soni.' } },
+  },
+  openRate: {
+    opens:     { label: { en: 'Email opens', uz: 'Xatlar ochilishi' },
+                 help:  { en: 'Number of opens (unique or total — just be consistent).', uz: 'Ochilishlar soni (noyob yoki jami — izchil bo‘ling).' } },
+    delivered: { label: { en: 'Emails delivered', uz: 'Yetkazilgan xatlar' },
+                 help:  { en: 'Emails that reached the inbox (sent minus bounces).', uz: 'Inboxga yetib borgan xatlar (yuborilgan minus bounce).' } },
+  },
+  ctor: {
+    clicks: { label: { en: 'Unique clicks', uz: 'Noyob kliklar' },
+              help:  { en: 'Unique clicks on links inside the email.', uz: 'Xat ichidagi havolalar bo‘yicha noyob kliklar.' } },
+    opens:  { label: { en: 'Unique opens', uz: 'Noyob ochilishlar' },
+              help:  { en: 'Unique email opens — the CTOR denominator.', uz: 'Xatning noyob ochilishlari — CTOR maxraji.' } },
+  },
+  // ---- QA ----
+  bugRate: {
+    bugs: { label: { en: 'Number of bugs', uz: 'Baglar soni' } },
+    size: { label: { en: 'Size (KLOC / number of sprints)', uz: 'Hajm (ming qator kod / sprintlar soni)' } },
+  },
+  testCoverage: {
+    covered: { label: { en: 'Covered requirements / lines', uz: 'Qamrab olingan talablar/qatorlar' } },
+    total:   { label: { en: 'Total requirements / lines', uz: 'Jami talablar/qatorlar' } },
+  },
+  defectDensity: {
+    defects: { label: { en: 'Defects', uz: 'Defektlar' } },
+    kloc:    { label: { en: 'KLOC (thousand lines of code)', uz: 'KLOC (ming qator kod)' } },
+  },
+  // ---- Support ----
+  csat: {
+    pos:   { label: { en: 'Positive ratings (4 and 5)', uz: 'Ijobiy baholar (4 va 5)' } },
+    total: { label: { en: 'Total ratings', uz: 'Jami baholar' } },
+  },
+  nps: {
+    promoters:  { label: { en: 'Promoters (scores 9–10)', uz: 'Promouterlar (9–10 ball)' },
+                  help:  { en: 'Willing to recommend. Only 9 and 10 — even an 8 is a “passive”.', uz: 'Tavsiya qilishga tayyor. Faqat 9 va 10 — hatto 8 ham «passiv» hisoblanadi.' } },
+    detractors: { label: { en: 'Detractors (scores 0–6)', uz: 'Detraktorlar (0–6 ball)' },
+                  help:  { en: 'Unhappy customers. Any score 0–6 (even a 6 is negative for NPS).', uz: 'Norozi mijozlar. 0–6 oralig‘idagi har qanday ball (hatto 6 ham NPS uchun salbiy).' } },
+    total:      { label: { en: 'Total respondents', uz: 'Jami javob berganlar' },
+                  help:  { en: 'Promoters + passives (7–8) + detractors. Not everyone who received the survey.', uz: 'Promouterlar + passivlar (7–8) + detraktorlar. So‘rovnomani olganlarning hammasi emas.' } },
+  },
+  fcr: {
+    resolved: { label: { en: 'Resolved on first contact', uz: 'Birinchi murojaatda hal qilingan' } },
+    total:    { label: { en: 'Total tickets', uz: 'Jami tiketlar' } },
+  },
+  sla: {
+    met:   { label: { en: 'Tickets handled on time', uz: 'O‘z vaqtida ko‘rib chiqilgan tiketlar' } },
+    total: { label: { en: 'Total tickets', uz: 'Jami tiketlar' } },
+  },
+  ces: {
+    sumScores: { label: { en: 'Sum of effort scores', uz: 'Harakat baholari yig‘indisi' },
+                 help:  { en: 'Sum of all answers on the 1–7 scale (where 7 = “very easy”).', uz: '1–7 shkala bo‘yicha barcha javoblar yig‘indisi (bunda 7 = «juda oson»).' } },
+    responses: { label: { en: 'Number of responses', uz: 'Javoblar soni' } },
+  },
+  avgResolutionTime: {
+    totalHours:      { label: { en: 'Total resolution time, h', uz: 'Hal qilishning umumiy vaqti, soat' },
+                       help:  { en: 'Total hours spent resolving all tickets closed in the period.', uz: 'Davrda yopilgan barcha tiketlarni hal qilishga ketgan soatlar yig‘indisi.' } },
+    ticketsResolved: { label: { en: 'Tickets resolved', uz: 'Hal qilingan tiketlar' },
+                       help:  { en: 'Number of tickets closed (resolved) in the same period.', uz: 'Shu davrda yopilgan (hal qilingan) tiketlar soni.' } },
+  },
+};
+
+// ============================================================
+// I18N_UNITS — result units. RU is the key (units are short, stable tokens,
+// not prose); '$' is handled separately by the currency switch.
+// ============================================================
+window.I18N_UNITS = {
+  'чел':           { en: 'users',        uz: 'kishi' },
+  'мес':           { en: 'mo',           uz: 'oy' },
+  'дней':          { en: 'days',         uz: 'kun' },
+  'дн':            { en: 'days',         uz: 'kun' },
+  'ч':             { en: 'h',            uz: 'soat' },
+  'балл':          { en: 'pts',          uz: 'ball' },
+  'лет':           { en: 'yrs',          uz: 'yil' },
+  '$/мес':         { en: '$/mo',         uz: '$/oy' },
+  '$/день':        { en: '$/day',        uz: '$/kun' },
+  'багов/KLOC':    { en: 'bugs/KLOC',    uz: 'bag/KLOC' },
+  'дефектов/KLOC': { en: 'defects/KLOC', uz: 'defekt/KLOC' },
+  'заказов':       { en: 'orders',       uz: 'buyurtma' },
+  'визитов':       { en: 'visits',       uz: 'tashrif' },
+};
+window._tUnit = function(unit, lang) {
+  lang = lang || (window._currentLang ? window._currentLang() : 'ru');
+  if (!unit || lang === 'ru') return unit;
+  const e = window.I18N_UNITS[unit];
+  return (e && e[lang]) || unit;
+};
+// Input label/help for the current language (falls back to RU from metricsData).
+window._tInput = function(metricId, inp, field) {
+  field = field || 'label';
+  const ru = inp && inp[field];
+  const lang = window._currentLang ? window._currentLang() : 'ru';
+  if (!ru || lang === 'ru') return ru;
+  const e = window.I18N_INPUTS[metricId] && window.I18N_INPUTS[metricId][inp.key];
+  return (e && e[field] && e[field][lang]) || ru;
 };
 
 // ============================================================
@@ -1173,18 +1625,12 @@ window.I18N_THRESH = {
   'Плохо: <2%, Норма: 3–8%, Хорошо: >8%': { en: 'Bad: <2%, Norm: 3–8%, Good: >8%', uz: 'Yomon: <2%, Norma: 3–8%, Yaxshi: >8%' },
 
   // CPC
-  'Отлично: <$0.5, Норма: $0.5–$2, Плохо: >$2': { en: 'Excellent: <$0.5, Norm: $0.5–$2, Bad: >$2', uz: 'Ajoyib: <$0.5, Norma: $0.5–$2, Yomon: >$2' },
   'Отлично: <$2, Норма: $2–$8, Плохо: >$8': { en: 'Excellent: <$2, Norm: $2–$8, Bad: >$8', uz: 'Ajoyib: <$2, Norma: $2–$8, Yomon: >$8' },
   'Отлично: <$0.3, Норма: $0.3–$1.2, Плохо: >$1.2': { en: 'Excellent: <$0.3, Norm: $0.3–$1.2, Bad: >$1.2', uz: 'Ajoyib: <$0.3, Norma: $0.3–$1.2, Yomon: >$1.2' },
   'Отлично: <$0.2, Норма: $0.2–$1, Плохо: >$1': { en: 'Excellent: <$0.2, Norm: $0.2–$1, Bad: >$1', uz: 'Ajoyib: <$0.2, Norma: $0.2–$1, Yomon: >$1' },
   'Отлично: <$0.15, Норма: $0.15–$0.6, Плохо: >$0.6': { en: 'Excellent: <$0.15, Norm: $0.15–$0.6, Bad: >$0.6', uz: 'Ajoyib: <$0.15, Norma: $0.15–$0.6, Yomon: >$0.6' },
 
   // ROAS
-  'Плохо: <100%, Норма: 100–200%, Хорошо: >300%': { en: 'Bad: <100%, Norm: 100–200%, Good: >300%', uz: 'Yomon: <100%, Norma: 100–200%, Yaxshi: >300%' },
-  'Плохо: <150%, Норма: 150–400%, Хорошо: >400%': { en: 'Bad: <150%, Norm: 150–400%, Good: >400%', uz: 'Yomon: <150%, Norma: 150–400%, Yaxshi: >400%' },
-  'Плохо: <200%, Норма: 200–500%, Хорошо: >500%': { en: 'Bad: <200%, Norm: 200–500%, Good: >500%', uz: 'Yomon: <200%, Norma: 200–500%, Yaxshi: >500%' },
-  'Плохо: <100%, Норма: 100–250%, Хорошо: >250%': { en: 'Bad: <100%, Norm: 100–250%, Good: >250%', uz: 'Yomon: <100%, Norma: 100–250%, Yaxshi: >250%' },
-  'Плохо: <120%, Норма: 120–300%, Хорошо: >300%': { en: 'Bad: <120%, Norm: 120–300%, Good: >300%', uz: 'Yomon: <120%, Norma: 120–300%, Yaxshi: >300%' },
 
   // CR
   'Плохо: <1%, Норма: 1–4%, Хорошо: >4%': { en: 'Bad: <1%, Norm: 1–4%, Good: >4%', uz: 'Yomon: <1%, Norma: 1–4%, Yaxshi: >4%' },
@@ -1199,7 +1645,6 @@ window.I18N_THRESH = {
   'Хорошо: <55%, Норма: 55–80%, Плохо: >80%': { en: 'Good: <55%, Norm: 55–80%, Bad: >80%', uz: 'Yaxshi: <55%, Norma: 55–80%, Yomon: >80%' },
 
   // Churn
-  'Отлично: <1%/мес, Норма: 1–5%/мес, Плохо: >5%/мес': { en: 'Excellent: <1%/mo, Norm: 1–5%/mo, Bad: >5%/mo', uz: 'Ajoyib: <1%/oy, Norma: 1–5%/oy, Yomon: >5%/oy' },
   'Отлично: <0.5%/мес, Норма: 0.5–2%/мес, Плохо: >2%/мес': { en: 'Excellent: <0.5%/mo, Norm: 0.5–2%/mo, Bad: >2%/mo', uz: 'Ajoyib: <0.5%/oy, Norma: 0.5–2%/oy, Yomon: >2%/oy' },
   'Отлично: <3%/мес, Норма: 3–8%/мес, Плохо: >8%/мес': { en: 'Excellent: <3%/mo, Norm: 3–8%/mo, Bad: >8%/mo', uz: 'Ajoyib: <3%/oy, Norma: 3–8%/oy, Yomon: >8%/oy' },
   'Отлично: <5%/мес, Норма: 5–15%/мес, Плохо: >15%/мес': { en: 'Excellent: <5%/mo, Norm: 5–15%/mo, Bad: >15%/mo', uz: 'Ajoyib: <5%/oy, Norma: 5–15%/oy, Yomon: >15%/oy' },
@@ -1213,7 +1658,6 @@ window.I18N_THRESH = {
   'Норма: LTV > 2×CAC, Хорошо: LTV > 4×CAC': { en: 'Norm: LTV > 2×CAC, Good: LTV > 4×CAC', uz: 'Norma: LTV > 2×CAC, Yaxshi: LTV > 4×CAC' },
 
   // CAC
-  'Отлично: CAC < LTV/3, Норма: CAC < LTV/2, Плохо: CAC > LTV/2': { en: 'Excellent: CAC < LTV/3, Norm: CAC < LTV/2, Bad: CAC > LTV/2', uz: 'Ajoyib: CAC < LTV/3, Norma: CAC < LTV/2, Yomon: CAC > LTV/2' },
   'Отлично: Окупаемость <6 мес, Норма: 6–18 мес, Плохо: >18 мес': { en: 'Excellent: Payback <6 mo, Norm: 6–18 mo, Bad: >18 mo', uz: 'Ajoyib: Qaytim <6 oy, Norma: 6–18 oy, Yomon: >18 oy' },
   'Отлично: CAC < $30, Норма: $30–$100, Плохо: >$100 (ориентир: окупается с 1–2 заказов)': { en: 'Excellent: CAC < $30, Norm: $30–$100, Bad: >$100 (guideline: pays back within 1–2 orders)', uz: 'Ajoyib: CAC < $30, Norma: $30–$100, Yomon: >$100 (mo‘ljal: 1–2 buyurtmada qoplanadi)' },
   'Отлично: CAC < $20, Норма: $20–$60, Плохо: >$60 (платящий пользователь; цена установки — это CPI)': { en: 'Excellent: CAC < $20, Norm: $20–$60, Bad: >$60 (paying user; cost per install is CPI)', uz: 'Ajoyib: CAC < $20, Norma: $20–$60, Yomon: >$60 (to‘lovchi foydalanuvchi; o‘rnatish narxi — bu CPI)' },
@@ -1241,7 +1685,6 @@ window.I18N_THRESH = {
   'Норма: MoM рост >3%, Хорошо: >10%': { en: 'Norm: MoM growth >3%, Good: >10%', uz: 'Norma: MoM o‘sish >3%, Yaxshi: >10%' },
 
   // NRR
-  'Плохо: <80%, Норма: 80–100%, Хорошо: 100–120%, Отлично: >120%': { en: 'Bad: <80%, Norm: 80–100%, Good: 100–120%, Excellent: >120%', uz: 'Yomon: <80%, Norma: 80–100%, Yaxshi: 100–120%, Ajoyib: >120%' },
   'Плохо: <90%, Норма: 90–100%, Хорошо: 100–120%, Отлично: >130%': { en: 'Bad: <90%, Norm: 90–100%, Good: 100–120%, Excellent: >130%', uz: 'Yomon: <90%, Norma: 90–100%, Yaxshi: 100–120%, Ajoyib: >130%' },
   'Плохо: <70%, Норма: 70–90%, Хорошо: >100%': { en: 'Bad: <70%, Norm: 70–90%, Good: >100%', uz: 'Yomon: <70%, Norma: 70–90%, Yaxshi: >100%' },
   'Плохо: <75%, Норма: 75–95%, Хорошо: >100%': { en: 'Bad: <75%, Norm: 75–95%, Good: >100%', uz: 'Yomon: <75%, Norma: 75–95%, Yaxshi: >100%' },
@@ -1264,7 +1707,6 @@ window.I18N_THRESH = {
   'Плохо: <30%, Норма: 30–60%, Хорошо: >60%': { en: 'Bad: <30%, Norm: 30–60%, Good: >60%', uz: 'Yomon: <30%, Norma: 30–60%, Yaxshi: >60%' },
   'Плохо: <70%, Норма: 70–85%, Хорошо: >85% (по логин когортам D30)': { en: 'Bad: <70%, Norm: 70–85%, Good: >85% (login cohorts D30)', uz: 'Yomon: <70%, Norma: 70–85%, Yaxshi: >85% (login kogortalar D30)' },
   'Плохо: <20%, Норма: 20–40%, Хорошо: >40% (повторная покупка 90д)': { en: 'Bad: <20%, Norm: 20–40%, Good: >40% (repeat purchase 90d)', uz: 'Yomon: <20%, Norma: 20–40%, Yaxshi: >40% (90 kun ichida takroriy xarid)' },
-  'Плохо: <15% D30, Норма: 15–30%, Хорошо: >30%': { en: 'Bad: <15% D30, Norm: 15–30%, Good: >30%', uz: 'Yomon: <15% D30, Norma: 15–30%, Yaxshi: >30%' },
   'Плохо: <25%, Норма: 25–50%, Хорошо: >50%': { en: 'Bad: <25%, Norm: 25–50%, Good: >50%', uz: 'Yomon: <25%, Norma: 25–50%, Yaxshi: >50%' },
   'Плохо: <60%, Норма: 60–80%, Хорошо: >80%': { en: 'Bad: <60%, Norm: 60–80%, Good: >80%', uz: 'Yomon: <60%, Norma: 60–80%, Yaxshi: >80%' },
   'Плохо: <20%, Норма: 20–45%, Хорошо: >45%': { en: 'Bad: <20%, Norm: 20–45%, Good: >45%', uz: 'Yomon: <20%, Norma: 20–45%, Yaxshi: >45%' },
@@ -1275,7 +1717,6 @@ window.I18N_THRESH = {
   'Плохо: <30%, Норма: 30–55%, Хорошо: >55%': { en: 'Bad: <30%, Norm: 30–55%, Good: >55%', uz: 'Yomon: <30%, Norma: 30–55%, Yaxshi: >55%' },
 
   // Referral
-  'Плохо: <0.3, Норма: 0.3–1, Хорошо: >1 (вирусный рост)': { en: 'Bad: <0.3, Norm: 0.3–1, Good: >1 (viral growth)', uz: 'Yomon: <0.3, Norma: 0.3–1, Yaxshi: >1 (viral o‘sish)' },
   'Плохо: <0.2, Норма: 0.2–0.6, Хорошо: >0.6, Виральность: >1': { en: 'Bad: <0.2, Norm: 0.2–0.6, Good: >0.6, Viral: >1', uz: 'Yomon: <0.2, Norma: 0.2–0.6, Yaxshi: >0.6, Viral: >1' },
   'Плохо: <0.15, Норма: 0.15–0.5, Хорошо: >0.5': { en: 'Bad: <0.15, Norm: 0.15–0.5, Good: >0.5', uz: 'Yomon: <0.15, Norma: 0.15–0.5, Yaxshi: >0.5' },
   'Плохо: <0.4, Норма: 0.4–1, Хорошо: >1': { en: 'Bad: <0.4, Norm: 0.4–1, Good: >1', uz: 'Yomon: <0.4, Norma: 0.4–1, Yaxshi: >1' },
@@ -1613,67 +2054,6 @@ window._tGoal = function(ruText) {
   return entry[window._currentLang()] || ruText;
 };
 
-// ============================================================
-// I18N_TOOLTIP — input help text translations keyed by RU.
-// ============================================================
-window.I18N_TOOLTIP = {
-  // LTV
-  'Average Order Value: общая выручка / число заказов за тот же период. Не путать с ARPU.': { en: 'Average Order Value: total revenue / number of orders for the period. Not the same as ARPU.', uz: 'Average Order Value: davr boshiga umumiy tushum / buyurtmalar soni. ARPU bilan adashtirmang.' },
-  'Сколько раз в год средний клиент покупает. Для подписки = 12 (помесячно) или 1 (годовая).': { en: 'How many times a year an average customer purchases. Subscription = 12 (monthly) or 1 (annual).', uz: 'O‘rtacha mijoz yiliga necha marta sotib oladi. Obuna = 12 (oylik) yoki 1 (yillik).' },
-  'Если знаете annual churn: life ≈ 1 / churn. Для retention 80% — life ≈ 5 лет.': { en: 'If you know annual churn: life ≈ 1 / churn. For 80% retention — life ≈ 5 years.', uz: 'Yillik churn ni bilsangiz: umr ≈ 1 / churn. 80% retention uchun — umr ≈ 5 yil.' },
-
-  // CAC
-  'Полные расходы на привлечение: реклама + сейлы + контент + ЗП маркетинг-команды. Учитывайте всё, не только performance-бюджет.': { en: 'Full acquisition cost: ads + sales + content + marketing salaries. Count everything, not just performance budget.', uz: 'To‘liq jalb qilish xarajati: reklama + sotuv + kontent + marketing maoshlari. Hammasini hisobga oling, faqat performance byudjet emas.' },
-  'Только платящие клиенты, привлечённые за тот же период. Не путать с регистрациями/триалами.': { en: 'Only paying customers acquired in the same period. Not signups or trials.', uz: 'Faqat shu davrda jalb qilingan to‘lovchi mijozlar. Ro‘yxatdan o‘tgan/trial bilan adashtirmang.' },
-
-  // Churn
-  'Customer churn (отписались / отменили). Не путать с revenue churn — это считается через GRR.': { en: 'Customer churn (unsubscribed / cancelled). Not revenue churn — that is computed via GRR.', uz: 'Mijoz churn (obunadan chiqqan / bekor qilgan). Revenue churn bilan adashtirmang — u GRR orqali hisoblanadi.' },
-  'Размер базы активных подписчиков на первый день периода. Новые приходящие в течение периода не учитываются.': { en: 'Size of the active subscriber base on day one of the period. New signups during the period are not counted.', uz: 'Davrning birinchi kunidagi faol obunachilar bazasi hajmi. Davr ichidagi yangi obunachilar hisoblanmaydi.' },
-
-  // NRR
-  'MRR от существующих клиентов на первый день периода (без новых).': { en: 'MRR from existing customers on day one of the period (excluding new).', uz: 'Davrning birinchi kunidagi mavjud mijozlardan MRR (yangilarisiz).' },
-  'Expansion MRR: апгрейды тарифов + увеличение seats + дополнительные продукты у уже существующей базы.': { en: 'Expansion MRR: plan upgrades + seat additions + extra products from existing base.', uz: 'Expansion MRR: tarif apgreydlari + seat qo‘shilishi + mavjud bazadan qo‘shimcha mahsulotlar.' },
-  'Gross MRR Churn: ушедшие клиенты + даунгрейды (contraction). Только потери в когорте существующих.': { en: 'Gross MRR Churn: departed customers + downgrades (contraction). Only losses in the existing cohort.', uz: 'Gross MRR Churn: ketgan mijozlar + downgrade (qisqarish). Faqat mavjud kogortadagi yo‘qotishlar.' },
-
-  // MRR
-  'Нормализованная месячная выручка. Годовые контракты делятся на 12. Не включает one-time / setup fees.': { en: 'Normalized monthly revenue. Annual contracts are divided by 12. Excludes one-time / setup fees.', uz: 'Normalashtirilgan oylik tushum. Yillik shartnomalar 12 ga bo‘linadi. One-time / setup to‘lovlarisiz.' },
-
-  // Burn Multiple
-  'Net Cash Burn за период = Все денежные траты − Все денежные поступления. Если cash-positive — введите отрицательное число.': { en: 'Net cash burn for the period = all cash spend − all cash inflows. If cash-positive, enter a negative number.', uz: 'Davr uchun net cash burn = barcha pul xarajati − barcha pul tushumi. Cash-positive bo‘lsa, manfiy son kiriting.' },
-  'Прирост ARR за период: Конечный − Начальный ARR. Включает new + expansion, минус churn и contraction.': { en: 'ARR growth for the period: Ending − Starting ARR. Includes new + expansion, minus churn and contraction.', uz: 'Davr uchun ARR o‘sishi: Yakuniy − Boshlang‘ich ARR. New + expansion, minus churn va contraction.' },
-
-  // Magic Number
-  'Прирост ARR за конкретный квартал. ARR — уже годовая величина, поэтому дополнительно аннуализировать её не нужно.': { en: 'ARR growth for a specific quarter. ARR is already an annual figure, so it needs no further annualizing.', uz: 'Aniq chorak uchun ARR o‘sishi. ARR allaqachon yillik ko‘rsatkich, shuning uchun uni qo‘shimcha yillikka aylantirish shart emas.' },
-  'Полный S&M cost: payroll команды + платформы + реклама + комиссии. По P&L, не по cash.': { en: 'Full S&M cost: team payroll + tools + ads + commissions. Per P&L, not cash basis.', uz: 'To‘liq S&M xarajat: jamoa maoshi + platformalar + reklama + komissiyalar. P&L bo‘yicha, cash bo‘yicha emas.' },
-
-  // Rule of 40
-  'Год-к-году. Можно использовать как ARR growth, так и Revenue growth.': { en: 'Year-over-year. Either ARR growth or Revenue growth works.', uz: 'Yil-bo‘yicha-yil. ARR growth yoki Revenue growth ishlatish mumkin.' },
-  'EBITDA margin или FCF margin (свободный денежный поток / выручка). Может быть отрицательной.': { en: 'EBITDA margin or FCF margin (free cash flow / revenue). May be negative.', uz: 'EBITDA marja yoki FCF marja (erkin pul oqimi / tushum). Salbiy bo‘lishi mumkin.' },
-
-  // Quick Ratio
-  'MRR от новых платящих клиентов за период.': { en: 'MRR from new paying customers in the period.', uz: 'Davr uchun yangi to‘lovchi mijozlardan MRR.' },
-  'Прирост MRR от существующих: апгрейды плана, расширение seats, дополнительные продукты.': { en: 'MRR growth from existing: plan upgrades, seat expansions, extra products.', uz: 'Mavjud mijozlardan MRR o‘sishi: plan apgreydlari, seat kengayishi, qo‘shimcha mahsulotlar.' },
-  'MRR ушедших клиентов (полная потеря).': { en: 'MRR from departed customers (full loss).', uz: 'Ketgan mijozlardan MRR (to‘liq yo‘qotish).' },
-  'Сокращение MRR у оставшихся клиентов (даунгрейд тарифа, меньше seats).': { en: 'MRR contraction from retained customers (plan downgrade, fewer seats).', uz: 'Qolgan mijozlardan MRR qisqarishi (tarif downgrade, kamroq seat).' },
-
-  // NPS
-  'Готовы рекомендовать. Только 9 и 10 — даже 8 это «пассивные».': { en: 'Willing to recommend. Only 9 and 10 — even 8 counts as passive.', uz: 'Tavsiya qilishga tayyor. Faqat 9 va 10 — hatto 8 ham passiv hisoblanadi.' },
-  'Недовольные. Любая оценка 0–6 (даже 6 это негатив для NPS).': { en: 'Unhappy. Any score 0–6 (even 6 is negative for NPS).', uz: 'Norozi. Har qanday 0–6 ball (hatto 6 ham NPS uchun salbiy).' },
-  'Промоутеры + пассивные (7–8) + детракторы. Не путать с числом всех получивших опрос.': { en: 'Promoters + passives (7–8) + detractors. Not the count of all surveyed.', uz: 'Promouterlar + passivlar (7–8) + detraktorlar. So‘rov olganlarning umumiy soni bilan adashtirmang.' },
-
-  // ROAS
-  'Атрибутированная выручка от конкретной кампании / канала. Только то, что трекается обратно до рекламы.': { en: 'Attributed revenue from a specific campaign / channel. Only what tracks back to the ad.', uz: 'Aniq kampaniya / kanaldan atributlangan tushum. Faqat reklama orqali kuzatiladigan qism.' },
-  'Полные media spend: бюджеты + комиссии агентств + production. Не включает зарплаты команды.': { en: 'Full media spend: budgets + agency fees + production. Excludes team salaries.', uz: 'To‘liq media spend: byudjetlar + agentlik komissiyalari + production. Jamoa maoshlarisiz.' }
-};
-
-window._tTooltip = function(ruText) {
-  if (!ruText) return ruText;
-  if (!window._currentLang || window._currentLang() === 'ru') return ruText;
-  const entry = window.I18N_TOOLTIP[ruText];
-  if (!entry) return ruText;
-  return entry[window._currentLang()] || ruText;
-};
-
 (function() {
     const LS_KEY = 'metricsTree_v2';
     const LS_THEME = 'metricsTree_theme';
@@ -1735,6 +2115,12 @@ window._tTooltip = function(ruText) {
             if (!searchInp.getAttribute('data-t-aria-original')) searchInp.setAttribute('data-t-aria-original', searchInp.getAttribute('aria-label') || '');
             searchInp.setAttribute('aria-label', t('search.aria', searchInp.getAttribute('data-t-aria-original')));
         }
+        // Language-prefixed links to standalone pages (/tree → /en/tree, /uz/tree)
+        document.querySelectorAll('a[href="/tree"], a[data-lang-link]').forEach(a => {
+            const base = a.getAttribute('data-lang-link') || a.getAttribute('href');
+            a.setAttribute('data-lang-link', base);
+            a.setAttribute('href', (currentLang === 'ru' ? '' : '/' + currentLang) + base);
+        });
         // <html lang>
         document.documentElement.setAttribute('lang', currentLang);
     }
@@ -1765,8 +2151,42 @@ window._tTooltip = function(ruText) {
         return text.replace(/, \$/g, ', ' + currentCurrency).replace(/\$/g, currentCurrency);
     }
     function localizeUnit(unit) {
-        if (unit === '$' && currentCurrency !== '$') return currentCurrency;
-        return unit;
+        if (!unit) return unit;
+        const u = window._tUnit ? window._tUnit(unit, currentLang) : unit;
+        return currentCurrency === '$' ? u : u.replace(/\$/g, currentCurrency);
+    }
+    // Translated + currency-localized input label / help (I18N_INPUTS, keyed by metric id + input key).
+    function inputLabel(metricId, inp) { return localizeLabel(window._tInput ? window._tInput(metricId, inp, 'label') : inp.label); }
+    function inputHelp(metricId, inp) { return window._tInput ? window._tInput(metricId, inp, 'help') : inp.help; }
+    // Short label (no ", $" suffix) for snapshot summaries — resolved at render time
+    // from the input key, so a snapshot saved in RU reads correctly in EN/UZ.
+    function snapInputLabel(metric, i) {
+        const inp = i && i.key && metric.inputs.find(x => x.key === i.key);
+        return inp ? inputLabel(metric.id, inp).split(',')[0].trim() : (i && i.label) || '';
+    }
+    // A stored display string like "16.7 мес" → "16.7 mo" in EN (any language/currency it was saved in).
+    function relocalizeUnitSuffix(str, metric) {
+        if (typeof str !== 'string' || !metric || !metric.unit || metric.unit === '$') return str;
+        const e = (window.I18N_UNITS || {})[metric.unit] || {};
+        const forms = [];
+        [metric.unit, e.en, e.uz].forEach(v => { if (v) ['$', '€', '₽', '£'].forEach(c => forms.push(v.replace(/\$/g, c))); });
+        for (const v of forms) {
+            if (str.endsWith(' ' + v)) return str.slice(0, -v.length) + localizeUnit(metric.unit);
+        }
+        return str;
+    }
+    // Russian plural: pluralRu(5, ['метрика','метрики','метрик']) → 'метрик'
+    function pluralRu(n, forms) {
+        const a = Math.abs(n) % 100, b = a % 10;
+        if (a > 10 && a < 20) return forms[2];
+        if (b > 1 && b < 5) return forms[1];
+        if (b === 1) return forms[0];
+        return forms[2];
+    }
+    function metricsCountText(n, ruForms) {
+        if (currentLang === 'en') return n + (n === 1 ? ' metric' : ' metrics');
+        if (currentLang === 'uz') return n + ' ta metrika';
+        return n + ' ' + pluralRu(n, ruForms || ['метрика', 'метрики', 'метрик']);
     }
     function initCurrency() {
         document.querySelectorAll('.currency-btn').forEach(btn => {
@@ -3944,7 +4364,7 @@ window._tTooltip = function(ruText) {
                 allValid = false;
                 el.classList.add('error');
                 if (errEl) { errEl.textContent = errMsg; errEl.classList.add('show'); }
-                errorMessages.push(`«${inp.label}»: ${errMsg}`);
+                errorMessages.push(`«${inputLabel(metric.id, inp)}»: ${errMsg}`);
             } else {
                 el.classList.remove('error');
                 if (errEl) errEl.classList.remove('show');
@@ -4113,7 +4533,7 @@ window._tTooltip = function(ruText) {
             if (match) visibleCount++;
             const saved = storedValues[metric.id];
             const hasDot = saved && Object.values(saved).some(v => v !== '');
-            const dotHtml = hasDot ? '<span class="metric-dot" title="Есть сохранённые значения"></span>' : '';
+            const dotHtml = hasDot ? `<span class="metric-dot" title="${t('list.has_values', 'Есть сохранённые значения')}"></span>` : '';
             const localizedName = tm(metric.id, 'name', metric.name);
             listHtml += `<div class="metric-item${activeClass}${hiddenClass}" data-metric-id="${metric.id}"><span class="metric-item-name">${localizedName}</span>${dotHtml}</div>`;
             chipsHtml += `<div class="metric-chip${activeClass}${hiddenClass}" data-metric-id="${metric.id}">${localizedName}${hasDot ? ' ·' : ''}</div>`;
@@ -4158,11 +4578,11 @@ window._tTooltip = function(ruText) {
         let inputsHtml = '';
         metric.inputs.forEach(inp => {
             const tooltipHtml = inp.help
-                ? `<span class="tooltip-wrap"><button type="button" class="tooltip-icon" tabindex="0" aria-label="Подсказка к полю">i</button><span class="tooltip-bubble" role="tooltip">${escapeHtml(window._tTooltip ? window._tTooltip(inp.help) : inp.help)}</span></span>`
+                ? `<span class="tooltip-wrap"><button type="button" class="tooltip-icon" tabindex="0" aria-label="${escapeHtml(t('tooltip.field_hint', 'Подсказка к полю'))}">i</button><span class="tooltip-bubble" role="tooltip">${escapeHtml(inputHelp(metric.id, inp))}</span></span>`
                 : '';
             inputsHtml += `
                 <div class="input-group">
-                    <label for="input-${inp.key}">${localizeLabel(inp.label)}${tooltipHtml}</label>
+                    <label for="input-${inp.key}">${inputLabel(metric.id, inp)}${tooltipHtml}</label>
                     <input type="text" id="input-${inp.key}" placeholder="${formatNum(inp.placeholder)}" value="" autocomplete="off" inputmode="decimal">
                     <div class="input-error-msg" id="err-${inp.key}"></div>
                 </div>`;
@@ -5034,16 +5454,16 @@ window._tTooltip = function(ruText) {
 
         const canCompare = list.length >= 2;
         let html = `<div class="snapshots-block-title">
-            <span>История (${list.length})</span>
+            <span>${t('snapshots.history', 'История (')}${list.length})</span>
             <div style="display:flex;gap:0.5rem;align-items:center;">
-                ${canCompare ? `<button class="snap-compare-btn" id="snapsCompareBtn">Сравнить</button>` : ''}
-                <button class="snapshots-clear-all" id="snapsClearAll">Удалить все</button>
+                ${canCompare ? `<button class="snap-compare-btn" id="snapsCompareBtn">${t('snapshots.compare', 'Сравнить')}</button>` : ''}
+                <button class="snapshots-clear-all" id="snapsClearAll">${t('snapshots.clear_all', 'Удалить все')}</button>
             </div>
         </div>`;
 
         [...list].reverse().forEach((snap, revIdx) => {
             const origIdx = list.length - 1 - revIdx;
-            const inputsSummary = snap.inputs.map(({ label, val }) => `${label}: ${val}`).join(' · ');
+            const inputsSummary = snap.inputs.map(i => `${escapeHtml(snapInputLabel(metric, i))}: ${escapeHtml(i.val)}`).join(' · ');
 
             let deltaHtml = '';
             if (curNum !== null && !isNaN(snap.result) && snap.result !== 0) {
@@ -5051,7 +5471,7 @@ window._tTooltip = function(ruText) {
                 if (Math.abs(pct) > 0.5) {
                     const sign = pct > 0 ? '+' : '';
                     const cls = pct > 0 ? 'pos' : 'neg';
-                    deltaHtml = `<span class="snapshot-delta ${cls}">${sign}${pct.toFixed(1)}% vs сейчас</span>`;
+                    deltaHtml = `<span class="snapshot-delta ${cls}">${sign}${pct.toFixed(1)}${t('snapshots.delta_now', '% vs сейчас')}</span>`;
                 }
             }
 
@@ -5060,16 +5480,16 @@ window._tTooltip = function(ruText) {
                 <div class="snapshot-item">
                     <div style="min-width:0;flex:1;">
                         <div class="snapshot-meta">
-                            <span class="snapshot-label" contenteditable="true" spellcheck="false" data-idx="${origIdx}" title="Кликните, чтобы переименовать">${escapeHtml(labelText)}</span>
+                            <span class="snapshot-label" contenteditable="true" spellcheck="false" data-idx="${origIdx}" title="${escapeHtml(t('snapshots.rename_tt', 'Кликните, чтобы переименовать'))}">${escapeHtml(labelText)}</span>
                             ${snap.label ? `<span class="snapshot-date-mini">${formatSnapDate(snap.ts)}</span>` : ''}
                         </div>
                         <div class="snapshot-inputs-summary">${inputsSummary}</div>
                         <div>
-                            <span class="snapshot-result-val">${snap.displayResult}</span>
+                            <span class="snapshot-result-val">${escapeHtml(relocalizeUnitSuffix(snap.displayResult, metric))}</span>
                             ${deltaHtml}
                         </div>
                     </div>
-                    <button class="snapshot-del" data-idx="${origIdx}" title="Удалить снимок" aria-label="Удалить снимок">×</button>
+                    <button class="snapshot-del" data-idx="${origIdx}" title="${escapeHtml(t('snapshots.delete_tt', 'Удалить снимок'))}" aria-label="${escapeHtml(t('snapshots.delete_tt', 'Удалить снимок'))}">×</button>
                 </div>`;
         });
 
@@ -5142,7 +5562,7 @@ window._tTooltip = function(ruText) {
 
         const inputs = metric.inputs.map(inp => {
             const el = document.getElementById(`input-${inp.key}`);
-            return { label: inp.label.split(',')[0].trim(), val: el ? el.value : '' };
+            return { key: inp.key, label: inp.label.split(',')[0].trim(), val: el ? el.value : '' };
         }).filter(i => i.val);
 
         const snap = {
@@ -5160,7 +5580,7 @@ window._tTooltip = function(ruText) {
         }
         saveSnaps(all);
 
-        showToast(`💾 Снимок сохранён · ${all[metric.id].length}/${MAX_SNAPS_PER_METRIC}`, 'success');
+        showToast(`${t('snapshots.saved', '💾 Снимок сохранён')} · ${all[metric.id].length}/${MAX_SNAPS_PER_METRIC}`, 'success');
         renderSnapshotsBlock();
     });
 
@@ -5228,7 +5648,7 @@ window._tTooltip = function(ruText) {
         compareMetricId = metricId;
         const overlay = document.getElementById('compareOverlay');
         const content = document.getElementById('compareContent');
-        document.getElementById('compareTitle').textContent = `Сравнение: ${metric.name}`;
+        document.getElementById('compareTitle').textContent = `${t('compare.title_prefix', 'Сравнение: ')}${tm(metric.id, 'name', metric.name)}`;
         overlay.classList.add('open');
         document.body.style.overflow = 'hidden';
 
@@ -5240,11 +5660,11 @@ window._tTooltip = function(ruText) {
 
             function snapCard(snap, label) {
                 const inputRows = snap.inputs.map(i =>
-                    `<div class="compare-row"><span class="compare-row-label">${i.label}</span><span class="compare-row-val">${i.val}</span></div>`
+                    `<div class="compare-row"><span class="compare-row-label">${escapeHtml(snapInputLabel(metric, i))}</span><span class="compare-row-val">${escapeHtml(i.val)}</span></div>`
                 ).join('');
                 return `<div class="compare-col">
                     <div class="compare-col-title">${label}</div>
-                    <div class="compare-result-val" style="color:var(--accent)">${snap.displayResult}${unit.trim() && !snap.displayResult.includes(unit.trim()) ? unit : ''}</div>
+                    <div class="compare-result-val" style="color:var(--accent)">${escapeHtml(relocalizeUnitSuffix(snap.displayResult, metric))}${unit.trim() && !relocalizeUnitSuffix(snap.displayResult, metric).includes(unit.trim()) ? unit : ''}</div>
                     <div class="snapshot-meta">${formatSnapDate(snap.ts)}</div>
                     <div style="margin-top:0.6rem">${inputRows}</div>
                 </div>`;
@@ -5258,7 +5678,7 @@ window._tTooltip = function(ruText) {
                     const el = document.getElementById(`input-${inp.key}`);
                     const v = el ? el.value.replace(/[\u00A0 ]/g, '') : '';
                     vals[inp.key] = parseFloat(v) || 0;
-                    inputs.push({ label: inp.label.split(',')[0], val: v || '—' });
+                    inputs.push({ key: inp.key, label: inp.label.split(',')[0], val: v || '—' });
                 });
                 let displayResult = '—';
                 try {
@@ -5269,8 +5689,9 @@ window._tTooltip = function(ruText) {
             }
 
             const effectiveB = snapB || getCurrentSnap();
-            const labelA = `Снимок ${idxA + 1} (${formatSnapDate(snapA.ts)})`;
-            const labelB = snapB ? `Снимок ${idxB + 1} (${formatSnapDate(snapB.ts)})` : 'Текущие значения';
+            const snapWord = t('compare.snap_n', 'Снимок ');
+            const labelA = `${snapWord}${idxA + 1} (${formatSnapDate(snapA.ts)})`;
+            const labelB = snapB ? `${snapWord}${idxB + 1} (${formatSnapDate(snapB.ts)})` : t('compare.current_values', 'Текущие значения');
 
             const numA = snapA.result;
             const numB = effectiveB.result;
@@ -5283,20 +5704,20 @@ window._tTooltip = function(ruText) {
                     ? (Math.abs(numB - numA) / 1e3).toFixed(1) + 'K'
                     : Math.abs(numB - numA).toFixed(2);
                 diffHtml = `<div class="compare-diff-row">
-                    <span class="compare-diff-label">${labelB} относительно ${labelA}:</span>
+                    <span class="compare-diff-label">${labelB}${t('compare.relative_to', ' относительно ')}${labelA}:</span>
                     <span class="compare-diff-val ${cls}">${sign}${pct.toFixed(1)}% (${pct > 0 ? '+' : ''}${absStr}${unit})</span>
                 </div>`;
             }
 
             // Build snapshot selectors
-            const snapOptions = snaps.map((s, i) => `<option value="${i}" ${i === idxA ? 'selected' : ''}>Снимок ${i+1}: ${s.displayResult} (${formatSnapDate(s.ts)})</option>`).join('');
-            const snapOptionsB = [`<option value="current" ${idxB === null ? 'selected' : ''}>Текущие значения</option>`,
-                ...snaps.map((s, i) => `<option value="${i}" ${i === idxB ? 'selected' : ''}>Снимок ${i+1}: ${s.displayResult} (${formatSnapDate(s.ts)})</option>`)
+            const snapOptions = snaps.map((s, i) => `<option value="${i}" ${i === idxA ? 'selected' : ''}>${snapWord}${i+1}: ${escapeHtml(relocalizeUnitSuffix(s.displayResult, metric))} (${formatSnapDate(s.ts)})</option>`).join('');
+            const snapOptionsB = [`<option value="current" ${idxB === null ? 'selected' : ''}>${t('compare.current_values', 'Текущие значения')}</option>`,
+                ...snaps.map((s, i) => `<option value="${i}" ${i === idxB ? 'selected' : ''}>${snapWord}${i+1}: ${escapeHtml(relocalizeUnitSuffix(s.displayResult, metric))} (${formatSnapDate(s.ts)})</option>`)
             ].join('');
 
             content.innerHTML = `
                 <div class="compare-select-wrap">
-                    <span style="font-size:0.78rem;color:var(--text-3)">Сравниваем:</span>
+                    <span style="font-size:0.78rem;color:var(--text-3)">${t('compare.select', 'Сравниваем:')}</span>
                     <select class="compare-select" id="cmpSelA" aria-label="Первый снимок для сравнения">${snapOptions}</select>
                     <span style="font-size:0.78rem;color:var(--text-3)">vs</span>
                     <select class="compare-select" id="cmpSelB" aria-label="Второй снимок для сравнения">${snapOptionsB}</select>
@@ -5401,11 +5822,11 @@ window._tTooltip = function(ruText) {
             if (filled === 0) {
                 badge.className = 'section-fill-badge none';
                 badge.textContent = `0/${total}`;
-                badge.title = `${total} метрик в разделе`;
+                badge.title = currentLang === 'ru' ? `${total} ${pluralRu(total, ['метрика', 'метрики', 'метрик'])} в разделе` : t('section.total_tt', '{n} metrics').replace('{n}', total);
             } else if (filled < total) {
                 badge.className = 'section-fill-badge partial';
                 badge.textContent = `${filled}/${total}`;
-                badge.title = `Заполнено ${filled} из ${total}`;
+                badge.title = t('section.filled_tt', 'Заполнено {a} из {b}').replace('{a}', filled).replace('{b}', total);
             } else {
                 badge.className = 'section-fill-badge full';
                 badge.textContent = '✓';
@@ -5644,6 +6065,23 @@ window._tTooltip = function(ruText) {
     function countTemplateMetrics(tpl) {
         return Object.keys(tpl.values).length;
     }
+    // EN/UZ names for SCENARIO_TEMPLATES, keyed by template id.
+    const TEMPLATE_I18N = {
+        startup_saas: { en: { name: 'SaaS startup', desc: 'B2B SaaS, ARR ~$600K, fast growth' },
+                        uz: { name: 'SaaS startap', desc: 'B2B SaaS, ARR ~$600K, jadal o‘sish' } },
+        mature_saas:  { en: { name: 'Mature SaaS', desc: 'B2B SaaS, ARR ~$24M, steady growth' },
+                        uz: { name: 'Yetuk SaaS', desc: 'B2B SaaS, ARR ~$24M, barqaror o‘sish' } },
+        ecom:         { en: { name: 'E-commerce', desc: 'Online store, mid-market' },
+                        uz: { name: 'E-commerce', desc: 'Internet-do‘kon, o‘rta segment' } },
+        mobile:       { en: { name: 'Mobile app', desc: 'Mobile app, freemium' },
+                        uz: { name: 'Mobil ilova', desc: 'Mobil ilova, freemium' } },
+        media:        { en: { name: 'Media', desc: 'Content site / publication' },
+                        uz: { name: 'Media', desc: 'Kontent sayt / nashr' } },
+    };
+    function tplText(tpl, field) {
+        const e = TEMPLATE_I18N[tpl.id];
+        return (currentLang !== 'ru' && e && e[currentLang] && e[currentLang][field]) || tpl[field];
+    }
 
     function applyTemplate(tpl) {
         // Merge template values into storedValues, overwriting existing
@@ -5653,7 +6091,7 @@ window._tTooltip = function(ruText) {
         saveToLS(storedValues);
         renderMetricCard();
         if (typeof showToast === 'function') {
-            showToast(`✓ Шаблон «${tpl.name}» применён — заполнено ${countTemplateMetrics(tpl)} метрик`, 'success');
+            showToast(t('templates.applied', '✓ Шаблон «{name}» применён: {count}').replace('{name}', tplText(tpl, 'name')).replace('{count}', metricsCountText(countTemplateMetrics(tpl))), 'success');
         }
     }
 
@@ -5663,9 +6101,9 @@ window._tTooltip = function(ruText) {
         grid.innerHTML = SCENARIO_TEMPLATES.map(tpl => `
             <div class="template-card" data-tpl="${tpl.id}">
                 <div class="template-icon">${tpl.icon}</div>
-                <div class="template-name">${tpl.name}</div>
-                <div class="template-desc">${tpl.desc}</div>
-                <div class="template-metrics-count">Заполняет ${countTemplateMetrics(tpl)} метрик</div>
+                <div class="template-name">${escapeHtml(tplText(tpl, 'name'))}</div>
+                <div class="template-desc">${escapeHtml(tplText(tpl, 'desc'))}</div>
+                <div class="template-metrics-count">${t('templates.metrics_count', 'Заполняет ')}${metricsCountText(countTemplateMetrics(tpl), ['метрику', 'метрики', 'метрик'])}</div>
             </div>`).join('');
 
         grid.querySelectorAll('.template-card').forEach(card => {
@@ -5912,7 +6350,7 @@ window._tTooltip = function(ruText) {
         const baseNum = parseFloat(baseResult);
         if (isNaN(baseNum)) return;
 
-        let html = `<div class="whatif-title">Анализ «Что если?»</div>`;
+        let html = `<div class="whatif-title">${t('whatif.title', 'Анализ «Что если?»')}</div>`;
 
         metric.inputs.forEach(inp => {
             const cur = baseValues[inp.key];
@@ -5933,7 +6371,7 @@ window._tTooltip = function(ruText) {
 
             html += `
                 <div class="whatif-row" data-key="${inp.key}">
-                    <span class="whatif-lbl">${inp.label}</span>
+                    <span class="whatif-lbl">${inputLabel(metric.id, inp)}</span>
                     <input type="range" class="whatif-slider"
                         data-key="${inp.key}"
                         data-base="${escapeHtml(cur)}"
@@ -5946,11 +6384,11 @@ window._tTooltip = function(ruText) {
         const unit = metric.unit ? ` ${localizeUnit(metric.unit)}` : '';
         html += `
             <div class="whatif-result-row">
-                <span class="whatif-result-lbl">Результат:</span>
+                <span class="whatif-result-lbl">${t('whatif.result', 'Результат:')}</span>
                 <span class="whatif-result-val" id="wiResult">${formatWhatIfVal(baseNum)}${unit}</span>
-                <span class="whatif-delta neu" id="wiDelta">= базовый</span>
+                <span class="whatif-delta neu" id="wiDelta">${t('whatif.delta_base', '= базовый')}</span>
             </div>
-            <button class="whatif-reset" id="wiResetBtn">Сбросить к текущим значениям</button>`;
+            <button class="whatif-reset" id="wiResetBtn">${t('whatif.reset', 'Сбросить к текущим значениям')}</button>`;
 
         whatifPanel.innerHTML = html;
 
@@ -5979,7 +6417,7 @@ window._tTooltip = function(ruText) {
                         const pct = ((newNum - baseNum) / Math.abs(baseNum)) * 100;
                         const sign = pct > 0 ? '+' : '';
                         const cls = pct > 0.5 ? 'pos' : pct < -0.5 ? 'neg' : 'neu';
-                        const label = Math.abs(pct) < 0.5 ? '= базовый' : `${sign}${pct.toFixed(1)}%`;
+                        const label = Math.abs(pct) < 0.5 ? t('whatif.delta_base', '= базовый') : `${sign}${pct.toFixed(1)}%`;
                         wiDeltaEl.textContent = label;
                         wiDeltaEl.className = `whatif-delta ${cls}`;
                     }
@@ -6000,7 +6438,7 @@ window._tTooltip = function(ruText) {
                 const wiResultEl = document.getElementById('wiResult');
                 const wiDeltaEl = document.getElementById('wiDelta');
                 if (wiResultEl) wiResultEl.textContent = `${formatWhatIfVal(baseNum)}${unit}`;
-                if (wiDeltaEl) { wiDeltaEl.textContent = '= базовый'; wiDeltaEl.className = 'whatif-delta neu'; }
+                if (wiDeltaEl) { wiDeltaEl.textContent = t('whatif.delta_base', '= базовый'); wiDeltaEl.className = 'whatif-delta neu'; }
             });
         }
     }
@@ -6409,8 +6847,7 @@ window._tTooltip = function(ruText) {
     const goalPanel = document.getElementById('goalPanel');
 
     function getCurrencyForUnit(u) {
-        if (u === '$' && currentCurrency !== '$') return currentCurrency;
-        return u;
+        return localizeUnit(u);
     }
 
     function buildGoalPanel(metric) {
@@ -6763,7 +7200,7 @@ window._tTooltip = function(ruText) {
             valueKey: 'mrr',  // metric.inputs key for the value being projected
             valueLabel: 'MRR',
             unit: '$',
-            defaultRate: 10, rateLabel: 'MoM рост', rateUnit: '%',
+            defaultRate: 10, rateLabel: 'MoM рост', rateKey: 'forecast.rate_mom', rateUnit: '%',
             monthsDefault: 12,
             project: (start, ratePct, m) => {
                 const r = ratePct / 100;
@@ -6774,7 +7211,7 @@ window._tTooltip = function(ruText) {
         },
         arr: {
             valueKey: 'mrr', valueLabel: 'ARR (MRR × 12)', unit: '$',
-            defaultRate: 10, rateLabel: 'MoM рост', rateUnit: '%',
+            defaultRate: 10, rateLabel: 'MoM рост', rateKey: 'forecast.rate_mom', rateUnit: '%',
             monthsDefault: 12,
             project: (start, ratePct, m) => {
                 const r = ratePct / 100;
@@ -6787,7 +7224,7 @@ window._tTooltip = function(ruText) {
             // Project cash remaining month by month
             valueKey: 'cash', valueLabel: 'Cash remaining', unit: '$',
             defaultRate: null,  // no rate input — uses burn directly
-            customInputs: [{ key: 'burnInput', label: 'Месячное сжигание', unit: '$', getDefault: () => {
+            customInputs: [{ key: 'burnInput', label: 'Месячное сжигание', labelKey: 'forecast.monthly_burn', unit: '$', getDefault: () => {
                 const b = document.getElementById('input-burn'); return b ? b.value.replace(/\s/g, '') : '300000';
             }}],
             monthsDefault: 18,
@@ -6801,7 +7238,7 @@ window._tTooltip = function(ruText) {
         nrr: {
             // Project compounded MRR at given NRR
             valueKey: 'start', valueLabel: 'MRR проекция', unit: '$',
-            defaultRate: 110, rateLabel: 'NRR годовой', rateUnit: '%',
+            defaultRate: 110, rateLabel: 'NRR годовой', rateKey: 'forecast.rate_nrr', rateUnit: '%',
             monthsDefault: 12,
             project: (start, nrrPct, m) => {
                 // Convert annual NRR to monthly compound
@@ -6836,7 +7273,7 @@ window._tTooltip = function(ruText) {
         },
         burnMultiple: {
             valueKey: 'newArr', valueLabel: 'ARR (projection)', unit: '$',
-            defaultRate: 5, rateLabel: 'MoM рост ARR', rateUnit: '%',
+            defaultRate: 5, rateLabel: 'MoM рост ARR', rateKey: 'forecast.rate_arr', rateUnit: '%',
             monthsDefault: 12,
             project: (start, ratePct, m) => {
                 const r = ratePct / 100;
@@ -6944,20 +7381,20 @@ window._tTooltip = function(ruText) {
 
         const customInputsHtml = (cfg.customInputs || []).map(ci => `
             <div class="forecast-control-row">
-                <label for="fc-${ci.key}">${ci.label}${ci.unit ? ', ' + getCurrencyForUnit(ci.unit) : ''}</label>
+                <label for="fc-${ci.key}">${t(ci.labelKey, ci.label)}${ci.unit ? ', ' + getCurrencyForUnit(ci.unit) : ''}</label>
                 <input type="number" id="fc-${ci.key}" value="${ci.getDefault()}" step="any">
             </div>
         `).join('');
 
         const rateRowHtml = cfg.defaultRate !== null && !cfg.rateFromCalc ? `
             <div class="forecast-control-row">
-                <label for="fc-rate">${cfg.rateLabel}, ${cfg.rateUnit}</label>
+                <label for="fc-rate">${t(cfg.rateKey, cfg.rateLabel)}, ${cfg.rateUnit}</label>
                 <input type="number" id="fc-rate" value="${initialRate}" step="0.1">
             </div>` : '';
 
         const rateInfoHtml = cfg.rateFromCalc ? `
             <div class="forecast-control-row">
-                <span style="font-size:0.78rem;color:var(--text-3);">Темп взят из расчёта: <strong style="color:var(--text-1);font-family:'JetBrains Mono',monospace;">${initialRate.toFixed(1)}%</strong></span>
+                <span style="font-size:0.78rem;color:var(--text-3);">${t('forecast.rate_from_calc', 'Темп взят из расчёта:')} <strong style="color:var(--text-1);font-family:'JetBrains Mono',monospace;">${initialRate.toFixed(1)}%</strong></span>
             </div>` : '';
 
         forecastPanel.innerHTML = `
@@ -6990,7 +7427,7 @@ window._tTooltip = function(ruText) {
             const finalV = values[values.length - 1];
             const delta = finalV - startVal;
             const deltaPct = startVal > 0 ? ((finalV - startVal) / startVal) * 100 : 0;
-            const unitDisp = cfg.unit === '$' ? localizeUnit('$') : cfg.unit;
+            const unitDisp = localizeUnit(cfg.unit);
             const chartEl = document.getElementById('fc-chart');
             if (chartEl) chartEl.innerHTML = drawForecastChart(values, unitDisp);
             const sumEl = document.getElementById('fc-summary');
@@ -7319,7 +7756,7 @@ window._tTooltip = function(ruText) {
         }
         const inputsHtml = m.inputs.map(inp => `
             <div class="c2-input-row">
-                <label>${localizeLabel(inp.label)}</label>
+                <label>${inputLabel(m.id, inp)}</label>
                 <input type="text" data-mid="${m.id}" data-key="${inp.key}" value="${escapeHtml(vals[inp.key])}" placeholder="${formatNum(inp.placeholder)}" inputmode="decimal">
             </div>
         `).join('');

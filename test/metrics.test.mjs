@@ -4,7 +4,7 @@
 // imported. Instead we slice the pure data structures out of the source text —
 // metricsData, INDUSTRY_THRESHOLDS, SCENARIO_TEMPLATES, GOAL_QUESTIONS — and
 // evaluate them in a vm sandbox together with the top-level i18n dictionaries
-// (I18N_INSIGHTS / I18N_THRESH / I18N_TOOLTIP / I18N_GOAL). No DOM is needed.
+// (I18N_INSIGHTS / I18N_THRESH / I18N_GOAL). No DOM is needed.
 //
 // What is guarded, for all 69 metrics:
 //   1. calculate(): empty / non-numeric input → null; valid input → a finite
@@ -335,13 +335,8 @@ test('every RU threshold / benchmark string has EN + UZ in I18N_THRESH', () => {
   assert.deepEqual(missing, []);
 });
 
-// Tooltips are only partly translated today (UI-translation work is separate), so
-// this guards the failure mode that matters when editing: a RU help text that was
-// changed without re-keying its translation leaves an orphaned I18N_TOOLTIP entry.
-test('every I18N_TOOLTIP key is still used by an input (no orphaned translations)', () => {
-  const helps = new Set(METRICS.flatMap(m => m.inputs.map(i => i.help).filter(Boolean)));
-  assert.deepEqual(Object.keys(window.I18N_TOOLTIP).filter(k => !helps.has(k)), []);
-});
+// Input label/help translations are keyed by metricId + input key (I18N_INPUTS);
+// their full coverage is asserted in test/i18n-drift.test.mjs.
 
 test('every goal-mode string has EN + UZ in I18N_GOAL', () => {
   const missing = [];
