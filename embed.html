@@ -233,6 +233,20 @@ function buildSrc() {
   return `https://metricstree.vercel.app${path}?${params.toString()}`;
 }
 
+// Visible attribution link under the iframe. An iframe alone gives the host page
+// no link to us; this anchor turns every embed into a real backlink with the
+// metric name as anchor text. Points at the clean (non-embed) metric page.
+function attribution() {
+  const path = state.lang ? `/${state.lang}/${state.metric}` : `/${state.metric}`;
+  const href = `https://metricstree.vercel.app${path}`;
+  const opt = $('metric').selectedOptions[0];
+  const name = (opt ? opt.textContent : state.metric).split(' — ')[0].split(' (')[0].trim();
+  const text = state.lang === 'en' ? `${name} calculator by MetricTree`
+    : state.lang === 'uz' ? `${name} kalkulyatori — MetricTree`
+    : `Калькулятор ${name} — MetricTree`;
+  return { href, text };
+}
+
 function buildIframeHTML() {
   const src = buildSrc();
   const widthAttr = state.width === '100%' ? 'width="100%"' : `width="${state.width}"`;
@@ -241,24 +255,32 @@ function buildIframeHTML() {
         ${widthAttr} height="${state.height}"
         style="${styleBorder}; border-radius:.75rem;"
         loading="lazy"
-        title="MetricTree calculator"></iframe>`;
+        title="MetricTree calculator"></iframe>
+<p style="font-size:12px;margin:4px 0 0;"><a href="${attribution().href}">${attribution().text}</a></p>`;
 }
 
 function buildMarkdown() {
   const src = buildSrc();
-  return `<iframe src="${src}" width="${state.width}" height="${state.height}" frameborder="0"></iframe>`;
+  const a = attribution();
+  return `<iframe src="${src}" width="${state.width}" height="${state.height}" frameborder="0"></iframe>
+
+[${a.text}](${a.href})`;
 }
 
 function buildReact() {
   const src = buildSrc();
-  return `<iframe
-  src="${src}"
-  width="${state.width}"
-  height={${state.height}}
-  style={{ border: 0, borderRadius: '0.75rem' }}
-  loading="lazy"
-  title="MetricTree calculator"
-/>`;
+  const a = attribution();
+  return `<>
+  <iframe
+    src="${src}"
+    width="${state.width}"
+    height={${state.height}}
+    style={{ border: 0, borderRadius: '0.75rem' }}
+    loading="lazy"
+    title="MetricTree calculator"
+  />
+  <p style={{ fontSize: 12, margin: '4px 0 0' }}><a href="${a.href}">${a.text}</a></p>
+</>`;
 }
 
 let codeTab = 'html';
