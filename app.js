@@ -4409,7 +4409,17 @@ window._tTooltip = function(ruText) {
         if (embedMenu) embedMenu.addEventListener('click', () => {
             const m = currentMetricId || 'ltv';
             const embedUrl = `https://metricstree.vercel.app/${m}?embed=1`;
-            const iframe = `<iframe src="${embedUrl}" width="100%" height="640" style="border:1px solid #ddd;border-radius:8px;" loading="lazy" title="MetricTree — ${m}"></iframe>`;
+            // Visible link under the iframe: turns every embed into a real backlink
+            // to the metric page (an iframe alone gives the host page no link to us).
+            const lang = currentLang === 'en' || currentLang === 'uz' ? currentLang : '';
+            const cm = getCurrentMetric();
+            const i18n = lang && window.I18N_M && window.I18N_M[m] && window.I18N_M[m][lang];
+            const name = (i18n && i18n.name) || (cm && cm.id === m ? cm.name : m);
+            const pageUrl = `https://metricstree.vercel.app${lang ? '/' + lang : ''}/${m}`;
+            const anchor = lang === 'en' ? `${name} calculator by MetricTree`
+                : lang === 'uz' ? `${name} kalkulyatori — MetricTree`
+                : `Калькулятор ${name} — MetricTree`;
+            const iframe = `<iframe src="${embedUrl}" width="100%" height="640" style="border:1px solid #ddd;border-radius:8px;" loading="lazy" title="MetricTree — ${m}"></iframe>\n<p style="font-size:12px;margin:4px 0 0;"><a href="${pageUrl}">${anchor}</a></p>`;
             const onOk = () => showToast('🔗 Embed-код скопирован', 'success');
             if (window.track) window.track('embed_copy', { metric: m });
             navigator.clipboard.writeText(iframe).then(onOk).catch(() => {
