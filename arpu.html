@@ -239,6 +239,128 @@
         });
     });
 })();
+// A11y (WCAG 2.2 AA): one shared dialog helper for every overlay above. It does not own
+// open/close — it watches the existing `.show` / `.open` / style.display toggles, so every
+// open path (buttons, menu, hotkeys, onboarding) and every close path (the handler above,
+// app.js closers) gets: role=dialog + aria-modal + aria-labelledby, focus moved inside on
+// open, Tab/Shift+Tab trapped, focus returned to the opener on close.
+(function a11yDialogs() {
+    var OVERLAYS = '.modal-overlay, .templates-overlay, .dashboard-overlay, .compare-overlay';
+    var FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), summary, [tabindex]:not([tabindex="-1"]), [contenteditable="true"]';
+    var stack = [], openers = new Map(), lastFocus = null;
+    function isOpen(ov) { return getComputedStyle(ov).display !== 'none'; }
+    function shown(el) { return el.getClientRects().length > 0 && getComputedStyle(el).visibility !== 'hidden'; }
+    function focusables(ov) { return Array.prototype.filter.call(ov.querySelectorAll(FOCUSABLE), shown); }
+    function prep(ov, i) {
+        if (!ov.hasAttribute('role')) ov.setAttribute('role', 'dialog');
+        ov.setAttribute('aria-modal', 'true');
+        if (!ov.hasAttribute('aria-labelledby') && !ov.hasAttribute('aria-label')) {
+            var h = ov.querySelector('h1, h2, h3, .templates-modal-title, .dashboard-title, .compare-title');
+            if (h) { if (!h.id) h.id = (ov.id || 'a11yDialog' + i) + 'Title'; ov.setAttribute('aria-labelledby', h.id); }
+        }
+    }
+    function onOpen(ov) {
+        var a = document.activeElement;
+        openers.set(ov, a && a !== document.body && !ov.contains(a) ? a : lastFocus);
+        stack.push(ov);
+        // Run after the app's own open code, which may already focus a field (CSV textarea…).
+        setTimeout(function () {
+            if (!isOpen(ov) || ov.contains(document.activeElement)) return;
+            var f = focusables(ov);
+            if (f[0]) f[0].focus();
+            else { ov.tabIndex = -1; ov.focus(); }
+        }, 0);
+    }
+    function onClose(ov) {
+        stack = stack.filter(function (x) { return x !== ov; });
+        var o = openers.get(ov); openers.delete(ov);
+        var a = document.activeElement;
+        if (a && a !== document.body && !ov.contains(a)) return; // app already moved focus on purpose
+        if (o && o.closest && o.closest('.more-menu-pop')) o = document.getElementById('moreMenuBtn');
+        if (!o || !o.isConnected || !shown(o)) o = stack[stack.length - 1] || document.getElementById('metricCard');
+        if (o) o.focus();
+    }
+    document.addEventListener('focusin', function (e) {
+        if (e.target.closest && !e.target.closest(OVERLAYS)) lastFocus = e.target;
+    });
+    document.addEventListener('keydown', function (e) {
+        var top = stack[stack.length - 1];
+        if (!top || !isOpen(top)) return;
+        if (e.key === 'Tab') {
+            var f = focusables(top), a = document.activeElement;
+            if (!f.length) { e.preventDefault(); return; }
+            var first = f[0], last = f[f.length - 1];
+            if (!top.contains(a)) { e.preventDefault(); (e.shiftKey ? last : first).focus(); }
+            else if (e.shiftKey && a === first) { e.preventDefault(); last.focus(); }
+            else if (!e.shiftKey && a === last) { e.preventDefault(); first.focus(); }
+            return;
+        }
+        // Background hotkeys (↑↓←→ metric/section nav, / search, ? help) must not act behind a dialog.
+        if (/^Arrow/.test(e.key) || e.key === '/' || e.key === '?') e.stopImmediatePropagation();
+    });
+    function init() {
+        document.querySelectorAll(OVERLAYS).forEach(function (ov, i) {
+            prep(ov, i);
+            var was = isOpen(ov);
+            new MutationObserver(function () {
+                var now = isOpen(ov);
+                if (now === was) return;
+                was = now;
+                if (now) onOpen(ov); else onClose(ov);
+            }).observe(ov, { attributes: true, attributeFilter: ['class', 'style'] });
+        });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
+// A11y: clickable <div>s rendered by app.js (template/dashboard cards, metric list + chips) become
+// keyboard-operable buttons (role=button + tabindex=0 + Enter/Space) without changing their layout;
+// unlabeled generated inputs get their visible row label; long-read h4s sit at level 3 under the h2.
+(function a11yClickables() {
+    var CLICKABLE = '.template-card, .dash-card, .dash-card-empty, .metric-item, .metric-chip';
+    function all(root, sel) {
+        var out = root.matches && root.matches(sel) ? [root] : [];
+        return out.concat(Array.prototype.slice.call(root.querySelectorAll(sel)));
+    }
+    var uid = 0;
+    function upgrade(root) {
+        if (!root || root.nodeType !== 1) return;
+        all(root, CLICKABLE).forEach(function (el) {
+            if (!el.hasAttribute('role')) el.setAttribute('role', 'button');
+            if (!el.hasAttribute('tabindex')) el.tabIndex = 0;
+            if (el.classList.contains('metric-item') || el.classList.contains('metric-chip')) {
+                if (el.classList.contains('active')) el.setAttribute('aria-current', 'true'); else el.removeAttribute('aria-current');
+            }
+        });
+        all(root, '.whatif-slider, .c2-input-row input').forEach(function (el) {
+            if (el.hasAttribute('aria-label') || el.hasAttribute('aria-labelledby')) return;
+            var lab = el.parentElement && el.parentElement.querySelector('label, .whatif-lbl');
+            if (!lab) return;
+            if (!lab.id) lab.id = 'a11yLbl' + (++uid);
+            el.setAttribute('aria-labelledby', lab.id);
+        });
+        all(root, '#deepContentSlot h4').forEach(function (h) { h.setAttribute('aria-level', '3'); });
+    }
+    document.addEventListener('keydown', function (e) {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        var el = e.target;
+        if (!el.matches || !el.matches(CLICKABLE) || el.getAttribute('role') !== 'button') return;
+        e.preventDefault();
+        var id = el.getAttribute('data-metric-id'), cls = el.classList[0];
+        el.click();
+        // The metric list re-renders on click — keep focus on the (new) same item.
+        if (!el.isConnected && id) {
+            var n = document.querySelector('.' + cls + '[data-metric-id="' + id + '"]');
+            if (n) { upgrade(n); n.focus(); }
+        }
+    });
+    function init() {
+        upgrade(document.body);
+        new MutationObserver(function (muts) {
+            muts.forEach(function (m) { for (var i = 0; i < m.addedNodes.length; i++) upgrade(m.addedNodes[i]); });
+        }).observe(document.body, { childList: true, subtree: true });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
 </script>
 <a href="#metricCard" class="skip-link" data-t="skip.to_calc">Перейти к калькулятору</a>
 <div class="container">
@@ -295,7 +417,7 @@
                     <button id="embedMenuBtn" role="menuitem" data-t="menu.embed">🔗 Скопировать embed-код</button>
                     <button id="aboutMenuBtn" role="menuitem" data-t="menu.about">ℹ️ О продукте</button>
                     <button id="pricingMenuBtn" role="menuitem" data-t="menu.pricing">💎 Pro / Team тарифы</button>
-                    <button id="clearAllBtn" role="menuitem" style="color:var(--red)" data-t="menu.clear_all">🗑 Очистить все данные</button>
+                    <button id="clearAllBtn" role="menuitem" style="color:var(--v-bad)" data-t="menu.clear_all">🗑 Очистить все данные</button>
                 </div>
             </div>
         </div>
@@ -398,8 +520,8 @@
 
     <main class="metrics-area" id="main">
         <aside class="metrics-list" id="metricsList" aria-label="Список метрик в разделе">
-            <h4 id="sectionTitle">Метрики B2C</h4>
-            <div id="metricsListItems" role="list"></div>
+            <h2 id="sectionTitle">Метрики B2C</h2>
+            <div id="metricsListItems" role="group" aria-labelledby="sectionTitle"></div>
             <div class="no-results" id="noResults">Ничего не найдено</div>
         </aside>
         <article class="metric-card" id="metricCard" tabindex="-1">
@@ -722,7 +844,7 @@
             <form action="/api/lead" method="POST" id="newsletterFormAbout" class="newsletter-inline">
                 <input type="hidden" name="_subject" value="MetricTree Newsletter signup (about modal)">
                 <input type="hidden" name="source" value="about-modal">
-                <input type="email" name="email" placeholder="your@email.com" required class="newsletter-email" autocomplete="email">
+                <input type="email" name="email" placeholder="your@email.com" required class="newsletter-email" aria-label="Email" autocomplete="email">
                 <button type="submit" class="newsletter-submit" data-t="newsletter.subscribe">Подписаться</button>
             </form>
             <div class="newsletter-success" id="newsletterAboutSuccess" style="display:none;" data-t="newsletter.success">✓ Подписка оформлена. Первый выпуск придёт через несколько дней.</div>
@@ -764,7 +886,7 @@
             <button type="submit" data-t="cheatsheet.cta" style="padding:0.55rem 1rem;border:0;border-radius:var(--radius-sm);background:var(--accent);color:#fff;font-weight:600;font-size:0.9rem;cursor:pointer;">Получить PDF →</button>
         </form>
         <div id="cheatsheetSuccess" style="display:none;font-size:0.88rem;margin-top:0.5rem;">
-            <span data-t="cheatsheet.success">✓ Готово!</span> <a href="/benchmarks" target="_blank" rel="noopener" style="color:var(--accent);" data-t="cheatsheet.open">Открыть шпаргалку и сохранить в PDF →</a>
+            <span data-t="cheatsheet.success">✓ Готово!</span> <a href="/benchmarks" target="_blank" rel="noopener" style="color:var(--accent-text);" data-t="cheatsheet.open">Открыть шпаргалку и сохранить в PDF →</a>
         </div>
     </div>
     <form action="/api/lead" method="POST" id="newsletterFormFooter" class="site-footer-news">
