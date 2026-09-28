@@ -111,7 +111,11 @@
     }
     </script>
     <link rel="stylesheet" href="/app.css">
-    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+    <!-- Vercel Web Analytics — first-party route. Requires Web Analytics to be
+         ENABLED for the project in the Vercel dashboard; until then it 404s and
+         no data is collected. Served same-origin, so it satisfies the existing
+         CSP (script-src 'self', connect-src 'self') and survives ad blockers. -->
+    <script defer src="/_vercel/insights/script.js"></script>
     <!-- Vercel Speed Insights -->
     <script>
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -467,6 +471,25 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
             <div id="deepContentSlot"></div>
         </article>
+    
+    <section class="metric-seo" aria-label="О метрике Engagement Rate">
+      <h2>Что такое Engagement Rate</h2>
+      <p>Engagement Rate — доля аудитории, которая активно взаимодействовала (лайк / коммент / шер / клик). Главная метрика SMM и контент-маркетинга.</p>
+      <h3>Формула расчёта Engagement Rate</h3>
+      <p><span class="seo-formula">(Активные взаимодействия / Достигшие охвата) × 100%</span></p>
+      <h3>Отраслевые бенчмарки</h3>
+      <p>Соцсети: &lt;1% плохо, 1–3% норма, 3–6% хорошо, &gt;6% отлично</p>
+      <h3>Частые вопросы про Engagement Rate</h3>
+      <div class="seo-faq">
+        <details><summary>Что такое Engagement Rate?</summary><p>ER = (Likes + Comments + Shares + Clicks) / Reach × 100%. Главная метрика SMM. Менее 1% — плохо, 3–6% — хорошо, &gt;6% — top-tier.</p></details>
+      </div>
+      <h3>Связанные метрики</h3>
+      <ul class="seo-related">
+        <li><a href="/stickiness">Stickiness</a></li>
+        <li><a href="/ctr">CTR</a></li>
+        <li><a href="/csat">CSAT</a></li>
+      </ul>
+    </section>
     </main>
     <div class="embed-footer" aria-hidden="true">
         Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 69 продуктовых метрик с формулами

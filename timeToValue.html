@@ -111,7 +111,11 @@
     }
     </script>
     <link rel="stylesheet" href="/app.css">
-    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+    <!-- Vercel Web Analytics — first-party route. Requires Web Analytics to be
+         ENABLED for the project in the Vercel dashboard; until then it 404s and
+         no data is collected. Served same-origin, so it satisfies the existing
+         CSP (script-src 'self', connect-src 'self') and survives ad blockers. -->
+    <script defer src="/_vercel/insights/script.js"></script>
     <!-- Vercel Speed Insights -->
     <script>
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -467,6 +471,25 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
             <div id="deepContentSlot"></div>
         </article>
+    
+    <section class="metric-seo" aria-label="О метрике Time to Value">
+      <h2>Что такое Time to Value</h2>
+      <p>Сколько времени нужно новому пользователю, чтобы получить первую ценность от продукта. Один из главных driver-ов Activation.</p>
+      <h3>Формула расчёта Time to Value</h3>
+      <p><span class="seo-formula">Среднее время от регистрации до Aha-моменту</span></p>
+      <h3>Отраслевые бенчмарки</h3>
+      <p>Мгновенно: &lt;1 день, быстро: 1–7 дней, норма: 7–30 дней, медленно: &gt;30</p>
+      <h3>Частые вопросы про Time to Value</h3>
+      <div class="seo-faq">
+        <details><summary>Что такое Time to Value?</summary><p>TtV — медианное время от регистрации до Aha-моменту. PLG &lt;1 день, B2B 1–14 дней. Долгая TtV убивает Activation и Retention.</p></details>
+      </div>
+      <h3>Связанные метрики</h3>
+      <ul class="seo-related">
+        <li><a href="/activation">Activation</a></li>
+        <li><a href="/retention">Retention</a></li>
+        <li><a href="/churn">Churn Rate</a></li>
+      </ul>
+    </section>
     </main>
     <div class="embed-footer" aria-hidden="true">
         Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 69 продуктовых метрик с формулами

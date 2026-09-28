@@ -27,7 +27,7 @@ const CASES = {
   burnMultiple:     [{ burn: 750, newArr: 500 }, 1.5],
   ruleOf40:         [{ growth: 40, margin: -7 }, 33],
   quickRatio:       [{ newMrr: 80, expansionMrr: 20, churnMrr: 15, contractionMrr: 5 }, 5],
-  magicNumber:      [{ newArrQuarter: 300, sm: 200 }, 6],
+  magicNumber:      [{ newArrQuarter: 300, sm: 200 }, 1.5],
   nps:              [{ promoters: 120, detractors: 30, total: 200 }, 45],
   cacPayback:       [{ cac: 1500, mrrPerCustomer: 200, grossMargin: 80 }, 9.375],
   roas:             [{ revenue: 4000, spend: 1000 }, 4],

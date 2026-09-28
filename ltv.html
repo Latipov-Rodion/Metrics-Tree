@@ -111,7 +111,11 @@
     }
     </script>
     <link rel="stylesheet" href="/app.css">
-    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+    <!-- Vercel Web Analytics — first-party route. Requires Web Analytics to be
+         ENABLED for the project in the Vercel dashboard; until then it 404s and
+         no data is collected. Served same-origin, so it satisfies the existing
+         CSP (script-src 'self', connect-src 'self') and survives ad blockers. -->
+    <script defer src="/_vercel/insights/script.js"></script>
     <!-- Vercel Speed Insights -->
     <script>
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -491,6 +495,28 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
             <div id="deepContentSlot"></div>
         </article>
+    
+    <section class="metric-seo" aria-label="О метрике LTV">
+      <h2>Что такое LTV</h2>
+      <p>Lifetime Value — сколько денег приносит клиент за всё время.</p>
+      <h3>Формула расчёта LTV</h3>
+      <p><span class="seo-formula">AOV × Частота покупок в год × Время жизни (лет)</span></p>
+      <h3>Отраслевые бенчмарки</h3>
+      <p>Главное — соотношение к CAC: LTV:CAC &gt; 3 норма, &gt; 5 отлично</p>
+      <h3>Частые вопросы про LTV</h3>
+      <div class="seo-faq">
+        <details><summary>Какая формула расчёта LTV?</summary><p>LTV = AOV (средний чек) × Частота покупок в год × Срок жизни клиента (лет). Для SaaS: ARPU / Churn. Пример: $2500 × 4 × 3 = $30 000.</p></details>
+        <details><summary>Какое соотношение LTV к CAC считается здоровым?</summary><p>LTV:CAC ≥ 3 — здоровая unit-экономика. 1–3 — слабая, теряете деньги на росте. &gt;5 — отлично, но возможно недоинвестируете в маркетинг. Top SaaS — 3–6×.</p></details>
+        <details><summary>Как увеличить LTV?</summary><p>Три рычага: (1) повысить AOV через апселы/бандлы, (2) увеличить частоту покупок (cross-sell, email-flows), (3) снизить Churn (onboarding, customer success). Каждый +10% даёт мультипликативный эффект.</p></details>
+        <details><summary>Чем LTV отличается от CLV?</summary><p>LTV (Lifetime Value) и CLV (Customer Lifetime Value) — синонимы. Иногда CLV считают с дисконтированием будущих cash flows (NPV). Для оперативных решений достаточно простой формулы.</p></details>
+      </div>
+      <h3>Связанные метрики</h3>
+      <ul class="seo-related">
+        <li><a href="/cac">CAC</a></li>
+        <li><a href="/ltv_cac">LTV:CAC</a></li>
+        <li><a href="/arpu">ARPU</a></li>
+      </ul>
+    </section>
     </main>
     <div class="embed-footer" aria-hidden="true">
         Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 69 продуктовых метрик с формулами

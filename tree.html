@@ -525,11 +525,8 @@
                     } else {
                         var valueDiv = document.createElement('div');
                         valueDiv.className = 'n-value';
+                        // formatByUnit already includes the unit ("$97 500", "1 250 заказов").
                         valueDiv.appendChild(document.createTextNode(formatByUnit(values[id], node.unit)));
-                        var u = document.createElement('span');
-                        u.className = 'n-unit';
-                        u.textContent = node.unit;
-                        valueDiv.appendChild(u);
                         card.appendChild(valueDiv);
                         nodeEls[id] = { card: card, valueEl: valueDiv };
                     }

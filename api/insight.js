@@ -53,6 +53,14 @@ const KNOWN_METRICS = new Set([
   'acv', 'referral', 'engagementRate', 'bounceRate', 'salesCycleLength',
   'repeatPurchaseRate', 'timeToValue', 'fcr', 'sla', 'bugRate', 'testCoverage',
   'defectDensity',
+  // Batch added to match app.js metricsData (was 46/69 — the 23 below were
+  // silently dropped from the payload, so a dashboard filled only with them
+  // returned "no valid numeric metrics provided").
+  'wau', 'arppu', 'featureAdoption', 'netNewMrr', 'leadVelocityRate',
+  'cashConversionScore', 'acquisition', 'activation', 'retention_aarrr',
+  'contributionMargin', 'gmv', 'takeRate', 'quotaAttainment', 'cpm',
+  'cartAbandonment', 'mer', 'cpa', 'cpl', 'cpi', 'openRate', 'ctor',
+  'ces', 'avgResolutionTime',
 ]);
 
 // ---- Fallback rule engine ----------------------------------------------------

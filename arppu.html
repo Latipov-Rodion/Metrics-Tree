@@ -111,7 +111,11 @@
     }
     </script>
     <link rel="stylesheet" href="/app.css">
-    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+    <!-- Vercel Web Analytics — first-party route. Requires Web Analytics to be
+         ENABLED for the project in the Vercel dashboard; until then it 404s and
+         no data is collected. Served same-origin, so it satisfies the existing
+         CSP (script-src 'self', connect-src 'self') and survives ad blockers. -->
+    <script defer src="/_vercel/insights/script.js"></script>
     <!-- Vercel Speed Insights -->
     <script>
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -194,8 +198,6 @@
     <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/arppu">
     <link rel="alternate" hreflang="uz" href="https://metricstree.vercel.app/uz/arppu">
     <link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/arppu">
-
-<script src="/theme-sync.js" defer></script>
 </head>
 <body>
 <script>
@@ -469,6 +471,25 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
             <div id="deepContentSlot"></div>
         </article>
+    
+    <section class="metric-seo" aria-label="О метрике ARPPU">
+      <h2>Что такое ARPPU</h2>
+      <p>Average Revenue Per Paying User — средняя выручка с одного платящего пользователя. В отличие от ARPU считается только по платящим и не размывается бесплатной аудиторией. Ключевая метрика для free-to-play и freemium.</p>
+      <h3>Формула расчёта ARPPU</h3>
+      <p><span class="seo-formula">Выручка / Платящие пользователи</span></p>
+      <h3>Отраслевые бенчмарки</h3>
+      <p>Сравнивайте с ARPU и LTV; для F2P — ключевая метрика монетизации</p>
+      <h3>Частые вопросы про ARPPU</h3>
+      <div class="seo-faq">
+        <details><summary>Что такое ARPPU?</summary><p>ARPPU = Выручка / Платящие пользователи. Считается только по платящим, поэтому всегда выше ARPU. Для F2P смотрите вместе с долей платящих (PUR) и LTV.</p></details>
+      </div>
+      <h3>Связанные метрики</h3>
+      <ul class="seo-related">
+        <li><a href="/arpu">ARPU</a></li>
+        <li><a href="/ltv">LTV</a></li>
+        <li><a href="/arpdau">ARPDAU</a></li>
+      </ul>
+    </section>
     </main>
     <div class="embed-footer" aria-hidden="true">
         Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 69 продуктовых метрик с формулами

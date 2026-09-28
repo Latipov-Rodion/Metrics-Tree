@@ -111,7 +111,11 @@
     }
     </script>
     <link rel="stylesheet" href="/app.css">
-    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+    <!-- Vercel Web Analytics — first-party route. Requires Web Analytics to be
+         ENABLED for the project in the Vercel dashboard; until then it 404s and
+         no data is collected. Served same-origin, so it satisfies the existing
+         CSP (script-src 'self', connect-src 'self') and survives ad blockers. -->
+    <script defer src="/_vercel/insights/script.js"></script>
     <!-- Vercel Speed Insights -->
     <script>
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -491,6 +495,28 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
             <div id="deepContentSlot"></div>
         </article>
+    
+    <section class="metric-seo" aria-label="О метрике Runway">
+      <h2>Что такое Runway</h2>
+      <p>Сколько месяцев компания проживёт на текущем уровне сжигания. Ключевая метрика для стартапов и pre-IPO.</p>
+      <h3>Формула расчёта Runway</h3>
+      <p><span class="seo-formula">Кэш / Среднемесячное сжигание</span></p>
+      <h3>Отраслевые бенчмарки</h3>
+      <p>&lt;6 мес критично, 6–12 рискованно, 12–18 норма, &gt;18 здорово</p>
+      <h3>Частые вопросы про Runway</h3>
+      <div class="seo-faq">
+        <details><summary>Как считать Runway?</summary><p>Runway (мес) = Кэш на балансе / Net Burn в месяц. Net Burn = Расходы − Выручка. Берите средний burn за последние 3 месяца, не один последний — он volatile.</p></details>
+        <details><summary>Когда начинать фандрейзинг?</summary><p>Standard: ставьте на стол ≥ 6 мес runway. SaaS fundraise обычно занимает 3–6 мес. Если runway &lt;9 мес — начинайте уже. &lt;6 мес — слабая переговорная позиция (term sheet hostage).</p></details>
+        <details><summary>Какой runway считается здоровым?</summary><p>&lt;6 мес — критично, экстренные cost-cuts. 6–12 мес — фандрейзинг. 12–18 мес — норма для seed/Series A. 18–24 мес — отличная позиция. &gt;24 мес — раунд был «лишним».</p></details>
+        <details><summary>Как продлить Runway?</summary><p>(1) сокращение расходов (хедкаунт — 70% бюджета SaaS), (2) ускорение revenue (annual prepay, ценообразование), (3) bridge от existing инвесторов, (4) venture debt (Brex, SVB, Silicon Valley Bridge). Cut + grow одновременно.</p></details>
+      </div>
+      <h3>Связанные метрики</h3>
+      <ul class="seo-related">
+        <li><a href="/burnRate">Burn Rate</a></li>
+        <li><a href="/burnMultiple">Burn Multiple</a></li>
+        <li><a href="/arr">ARR</a></li>
+      </ul>
+    </section>
     </main>
     <div class="embed-footer" aria-hidden="true">
         Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 69 продуктовых метрик с формулами

@@ -111,7 +111,11 @@
     }
     </script>
     <link rel="stylesheet" href="/app.css">
-    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+    <!-- Vercel Web Analytics — first-party route. Requires Web Analytics to be
+         ENABLED for the project in the Vercel dashboard; until then it 404s and
+         no data is collected. Served same-origin, so it satisfies the existing
+         CSP (script-src 'self', connect-src 'self') and survives ad blockers. -->
+    <script defer src="/_vercel/insights/script.js"></script>
     <!-- Vercel Speed Insights -->
     <script>
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -467,6 +471,25 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
             <div id="deepContentSlot"></div>
         </article>
+    
+    <section class="metric-seo" aria-label="О метрике Pipeline Coverage">
+      <h2>Что такое Pipeline Coverage</h2>
+      <p>Сколько раз воронка покрывает план продаж. Стандарт &gt;3x для B2B SaaS.</p>
+      <h3>Формула расчёта Pipeline Coverage</h3>
+      <p><span class="seo-formula">Pipeline Value / Целевая выручка периода</span></p>
+      <h3>Отраслевые бенчмарки</h3>
+      <p>Плохо: &lt;2x, Норма: 2–3x, Хорошо: 3–4x, Отлично: &gt;4x</p>
+      <h3>Частые вопросы про Pipeline Coverage</h3>
+      <div class="seo-faq">
+        <details><summary>Какое Pipeline Coverage нужно?</summary><p>Pipeline Coverage = Pipeline Value / Quota. B2B SaaS стандарт — 3–4× от плана. &lt;2× критически мало, &gt;4× безопасный запас.</p></details>
+      </div>
+      <h3>Связанные метрики</h3>
+      <ul class="seo-related">
+        <li><a href="/salesVelocity">Sales Velocity</a></li>
+        <li><a href="/winRate">Win Rate</a></li>
+        <li><a href="/arr">ARR</a></li>
+      </ul>
+    </section>
     </main>
     <div class="embed-footer" aria-hidden="true">
         Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 69 продуктовых метрик с формулами

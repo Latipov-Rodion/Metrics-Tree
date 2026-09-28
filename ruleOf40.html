@@ -111,7 +111,11 @@
     }
     </script>
     <link rel="stylesheet" href="/app.css">
-    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+    <!-- Vercel Web Analytics — first-party route. Requires Web Analytics to be
+         ENABLED for the project in the Vercel dashboard; until then it 404s and
+         no data is collected. Served same-origin, so it satisfies the existing
+         CSP (script-src 'self', connect-src 'self') and survives ad blockers. -->
+    <script defer src="/_vercel/insights/script.js"></script>
     <!-- Vercel Speed Insights -->
     <script>
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -491,6 +495,28 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
             <div id="deepContentSlot"></div>
         </article>
+    
+    <section class="metric-seo" aria-label="О метрике Rule of 40">
+      <h2>Что такое Rule of 40</h2>
+      <p>Здоровье SaaS: сумма роста и прибыльности. ≥ 40% — компания привлекательна для инвесторов независимо от соотношения growth vs profit.</p>
+      <h3>Формула расчёта Rule of 40</h3>
+      <p><span class="seo-formula">Темп роста выручки YoY (%) + Маржа EBITDA (%)</span></p>
+      <h3>Отраслевые бенчмарки</h3>
+      <p>Плохо: &lt;20%, Норма: 20–40%, Хорошо: ≥40%, Отлично: &gt;60%</p>
+      <h3>Частые вопросы про Rule of 40</h3>
+      <div class="seo-faq">
+        <details><summary>Как считать Rule of 40?</summary><p>Rule of 40 = Темп роста YoY (%) + Маржа EBITDA или FCF (%). Пример: рост 30% + маржа 15% = 45% — здоровый бизнес. Считается обычно по ARR-росту, не Revenue-росту (для SaaS точнее).</p></details>
+        <details><summary>Какую маржу использовать — EBITDA или FCF?</summary><p>Public SaaS обычно отчитывает FCF margin (наиболее консервативный). Private — Operating Margin или Adjusted EBITDA. Главное — последовательно использовать одну метрику во всех периодах.</p></details>
+        <details><summary>Почему именно 40%?</summary><p>Эмпирический порог от Brad Feld (Foundry Group, 2015). Анализ public SaaS показал: компании с R40 ≥ 40 торгуются с премией multiples. Это компромисс «рост vs прибыльность».</p></details>
+        <details><summary>Какая норма Rule of 40 в 2024?</summary><p>Top decile public SaaS: &gt;60% (Adobe, ServiceNow, CrowdStrike). Median: 25–35% — Rule of 40 теперь сложнее достичь после ZIRP-эпохи. Private growth-stage: 40–55% — лучший mix.</p></details>
+      </div>
+      <h3>Связанные метрики</h3>
+      <ul class="seo-related">
+        <li><a href="/arr">ARR</a></li>
+        <li><a href="/burnMultiple">Burn Multiple</a></li>
+        <li><a href="/quickRatio">Quick Ratio</a></li>
+      </ul>
+    </section>
     </main>
     <div class="embed-footer" aria-hidden="true">
         Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 69 продуктовых метрик с формулами

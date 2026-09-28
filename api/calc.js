@@ -124,9 +124,9 @@ export const CALCULATORS = {
   },
   magicNumber: {
     inputs: ['newArrQuarter', 'sm'],
-    calc: ({ newArrQuarter, sm }) => sm <= 0 ? null : (newArrQuarter * 4) / sm,
+    calc: ({ newArrQuarter, sm }) => sm <= 0 ? null : newArrQuarter / sm,
     unit: 'x',
-    formula: '(Net New ARR × 4) / S&M Spend',
+    formula: 'Net New ARR (quarter) / S&M Spend (quarter)',
     insight: v => v > 1.5 ? 'Hire aggressively' : v > 1 ? 'Healthy — scale gradually' : v > 0.75 ? 'Optimize funnel first' : 'Stop hiring sales',
     rating: v => v > 1.5 ? 'excellent' : v > 1 ? 'good' : v > 0.75 ? 'marginal' : 'bad',
   },

@@ -111,7 +111,11 @@
     }
     </script>
     <link rel="stylesheet" href="/app.css">
-    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+    <!-- Vercel Web Analytics — first-party route. Requires Web Analytics to be
+         ENABLED for the project in the Vercel dashboard; until then it 404s and
+         no data is collected. Served same-origin, so it satisfies the existing
+         CSP (script-src 'self', connect-src 'self') and survives ad blockers. -->
+    <script defer src="/_vercel/insights/script.js"></script>
     <!-- Vercel Speed Insights -->
     <script>
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -491,6 +495,28 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
             <div id="deepContentSlot"></div>
         </article>
+    
+    <section class="metric-seo" aria-label="О метрике NRR">
+      <h2>Что такое NRR</h2>
+      <p>Net Revenue Retention — удержание с учётом расширения.</p>
+      <h3>Формула расчёта NRR</h3>
+      <p><span class="seo-formula">(Начальный MRR + Апселы − Отток) / Начальный MRR × 100%</span></p>
+      <h3>Отраслевые бенчмарки</h3>
+      <p>Плохо: &lt;100%, Средне: 100–120%, Хорошо: &gt;120%</p>
+      <h3>Частые вопросы про NRR</h3>
+      <div class="seo-faq">
+        <details><summary>Как считать NRR?</summary><p>NRR = (MRR начала + Expansion − Churn − Contraction) / MRR начала × 100%. Берётся когорта на дату T, сравнивается их выручка через 12 мес.</p></details>
+        <details><summary>Чем NRR отличается от GRR?</summary><p>GRR (Gross Retention) — только потери, без учёта апселов. NRR (Net Retention) — с апселами. NRR может быть &gt;100%, GRR — никогда. GRR показывает здоровье продукта, NRR — здоровье account-команды.</p></details>
+        <details><summary>Какая норма NRR для SaaS?</summary><p>PLG B2B: 110–130%. Mid-market: 100–115%. Enterprise: 110–140%. Top decile (Snowflake, Datadog) — 150%+. &lt;100% — компания теряет выручку даже без новых клиентов.</p></details>
+        <details><summary>Как улучшить NRR?</summary><p>(1) Expansion-flows (seat-based pricing, usage-based), (2) success-managers для high-ARR клиентов, (3) reducing churn через onboarding и health-scores, (4) tiered pricing с upgrade-paths.</p></details>
+      </div>
+      <h3>Связанные метрики</h3>
+      <ul class="seo-related">
+        <li><a href="/grr">GRR</a></li>
+        <li><a href="/mrr">MRR</a></li>
+        <li><a href="/churn">Churn Rate</a></li>
+      </ul>
+    </section>
     </main>
     <div class="embed-footer" aria-hidden="true">
         Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 69 продуктовых метрик с формулами

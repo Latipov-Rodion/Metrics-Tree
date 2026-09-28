@@ -111,7 +111,11 @@
     }
     </script>
     <link rel="stylesheet" href="/app.css">
-    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+    <!-- Vercel Web Analytics — first-party route. Requires Web Analytics to be
+         ENABLED for the project in the Vercel dashboard; until then it 404s and
+         no data is collected. Served same-origin, so it satisfies the existing
+         CSP (script-src 'self', connect-src 'self') and survives ad blockers. -->
+    <script defer src="/_vercel/insights/script.js"></script>
     <!-- Vercel Speed Insights -->
     <script>
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -491,6 +495,27 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
             <div id="deepContentSlot"></div>
         </article>
+    
+    <section class="metric-seo" aria-label="О метрике NPS">
+      <h2>Что такое NPS</h2>
+      <p>Net Promoter Score — готовность рекомендовать продукт. Диапазон: −100 до +100.</p>
+      <h3>Формула расчёта NPS</h3>
+      <p><span class="seo-formula">(% Промоутеров − % Детракторов) = (Пром. − Детр.) / Всего × 100</span></p>
+      <h3>Отраслевые бенчмарки</h3>
+      <p>Плохо: &lt;0, Средне: 0–30, Хорошо: &gt;30, Отлично: &gt;50</p>
+      <h3>Частые вопросы про NPS</h3>
+      <div class="seo-faq">
+        <details><summary>Какая формула NPS?</summary><p>NPS = % Промоутеров (оценки 9–10) − % Детракторов (0–6). Нейтралы (7–8) не считаются. Результат: число от −100 до +100. Не процент.</p></details>
+        <details><summary>Какой NPS считается хорошим?</summary><p>&lt;0 — критично, пользователи активно отговаривают. 0–30 — есть куда расти. 30–50 — хорошо. 50–70 — отлично (Slack, Netflix). &gt;70 — мирового уровня (Apple, Tesla).</p></details>
+        <details><summary>Как часто опрашивать NPS?</summary><p>B2C SaaS: ежеквартально + после ключевых событий (onboarding+30 дней, churn-моменты). B2B: 2× в год + post-renewal. Не чаще — иначе survey fatigue. Транзакционный NPS (после support ticket) — отдельная метрика.</p></details>
+        <details><summary>Как улучшить NPS?</summary><p>(1) close-the-loop с детракторами (личный звонок CEO/CSM в первые 48 ч), (2) систематический анализ комментариев, (3) фичи из топ-3 жалоб промоутеров, (4) бенчмарк по сегментам — иногда low NPS концентрирован в одном.</p></details>
+      </div>
+      <h3>Связанные метрики</h3>
+      <ul class="seo-related">
+        <li><a href="/csat">CSAT</a></li>
+        <li><a href="/churn">Churn Rate</a></li>
+      </ul>
+    </section>
     </main>
     <div class="embed-footer" aria-hidden="true">
         Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 69 продуктовых метрик с формулами

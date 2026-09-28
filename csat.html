@@ -111,7 +111,11 @@
     }
     </script>
     <link rel="stylesheet" href="/app.css">
-    <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
+    <!-- Vercel Web Analytics — first-party route. Requires Web Analytics to be
+         ENABLED for the project in the Vercel dashboard; until then it 404s and
+         no data is collected. Served same-origin, so it satisfies the existing
+         CSP (script-src 'self', connect-src 'self') and survives ad blockers. -->
+    <script defer src="/_vercel/insights/script.js"></script>
     <!-- Vercel Speed Insights -->
     <script>
         window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
@@ -467,6 +471,24 @@
             <div class="related-block" id="relatedBlock" style="display:none;"></div>
             <div id="deepContentSlot"></div>
         </article>
+    
+    <section class="metric-seo" aria-label="О метрике CSAT">
+      <h2>Что такое CSAT</h2>
+      <p>Customer Satisfaction Score — доля довольных клиентов (оценки 4–5 из 5).</p>
+      <h3>Формула расчёта CSAT</h3>
+      <p><span class="seo-formula">(Оценки 4–5 / Всего оценок) × 100%</span></p>
+      <h3>Отраслевые бенчмарки</h3>
+      <p>Плохо: &lt;70%, Средне: 70–85%, Хорошо: &gt;85%</p>
+      <h3>Частые вопросы про CSAT</h3>
+      <div class="seo-faq">
+        <details><summary>Как считать CSAT?</summary><p>CSAT = Положительные оценки (4–5 из 5) / Всего оценок × 100%. SaaS норма &gt;85%.</p></details>
+      </div>
+      <h3>Связанные метрики</h3>
+      <ul class="seo-related">
+        <li><a href="/nps">NPS</a></li>
+        <li><a href="/fcr">FCR</a></li>
+      </ul>
+    </section>
     </main>
     <div class="embed-footer" aria-hidden="true">
         Calculator by <a href="https://metricstree.vercel.app/" target="_blank" rel="noopener">MetricTree</a> · 69 продуктовых метрик с формулами
