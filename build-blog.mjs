@@ -147,7 +147,10 @@ function md2html(md) {
   html = html.replace(/(^\|.+\|\n\|[-:|\s]+\|\n(?:\|.+\|\n?)+)/gm, m => {
     const rows = m.trim().split('\n');
     const header = rows[0].split('|').map(c => c.trim()).filter(Boolean);
-    const body = rows.slice(2).map(r => r.split('|').map(c => c.trim()).filter((_, i, arr) => i < arr.length));
+    // Drop only the outer pipes, so each row yields exactly its cells (the old
+    // filter kept the empty strings before the first and after the last '|',
+    // adding a blank cell at both ends of every body row). Inner empty cells stay.
+    const body = rows.slice(2).map(r => r.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(c => c.trim()));
     const thead = '<thead><tr>' + header.map(h => '<th>' + h + '</th>').join('') + '</tr></thead>';
     const tbody = '<tbody>' + body.map(r => '<tr>' + r.map(c => '<td>' + c + '</td>').join('') + '</tr>').join('') + '</tbody>';
     return '<table>' + thead + tbody + '</table>';
