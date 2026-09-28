@@ -14,6 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # build.mjs derives sitemap <lastmod> (and the benchmarks "обновлено"
+          # stamp) from the last commit touching each page's sources. A shallow
+          # clone can't tell when an older file last changed, so fetch history.
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -25,9 +30,10 @@ jobs:
           node build-blog.mjs
           node inject-theme-sync.mjs
       - name: Fail if generated artifacts are stale
-        # The generators stamp today's date (sitemap <lastmod>, "обновлено"
-        # in benchmarks.html), so a run on any day after the commit would diff
-        # on those lines alone. Ignore hunks that only touch the date stamps.
+        # Dates are now derived from git history (deterministic), but a build
+        # made just before midnight UTC and committed just after it would still
+        # differ by one day on the date lines alone — keep ignoring those hunks
+        # as a safety net. Everything else must match byte for byte.
         run: |
           if ! git diff --quiet -I'<lastmod>' -I'обновлено [0-9]{4}-[0-9]{2}-[0-9]{2}'; then
             echo "::error::Generated artifacts are out of sync with sources."
@@ -78,8 +84,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # needs the pre-push sitemap.xml to diff against
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - run: node notify-indexnow.mjs
+      # Submit only URLs that are new or whose <lastmod> changed in this push
+      # (IndexNow asks for changed URLs, not the whole sitemap on every push).
+      - run: node notify-indexnow.mjs --since "${{ github.event.before }}"
         continue-on-error: true

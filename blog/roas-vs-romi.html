@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ROAS и ROMI — как посчитать, в чём разница и какой ROAS нужен для безубыточности | MetricTree Blog</title>
+<meta name="description" content="ROAS = выручка / расходы на рекламу, ROMI = (валовая прибыль − маркетинговые расходы) / расходы. Формулы, пример на цифрах, точка безубыточности ROAS через маржу, нормы и ошибки.">
+<meta name="keywords" content="roas, romi, roas vs romi, как посчитать roas, как посчитать romi, формула romi, окупаемость рекламы, безубыточный roas">
+<link rel="canonical" href="https://metricstree.vercel.app/blog/roas-vs-romi">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/roas-vs-romi">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/roas-vs-romi">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/roas-vs-romi">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="ROAS и ROMI — как посчитать, в чём разница и какой ROAS нужен для безубыточности">
+<meta property="og:description" content="ROAS = выручка / расходы на рекламу, ROMI = (валовая прибыль − маркетинговые расходы) / расходы. Формулы, пример на цифрах, точка безубыточности ROAS через маржу, нормы и ошибки.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/blog/roas-vs-romi">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-09-22">
+<meta property="article:author" content="Родион Латыпов">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ROAS и ROMI — как посчитать, в чём разница и какой ROAS нужен для безубыточности">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ROAS и ROMI — как посчитать, в чём разница и какой ROAS нужен для безубыточности",
+  "description": "ROAS = выручка / расходы на рекламу, ROMI = (валовая прибыль − маркетинговые расходы) / расходы. Формулы, пример на цифрах, точка безубыточности ROAS через маржу, нормы и ошибки.",
+  "datePublished": "2026-09-22",
+  "author": {
+    "@type": "Person",
+    "name": "Родион Латыпов",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/blog/roas-vs-romi"
+  },
+  "keywords": "roas, romi, roas vs romi, как посчитать roas, как посчитать romi, формула romi, окупаемость рекламы, безубыточный roas",
+  "inLanguage": "ru"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js?v=ec79991f" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div>
+</nav>
+<article>
+<h1>ROAS и ROMI — как посчитать, в чём разница и какой ROAS нужен для безубыточности</h1>
+<div class="meta">2026-09-22 · автор: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a></div>
+<h1>ROAS и ROMI — как посчитать, в чём разница и какой ROAS нужен для безубыточности</h1>
+
+<p>«У нас ROAS 350%, реклама окупается» — одна из самых дорогих фраз в маркетинге. ROAS показывает выручку на рубль рекламы, но ничего не говорит о прибыли. Магазин с ROAS 3.5x может зарабатывать на каждой кампании, а может терять деньги — всё решает маржа. ROMI отвечает на вопрос, который на самом деле интересует собственника: сколько прибыли принёс маркетинг.</p>
+
+<h2>Формулы</h2>
+
+<p><strong>ROAS (Return on Ad Spend) = Выручка от рекламы / Расходы на рекламу</strong></p>
+
+<p>Выражается как множитель (3.5x) или в процентах (350%). Считается по кампании, каналу или объявлению.</p>
+
+<p><strong>ROMI (Return on Marketing Investment) = (Валовая прибыль от маркетинга − Маркетинговые расходы) / Маркетинговые расходы × 100%</strong></p>
+
+<p>Где валовая прибыль = выручка × маржинальность (лучше — contribution margin: после себестоимости, доставки, платёжных комиссий и возвратов).</p>
+
+<p>Ключевые различия:</p>
+
+<table><thead><tr><th>Параметр</th><th>ROAS</th><th>ROMI</th></tr></thead><tbody><tr><td></td><td>Что в числителе</td><td>Выручка</td><td>Прибыль минус затраты</td><td></td></tr><tr><td></td><td>Что в знаменателе</td><td>Только рекламный бюджет</td><td>Все маркетинговые расходы (реклама, агентство, креативы, инструменты)</td><td></td></tr><tr><td></td><td>Точка безубыточности</td><td>Зависит от маржи</td><td>Всегда 0%</td><td></td></tr><tr><td></td><td>Для чего</td><td>Оптимизация кампаний и ставок</td><td>Решение «вкладывать ли в маркетинг вообще»</td><td></td></tr></tbody></table>
+<h2>Пример расчёта</h2>
+
+<p>Интернет-магазин за месяц:<br><ul><li>Расходы на рекламу: <strong>$20 000</strong></li><li>Атрибутированная выручка: <strong>$70 000</strong></li><li>Contribution margin: <strong>35%</strong></li></ul></p>
+
+<p>ROAS = 70 000 / 20 000 = <strong>3.5x</strong></p>
+
+<p>Прибыль с продаж = 70 000 × 0.35 = $24 500<br>ROMI = (24 500 − 20 000) / 20 000 = <strong>22.5%</strong></p>
+
+<p>Маркетинг окупается: каждый доллар рекламы вернулся и принёс ещё 22.5 цента прибыли.</p>
+
+<p>Теперь тот же ROAS 3.5x, но маржа <strong>25%</strong> (например, распродажа со скидками):</p>
+
+<p>Прибыль = 70 000 × 0.25 = $17 500<br>ROMI = (17 500 − 20 000) / 20 000 = <strong>−12.5%</strong></p>
+
+<p>ROAS не изменился, а кампания стала убыточной. Именно поэтому ROAS без маржи — полуправда.</p>
+
+<h2>Безубыточный ROAS: главная формула для маркетолога</h2>
+
+<p><strong>Break-even ROAS = 1 / Маржинальность</strong></p>
+
+<table><thead><tr><th>Contribution margin</th><th>Безубыточный ROAS</th></tr></thead><tbody><tr><td></td><td>20%</td><td>5.0x</td><td></td></tr><tr><td></td><td>25%</td><td>4.0x</td><td></td></tr><tr><td></td><td>35%</td><td>2.86x</td><td></td></tr><tr><td></td><td>50%</td><td>2.0x</td><td></td></tr><tr><td></td><td>70%</td><td>1.43x</td><td></td></tr></tbody></table>
+Посчитайте эту цифру один раз для своего ассортимента и держите её перед глазами. Всё, что ниже, — вы покупаете выручку в убыток. Маржу удобно посчитать в калькуляторе <a href="/contributionMargin">/contributionMargin</a>.
+
+<h2>Нормы ROAS по индустриям</h2>
+
+<p>Пороги калькулятора MetricTree <a href="/roas">/roas</a> по индустриям:</p>
+
+<table><thead><tr><th>Индустрия</th><th>Плохо</th><th>Норма</th><th>Хорошо</th></tr></thead><tbody><tr><td></td><td><strong>Универсально</strong></td><td><2x</td><td>2–4x</td><td>>4x</td><td></td></tr><tr><td></td><td><strong>E-commerce</strong></td><td><2x</td><td>2–5x</td><td>>5x</td><td></td></tr><tr><td></td><td><strong>SaaS</strong></td><td><1.5x</td><td>1.5–4x</td><td>>4x</td><td></td></tr><tr><td></td><td><strong>Мобильные приложения</strong></td><td><1x</td><td>1–2.5x</td><td>>2.5x</td><td></td></tr><tr><td></td><td><strong>Медиа</strong></td><td><1.2x</td><td>1.2–3x</td><td>>3x</td><td></td></tr></tbody></table>
+Почему в SaaS и мобайле пороги ниже? Потому что там ROAS обычно считают по выручке первого периода, а клиент платит месяцами. ROAS 1.5x за первый месяц подписки может означать отличную кампанию, если клиент живёт два года. Для таких моделей смотрите не только ROAS, но и окупаемость CAC — <a href="/cacPayback">/cacPayback</a>.
+
+<p>В нашем примере 3.5x для e-commerce — это норма, и при марже 35% кампания в плюсе. При марже 25% та же «нормальная» цифра убыточна: безубыточный порог 4x.</p>
+
+<h2>MER — проверка ROAS на честность</h2>
+
+<p>Рекламные кабинеты склонны приписывать себе продажи: пересекающаяся атрибуция, post-view конверсии, покупатели, которые купили бы и так. Сумма ROAS по всем кабинетам часто больше, чем реальная выручка.</p>
+
+<p>Проверка — <strong>MER (Marketing Efficiency Ratio) = Вся выручка / Все маркетинговые расходы</strong>. Ориентир для DTC: <2 слабо, 2–3 норма, 3–5 хорошо, >5 отлично. Если ROAS в кабинетах растёт, а MER стоит на месте — атрибуция вас обманывает. Калькулятор — <a href="/mer">/mer</a>.</p>
+
+<h2>ROMI с учётом LTV</h2>
+
+<p>Для бизнеса с повторными покупками и подписками ROMI по первой покупке занижает эффект. Более честная версия:</p>
+
+<p><strong>ROMI (LTV) = (LTV × маржа × новые клиенты − Маркетинговые расходы) / Маркетинговые расходы</strong></p>
+
+<p>Но осторожно: LTV — прогноз. Используйте консервативный горизонт (например, 12 месяцев) и проверяйте его на реальных когортах. Иначе легко «доказать», что окупается что угодно.</p>
+
+<h2>Типичные ошибки</h2>
+
+<h3>1. Считать ROMI по выручке, а не по прибыли</h3>
+«ROMI = (выручка − расходы) / расходы» — это ROAS минус один, а не ROMI. С такой формулой убыточная кампания выглядит прибыльной.
+
+<h3>2. Игнорировать непрямые расходы</h3>
+Агентство, производство креативов, инструменты, зарплата performance-команды. В ROAS они не входят, в ROMI — должны.
+
+<h3>3. Верить атрибуции кабинета на 100%</h3>
+Last-click и post-view раздувают цифры. Сверяйте с MER и, когда возможно, с тестами на инкрементальность (выключение канала в части регионов).
+
+<h3>4. Одна маржа на весь каталог</h3>
+Если реклама продаёт в основном низкомаржинальные товары, средняя маржа магазина завышает ROMI. Считайте маржу по тем товарам, которые реально продала кампания.
+
+<h3>5. Сравнивать ROAS разных моделей</h3>
+2x в мобильной игре и 2x в магазине электроники — совершенно разные результаты. Сравнивайте с нормой своей индустрии и со своим безубыточным порогом.
+
+<h3>6. Оптимизировать только ROAS</h3>
+Максимальный ROAS почти всегда достигается на минимальном бюджете (тёплая аудитория, брендовые запросы). Задача — максимальная прибыль, а не максимальный коэффициент.
+
+<h2>Частые вопросы</h2>
+
+<h3>Какой ROAS считается хорошим?</h3>
+Тот, что выше вашего безубыточного порога (1 / маржа) с запасом на непрямые расходы. Как ориентир по индустриям: для e-commerce 2–5x — норма, выше 5x — хорошо; для SaaS 1.5–4x — норма.
+
+<h3>ROAS 100% — это окупаемость?</h3>
+Нет. ROAS 1x (100%) означает, что выручка равна расходам на рекламу. Но из выручки ещё нужно оплатить себестоимость, доставку и комиссии — значит, кампания убыточна почти при любой марже.
+
+<h3>Можно ли посчитать ROMI для SEO и контента?</h3>
+Да, по той же формуле: в знаменатель идут зарплаты авторов, инструменты и подрядчики, в числитель — прибыль с клиентов, пришедших из органики. Горизонт расчёта для SEO стоит брать длиннее — от 6–12 месяцев.
+
+<h3>Чем ROAS отличается от MER и CAC?</h3>
+ROAS — эффективность конкретной кампании или канала по данным атрибуции. MER — эффективность всего маркетинга по реальной выручке компании, без атрибуции. CAC отвечает на другой вопрос: сколько стоит один новый клиент, а не сколько выручки принёс рекламный доллар. В e-commerce удобно держать все три на одном дашборде.
+
+<h2>Итог</h2>
+
+<p>ROAS — рабочая метрика для оптимизации кампаний. ROMI — финансовая метрика для решения, сколько вкладывать в маркетинг. Связывает их маржа: знайте свой безубыточный ROAS, проверяйте кабинеты через MER и считайте ROMI по прибыли, а не по выручке.</p>
+
+<p><strong>Посчитайте ROAS своей кампании в калькуляторе ниже</strong> и сравните с безубыточным порогом. Формулы и нормы для ROAS, MER, CAC и ещё 66 метрик собраны в бесплатной <a href="/benchmarks">PDF-шпаргалке</a>.</p>
+
+<p>---</p>
+
+<h3>Дополнительные ресурсы</h3>
+
+<ul><li><a href="/roas">/roas</a> — калькулятор ROAS</li><li><a href="/mer">/mer</a> — Marketing Efficiency Ratio</li><li><a href="/contributionMargin">/contributionMargin</a> — маржинальный доход для расчёта безубыточного ROAS</li><li><a href="/cac">/cac</a> — стоимость привлечения клиента</li><li><a href="/blog/aov-ecommerce-growth">/blog/aov-ecommerce-growth</a> — как растить средний чек</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Считай прямо здесь:</strong>
+  <iframe src="https://metricstree.vercel.app/roas?embed=1" width="100%" height="650" loading="lazy" title="MetricTree roas калькулятор"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Открыть в полной версии: <a href="https://metricstree.vercel.app/roas" target="_blank">https://metricstree.vercel.app/roas</a></p>
+</div>
+<div class="share-row">
+  Поделиться:
+  <a href="https://twitter.com/intent/tweet?text=ROAS%20%D0%B8%20ROMI%20%E2%80%94%20%D0%BA%D0%B0%D0%BA%20%D0%BF%D0%BE%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%2C%20%D0%B2%20%D1%87%D1%91%D0%BC%20%D1%80%D0%B0%D0%B7%D0%BD%D0%B8%D1%86%D0%B0%20%D0%B8%20%D0%BA%D0%B0%D0%BA%D0%BE%D0%B9%20ROAS%20%D0%BD%D1%83%D0%B6%D0%B5%D0%BD%20%D0%B4%D0%BB%D1%8F%20%D0%B1%D0%B5%D0%B7%D1%83%D0%B1%D1%8B%D1%82%D0%BE%D1%87%D0%BD%D0%BE%D1%81%D1%82%D0%B8&url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Froas-vs-romi" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Froas-vs-romi" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Froas-vs-romi&text=ROAS%20%D0%B8%20ROMI%20%E2%80%94%20%D0%BA%D0%B0%D0%BA%20%D0%BF%D0%BE%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C%2C%20%D0%B2%20%D1%87%D1%91%D0%BC%20%D1%80%D0%B0%D0%B7%D0%BD%D0%B8%D1%86%D0%B0%20%D0%B8%20%D0%BA%D0%B0%D0%BA%D0%BE%D0%B9%20ROAS%20%D0%BD%D1%83%D0%B6%D0%B5%D0%BD%20%D0%B4%D0%BB%D1%8F%20%D0%B1%D0%B5%D0%B7%D1%83%D0%B1%D1%8B%D1%82%D0%BE%D1%87%D0%BD%D0%BE%D1%81%D1%82%D0%B8" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="/blog/">Все посты</a> · <a href="/">Калькулятор</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

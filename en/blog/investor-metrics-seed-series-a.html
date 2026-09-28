@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Startup metrics investors ask for at seed and Series A — and what counts as strong | MetricTree Blog</title>
+<meta name="description" content="Which metrics to show investors at seed and Series A: MRR growth, NRR, Burn Multiple, CAC Payback, gross margin, runway. Formulas, a worked SaaS example, benchmarks and pitch mistakes.">
+<meta name="keywords" content="metrics investors look for, startup metrics for investors, seed round metrics, series a metrics, saas metrics for investors, pitch deck metrics, key startup kpis">
+<link rel="canonical" href="https://metricstree.vercel.app/en/blog/investor-metrics-seed-series-a">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/investor-metrics-seed-series-a">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/investor-metrics-seed-series-a">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/investor-metrics-seed-series-a">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Startup metrics investors ask for at seed and Series A — and what counts as strong">
+<meta property="og:description" content="Which metrics to show investors at seed and Series A: MRR growth, NRR, Burn Multiple, CAC Payback, gross margin, runway. Formulas, a worked SaaS example, benchmarks and pitch mistakes.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/en/blog/investor-metrics-seed-series-a">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-09-23">
+<meta property="article:author" content="Rodion Latipov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Startup metrics investors ask for at seed and Series A — and what counts as strong">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Startup metrics investors ask for at seed and Series A — and what counts as strong",
+  "description": "Which metrics to show investors at seed and Series A: MRR growth, NRR, Burn Multiple, CAC Payback, gross margin, runway. Formulas, a worked SaaS example, benchmarks and pitch mistakes.",
+  "datePublished": "2026-09-23",
+  "author": {
+    "@type": "Person",
+    "name": "Rodion Latipov",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/en/blog/investor-metrics-seed-series-a"
+  },
+  "keywords": "metrics investors look for, startup metrics for investors, seed round metrics, series a metrics, saas metrics for investors, pitch deck metrics, key startup kpis",
+  "inLanguage": "en"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js?v=ec79991f" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/en" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/en/blog/">Blog</a> · <a href="/en">Calculator →</a></div>
+</nav>
+<article>
+<h1>Startup metrics investors ask for at seed and Series A — and what counts as strong</h1>
+<div class="meta">2026-09-23 · by <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a></div>
+<h1>Startup metrics investors ask for at seed and Series A — and what counts as strong</h1>
+
+<p>In a 20-minute pitch an investor is trying to understand three things: is the business growing, do customers stick, and how much cash burns for every dollar of growth. Everything else is detail. The good news: those three answers fit into 6–8 metrics, and you can calculate them in advance.</p>
+
+<h2>What changes from stage to stage</h2>
+
+<p><strong>Pre-seed / seed</strong> — you are selling potential. Investors look for signs of product-market fit:<br><ul><li>growth rate (MoM) and how consistent it is;</li><li>retention of your first cohorts — does the curve flatten;</li><li>early unit economics signals: what a customer costs and what they pay.</li></ul></p>
+
+<p><strong>Series A</strong> — you are selling a repeatable growth engine. Now you also need:<br><ul><li>revenue scale (ARR) and growth trajectory;</li><li>NRR and GRR — is revenue growing inside the existing base;</li><li>efficiency: Burn Multiple, CAC Payback;</li><li>gross margin that proves this is a software business, not services.</li></ul></p>
+
+<p>A commonly cited market rule of thumb for a SaaS Series A is roughly $1–2M ARR with fast growth, but the bar depends heavily on market, segment and year. The metrics below matter more than absolute ARR: strong efficiency at a smaller scale often convinces more than large but "expensive" ARR.</p>
+
+<h2>7 metrics you will definitely be asked about</h2>
+
+<table><thead><tr><th>Metric</th><th>Formula</th><th>SaaS benchmarks</th></tr></thead><tbody><tr><td></td><td><strong>MRR growth (MoM)</strong></td><td>(End MRR − Start MRR) / Start MRR</td><td><5% low, 5–10% normal, 10–20% good, >20% excellent</td><td></td></tr><tr><td></td><td><strong>NRR</strong></td><td>(Starting MRR + expansion − churn) / Starting MRR</td><td><90% poor, 90–100% normal, 100–120% good, >130% excellent</td><td></td></tr><tr><td></td><td><strong>GRR</strong></td><td>(Starting MRR − churn and contraction) / Starting MRR</td><td><85% poor, 85–95% normal, >95% good</td><td></td></tr><tr><td></td><td><strong>Burn Multiple</strong></td><td>Net Burn / Net New ARR</td><td><1 excellent, 1–1.5 good, 1.5–2 normal, 2–3 poor, >3 very poor</td><td></td></tr><tr><td></td><td><strong>CAC Payback</strong></td><td>CAC / (MRR per customer × gross margin)</td><td><12 mo good, 12–18 normal, >18 poor</td><td></td></tr><tr><td></td><td><strong>Gross margin</strong></td><td>(Revenue − COGS) / Revenue</td><td><60% poor, 60–75% normal, 75–85% good, >85% excellent</td><td></td></tr><tr><td></td><td><strong>Runway</strong></td><td>Cash / monthly net burn</td><td>Seed: 18–24 months is normal; Series A+: >18 months</td><td></td></tr></tbody></table>
+These are the same thresholds the MetricTree calculators use for the SaaS industry. At later stages add the <strong>Rule of 40</strong> (growth + margin ≥ 40%) — <a href="/en/ruleOf40">/en/ruleOf40</a>.
+
+<p>The Burn Multiple scale is David Sacks' framework (Craft Ventures) that became standard after 2020. For growth trajectory, investors often reference <strong>T2D3</strong> (Neeraj Agrawal, Battery Ventures): triple ARR two years in a row, then double it for three.</p>
+
+<h2>Example: a seed startup preparing for Series A</h2>
+
+<p>B2B SaaS, last quarter:<br><ul><li>MRR three months ago: <strong>$60,000</strong>, now: <strong>$80,000</strong></li><li>Net burn for the quarter: <strong>$360,000</strong> ($120,000 per month)</li><li>Cash in the bank: <strong>$2.4M</strong></li><li>CAC: <strong>$4,000</strong>, MRR per customer: <strong>$400</strong>, gross margin <strong>80%</strong></li><li>Customers who were around a year ago paid <strong>$30,000</strong> MRR and now pay <strong>$33,600</strong> (expansion +$5,100, churn and contraction −$1,500)</li></ul></p>
+
+<p>The math:</p>
+
+<p><strong>Growth.</strong> MRR grew 33% over the quarter. Compound monthly growth (CMGR) = (80 / 60)^(1/3) − 1 ≈ <strong>10.1% MoM</strong> → "good".</p>
+
+<p><strong>Burn Multiple.</strong> Net New ARR for the quarter = (80,000 − 60,000) × 12 = $240,000. Burn Multiple = 360,000 / 240,000 = <strong>1.5</strong> → the good / normal boundary.</p>
+
+<p><strong>NRR</strong> = 33,600 / 30,000 = <strong>112%</strong> → "good". <strong>GRR</strong> = (30,000 − 1,500) / 30,000 = <strong>95%</strong> → the normal / good boundary.</p>
+
+<p><strong>CAC Payback</strong> = 4,000 / (400 × 0.8) = 4,000 / 320 = <strong>12.5 months</strong> → "normal".</p>
+
+<p><strong>Runway</strong> = 2,400,000 / 120,000 = <strong>20 months</strong> → normal for seed, with time to raise.</p>
+
+<p>Takeaway for the pitch: growth and retention are the strengths — put them on the first metrics slide with numbers. Efficiency is "normal", so show a plan to bring CAC Payback under 12 months (pricing, annual prepay, organic channels).</p>
+
+<h2>How to present metrics in a pitch</h2>
+
+<ul><li><strong>Monthly figures, not a cumulative chart.</strong> Cumulative revenue always goes up — investors know this and read such charts as an attempt to hide a slowdown.</li><li><strong>Cohorts, not averages.</strong> A cohort retention table convinces more than a single churn number.</li><li><strong>Definitions on the slide.</strong> "ARR = subscription MRR × 12, excluding one-off services." One line removes half the questions in due diligence.</li><li><strong>Market context.</strong> Show where you sit relative to public benchmarks. Useful sources: Bessemer's State of the Cloud, OpenView's SaaS Benchmarks, the KeyBanc SaaS Survey; for definitions, a16z's "16 Startup Metrics" is a good reference.</li><li><strong>Weak metric — with a plan.</strong> The investor will find it anyway. Better to show you know about it and what you're doing about it.</li></ul>
+
+<h2>Common pitch mistakes</h2>
+
+<h3>1. Vanity metrics instead of business metrics</h3>
+Sign-ups, downloads, GMV without take rate. The investor will ask how much of that is revenue.
+
+<h3>2. One-off revenue inside ARR</h3>
+Implementation, consulting, an annual contract counted as one month's MRR × 12. It surfaces in due diligence and undermines trust in every other number.
+
+<h3>3. Annual growth from one good month</h3>
+One spike × 12 is not a trend. Show CMGR over 3–6 months.
+
+<h3>4. Gross burn instead of net burn (or vice versa, unlabeled)</h3>
+Burn Multiple and runway use net burn. Label what you are showing.
+
+<h3>5. LTV:CAC without payback</h3>
+LTV:CAC = 5 on a forecast LTV is weaker evidence than a 10-month CAC Payback on actuals. More in our <a href="/en/blog/cac-payback-period">CAC Payback</a> breakdown.
+
+<h3>6. No runway plan</h3>
+"We have 20 months" without a scenario for a round that slips by six months is a red flag. See <a href="/en/blog/runway-when-fundraise">when to raise</a>.
+
+<h2>FAQ</h2>
+
+<h3>What growth rate do you need for a Series A?</h3>
+Sustained MRR growth above 10% per month over several quarters is a strong signal; 5–10% is normal and will need to be backed by efficiency and retention.
+
+<h3>What matters more — growth or efficiency?</h3>
+Since 2022, the balance. A Burn Multiple under 1.5 with good growth convinces more than growth at any cost.
+
+<h2>Bottom line</h2>
+
+<p>At seed investors want growth and retention; at Series A they also want efficiency. Calculate the seven metrics above in advance, compare them with your stage's norms, lead with your strengths, and present weak spots together with a fix.</p>
+
+<p><strong>Calculate your MRR growth rate in the calculator below</strong>, then check your <a href="/en/burnMultiple">Burn Multiple</a>, <a href="/en/nrr">NRR</a>, <a href="/en/cacPayback">CAC Payback</a> and <a href="/en/runway">runway</a>. All formulas and thresholds in one document are in the free <a href="/benchmarks">PDF cheat sheet covering 69 metrics</a> — handy while you build the deck.</p>
+
+<p>---</p>
+
+<h3>Further resources</h3>
+
+<ul><li><a href="/en/mrrGrowthRate">/en/mrrGrowthRate</a> — MRR growth rate</li><li><a href="/en/burnMultiple">/en/burnMultiple</a> — Burn Multiple</li><li><a href="/en/nrr">/en/nrr</a> — Net Revenue Retention</li><li><a href="/en/grossMargin">/en/grossMargin</a> — gross margin</li><li><a href="/en/blog/burn-multiple-saas-2026">/en/blog/burn-multiple-saas-2026</a> — Burn Multiple in 2026</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Calculate it right here:</strong>
+  <iframe src="https://metricstree.vercel.app/mrrGrowthRate?embed=1" width="100%" height="650" loading="lazy" title="MetricTree mrrGrowthRate calculator"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Open the full version: <a href="https://metricstree.vercel.app/mrrGrowthRate" target="_blank">https://metricstree.vercel.app/mrrGrowthRate</a></p>
+</div>
+<div class="share-row">
+  Share:
+  <a href="https://twitter.com/intent/tweet?text=Startup%20metrics%20investors%20ask%20for%20at%20seed%20and%20Series%20A%20%E2%80%94%20and%20what%20counts%20as%20strong&url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Finvestor-metrics-seed-series-a" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Finvestor-metrics-seed-series-a" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Finvestor-metrics-seed-series-a&text=Startup%20metrics%20investors%20ask%20for%20at%20seed%20and%20Series%20A%20%E2%80%94%20and%20what%20counts%20as%20strong" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/en/blog/">All posts</a> · <a href="/en">Calculator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

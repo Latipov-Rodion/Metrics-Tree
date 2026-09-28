@@ -63,7 +63,11 @@ test('cacPayback accepts margin as percent or fraction', () => {
 
 test('edge-case guards: division by zero', () => {
   assert.equal(CALCULATORS.burnMultiple.calc({ burn: 100, newArr: 0 }), null);
-  assert.equal(CALCULATORS.quickRatio.calc({ newMrr: 10, churnMrr: 0, contractionMrr: 0 }), null);
+  // Quick Ratio follows app.js: growth with zero losses is Infinity, no movement is null.
+  assert.equal(CALCULATORS.quickRatio.calc({ newMrr: 10, churnMrr: 0, contractionMrr: 0 }), Infinity);
+  assert.equal(CALCULATORS.quickRatio.calc({ newMrr: 0, churnMrr: 0, contractionMrr: 0 }), null);
+  assert.equal(CALCULATORS.cac.calc({ spend: 100, customers: 0 }), null);
+  assert.equal(CALCULATORS.cacPayback.calc({ cac: 100, mrrPerCustomer: 50, grossMargin: 0 }), null);
   assert.equal(CALCULATORS.magicNumber.calc({ newArrQuarter: 100, sm: 0 }), null);
   assert.equal(CALCULATORS.runway.calc({ cash: 1000, burn: 0 }), Infinity);
 });
@@ -77,6 +81,11 @@ test('GET valid metric returns 200 with rounded result', async () => {
   const body = await res.json();
   assert.equal(body.result, 30000);
   assert.equal(body.unit, '$');
+});
+
+test('GET with a zero denominator returns 422, not "Infinity"', async () => {
+  const res = await call('/api/calc?metric=cac&spend=100&customers=0');
+  assert.equal(res.status, 422);
 });
 
 test('unknown metric returns 404', async () => {

@@ -31,7 +31,7 @@ export const CALCULATORS = {
   },
   cac: {
     inputs: ['spend', 'customers'],
-    calc: ({ spend, customers }) => spend / customers,
+    calc: ({ spend, customers }) => customers <= 0 ? null : spend / customers,
     unit: '$',
     formula: 'Marketing spend / New customers',
     insight: v => `CAC should be < LTV/3. SaaS payback target: < 12-18 months`,
@@ -39,7 +39,7 @@ export const CALCULATORS = {
   },
   ltv_cac: {
     inputs: ['ltv', 'cac'],
-    calc: ({ ltv, cac }) => ltv / cac,
+    calc: ({ ltv, cac }) => cac <= 0 ? null : ltv / cac,
     unit: 'x',
     formula: 'LTV / CAC',
     insight: v => v < 1 ? 'Losing money on each customer' : v < 3 ? 'Below norm — fix unit economics' : v < 5 ? 'Healthy SaaS unit economics' : 'Excellent (or under-investing in growth)',
@@ -64,7 +64,7 @@ export const CALCULATORS = {
   nrr: {
     inputs: ['start', 'expansion', 'churn', 'contraction'],
     calc: ({ start, expansion, churn, contraction = 0 }) =>
-      ((start + expansion - churn - contraction) / start) * 100,
+      start <= 0 ? null : ((start + expansion - churn - contraction) / start) * 100,
     unit: '%',
     formula: '(Start + Expansion − Churn − Contraction) / Start × 100',
     insight: v => v >= 130 ? 'Top decile — Snowflake/Datadog tier' : v >= 115 ? 'Top quartile' : v >= 100 ? 'Healthy — growing without new customers' : 'Below 100% — losing revenue from existing customers',
@@ -73,7 +73,7 @@ export const CALCULATORS = {
   grr: {
     inputs: ['start', 'churn', 'contraction'],
     calc: ({ start, churn, contraction = 0 }) =>
-      ((start - churn - contraction) / start) * 100,
+      start <= 0 ? null : ((start - churn - contraction) / start) * 100,
     unit: '%',
     formula: '(Start − Churn − Contraction) / Start × 100',
     insight: v => v >= 97 ? 'Excellent (product loved)' : v >= 95 ? 'Healthy SaaS norm' : v >= 90 ? 'Below average' : 'Critical — fix product',
@@ -81,7 +81,7 @@ export const CALCULATORS = {
   },
   churn: {
     inputs: ['lost', 'total'],
-    calc: ({ lost, total }) => (lost / total) * 100,
+    calc: ({ lost, total }) => total <= 0 ? null : (lost / total) * 100,
     unit: '%',
     formula: 'Lost / Total × 100',
     insight: v => v < 2 ? 'SaaS norm: <2%/mo = healthy' : v < 5 ? 'Above SaaS norm but acceptable for SMB' : v < 10 ? 'High — fix onboarding + customer success' : 'Critical',
@@ -113,9 +113,13 @@ export const CALCULATORS = {
   },
   quickRatio: {
     inputs: ['newMrr', 'expansionMrr', 'churnMrr', 'contractionMrr'],
+    // Same convention as app.js: no losses but some growth → Infinity (rendered
+    // as "Infinity", rating top_decile); no movement at all → null.
     calc: ({ newMrr, expansionMrr = 0, churnMrr, contractionMrr = 0 }) => {
+      const gained = newMrr + expansionMrr;
       const denom = churnMrr + contractionMrr;
-      return denom <= 0 ? null : (newMrr + expansionMrr) / denom;
+      if (denom <= 0) return gained > 0 ? Infinity : null;
+      return gained / denom;
     },
     unit: 'x',
     formula: '(New + Expansion MRR) / (Churn + Contraction MRR)',
@@ -132,7 +136,7 @@ export const CALCULATORS = {
   },
   nps: {
     inputs: ['promoters', 'detractors', 'total'],
-    calc: ({ promoters, detractors, total }) => ((promoters - detractors) / total) * 100,
+    calc: ({ promoters, detractors, total }) => total <= 0 ? null : ((promoters - detractors) / total) * 100,
     unit: '',
     formula: '%Promoters − %Detractors',
     insight: v => v > 70 ? 'World-class (Apple/Tesla tier)' : v > 50 ? 'Excellent (Slack/Netflix)' : v > 30 ? 'Good' : v > 0 ? 'OK — room to grow' : 'Critical — fix UX',
@@ -142,7 +146,8 @@ export const CALCULATORS = {
     inputs: ['cac', 'mrrPerCustomer', 'grossMargin'],
     calc: ({ cac, mrrPerCustomer, grossMargin }) => {
       const m = grossMargin > 1 ? grossMargin / 100 : grossMargin;
-      return cac / (mrrPerCustomer * m);
+      if (!(mrrPerCustomer > 0) || !(m > 0)) return null;
+      return cac / (mrrPerCustomer * Math.min(1, m));
     },
     unit: 'months',
     formula: 'CAC / (MRR per customer × Gross Margin)',
@@ -151,7 +156,7 @@ export const CALCULATORS = {
   },
   roas: {
     inputs: ['revenue', 'spend'],
-    calc: ({ revenue, spend }) => revenue / spend,
+    calc: ({ revenue, spend }) => spend <= 0 ? null : revenue / spend,
     unit: 'x',
     formula: 'Revenue from ads / Ad spend',
     insight: v => v > 4 ? 'Excellent for e-com' : v > 3 ? 'Healthy for SaaS' : v > 1 ? 'Above break-even' : 'Losing money on ads',
@@ -159,7 +164,7 @@ export const CALCULATORS = {
   },
   stickiness: {
     inputs: ['dau', 'mau'],
-    calc: ({ dau, mau }) => (dau / mau) * 100,
+    calc: ({ dau, mau }) => mau <= 0 ? null : (dau / mau) * 100,
     unit: '%',
     formula: 'DAU / MAU × 100',
     insight: v => v > 50 ? 'Daily-essential product (Slack/Notion tier)' : v > 20 ? 'Healthy engagement' : 'Occasional-use product',
@@ -168,6 +173,7 @@ export const CALCULATORS = {
   salesVelocity: {
     inputs: ['opps', 'acv', 'winRate', 'cycleDays'],
     calc: ({ opps, acv, winRate, cycleDays }) => {
+      if (cycleDays <= 0) return null;
       const wr = winRate > 1 ? winRate / 100 : winRate;
       return (opps * acv * wr) / cycleDays;
     },
@@ -178,7 +184,7 @@ export const CALCULATORS = {
   },
   winRate: {
     inputs: ['won', 'total'],
-    calc: ({ won, total }) => (won / total) * 100,
+    calc: ({ won, total }) => total <= 0 ? null : (won / total) * 100,
     unit: '%',
     formula: 'Closed Won / Total Closed × 100',
     insight: v => v > 35 ? 'Excellent for B2B SaaS' : v > 25 ? 'Healthy B2B SaaS norm' : v > 20 ? 'Above industry average' : 'Below norm — review ICP fit',
@@ -186,7 +192,7 @@ export const CALCULATORS = {
   },
   pipelineCoverage: {
     inputs: ['pipeline', 'quota'],
-    calc: ({ pipeline, quota }) => pipeline / quota,
+    calc: ({ pipeline, quota }) => quota <= 0 ? null : pipeline / quota,
     unit: 'x',
     formula: 'Pipeline Value / Quota',
     insight: v => v < 2 ? 'Critical — quarter at risk' : v < 3 ? 'Tight — push deals' : v < 4 ? 'Healthy B2B norm' : v < 5 ? 'Strong' : 'Quota likely too low',
@@ -194,7 +200,7 @@ export const CALCULATORS = {
   },
   aov: {
     inputs: ['revenue', 'orders'],
-    calc: ({ revenue, orders }) => revenue / orders,
+    calc: ({ revenue, orders }) => orders <= 0 ? null : revenue / orders,
     unit: '$',
     formula: 'Revenue / Number of Orders',
     insight: v => `Free-shipping threshold should be ~25-30% above your AOV`,
@@ -202,7 +208,7 @@ export const CALCULATORS = {
   },
   mrrGrowthRate: {
     inputs: ['startMrr', 'endMrr'],
-    calc: ({ startMrr, endMrr }) => ((endMrr - startMrr) / startMrr) * 100,
+    calc: ({ startMrr, endMrr }) => startMrr <= 0 ? null : ((endMrr - startMrr) / startMrr) * 100,
     unit: '%',
     formula: '(End MRR − Start MRR) / Start MRR × 100',
     insight: v => v >= 15 ? 'Seed-stage healthy' : v >= 10 ? 'Series A healthy' : v >= 5 ? 'YC minimum (5-7% MoM)' : 'Below YC minimum — accelerate',

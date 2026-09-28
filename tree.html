@@ -209,27 +209,27 @@
         }
     </style>
 
-<script src="/theme-sync.js" defer></script>
+<script src="/theme-sync.js?v=ec79991f" defer></script>
 </head>
 <body>
-    <a class="skip-link" href="#main">К содержанию</a>
+    <a class="skip-link" href="#main" data-i18n="skip">К содержанию</a>
     <header class="site-header">
-        <a class="brand" href="/" aria-label="MetricTree — на главную">
+        <a class="brand" href="/" data-home aria-label="MetricTree — на главную" data-i18n-aria-label="home_aria">
             <span class="logo" aria-hidden="true">🌳</span> MetricTree
         </a>
         <div class="header-actions">
-            <a class="ghost-btn" href="/" title="На главную — калькуляторы метрик">← Калькуляторы</a>
-            <button class="ghost-btn" id="themeToggle" type="button" aria-label="Переключить тему" title="Переключить тему">🌓 Тема</button>
+            <a class="ghost-btn" href="/" data-home title="На главную — калькуляторы метрик" data-i18n-title="calcs_title" data-i18n="calcs">← Калькуляторы</a>
+            <button class="ghost-btn" id="themeToggle" type="button" aria-label="Переключить тему" title="Переключить тему" data-i18n-aria-label="theme_tt" data-i18n-title="theme_tt" data-i18n="theme">🌓 Тема</button>
         </div>
     </header>
 
     <main id="main">
         <section class="hero">
-            <h1>Дерево Метрик</h1>
-            <p class="lede">Интерактивный <strong>driver-tree</strong>: North-Star метрика раскладывается на драйверы. Меняйте значения в листовых полях ввода — пересчёт идёт каскадом вверх до корня в реальном времени, а изменённый путь подсвечивается.</p>
+            <h1 data-i18n="h1">Дерево Метрик</h1>
+            <p class="lede" data-i18n-html="lede">Интерактивный <strong>driver-tree</strong>: North-Star метрика раскладывается на драйверы. Меняйте значения в листовых полях ввода — пересчёт идёт каскадом вверх до корня в реальном времени, а изменённый путь подсвечивается.</p>
         </section>
 
-        <div class="selector" role="tablist" aria-label="Выбор дерева метрик" id="selector"></div>
+        <div class="selector" role="tablist" aria-label="Выбор дерева метрик" data-i18n-aria-label="selector_aria" id="selector"></div>
 
         <div class="root-summary" aria-live="polite">
             <span class="rs-label">North-Star</span>
@@ -245,14 +245,14 @@
         </div>
 
         <div class="legend" aria-hidden="true">
-            <span><i class="comp"></i> Вычисляемый узел (read-only)</span>
-            <span><i class="leaf"></i> Лист — поле ввода</span>
-            <span>Подсветка = путь пересчёта до корня</span>
+            <span><i class="comp"></i> <span data-i18n="legend_comp">Вычисляемый узел (read-only)</span></span>
+            <span><i class="leaf"></i> <span data-i18n="legend_leaf">Лист — поле ввода</span></span>
+            <span data-i18n="legend_path">Подсветка = путь пересчёта до корня</span>
         </div>
     </main>
 
     <footer>
-        <p>Часть проекта <a href="/">MetricTree</a> — калькуляторы продуктовых метрик с формулами и порогами.
+        <p data-i18n-html="footer">Часть проекта <a href="/">MetricTree</a> — калькуляторы продуктовых метрик с формулами и порогами.
         Все расчёты идут локально в браузере. <a href="/glossary">Глоссарий</a> · <a href="/benchmarks">Бенчмарки</a></p>
     </footer>
 
@@ -260,14 +260,110 @@
     (function () {
         "use strict";
 
+        /* ---------- i18n — same detection as app.js: /en|/uz path prefix wins,
+           otherwise ?lang= or the language saved by the main app. ---------- */
+        var LANG = 'ru';
+        try {
+            var p = location.pathname || '';
+            if (p === '/en' || p.indexOf('/en/') === 0) LANG = 'en';
+            else if (p === '/uz' || p.indexOf('/uz/') === 0) LANG = 'uz';
+            else {
+                var l = new URLSearchParams(location.search).get('lang');
+                if (!l) { try { l = localStorage.getItem('metricsTree_lang'); } catch (e) {} }
+                if (l === 'en' || l === 'uz') LANG = l;
+            }
+        } catch (e) {}
+        var LOCALE = LANG === 'en' ? 'en-US' : 'ru-RU'; // uz uses the same space-grouped format as ru
+        var UI = {
+            en: {
+                title: 'Metric Tree — interactive driver tree | MetricTree',
+                skip: 'Skip to content', home_aria: 'MetricTree — home',
+                calcs: '← Calculators', calcs_title: 'Home — metric calculators',
+                theme: '🌓 Theme', theme_tt: 'Toggle theme',
+                h1: 'Metric Tree',
+                lede: 'An interactive <strong>driver tree</strong>: the North-Star metric is broken down into its drivers. Change the values in the leaf inputs — the recalculation cascades up to the root in real time, and the changed path is highlighted.',
+                selector_aria: 'Choose a metric tree',
+                legend_comp: 'Computed node (read-only)', legend_leaf: 'Leaf — input field', legend_path: 'Highlight = recalculation path to the root',
+                footer: 'Part of <a href="/en">MetricTree</a> — product metric calculators with formulas and benchmarks. All calculations run locally in your browser. <a href="/glossary">Glossary</a> · <a href="/benchmarks">Benchmarks</a>',
+                badge_input: 'input', badge_calc: 'computed', input_metric: 'input metric'
+            },
+            uz: {
+                title: 'Metrikalar daraxti — interaktiv driver-tree | MetricTree',
+                skip: 'Asosiy qismga o‘tish', home_aria: 'MetricTree — bosh sahifa',
+                calcs: '← Kalkulyatorlar', calcs_title: 'Bosh sahifa — metrika kalkulyatorlari',
+                theme: '🌓 Mavzu', theme_tt: 'Mavzuni almashtirish',
+                h1: 'Metrikalar daraxti',
+                lede: 'Interaktiv <strong>driver-tree</strong>: North-Star metrikasi drayverlarga ajratiladi. Barg maydonlaridagi qiymatlarni o‘zgartiring — qayta hisoblash real vaqtda ildizgacha kaskad bo‘lib ko‘tariladi, o‘zgargan yo‘l esa yoritiladi.',
+                selector_aria: 'Metrikalar daraxtini tanlash',
+                legend_comp: 'Hisoblanadigan tugun (faqat o‘qish)', legend_leaf: 'Barg — kiritish maydoni', legend_path: 'Yoritish = ildizgacha qayta hisoblash yo‘li',
+                footer: 'Formulalar va me’yorlar bilan mahsulot metrikalari kalkulyatorlari — <a href="/uz">MetricTree</a> loyihasining bir qismi. Barcha hisob-kitoblar brauzeringizda lokal bajariladi. <a href="/glossary">Glossariy</a> · <a href="/benchmarks">Benchmarklar</a>',
+                badge_input: 'kiritish', badge_calc: 'hisob', input_metric: 'kiritiladigan ko‘rsatkich'
+            }
+        };
+        function T(key, ru) { return (UI[LANG] && UI[LANG][key]) || ru; }
+        var UNITS = {
+            en: { 'визитов': 'visits', 'заказов': 'orders', '/год': '/yr', 'лет': 'yrs', 'клиентов': 'customers' },
+            uz: { 'визитов': 'tashrif', 'заказов': 'buyurtma', '/год': '/yil', 'лет': 'yil', 'клиентов': 'mijoz' }
+        };
+        function U(unit) { return (UNITS[LANG] && UNITS[LANG][unit]) || unit; }
+        /* Per-tree EN/UZ overrides, keyed by tree key → node id: { name, formula, help } + tab { title, sub }. */
+        var TREE_I18N = {
+            en: {
+                ecom: { nodes: {
+                    visitors: { help: 'Unique visits in the period' }, cr: { help: 'Share of visits that end in an order' },
+                    aov: { help: 'Average order value' }, repeatFactor: { help: 'Repeat-purchase share (0.3 = +30%)' } } },
+                saas: { nodes: {
+                    startMRR: { help: 'MRR at the start of the period' }, newMRR: { help: 'From new customers' },
+                    expansionMRR: { help: 'Upsell / expansion' }, churnedMRR: { help: 'Lost to churn' }, contractionMRR: { help: 'Downgrades' } } },
+                unit: { title: 'Unit economics: LTV:CAC', nodes: {
+                    aovU: { help: 'Average order value' }, frequency: { help: 'Purchases per year' },
+                    lifetime: { help: 'Customer lifetime, years' }, spend: { help: 'Acquisition spend' }, newCust: { help: 'Customers acquired' } } }
+            },
+            uz: {
+                ecom: { title: 'E-commerce tushumi', sub: 'Tushum = Tashriflar × CR × AOV × (1 + Takroriy)', nodes: {
+                    visitors: { name: 'Tashriflar', help: 'Davrdagi noyob tashriflar' },
+                    cr: { name: 'Konversiya (CR)', help: 'Buyurtma bilan tugagan tashriflar ulushi' },
+                    aov: { help: 'O‘rtacha chek' },
+                    repeatFactor: { name: 'Takroriy xarid koeffitsiyenti', help: 'Takroriy xaridlar ulushi (0.3 = +30%)' },
+                    orders: { name: 'Buyurtmalar', formula: 'Tashriflar × CR' },
+                    revenue: { name: 'Tushum', formula: 'Buyurtmalar × AOV × (1 + Takroriy)' } } },
+                saas: { title: 'SaaS: Net New MRR → ARR', nodes: {
+                    startMRR: { name: 'Boshlang‘ich MRR', help: 'Davr boshidagi MRR' },
+                    newMRR: { help: 'Yangi mijozlardan' }, expansionMRR: { help: 'Apsell / kengayish' },
+                    churnedMRR: { help: 'Churn tufayli yo‘qotilgan' }, contractionMRR: { help: 'Downgrade lar' },
+                    endingMRR: { name: 'Yakuniy MRR', formula: 'Boshlang‘ich MRR + Net New MRR' },
+                    arr: { formula: 'Yakuniy MRR × 12' } } },
+                unit: { title: 'Unit-iqtisodiyot: LTV:CAC', sub: 'LTV = AOV × Chastota × Umr; CAC = Xarajat / Yangi mijozlar; nisbat = LTV / CAC', nodes: {
+                    aovU: { help: 'O‘rtacha chek' },
+                    frequency: { name: 'Chastota', help: 'Yiliga xaridlar soni' },
+                    lifetime: { name: 'Mijoz umri', help: 'Mijozning umri, yil' },
+                    spend: { name: 'Marketing xarajatlari', help: 'Jalb qilish xarajatlari' },
+                    newCust: { name: 'Yangi mijozlar', help: 'Jalb qilingan mijozlar' },
+                    ltv: { formula: 'AOV × Chastota × Umr' },
+                    cac: { formula: 'Xarajat / Yangi mijozlar' } } }
+            }
+        };
+        function applyStaticI18n() {
+            if (LANG === 'ru') return;
+            document.documentElement.setAttribute('lang', LANG);
+            document.title = T('title', document.title);
+            var each = function (sel, fn) { var els = document.querySelectorAll(sel); for (var i = 0; i < els.length; i++) fn(els[i]); };
+            each('[data-i18n]', function (el) { el.textContent = T(el.getAttribute('data-i18n'), el.textContent); });
+            each('[data-i18n-html]', function (el) { el.innerHTML = T(el.getAttribute('data-i18n-html'), el.innerHTML); });
+            ['title', 'aria-label'].forEach(function (a) {
+                each('[data-i18n-' + a + ']', function (el) { el.setAttribute(a, T(el.getAttribute('data-i18n-' + a), el.getAttribute(a))); });
+            });
+            each('[data-home]', function (el) { el.setAttribute('href', '/' + LANG); });
+        }
+
         /* ---------- helpers ---------- */
         function sanitizeNumber(v) {
             if (v === null || v === undefined) return 0;
             var n = parseFloat(String(v).replace(/\s|,/g, function (m) { return m === ',' ? '.' : ''; }));
             return isFinite(n) ? n : 0;
         }
-        var nfInt = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 0 });
-        var nf2 = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 2 });
+        var nfInt = new Intl.NumberFormat(LOCALE, { maximumFractionDigits: 0 });
+        var nf2 = new Intl.NumberFormat(LOCALE, { maximumFractionDigits: 2 });
         function fmtNumber(n) {
             if (!isFinite(n)) return '—';
             return Math.abs(n) >= 100 ? nfInt.format(Math.round(n)) : nf2.format(n);
@@ -277,7 +373,7 @@
             if (unit === '$') return '$' + fmtNumber(n);
             if (unit === '%') return nf2.format(n) + '%';
             if (unit === 'x' || unit === '×') return nf2.format(n) + '×';
-            return fmtNumber(n) + (unit ? ' ' + unit : '');
+            return fmtNumber(n) + (unit ? ' ' + U(unit) : '');
         }
 
         /* ---------- tree definitions ----------
@@ -350,6 +446,22 @@
                 }
             }
         };
+
+        /* Localize TREES in place for EN/UZ (RU above stays the source of truth). */
+        (function localizeTrees() {
+            if (LANG === 'ru') return;
+            var tr = TREE_I18N[LANG] || {};
+            Object.keys(TREES).forEach(function (k) {
+                var tree = TREES[k], o = tr[k] || {};
+                if (o.title) tree.title = o.title;
+                if (o.sub) tree.sub = o.sub;
+                Object.keys(tree.nodes).forEach(function (id) {
+                    var node = tree.nodes[id], no = (o.nodes && o.nodes[id]) || {};
+                    if (node.formula === 'входной показатель') node.formula = T('input_metric', node.formula);
+                    ['name', 'formula', 'help'].forEach(function (f) { if (no[f]) node[f] = no[f]; });
+                });
+            });
+        })();
 
         /* ---------- state ---------- */
         var currentKey = 'ecom';
@@ -479,7 +591,7 @@
                     nameDiv.appendChild(document.createTextNode(node.name));
                     var badge = document.createElement('span');
                     badge.className = 'n-badge';
-                    badge.textContent = node.leaf ? 'ввод' : (isRoot ? 'North-Star' : 'расчёт');
+                    badge.textContent = node.leaf ? T('badge_input', 'ввод') : (isRoot ? 'North-Star' : T('badge_calc', 'расчёт'));
                     nameDiv.appendChild(badge);
                     card.appendChild(nameDiv);
 
@@ -494,12 +606,12 @@
                         label.setAttribute('for', 'inp-' + id);
                         label.style.position = 'absolute';
                         label.style.left = '-9999px';
-                        label.textContent = node.name + (node.unit ? ', ' + node.unit : '');
+                        label.textContent = node.name + (node.unit ? ', ' + U(node.unit) : '');
                         card.appendChild(label);
 
                         var unitSpan = document.createElement('div');
                         unitSpan.className = 'n-unit';
-                        unitSpan.textContent = node.unit;
+                        unitSpan.textContent = U(node.unit);
                         card.appendChild(unitSpan);
 
                         var input = document.createElement('input');
@@ -509,7 +621,7 @@
                         input.min = '0';
                         input.value = String(node.value);
                         input.setAttribute('inputmode', 'decimal');
-                        input.setAttribute('aria-label', node.name + (node.unit ? ' (' + node.unit + ')' : ''));
+                        input.setAttribute('aria-label', node.name + (node.unit ? ' (' + U(node.unit) + ')' : ''));
                         input.addEventListener('input', (function (nid, el) {
                             return function () { onLeafInput(nid, el); };
                         })(id, input));
@@ -625,6 +737,7 @@
         })();
 
         /* ---------- init ---------- */
+        applyStaticI18n();
         buildSelector();
         buildTree(currentKey);
         window.addEventListener('resize', function () { requestAnimationFrame(drawConnectors); });

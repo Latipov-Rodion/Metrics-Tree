@@ -3,6 +3,7 @@
 // Usage:
 //   node notify-indexnow.mjs           ← submits all URLs from sitemap.xml
 //   node notify-indexnow.mjs /blog/foo ← submit a single URL
+//   node notify-indexnow.mjs --since <sha> ← only URLs new/updated since <sha> (CI)
 //
 // IndexNow doc: https://www.indexnow.org/
 // Bing engine: https://api.indexnow.org/IndexNow
@@ -14,6 +15,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]):/, '$1:'));
 const SITE = 'https://metricstree.vercel.app';
@@ -24,6 +26,28 @@ const KEY_LOCATION = `${SITE}/${KEY}.txt`;
 function loadSitemapUrls() {
   const sm = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8');
   return [...sm.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
+}
+
+// loc → lastmod map of a sitemap.xml text.
+const lastmods = (xml) => new Map(
+  [...xml.matchAll(/<loc>([^<]+)<\/loc>(?:<lastmod>([^<]+)<\/lastmod>)?/g)].map(m => [m[1], m[2] || ''])
+);
+
+// URLs that are new, or whose <lastmod> changed, since commit `rev`. lastmod is
+// derived from git history of each page's sources (build.mjs), so this is the
+// set of pages whose content actually changed. Returns null when `rev` can't be
+// read (first push, force-push, shallow clone) → caller submits everything.
+function changedSince(rev) {
+  if (!rev || /^0+$/.test(rev)) return null;
+  let before;
+  try {
+    before = execFileSync('git', ['show', `${rev}:sitemap.xml`], {
+      cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], maxBuffer: 16 << 20,
+    });
+  } catch { return null; }
+  const prev = lastmods(before);
+  const now = lastmods(fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8'));
+  return [...now].filter(([loc, lm]) => prev.get(loc) !== lm).map(([loc]) => loc);
 }
 
 async function submitToEngine(engineUrl, urls) {
@@ -44,7 +68,18 @@ async function submitToEngine(engineUrl, urls) {
 async function main() {
   const arg = process.argv[2];
   let urls;
-  if (arg) {
+  if (arg === '--since') {
+    const changed = changedSince(process.argv[3]);
+    if (changed === null) {
+      console.log('→ No usable base revision — submitting the whole sitemap');
+      urls = loadSitemapUrls();
+    } else if (changed.length === 0) {
+      console.log('✓ No new or updated URLs since', process.argv[3].slice(0, 8), '— nothing to submit');
+      return;
+    } else {
+      urls = changed;
+    }
+  } else if (arg) {
     urls = [arg.startsWith('http') ? arg : `${SITE}${arg.startsWith('/') ? '' : '/'}${arg}`];
   } else {
     urls = loadSitemapUrls();
