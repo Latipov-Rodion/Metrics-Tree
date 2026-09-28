@@ -83,7 +83,7 @@
       "inLanguage": "en"
     }
     </script>
-    <link rel="stylesheet" href="/app.css?v=f3ac0baa">
+    <link rel="stylesheet" href="/app.css?v=117d6f2f">
     <!-- Vercel Web Analytics — first-party route. Requires Web Analytics to be
          ENABLED for the project in the Vercel dashboard; until then it 404s and
          no data is collected. Served same-origin, so it satisfies the existing
@@ -525,6 +525,10 @@
             </div>
             <div class="metric-description" id="metricDesc"></div>
             <div class="inputs-toolbar">
+                <button class="example-btn" id="exampleBtn" type="button" data-t-attr-title="btn.example_tt" title="Заполнить примерными значениями" onclick="window.fillExampleValues&&window.fillExampleValues()">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>
+                    <span data-t="btn.example">Подставить пример</span>
+                </button>
                 <button class="reset-metric-btn" id="resetMetricBtn" type="button" title="Очистить значения текущей метрики (только эту)" aria-label="Сбросить значения текущей метрики">
                     <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><polyline points="3 4 3 10 9 10"/></svg>
                     <span data-t="btn.reset">Сбросить</span>
@@ -558,10 +562,6 @@
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
                             <span data-t="btn.save">Сохранить</span>
                         </button>
-                        <button class="example-btn" id="exampleBtn" data-t-attr-title="btn.example_tt" title="Заполнить примерными значениями" onclick="window.fillExampleValues&&window.fillExampleValues()">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>
-                            <span data-t="btn.example">Пример</span>
-                        </button>
                         <button class="whatif-btn" id="whatifBtn" data-t-attr-title="btn.whatif_tt" title="Анализ «Что если?»">
                             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
                             <span data-t="btn.whatif">Что если?</span>
@@ -575,6 +575,22 @@
                             <span data-t="btn.forecast">Прогноз</span>
                         </button>
                     </div>
+                </div>
+                <div class="postcalc-cta" id="postCalcCta" hidden>
+                    <div class="postcalc-row">
+                        <p class="postcalc-text" data-t="postcalc.text">📑 PDF-отчёт по вашим метрикам и история расчётов — скоро в Pro. Оставьте email — дадим ранний доступ.</p>
+                        <button type="button" class="postcalc-open" id="postCalcOpen" data-t="postcalc.open">Получить ранний доступ</button>
+                        <button type="button" class="postcalc-dismiss" id="postCalcDismiss" title="Скрыть" aria-label="Скрыть" data-t-attr-title="postcalc.dismiss" data-t-attr-aria-label="postcalc.dismiss">×</button>
+                    </div>
+                    <form action="/api/lead" method="POST" id="postCalcForm" class="postcalc-form" hidden>
+                        <input type="hidden" name="source" value="post_calc">
+                        <input type="hidden" name="_subject" value="MetricTree post-calc lead (PDF report / Pro)">
+                        <input type="hidden" name="tier" value="pro">
+                        <label for="postCalcEmail" class="visually-hidden">Email</label>
+                        <input type="email" id="postCalcEmail" name="email" required autocomplete="email" placeholder="you@company.com" data-t-attr-placeholder="postcalc.placeholder">
+                        <button type="submit" data-t="postcalc.submit">Отправить</button>
+                    </form>
+                    <div class="postcalc-success" id="postCalcSuccess" role="status" style="display:none;" data-t="postcalc.success">✓ Готово! Напишем, как только PDF-отчёты будут доступны.</div>
                 </div>
                 <div class="whatif-panel" id="whatifPanel"></div>
                 <div class="goal-panel" id="goalPanel"></div>
@@ -660,7 +676,7 @@
     </div>
 </div>
 
-<script src="/app.js?v=5fc6beb9"></script>
+<script src="/app.js?v=f40ef008"></script>
 
 <!-- CSV Import modal -->
 <div class="modal-overlay" id="csvImportOverlay" role="dialog" aria-labelledby="csvImportTitle" aria-modal="true">
