@@ -81,36 +81,10 @@
       "name": "MetricTree",
       "alternateName": "Калькулятор продуктовых метрик",
       "url": "https://metricstree.vercel.app/",
-      "inLanguage": "ru",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": { "@type": "EntryPoint", "urlTemplate": "https://metricstree.vercel.app/?q={search_term_string}" },
-        "query-input": "required name=search_term_string"
-      }
+      "inLanguage": "ru"
     }
     </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        { "@type": "Question", "name": "Как рассчитать LTV (Lifetime Value)?", "acceptedAnswer": { "@type": "Answer", "text": "LTV = AOV × Частота покупок в год × Среднее время жизни клиента (лет). Например: AOV $2 500 × 4 покупки × 3 года = $30 000. Главное — соотношение LTV : CAC ≥ 3 : 1." } },
-        { "@type": "Question", "name": "Как рассчитать CAC (Customer Acquisition Cost)?", "acceptedAnswer": { "@type": "Answer", "text": "CAC = Затраты на маркетинг и продажи / Количество новых платящих клиентов за период. Норма: LTV должен быть минимум в 3 раза больше CAC, окупаемость CAC для SaaS — до 12–18 месяцев." } },
-        { "@type": "Question", "name": "Как рассчитать MRR (Monthly Recurring Revenue)?", "acceptedAnswer": { "@type": "Answer", "text": "MRR — сумма всех ежемесячных подписок. ARR = MRR × 12. Здоровый MoM-рост MRR для растущего SaaS — 10–20% в месяц." } },
-        { "@type": "Question", "name": "Что такое Churn Rate и как его считать?", "acceptedAnswer": { "@type": "Answer", "text": "Churn Rate = Ушедшие пользователи / Всего пользователей на начало периода × 100%. Норма для B2B SaaS — <2% в месяц, для мобильных приложений — до 10%." } },
-        { "@type": "Question", "name": "Как рассчитать NPS (Net Promoter Score)?", "acceptedAnswer": { "@type": "Answer", "text": "NPS = % Промоутеров (оценки 9–10) − % Детракторов (оценки 0–6). Хороший NPS — выше 30, очень высокий — выше 50, мирового уровня — выше 70." } },
-        { "@type": "Question", "name": "Что такое ROAS и как его посчитать?", "acceptedAnswer": { "@type": "Answer", "text": "ROAS = Выручка от рекламы / Затраты на рекламу. Норма для e-commerce — более 4× (400%), для SaaS — более 3× (300%)." } },
-        { "@type": "Question", "name": "Что такое Burn Multiple и как его считать?", "acceptedAnswer": { "@type": "Answer", "text": "Burn Multiple = Net Burn / Net New ARR (David Sacks). Показывает, сколько $ сжигаем, чтобы сгенерировать $1 нового годового дохода. <1 — отлично, 1–1.5 — хорошо, 1.5–2 — приемлемо, >2 — нужно оптимизировать unit-economics." } },
-        { "@type": "Question", "name": "Что такое Magic Number в SaaS?", "acceptedAnswer": { "@type": "Answer", "text": "Magic Number = (Net New ARR за квартал × 4) / S&M расходы за квартал. Показывает эффективность Sales & Marketing. Хорошо: >1, отлично: >1.5. Меньше 0.5 — пересмотрите воронку." } },
-        { "@type": "Question", "name": "Что такое Rule of 40?", "acceptedAnswer": { "@type": "Answer", "text": "Rule of 40 = Темп роста выручки YoY (%) + Маржа EBITDA или FCF (%). Здоровый SaaS поддерживает сумму ≥ 40% независимо от баланса роста и прибыльности. Выше 60% — top decile." } },
-        { "@type": "Question", "name": "Что такое SaaS Quick Ratio?", "acceptedAnswer": { "@type": "Answer", "text": "Quick Ratio (Mamoon Hamid) = (New MRR + Expansion MRR) / (Churned MRR + Contraction MRR). Показывает устойчивость роста: на каждый $ потерянной выручки — сколько $ новой. Хорошо: 2–4, отлично для SaaS: >4." } },
-        { "@type": "Question", "name": "Что такое LTV : CAC и какая норма?", "acceptedAnswer": { "@type": "Answer", "text": "LTV : CAC = LTV / CAC. <1 — бизнес убыточен; 1–3 — ниже нормы; ≥3 — здоровая unit-экономика; >5 — отлично, но возможно недоинвестируете в рост." } },
-        { "@type": "Question", "name": "Как рассчитать Stickiness?", "acceptedAnswer": { "@type": "Answer", "text": "Stickiness = DAU / MAU × 100%. Доля месячной аудитории, возвращающейся ежедневно. Норма: >20%, хорошо: >40%, для SaaS отлично: >50%." } },
-        { "@type": "Question", "name": "Как считать NRR (Net Revenue Retention)?", "acceptedAnswer": { "@type": "Answer", "text": "NRR = (Начальный MRR + Апселы − Отток) / Начальный MRR × 100%. NRR > 100% означает рост за счёт существующих клиентов без учёта новых. Отличный SaaS: >120%." } }
-      ]
-    }
-    </script>
-    <link rel="stylesheet" href="/app.css">
+    <link rel="stylesheet" href="/app.css?v=f3ac0baa">
     <!-- Vercel Web Analytics — first-party route. Requires Web Analytics to be
          ENABLED for the project in the Vercel dashboard; until then it 404s and
          no data is collected. Served same-origin, so it satisfies the existing
@@ -132,6 +106,7 @@
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "inLanguage": "ru",
   "mainEntity": [
     {
       "@type": "Question",
@@ -150,6 +125,7 @@
   "@type": "HowTo",
   "name": "Как рассчитать GMV",
   "description": "GMV = Кол-во заказов × AOV. Суммарная стоимость проданного за период. Метрика масштаба маркетплейсов и e-commerce. Выручка = GMV × Take Rate.",
+  "inLanguage": "ru",
   "totalTime": "PT1M",
   "step": [
     {
@@ -669,7 +645,7 @@
     </div>
 </div>
 
-<script src="/app.js"></script>
+<script src="/app.js?v=b5ebeb50"></script>
 
 <!-- CSV Import modal -->
 <div class="modal-overlay" id="csvImportOverlay" role="dialog" aria-labelledby="csvImportTitle" aria-modal="true">
