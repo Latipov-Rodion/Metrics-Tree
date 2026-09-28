@@ -263,7 +263,7 @@ const META = {
     { q: 'Как повысить ROAS?', a: '(1) creatives — A/B-тесты, 80% улучшений идёт оттуда; (2) landing page conversion (CR×ROAS); (3) audience targeting (lookalikes от high-LTV); (4) AOV-апселы; (5) убрать broad-match low-intent keywords.' }
   ]},
   cpc:            { title: 'CPC калькулятор — Cost Per Click', desc: 'CPC = Затраты / Клики. Отраслевые бенчмарки по платформам. Связь с CR, ROAS.', q: 'Что такое CPC?', a: 'Cost Per Click — средняя стоимость клика. SaaS: $2–8 норма, e-com: $0.3–1.2.' },
-  ctr:            { title: 'CTR калькулятор — Click-Through Rate', desc: 'CTR = Клики / Показы × 100%. Норма поиск 2–5%, баннеры 0.5–1.5%.', q: 'Что такое CTR?', a: 'Click-Through Rate — кликабельность. Поиск: >2%, баннеры: >0.1%, email: >20%.' },
+  ctr:            { title: 'CTR калькулятор — Click-Through Rate', desc: 'CTR = Клики / Показы × 100%. Норма поиск 2–5%, баннеры 0.5–1.5%.', q: 'Что такое CTR?', a: 'Click-Through Rate — кликабельность. Поиск: >2%, баннеры: >0.1%, email: >3% (клики / доставленные).' },
   bounceRate:     { title: 'Bounce Rate калькулятор — формула и нормы', desc: 'Bounce Rate = Однострочные сессии / Все × 100%. E-com норма <55%, SaaS <60%.', q: 'Что такое Bounce Rate?', a: 'Bounce Rate — процент сессий с одной страницей. E-com норма <55%, SaaS <60%, медиа <80%.' },
   // QA
   bugRate:        { title: 'Bug Rate Calculator — плотность багов', desc: 'Bug Rate = Баги / KLOC или спринт. Норма <2 на KLOC.', q: 'Что такое Bug Rate?', a: 'Bug Rate — плотность дефектов на 1000 строк кода или на спринт. Норма <2/KLOC, хорошо <1/KLOC.' },

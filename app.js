@@ -1408,7 +1408,7 @@ window.I18N_THRESH = {
   'Маркетплейсы: 10–20% норма, 20–30% сильно; >30% риск оттока продавцов': { en: 'Marketplaces: 10–20% normal, 20–30% strong; >30% risks seller churn', uz: 'Marketpleyslar: 10–20% normal, 20–30% kuchli; >30% sotuvchilar ketishi xavfi' },
   'Реп: >100% отлично; команда: 60–70% репов выполняют квоту — норма': { en: 'Per rep: >100% excellent; team: 60–70% of reps hitting quota is normal', uz: 'Rep bo‘yicha: >100% ajoyib; jamoa: replarning 60–70% kvotani bajarishi — normal' },
   'SaaS: <$5 хорошо, e-com: <$1 хорошо': { en: 'SaaS: <$5 good, e-commerce: <$1 good', uz: 'SaaS: <$5 yaxshi, e-commerce: <$1 yaxshi' },
-  'Email: >20% хорошо. Баннеры: >0.1%. Поиск: >2%': { en: 'Email: >20% good. Banners: >0.1%. Search: >2%', uz: 'Email: >20% yaxshi. Bannerlar: >0.1%. Qidiruv: >2%' },
+  'Email: >3% хорошо (клики / доставленные). Баннеры: >0.1%. Поиск: >2%': { en: 'Email: >3% good (clicks / delivered). Banners: >0.1%. Search: >2%', uz: 'Email: >3% yaxshi (kliklar / yetkazilganlar). Bannerlar: >0.1%. Qidiruv: >2%' },
   'Соцсети: <1% плохо, 1–3% норма, 3–6% хорошо, >6% отлично': { en: 'Social: <1% bad, 1–3% normal, 3–6% good, >6% excellent', uz: 'Ijtimoiy tarmoqlar: <1% yomon, 1–3% normal, 3–6% yaxshi, >6% ajoyib' },
   'Дисплей $1–5, соцсети $5–15, видео/OLV $10–30 (зависит от гео и таргета)': { en: 'Display $1–5, social $5–15, video/OLV $10–30 (depends on geo and targeting)', uz: 'Display $1–5, ijtimoiy tarmoqlar $5–15, video/OLV $10–30 (geo va targetga bog‘liq)' },
   'Средне по индустрии ~70%. Хорошо: <60%, Тревожно: >75%': { en: 'Industry average ~70%. Good: <60%, Concerning: >75%', uz: 'Soha o‘rtachasi ~70%. Yaxshi: <60%, Xavotirli: >75%' },
@@ -1664,7 +1664,7 @@ window.I18N_THRESH = {
   'Отлично: CAC < $2, Норма: $2–$10, Плохо: >$10': { en: 'Excellent: CAC < $2, Norm: $2–$10, Bad: >$10', uz: 'Ajoyib: CAC < $2, Norma: $2–$10, Yomon: >$10' },
 
   // DAU (Stickiness-based)
-  'Норма: Stickiness >20%, Хорошо: >40%': { en: 'Norm: Stickiness >20%, Good: >40%', uz: 'Norma: Stickiness >20%, Yaxshi: >40%' },
+  'Норма: Stickiness 10–25%, Хорошо: >25%': { en: 'Norm: Stickiness 10–25%, Good: >25%', uz: 'Norma: Stickiness 10–25%, Yaxshi: >25%' },
   'Норма: Stickiness >30%, Хорошо: >50%, Отлично: >70%': { en: 'Norm: Stickiness >30%, Good: >50%, Excellent: >70%', uz: 'Norma: Stickiness >30%, Yaxshi: >50%, Ajoyib: >70%' },
   'Норма: Stickiness >5%, Хорошо: >15%': { en: 'Norm: Stickiness >5%, Good: >15%', uz: 'Norma: Stickiness >5%, Yaxshi: >15%' },
   'Норма: Stickiness >20%, Хорошо: >40%, Отлично: >60%': { en: 'Norm: Stickiness >20%, Good: >40%, Excellent: >60%', uz: 'Norma: Stickiness >20%, Yaxshi: >40%, Ajoyib: >60%' },
@@ -3333,7 +3333,7 @@ window._tGoal = function(ruText) {
                     id: 'ctr', name: 'CTR',
                     formula: '(Клики / Показы) × 100%',
                     description: 'Click-Through Rate — кликабельность объявления или контента.',
-                    threshold: 'Email: >20% хорошо. Баннеры: >0.1%. Поиск: >2%',
+                    threshold: 'Email: >3% хорошо (клики / доставленные). Баннеры: >0.1%. Поиск: >2%',
                     inputs: [
                         { label: 'Количество кликов', placeholder: '500', key: 'clicks', min: 0 },
                         { label: 'Количество показов', placeholder: '50000', key: 'impressions', min: 1 }
@@ -4031,7 +4031,7 @@ window._tGoal = function(ruText) {
             media:     'Отлично: CAC < $2, Норма: $2–$10, Плохо: >$10',
         },
         dau: {
-            universal: 'Норма: Stickiness >20%, Хорошо: >40%',
+            universal: 'Норма: Stickiness 10–25%, Хорошо: >25%',
             saas:      'Норма: Stickiness >30%, Хорошо: >50%, Отлично: >70%',
             ecom:      'Норма: Stickiness >5%, Хорошо: >15%',
             mobile:    'Норма: Stickiness >20%, Хорошо: >40%, Отлично: >60%',
