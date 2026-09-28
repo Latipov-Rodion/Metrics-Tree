@@ -25,7 +25,7 @@ window.I18N_UI = {
     'btn.copy': 'Copy',
     'btn.png': 'PNG',
     'btn.save': 'Save',
-    'btn.example': 'Example',
+    'btn.example': 'Try an example',
     'toast.example_filled': '🎲 Example values filled',
     'btn.dashboard_tt': 'Unit-economics dashboard (Ctrl+D)',
     'btn.theme_tt': 'Toggle theme',
@@ -269,7 +269,19 @@ window.I18N_UI = {
     'waitlist.title': '📬 Leave your email — we will notify you when Pro/Team launch',
     'waitlist.sub': 'No spam. One email at release + a 50%-off promo code for the first year.',
     'waitlist.submit': 'Subscribe to waitlist',
-    'waitlist.success': '✓ Thanks! Email will arrive 7 days before launch.'
+    'waitlist.success': '✓ Thanks! Email will arrive 7 days before launch.',
+    'toast.link_copied': '🔗 Link copied',
+    'share.text': 'My {name} = {value}{verdict} — calculated with MetricTree',
+    'share.text_empty': '{name} — calculate yours with MetricTree',
+    'verdict.good': 'good',
+    'verdict.warn': 'average',
+    'verdict.bad': 'poor',
+    'postcalc.text': '📑 PDF reports of your metrics and saved calculation history are coming in Pro. Leave your email for early access.',
+    'postcalc.open': 'Get early access',
+    'postcalc.dismiss': 'Dismiss',
+    'postcalc.placeholder': 'you@company.com',
+    'postcalc.submit': 'Send',
+    'postcalc.success': '✓ Done! We will email you as soon as PDF reports are live.'
   },
   uz: {
     'header.subtitle_role': 'BizDev, Sales, Product, Troubleshooter, Advisor, Consultant',
@@ -292,7 +304,7 @@ window.I18N_UI = {
     'btn.copy': 'Nusxa olish',
     'btn.png': 'PNG',
     'btn.save': 'Saqlash',
-    'btn.example': 'Misol',
+    'btn.example': 'Misol bilan sinash',
     'toast.example_filled': '🎲 Misol qiymatlari toʻldirildi',
     'btn.dashboard_tt': 'Unit-economics dashboardi (Ctrl+D)',
     'btn.theme_tt': 'Mavzu almashtirish',
@@ -536,7 +548,19 @@ window.I18N_UI = {
     'waitlist.title': '📬 Email qoldiring — Pro/Team ishga tushganda xabar beramiz',
     'waitlist.sub': 'Spam yo\'q. Reliz oldidan bitta email + birinchi yilga -50% promokod.',
     'waitlist.submit': 'Waitlist ga obuna bo\'lish',
-    'waitlist.success': '✓ Rahmat! Email reliz oldidan 7 kun avval keladi.'
+    'waitlist.success': '✓ Rahmat! Email reliz oldidan 7 kun avval keladi.',
+    'toast.link_copied': '🔗 Havola nusxalandi',
+    'share.text': 'Mening {name} = {value}{verdict} — MetricTree’da hisoblandi',
+    'share.text_empty': '{name} — o‘zingiznikini MetricTree’da hisoblang',
+    'verdict.good': 'yaxshi',
+    'verdict.warn': 'o‘rtacha',
+    'verdict.bad': 'yomon',
+    'postcalc.text': '📑 Metrikalaringiz bo‘yicha PDF-hisobot va hisoblar tarixi — tez orada Pro’da. Erta kirish uchun email qoldiring.',
+    'postcalc.open': 'Erta kirish olish',
+    'postcalc.dismiss': 'Yopish',
+    'postcalc.placeholder': 'siz@kompaniya.uz',
+    'postcalc.submit': 'Yuborish',
+    'postcalc.success': '✓ Tayyor! PDF-hisobotlar ishga tushishi bilan xabar beramiz.'
   }
 };
 
@@ -4421,8 +4445,10 @@ window._tGoal = function(ruText) {
         resultValue.innerHTML = displayHtml;
 
         const isFinite = numericResult === Infinity || (!isNaN(numericResult) && Number.isFinite(numericResult));
+        lastVerdict = '';
         if ((isFinite || numericResult === Infinity) && metric.insight) {
             const ins = metric.insight(numericResult);
+            lastVerdict = verdictKey(ins.color);
             resultValue.style.color = verdictColor(ins.color);
             insightMessage.textContent = window._tInsight ? window._tInsight(ins.text) : ins.text;
             insightMessage.style.borderLeftColor = verdictColor(ins.color);
@@ -4438,7 +4464,19 @@ window._tGoal = function(ruText) {
         void resultBlock.offsetWidth;
         resultBlock.classList.add('result-animate');
         renderSnapshotsBlock();
-        if (window.track) window.track('calc', { metric: metric.id, lang: (window._currentLang ? window._currentLang() : 'ru') });
+        // One `calc` event per metric per page view (updateResult runs on every keystroke).
+        if (!_calcTracked.has(metric.id)) {
+            _calcTracked.add(metric.id);
+            if (window.track) window.track('calc', { metric: metric.id, lang: currentLang, verdict: lastVerdict || 'none' });
+        }
+        showPostCalcCta(metric);
+    }
+    const _calcTracked = new Set();
+    let lastVerdict = '';
+    // Insight colours → neutral verdict ids (share text, analytics). Blue = informational, no verdict.
+    function verdictKey(c) {
+        const k = String(c || '').toLowerCase();
+        return k === '#4caf50' ? 'good' : k === '#ffc107' ? 'warn' : k === '#f44336' ? 'bad' : '';
     }
 
     function saveCurrentValues() {
@@ -4457,32 +4495,16 @@ window._tGoal = function(ruText) {
         const metric = getCurrentMetric();
         if (!metric) return;
         const saved = storedValues[metricId];
-        // Auto-prefill for THIS metric if user has no saved values for it yet.
-        // Fires both on first-ever visit AND when user lands via deep-link on a metric
-        // they haven't used before (even if other metrics have stored values).
-        // Every metric page shows instant aha → never empty calculator.
-        const isFirstVisit = !saved || Object.keys(saved).length === 0;
-        let prefilled = false;
+        // First visit = clean state: empty inputs, placeholders show example numbers,
+        // and the «Подставить пример» button in the inputs toolbar fills them on demand.
+        // (Auto-prefilling used to show a result — and write "user" values to storage —
+        // before the visitor had typed anything.)
         metric.inputs.forEach(inp => {
             const el = document.getElementById(`input-${inp.key}`);
             if (!el) return;
-            let raw = (saved && saved[inp.key] !== undefined) ? saved[inp.key] : '';
-            if (!raw && isFirstVisit && inp.placeholder != null) {
-                raw = String(inp.placeholder);
-                prefilled = true;
-            }
+            const raw = (saved && saved[inp.key] !== undefined) ? saved[inp.key] : '';
             el.value = raw ? formatNum(raw) : '';
         });
-        // Save the prefilled values so the user can edit them naturally and they persist.
-        if (prefilled) {
-            const values = {};
-            metric.inputs.forEach(inp => {
-                const el = document.getElementById(`input-${inp.key}`);
-                if (el) values[inp.key] = el.value.replace(/[  ]/g, '');
-            });
-            storedValues[metricId] = values;
-            saveToLS(storedValues);
-        }
     }
 
     // Manual "Try example" — fills current metric with placeholder values, useful even
@@ -4519,6 +4541,14 @@ window._tGoal = function(ruText) {
         validationError.classList.remove('show');
     }
 
+    // Scroll a horizontal row (chips / section tabs) so `el` is visible — never the page.
+    function scrollRowTo(row, el) {
+        if (!row || !el || row.scrollWidth <= row.clientWidth) return;
+        const r = row.getBoundingClientRect(), e = el.getBoundingClientRect();
+        if (e.left >= r.left && e.right <= r.right) return;
+        row.scrollLeft += (e.left - r.left) - (r.width - e.width) / 2;
+    }
+
     // ---- РЕНДЕРЫ ----
     function renderMetricsList() {
         const section = metricsData[currentSection];
@@ -4548,8 +4578,9 @@ window._tGoal = function(ruText) {
         noResults.classList.toggle('show', visibleCount === 0);
 
         // Scroll active chip into view
-        const activeChip = metricChipsDiv.querySelector('.metric-chip.active');
-        if (activeChip) activeChip.scrollIntoView({ inline: 'nearest', behavior: 'smooth' });
+        // Horizontal only: scrollIntoView() also scrolled the whole page down to the chips
+        // on mobile load, hiding the H1/intro of a search landing.
+        scrollRowTo(metricChipsDiv, metricChipsDiv.querySelector('.metric-chip.active'));
 
         // Bind clicks on both list items and chips
         document.querySelectorAll('.metric-item, .metric-chip').forEach(item => {
@@ -4608,7 +4639,7 @@ window._tGoal = function(ruText) {
         // Auto-focus first input
         const firstInput = inputFieldsDiv.querySelector('input');
         if (firstInput && !('ontouchstart' in window)) {
-            setTimeout(() => firstInput.focus(), 50);
+            setTimeout(() => firstInput.focus({ preventScroll: true }), 50);
         }
 
         // Закрываем What-If и Goal при смене метрики
@@ -4642,6 +4673,7 @@ window._tGoal = function(ruText) {
         sectionCards.forEach(card => {
             card.classList.toggle('active', card.dataset.section === sectionId);
         });
+        scrollRowTo(document.getElementById('sectionsNav'), document.querySelector('.section-card.active'));
 
         const section = metricsData[sectionId];
         if (section && section.metrics.length > 0) {
@@ -5282,9 +5314,16 @@ window._tGoal = function(ruText) {
     }
 
     document.getElementById('shareLinkBtn').addEventListener('click', () => {
+        // Phones: native share sheet (Telegram/WhatsApp…) with the result + verdict text.
+        if (navigator.share && window.matchMedia && window.matchMedia('(pointer: coarse)').matches) {
+            const nUrl = buildShareURL({ clean: true, utm: { source: 'share', medium: 'native' } });
+            if (window.track) window.track('share', { method: 'native', metric: (currentMetricId || ''), verdict: lastVerdict || 'none' });
+            navigator.share({ title: document.title, text: _composeShareText(), url: nUrl }).catch(() => {});
+            return;
+        }
         const url = buildShareURL({ clean: true, utm: { source: 'share', medium: 'copy' } });
-        const onOk = () => showToast('🔗 Ссылка скопирована', 'success');
-        if (window.track) window.track('share', { method: 'copy_link', metric: (currentMetricId || '') });
+        const onOk = () => showToast(t('toast.link_copied', '🔗 Ссылка скопирована'), 'success');
+        if (window.track) window.track('share', { method: 'copy_link', metric: (currentMetricId || ''), verdict: lastVerdict || 'none' });
         navigator.clipboard.writeText(url).then(onOk).catch(() => {
             const ta = document.createElement('textarea');
             ta.value = url; ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;';
@@ -5296,16 +5335,19 @@ window._tGoal = function(ruText) {
     // ---- TWITTER / LINKEDIN SHARE ----
     // Compose a tweet/post containing metric name + computed value + insight + link,
     // then open the native share dialog in a new tab. Pre-filled = viral.
+    // «Мой LTV:CAC = 3.40 (хорошо) — посчитано в MetricTree». Short on purpose: the full
+    // insight sentence made tweets truncate before the link.
     function _composeShareText() {
         const metric = getCurrentMetric();
         if (!metric) return '';
         const name = tm(metric.id, 'name', metric.name);
-        const result = (document.getElementById('resultValue')?.textContent || '').trim();
-        const insight = (document.getElementById('insightMessage')?.textContent || '').trim();
-        if (!result) return `${name} — calculate yours on MetricTree`;
-        let txt = `${name}: ${result}`;
-        if (insight) txt += ` — ${insight}`;
-        return txt;
+        const shown = resultBlock && resultBlock.style.display !== 'none';
+        const result = shown ? (resultValue.textContent || '').replace(/\s+/g, ' ').trim() : '';
+        if (!result) return t('share.text_empty', '{name} — посчитайте свой в MetricTree').replace('{name}', name);
+        const VERDICT_RU = { good: 'хорошо', warn: 'средне', bad: 'плохо' };
+        const verdict = lastVerdict ? ' (' + t('verdict.' + lastVerdict, VERDICT_RU[lastVerdict]) + ')' : '';
+        return t('share.text', 'Мой {name} = {value}{verdict} — посчитано в MetricTree')
+            .replace('{name}', name).replace('{value}', result).replace('{verdict}', verdict);
     }
     function _openShareWindow(url) {
         const w = 600, h = 600;
@@ -5319,18 +5361,69 @@ window._tGoal = function(ruText) {
         const txt = _composeShareText();
         const full = txt.length > 240 ? txt.slice(0, 237) + '…' : txt;
         const intent = `https://twitter.com/intent/tweet?text=${encodeURIComponent(full)}&url=${encodeURIComponent(url)}&via=rodion_latipov`;
-        if (window.track) window.track('share', { method: 'twitter', metric: (currentMetricId || '') });
+        if (window.track) window.track('share', { method: 'twitter', metric: (currentMetricId || ''), verdict: lastVerdict || 'none' });
         _openShareWindow(intent);
     });
     const _liBtn = document.getElementById('shareLinkedinBtn');
     if (_liBtn) _liBtn.addEventListener('click', () => {
         const url = buildShareURL({ clean: true, utm: { source: 'linkedin', medium: 'social' } });
-        // LinkedIn's modern share intent only accepts URL — they pull title/desc from OG.
-        // For pre-filled text we'd need a feed/share/article endpoint with auth — keep simple.
-        const intent = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
-        if (window.track) window.track('share', { method: 'linkedin', metric: (currentMetricId || '') });
+        // share-offsite only takes a URL (text comes from OG tags, i.e. no result). The feed
+        // composer accepts prefilled text, so the post carries the result, verdict and link.
+        const intent = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(_composeShareText() + ' ' + url)}`;
+        if (window.track) window.track('share', { method: 'linkedin', metric: (currentMetricId || ''), verdict: lastVerdict || 'none' });
         _openShareWindow(intent);
     });
+
+    // ---- POST-CALC NEXT STEP (email capture) ----
+    // One quiet, dismissible prompt under a *computed* result: «PDF-отчёт / история → email».
+    // Never before a result (it lives inside #resultBlock and is shown from updateResult),
+    // never modal, remembered per visitor (dismissed | done). Posts to /api/lead with
+    // source=post_calc_<metricId>. Hidden in embed mode (third-party sites).
+    const LS_POSTCALC = 'mt_postcalc_cta_v1';
+    const postCalcCta = document.getElementById('postCalcCta');
+    const postCalcForm = document.getElementById('postCalcForm');
+    const postCalcOpen = document.getElementById('postCalcOpen');
+    let postCalcShownTracked = false;
+    let postCalcSubmittedFor = null; // keep the success line visible until the metric changes
+    function postCalcState() { try { return localStorage.getItem(LS_POSTCALC); } catch (e) { return null; } }
+    function setPostCalcState(v) { try { localStorage.setItem(LS_POSTCALC, v); } catch (e) {} }
+    function showPostCalcCta(metric) {
+        if (!postCalcCta || !metric) return;
+        const st = postCalcState();
+        if (document.body.classList.contains('embed') || st === 'dismissed' || (st === 'done' && postCalcSubmittedFor !== metric.id)) {
+            postCalcCta.hidden = true;
+            return;
+        }
+        if (!postCalcCta.hidden) return;
+        postCalcCta.hidden = false;
+        if (!postCalcShownTracked) {
+            postCalcShownTracked = true;
+            if (window.track) window.track('post_calc_cta_shown', { metric: metric.id, lang: currentLang });
+        }
+    }
+    if (postCalcCta) {
+        if (postCalcOpen) postCalcOpen.addEventListener('click', () => {
+            postCalcOpen.hidden = true;
+            if (postCalcForm) postCalcForm.hidden = false;
+            const em = document.getElementById('postCalcEmail');
+            if (em) em.focus();
+            if (window.track) window.track('post_calc_cta_click', { metric: currentMetricId || '', lang: currentLang });
+        });
+        const dismiss = document.getElementById('postCalcDismiss');
+        if (dismiss) dismiss.addEventListener('click', () => {
+            postCalcCta.hidden = true;
+            setPostCalcState('dismissed');
+            if (window.track) window.track('post_calc_cta_dismiss', { metric: currentMetricId || '' });
+        });
+        bindFormspreeForm(postCalcForm, document.getElementById('postCalcSuccess'),
+            () => 'post_calc_' + (currentMetricId || 'unknown'),
+            { onDone: () => {
+                setPostCalcState('done');
+                postCalcSubmittedFor = currentMetricId;
+                const row = postCalcCta.querySelector('.postcalc-row');
+                if (row) row.hidden = true;
+            } });
+    }
 
     // ---- PNG EXPORT ----
     function _rrect(ctx, x, y, w, h, r) {
@@ -5757,12 +5850,17 @@ window._tGoal = function(ruText) {
     (function initOnboarding() {
         const bar = document.getElementById('onboardingBar');
         if (!bar) return;
-        if (!localStorage.getItem(LS_ONBOARD)) {
+        // Search landings on /ltv, /en/cac… go straight to the H1 + calculator: the 240px
+        // welcome bar pushed the inputs below the fold on phones. Home page only.
+        const isHome = /^\/((en|uz)\/?)?(index\.html)?$/.test(window.location.pathname) && !/[?&]m=/.test(window.location.search);
+        let onboarded = null;
+        try { onboarded = localStorage.getItem(LS_ONBOARD); } catch (e) {}
+        if (!onboarded && isHome) {
             bar.style.display = 'flex';
         }
         document.getElementById('onboardingDismiss').addEventListener('click', () => {
             bar.style.display = 'none';
-            localStorage.setItem(LS_ONBOARD, '1');
+            try { localStorage.setItem(LS_ONBOARD, '1'); } catch (e) {}
         });
 
         const tplBtn = document.getElementById('onboardingTemplatesBtn');
@@ -7576,14 +7674,21 @@ window._tGoal = function(ruText) {
         const body = encodeURIComponent(lines.join('\n'));
         window.location.href = `mailto:${FALLBACK_EMAIL}?subject=${subject}&body=${body}`;
     }
-    function bindFormspreeForm(formEl, successEl, source) {
+    // `source` may be a function (evaluated at submit time, e.g. post_calc_<metricId>);
+    // opts.onDone(ok) runs after either outcome (success or mailto fallback).
+    function bindFormspreeForm(formEl, successEl, sourceArg, opts) {
         if (!formEl) return;
+        let busy = false;
         formEl.addEventListener('submit', async (e) => {
             e.preventDefault();
+            if (busy) return;
+            busy = true;
+            const source = typeof sourceArg === 'function' ? sourceArg() : sourceArg;
             const submitBtn = formEl.querySelector('button[type=submit], button:not([type])');
             const origText = submitBtn ? submitBtn.textContent : '';
             if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '…'; }
             const formData = new FormData(formEl);
+            if (typeof sourceArg === 'function') formData.set('source', source);
             saveLeadLocally(source, formData);
             let ok = false;
             try {
@@ -7610,6 +7715,8 @@ window._tGoal = function(ruText) {
                 showToast('📧 Открыли почту — отправьте письмо', 'success');
             }
             if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = origText; }
+            busy = false;
+            if (opts && opts.onDone) opts.onDone(ok);
         });
     }
     // Footer + about-modal newsletters + About→Pricing CTA — all reference HTML AFTER this script.
@@ -7885,6 +7992,7 @@ window._tGoal = function(ruText) {
                     ok = resp.ok;
                 } catch (err) { ok = false; }
                 if (ok) {
+                    if (window.track) window.track('lead', { source: 'pro-waitlist' });
                     formEl.style.display = 'none';
                     if (successEl) successEl.style.display = 'block';
                     showToast('✓ ' + (window._t ? window._t('waitlist.success', 'Спасибо! Письмо придёт за 7 дней до запуска.') : 'Подписка оформлена').replace(/^✓\s*/, ''), 'success');
