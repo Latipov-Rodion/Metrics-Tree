@@ -6,9 +6,163 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import vm from 'node:vm';
+import { execFileSync } from 'node:child_process';
 
 const ROOT = path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]):/, '$1:'));
 const SITE = 'https://metricstree.vercel.app';
+const LANGS = ['ru', 'en', 'uz'];
+
+// ── Deterministic "last modified" dates ─────────────────────────────────────
+// sitemap <lastmod> and the "обновлено" stamp in benchmarks.html used to be
+// "today" on every build. A lastmod that changes on every crawl is noise, and
+// Google learns to ignore it. Instead each URL gets the date of the last git
+// commit that touched the SOURCES feeding it (e.g. blog-src/<slug>.md for a post).
+//  - A source with uncommitted changes (or a new untracked file) → today (UTC):
+//    it is about to be committed, so CI will see the same date on that day.
+//  - Dates are UTC (%ct → ISO) so local TZ and CI TZ agree.
+//  - Needs full history: CI checks out with fetch-depth: 0. In a shallow clone
+//    a file whose newest visible commit is a shallow *boundary* commit may really
+//    be older, so that date is not trusted; we then keep the lastmod already
+//    committed in sitemap.xml instead of inventing one (URLs with no prior value
+//    get no <lastmod>). Without git at all, the same fallback applies.
+const TODAY = new Date().toISOString().slice(0, 10);
+const git = (args) => execFileSync('git', args, {
+  cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'], maxBuffer: 16 << 20,
+}).trim();
+const GIT_MODE = (() => {
+  try { return git(['rev-parse', '--is-shallow-repository']) === 'true' ? 'shallow' : 'full'; }
+  catch { return 'none'; }
+})();
+const SHALLOW_BOUNDARY = (() => {
+  if (GIT_MODE !== 'shallow') return new Set();
+  try {
+    const f = git(['rev-parse', '--git-path', 'shallow']);
+    return new Set(fs.readFileSync(path.isAbsolute(f) ? f : path.join(ROOT, f), 'utf8').split('\n').filter(Boolean));
+  } catch { return new Set(); }
+})();
+if (GIT_MODE !== 'full') {
+  console.warn(`⚠ build.mjs: git history is ${GIT_MODE === 'none' ? 'unavailable' : 'shallow'} — ` +
+    'dates that cannot be derived exactly keep their committed lastmod (use a full clone to recompute).');
+}
+const PREV_LASTMOD = (() => {
+  const map = new Map();
+  try {
+    const xml = fs.readFileSync(path.join(ROOT, 'sitemap.xml'), 'utf8');
+    for (const m of xml.matchAll(/<loc>([^<]+)<\/loc><lastmod>(\d{4}-\d{2}-\d{2})<\/lastmod>/g)) map.set(m[1], m[2]);
+  } catch { /* first build */ }
+  return map;
+})();
+const _dateCache = new Map();
+// Last-change date (YYYY-MM-DD, UTC) of a set of repo-relative source paths, or
+// null when it cannot be derived deterministically (shallow clone / no git).
+function sourceDate(files) {
+  const key = files.join('\n');
+  if (_dateCache.has(key)) return _dateCache.get(key);
+  let date = null;
+  if (GIT_MODE !== 'none') {
+    if (git(['status', '--porcelain', '--', ...files]) !== '') {
+      date = TODAY; // uncommitted / untracked change: lands in the next commit
+    } else {
+      const [sha, ct] = git(['log', '-1', '--format=%H %ct', '--', ...files]).split(' ');
+      if (!sha) date = GIT_MODE === 'full' ? TODAY : null;
+      else if (!SHALLOW_BOUNDARY.has(sha)) date = new Date(Number(ct) * 1000).toISOString().slice(0, 10);
+    }
+  }
+  _dateCache.set(key, date);
+  return date;
+}
+// Sources that feed every per-metric page (RU/EN/UZ) and the benchmarks sheet.
+const METRIC_SOURCES = ['app.js', 'build.mjs', 'index.html'];
+
+// ── EN/UZ strings for the localized per-metric + home pages ─────────────────
+// /en/<id> and /uz/<id> used to be rewritten to the RU file, so Google saw a
+// Russian <title>, a canonical pointing at the RU URL and og:locale ru_RU on
+// every EN/UZ URL — i.e. 138 URLs that declared themselves duplicates of RU.
+// They are now physical files (en/<id>.html, uz/<id>.html) with their own head.
+const L10N = {
+  en: {
+    htmlLang: 'en', ogLocale: 'en_US', ogAlt: ['ru_RU', 'uz_UZ'],
+    imageAlt: 'MetricTree — calculator for 69 product metrics: LTV, CAC, MRR, NPS, Burn Multiple, Runway',
+    h1: 'MetricTree — Product Metrics Calculator',
+    title: n => `${n} Calculator — formula, benchmarks & examples`,
+    descTail: 'Free online calculator with industry benchmarks and interpretation.',
+    formulaLabel: 'Formula',
+    whatIs: n => `What is ${n}`, howCalc: n => `How to calculate ${n}`,
+    bench: 'Industry benchmarks', faq: n => `${n} FAQ`, related: 'Related metrics',
+    aboutAria: n => `About ${n}`,
+    qWhat: n => `What is ${n}?`, qHow: n => `How do you calculate ${n}?`,
+    qBench: n => `What is a good ${n}?`,
+    steps: [
+      ['Open the calculator', u => `Go to ${u} — the calculator is pre-filled with an example.`],
+      ['Enter your numbers', () => 'Replace the example values with your own data. The result updates in real time.'],
+      ['Compare with the benchmark', () => 'Check the result against the industry benchmark and the interpretation shown next to it.'],
+    ],
+    home: {
+      title: 'MetricTree — Product Metrics Calculator: 69 metrics incl. LTV, CAC, MRR, NPS, Burn Multiple, Rule of 40',
+      desc: 'Free online calculator for 69 product metrics: LTV, CAC, MRR, ARR, churn rate, DAU, ROAS, NPS, Burn Multiple, Magic Number, Rule of 40 — with formulas, industry benchmarks and plain-language interpretation.',
+      ogTitle: 'MetricTree — Calculator for 69 product metrics: LTV, CAC, MRR, NRR, Burn Multiple',
+      twTitle: 'MetricTree — Product Metrics Calculator',
+    },
+  },
+  uz: {
+    htmlLang: 'uz', ogLocale: 'uz_UZ', ogAlt: ['ru_RU', 'en_US'],
+    imageAlt: 'MetricTree — 69 ta mahsulot metrikasi kalkulyatori: LTV, CAC, MRR, NPS, Burn Multiple, Runway',
+    h1: 'MetricTree — Mahsulot metrikalari kalkulyatori',
+    title: n => `${n} kalkulyatori — formula va soha benchmarklari`,
+    descTail: 'Soha benchmarklari va natija talqini bilan bepul onlayn kalkulyator.',
+    formulaLabel: 'Formula',
+    whatIs: n => `${n} nima`, howCalc: n => `${n} qanday hisoblanadi`,
+    bench: 'Soha benchmarklari', faq: n => `${n} bo‘yicha savollar`, related: 'Bog‘liq metrikalar',
+    aboutAria: n => `${n} haqida`,
+    qWhat: n => `${n} nima?`, qHow: n => `${n} qanday hisoblanadi?`,
+    qBench: n => `Qanday ${n} yaxshi hisoblanadi?`,
+    steps: [
+      ['Kalkulyatorni oching', u => `${u} sahifasiga o‘ting — kalkulyator namuna bilan to‘ldirilgan.`],
+      ['Qiymatlaringizni kiriting', () => 'Namuna qiymatlarni o‘z ma’lumotlaringiz bilan almashtiring. Natija real vaqtda qayta hisoblanadi.'],
+      ['Benchmark bilan solishtiring', () => 'Natijani soha benchmarki va yonidagi talqin bilan solishtiring.'],
+    ],
+    home: {
+      title: 'MetricTree — 69 ta mahsulot metrikasi kalkulyatori: LTV, CAC, MRR, NPS, Burn Multiple, Rule of 40',
+      desc: 'Bepul onlayn kalkulyator: 69 ta mahsulot metrikasi — LTV, CAC, MRR, ARR, Churn, DAU, ROAS, NPS, Burn Multiple, Magic Number, Rule of 40. Formulalar, soha benchmarklari va natija talqini bilan.',
+      ogTitle: 'MetricTree — 69 ta mahsulot metrikasi kalkulyatori: LTV, CAC, MRR, NRR, Burn Multiple',
+      twTitle: 'MetricTree — Mahsulot metrikalari kalkulyatori',
+    },
+  },
+};
+
+// EN/UZ metric names/formulas/descriptions and threshold translations live in
+// app.js (window.I18N_M / window.I18N_THRESH), defined at the top of the file
+// before any DOM access. Evaluate app.js in an empty sandbox: the tables get
+// assigned, then the app code throws on the first `document` reference — that
+// throw is expected and ignored. Validated below so a restructure fails loudly.
+function loadAppI18n(appSrc) {
+  const sandbox = { window: {}, console: { log() {}, warn() {}, error() {}, info() {} } };
+  vm.createContext(sandbox);
+  try { vm.runInContext(appSrc, sandbox, { timeout: 10000 }); } catch { /* expected: no DOM */ }
+  const I18N_M = sandbox.window.I18N_M || {};
+  const I18N_THRESH = sandbox.window.I18N_THRESH || {};
+  const missing = Object.keys(META).filter(id =>
+    !['en', 'uz'].every(l => I18N_M[id] && I18N_M[id][l] && I18N_M[id][l].name && I18N_M[id][l].formula && I18N_M[id][l].description));
+  if (missing.length) {
+    console.error(`::error::build.mjs: window.I18N_M in app.js lacks en/uz name/formula/description for ` +
+      `${missing.length} metric(s): ${missing.slice(0, 8).join(', ')}. EN/UZ pages need them.`);
+    process.exit(1);
+  }
+  return { I18N_M, I18N_THRESH };
+}
+
+const escAttr = s => String(s == null ? '' : s)
+  .replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+// JSON-LD inside <script>: escape "<" so no string can ever close the tag.
+const jsonLd = obj => `    <script type="application/ld+json">\n${JSON.stringify(obj, null, 2).replace(/</g, '\\u003c')}\n    </script>`;
+// Clip a meta description to ~max chars on a word boundary.
+const clip = (s, max = 200) => {
+  s = String(s).replace(/\s+/g, ' ').trim();
+  if (s.length <= max) return s;
+  const cut = s.slice(0, max - 1);
+  return cut.slice(0, cut.lastIndexOf(' ')).replace(/[,;:—–-]+$/, '') + '…';
+};
 
 const META = {
   // — Batch +10 (CPA, CPL, CPI, ARPPU, Open Rate, CTOR, Feature Adoption, LVR, Cash Conversion Score, Avg Resolution Time) —
@@ -313,110 +467,166 @@ ${relHtml}
     </section>`;
 }
 
-function buildHtml(template, dataSrc, id, meta) {
-  const url = `${SITE}/${id}`;
-  const title = meta.title + ' | MetricTree';
-  const desc = meta.desc;
+// Localized head/FAQ/visible-section data for an EN/UZ metric page, built from
+// app.js I18N_M (name/formula/description) + I18N_THRESH (benchmark text).
+function localizedMeta(dataSrc, id, lang, i18n) {
+  const L = L10N[lang];
+  const m = i18n.I18N_M[id][lang];
+  const ru = extractMetricData(dataSrc, id) || {};
+  const tr = ru.threshold && i18n.I18N_THRESH[ru.threshold];
+  const threshold = (tr && tr[lang]) || '';
+  // Two metrics can share a localized name (retention / retention_aarrr are both
+  // "Retention" in EN/UZ) → duplicate titles. Disambiguate with the (English)
+  // SHORT_NAME of every metric but the first one carrying that name.
+  const firstWithName = Object.keys(META).find(k => i18n.I18N_M[k][lang].name === m.name);
+  const name = firstWithName !== id && SHORT_NAME[id] ? SHORT_NAME[id] : m.name;
+  const faq = [
+    { q: L.qWhat(name), a: m.description },
+    { q: L.qHow(name), a: `${L.formulaLabel}: ${m.formula}` },
+  ];
+  if (threshold) faq.push({ q: L.qBench(name), a: threshold });
+  return {
+    name, formula: m.formula, description: m.description, threshold, faq,
+    title: L.title(name),
+    desc: clip(`${name}: ${m.formula}. ${m.description} ${L.descTail}`),
+  };
+}
+
+function renderSeoSectionLocalized(id, lang, loc, i18n) {
+  const L = L10N[lang];
+  const faqHtml = loc.faq
+    .map(f => `        <details><summary>${esc(f.q)}</summary><p>${esc(f.a)}</p></details>`)
+    .join('\n');
+  const rels = RELATED[id] || [];
+  const relName = rid => (i18n.I18N_M[rid] && i18n.I18N_M[rid][lang] && i18n.I18N_M[rid][lang].name) || SHORT_NAME[rid] || rid;
+  const relHtml = rels.length
+    ? `      <h3>${esc(L.related)}</h3>\n      <ul class="seo-related">\n` +
+      rels.map(r => `        <li><a href="/${lang}/${r.id}">${esc(relName(r.id))}</a></li>`).join('\n') +
+      `\n      </ul>`
+    : '';
+  const thresholdHtml = loc.threshold
+    ? `      <h3>${esc(L.bench)}</h3>\n      <p>${esc(loc.threshold)}</p>`
+    : '';
+  return `
+    <section class="metric-seo" aria-label="${escAttr(L.aboutAria(loc.name))}">
+      <h2>${esc(L.whatIs(loc.name))}</h2>
+      <p>${esc(loc.description)}</p>
+      <h3>${esc(L.howCalc(loc.name))}</h3>
+      <p><span class="seo-formula">${esc(loc.formula)}</span></p>
+${thresholdHtml}
+      <h3>${esc(L.faq(loc.name))}</h3>
+      <div class="seo-faq">
+${faqHtml}
+      </div>
+${relHtml}
+    </section>`;
+}
+
+// Head rewrites shared by metric pages and the EN/UZ home pages.
+function applyHead(html, { title, desc, url, lang }) {
+  const t = escAttr(title), d = escAttr(desc);
+  html = html.replace(/<title>[^<]+<\/title>/, `<title>${esc(title)}</title>`);
+  html = html.replace(/<meta name="description"[^>]*>/, `<meta name="description" content="${d}">`);
+  html = html.replace(/<link rel="canonical"[^>]*>/, `<link rel="canonical" href="${url}">`);
+  html = html.replace(/<meta property="og:url"[^>]*>/, `<meta property="og:url" content="${url}">`);
+  html = html.replace(/<meta property="og:title"[^>]*>/, `<meta property="og:title" content="${t}">`);
+  html = html.replace(/<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${d}">`);
+  html = html.replace(/<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${t}">`);
+  html = html.replace(/<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${d}">`);
+  if (lang !== 'ru') {
+    const L = L10N[lang];
+    html = html.replace(/<html lang="ru"/, `<html lang="${L.htmlLang}"`);
+    html = html.replace(/<meta property="og:locale" content="[^"]*">/, `<meta property="og:locale" content="${L.ogLocale}">`);
+    html = html.replace(/(<meta property="og:locale:alternate" content=")[^"]*(">)\s*(<meta property="og:locale:alternate" content=")[^"]*(">)/,
+      `$1${L.ogAlt[0]}$2\n    $3${L.ogAlt[1]}$4`);
+    html = html.replace(/<meta property="og:image:alt" content="[^"]*">/, `<meta property="og:image:alt" content="${escAttr(L.imageAlt)}">`);
+    // Russian keyword list; search engines ignore keywords, but a RU list on an EN page is noise.
+    html = html.replace(/\n[ \t]*<meta name="keywords"[^>]*>/, '');
+    html = html.replace(/<h1>MetricTree — [^<]*<\/h1>/, `<h1>${esc(L.h1)}</h1>`);
+    html = html.replace(/"inLanguage": "ru"/, `"inLanguage": "${lang}"`);
+  }
+  return html;
+}
+
+// The home template carries its own hreflang set and a 13-question FAQPage that
+// describes the home page. Neither belongs on a metric page (a second FAQPage
+// that doesn't match the visible content), nor on the EN/UZ home (Russian text).
+const HOME_HREFLANG_RE = /\n[ \t]*<link rel="alternate" hreflang="[^"]*" href="[^"]*">/g;
+const HOME_FAQ_RE = /\n[ \t]*<script type="application\/ld\+json">\s*\{\s*"@context": "https:\/\/schema\.org",\s*"@type": "FAQPage"[\s\S]*?<\/script>/;
+const hreflangLinks = (pathFor) => LANGS.map(l => `    <link rel="alternate" hreflang="${l}" href="${pathFor(l)}">`)
+  .concat(`    <link rel="alternate" hreflang="x-default" href="${pathFor('ru')}">`).join('\n');
+
+function buildHtml(template, dataSrc, id, meta, lang = 'ru', i18n = null) {
+  const loc = lang === 'ru' ? null : localizedMeta(dataSrc, id, lang, i18n);
+  const urlFor = l => l === 'ru' ? `${SITE}/${id}` : `${SITE}/${l}/${id}`;
+  const url = urlFor(lang);
+  const title = (loc ? loc.title : meta.title) + ' | MetricTree';
+  const desc = loc ? loc.desc : meta.desc;
   // OG image — static PNG (Telegram/Slack/iMessage all render PNG).
   const ogImg = `${SITE}/og-image.png`;
 
-  let html = template;
-
-  // <title>
-  html = html.replace(/<title>[^<]+<\/title>/, `<title>${title}</title>`);
-  // description
-  html = html.replace(/<meta name="description"[^>]*>/, `<meta name="description" content="${desc}">`);
-  // canonical
-  html = html.replace(/<link rel="canonical"[^>]*>/, `<link rel="canonical" href="${url}">`);
-  // og:url
-  html = html.replace(/<meta property="og:url"[^>]*>/, `<meta property="og:url" content="${url}">`);
-  // og:title
-  html = html.replace(/<meta property="og:title"[^>]*>/, `<meta property="og:title" content="${title}">`);
-  // og:description
-  html = html.replace(/<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${desc}">`);
+  let html = template.replace(HOME_HREFLANG_RE, '').replace(HOME_FAQ_RE, '');
+  html = applyHead(html, { title, desc, url, lang });
   // og:image — static PNG, Telegram/Slack/iMessage friendly
   html = html.replace(/<meta property="og:image"[^>]*>/, `<meta property="og:image" content="${ogImg}">`);
   html = html.replace(/<meta property="og:image:type"[^>]*>/, `<meta property="og:image:type" content="image/png">`);
   html = html.replace(/<meta name="twitter:image"[^>]*>/, `<meta name="twitter:image" content="${ogImg}">`);
-  html = html.replace(/<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${title}">`);
-  html = html.replace(/<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${desc}">`);
 
   // Append per-metric FAQ JSON-LD + HowTo JSON-LD + hreflang link tags just before </head>.
   // Use rich faq array if defined (top metrics), else fall back to single {q,a}.
-  const faqEntries = (meta.faq && meta.faq.length)
+  const faqEntries = loc ? loc.faq : ((meta.faq && meta.faq.length)
     ? meta.faq
-    : [{ q: meta.q, a: meta.a }];
+    : [{ q: meta.q, a: meta.a }]);
   const faqJson = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
+    'inLanguage': lang,
     'mainEntity': faqEntries.map(({ q, a }) => ({
       '@type': 'Question',
       'name': q,
       'acceptedAnswer': { '@type': 'Answer', 'text': a }
     }))
   };
-  // HowTo schema — gives Google "How to calculate X" rich snippets with step cards.
-  // Extracted from meta.q/a as a 3-step generic recipe; works for every metric since
-  // metric formula + inputs + result interpretation are universal calc steps.
-  const metricName = meta.title.split(' —')[0].split(' (')[0].split(' калькулятор')[0].trim();
+  // HowTo schema — "How to calculate X" as a 3-step generic recipe; works for every
+  // metric since formula + inputs + result interpretation are universal calc steps.
+  const metricName = loc ? loc.name : meta.title.split(' —')[0].split(' (')[0].split(' калькулятор')[0].trim();
+  const steps = loc
+    ? L10N[lang].steps.map(([name, text], i) => ({ name, text: text(url), ...(i === 0 ? { url } : {}) }))
+    : [
+        { name: 'Откройте калькулятор', text: `Перейдите на ${url} — калькулятор уже заполнен примером.`, url },
+        { name: 'Введите ваши значения', text: 'Замените примерные значения на свои данные. Калькулятор пересчитывает результат в реальном времени.' },
+        { name: 'Сравните с бенчмарком', text: meta.a || 'Получите результат, отраслевой бенчмарк и интерпретацию.' },
+      ];
   const howToJson = {
     '@context': 'https://schema.org',
     '@type': 'HowTo',
-    'name': `Как рассчитать ${metricName}`,
-    'description': meta.desc,
+    'name': loc ? L10N[lang].howCalc(metricName) : `Как рассчитать ${metricName}`,
+    'description': desc,
+    'inLanguage': lang,
     'totalTime': 'PT1M',
-    'step': [
-      {
-        '@type': 'HowToStep',
-        'position': 1,
-        'name': 'Откройте калькулятор',
-        'text': `Перейдите на ${url} — калькулятор уже заполнен примером.`,
-        'url': url
-      },
-      {
-        '@type': 'HowToStep',
-        'position': 2,
-        'name': 'Введите ваши значения',
-        'text': `Замените примерные значения на свои данные. Калькулятор пересчитывает результат в реальном времени.`
-      },
-      {
-        '@type': 'HowToStep',
-        'position': 3,
-        'name': 'Сравните с бенчмарком',
-        'text': meta.a || 'Получите результат + отраслевой бенчмарк + плейн-language интерпретацию (healthy / critical / excellent).'
-      }
-    ]
+    'step': steps.map((s, i) => ({ '@type': 'HowToStep', 'position': i + 1, ...s })),
   };
   // BreadcrumbList JSON-LD — gives Google a "MetricTree › <Metric>" trail in SERPs.
   const breadcrumbJson = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     'itemListElement': [
-      { '@type': 'ListItem', 'position': 1, 'name': 'MetricTree', 'item': `${SITE}/` },
-      { '@type': 'ListItem', 'position': 2, 'name': SHORT_NAME[id] || metricName, 'item': url },
+      { '@type': 'ListItem', 'position': 1, 'name': 'MetricTree', 'item': lang === 'ru' ? `${SITE}/` : `${SITE}/${lang}` },
+      { '@type': 'ListItem', 'position': 2, 'name': loc ? loc.name : (SHORT_NAME[id] || metricName), 'item': url },
     ],
   };
-  const perMetricFaq = `
-    <script type="application/ld+json">
-${JSON.stringify(faqJson, null, 2)}
-    </script>
-    <script type="application/ld+json">
-${JSON.stringify(howToJson, null, 2)}
-    </script>
-    <script type="application/ld+json">
-${JSON.stringify(breadcrumbJson, null, 2)}
-    </script>
-    <link rel="alternate" hreflang="ru" href="${SITE}/${id}">
-    <link rel="alternate" hreflang="en" href="${SITE}/en/${id}">
-    <link rel="alternate" hreflang="uz" href="${SITE}/uz/${id}">
-    <link rel="alternate" hreflang="x-default" href="${SITE}/${id}">
+  const perMetricHead = `
+${jsonLd(faqJson)}
+${jsonLd(howToJson)}
+${jsonLd(breadcrumbJson)}
+${hreflangLinks(urlFor)}
 `;
-  html = html.replace('</head>', perMetricFaq + '</head>');
+  html = html.replace('</head>', perMetricHead + '</head>');
 
   // Visible per-metric SEO content (formula, benchmarks, FAQ, related links) injected
   // before </main>. Replaces the old JS-hidden "See also" block: this content stays
   // visible after hydration, matches the FAQ JSON-LD, and gives each clone unique prose.
-  const seoSection = renderSeoSection(dataSrc, id, meta);
+  const seoSection = loc ? renderSeoSectionLocalized(id, lang, loc, i18n) : renderSeoSection(dataSrc, id, meta);
   if (seoSection) {
     html = html.replace('</main>', seoSection + '\n    </main>');
   }
@@ -424,17 +634,28 @@ ${JSON.stringify(breadcrumbJson, null, 2)}
   return html;
 }
 
+// EN/UZ home pages (/en, /uz): same app shell as index.html with a localized head.
+function buildHomeHtml(template, lang) {
+  const H = L10N[lang].home;
+  let html = template.replace(HOME_FAQ_RE, '');
+  html = applyHead(html, { title: H.title, desc: H.desc, url: `${SITE}/${lang}`, lang });
+  html = html.replace(/<meta property="og:title"[^>]*>/, `<meta property="og:title" content="${escAttr(H.ogTitle)}">`);
+  html = html.replace(/<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${escAttr(H.twTitle)}">`);
+  return html;
+}
+
 // Generate sitemap.xml — full RU/EN/UZ coverage for every metric, with hreflang
 // alternates and lastmod. Replaces the previously hand-maintained file that had
 // an invalid xmlns, missing EN/UZ metric URLs, and no lastmod/hreflang.
 function generateSitemap() {
-  const today = new Date().toISOString().slice(0, 10);
-
-  const urlNode = (loc, { priority = '0.7', changefreq = 'weekly', alts = null } = {}) => {
+  // `src`: repo-relative source paths whose last commit date becomes <lastmod>.
+  const urlNode = (loc, { priority = '0.7', changefreq = 'weekly', alts = null, src } = {}) => {
     const altLinks = alts
       ? alts.map(a => `<xhtml:link rel="alternate" hreflang="${a.lang}" href="${a.href}"/>`).join('')
       : '';
-    return `<url><loc>${loc}</loc><lastmod>${today}</lastmod><changefreq>${changefreq}</changefreq><priority>${priority}</priority>${altLinks}</url>`;
+    const date = (src && sourceDate(src)) || PREV_LASTMOD.get(loc);
+    const lastmod = date ? `<lastmod>${date}</lastmod>` : '';
+    return `<url><loc>${loc}</loc>${lastmod}<changefreq>${changefreq}</changefreq><priority>${priority}</priority>${altLinks}</url>`;
   };
 
   const urls = [];
@@ -446,9 +667,9 @@ function generateSitemap() {
     { lang: 'uz', href: `${SITE}/uz` },
     { lang: 'x-default', href: `${SITE}/` },
   ];
-  urls.push(urlNode(`${SITE}/`, { priority: '1.0', alts: homeAlts }));
-  urls.push(urlNode(`${SITE}/en`, { priority: '0.8', alts: homeAlts }));
-  urls.push(urlNode(`${SITE}/uz`, { priority: '0.8', alts: homeAlts }));
+  urls.push(urlNode(`${SITE}/`, { priority: '1.0', alts: homeAlts, src: ['index.html', 'app.js'] }));
+  urls.push(urlNode(`${SITE}/en`, { priority: '0.8', alts: homeAlts, src: METRIC_SOURCES }));
+  urls.push(urlNode(`${SITE}/uz`, { priority: '0.8', alts: homeAlts, src: METRIC_SOURCES }));
 
   // Per-metric pages: RU root + /en/ + /uz/, each cross-linked via hreflang.
   for (const id of Object.keys(META)) {
@@ -458,9 +679,9 @@ function generateSitemap() {
       { lang: 'uz', href: `${SITE}/uz/${id}` },
       { lang: 'x-default', href: `${SITE}/${id}` },
     ];
-    urls.push(urlNode(`${SITE}/${id}`, { priority: '0.8', alts }));
-    urls.push(urlNode(`${SITE}/en/${id}`, { priority: '0.7', alts }));
-    urls.push(urlNode(`${SITE}/uz/${id}`, { priority: '0.7', alts }));
+    urls.push(urlNode(`${SITE}/${id}`, { priority: '0.8', alts, src: METRIC_SOURCES }));
+    urls.push(urlNode(`${SITE}/en/${id}`, { priority: '0.7', alts, src: METRIC_SOURCES }));
+    urls.push(urlNode(`${SITE}/uz/${id}`, { priority: '0.7', alts, src: METRIC_SOURCES }));
   }
 
   // Hand-authored standalone public pages (RU only).
@@ -470,12 +691,13 @@ function generateSitemap() {
     'vs-geckoboard', 'vs-finmodelslab', 'vs-databox', 'vs-klipfolio',
   ];
   for (const p of standalone) {
-    urls.push(urlNode(`${SITE}/${p}`, { priority: '0.6', changefreq: 'monthly' }));
+    const src = p === 'benchmarks' ? ['app.js', 'build.mjs'] : [`${p}.html`];
+    urls.push(urlNode(`${SITE}/${p}`, { priority: '0.6', changefreq: 'monthly', src }));
   }
 
   // Blog: derive live clean-URL slugs from vercel.json rewrites (source of truth
   // for which posts are actually reachable) to avoid 404s in the sitemap.
-  urls.push(urlNode(`${SITE}/blog`, { priority: '0.8', changefreq: 'weekly' }));
+  urls.push(urlNode(`${SITE}/blog`, { priority: '0.8', changefreq: 'weekly', src: ['blog-src', 'build-blog.mjs'] }));
   const vercel = fs.readFileSync(path.join(ROOT, 'vercel.json'), 'utf8');
   const blogSlugs = [...new Set(
     [...vercel.matchAll(/"source":\s*"\/blog\/([a-z0-9-]+)"/g)].map(m => m[1])
@@ -491,14 +713,14 @@ function generateSitemap() {
     { lang: 'x-default', href: `${SITE}/blog/${slug}` },
   ];
   for (const slug of blogSlugs) {
-    const opts = { priority: '0.7', changefreq: 'monthly' };
+    const opts = { priority: '0.7', changefreq: 'monthly', src: [`blog-src/${slug}.md`] };
     if (enBlogSet.has(slug)) opts.alts = blogAlts(slug);
     urls.push(urlNode(`${SITE}/blog/${slug}`, opts));
   }
   if (enBlogSlugs.length) {
-    urls.push(urlNode(`${SITE}/en/blog`, { priority: '0.7', changefreq: 'weekly' }));
+    urls.push(urlNode(`${SITE}/en/blog`, { priority: '0.7', changefreq: 'weekly', src: ['blog-src/en', 'build-blog.mjs'] }));
     for (const slug of enBlogSlugs) {
-      const opts = { priority: '0.6', changefreq: 'monthly' };
+      const opts = { priority: '0.6', changefreq: 'monthly', src: [`blog-src/en/${slug}.md`] };
       if (blogSlugs.includes(slug)) opts.alts = blogAlts(slug);
       urls.push(urlNode(`${SITE}/en/blog/${slug}`, opts));
     }
@@ -508,14 +730,15 @@ function generateSitemap() {
   // straight off disk so the sitemap can't drift from the generated files.
   const indDir = path.join(ROOT, 'industries');
   if (fs.existsSync(indDir)) {
-    urls.push(urlNode(`${SITE}/industries`, { priority: '0.7', changefreq: 'monthly' }));
+    const src = ['build-industries.mjs'];
+    urls.push(urlNode(`${SITE}/industries`, { priority: '0.7', changefreq: 'monthly', src }));
     for (const slug of fs.readdirSync(indDir)) {
       const sdir = path.join(indDir, slug);
       if (!fs.statSync(sdir).isDirectory()) continue;
-      urls.push(urlNode(`${SITE}/industries/${slug}`, { priority: '0.6', changefreq: 'monthly' }));
+      urls.push(urlNode(`${SITE}/industries/${slug}`, { priority: '0.6', changefreq: 'monthly', src }));
       for (const f of fs.readdirSync(sdir)) {
         if (f.endsWith('.html') && f !== 'index.html') {
-          urls.push(urlNode(`${SITE}/industries/${slug}/${f.replace(/\.html$/, '')}`, { priority: '0.6', changefreq: 'monthly' }));
+          urls.push(urlNode(`${SITE}/industries/${slug}/${f.replace(/\.html$/, '')}`, { priority: '0.6', changefreq: 'monthly', src }));
         }
       }
     }
@@ -523,13 +746,14 @@ function generateSitemap() {
   // Standalone content pages added on main (only if the file exists).
   for (const p of ['glossary', 'quiz', 'report']) {
     if (fs.existsSync(path.join(ROOT, `${p}.html`))) {
-      urls.push(urlNode(`${SITE}/${p}`, { priority: '0.6', changefreq: 'monthly' }));
+      const src = p === 'glossary' ? ['build-glossary.mjs'] : [`${p}.html`];
+      urls.push(urlNode(`${SITE}/${p}`, { priority: '0.6', changefreq: 'monthly', src }));
     }
   }
 
   // Flagship interactive driver-tree page (/tree) — high priority, self-contained.
   if (fs.existsSync(path.join(ROOT, 'tree.html'))) {
-    urls.push(urlNode(`${SITE}/tree`, { priority: '0.9', changefreq: 'weekly' }));
+    urls.push(urlNode(`${SITE}/tree`, { priority: '0.9', changefreq: 'weekly', src: ['tree.html'] }));
   }
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -562,7 +786,10 @@ function generateBenchmarksPage(dataSrc) {
   // Count the rows we actually rendered — not META.length. A mismatch used to be
   // invisible: the page advertised "69 metrics" above an empty table.
   const count = extracted;
-  const today = new Date().toISOString().slice(0, 10);
+  // Deterministic: last change of the data (app.js) or of this generator.
+  const updated = sourceDate(['app.js', 'build.mjs'])
+    || (() => { try { return (fs.readFileSync(path.join(ROOT, 'benchmarks.html'), 'utf8').match(/обновлено (\d{4}-\d{2}-\d{2})/) || [])[1]; } catch { return null; } })()
+    || TODAY;
 
   const html = `<!DOCTYPE html>
 <html lang="ru">
@@ -605,7 +832,7 @@ function generateBenchmarksPage(dataSrc) {
 <body>
   <header>
     <h1>${count} продуктовых метрик: формулы и бенчмарки</h1>
-    <span class="sub">MetricTree · обновлено ${today}</span>
+    <span class="sub">MetricTree · обновлено ${updated}</span>
   </header>
   <div class="toolbar">
     <button class="print-btn" onclick="window.print()">🖨️ Сохранить в PDF / распечатать</button>
@@ -652,13 +879,20 @@ function main() {
   const dataSrc = fs.readFileSync(path.join(ROOT, 'app.js'), 'utf8');
   assertExtractionWorks(dataSrc);
 
+  const i18n = loadAppI18n(dataSrc);
+
   let generated = 0;
-  for (const [id, meta] of Object.entries(META)) {
-    const out = buildHtml(template, dataSrc, id, meta);
-    fs.writeFileSync(path.join(ROOT, `${id}.html`), out);
-    generated++;
+  for (const lang of LANGS) {
+    const dir = lang === 'ru' ? ROOT : path.join(ROOT, lang);
+    fs.mkdirSync(dir, { recursive: true });
+    for (const [id, meta] of Object.entries(META)) {
+      const out = buildHtml(template, dataSrc, id, meta, lang, i18n);
+      fs.writeFileSync(path.join(dir, `${id}.html`), out);
+      generated++;
+    }
+    if (lang !== 'ru') fs.writeFileSync(path.join(dir, 'index.html'), buildHomeHtml(template, lang));
   }
-  console.log(`✓ Generated ${generated} per-metric HTML files`);
+  console.log(`✓ Generated ${generated} per-metric HTML files (RU + en/ + uz/) and en/, uz/ home pages`);
 
   const benchCount = generateBenchmarksPage(dataSrc);
   console.log(`✓ Generated benchmarks.html (${benchCount} metrics)`);

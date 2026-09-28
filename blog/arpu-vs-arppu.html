@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ARPU vs ARPPU — в чём разница, формулы и нормы по индустриям | MetricTree Blog</title>
+<meta name="description" content="ARPU = выручка / активные пользователи, ARPPU = выручка / платящие. Как они связаны через долю платящих, пример расчёта для приложения и SaaS, нормы и типичные ошибки.">
+<meta name="keywords" content="arpu, arppu, arpu vs arppu, разница arpu и arppu, формула arpu, средний доход на пользователя, доход на платящего пользователя">
+<link rel="canonical" href="https://metricstree.vercel.app/blog/arpu-vs-arppu">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/arpu-vs-arppu">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/arpu-vs-arppu">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/arpu-vs-arppu">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="ARPU vs ARPPU — в чём разница, формулы и нормы по индустриям">
+<meta property="og:description" content="ARPU = выручка / активные пользователи, ARPPU = выручка / платящие. Как они связаны через долю платящих, пример расчёта для приложения и SaaS, нормы и типичные ошибки.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/blog/arpu-vs-arppu">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-09-21">
+<meta property="article:author" content="Родион Латыпов">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ARPU vs ARPPU — в чём разница, формулы и нормы по индустриям">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ARPU vs ARPPU — в чём разница, формулы и нормы по индустриям",
+  "description": "ARPU = выручка / активные пользователи, ARPPU = выручка / платящие. Как они связаны через долю платящих, пример расчёта для приложения и SaaS, нормы и типичные ошибки.",
+  "datePublished": "2026-09-21",
+  "author": {
+    "@type": "Person",
+    "name": "Родион Латыпов",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/blog/arpu-vs-arppu"
+  },
+  "keywords": "arpu, arppu, arpu vs arppu, разница arpu и arppu, формула arpu, средний доход на пользователя, доход на платящего пользователя",
+  "inLanguage": "ru"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js?v=ec79991f" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div>
+</nav>
+<article>
+<h1>ARPU vs ARPPU — в чём разница, формулы и нормы по индустриям</h1>
+<div class="meta">2026-09-21 · автор: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a></div>
+<h1>ARPU vs ARPPU — в чём разница, формулы и нормы по индустриям</h1>
+
+<p>ARPU и ARPPU отличаются одной буквой, но отвечают на разные вопросы. ARPU — сколько в среднем приносит каждый активный пользователь. ARPPU — сколько приносит каждый, кто реально заплатил. Путать их — значит неверно оценить и монетизацию, и допустимый CAC.</p>
+
+<h2>Формулы</h2>
+
+<p><strong>ARPU = Выручка за период / Активные пользователи за период</strong></p>
+
+<p><strong>ARPPU = Выручка за период / Платящие пользователи за период</strong></p>
+
+<p>Связывает их доля платящих — <strong>PUR (Paying User Rate)</strong>:</p>
+
+<p><strong>ARPU = ARPPU × PUR</strong></p>
+
+<p>Это главное уравнение монетизации. Поднять ARPU можно двумя способами: заставить платящих платить больше (растёт ARPPU) или сделать платящими больше людей (растёт PUR). Это разные задачи для разных команд.</p>
+
+<h2>Пример расчёта: мобильное приложение</h2>
+
+<p>Freemium-приложение, один месяц:<br><ul><li>Активных пользователей (MAU): <strong>50 000</strong></li><li>Платящих: <strong>1 500</strong> (PUR = 3%)</li><li>Выручка: <strong>$45 000</strong></li></ul></p>
+
+<p>ARPU = 45 000 / 50 000 = <strong>$0.90</strong><br>ARPPU = 45 000 / 1 500 = <strong>$30</strong></p>
+
+<p>Проверка: $30 × 3% = $0.90 ✓</p>
+
+<p>Теперь гипотеза: вводим дешёвый стартовый пакет. Платящих становится <strong>2 000</strong> (PUR 4%), но ARPPU падает до <strong>$26</strong>, потому что часть новых платящих берёт только стартовый пакет.</p>
+
+<p>Выручка = 2 000 × $26 = $52 000 → ARPU = <strong>$1.04</strong> (+15.6%)</p>
+
+<p>ARPPU упал, но бизнес заработал больше. Если смотреть только на ARPPU, эксперимент выглядел бы провальным. Именно поэтому эти метрики всегда читают вместе.</p>
+
+<h2>Пример расчёта: B2B SaaS</h2>
+
+<p>Сервис с бесплатным тарифом:<br><ul><li>Активных аккаунтов: <strong>800</strong>, из них <strong>200</strong> на free</li><li>Платящих: <strong>600</strong></li><li>MRR: <strong>$48 000</strong></li></ul></p>
+
+<p>ARPPU = 48 000 / 600 = <strong>$80</strong>/мес<br>ARPU = 48 000 / 800 = <strong>$60</strong>/мес</p>
+
+<p>В B2B ARPPU по сути равен ARPA (средний чек аккаунта) и приближённо ACV / 12. Растёт он за счёт апселлов, мест (seats) и перехода на старшие тарифы.</p>
+
+<h2>Нормы ARPU и ARPPU по индустриям</h2>
+
+<p>Ориентиры совпадают с порогами калькуляторов MetricTree по индустриям:</p>
+
+<table><thead><tr><th>Индустрия</th><th>ARPU (в месяц)</th><th>ARPPU</th></tr></thead><tbody><tr><td></td><td><strong>B2B SaaS</strong></td><td>B2B: $50–$500, SMB: $20–$100, Enterprise: >$500</td><td>≈ ACV / 12; растёт через апселлы и тарифы</td><td></td></tr><tr><td></td><td><strong>E-commerce</strong></td><td>$5–$50 на активного покупателя</td><td>≈ AOV × частота покупок платящего</td><td></td></tr><tr><td></td><td><strong>Мобильные приложения</strong></td><td>Free-to-play: $0.05–$5, платные приложения: $1–$20</td><td>F2P: $5–$50 у платящих</td><td></td></tr><tr><td></td><td><strong>Медиа</strong></td><td>Подписка: $3–$15, реклама: $0.5–$5</td><td>Близко к цене тарифа</td><td></td></tr></tbody></table>
+В нашем примере приложение с ARPU $0.90 и ARPPU $30 — в пределах нормы для F2P по обеим метрикам.
+
+<p>Базовая шкала калькулятора ARPU (<$10 низко, $10–$50 средне, >$50 высоко) ориентирована на подписочные модели. Для freemium-приложений и медиа с рекламной монетизацией используйте отраслевой ориентир из таблицы — иначе нормальный F2P-продукт будет выглядеть «плохо».</p>
+
+<h2>Когда смотреть на ARPU, а когда на ARPPU</h2>
+
+<table><thead><tr><th>Вопрос</th><th>Метрика</th></tr></thead><tbody><tr><td></td><td>Сколько я могу платить за привлечение пользователя?</td><td><strong>ARPU</strong> (и LTV на его основе)</td><td></td></tr><tr><td></td><td>Работает ли прайсинг и апселлы?</td><td><strong>ARPPU</strong></td><td></td></tr><tr><td></td><td>Работает ли пейволл и конверсия во free → paid?</td><td><strong>PUR</strong></td><td></td></tr><tr><td></td><td>Сравнить монетизацию с рекламной моделью</td><td><strong>ARPU</strong> (реклама монетизирует всех, а не только платящих)</td><td></td></tr><tr><td></td><td>Мобильная игра, ежедневная динамика</td><td><strong>ARPDAU</strong> — см. <a href="/arpdau">/arpdau</a></td><td></td></tr></tbody></table>
+CAC сравнивают с ARPU и LTV всей когорты, а не с ARPPU: вы платите за привлечение каждого пользователя, а платят далеко не все.
+
+<h2>Типичные ошибки</h2>
+
+<h3>1. Регистрации вместо активных</h3>
+Если в знаменателе все зарегистрированные за всё время, ARPU будет искусственно низким и будет падать просто потому, что база «мёртвых» аккаунтов растёт.
+
+<h3>2. Разные периоды в числителе и знаменателе</h3>
+Годовая выручка, делённая на MAU, даёт бессмысленную цифру. Выручка и пользователи — за один и тот же период.
+
+<h3>3. Неуникальные платящие</h3>
+Пользователь, сделавший три покупки, — это один платящий, а не три. Дубли занижают ARPPU и завышают PUR.
+
+<h3>4. Gross вместо net</h3>
+В мобильных приложениях магазины приложений забирают комиссию (обычно 15–30%), плюс возвраты и налоги. Для решений об окупаемости используйте чистую выручку.
+
+<h3>5. «Киты» искажают среднее</h3>
+В F2P небольшая доля платящих может давать львиную долю выручки. Смотрите медиану и распределение ARPPU по сегментам, а не только среднее.
+
+<h3>6. Сравнение ARPPU при разном PUR</h3>
+ARPPU $50 при PUR 1% и ARPPU $20 при PUR 5% — вторая модель приносит вдвое больше на пользователя ($1.00 против $0.50). Сравнивать ARPPU без PUR нельзя.
+
+<h2>Как растить ARPU</h2>
+
+<ul><li><strong>Поднять PUR:</strong> пробный период, стартовый пакет, понятный пейволл в момент ценности.</li><li><strong>Поднять ARPPU:</strong> тарифная лестница, годовые планы, апселлы и add-ons, пересмотр цен.</li><li><strong>Добавить второй источник:</strong> реклама для неплатящих, партнёрские предложения.</li><li><strong>Удержание:</strong> пользователь, который остаётся дольше, успевает стать платящим. ARPU и retention растут вместе.</li></ul>
+
+<h2>ARPU, LTV и допустимый CAC</h2>
+
+<p>ARPU — первый кирпич в расчёте LTV. Упрощённо:</p>
+
+<p><strong>LTV ≈ ARPU × валовая маржа / месячный churn</strong></p>
+
+<p>Пример: ARPU $60 в месяц, маржа 80%, churn 3% → LTV ≈ 60 × 0.8 / 0.03 = <strong>$1 600</strong>. При ориентире LTV > 3× CAC допустимый CAC — около $530.</p>
+
+<p>Для freemium-приложения из первого примера с ARPU $0.90 те же вычисления дадут LTV в несколько долларов — поэтому в F2P так важно считать окупаемость рекламы по когортам, а не по среднему. Проверить расчёт можно в калькуляторе <a href="/ltv">/ltv</a>.</p>
+
+<h2>Частые вопросы</h2>
+
+<h3>ARPU считается в месяц или в год?</h3>
+В любой период, но числитель и знаменатель должны быть за один и тот же. В подписочных продуктах принято месячное ARPU, в мобильных играх — ещё и дневное ARPDAU.
+
+<h3>Что больше — ARPU или ARPPU?</h3>
+ARPPU всегда больше или равно ARPU, потому что платящих не больше, чем активных. Равны они только тогда, когда платят все пользователи (PUR = 100%).
+
+<h3>Чем ARPU отличается от ARPA?</h3>
+ARPA (Average Revenue per Account) считают на аккаунт компании, а не на пользователя. В B2B, где в одном аккаунте много мест, ARPA — более полезная метрика.
+
+<h3>Какую выручку брать для ARPU — с рекламой или без?</h3>
+Всю выручку, которую приносят пользователи за период: подписки, покупки и рекламу. Если хотите разделить модели монетизации, считайте отдельно ARPU от покупок и ARPU от рекламы — сумма даст общий ARPU.
+
+<h2>Итог</h2>
+
+<p>ARPU показывает монетизацию всей аудитории, ARPPU — глубину монетизации платящих, PUR — ширину. Всегда смотрите тройку вместе: рост одной метрики за счёт падения другой — обычная история, и только ARPU покажет, стал ли бизнес зарабатывать больше.</p>
+
+<p><strong>Посчитайте свой ARPU в калькуляторе ниже</strong>, а ARPPU — на странице <a href="/arppu">/arppu</a>. Бесплатная <a href="/benchmarks">PDF-шпаргалка</a> с формулами и порогами для 69 метрик пригодится, когда будете собирать дашборд монетизации.</p>
+
+<p>---</p>
+
+<h3>Дополнительные ресурсы</h3>
+
+<ul><li><a href="/arpu">/arpu</a> — калькулятор ARPU</li><li><a href="/arppu">/arppu</a> — калькулятор ARPPU</li><li><a href="/arpdau">/arpdau</a> — ARPDAU для мобильных игр</li><li><a href="/ltv">/ltv</a> — LTV на основе ARPU</li><li><a href="/blog/arpdau-mobile-games">/blog/arpdau-mobile-games</a> — монетизация мобильных игр</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Считай прямо здесь:</strong>
+  <iframe src="https://metricstree.vercel.app/arpu?embed=1" width="100%" height="650" loading="lazy" title="MetricTree arpu калькулятор"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Открыть в полной версии: <a href="https://metricstree.vercel.app/arpu" target="_blank">https://metricstree.vercel.app/arpu</a></p>
+</div>
+<div class="share-row">
+  Поделиться:
+  <a href="https://twitter.com/intent/tweet?text=ARPU%20vs%20ARPPU%20%E2%80%94%20%D0%B2%20%D1%87%D1%91%D0%BC%20%D1%80%D0%B0%D0%B7%D0%BD%D0%B8%D1%86%D0%B0%2C%20%D1%84%D0%BE%D1%80%D0%BC%D1%83%D0%BB%D1%8B%20%D0%B8%20%D0%BD%D0%BE%D1%80%D0%BC%D1%8B%20%D0%BF%D0%BE%20%D0%B8%D0%BD%D0%B4%D1%83%D1%81%D1%82%D1%80%D0%B8%D1%8F%D0%BC&url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Farpu-vs-arppu" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Farpu-vs-arppu" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Farpu-vs-arppu&text=ARPU%20vs%20ARPPU%20%E2%80%94%20%D0%B2%20%D1%87%D1%91%D0%BC%20%D1%80%D0%B0%D0%B7%D0%BD%D0%B8%D1%86%D0%B0%2C%20%D1%84%D0%BE%D1%80%D0%BC%D1%83%D0%BB%D1%8B%20%D0%B8%20%D0%BD%D0%BE%D1%80%D0%BC%D1%8B%20%D0%BF%D0%BE%20%D0%B8%D0%BD%D0%B4%D1%83%D1%81%D1%82%D1%80%D0%B8%D1%8F%D0%BC" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="/blog/">Все посты</a> · <a href="/">Калькулятор</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

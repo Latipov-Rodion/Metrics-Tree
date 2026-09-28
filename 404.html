@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Страница не найдена (404) | MetricTree</title>
+<meta name="description" content="Такой страницы нет. Откройте один из 69 калькуляторов продуктовых метрик MetricTree: LTV, CAC, MRR, Churn, NPS, Burn Multiple и другие.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#5B8EF7; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; --accent:#1F5BD8; }
+@media (prefers-color-scheme: light) { html:not([data-theme="dark"]) { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; --accent:#1F5BD8; } }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.6; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem; max-width:860px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.wrap { max-width:860px; margin:0 auto; padding:1rem 1rem 4rem; }
+.code { font-size:0.85rem; font-weight:700; letter-spacing:0.08em; color:var(--text-3); text-transform:uppercase; }
+h1 { font-size:2rem; line-height:1.2; margin:0.3rem 0 0.5rem; letter-spacing:-0.02em; }
+.lede { color:var(--text-2); margin:0 0 1.5rem; }
+.lede span { display:block; color:var(--text-3); font-size:0.95rem; }
+.cta { display:inline-block; background:var(--accent); color:#fff; padding:0.6rem 1.1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin:0 0.5rem 0.5rem 0; }
+.cta.ghost { background:transparent; color:var(--accent); border:1px solid var(--border); }
+h2 { font-size:1.1rem; margin:2rem 0 0.75rem; }
+.grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:0.6rem; padding:0; margin:0; list-style:none; }
+.grid a { display:block; background:var(--bg-card); border:1px solid var(--border); border-radius:0.6rem; padding:0.7rem 0.8rem; color:var(--text-1); text-decoration:none; font-weight:600; }
+.grid a small { display:block; color:var(--text-3); font-weight:400; font-size:0.8rem; }
+.grid a:hover, .grid a:focus-visible { border-color:var(--accent); }
+a:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+</style>
+
+<script src="/theme-sync.js?v=ec79991f" defer></script>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true"></span>MetricTree</a></nav>
+<main class="wrap">
+  <div class="code">Ошибка 404 · Error 404</div>
+  <h1>Такой страницы нет</h1>
+  <p class="lede">Возможно, ссылка устарела или в адресе опечатка. Все калькуляторы доступны по коротким адресам вида <code>/ltv</code>, <code>/cac</code>, <code>/churn</code>.
+    <span lang="en">This page doesn’t exist. English versions live under <code>/en/…</code>, e.g. <a href="/en/ltv">/en/ltv</a>.</span></p>
+  <p>
+    <a class="cta" href="/" data-home>Все 69 метрик</a>
+    <a class="cta ghost" href="/tree">🌳 Дерево метрик</a>
+    <a class="cta ghost" href="/blog">Блог</a>
+    <a class="cta ghost" href="/glossary">Глоссарий</a>
+  </p>
+  <h2>Популярные калькуляторы</h2>
+  <ul class="grid">
+    <li><a href="/ltv" data-metric>LTV<small>Lifetime Value</small></a></li>
+    <li><a href="/cac" data-metric>CAC<small>Customer Acquisition Cost</small></a></li>
+    <li><a href="/ltv_cac" data-metric>LTV:CAC<small>Unit economics</small></a></li>
+    <li><a href="/churn" data-metric>Churn Rate<small>Отток</small></a></li>
+    <li><a href="/mrr" data-metric>MRR<small>Monthly Recurring Revenue</small></a></li>
+    <li><a href="/nrr" data-metric>NRR<small>Net Revenue Retention</small></a></li>
+    <li><a href="/retention" data-metric>Retention<small>Удержание</small></a></li>
+    <li><a href="/stickiness" data-metric>DAU/MAU<small>Stickiness</small></a></li>
+    <li><a href="/nps" data-metric>NPS<small>Net Promoter Score</small></a></li>
+    <li><a href="/roas" data-metric>ROAS<small>Return on Ad Spend</small></a></li>
+    <li><a href="/burnMultiple" data-metric>Burn Multiple<small>Эффективность burn</small></a></li>
+    <li><a href="/runway" data-metric>Runway<small>Запас денег, мес.</small></a></li>
+  </ul>
+</main>
+<script>
+// Keep EN/UZ visitors in their language: /en/whatever (404) → links to /en/ltv, /en.
+(function () {
+  var m = /^\/(en|uz)(\/|$)/.exec(location.pathname);
+  if (!m) return;
+  document.documentElement.lang = m[1];
+  var links = document.querySelectorAll('a[data-metric], a[data-home]');
+  for (var i = 0; i < links.length; i++) {
+    var a = links[i];
+    a.setAttribute('href', a.hasAttribute('data-home') ? '/' + m[1] : '/' + m[1] + a.getAttribute('href'));
+  }
+})();
+</script>
+</body>
+</html>

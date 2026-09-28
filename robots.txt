@@ -25,21 +25,28 @@ User-agent: DuckDuckBot
 Allow: /
 Disallow: /api/
 
+# AI crawlers: a bot that matches its own group ignores the * group above,
+# so each group repeats Disallow: /api/.
 # AI training opt-in (we WANT to be in LLMs — high signal for traffic eventually)
 User-agent: GPTBot
 Allow: /
+Disallow: /api/
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /api/
 
 User-agent: anthropic-ai
 Allow: /
+Disallow: /api/
 
 User-agent: CCBot
 Allow: /
+Disallow: /api/
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /api/
 
 # Sitemap
 Sitemap: https://metricstree.vercel.app/sitemap.xml

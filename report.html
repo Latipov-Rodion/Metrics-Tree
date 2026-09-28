@@ -26,17 +26,17 @@ body { padding: 1.5rem; }
 .header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #2A6DF4; padding-bottom: 0.8rem; margin-bottom: 1.5rem; }
 .header .brand { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em; }
 .header .brand-mark { display: inline-block; width: 22px; height: 22px; background: #2A6DF4; border-radius: 5px; vertical-align: middle; margin-right: 0.5rem; }
-.header .meta { text-align: right; color: #777; font-size: 0.82rem; }
+.header .meta { text-align: right; color: #666; font-size: 0.82rem; }
 
 h1 { font-size: 1.6rem; margin: 0.5rem 0 0.3rem; }
-.subtitle { color: #777; font-size: 0.95rem; margin: 0 0 1.5rem; }
+.subtitle { color: #666; font-size: 0.95rem; margin: 0 0 1.5rem; }
 
 .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.7rem; margin-bottom: 1.5rem; }
 .summary-card { background: #f8f9fa; border: 1px solid #e1e4e8; border-radius: 0.6rem; padding: 0.8rem 1rem; }
-.summary-card .label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #777; letter-spacing: 0.04em; }
-.summary-card .value { font-size: 1.4rem; font-weight: 700; color: #2A6DF4; margin-top: 0.2rem; }
-.summary-card.bad .value { color: #F44336; }
-.summary-card.good .value { color: #4CAF50; }
+.summary-card .label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #666; letter-spacing: 0.04em; }
+.summary-card .value { font-size: 1.4rem; font-weight: 700; color: #1A56DB; margin-top: 0.2rem; }
+.summary-card.bad .value { color: #B71C1C; }
+.summary-card.good .value { color: #176B28; }
 .summary-card .insight { font-size: 0.72rem; color: #555; margin-top: 0.2rem; line-height: 1.3; }
 
 h2 { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; padding-bottom: 0.3rem; border-bottom: 1px solid #e1e4e8; page-break-after: avoid; }
@@ -44,40 +44,40 @@ h2 { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; padding-bottom: 0.3rem; border-
 .metric-block { background: #fbfbfc; border: 1px solid #e1e4e8; border-radius: 0.6rem; padding: 0.85rem 1.1rem; margin-bottom: 0.75rem; page-break-inside: avoid; }
 .metric-block .metric-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.35rem; }
 .metric-block h3 { font-size: 1rem; margin: 0; }
-.metric-block .formula { font-size: 0.78rem; color: #777; font-family: 'Menlo', monospace; }
+.metric-block .formula { font-size: 0.78rem; color: #666; font-family: 'Menlo', monospace; }
 .metric-block .result-row { display: flex; gap: 1rem; align-items: baseline; margin: 0.4rem 0; flex-wrap: wrap; }
-.metric-block .result-val { font-size: 1.35rem; font-weight: 700; color: #2A6DF4; }
+.metric-block .result-val { font-size: 1.35rem; font-weight: 700; color: #1A56DB; }
 .metric-block .rating { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 999px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
-.rating-healthy, .rating-excellent, .rating-amazing, .rating-great, .rating-good, .rating-top_decile, .rating-top_quartile, .rating-world_class, .rating-top_tier { background: rgba(76,175,80,0.15); color: #2E7D32; }
-.rating-acceptable, .rating-ok, .rating-marginal, .rating-tight, .rating-weak, .rating-yc_min, .rating-suspect { background: rgba(255,193,7,0.18); color: #F57C00; }
-.rating-bad, .rating-critical, .rating-losing, .rating-decaying, .rating-high, .rating-low, .rating-unprofitable, .rating-below_min, .rating-below_norm { background: rgba(244,67,54,0.15); color: #C62828; }
+.rating-healthy, .rating-excellent, .rating-amazing, .rating-great, .rating-good, .rating-top_decile, .rating-top_quartile, .rating-world_class, .rating-top_tier { background: rgba(76,175,80,0.15); color: #176B28; }
+.rating-acceptable, .rating-ok, .rating-marginal, .rating-tight, .rating-weak, .rating-yc_min, .rating-suspect { background: rgba(255,193,7,0.18); color: #8A5300; }
+.rating-bad, .rating-critical, .rating-losing, .rating-decaying, .rating-high, .rating-low, .rating-unprofitable, .rating-below_min, .rating-below_norm { background: rgba(244,67,54,0.15); color: #B71C1C; }
 .metric-block .insight { font-size: 0.82rem; color: #444; margin-top: 0.3rem; }
-.metric-block .inputs { font-size: 0.72rem; color: #999; margin-top: 0.4rem; font-family: 'Menlo', monospace; }
+.metric-block .inputs { font-size: 0.72rem; color: #666; margin-top: 0.4rem; font-family: 'Menlo', monospace; }
 
 .recommendations { background: #f0f5ff; border-left: 3px solid #2A6DF4; padding: 0.8rem 1rem; margin: 1.5rem 0 1rem; border-radius: 0.4rem; }
 .recommendations h2 { border: 0; margin: 0 0 0.5rem; font-size: 1rem; }
 .recommendations ul { margin: 0; padding-left: 1.1rem; font-size: 0.85rem; line-height: 1.55; }
 .recommendations li { margin-bottom: 0.35rem; }
 
-.footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e1e4e8; font-size: 0.74rem; color: #777; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
-.footer a { color: #2A6DF4; text-decoration: none; }
+.footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #e1e4e8; font-size: 0.74rem; color: #666; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.footer a { color: #1A56DB; text-decoration: none; }
 
 .error { background: #FEF2F2; border: 1px solid #FCA5A5; color: #B91C1C; padding: 0.85rem 1rem; border-radius: 0.5rem; margin: 1rem 0; }
-.empty { text-align: center; padding: 3rem 1rem; color: #777; }
-.empty a { color: #2A6DF4; }
+.empty { text-align: center; padding: 3rem 1rem; color: #666; }
+.empty a { color: #1A56DB; }
 </style>
 
-<script src="/theme-sync.js" defer></script>
+<script src="/theme-sync.js?v=ec79991f" defer></script>
 </head>
 <body>
 
 <div class="toolbar">
-  <div class="left">📄 PDF Report — выбраны метрики: <span id="metric-count">…</span></div>
+  <div class="left"><span id="tb-label">📄 PDF-отчёт — выбрано метрик:</span> <span id="metric-count">…</span></div>
   <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap; min-width:0;">
     <input id="company-input" placeholder="Имя компании (опционально)" style="width: 200px; max-width: 100%;">
     <button id="apply-company">Применить</button>
     <button id="print-btn">📄 Скачать как PDF</button>
-    <a href="/">← Главная</a>
+    <a href="/" id="home-link">← Главная</a>
   </div>
 </div>
 
@@ -87,7 +87,7 @@ h2 { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; padding-bottom: 0.3rem; border-
   </div>
   <div class="meta">
     <div id="report-date">2026-05-18</div>
-    <div>Confidential</div>
+    <div id="confidential">Конфиденциально</div>
   </div>
 </div>
 
@@ -97,7 +97,7 @@ h2 { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; padding-bottom: 0.3rem; border-
 <div id="content"></div>
 
 <div class="footer">
-  <div>Powered by <a href="https://metricstree.vercel.app/">MetricTree</a> — open-source калькулятор 69 продуктовых метрик</div>
+  <div id="footer-powered">Powered by <a href="https://metricstree.vercel.app/">MetricTree</a> — open-source калькулятор 69 продуктовых метрик</div>
   <div>© 2026 · MIT License</div>
 </div>
 
@@ -108,16 +108,137 @@ h2 { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; padding-bottom: 0.3rem; border-
   const companyParam = params.get('company') || '';
   const titleParam = params.get('title') || '';
 
+  // ---- Language: /en|/uz path prefix (same as app.js), else ?lang=, else the app's saved choice ----
+  let LANG = 'ru';
+  const path = location.pathname || '';
+  if (path === '/en' || path.startsWith('/en/')) LANG = 'en';
+  else if (path === '/uz' || path.startsWith('/uz/')) LANG = 'uz';
+  else {
+    let l = params.get('lang');
+    if (!l) { try { l = localStorage.getItem('metricsTree_lang'); } catch (e) {} }
+    if (l === 'en' || l === 'uz') LANG = l;
+  }
+  // Uzbek convention matches ru-RU (space thousands separator, dd.mm.yyyy); browsers' uz-UZ data is often incomplete.
+  const LOCALE = { ru: 'ru-RU', en: 'en-US', uz: 'ru-RU' }[LANG];
+  const HOME = LANG === 'ru' ? '/' : '/' + LANG;
+
+  const I18N = {
+    ru: {
+      toolbar: '📄 PDF-отчёт — выбрано метрик:', company_ph: 'Имя компании (опционально)', apply: 'Применить',
+      print: '📄 Скачать как PDF', home: '← Главная', confidential: 'Конфиденциально',
+      generated: 'Сгенерировано на metricstree.vercel.app', prepared_for: 'Подготовлено для {c} · {d}',
+      footer: 'Powered by <a href="https://metricstree.vercel.app/">MetricTree</a> — open-source калькулятор 69 продуктовых метрик',
+      detail: 'Детальный анализ', recs: '💡 Рекомендации', inputs: 'Входные данные',
+      empty_title: '📭 Выберите метрики для отчёта.', empty_format: 'Формат URL:',
+      empty_hint: 'Или возьмите любой набор метрик из калькулятора и нажмите «Save as PDF» на странице метрики (planned feature).',
+      open_calc: '← Открыть калькулятор',
+      err_metric: 'Не удалось рассчитать метрику.', err_unknown: 'Неизвестная метрика «{id}».',
+      err_inputs: 'Не хватает или неверны входные данные: {list}.', err_rate: 'Слишком много запросов — попробуйте через минуту.',
+      err_network: 'Сервис расчёта недоступен. Проверьте соединение и обновите страницу.',
+      err_all: 'Ни одну метрику не удалось рассчитать. Проверьте параметр metrics в ссылке.',
+      err_some: 'Не удалось рассчитать метрик: {n} из {t}. Проверьте параметры в ссылке — выводы ниже неполные.',
+      rec_critical: '<strong>{m}</strong>: критическое значение. Приоритет №1 в следующем квартале. {i}',
+      rec_low: '<strong>{m}</strong>: ниже бенчмарка. Сравните с топ-квартилем индустрии — см. /industries/.',
+      rec_all_ok: 'Все метрики в норме. Фокус на повышении NRR / снижении CAC для долгосрочного compounding.',
+      rec_goal: 'Используйте <a href="{home}">Goal mode</a>, чтобы понять, что нужно достичь для следующего уровня.',
+      rec_bench: 'Сравните себя с отраслевыми бенчмарками: <a href="/industries/">/industries/</a>',
+      units: { months: 'мес', '$/day': '$/день' },
+      ratings: { healthy: 'норма', excellent: 'отлично', amazing: 'превосходно', great: 'отлично', good: 'хорошо', top_decile: 'топ-10%', top_quartile: 'топ-25%', world_class: 'мировой уровень', top_tier: 'топ-уровень', acceptable: 'приемлемо', ok: 'ок', marginal: 'на грани', tight: 'впритык', weak: 'слабо', yc_min: 'минимум YC', suspect: 'сомнительно', bad: 'плохо', critical: 'критично', losing: 'убыток', decaying: 'спад', high: 'высокий', low: 'низкий', mid: 'средний', unprofitable: 'убыточно', below_min: 'ниже минимума', below_norm: 'ниже нормы', computed: 'расчёт', infinite: 'бесконечно', risky: 'рискованно', strong: 'сильно', average: 'средне', enterprise: 'enterprise', profitable: 'прибыльно', seed_healthy: 'норма для seed', series_a: 'уровень Series A', surplus: 'профицит' }
+    },
+    en: {
+      toolbar: '📄 PDF report — metrics selected:', company_ph: 'Company name (optional)', apply: 'Apply',
+      print: '📄 Download as PDF', home: '← Home', confidential: 'Confidential',
+      generated: 'Generated at metricstree.vercel.app', prepared_for: 'Prepared for {c} · {d}',
+      footer: 'Powered by <a href="https://metricstree.vercel.app/en">MetricTree</a> — open-source calculator for 69 product metrics',
+      detail: 'Detailed analysis', recs: '💡 Recommendations', inputs: 'Inputs',
+      empty_title: '📭 Choose metrics for the report.', empty_format: 'URL format:',
+      empty_hint: 'Or take any set of metrics from the calculator and click “Save as PDF” on the metric page (planned feature).',
+      open_calc: '← Open the calculator',
+      err_metric: 'Could not calculate this metric.', err_unknown: 'Unknown metric “{id}”.',
+      err_inputs: 'Missing or invalid inputs: {list}.', err_rate: 'Too many requests — try again in a minute.',
+      err_network: 'The calculation service is unavailable. Check your connection and reload the page.',
+      err_all: 'None of the metrics could be calculated. Check the metrics parameter in the link.',
+      err_some: '{n} of {t} metrics could not be calculated. Check the link parameters — the conclusions below are incomplete.',
+      rec_critical: '<strong>{m}</strong>: critical value. Make it priority #1 next quarter. {i}',
+      rec_low: '<strong>{m}</strong>: below benchmark. Compare with the industry top quartile — see /industries/.',
+      rec_all_ok: 'No critical values. Focus on raising NRR / lowering CAC for long-term compounding.',
+      rec_goal: 'Use <a href="{home}">Goal mode</a> to see what it takes to reach the next level.',
+      rec_bench: 'Compare yourself with industry benchmarks: <a href="/industries/">/industries/</a>',
+      units: { months: 'mo' },
+      ratings: {}
+    },
+    uz: {
+      toolbar: '📄 PDF-hisobot — tanlangan metrikalar:', company_ph: 'Kompaniya nomi (ixtiyoriy)', apply: 'Qo‘llash',
+      print: '📄 PDF sifatida yuklab olish', home: '← Bosh sahifa', confidential: 'Maxfiy',
+      generated: 'metricstree.vercel.app da yaratilgan', prepared_for: '{c} uchun tayyorlandi · {d}',
+      footer: '<a href="https://metricstree.vercel.app/uz">MetricTree</a> asosida — 69 ta mahsulot metrikasi uchun open-source kalkulyator',
+      detail: 'Batafsil tahlil', recs: '💡 Tavsiyalar', inputs: 'Kiritilgan qiymatlar',
+      empty_title: '📭 Hisobot uchun metrikalarni tanlang.', empty_format: 'URL formati:',
+      empty_hint: 'Yoki kalkulyatordan istalgan metrikalar to‘plamini olib, metrika sahifasida «Save as PDF» tugmasini bosing (rejalashtirilgan funksiya).',
+      open_calc: '← Kalkulyatorni ochish',
+      err_metric: 'Bu metrikani hisoblab bo‘lmadi.', err_unknown: '«{id}» — noma’lum metrika.',
+      err_inputs: 'Kiritilgan qiymatlar yetishmaydi yoki noto‘g‘ri: {list}.', err_rate: 'So‘rovlar juda ko‘p — bir daqiqadan keyin urinib ko‘ring.',
+      err_network: 'Hisoblash xizmati mavjud emas. Internet aloqasini tekshirib, sahifani yangilang.',
+      err_all: 'Birorta ham metrikani hisoblab bo‘lmadi. Havoladagi metrics parametrini tekshiring.',
+      err_some: '{t} ta metrikadan {n} tasini hisoblab bo‘lmadi. Havola parametrlarini tekshiring — quyidagi xulosalar to‘liq emas.',
+      rec_critical: '<strong>{m}</strong>: kritik qiymat. Keyingi chorakda 1-raqamli ustuvor vazifa. {i}',
+      rec_low: '<strong>{m}</strong>: benchmark dan past. Soha top-kvartili bilan solishtiring — /industries/ ga qarang.',
+      rec_all_ok: 'Kritik qiymatlar yo‘q. Uzoq muddatli o‘sish uchun NRR ni oshirish / CAC ni pasaytirishga e’tibor bering.',
+      rec_goal: 'Keyingi darajaga chiqish uchun nimaga erishish kerakligini bilish uchun <a href="{home}">Goal mode</a> dan foydalaning.',
+      rec_bench: 'O‘zingizni soha benchmarklari bilan solishtiring: <a href="/industries/">/industries/</a>',
+      units: { months: 'oy', '$/day': '$/kun' },
+      ratings: { healthy: 'me’yorda', excellent: 'a’lo', amazing: 'ajoyib', great: 'juda yaxshi', good: 'yaxshi', top_decile: 'top-10%', top_quartile: 'top-25%', world_class: 'jahon darajasi', top_tier: 'top daraja', acceptable: 'qoniqarli', ok: 'yaxshi', marginal: 'chegarada', tight: 'tang', weak: 'zaif', yc_min: 'YC minimumi', suspect: 'shubhali', bad: 'yomon', critical: 'kritik', losing: 'zarar', decaying: 'pasayish', high: 'yuqori', low: 'past', mid: 'o‘rta', unprofitable: 'zararli', below_min: 'minimumdan past', below_norm: 'me’yordan past', computed: 'hisob', infinite: 'cheksiz', risky: 'xavfli', strong: 'kuchli', average: 'o‘rtacha', enterprise: 'enterprise', profitable: 'foydali', seed_healthy: 'seed uchun me’yor', series_a: 'Series A darajasi', surplus: 'profitsit' }
+    }
+  };
+  const t = (k, vars) => {
+    let s = (I18N[LANG] && I18N[LANG][k] != null) ? I18N[LANG][k] : I18N.ru[k];
+    if (vars) Object.keys(vars).forEach(v => { s = s.split('{' + v + '}').join(vars[v]); });
+    return s;
+  };
+
   // Escape any value before it goes into innerHTML — the `metrics` param (metric
   // id, input keys) and the API's echoed error text are attacker-controllable.
   const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
+  const nf = new Intl.NumberFormat(LOCALE, { maximumFractionDigits: 2 });
+  function fmtResult(v) {
+    if (v === 'Infinity' || v === Infinity) return '∞';
+    if (v === null || v === undefined || v === '') return '—';
+    const n = typeof v === 'number' ? v : parseFloat(v);
+    return Number.isFinite(n) ? nf.format(n) : String(v);
+  }
+  function fmtValue(r) {
+    const val = fmtResult(r.result);
+    const u = r.unit ? ((I18N[LANG].units || {})[r.unit] || r.unit) : '';
+    if (!u || val === '—') return val;
+    if (u === '$') return '$' + val;
+    if (u === '%') return val + '%';
+    return val + ' ' + u;
+  }
+  function ratingLabel(rating) {
+    return (I18N[LANG].ratings || {})[rating] || rating.replace(/_/g, ' ');
+  }
+
+  // ---- static chrome ----
+  document.documentElement.setAttribute('lang', LANG);
+  document.getElementById('tb-label').textContent = t('toolbar');
+  document.getElementById('company-input').placeholder = t('company_ph');
+  document.getElementById('apply-company').textContent = t('apply');
+  document.getElementById('print-btn').textContent = t('print');
+  const homeLink = document.getElementById('home-link');
+  homeLink.textContent = t('home');
+  homeLink.setAttribute('href', HOME);
+  document.getElementById('confidential').textContent = t('confidential');
+  document.getElementById('report-subtitle').textContent = t('generated');
+  document.getElementById('footer-powered').innerHTML = t('footer');
+
+  const today = new Date().toLocaleDateString(LOCALE);
   if (titleParam) document.getElementById('report-title').textContent = titleParam;
   if (companyParam) {
-    document.getElementById('report-subtitle').textContent = `Подготовлено для ${companyParam} · ${new Date().toLocaleDateString('ru-RU')}`;
+    document.getElementById('report-subtitle').textContent = t('prepared_for', { c: companyParam, d: today });
     document.getElementById('company-input').value = companyParam;
   }
-  document.getElementById('report-date').textContent = new Date().toLocaleDateString('ru-RU');
+  document.getElementById('report-date').textContent = today;
 
   // Parse: metrics=ltv:aov=2500,freq=4,life=3|cac:spend=50000,customers=200|...
   // Each metric: <id>:<key>=<val>,<key>=<val>
@@ -135,68 +256,80 @@ h2 { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; padding-bottom: 0.3rem; border-
 
   if (!items.length) {
     document.getElementById('content').innerHTML = `<div class="empty">
-      <p>📭 Выбери метрики для отчёта.</p>
-      <p>Формат URL:</p>
-      <pre style="background:#f8f9fa;border:1px solid #e1e4e8;border-radius:0.5rem;padding:1rem;text-align:left;font-size:0.78rem;">/report?metrics=ltv:aov=2500,freq=4,life=3|cac:spend=50000,customers=200|nrr:start=1000000,expansion=200000,churn=50000,contraction=10000&company=Acme Corp&title=Q4 Metrics Review</pre>
-      <p>Или возьми любой набор метрик из калькулятора и нажми «Save as PDF» на странице метрики (planned feature).</p>
-      <p><a href="/">← Открыть калькулятор</a></p>
+      <p>${esc(t('empty_title'))}</p>
+      <p>${esc(t('empty_format'))}</p>
+      <pre style="background:#f8f9fa;border:1px solid #e1e4e8;border-radius:0.5rem;padding:1rem;text-align:left;font-size:0.78rem;white-space:pre-wrap;word-break:break-all;">/report?metrics=ltv:aov=2500,freq=4,life=3|cac:spend=50000,customers=200|nrr:start=1000000,expansion=200000,churn=50000,contraction=10000&company=Acme Corp&title=Q4 Metrics Review</pre>
+      <p>${esc(t('empty_hint'))}</p>
+      <p><a href="${HOME}">${esc(t('open_calc'))}</a></p>
     </div>`;
     return;
   }
 
-  // Render summary cards (top 4 metrics)
-  const top = items.slice(0, 4);
+  // Turn an API failure into a readable, localized message (never a raw JSON parse error).
+  function describeError(status, body, id) {
+    if (status === 429) return t('err_rate');
+    if (body && /^Unknown metric/.test(body.error || '')) return t('err_unknown', { id: esc(id) });
+    if (body && Array.isArray(body.missing) && body.missing.length) return t('err_inputs', { list: esc(body.missing.join(', ')) });
+    return t('err_metric');
+  }
 
   // Fetch results from /api/calc for each
   Promise.all(items.map(async (item) => {
-    try {
-      const url = '/api/calc?metric=' + item.id + '&' + Object.entries(item.inputs).map(([k,v]) => k + '=' + encodeURIComponent(v)).join('&');
-      const r = await fetch(url);
-      const j = await r.json();
-      return { ...item, ...j };
-    } catch (e) {
-      return { ...item, error: e.message };
+    const url = '/api/calc?metric=' + encodeURIComponent(item.id) + '&' + Object.entries(item.inputs).map(([k, v]) => encodeURIComponent(k) + '=' + encodeURIComponent(v)).join('&');
+    let res;
+    try { res = await fetch(url); } catch (e) { return { ...item, failed: true, errorMsg: t('err_network') }; }
+    let body = null;
+    try { body = await res.json(); } catch (e) { body = null; }
+    if (!res.ok || !body || body.error) {
+      return { ...item, failed: true, errorMsg: body ? describeError(res.status, body, item.id) : (res.status === 429 ? t('err_rate') : t('err_network')) };
     }
+    return { ...item, ...body };
   })).then(results => {
-    // Summary grid (top 4)
-    const summaryHTML = results.slice(0, 4).map(r => {
+    const ok = results.filter(r => !r.failed);
+    const failed = results.filter(r => r.failed);
+
+    let html = '';
+    if (failed.length) {
+      html += `<div class="error" role="alert">${esc(failed.length === results.length ? t('err_all') : t('err_some', { n: failed.length, t: results.length }))}</div>`;
+    }
+
+    // Summary grid (top 4 successfully calculated)
+    const summaryHTML = ok.slice(0, 4).map(r => {
       const isGood = r.rating && ['healthy','excellent','amazing','great','good','top_decile','top_quartile','world_class','top_tier'].includes(r.rating);
       const isBad = r.rating && ['bad','critical','losing','decaying','high','low','unprofitable','below_min','below_norm'].includes(r.rating);
       const cls = isGood ? 'good' : isBad ? 'bad' : '';
       return `<div class="summary-card ${cls}">
         <div class="label">${esc(r.metric)}</div>
-        <div class="value">${esc(r.result || '—')}${r.unit ? ' ' + esc(r.unit) : ''}</div>
+        <div class="value">${esc(fmtValue(r))}</div>
         <div class="insight">${esc((r.insight || '').slice(0, 70))}</div>
       </div>`;
     }).join('');
-
-    let html = '';
-    if (results.length > 1) html += '<div class="summary-grid">' + summaryHTML + '</div>';
+    if (ok.length > 1) html += '<div class="summary-grid">' + summaryHTML + '</div>';
 
     // Detailed blocks
-    html += '<h2>Детальный анализ</h2>';
+    html += `<h2>${esc(t('detail'))}</h2>`;
     html += results.map(r => {
-      if (r.error) return `<div class="metric-block"><h3>${esc(r.id)}</h3><div class="error">Error: ${esc(r.error)}</div></div>`;
-      const inputsStr = Object.entries(r.inputs || {}).map(([k,v]) => `${k}=${v}`).join(', ');
+      if (r.failed) return `<div class="metric-block"><h3>${esc(r.id)}</h3><div class="error">${r.errorMsg}</div></div>`;
+      const inputsStr = Object.entries(r.inputs || {}).map(([k, v]) => `${k}=${typeof v === 'number' ? nf.format(v) : v}`).join(', ');
       return `<div class="metric-block">
         <div class="metric-head">
           <h3>${esc(r.metric)}</h3>
           <span class="formula">${esc(r.formula || '')}</span>
         </div>
         <div class="result-row">
-          <span class="result-val">${esc(r.result || '—')}${r.unit ? ' ' + esc(r.unit) : ''}</span>
-          ${r.rating ? `<span class="rating rating-${esc(r.rating)}">${esc(r.rating.replace(/_/g, ' '))}</span>` : ''}
+          <span class="result-val">${esc(fmtValue(r))}</span>
+          ${r.rating ? `<span class="rating rating-${esc(r.rating)}">${esc(ratingLabel(r.rating))}</span>` : ''}
         </div>
         <div class="insight">${esc(r.insight || '')}</div>
-        <div class="inputs">Inputs: ${esc(inputsStr)}</div>
+        <div class="inputs">${esc(t('inputs'))}: ${esc(inputsStr)}</div>
       </div>`;
     }).join('');
 
-    // Recommendations
-    const recs = generateRecommendations(results);
-    if (recs.length) {
+    // Recommendations — only when at least one metric was actually calculated.
+    if (ok.length) {
+      const recs = generateRecommendations(ok, failed.length > 0);
       html += `<div class="recommendations">
-        <h2>💡 Рекомендации</h2>
+        <h2>${esc(t('recs'))}</h2>
         <ul>${recs.map(r => '<li>' + r + '</li>').join('')}</ul>
       </div>`;
     }
@@ -204,18 +337,19 @@ h2 { font-size: 1.1rem; margin: 1.5rem 0 0.6rem; padding-bottom: 0.3rem; border-
     document.getElementById('content').innerHTML = html;
   });
 
-  function generateRecommendations(results) {
+  function generateRecommendations(results, anyFailed) {
     const recs = [];
     results.forEach(r => {
       if (r.rating === 'critical' || r.rating === 'bad' || r.rating === 'losing') {
-        recs.push(`<strong>${r.metric}</strong>: критическое значение. Приоритет №1 в следующем квартале. ${r.insight || ''}`);
+        recs.push(t('rec_critical', { m: esc(r.metric), i: esc(r.insight || '') }));
       } else if (r.rating === 'low' || r.rating === 'high' && r.metric === 'churn') {
-        recs.push(`<strong>${r.metric}</strong>: ниже бенчмарка. Сравни с топ-квартилем индустрии — см. /industries/.`);
+        recs.push(t('rec_low', { m: esc(r.metric) }));
       }
     });
-    if (!recs.length) recs.push('Все метрики в норме. Фокус на повышении NRR / снижении CAC для долгосрочного compounding.');
-    recs.push('Используй <a href="/">Goal mode</a> чтобы понять что нужно достичь для следующего уровня.');
-    recs.push('Сравни себя с индустриальными бенчмарками: <a href="/industries/">/industries/</a>');
+    // Never claim "all healthy" when some metrics could not be calculated.
+    if (!recs.length && !anyFailed) recs.push(t('rec_all_ok'));
+    recs.push(t('rec_goal', { home: HOME }));
+    recs.push(t('rec_bench'));
     return recs;
   }
 
