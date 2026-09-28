@@ -7507,9 +7507,17 @@ window._tGoal = function(ruText) {
     }
 
     // ---- DYNAMIC TITLE ----
+    // The served HTML carries a search-optimised <title> for the page the visitor
+    // landed on (per metric and language, from build.mjs). Keep it while they stay
+    // on that metric/language; only generate a title after they navigate away.
+    // `var` (hoisted) so an early call cannot hit a TDZ error; captured on first call.
+    var landingKey, landingTitle;
     function updatePageTitle() {
         const metric = getCurrentMetric();
         if (!metric) return;
+        const key = metric.id + '|' + currentLang;
+        if (landingKey === undefined) { landingKey = key; landingTitle = document.title; }
+        if (key === landingKey) { document.title = landingTitle; return; }
         const name = tm(metric.id, 'name', metric.name);
         const suffix = currentLang === 'en' ? ' — product metrics calculator'
                      : currentLang === 'uz' ? ' — mahsulot metrikalari kalkulyatori'
