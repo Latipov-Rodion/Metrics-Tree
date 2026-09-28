@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>MRR vs ARR vs выручка — в чём разница и как не завысить цифры | MetricTree Blog</title>
+<meta name="description" content="MRR — регулярная месячная выручка с подписок, ARR = MRR × 12, а выручка в P&L и деньги на счёте — это другие числа. Формулы, пример на одних данных, что включать и не включать, типичные ошибки.">
+<meta name="keywords" content="mrr vs arr, mrr и arr разница, arr vs выручка, mrr формула, arr формула, регулярная выручка, recurring revenue, как считать mrr">
+<link rel="canonical" href="https://metricstree.vercel.app/blog/mrr-vs-arr-vs-revenue">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/mrr-vs-arr-vs-revenue">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/mrr-vs-arr-vs-revenue">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/mrr-vs-arr-vs-revenue">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="MRR vs ARR vs выручка — в чём разница и как не завысить цифры">
+<meta property="og:description" content="MRR — регулярная месячная выручка с подписок, ARR = MRR × 12, а выручка в P&L и деньги на счёте — это другие числа. Формулы, пример на одних данных, что включать и не включать, типичные ошибки.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/blog/mrr-vs-arr-vs-revenue">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-09-26">
+<meta property="article:author" content="Родион Латыпов">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MRR vs ARR vs выручка — в чём разница и как не завысить цифры">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "MRR vs ARR vs выручка — в чём разница и как не завысить цифры",
+  "description": "MRR — регулярная месячная выручка с подписок, ARR = MRR × 12, а выручка в P&L и деньги на счёте — это другие числа. Формулы, пример на одних данных, что включать и не включать, типичные ошибки.",
+  "datePublished": "2026-09-26",
+  "author": {
+    "@type": "Person",
+    "name": "Родион Латыпов",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/blog/mrr-vs-arr-vs-revenue"
+  },
+  "keywords": "mrr vs arr, mrr и arr разница, arr vs выручка, mrr формула, arr формула, регулярная выручка, recurring revenue, как считать mrr",
+  "inLanguage": "ru"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js?v=ec79991f" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div>
+</nav>
+<article>
+<h1>MRR vs ARR vs выручка — в чём разница и как не завысить цифры</h1>
+<div class="meta">2026-09-26 · автор: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a></div>
+<h1>MRR vs ARR vs выручка — в чём разница и как не завысить цифры</h1>
+
+<p>В SaaS есть как минимум четыре числа, которые называют «выручкой»: MRR, ARR, выручка в отчёте о прибылях и убытках и деньги, пришедшие на счёт. В хороший месяц они могут отличаться в полтора-два раза. Инвесторы это знают — и первым делом проверяют, какое из них вы показываете как ARR.</p>
+
+<h2>Определения и формулы</h2>
+
+<p><strong>MRR (Monthly Recurring Revenue) = Сумма нормализованных месячных платежей по активным подпискам</strong></p>
+
+<p>Только регулярная часть: подписки, пересчитанные на месяц, за вычетом скидок и без налогов. Годовой контракт на $4 800 даёт $400 MRR каждый месяц, а не $4 800 в месяц оплаты.</p>
+
+<p><strong>ARR (Annual Recurring Revenue) = MRR × 12</strong></p>
+
+<p>Это тот же MRR в годовом масштабе — снимок «скорости» регулярной выручки на сегодня, а не прогноз и не факт за год.</p>
+
+<p><strong>Выручка (revenue)</strong> — признанная в учёте выручка за период: подписки (равномерно по сроку услуги) плюс всё нерегулярное — внедрение, консалтинг, разовые платежи. Точные правила признания зависят от стандарта учёта, это вопрос к бухгалтеру.</p>
+
+<p><strong>Поступления (cash)</strong> — деньги, пришедшие на счёт. Годовая предоплата падает сюда целиком в месяц оплаты.</p>
+
+<h2>Пример: один март — четыре числа</h2>
+
+<p>SaaS-компания:<br><ul><li><strong>100</strong> клиентов на месячном тарифе по $200</li><li><strong>20</strong> клиентов на годовом тарифе по $4 800 в год; <strong>5</strong> из них продлились в марте и оплатили год вперёд</li><li>Разовые услуги (внедрение, обучение), оказанные в марте: <strong>$8 000</strong></li></ul></p>
+
+<p>MRR = 100 × 200 + 20 × (4 800 / 12) = 20 000 + 8 000 = <strong>$28 000</strong><br>ARR = 28 000 × 12 = <strong>$336 000</strong><br>Выручка за март = 28 000 + 8 000 = <strong>$36 000</strong><br>Поступления за март = 20 000 + 5 × 4 800 + 8 000 = <strong>$52 000</strong></p>
+
+<p>А теперь три популярных способа «посчитать ARR» по тем же данным:</p>
+
+<table><thead><tr><th>Способ</th><th>Результат</th><th>Что не так</th></tr></thead><tbody><tr><td></td><td>MRR × 12</td><td><strong>$336 000</strong></td><td>Корректно</td><td></td></tr><tr><td></td><td>Выручка марта × 12</td><td>$432 000</td><td>Разовые услуги выдаются за регулярные</td><td></td></tr><tr><td></td><td>Поступления марта × 12</td><td>$624 000</td><td>Годовые предоплаты посчитаны как ежемесячные</td><td></td></tr></tbody></table>
+Разница между честным ARR и «кассовым» — почти в два раза. Такой ARR разваливается на первом же due diligence.
+
+<h2>Что включать в MRR, а что нет</h2>
+
+<table><thead><tr><th>Статья</th><th>В MRR?</th></tr></thead><tbody><tr><td></td><td>Месячные подписки</td><td>Да</td><td></td></tr><tr><td></td><td>Годовые и многолетние контракты</td><td>Да, делённые на число месяцев</td><td></td></tr><tr><td></td><td>Скидки и промокоды</td><td>Вычитаются</td><td></td></tr><tr><td></td><td>Разовые платежи за внедрение и обучение</td><td>Нет</td><td></td></tr><tr><td></td><td>Консалтинг и кастомная разработка</td><td>Нет</td><td></td></tr><tr><td></td><td>Бесплатные триалы</td><td>Нет, пока нет оплаты</td><td></td></tr><tr><td></td><td>НДС и другие налоги</td><td>Нет</td><td></td></tr><tr><td></td><td>Usage-based оплата</td><td>Спорно: если стабильна — можно включать среднее, но показывайте отдельно</td><td></td></tr></tbody></table>
+<h2>Как MRR меняется: Net New MRR</h2>
+
+<p>MRR на конец месяца = MRR на начало + New + Expansion − Churned − Contraction.</p>
+
+<p>Продолжим пример. В апреле:<br><ul><li>New MRR (новые клиенты): <strong>$3 000</strong></li><li>Expansion MRR (апгрейды): <strong>$600</strong></li><li>Churned MRR (ушедшие): <strong>$1 200</strong></li><li>Contraction MRR (даунгрейды): <strong>$200</strong></li></ul></p>
+
+<p>Net New MRR = 3 000 + 600 − 1 200 − 200 = <strong>$2 200</strong><br>MRR на конец апреля = 28 000 + 2 200 = <strong>$30 200</strong><br>Рост MoM = 2 200 / 28 000 ≈ <strong>7.9%</strong></p>
+
+<p>По порогам MetricTree для SaaS это <strong>норма</strong> (рост MoM >5%), но ещё не «хорошо» (>15%) и не «отлично» (>25%). Универсальная шкала: норма >5%, хорошо >10%, отлично >20%.</p>
+
+<h2>Сравнительная таблица</h2>
+
+<table><thead><tr><th>MRR</th><th>ARR</th><th>Выручка (P&L)</th><th>Поступления (cash)</th></tr></thead><tbody><tr><td></td><td>Что показывает</td><td>Скорость регулярной выручки в месяц</td><td>То же в годовом масштабе</td><td>Заработанное за период</td><td>Деньги на счёте</td><td></td></tr><tr><td></td><td>Разовые платежи</td><td>Нет</td><td>Нет</td><td>Да</td><td>Да</td><td></td></tr><tr><td></td><td>Годовая предоплата</td><td>1/12 в месяц</td><td>1/12 × 12</td><td>Равномерно по сроку</td><td>Целиком в месяц оплаты</td><td></td></tr><tr><td></td><td>Для чего</td><td>Операционный рост, Net New MRR</td><td>Масштаб компании, оценка, T2D3</td><td>Отчётность, прибыль</td><td>Runway, burn rate</td><td></td></tr></tbody></table>
+<h2>Когда какую метрику использовать</h2>
+
+<ul><li><strong>MRR</strong> — ежемесячное управление ростом: разложение на new/expansion/churn, рост MoM, <a href="/nrr">NRR</a>.</li><li><strong>ARR</strong> — разговор о масштабе и оценке. Молодому SaaS полезен ориентир T2D3: после $1–2M ARR утроение два года подряд, затем удвоение три года.</li><li><strong>Выручка</strong> — отчётность, налоги, валовая маржа и прибыль.</li><li><strong>Поступления</strong> — всё, что касается денег: runway и burn rate. Годовые предоплаты улучшают cash, но не MRR.</li></ul>
+
+<h2>Типичные ошибки</h2>
+
+<h3>1. Годовой платёж целиком в MRR</h3>
+Самая частая ошибка. Месяц продления годовых контрактов выглядит как рекорд, следующий — как обвал. Нормализуйте на 12.
+
+<h3>2. Разовые платежи в ARR</h3>
+Внедрение за $50 000 не повторится. Показывайте услуги отдельной строкой — у них и маржа другая.
+
+<h3>3. ARR из выручки лучшего месяца</h3>
+«Декабрь × 12» — это не ARR, а самый оптимистичный сценарий. ARR считается из MRR на конкретную дату.
+
+<h3>4. Не вычитать скидки</h3>
+Клиент по прайсу $200 со скидкой 30% даёт $140 MRR, а не $200.
+
+<h3>5. Считать MRR подписок, которые уже отменены</h3>
+Если клиент нажал «отменить» с окончанием в конце месяца, многие команды выводят его из прогнозного MRR сразу. Главное — единое правило и последовательность.
+
+<h3>6. Путать ARR и контрактную стоимость</h3>
+Подписанный, но ещё не начавшийся контракт — это не ARR. Некоторые компании показывают его отдельно как «законтрактованный ARR», но не смешивайте их в одной цифре.
+
+<h2>Частые вопросы</h2>
+
+<h3>ARR — это годовая выручка?</h3>
+Нет. ARR — снимок регулярной выручки на дату, умноженный на 12. Фактическая выручка за год может быть и меньше (если рост пришёлся на конец года), и больше (если были разовые услуги).
+
+<h3>Нужен ли ARR, если у всех клиентов месячные тарифы?</h3>
+Как управленческая метрика — нет, MRR достаточно. Но для инвесторов и сравнения с рынком ARR — стандартная единица масштаба.
+
+<h2>Итог</h2>
+
+<p>MRR и ARR — это одна и та же регулярная выручка в разном масштабе. Выручка в P&L и поступления — другие числа, и у каждого своя задача. Честный ARR = MRR × 12, без разовых платежей, без годовых предоплат «в моменте» и за вычетом скидок.</p>
+
+<p><strong>Посчитайте свой MRR в калькуляторе ниже</strong>, затем ARR и Net New MRR. Формулы и пороги для MRR, ARR, NRR и ещё 66 метрик собраны в бесплатной <a href="/benchmarks">PDF-шпаргалке</a>.</p>
+
+<p>---</p>
+
+<h3>Дополнительные ресурсы</h3>
+
+<ul><li><a href="/arr">/arr</a> — калькулятор ARR</li><li><a href="/netNewMrr">/netNewMrr</a> — Net New MRR</li><li><a href="/mrrGrowthRate">/mrrGrowthRate</a> — темп роста MRR</li><li><a href="/nrr">/nrr</a> — Net Revenue Retention</li><li><a href="/blog/mrr-growth-rate-yc">/blog/mrr-growth-rate-yc</a> — какой рост MRR считается хорошим</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Считай прямо здесь:</strong>
+  <iframe src="https://metricstree.vercel.app/mrr?embed=1" width="100%" height="650" loading="lazy" title="MetricTree mrr калькулятор"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Открыть в полной версии: <a href="https://metricstree.vercel.app/mrr" target="_blank">https://metricstree.vercel.app/mrr</a></p>
+</div>
+<div class="share-row">
+  Поделиться:
+  <a href="https://twitter.com/intent/tweet?text=MRR%20vs%20ARR%20vs%20%D0%B2%D1%8B%D1%80%D1%83%D1%87%D0%BA%D0%B0%20%E2%80%94%20%D0%B2%20%D1%87%D1%91%D0%BC%20%D1%80%D0%B0%D0%B7%D0%BD%D0%B8%D1%86%D0%B0%20%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D0%BD%D0%B5%20%D0%B7%D0%B0%D0%B2%D1%8B%D1%81%D0%B8%D1%82%D1%8C%20%D1%86%D0%B8%D1%84%D1%80%D1%8B&url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fmrr-vs-arr-vs-revenue" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fmrr-vs-arr-vs-revenue" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fmrr-vs-arr-vs-revenue&text=MRR%20vs%20ARR%20vs%20%D0%B2%D1%8B%D1%80%D1%83%D1%87%D0%BA%D0%B0%20%E2%80%94%20%D0%B2%20%D1%87%D1%91%D0%BC%20%D1%80%D0%B0%D0%B7%D0%BD%D0%B8%D1%86%D0%B0%20%D0%B8%20%D0%BA%D0%B0%D0%BA%20%D0%BD%D0%B5%20%D0%B7%D0%B0%D0%B2%D1%8B%D1%81%D0%B8%D1%82%D1%8C%20%D1%86%D0%B8%D1%84%D1%80%D1%8B" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="/blog/">Все посты</a> · <a href="/">Калькулятор</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

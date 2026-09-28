@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>MRR vs ARR vs revenue — what's the difference and how not to inflate them | MetricTree Blog</title>
+<meta name="description" content="MRR is monthly recurring subscription revenue, ARR = MRR × 12, and P&L revenue and cash collected are different numbers again. Formulas, one worked example, what to include and exclude, common mistakes.">
+<meta name="keywords" content="mrr vs arr, arr vs revenue, mrr vs revenue, mrr formula, arr formula, annual recurring revenue, monthly recurring revenue, how to calculate mrr">
+<link rel="canonical" href="https://metricstree.vercel.app/en/blog/mrr-vs-arr-vs-revenue">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/mrr-vs-arr-vs-revenue">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/mrr-vs-arr-vs-revenue">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/mrr-vs-arr-vs-revenue">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="MRR vs ARR vs revenue — what's the difference and how not to inflate them">
+<meta property="og:description" content="MRR is monthly recurring subscription revenue, ARR = MRR × 12, and P&L revenue and cash collected are different numbers again. Formulas, one worked example, what to include and exclude, common mistakes.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/en/blog/mrr-vs-arr-vs-revenue">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-09-26">
+<meta property="article:author" content="Rodion Latipov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MRR vs ARR vs revenue — what's the difference and how not to inflate them">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "MRR vs ARR vs revenue — what's the difference and how not to inflate them",
+  "description": "MRR is monthly recurring subscription revenue, ARR = MRR × 12, and P&L revenue and cash collected are different numbers again. Formulas, one worked example, what to include and exclude, common mistakes.",
+  "datePublished": "2026-09-26",
+  "author": {
+    "@type": "Person",
+    "name": "Rodion Latipov",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/en/blog/mrr-vs-arr-vs-revenue"
+  },
+  "keywords": "mrr vs arr, arr vs revenue, mrr vs revenue, mrr formula, arr formula, annual recurring revenue, monthly recurring revenue, how to calculate mrr",
+  "inLanguage": "en"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js?v=ec79991f" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/en" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/en/blog/">Blog</a> · <a href="/en">Calculator →</a></div>
+</nav>
+<article>
+<h1>MRR vs ARR vs revenue — what's the difference and how not to inflate them</h1>
+<div class="meta">2026-09-26 · by <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a></div>
+<h1>MRR vs ARR vs revenue — what's the difference and how not to inflate them</h1>
+
+<p>A SaaS company has at least four numbers people call "revenue": MRR, ARR, revenue on the P&L, and cash collected. In a good month they can differ by 1.5–2x. Investors know this — and the first thing they check is which one you're presenting as ARR.</p>
+
+<h2>Definitions and formulas</h2>
+
+<p><strong>MRR (Monthly Recurring Revenue) = Sum of normalized monthly payments from active subscriptions</strong></p>
+
+<p>Only the recurring part: subscriptions converted to a monthly amount, net of discounts, excluding taxes. A $4,800 annual contract contributes $400 of MRR every month — not $4,800 in the month it's paid.</p>
+
+<p><strong>ARR (Annual Recurring Revenue) = MRR × 12</strong></p>
+
+<p>The same MRR at annual scale — a snapshot of your recurring revenue run-rate today, not a forecast and not the actual total for the year.</p>
+
+<p><strong>Revenue</strong> — revenue recognized in your accounts for the period: subscriptions (spread evenly over the service term) plus everything non-recurring — implementation, consulting, one-off fees. The exact recognition rules depend on your accounting standard; that's a question for your accountant.</p>
+
+<p><strong>Cash collected</strong> — money that hit the bank account. An annual prepayment lands here in full in the month it's paid.</p>
+
+<h2>Worked example: one March, four numbers</h2>
+
+<p>A SaaS company:<br><ul><li><strong>100</strong> customers on a monthly plan at $200</li><li><strong>20</strong> customers on an annual plan at $4,800/year; <strong>5</strong> of them renewed in March and paid a year upfront</li><li>One-off services (implementation, training) delivered in March: <strong>$8,000</strong></li></ul></p>
+
+<p>MRR = 100 × 200 + 20 × (4,800 / 12) = 20,000 + 8,000 = <strong>$28,000</strong><br>ARR = 28,000 × 12 = <strong>$336,000</strong><br>March revenue = 28,000 + 8,000 = <strong>$36,000</strong><br>March cash collected = 20,000 + 5 × 4,800 + 8,000 = <strong>$52,000</strong></p>
+
+<p>Now three popular ways to "calculate ARR" from the same data:</p>
+
+<table><thead><tr><th>Method</th><th>Result</th><th>What's wrong</th></tr></thead><tbody><tr><td></td><td>MRR × 12</td><td><strong>$336,000</strong></td><td>Correct</td><td></td></tr><tr><td></td><td>March revenue × 12</td><td>$432,000</td><td>One-off services passed off as recurring</td><td></td></tr><tr><td></td><td>March cash × 12</td><td>$624,000</td><td>Annual prepayments counted as if they came every month</td><td></td></tr></tbody></table>
+The gap between honest ARR and "cash ARR" is almost 2x. That kind of ARR falls apart at the first due diligence.
+
+<h2>What goes into MRR and what doesn't</h2>
+
+<table><thead><tr><th>Item</th><th>In MRR?</th></tr></thead><tbody><tr><td></td><td>Monthly subscriptions</td><td>Yes</td><td></td></tr><tr><td></td><td>Annual and multi-year contracts</td><td>Yes, divided by the number of months</td><td></td></tr><tr><td></td><td>Discounts and promo codes</td><td>Subtracted</td><td></td></tr><tr><td></td><td>One-off implementation and training fees</td><td>No</td><td></td></tr><tr><td></td><td>Consulting and custom development</td><td>No</td><td></td></tr><tr><td></td><td>Free trials</td><td>No, until they pay</td><td></td></tr><tr><td></td><td>VAT and other taxes</td><td>No</td><td></td></tr><tr><td></td><td>Usage-based charges</td><td>Debatable: if stable, you can include an average, but report it separately</td><td></td></tr></tbody></table>
+<h2>How MRR moves: Net New MRR</h2>
+
+<p>Ending MRR = Starting MRR + New + Expansion − Churned − Contraction.</p>
+
+<p>Continuing the example, in April:<br><ul><li>New MRR (new customers): <strong>$3,000</strong></li><li>Expansion MRR (upgrades): <strong>$600</strong></li><li>Churned MRR (lost customers): <strong>$1,200</strong></li><li>Contraction MRR (downgrades): <strong>$200</strong></li></ul></p>
+
+<p>Net New MRR = 3,000 + 600 − 1,200 − 200 = <strong>$2,200</strong><br>Ending April MRR = 28,000 + 2,200 = <strong>$30,200</strong><br>MoM growth = 2,200 / 28,000 ≈ <strong>7.9%</strong></p>
+
+<p>By MetricTree's SaaS thresholds that's <strong>normal</strong> (MoM growth >5%), but not yet "good" (>15%) or "excellent" (>25%). The universal scale: normal >5%, good >10%, excellent >20%.</p>
+
+<h2>Comparison table</h2>
+
+<table><thead><tr><th>MRR</th><th>ARR</th><th>Revenue (P&L)</th><th>Cash collected</th></tr></thead><tbody><tr><td></td><td>What it shows</td><td>Monthly recurring run-rate</td><td>The same at annual scale</td><td>What was earned in the period</td><td>Money in the bank</td><td></td></tr><tr><td></td><td>One-off fees</td><td>No</td><td>No</td><td>Yes</td><td>Yes</td><td></td></tr><tr><td></td><td>Annual prepayment</td><td>1/12 per month</td><td>1/12 × 12</td><td>Spread over the term</td><td>All in the month paid</td><td></td></tr><tr><td></td><td>Used for</td><td>Operating growth, Net New MRR</td><td>Company scale, valuation, T2D3</td><td>Reporting, profit</td><td>Runway, burn rate</td><td></td></tr></tbody></table>
+<h2>When to use which</h2>
+
+<ul><li><strong>MRR</strong> — managing growth month to month: the new/expansion/churn breakdown, MoM growth, <a href="/en/nrr">NRR</a>.</li><li><strong>ARR</strong> — conversations about scale and valuation. For a young SaaS the T2D3 path is a handy guideline: after $1–2M ARR, triple two years in a row, then double for three years.</li><li><strong>Revenue</strong> — reporting, taxes, gross margin and profit.</li><li><strong>Cash</strong> — anything about money: runway and burn rate. Annual prepayments improve cash, not MRR.</li></ul>
+
+<h2>Common mistakes</h2>
+
+<h3>1. Putting the whole annual payment into MRR</h3>
+The most common one. The month annual contracts renew looks like a record, the next one like a collapse. Normalize by 12.
+
+<h3>2. One-off fees in ARR</h3>
+A $50,000 implementation won't repeat. Report services on a separate line — their margin is different too.
+
+<h3>3. ARR from your best month's revenue</h3>
+"December × 12" isn't ARR, it's the most optimistic scenario. ARR is calculated from MRR as of a specific date.
+
+<h3>4. Not subtracting discounts</h3>
+A customer on a $200 list price with a 30% discount contributes $140 of MRR, not $200.
+
+<h3>5. Counting MRR from subscriptions already cancelled</h3>
+If a customer clicked "cancel" effective at month-end, many teams remove them from forward-looking MRR immediately. What matters is a single rule applied consistently.
+
+<h3>6. Confusing ARR with contract value</h3>
+A contract that's signed but hasn't started yet isn't ARR. Some companies report it separately as "contracted ARR" — just don't blend the two into one number.
+
+<h2>FAQ</h2>
+
+<h3>Is ARR the same as annual revenue?</h3>
+No. ARR is recurring revenue as of a date, multiplied by 12. Actual revenue for the year can be lower (if growth came late in the year) or higher (if there were one-off services).
+
+<h3>Do I need ARR if all my customers are on monthly plans?</h3>
+As a management metric, no — MRR is enough. But for investors and market comparisons, ARR is the standard unit of scale.
+
+<h2>Bottom line</h2>
+
+<p>MRR and ARR are the same recurring revenue at different scales. P&L revenue and cash collected are different numbers, each with its own job. Honest ARR = MRR × 12, with no one-off fees, no annual prepayments counted "in the moment", and net of discounts.</p>
+
+<p><strong>Calculate your MRR in the calculator below</strong>, then ARR and Net New MRR. Formulas and thresholds for MRR, ARR, NRR and 66 more metrics are in the free <a href="/benchmarks">PDF cheat sheet</a>.</p>
+
+<p>---</p>
+
+<h3>Further resources</h3>
+
+<ul><li><a href="/en/arr">/en/arr</a> — ARR calculator</li><li><a href="/en/netNewMrr">/en/netNewMrr</a> — Net New MRR</li><li><a href="/en/mrrGrowthRate">/en/mrrGrowthRate</a> — MRR growth rate</li><li><a href="/en/nrr">/en/nrr</a> — Net Revenue Retention</li><li><a href="/en/blog/mrr-growth-rate-yc">/en/blog/mrr-growth-rate-yc</a> — what counts as good MRR growth</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Calculate it right here:</strong>
+  <iframe src="https://metricstree.vercel.app/mrr?embed=1" width="100%" height="650" loading="lazy" title="MetricTree mrr calculator"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Open the full version: <a href="https://metricstree.vercel.app/mrr" target="_blank">https://metricstree.vercel.app/mrr</a></p>
+</div>
+<div class="share-row">
+  Share:
+  <a href="https://twitter.com/intent/tweet?text=MRR%20vs%20ARR%20vs%20revenue%20%E2%80%94%20what's%20the%20difference%20and%20how%20not%20to%20inflate%20them&url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fmrr-vs-arr-vs-revenue" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fmrr-vs-arr-vs-revenue" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fmrr-vs-arr-vs-revenue&text=MRR%20vs%20ARR%20vs%20revenue%20%E2%80%94%20what's%20the%20difference%20and%20how%20not%20to%20inflate%20them" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/en/blog/">All posts</a> · <a href="/en">Calculator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

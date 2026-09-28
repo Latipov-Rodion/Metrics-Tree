@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Churn rate vs retention rate — отток клиентов и отток выручки: что считать | MetricTree Blog</title>
+<meta name="description" content="Churn и retention — не просто «100% минус друг друга». Customer churn, revenue churn, GRR и NRR на одном примере, как месячный отток превращается в годовой, нормы по индустриям и типичные ошибки.">
+<meta name="keywords" content="churn vs retention, churn rate vs retention rate, отток и удержание разница, customer churn, revenue churn, отток выручки, формула оттока, retention rate формула">
+<link rel="canonical" href="https://metricstree.vercel.app/blog/churn-rate-vs-retention-rate">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/churn-rate-vs-retention-rate">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/churn-rate-vs-retention-rate">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/churn-rate-vs-retention-rate">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Churn rate vs retention rate — отток клиентов и отток выручки: что считать">
+<meta property="og:description" content="Churn и retention — не просто «100% минус друг друга». Customer churn, revenue churn, GRR и NRR на одном примере, как месячный отток превращается в годовой, нормы по индустриям и типичные ошибки.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/blog/churn-rate-vs-retention-rate">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-09-27">
+<meta property="article:author" content="Родион Латыпов">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Churn rate vs retention rate — отток клиентов и отток выручки: что считать">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Churn rate vs retention rate — отток клиентов и отток выручки: что считать",
+  "description": "Churn и retention — не просто «100% минус друг друга». Customer churn, revenue churn, GRR и NRR на одном примере, как месячный отток превращается в годовой, нормы по индустриям и типичные ошибки.",
+  "datePublished": "2026-09-27",
+  "author": {
+    "@type": "Person",
+    "name": "Родион Латыпов",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/blog/churn-rate-vs-retention-rate"
+  },
+  "keywords": "churn vs retention, churn rate vs retention rate, отток и удержание разница, customer churn, revenue churn, отток выручки, формула оттока, retention rate формула",
+  "inLanguage": "ru"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js?v=ec79991f" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div>
+</nav>
+<article>
+<h1>Churn rate vs retention rate — отток клиентов и отток выручки: что считать</h1>
+<div class="meta">2026-09-27 · автор: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a></div>
+<h1>Churn rate vs retention rate — отток клиентов и отток выручки: что считать</h1>
+
+<p>«Отток 3%, значит удержание 97%» — формально верно, но на этом совпадения заканчиваются. Retention можно посчитать так, что он окажется больше 100%. Отток клиентов может быть низким, а отток выручки — высоким. А 97% удержания в месяц превращаются меньше чем в 70% за год. Разберём, какие версии этих метрик существуют и какую когда использовать.</p>
+
+<h2>Определения и формулы</h2>
+
+<p><strong>Customer Churn Rate = Ушедшие клиенты за период / Клиенты на начало периода × 100%</strong></p>
+
+<p>Новые клиенты, пришедшие в течение периода, в знаменатель не попадают.</p>
+
+<p><strong>Customer Retention Rate (CRR) = (Клиенты на конец − Новые за период) / Клиенты на начало × 100%</strong></p>
+
+<p>Для одного периода и одной базы CRR = 100% − Customer Churn. Но только если вычесть новых клиентов — иначе «удержание» смешивается с ростом.</p>
+
+<p><strong>Gross Revenue Churn = (Churned MRR + Contraction MRR) / MRR на начало × 100%</strong></p>
+
+<p>То же самое, но в деньгах: сколько регулярной выручки потеряно из-за ушедших и даунгрейдов. Обратная метрика — <strong>GRR = 100% − Gross Revenue Churn</strong>.</p>
+
+<p><strong>NRR = (MRR на начало + Expansion − Churned − Contraction) / MRR на начало × 100%</strong></p>
+
+<p>Учитывает ещё и апселлы существующих клиентов, поэтому может быть больше 100%.</p>
+
+<p><strong>Когортный retention</strong> — доля пользователей когорты, активных через N дней или месяцев. Это продуктовая метрика: она отвечает на вопрос «возвращаются ли люди», а не «продлевают ли подписку».</p>
+
+<h2>Пример: один месяц SaaS-компании</h2>
+
+<p>На начало месяца:<br><ul><li>Клиентов: <strong>1 000</strong>, MRR: <strong>$100 000</strong></li></ul></p>
+
+<p>За месяц:<br><ul><li>Ушли <strong>30</strong> клиентов с суммарным MRR <strong>$4 000</strong></li><li>Даунгрейды (contraction): <strong>$1 000</strong></li><li>Апгрейды (expansion): <strong>$4 000</strong></li><li>Пришли <strong>60</strong> новых клиентов</li></ul></p>
+
+<p>На конец месяца клиентов: 1 000 − 30 + 60 = <strong>1 030</strong></p>
+
+<p>Customer churn = 30 / 1 000 = <strong>3%</strong><br>CRR = (1 030 − 60) / 1 000 = <strong>97%</strong><br>«Наивный» retention = 1 030 / 1 000 = 103% — ошибка: в нём спрятаны новые клиенты<br>Gross revenue churn = (4 000 + 1 000) / 100 000 = <strong>5%</strong> → GRR = <strong>95%</strong><br>NRR = (100 000 + 4 000 − 4 000 − 1 000) / 100 000 = <strong>99%</strong></p>
+
+<p>Что говорят эти цифры:<br><ul><li>Отток выручки (5%) выше оттока клиентов (3%). Средний MRR ушедшего клиента — $133 против $100 по базе: уходят более крупные аккаунты. Одна только customer churn это бы скрыла.</li><li>Апселлы почти компенсируют потери, но NRR всё равно ниже 100%: без новых продаж выручка сжимается.</li><li>По порогам MetricTree для SaaS отток 3% в месяц — это «плохо» (>2%). Норма для SaaS — 0.5–2% в месяц, отлично — <0.5%. По универсальной шкале (<5% хорошо) те же 3% выглядели бы нормально — поэтому важно сравнивать со своей индустрией.</li></ul></p>
+
+<h2>Месячный отток × 12 ≠ годовой</h2>
+
+<p>Удержание накапливается как сложный процент:</p>
+
+<p><strong>Годовой retention = (1 − месячный churn)^12</strong></p>
+
+<table><thead><tr><th>Месячный churn</th><th>Удержание за 12 месяцев</th><th>Годовой churn</th></tr></thead><tbody><tr><td></td><td>1%</td><td>88.6%</td><td>11.4%</td><td></td></tr><tr><td></td><td>2%</td><td>78.5%</td><td>21.5%</td><td></td></tr><tr><td></td><td>3%</td><td>69.4%</td><td>30.6%</td><td></td></tr><tr><td></td><td>5%</td><td>54.0%</td><td>46.0%</td><td></td></tr><tr><td></td><td>10%</td><td>28.2%</td><td>71.8%</td><td></td></tr></tbody></table>
+В нашем примере 97% в месяц — это меньше 70% за год. Средняя «жизнь» клиента ≈ 1 / месячный churn = 1 / 0.03 ≈ <strong>33 месяца</strong> — эта цифра напрямую идёт в <a href="/ltv">LTV</a>.
+
+<p>То же касается выручки: пороги GRR и NRR обычно приводят для года. GRR 95% в месяц при сохранении темпа — это примерно 0.95^12 ≈ 54% за год, что гораздо ниже нормы для SaaS (85–95%).</p>
+
+<h2>Сравнительная таблица</h2>
+
+<table><thead><tr><th>Метрика</th><th>Что считает</th><th>Может быть >100%?</th><th>Для чего</th></tr></thead><tbody><tr><td></td><td>Customer churn</td><td>Долю ушедших клиентов</td><td>Нет</td><td>Здоровье базы, расчёт LTV</td><td></td></tr><tr><td></td><td>Customer retention (CRR)</td><td>Долю оставшихся клиентов</td><td>Нет (если вычесть новых)</td><td>То же, в позитивной формулировке</td><td></td></tr><tr><td></td><td>Gross revenue churn / GRR</td><td>Потерю выручки без апселлов</td><td>GRR — нет</td><td>Качество продукта и удержания в деньгах</td><td></td></tr><tr><td></td><td>NRR</td><td>Выручку базы с апселлами</td><td>Да</td><td>Рост без новых продаж, оценка SaaS</td><td></td></tr><tr><td></td><td>Когортный retention</td><td>Активность когорты через N дней</td><td>Нет</td><td>Продукт, онбординг, привычка</td><td></td></tr></tbody></table>
+<h2>Нормы по индустриям</h2>
+
+<p>Месячный customer churn по порогам MetricTree:</p>
+
+<table><thead><tr><th>Индустрия</th><th>Отлично</th><th>Норма</th><th>Плохо</th></tr></thead><tbody><tr><td></td><td><strong>SaaS</strong></td><td><0.5%</td><td>0.5–2%</td><td>>2%</td><td></td></tr><tr><td></td><td><strong>E-commerce</strong></td><td><3%</td><td>3–8%</td><td>>8%</td><td></td></tr><tr><td></td><td><strong>Мобильные приложения</strong></td><td><5%</td><td>5–15%</td><td>>15%</td><td></td></tr><tr><td></td><td><strong>Медиа</strong></td><td><2%</td><td>2–7%</td><td>>7%</td><td></td></tr></tbody></table>
+GRR для SaaS: <85% плохо, 85–95% норма, >95% хорошо, >97% отлично. NRR для SaaS: <90% плохо, 90–100% норма, 100–120% хорошо, >130% отлично.
+
+<p>Отдельно — шкала калькулятора <a href="/retention">Retention</a> (<30% плохо, 30–60% средне, >60% хорошо). Она описывает когортное удержание за период, а не месячный CRR. Сравнивать 97% месячного CRR с этой шкалой некорректно — это разные метрики.</p>
+
+<h2>Когда что использовать</h2>
+
+<ul><li><strong>Customer churn</strong> — B2C-подписки и SMB SaaS с похожими тарифами, где все клиенты примерно равны по чеку. Нужна для LTV.</li><li><strong>Revenue churn и GRR</strong> — если чеки клиентов сильно различаются (B2B, тарифы с местами). Показывают, теряете ли вы деньги, а не просто логотипы.</li><li><strong>NRR</strong> — оценка SaaS-бизнеса и эффективности апселлов.</li><li><strong>Когортный retention</strong> — продуктовые решения: онбординг, активация, привычка.</li></ul>
+
+<h2>Типичные ошибки</h2>
+
+<h3>1. Считать retention без вычета новых клиентов</h3>
+End / start при растущей базе даёт «удержание» больше 100% и маскирует отток.
+
+<h3>2. Смотреть только на клиентский отток в B2B</h3>
+10 ушедших клиентов на $50 и 1 ушедший на $5 000 — это совсем разные месяцы, хотя второй выглядит лучше по customer churn.
+
+<h3>3. Умножать месячный churn на 12</h3>
+3% в месяц — это 30.6% в год, а не 36%. Для обратного пересчёта годового в месячный тоже нужен сложный процент.
+
+<h3>4. Смешивать сегменты</h3>
+Средний отток по базе, где есть и enterprise, и self-serve, ничего не говорит ни о тех, ни о других. Считайте по сегментам.
+
+<h3>5. Путать «отменил» и «ушёл»</h3>
+Клиент на годовом контракте, отключивший автопродление, ещё платит. Зафиксируйте, в какой момент клиент считается ушедшим, и не меняйте правило.
+
+<h2>Итог</h2>
+
+<p>Churn и retention — две стороны одной медали только для клиентов и только в одном периоде. Как только появляются деньги, апселлы и длинные горизонты, нужны отдельные метрики: revenue churn, GRR, NRR и когортный retention. Считайте клиентский и денежный отток вместе — расхождение между ними часто важнее самих цифр.</p>
+
+<p><strong>Посчитайте свой churn в калькуляторе ниже</strong>, затем GRR и NRR. Формулы и пороги для churn, retention, GRR, NRR и ещё 65 метрик собраны в бесплатной <a href="/benchmarks">PDF-шпаргалке</a>.</p>
+
+<p>---</p>
+
+<h3>Дополнительные ресурсы</h3>
+
+<ul><li><a href="/retention">/retention</a> — калькулятор Retention</li><li><a href="/grr">/grr</a> — Gross Revenue Retention</li><li><a href="/nrr">/nrr</a> — Net Revenue Retention</li><li><a href="/ltv">/ltv</a> — LTV на основе оттока</li><li><a href="/blog/retention-rate-benchmarks">/blog/retention-rate-benchmarks</a> — нормы retention по индустриям</li><li><a href="/blog/churn-reduction-saas">/blog/churn-reduction-saas</a> — как снизить churn в SaaS</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Считай прямо здесь:</strong>
+  <iframe src="https://metricstree.vercel.app/churn?embed=1" width="100%" height="650" loading="lazy" title="MetricTree churn калькулятор"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Открыть в полной версии: <a href="https://metricstree.vercel.app/churn" target="_blank">https://metricstree.vercel.app/churn</a></p>
+</div>
+<div class="share-row">
+  Поделиться:
+  <a href="https://twitter.com/intent/tweet?text=Churn%20rate%20vs%20retention%20rate%20%E2%80%94%20%D0%BE%D1%82%D1%82%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B8%D0%B5%D0%BD%D1%82%D0%BE%D0%B2%20%D0%B8%20%D0%BE%D1%82%D1%82%D0%BE%D0%BA%20%D0%B2%D1%8B%D1%80%D1%83%D1%87%D0%BA%D0%B8%3A%20%D1%87%D1%82%D0%BE%20%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C&url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fchurn-rate-vs-retention-rate" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fchurn-rate-vs-retention-rate" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fchurn-rate-vs-retention-rate&text=Churn%20rate%20vs%20retention%20rate%20%E2%80%94%20%D0%BE%D1%82%D1%82%D0%BE%D0%BA%20%D0%BA%D0%BB%D0%B8%D0%B5%D0%BD%D1%82%D0%BE%D0%B2%20%D0%B8%20%D0%BE%D1%82%D1%82%D0%BE%D0%BA%20%D0%B2%D1%8B%D1%80%D1%83%D1%87%D0%BA%D0%B8%3A%20%D1%87%D1%82%D0%BE%20%D1%81%D1%87%D0%B8%D1%82%D0%B0%D1%82%D1%8C" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="/blog/">Все посты</a> · <a href="/">Калькулятор</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

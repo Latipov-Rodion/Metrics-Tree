@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>CTR vs CTOR vs CR — в чём разница в email и рекламе | MetricTree Blog</title>
+<meta name="description" content="CTR — клики от показов или доставленных писем, CTOR — клики от открытий, CR — конверсия в целевое действие. Формулы, пример email-рассылки и рекламной кампании, нормы и почему высокий CTR бывает плохим знаком.">
+<meta name="keywords" content="ctr vs ctor, ctr vs cr, ctor что это, click to open rate, кликабельность, конверсия, ctr email, ctr формула, ctor формула">
+<link rel="canonical" href="https://metricstree.vercel.app/blog/ctr-vs-ctor-vs-cr">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/ctr-vs-ctor-vs-cr">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/ctr-vs-ctor-vs-cr">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/ctr-vs-ctor-vs-cr">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="CTR vs CTOR vs CR — в чём разница в email и рекламе">
+<meta property="og:description" content="CTR — клики от показов или доставленных писем, CTOR — клики от открытий, CR — конверсия в целевое действие. Формулы, пример email-рассылки и рекламной кампании, нормы и почему высокий CTR бывает плохим знаком.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://metricstree.vercel.app/blog/ctr-vs-ctor-vs-cr">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-09-28">
+<meta property="article:author" content="Родион Латыпов">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CTR vs CTOR vs CR — в чём разница в email и рекламе">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "CTR vs CTOR vs CR — в чём разница в email и рекламе",
+  "description": "CTR — клики от показов или доставленных писем, CTOR — клики от открытий, CR — конверсия в целевое действие. Формулы, пример email-рассылки и рекламной кампании, нормы и почему высокий CTR бывает плохим знаком.",
+  "datePublished": "2026-09-28",
+  "author": {
+    "@type": "Person",
+    "name": "Родион Латыпов",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/blog/ctr-vs-ctor-vs-cr"
+  },
+  "keywords": "ctr vs ctor, ctr vs cr, ctor что это, click to open rate, кликабельность, конверсия, ctr email, ctr формула, ctor формула",
+  "inLanguage": "ru"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js?v=ec79991f" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div>
+</nav>
+<article>
+<h1>CTR vs CTOR vs CR — в чём разница в email и рекламе</h1>
+<div class="meta">2026-09-28 · автор: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a></div>
+<h1>CTR vs CTOR vs CR — в чём разница в email и рекламе</h1>
+
+<p>В отчёте по рассылке CTR 3%, CTOR 13.6%, а конверсия — то 15%, то 0.45%, в зависимости от того, кто считал. Все цифры описывают одно и то же письмо. Эти метрики измеряют разные шаги воронки и делятся на разные знаменатели — и если их путать, легко «улучшить» не то.</p>
+
+<h2>Определения и формулы</h2>
+
+<p><strong>CTR (Click-Through Rate) = Клики / Показы × 100%</strong></p>
+
+<p>В рекламе знаменатель — показы. В email — доставленные письма: CTR = уникальные клики / доставлено. CTR отвечает на вопрос «какая доля увидевших кликнула».</p>
+
+<p><strong>CTOR (Click-to-Open Rate) = Уникальные клики / Уникальные открытия × 100%</strong></p>
+
+<p>Метрика только для email. Показывает, насколько содержание письма убедило тех, кто его открыл. Тема письма на CTOR почти не влияет — только контент, оффер и кнопка.</p>
+
+<p><strong>CR (Conversion Rate) = Конверсии / Посетители × 100%</strong></p>
+
+<p>Доля тех, кто совершил целевое действие: покупку, регистрацию, заявку. Знаменатель нужно всегда уточнять: посетители сайта, клики, доставленные письма.</p>
+
+<p>Для email все три связаны:</p>
+
+<p><strong>CTR = Open Rate × CTOR</strong></p>
+
+<h2>Пример 1: email-рассылка</h2>
+
+<p>Промо-рассылка интернет-магазина:<br><ul><li>Доставлено: <strong>20 000</strong></li><li>Уникальных открытий: <strong>4 400</strong></li><li>Уникальных кликов: <strong>600</strong></li><li>Заказов: <strong>90</strong></li></ul></p>
+
+<p>Open Rate = 4 400 / 20 000 = <strong>22%</strong><br>CTR = 600 / 20 000 = <strong>3%</strong><br>CTOR = 600 / 4 400 = <strong>13.6%</strong><br>CR (от кликов) = 90 / 600 = <strong>15%</strong><br>CR (от доставленных) = 90 / 20 000 = <strong>0.45%</strong></p>
+
+<p>Проверка: 22% × 13.6% ≈ 3% ✓</p>
+
+<p>По порогам MetricTree: Open Rate 22% — норма (15–25%), CTOR 13.6% — норма (10–20%), для промо-рассылок e-commerce ориентир 8–15%. Чтобы поднять CTR, нужно понять, какой множитель слабее: тема письма и репутация отправителя (open rate) или содержимое (CTOR).</p>
+
+<h3>Ловушка Apple Mail Privacy Protection</h3>
+Apple MPP загружает письма автоматически и отмечает их как открытые. Отчётный open rate в базах с большой долей iPhone часто 35–45%. Допустим, в отчёте не 4 400, а <strong>8 000</strong> открытий. Тогда CTOR = 600 / 8 000 = <strong>7.5%</strong> — формально «плохо» (<10%), хотя письмо осталось тем же. Поэтому CTOR и open rate в последние годы надёжнее сравнивать внутри одной базы во времени, а клики и CTR от доставленных — между рассылками.
+
+<h2>Пример 2: рекламная кампания</h2>
+
+<p>Две креативные версии, одинаковые <strong>200 000</strong> показов по CPM <strong>$9.60</strong> → бюджет <strong>$1 920</strong> на каждую:</p>
+
+<table><thead><tr><th>Креатив A</th><th>Креатив B</th></tr></thead><tbody><tr><td></td><td>CTR</td><td>1.2%</td><td>2.4%</td><td></td></tr><tr><td></td><td>Клики</td><td>2 400</td><td>4 800</td><td></td></tr><tr><td></td><td>Фактический CPC</td><td>$0.80</td><td>$0.40</td><td></td></tr><tr><td></td><td>CR (клик → заказ)</td><td>2.5%</td><td>1%</td><td></td></tr><tr><td></td><td>Заказы</td><td>60</td><td>48</td><td></td></tr><tr><td></td><td>CPA</td><td><strong>$32</strong></td><td><strong>$40</strong></td><td></td></tr></tbody></table>
+Креатив B — «кликбейт»: CTR вдвое выше, клики вдвое дешевле. Но он привлекает людей, которые не собираются покупать, и итоговая цена заказа на 25% выше.
+
+<p>По порогам MetricTree для e-commerce: CTR A (1.2%) — норма (1–2%), CTR B (2.4%) — хорошо (>2%). CR A (2.5%) — норма (1–4%), CR B (1%) — нижняя граница нормы. CPA обоих — в пределах ориентира $5–$40 за покупку, но B — на самом краю. Оптимизируя по CTR, вы выбрали бы худший вариант.</p>
+
+<h2>Сравнительная таблица</h2>
+
+<table><thead><tr><th>CTR</th><th>CTOR</th><th>CR</th></tr></thead><tbody><tr><td></td><td>Числитель</td><td>Клики</td><td>Уникальные клики</td><td>Целевые действия</td><td></td></tr><tr><td></td><td>Знаменатель</td><td>Показы / доставленные письма</td><td>Уникальные открытия</td><td>Посетители / клики</td><td></td></tr><tr><td></td><td>Где применяется</td><td>Реклама и email</td><td>Только email</td><td>Сайт, лендинг, воронка</td><td></td></tr><tr><td></td><td>Что измеряет</td><td>Привлекательность объявления или письма целиком</td><td>Качество контента письма</td><td>Способность страницы и оффера продать</td><td></td></tr><tr><td></td><td>На что влияет</td><td>Цена клика, объём трафика</td><td>CTR рассылки</td><td>CPA, CAC, выручка</td><td></td></tr></tbody></table>
+<h2>Нормы</h2>
+
+<p>Ориентиры из отраслевых порогов калькуляторов MetricTree:</p>
+
+<table><thead><tr><th>Индустрия</th><th>CTR (реклама)</th><th>CR</th><th>CTOR</th></tr></thead><tbody><tr><td></td><td><strong>Универсально</strong></td><td><0.5% плохо, 0.5–2% норма, >2% хорошо</td><td><1% плохо, 1–3% норма, >3% хорошо</td><td><10% плохо, 10–20% норма, >20% хорошо</td><td></td></tr><tr><td></td><td><strong>SaaS</strong></td><td><1% плохо, 2–5% норма, >5% хорошо</td><td><2% плохо, 2–8% норма, >8% хорошо</td><td>B2B: 10–20%, триггерные письма выше</td><td></td></tr><tr><td></td><td><strong>E-commerce</strong></td><td><0.5% плохо, 1–2% норма, >2% хорошо</td><td><1% плохо, 1–4% норма, >4% хорошо</td><td>промо: 8–15%</td><td></td></tr><tr><td></td><td><strong>Мобильные приложения</strong></td><td><0.5% плохо, 1–3% норма, >3% хорошо</td><td><1% плохо, 1–5% норма, >5% хорошо</td><td>onboarding-серии: 15–25%</td><td></td></tr><tr><td></td><td><strong>Медиа</strong></td><td><2% плохо, 3–8% норма, >8% хорошо</td><td><0.5% плохо, 0.5–2% норма, >2% хорошо</td><td>newsletters: 12–22%</td><td></td></tr></tbody></table>
+CTR сильно зависит от формата: для баннеров ориентир — выше 0.1%, для поисковой рекламы — выше 2%.
+
+<h2>Когда что использовать</h2>
+
+<ul><li><strong>CTR</strong> — сравнить объявления, креативы и темы писем между собой; понять, почему дорогой клик.</li><li><strong>CTOR</strong> — оценить контент и оффер письма отдельно от темы и доставляемости.</li><li><strong>CR</strong> — оценить лендинг, оффер и качество трафика. Именно CR вместе с CPC определяет <a href="/cpa">CPA</a>.</li></ul>
+
+<p>Главная метрика кампании — не CTR и не CR по отдельности, а цена результата: CPA или CAC. CTR и CR — рычаги, которые на неё влияют.</p>
+
+<h2>Типичные ошибки</h2>
+
+<h3>1. Оптимизировать рекламу по CTR</h3>
+Высокий CTR снижает цену клика, но не гарантирует продаж. Всегда смотрите CTR вместе с CR и CPA.
+
+<h3>2. Сравнивать CTR и CTOR</h3>
+«У нас CTR 3%, а у конкурента 13%» — возможно, конкурент называет CTR то, что на самом деле CTOR. Уточняйте знаменатель.
+
+<h3>3. Не указывать знаменатель у CR</h3>
+15% от кликов и 0.45% от доставленных писем — одна и та же рассылка. Без знаменателя цифра бессмысленна.
+
+<h3>4. Считать все клики, а не уникальные</h3>
+Один человек, кликнувший пять раз, завышает CTR и CTOR. Для email используйте уникальные клики.
+
+<h3>5. Верить open rate после Apple MPP</h3>
+Автоматические «открытия» завышают open rate и занижают CTOR. Сравнивайте тренды внутри своей базы и опирайтесь на клики.
+
+<h2>Итог</h2>
+
+<p>CTR — про внимание, CTOR — про содержание письма, CR — про способность продать. Все три — промежуточные шаги, а итог кампании — цена результата. Высокий CTR при низком CR — тревожный сигнал, а не повод для премии.</p>
+
+<p><strong>Посчитайте CTR в калькуляторе ниже</strong>, затем CTOR и CR. Формулы и пороги для CTR, CTOR, CR, Open Rate и ещё 65 метрик собраны в бесплатной <a href="/benchmarks">PDF-шпаргалке</a>.</p>
+
+<p>---</p>
+
+<h3>Дополнительные ресурсы</h3>
+
+<ul><li><a href="/ctor">/ctor</a> — калькулятор CTOR</li><li><a href="/openRate">/openRate</a> — Email Open Rate</li><li><a href="/cr">/cr</a> — Conversion Rate</li><li><a href="/cpc">/cpc</a> — цена клика</li><li><a href="/cpa">/cpa</a> — цена целевого действия</li><li><a href="/blog/ecommerce-conversion-rate-benchmarks">/blog/ecommerce-conversion-rate-benchmarks</a> — нормы конверсии интернет-магазина</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Считай прямо здесь:</strong>
+  <iframe src="https://metricstree.vercel.app/ctr?embed=1" width="100%" height="650" loading="lazy" title="MetricTree ctr калькулятор"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Открыть в полной версии: <a href="https://metricstree.vercel.app/ctr" target="_blank">https://metricstree.vercel.app/ctr</a></p>
+</div>
+<div class="share-row">
+  Поделиться:
+  <a href="https://twitter.com/intent/tweet?text=CTR%20vs%20CTOR%20vs%20CR%20%E2%80%94%20%D0%B2%20%D1%87%D1%91%D0%BC%20%D1%80%D0%B0%D0%B7%D0%BD%D0%B8%D1%86%D0%B0%20%D0%B2%20email%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%B5&url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fctr-vs-ctor-vs-cr" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fctr-vs-ctor-vs-cr" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fctr-vs-ctor-vs-cr&text=CTR%20vs%20CTOR%20vs%20CR%20%E2%80%94%20%D0%B2%20%D1%87%D1%91%D0%BC%20%D1%80%D0%B0%D0%B7%D0%BD%D0%B8%D1%86%D0%B0%20%D0%B2%20email%20%D0%B8%20%D1%80%D0%B5%D0%BA%D0%BB%D0%B0%D0%BC%D0%B5" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="/blog/">Все посты</a> · <a href="/">Калькулятор</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>
