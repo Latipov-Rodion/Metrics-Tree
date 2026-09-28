@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>DAU/MAU vs retention — what to track to know if users come back | MetricTree Blog</title>
+<meta name="description" content="DAU/MAU shows how often users engage; retention shows how many stay over time. Formulas, two apps with the same DAU/MAU and very different retention, benchmarks and common mistakes.">
+<meta name="keywords" content="dau mau vs retention, stickiness vs retention, dau/mau ratio, user retention, cohort retention, product stickiness, dau/mau formula, what to track">
+<link rel="canonical" href="https://metricstree.vercel.app/en/blog/dau-mau-vs-retention">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/dau-mau-vs-retention">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/dau-mau-vs-retention">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/dau-mau-vs-retention">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="DAU/MAU vs retention — what to track to know if users come back">
+<meta property="og:description" content="DAU/MAU shows how often users engage; retention shows how many stay over time. Formulas, two apps with the same DAU/MAU and very different retention, benchmarks and common mistakes.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://metricstree.vercel.app/en/blog/dau-mau-vs-retention">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-09-28">
+<meta property="article:author" content="Rodion Latipov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DAU/MAU vs retention — what to track to know if users come back">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "DAU/MAU vs retention — what to track to know if users come back",
+  "description": "DAU/MAU shows how often users engage; retention shows how many stay over time. Formulas, two apps with the same DAU/MAU and very different retention, benchmarks and common mistakes.",
+  "datePublished": "2026-09-28",
+  "author": {
+    "@type": "Person",
+    "name": "Rodion Latipov",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/en/blog/dau-mau-vs-retention"
+  },
+  "keywords": "dau mau vs retention, stickiness vs retention, dau/mau ratio, user retention, cohort retention, product stickiness, dau/mau formula, what to track",
+  "inLanguage": "en"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js?v=ec79991f" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/en" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/en/blog/">Blog</a> · <a href="/en">Calculator →</a></div>
+</nav>
+<article>
+<h1>DAU/MAU vs retention — what to track to know if users come back</h1>
+<div class="meta">2026-09-28 · by <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a></div>
+<h1>DAU/MAU vs retention — what to track to know if users come back</h1>
+
+<p>"Our DAU/MAU is 20%, so users come back" — that sentence hides a substitution. DAU/MAU answers "how often do currently active users engage?" Retention answers "how many of the people who arrived actually stayed?" A product can be very sticky for a small core while losing almost every newcomer. And the reverse.</p>
+
+<h2>Definitions and formulas</h2>
+
+<p><strong>Stickiness = Average DAU for the month / MAU × 100%</strong></p>
+
+<p>DAU is unique active users per day, MAU per month. A handy reading: DAU/MAU × 30 ≈ the average number of active days per user per month. 20% is about 6 days.</p>
+
+<p><strong>Retention (cohort) = Cohort members active after N days / Cohort size × 100%</strong></p>
+
+<p>A cohort is users who arrived in the same period (day, week, month). D1, D7 and D30 retention show what share of them were still active after 1, 7 and 30 days.</p>
+
+<p>The key difference: stickiness is calculated over the entire current audience, with loyal veterans and yesterday's newcomers mixed together. Retention follows a specific group of people over time.</p>
+
+<h2>Example 1: same DAU/MAU, different retention</h2>
+
+<p>Two mobile apps, each with, per month:<br><ul><li>MAU: <strong>100,000</strong></li><li>Average DAU: <strong>20,000</strong></li><li>Stickiness = 20,000 / 100,000 = <strong>20%</strong></li></ul></p>
+
+<p>By MetricTree's mobile thresholds that's normal (10–25%). The apps look identical. Now look at the cohorts:</p>
+
+<table><thead><tr><th>App A</th><th>App B</th></tr></thead><tbody><tr><td>New users per month</td><td>40,000</td><td>10,000</td></tr><tr><td>D30 retention</td><td>4%</td><td>12%</td></tr><tr><td>D30 rating (mobile)</td><td>normal (3–8%)</td><td>good (>8%)</td></tr></tbody></table>
+App A holds its DAU/MAU thanks to a small core of active users, while churning through almost all of its newcomers every month via paid acquisition. Of 40,000 new users, 1,600 remain after 30 days. Cut the marketing budget and MAU will start falling fast.
+
+<p>App B keeps 1,200 of its 10,000 new users — almost as many in absolute terms, with a quarter of the acquisition. Its audience grows because of the product, not the budget.</p>
+
+<p>DAU/MAU doesn't see this difference at all.</p>
+
+<h2>Example 2: stickiness drops when you grow</h2>
+
+<p>An app before an ad campaign:<br><ul><li>MAU: <strong>60,000</strong>, DAU: <strong>15,000</strong> → stickiness <strong>25%</strong></li></ul></p>
+
+<p>Launch a campaign: +<strong>40,000</strong> new users in a month, each active on average <strong>2 days</strong> out of 30.</p>
+
+<p>Added to average DAU ≈ 40,000 × 2 / 30 ≈ <strong>2,667</strong><br>New DAU ≈ 17,667, MAU = 100,000 → stickiness ≈ <strong>17.7%</strong></p>
+
+<p>Stickiness fell by 7 percentage points, yet nothing happened to the product's core: lots of newcomers with short visits simply landed in the denominator. Looking only at DAU/MAU, you might conclude "the product got worse" — and start fixing the wrong thing. Cohort retention would show that existing users behave as before and the question is the quality of the new traffic.</p>
+
+<h2>Comparison table</h2>
+
+<table><thead><tr><th>DAU/MAU (stickiness)</th><th>Cohort retention</th></tr></thead><tbody><tr><td>What it measures</td><td>How often the current audience engages</td><td>Share of arrivals who stayed</td></tr><tr><td>Unit of analysis</td><td>The month's whole audience</td><td>A cohort (group by sign-up date)</td></tr><tr><td>Sensitivity to new-user inflow</td><td>High — newcomers dilute it</td><td>None — each cohort is separate</td></tr><tr><td>Horizon</td><td>One month</td><td>D1, D7, D30, M3, M12…</td></tr><tr><td>Answers</td><td>Has the product become a habit?</td><td>Has the product found its users?</td></tr><tr><td>Most useful for</td><td>Social, messaging, games, work tools</td><td>Any product, especially while searching for PMF</td></tr></tbody></table>
+<h2>Benchmarks</h2>
+
+<p>Guidelines from the industry thresholds in MetricTree's calculators:</p>
+
+<table><thead><tr><th>Industry</th><th>Stickiness (DAU/MAU)</th><th>Retention</th></tr></thead><tbody><tr><td><strong>Universal</strong></td><td><10% poor, 10–25% normal, >25% good</td><td><30% poor, 30–60% normal, >60% good</td></tr><tr><td><strong>SaaS</strong></td><td><15% poor, 15–30% normal, >30% good, >50% excellent</td><td>D30 by login cohorts: <70% poor, 70–85% normal, >85% good</td></tr><tr><td><strong>E-commerce</strong></td><td><3% poor, 3–10% normal, >10% good</td><td>repeat purchase within 90 days: <20% poor, 20–40% normal, >40% good</td></tr><tr><td><strong>Mobile apps</strong></td><td><10% poor, 10–25% normal, >25% good, >40% excellent</td><td>D30: <3% poor, 3–8% normal, >8% good</td></tr><tr><td><strong>Media</strong></td><td><12% poor, 12–30% normal, >30% good</td><td><25% poor, 25–50% normal, >50% good</td></tr></tbody></table>
+Note e-commerce: a 5% DAU/MAU is normal for a store. People don't shop every day, and that's not a product problem.
+
+<h2>What to track: a practical rule</h2>
+
+<ul><li><strong>Always: cohort retention.</strong> It's the main product-market fit signal: the retention curve should flatten into a plateau, not slide to zero.</li><li><strong>DAU/MAU if the product is inherently daily:</strong> messaging, social, games, work tools. For them, frequency is part of the value.</li><li><strong>For infrequent-use products</strong> (travel, taxes, real estate) DAU/MAU is nearly useless. A formally low value will land in the "poor" zone, but that's the nature of the use case. Look at retention at the natural frequency — after a month, a quarter, a year.</li><li><strong>For a weekly rhythm</strong>, use WAU and the DAU/WAU and WAU/MAU ratios. For work tools, WAU is typically 50–80% of MAU.</li></ul>
+
+<h2>Common mistakes</h2>
+
+<h3>1. Treating DAU/MAU as a retention metric</h3>
+Stickiness doesn't show how many people left. An app can lose 95% of newcomers and keep a healthy DAU/MAU on its core.
+
+<h3>2. Panicking when stickiness drops during growth</h3>
+An inflow of new users mechanically lowers DAU/MAU. Check the cohorts first.
+
+<h3>3. Counting any login as "active"</h3>
+Auto-login and background sync inflate DAU. Define activity by a key action.
+
+<h3>4. Averaging all cohorts together</h3>
+Retention across the whole base blends loyal veterans with new users. Look at each cohort separately and compare them.
+
+<h3>5. Measuring a B2B product on calendar days</h3>
+Work tools are barely used on weekends, which pushes DAU/MAU down. For B2B, count business days or use WAU.
+
+<h2>Bottom line</h2>
+
+<p>DAU/MAU is a habit metric: how often the people who stayed use the product. Retention is a value metric: whether people stay at all. The first without the second can paint a healthy picture of a product that only survives on ad spend. Start with cohort retention; add DAU/MAU if the product is inherently daily.</p>
+
+<p><strong>Calculate your cohort retention in the calculator below</strong>, and stickiness at <a href="/en/stickiness">/en/stickiness</a>. Formulas and thresholds for retention, DAU/MAU and 67 more metrics are in the free <a href="/benchmarks">PDF cheat sheet</a>.</p>
+
+<p>---</p>
+
+<h3>Further resources</h3>
+
+<ul><li><a href="/en/stickiness">/en/stickiness</a> — DAU/MAU calculator</li><li><a href="/en/dau">/en/dau</a> — DAU</li><li><a href="/en/mau">/en/mau</a> — MAU</li><li><a href="/en/wau">/en/wau</a> — WAU</li><li><a href="/en/blog/dau-mau-stickiness">/en/blog/dau-mau-stickiness</a> — how to read DAU/MAU and raise stickiness</li><li><a href="/en/blog/retention-rate-benchmarks">/en/blog/retention-rate-benchmarks</a> — retention benchmarks by industry</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Calculate it right here:</strong>
+  <iframe src="https://metricstree.vercel.app/retention?embed=1" width="100%" height="650" loading="lazy" title="MetricTree retention calculator"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Open the full version: <a href="https://metricstree.vercel.app/retention" target="_blank">https://metricstree.vercel.app/retention</a></p>
+</div>
+<div class="share-row">
+  Share:
+  <a href="https://twitter.com/intent/tweet?text=DAU%2FMAU%20vs%20retention%20%E2%80%94%20what%20to%20track%20to%20know%20if%20users%20come%20back&url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fdau-mau-vs-retention" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fdau-mau-vs-retention" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fdau-mau-vs-retention&text=DAU%2FMAU%20vs%20retention%20%E2%80%94%20what%20to%20track%20to%20know%20if%20users%20come%20back" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/en/blog/">All posts</a> · <a href="/en">Calculator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

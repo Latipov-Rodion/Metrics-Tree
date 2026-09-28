@@ -9,11 +9,13 @@
 <link rel="canonical" href="https://metricstree.vercel.app/en/blog/roas-vs-romi">
 <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/roas-vs-romi">
 <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/roas-vs-romi">
+<link rel="alternate" hreflang="uz" href="https://metricstree.vercel.app/uz/blog/roas-vs-romi">
 <link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/roas-vs-romi">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta property="og:title" content="ROAS vs ROMI — how to calculate both and what ROAS you need to break even">
 <meta property="og:description" content="ROAS = revenue / ad spend, ROMI = (gross profit − marketing cost) / marketing cost. Formulas, a worked example, break-even ROAS from your margin, benchmarks and common mistakes.">
 <meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://metricstree.vercel.app/en/blog/roas-vs-romi">
 <meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
 <meta property="article:published_time" content="2026-09-22">
@@ -115,7 +117,7 @@ em { color: var(--text-1); }
 
 <p>The key differences:</p>
 
-<table><thead><tr><th>Parameter</th><th>ROAS</th><th>ROMI</th></tr></thead><tbody><tr><td></td><td>Numerator</td><td>Revenue</td><td>Profit minus cost</td><td></td></tr><tr><td></td><td>Denominator</td><td>Ad budget only</td><td>All marketing cost (ads, agency, creative, tools)</td><td></td></tr><tr><td></td><td>Break-even point</td><td>Depends on margin</td><td>Always 0%</td><td></td></tr><tr><td></td><td>Used for</td><td>Optimizing campaigns and bids</td><td>Deciding whether to invest in marketing at all</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Parameter</th><th>ROAS</th><th>ROMI</th></tr></thead><tbody><tr><td>Numerator</td><td>Revenue</td><td>Profit minus cost</td></tr><tr><td>Denominator</td><td>Ad budget only</td><td>All marketing cost (ads, agency, creative, tools)</td></tr><tr><td>Break-even point</td><td>Depends on margin</td><td>Always 0%</td></tr><tr><td>Used for</td><td>Optimizing campaigns and bids</td><td>Deciding whether to invest in marketing at all</td></tr></tbody></table>
 <h2>Worked example</h2>
 
 <p>An online store, one month:<br><ul><li>Ad spend: <strong>$20,000</strong></li><li>Attributed revenue: <strong>$70,000</strong></li><li>Contribution margin: <strong>35%</strong></li></ul></p>
@@ -136,14 +138,14 @@ em { color: var(--text-1); }
 
 <p><strong>Break-even ROAS = 1 / Margin</strong></p>
 
-<table><thead><tr><th>Contribution margin</th><th>Break-even ROAS</th></tr></thead><tbody><tr><td></td><td>20%</td><td>5.0x</td><td></td></tr><tr><td></td><td>25%</td><td>4.0x</td><td></td></tr><tr><td></td><td>35%</td><td>2.86x</td><td></td></tr><tr><td></td><td>50%</td><td>2.0x</td><td></td></tr><tr><td></td><td>70%</td><td>1.43x</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Contribution margin</th><th>Break-even ROAS</th></tr></thead><tbody><tr><td>20%</td><td>5.0x</td></tr><tr><td>25%</td><td>4.0x</td></tr><tr><td>35%</td><td>2.86x</td></tr><tr><td>50%</td><td>2.0x</td></tr><tr><td>70%</td><td>1.43x</td></tr></tbody></table>
 Calculate this number once for your product mix and keep it in view. Anything below it means you're buying revenue at a loss. Work out your margin with the <a href="/en/contributionMargin">/en/contributionMargin</a> calculator.
 
 <h2>ROAS benchmarks by industry</h2>
 
 <p>The industry thresholds used by the MetricTree <a href="/en/roas">/en/roas</a> calculator:</p>
 
-<table><thead><tr><th>Industry</th><th>Poor</th><th>Normal</th><th>Good</th></tr></thead><tbody><tr><td></td><td><strong>Universal</strong></td><td><2x</td><td>2–4x</td><td>>4x</td><td></td></tr><tr><td></td><td><strong>E-commerce</strong></td><td><2x</td><td>2–5x</td><td>>5x</td><td></td></tr><tr><td></td><td><strong>SaaS</strong></td><td><1.5x</td><td>1.5–4x</td><td>>4x</td><td></td></tr><tr><td></td><td><strong>Mobile apps</strong></td><td><1x</td><td>1–2.5x</td><td>>2.5x</td><td></td></tr><tr><td></td><td><strong>Media</strong></td><td><1.2x</td><td>1.2–3x</td><td>>3x</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Industry</th><th>Poor</th><th>Normal</th><th>Good</th></tr></thead><tbody><tr><td><strong>Universal</strong></td><td><2x</td><td>2–4x</td><td>>4x</td></tr><tr><td><strong>E-commerce</strong></td><td><2x</td><td>2–5x</td><td>>5x</td></tr><tr><td><strong>SaaS</strong></td><td><1.5x</td><td>1.5–4x</td><td>>4x</td></tr><tr><td><strong>Mobile apps</strong></td><td><1x</td><td>1–2.5x</td><td>>2.5x</td></tr><tr><td><strong>Media</strong></td><td><1.2x</td><td>1.2–3x</td><td>>3x</td></tr></tbody></table>
 Why are SaaS and mobile thresholds lower? Because ROAS there is usually measured on first-period revenue, while customers pay for months. A 1.5x first-month ROAS on a subscription can be an excellent campaign if the customer stays two years. For these models look at CAC payback too — <a href="/en/cacPayback">/en/cacPayback</a>.
 
 <p>In our example, 3.5x is normal for e-commerce, and at a 35% margin the campaign is profitable. At a 25% margin the same "normal" number loses money: the break-even threshold is 4x.</p>

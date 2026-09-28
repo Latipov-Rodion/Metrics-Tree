@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ARPU va ARPPU nima — farqi nimada, formulalar va sohalar bo‘yicha normalar | MetricTree Blog</title>
+<meta name="description" content="ARPU = tushum / faol foydalanuvchilar, ARPPU = tushum / to‘lovchilar. Ular to‘lovchilar ulushi orqali qanday bog‘langan, ilova va SaaS uchun hisoblash misoli, normalar va odatiy xatolar.">
+<meta name="keywords" content="arpu nima, arppu nima, arpu va arppu farqi, arpu formulasi, arpu qanday hisoblanadi, foydalanuvchiga o‘rtacha daromad, to‘lovchi foydalanuvchiga daromad">
+<link rel="canonical" href="https://metricstree.vercel.app/uz/blog/arpu-vs-arppu">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/arpu-vs-arppu">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/arpu-vs-arppu">
+<link rel="alternate" hreflang="uz" href="https://metricstree.vercel.app/uz/blog/arpu-vs-arppu">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/arpu-vs-arppu">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="ARPU va ARPPU nima — farqi nimada, formulalar va sohalar bo‘yicha normalar">
+<meta property="og:description" content="ARPU = tushum / faol foydalanuvchilar, ARPPU = tushum / to‘lovchilar. Ular to‘lovchilar ulushi orqali qanday bog‘langan, ilova va SaaS uchun hisoblash misoli, normalar va odatiy xatolar.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="uz_UZ">
+<meta property="og:url" content="https://metricstree.vercel.app/uz/blog/arpu-vs-arppu">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-09-21">
+<meta property="article:author" content="Rodion Latipov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ARPU va ARPPU nima — farqi nimada, formulalar va sohalar bo‘yicha normalar">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ARPU va ARPPU nima — farqi nimada, formulalar va sohalar bo‘yicha normalar",
+  "description": "ARPU = tushum / faol foydalanuvchilar, ARPPU = tushum / to‘lovchilar. Ular to‘lovchilar ulushi orqali qanday bog‘langan, ilova va SaaS uchun hisoblash misoli, normalar va odatiy xatolar.",
+  "datePublished": "2026-09-21",
+  "author": {
+    "@type": "Person",
+    "name": "Rodion Latipov",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/uz/blog/arpu-vs-arppu"
+  },
+  "keywords": "arpu nima, arppu nima, arpu va arppu farqi, arpu formulasi, arpu qanday hisoblanadi, foydalanuvchiga o‘rtacha daromad, to‘lovchi foydalanuvchiga daromad",
+  "inLanguage": "uz"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js?v=ec79991f" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/uz" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/uz/blog/">Blog</a> · <a href="/uz">Kalkulyator →</a></div>
+</nav>
+<article>
+<h1>ARPU va ARPPU nima — farqi nimada, formulalar va sohalar bo‘yicha normalar</h1>
+<div class="meta">2026-yil 21-sentabr · muallif: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a></div>
+<h1>ARPU va ARPPU nima — farqi nimada, formulalar va sohalar bo‘yicha normalar</h1>
+
+<p>ARPU va ARPPU bitta harf bilan farq qiladi, lekin turli savollarga javob beradi. ARPU — har bir faol foydalanuvchi o‘rtacha qancha pul keltiradi. ARPPU — haqiqatan to‘lov qilgan har bir foydalanuvchi qancha keltiradi. Ularni adashtirish — monetizatsiyani ham, ruxsat etilgan CAC’ni ham noto‘g‘ri baholash demakdir.</p>
+
+<h2>Formulalar</h2>
+
+<p><strong>ARPU = Davr tushumi / Davrdagi faol foydalanuvchilar</strong></p>
+
+<p><strong>ARPPU = Davr tushumi / Davrdagi to‘lovchi foydalanuvchilar</strong></p>
+
+<p>Ularni to‘lovchilar ulushi — <strong>PUR (Paying User Rate)</strong> bog‘laydi:</p>
+
+<p><strong>ARPU = ARPPU × PUR</strong></p>
+
+<p>Bu monetizatsiyaning asosiy tenglamasi. ARPU’ni ikki yo‘l bilan oshirish mumkin: to‘lovchilarni ko‘proq to‘lashga undash (ARPPU o‘sadi) yoki ko‘proq odamni to‘lovchiga aylantirish (PUR o‘sadi). Bular turli jamoalar uchun turli vazifalar.</p>
+
+<h2>Hisoblash misoli: mobil ilova</h2>
+
+<p>Freemium-ilova, bir oy:<br><ul><li>Faol foydalanuvchilar (MAU): <strong>50 000</strong></li><li>To‘lovchilar: <strong>1 500</strong> (PUR = 3%)</li><li>Tushum: <strong>$45 000</strong></li></ul></p>
+
+<p>ARPU = 45 000 / 50 000 = <strong>$0.90</strong><br>ARPPU = 45 000 / 1 500 = <strong>$30</strong></p>
+
+<p>Tekshiruv: $30 × 3% = $0.90 ✓</p>
+
+<p>Endi gipoteza: arzon boshlang‘ich paket joriy qilamiz. To‘lovchilar <strong>2 000</strong> ga yetadi (PUR 4%), lekin ARPPU <strong>$26</strong> gacha tushadi, chunki yangi to‘lovchilarning bir qismi faqat boshlang‘ich paketni oladi.</p>
+
+<p>Tushum = 2 000 × $26 = $52 000 → ARPU = <strong>$1.04</strong> (+15.6%)</p>
+
+<p>ARPPU tushdi, lekin biznes ko‘proq pul ishladi. Faqat ARPPU’ga qaralsa, tajriba muvaffaqiyatsiz ko‘ringan bo‘lardi. Aynan shuning uchun bu metrikalar doim birga o‘qiladi.</p>
+
+<h2>Hisoblash misoli: B2B SaaS</h2>
+
+<p>Bepul tarifi bor servis:<br><ul><li>Faol akkauntlar: <strong>800</strong>, ulardan <strong>200</strong> tasi free’da</li><li>To‘lovchilar: <strong>600</strong></li><li>MRR: <strong>$48 000</strong></li></ul></p>
+
+<p>ARPPU = 48 000 / 600 = <strong>$80</strong>/oy<br>ARPU = 48 000 / 800 = <strong>$60</strong>/oy</p>
+
+<p>B2B’da ARPPU mohiyatan ARPA’ga (akkauntning o‘rtacha cheki) teng va taxminan ACV / 12. U upsell’lar, o‘rinlar (seats) va yuqori tariflarga o‘tish hisobiga o‘sadi.</p>
+
+<h2>Sohalar bo‘yicha ARPU va ARPPU normalari</h2>
+
+<p>Mo‘ljallar MetricTree kalkulyatorlarining sohalar bo‘yicha chegaralari bilan mos keladi:</p>
+
+<table><thead><tr><th>Soha</th><th>ARPU (oyiga)</th><th>ARPPU</th></tr></thead><tbody><tr><td><strong>B2B SaaS</strong></td><td>B2B: $50–$500, SMB: $20–$100, Enterprise: >$500</td><td>≈ ACV / 12; upsell va tariflar orqali o‘sadi</td></tr><tr><td><strong>E-commerce</strong></td><td>Faol xaridorga $5–$50</td><td>≈ AOV × to‘lovchining xarid chastotasi</td></tr><tr><td><strong>Mobil ilovalar</strong></td><td>Free-to-play: $0.05–$5, pullik ilovalar: $1–$20</td><td>F2P: to‘lovchilarda $5–$50</td></tr><tr><td><strong>Media</strong></td><td>Obuna: $3–$15, reklama: $0.5–$5</td><td>Tarif narxiga yaqin</td></tr></tbody></table>
+Bizning misolda ARPU $0.90 va ARPPU $30 bo‘lgan ilova — ikkala metrika bo‘yicha ham F2P uchun norma doirasida.
+
+<p>ARPU kalkulyatorining asosiy shkalasi (<$10 past, $10–$50 o‘rtacha, >$50 yuqori) obuna modellariga mo‘ljallangan. Freemium-ilovalar va reklama orqali monetizatsiya qilinadigan media uchun jadvaldagi soha mo‘ljalidan foydalaning — aks holda normal F2P-mahsulot «yomon» ko‘rinadi.</p>
+
+<h2>Qachon ARPU’ga, qachon ARPPU’ga qarash kerak</h2>
+
+<table><thead><tr><th>Savol</th><th>Metrika</th></tr></thead><tbody><tr><td>Foydalanuvchini jalb qilish uchun qancha to‘lay olaman?</td><td><strong>ARPU</strong> (va uning asosidagi LTV)</td></tr><tr><td>Pricing va upsell’lar ishlayaptimi?</td><td><strong>ARPPU</strong></td></tr><tr><td>Paywall va free → paid konversiyasi ishlayaptimi?</td><td><strong>PUR</strong></td></tr><tr><td>Monetizatsiyani reklama modeli bilan solishtirish</td><td><strong>ARPU</strong> (reklama faqat to‘lovchilarni emas, hammani monetizatsiya qiladi)</td></tr><tr><td>Mobil o‘yin, kunlik dinamika</td><td><strong>ARPDAU</strong> — <a href="/uz/arpdau">/uz/arpdau</a> ga qarang</td></tr></tbody></table>
+CAC ARPPU bilan emas, butun kogortaning ARPU’si va LTV’si bilan solishtiriladi: siz har bir foydalanuvchini jalb qilish uchun to‘laysiz, to‘lovchilar esa hamma emas.
+
+<h2>Odatiy xatolar</h2>
+
+<h3>1. Faollar o‘rniga ro‘yxatdan o‘tganlar</h3>
+Agar maxrajda butun davr mobaynida ro‘yxatdan o‘tganlarning hammasi bo‘lsa, ARPU sun’iy ravishda past bo‘ladi va «o‘lik» akkauntlar bazasi o‘sgani uchungina tushib boradi.
+
+<h3>2. Surat va maxrajda turli davrlar</h3>
+MAU’ga bo‘lingan yillik tushum ma’nosiz raqam beradi. Tushum va foydalanuvchilar — bitta davr uchun.
+
+<h3>3. Takrorlangan to‘lovchilar</h3>
+Uchta xarid qilgan foydalanuvchi — uchta emas, bitta to‘lovchi. Dublikatlar ARPPU’ni kamaytiradi va PUR’ni oshirib ko‘rsatadi.
+
+<h3>4. Net o‘rniga gross</h3>
+Mobil ilovalarda ilova do‘konlari komissiya oladi (odatda 15–30%), ustiga qaytarishlar va soliqlar. O‘zini oqlash bo‘yicha qarorlar uchun sof tushumdan foydalaning.
+
+<h3>5. «Kitlar» o‘rtachani buzadi</h3>
+F2P’da to‘lovchilarning kichik ulushi tushumning asosiy qismini berishi mumkin. Faqat o‘rtachaga emas, mediana va segmentlar bo‘yicha ARPPU taqsimotiga qarang.
+
+<h3>6. Turli PUR’da ARPPU’ni solishtirish</h3>
+PUR 1% da ARPPU $50 va PUR 5% da ARPPU $20 — ikkinchi model foydalanuvchiga ikki baravar ko‘p keltiradi ($1.00 ga qarshi $0.50). ARPPU’ni PUR’siz solishtirib bo‘lmaydi.
+
+<h2>ARPU’ni qanday oshirish mumkin</h2>
+
+<ul><li><strong>PUR’ni oshirish:</strong> sinov davri, boshlang‘ich paket, qiymat paydo bo‘lgan paytdagi tushunarli paywall.</li><li><strong>ARPPU’ni oshirish:</strong> tariflar zinapoyasi, yillik rejalar, upsell va add-on’lar, narxlarni qayta ko‘rib chiqish.</li><li><strong>Ikkinchi manba qo‘shish:</strong> to‘lamaydiganlar uchun reklama, hamkorlik takliflari.</li><li><strong>Ushlab qolish:</strong> uzoqroq qoladigan foydalanuvchi to‘lovchiga aylanishga ulguradi. ARPU va retention birga o‘sadi.</li></ul>
+
+<h2>ARPU, LTV va ruxsat etilgan CAC</h2>
+
+<p>ARPU — LTV hisobidagi birinchi g‘isht. Soddalashtirilgan holda:</p>
+
+<p><strong>LTV ≈ ARPU × yalpi marja / oylik churn</strong></p>
+
+<p>Misol: oyiga ARPU $60, marja 80%, churn 3% → LTV ≈ 60 × 0.8 / 0.03 = <strong>$1 600</strong>. LTV > 3× CAC mo‘ljalida ruxsat etilgan CAC — taxminan $530.</p>
+
+<p>Birinchi misoldagi ARPU $0.90 bo‘lgan freemium-ilova uchun xuddi shu hisob-kitob bir necha dollarlik LTV beradi — shuning uchun F2P’da reklamaning o‘zini oqlashini o‘rtacha bo‘yicha emas, kogortalar bo‘yicha hisoblash juda muhim. Hisobni <a href="/uz/ltv">/uz/ltv</a> kalkulyatorida tekshirish mumkin.</p>
+
+<h2>Ko‘p beriladigan savollar</h2>
+
+<h3>ARPU oyiga yoki yiliga hisoblanadimi?</h3>
+Istalgan davr uchun, lekin surat va maxraj bitta davr uchun bo‘lishi kerak. Obuna mahsulotlarida oylik ARPU qabul qilingan, mobil o‘yinlarda — kunlik ARPDAU ham.
+
+<h3>Qaysi biri katta — ARPU yoki ARPPU?</h3>
+ARPPU har doim ARPU’dan katta yoki unga teng, chunki to‘lovchilar faollardan ko‘p emas. Ular faqat barcha foydalanuvchilar to‘laganda teng bo‘ladi (PUR = 100%).
+
+<h3>ARPU ARPA’dan nimasi bilan farq qiladi?</h3>
+ARPA (Average Revenue per Account) foydalanuvchiga emas, kompaniya akkauntiga hisoblanadi. Bitta akkauntda ko‘p o‘rin bo‘ladigan B2B’da ARPA — foydaliroq metrika.
+
+<h3>ARPU uchun qaysi tushumni olish kerak — reklama bilan yoki reklamasiz?</h3>
+Davr mobaynida foydalanuvchilar keltiradigan butun tushumni: obunalar, xaridlar va reklama. Agar monetizatsiya modellarini ajratmoqchi bo‘lsangiz, xaridlardan ARPU va reklamadan ARPU’ni alohida hisoblang — yig‘indisi umumiy ARPU’ni beradi.
+
+<h2>Xulosa</h2>
+
+<p>ARPU butun auditoriya monetizatsiyasini, ARPPU — to‘lovchilar monetizatsiyasi chuqurligini, PUR — kengligini ko‘rsatadi. Uchalasiga doim birga qarang: bir metrikaning boshqasi hisobiga o‘sishi — odatiy hol, va faqat ARPU biznes ko‘proq pul ishlay boshladimi-yo‘qligini ko‘rsatadi.</p>
+
+<p><strong>ARPU’ingizni quyidagi kalkulyatorda hisoblang</strong>, ARPPU’ni esa — <a href="/uz/arppu">/uz/arppu</a> sahifasida. 69 ta metrika formulalari va chegaralari jamlangan bepul <a href="/benchmarks">PDF-shpargalka</a> monetizatsiya dashboard’ini yig‘ayotganda asqotadi.</p>
+
+<p>---</p>
+
+<h3>Qo‘shimcha resurslar</h3>
+
+<ul><li><a href="/uz/arpu">/uz/arpu</a> — ARPU kalkulyatori</li><li><a href="/uz/arppu">/uz/arppu</a> — ARPPU kalkulyatori</li><li><a href="/uz/arpdau">/uz/arpdau</a> — mobil o‘yinlar uchun ARPDAU</li><li><a href="/uz/ltv">/uz/ltv</a> — ARPU asosidagi LTV</li><li><a href="/blog/arpdau-mobile-games">/blog/arpdau-mobile-games</a> — mobil o‘yinlar monetizatsiyasi (rus tilida)</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Shu yerning o‘zida hisoblang:</strong>
+  <iframe src="https://metricstree.vercel.app/uz/arpu?embed=1" width="100%" height="650" loading="lazy" title="MetricTree arpu kalkulyatori"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">To‘liq versiyasini ochish: <a href="https://metricstree.vercel.app/uz/arpu" target="_blank">https://metricstree.vercel.app/uz/arpu</a></p>
+</div>
+<div class="share-row">
+  Ulashish:
+  <a href="https://twitter.com/intent/tweet?text=ARPU%20va%20ARPPU%20nima%20%E2%80%94%20farqi%20nimada%2C%20formulalar%20va%20sohalar%20bo%E2%80%98yicha%20normalar&url=https%3A%2F%2Fmetricstree.vercel.app%2Fuz%2Fblog%2Farpu-vs-arppu" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fuz%2Fblog%2Farpu-vs-arppu" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fuz%2Fblog%2Farpu-vs-arppu&text=ARPU%20va%20ARPPU%20nima%20%E2%80%94%20farqi%20nimada%2C%20formulalar%20va%20sohalar%20bo%E2%80%98yicha%20normalar" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/uz/blog/">Barcha maqolalar</a> · <a href="/uz">Kalkulyator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

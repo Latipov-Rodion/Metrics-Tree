@@ -14,6 +14,7 @@
 <meta property="og:title" content="A 30-second unit-economics audit">
 <meta property="og:description" content="How to run your unit economics through a calculator in half a minute: pull values from a spreadsheet, get LTV, CAC, LTV:CAC, Payback and benchmarks at once — no Excel formulas.">
 <meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://metricstree.vercel.app/en/blog/csv-unit-economics-audit">
 <meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
 <meta property="article:published_time" content="2026-06-02">
@@ -109,7 +110,7 @@ em { color: var(--text-1); }
 
 <p>The minimum set that answers "is the economics healthy":</p>
 
-<table><thead><tr><th>Metric</th><th>Formula</th><th>Healthy norm</th></tr></thead><tbody><tr><td></td><td><strong>LTV</strong></td><td>ARPA / Monthly Churn (or AOV × frequency × lifetime)</td><td>contextual</td><td></td></tr><tr><td></td><td><strong>CAC</strong></td><td>(Marketing + Sales) / new customers</td><td>contextual</td><td></td></tr><tr><td></td><td><strong>LTV:CAC</strong></td><td>LTV / CAC</td><td><strong>≥ 3</strong></td><td></td></tr><tr><td></td><td><strong>CAC Payback</strong></td><td>CAC / (MRR per customer × Gross Margin)</td><td><strong>< 18 months</strong></td><td></td></tr><tr><td></td><td><strong>Gross Margin</strong></td><td>(Revenue − COGS) / Revenue</td><td>75–85%</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Metric</th><th>Formula</th><th>Healthy norm</th></tr></thead><tbody><tr><td><strong>LTV</strong></td><td>ARPA / Monthly Churn (or AOV × frequency × lifetime)</td><td>contextual</td></tr><tr><td><strong>CAC</strong></td><td>(Marketing + Sales) / new customers</td><td>contextual</td></tr><tr><td><strong>LTV:CAC</strong></td><td>LTV / CAC</td><td><strong>≥ 3</strong></td></tr><tr><td><strong>CAC Payback</strong></td><td>CAC / (MRR per customer × Gross Margin)</td><td><strong>< 18 months</strong></td></tr><tr><td><strong>Gross Margin</strong></td><td>(Revenue − COGS) / Revenue</td><td>75–85%</td></tr></tbody></table>
 <strong>The health rule:</strong> <code>LTV:CAC ≥ 3</code> <strong>AND</strong> <code>CAC Payback < 18 months</code>. If only one holds — there's a problem, and fixing it is the quarter's priority.
 
 <h2>How to run spreadsheet values</h2>

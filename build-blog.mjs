@@ -3,10 +3,11 @@
 // Sources:
 //   blog-src/*.md       → Russian posts   → /blog/<slug>      (blog/<slug>.html)
 //   blog-src/en/*.md    → English posts   → /en/blog/<slug>   (en/blog/<slug>.html)
+//   blog-src/uz/*.md    → Uzbek posts     → /uz/blog/<slug>   (uz/blog/<slug>.html)
 //
 // Each post gets unique <title>, og tags, canonical URL, BlogPosting JSON-LD.
-// When the same <slug> exists in both languages, the posts are cross-linked via
-// hreflang alternates (ru ↔ en, x-default → ru).
+// When the same <slug> exists in 2+ languages, every twin is cross-linked via
+// hreflang alternates (ru / en / uz, x-default → ru).
 //
 // Frontmatter format (YAML-ish, simple):
 // ---
@@ -36,6 +37,8 @@ const LANGS = {
     navCalc: 'Калькулятор →',
     homeHref: '/',
     blogHref: '/blog/',
+    calcBase: '',
+    ogLocale: 'ru_RU',
     metaBy: 'автор:',
     embedHeading: '🧮 Считай прямо здесь:',
     embedOpenFull: 'Открыть в полной версии:',
@@ -57,6 +60,8 @@ const LANGS = {
     navCalc: 'Calculator →',
     homeHref: '/en',
     blogHref: '/en/blog/',
+    calcBase: '',
+    ogLocale: 'en_US',
     metaBy: 'by',
     embedHeading: '🧮 Calculate it right here:',
     embedOpenFull: 'Open the full version:',
@@ -71,7 +76,41 @@ const LANGS = {
     indexH1: 'Blog',
     indexLede: 'In-depth product metrics guides: formulas, industry benchmarks, real-world application. Every post includes an interactive calculator.',
   },
+  uz: {
+    out: path.join(ROOT, 'uz', 'blog'),
+    urlBase: '/uz/blog',
+    author: 'Rodion Latipov',
+    navCalc: 'Kalkulyator →',
+    homeHref: '/uz',
+    blogHref: '/uz/blog/',
+    // Calculator links/embeds go to the Uzbek metric pages (/uz/<metricId>).
+    calcBase: '/uz',
+    ogLocale: 'uz_UZ',
+    metaBy: 'muallif:',
+    embedHeading: '🧮 Shu yerning o‘zida hisoblang:',
+    embedOpenFull: 'To‘liq versiyasini ochish:',
+    iframeTitle: (id) => `MetricTree ${id} kalkulyatori`,
+    shareLabel: 'Ulashish:',
+    footerAllPosts: 'Barcha maqolalar',
+    footerCalc: 'Kalkulyator',
+    indexTitle: 'Blog — MetricTree | Mahsulot metrikalari bo‘yicha qo‘llanmalar',
+    indexDesc: 'Mahsulot va SaaS metrikalari bo‘yicha qo‘llanmalar o‘zbek tilida: LTV, CAC, churn, NPS, retention, ROAS, runway, Burn Multiple, Rule of 40 — formulalar, benchmarklar, tavsiyalar.',
+    indexOgTitle: 'MetricTree Blog — Mahsulot metrikalari o‘zbek tilida',
+    indexOgDesc: 'LTV:CAC, churn, NPS, retention, Burn Multiple, Rule of 40 va boshqa SaaS metrikalari tahlili. Formulalar, benchmarklar va real misollar bilan.',
+    indexH1: 'Blog',
+    indexLede: 'Mahsulot metrikalari bo‘yicha chuqur qo‘llanmalar: formulalar, soha benchmarklari, amaliy qo‘llash. Har bir maqolada interaktiv kalkulyator bor.',
+    // ISO date → "2026-yil 17-may" (visible only; meta tags keep ISO).
+    formatDate: (iso) => {
+      const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || '');
+      if (!m) return iso || '';
+      const months = ['yanvar', 'fevral', 'mart', 'aprel', 'may', 'iyun', 'iyul', 'avgust', 'sentabr', 'oktabr', 'noyabr', 'dekabr'];
+      return `${m[1]}-yil ${Number(m[3])}-${months[Number(m[2]) - 1]}`;
+    },
+  },
 };
+
+// Visible date string for a post (RU/EN keep the raw ISO date).
+const showDate = (lang, iso) => (LANGS[lang].formatDate ? LANGS[lang].formatDate(iso) : (iso || ''));
 
 function parseFrontmatter(raw) {
   const m = raw.match(/^---\n([\s\S]+?)\n---\n([\s\S]*)$/);
@@ -108,7 +147,10 @@ function md2html(md) {
   html = html.replace(/(^\|.+\|\n\|[-:|\s]+\|\n(?:\|.+\|\n?)+)/gm, m => {
     const rows = m.trim().split('\n');
     const header = rows[0].split('|').map(c => c.trim()).filter(Boolean);
-    const body = rows.slice(2).map(r => r.split('|').map(c => c.trim()).filter((_, i, arr) => i < arr.length));
+    // Drop only the outer pipes, so each row yields exactly its cells (the old
+    // filter kept the empty strings before the first and after the last '|',
+    // adding a blank cell at both ends of every body row). Inner empty cells stay.
+    const body = rows.slice(2).map(r => r.trim().replace(/^\|/, '').replace(/\|$/, '').split('|').map(c => c.trim()));
     const thead = '<thead><tr>' + header.map(h => '<th>' + h + '</th>').join('') + '</tr></thead>';
     const tbody = '<tbody>' + body.map(r => '<tr>' + r.map(c => '<td>' + c + '</td>').join('') + '</tr>').join('') + '</tbody>';
     return '<table>' + thead + tbody + '</table>';
@@ -150,6 +192,7 @@ const TEMPLATE = (meta, html, slug, lang, altLinks, ogImage) => {
 <meta property="og:title" content="${meta.title}">
 <meta property="og:description" content="${meta.description}">
 <meta property="og:type" content="article">
+<meta property="og:locale" content="${L.ogLocale}">
 <meta property="og:url" content="${url}">
 <meta property="og:image" content="${ogImage}">
 <meta property="article:published_time" content="${meta.date || ''}">
@@ -219,13 +262,13 @@ em { color: var(--text-1); }
 </nav>
 <article>
 <h1>${meta.title}</h1>
-<div class="meta">${meta.date || ''} · ${L.metaBy} <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">${L.author}</a></div>
+<div class="meta">${showDate(lang, meta.date)} · ${L.metaBy} <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">${L.author}</a></div>
 ${html}
 ${meta.embed ? `
 <div class="embed-cta">
   <strong>${L.embedHeading}</strong>
-  <iframe src="${SITE}/${meta.embed}?embed=1" width="100%" height="650" loading="lazy" title="${L.iframeTitle(meta.embed)}"></iframe>
-  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">${L.embedOpenFull} <a href="${SITE}/${meta.embed}" target="_blank">${SITE}/${meta.embed}</a></p>
+  <iframe src="${SITE}${L.calcBase}/${meta.embed}?embed=1" width="100%" height="650" loading="lazy" title="${L.iframeTitle(meta.embed)}"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">${L.embedOpenFull} <a href="${SITE}${L.calcBase}/${meta.embed}" target="_blank">${SITE}${L.calcBase}/${meta.embed}</a></p>
 </div>` : ''}
 <div class="share-row">
   ${L.shareLabel}
@@ -242,8 +285,13 @@ ${meta.embed ? `
 `;
 };
 
-const INDEX_TEMPLATE = (posts, lang) => {
+const INDEX_TEMPLATE = (posts, lang, indexLangs) => {
   const L = LANGS[lang];
+  // hreflang between the per-language blog indexes (only languages that have posts).
+  const idxAlts = indexLangs.length < 2 ? '' : '\n' + indexLangs
+    .map(l => `<link rel="alternate" hreflang="${l}" href="${SITE}${LANGS[l].blogHref}">`)
+    .concat(`<link rel="alternate" hreflang="x-default" href="${SITE}${LANGS[indexLangs.includes('ru') ? 'ru' : indexLangs[0]].blogHref}">`)
+    .join('\n');
   return `<!doctype html>
 <html lang="${lang}">
 <head>
@@ -251,9 +299,10 @@ const INDEX_TEMPLATE = (posts, lang) => {
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>${L.indexTitle}</title>
 <meta name="description" content="${L.indexDesc}">
-<link rel="canonical" href="${SITE}${L.blogHref}">
+<link rel="canonical" href="${SITE}${L.blogHref}">${idxAlts}
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta property="og:title" content="${L.indexOgTitle}">
+<meta property="og:locale" content="${L.ogLocale}">
 <meta property="og:description" content="${L.indexOgDesc}">
 <meta property="og:url" content="${SITE}${L.blogHref}">
 <meta property="og:image" content="${SITE}/og-image.png">
@@ -288,7 +337,7 @@ h1 { font-size: 2.2rem; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
 <p class="lede">${L.indexLede}</p>
 ${posts.map(p => `
 <a class="post-card" href="${L.urlBase}/${p.slug}">
-  <div class="post-meta">${p.meta.date || ''}</div>
+  <div class="post-meta">${showDate(lang, p.meta.date)}</div>
   <h2>${p.meta.title}</h2>
   <p class="post-desc">${p.meta.description}</p>
 </a>
@@ -306,6 +355,7 @@ function readPosts(dir, lang) {
   if (!fs.existsSync(dir)) return [];
   return fs.readdirSync(dir)
     .filter(f => f.endsWith('.md'))
+    .sort()
     .map(f => {
       const raw = fs.readFileSync(path.join(dir, f), 'utf8');
       const { meta, body } = parseFrontmatter(raw);
@@ -322,7 +372,9 @@ function main() {
   const byLang = {
     ru: readPosts(SRC_DIR, 'ru'),
     en: readPosts(path.join(SRC_DIR, 'en'), 'en'),
+    uz: readPosts(path.join(SRC_DIR, 'uz'), 'uz'),
   };
+  const indexLangs = Object.keys(byLang).filter(l => byLang[l].length);
 
   // Map slug -> [langs] for hreflang pairing.
   const slugLangs = {};
@@ -339,16 +391,16 @@ function main() {
     for (const p of posts) {
       const html = md2html(p.body);
       const alts = hreflangLinks(p.slug, slugLangs[p.slug]);
-      const ogRel = lang === 'en' ? `blog-og/en/${p.slug}.png` : `blog-og/${p.slug}.png`;
+      const ogRel = lang === 'ru' ? `blog-og/${p.slug}.png` : `blog-og/${lang}/${p.slug}.png`;
       const ogImage = fs.existsSync(path.join(ROOT, ogRel)) ? `${SITE}/${ogRel}` : `${SITE}/og-image.png`;
       fs.writeFileSync(path.join(L.out, p.slug + '.html'), TEMPLATE(p.meta, html, p.slug, lang, alts, ogImage));
       total++;
     }
     // Sort by date descending, generate per-language index.
     const sorted = [...posts].sort((a, b) => (b.meta.date || '').localeCompare(a.meta.date || ''));
-    fs.writeFileSync(path.join(L.out, 'index.html'), INDEX_TEMPLATE(sorted, lang));
+    fs.writeFileSync(path.join(L.out, 'index.html'), INDEX_TEMPLATE(sorted, lang, indexLangs));
   }
-  console.log(`✓ Generated ${total} blog post(s): ${byLang.ru.length} ru + ${byLang.en.length} en → /blog/ + /en/blog/`);
+  console.log(`✓ Generated ${total} blog post(s): ${byLang.ru.length} ru + ${byLang.en.length} en + ${byLang.uz.length} uz → /blog/ + /en/blog/ + /uz/blog/`);
 }
 
 main();

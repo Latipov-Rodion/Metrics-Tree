@@ -263,7 +263,7 @@ const META = {
     { q: 'Как повысить ROAS?', a: '(1) creatives — A/B-тесты, 80% улучшений идёт оттуда; (2) landing page conversion (CR×ROAS); (3) audience targeting (lookalikes от high-LTV); (4) AOV-апселы; (5) убрать broad-match low-intent keywords.' }
   ]},
   cpc:            { title: 'CPC калькулятор — Cost Per Click', desc: 'CPC = Затраты / Клики. Отраслевые бенчмарки по платформам. Связь с CR, ROAS.', q: 'Что такое CPC?', a: 'Cost Per Click — средняя стоимость клика. SaaS: $2–8 норма, e-com: $0.3–1.2.' },
-  ctr:            { title: 'CTR калькулятор — Click-Through Rate', desc: 'CTR = Клики / Показы × 100%. Норма поиск 2–5%, баннеры 0.5–1.5%.', q: 'Что такое CTR?', a: 'Click-Through Rate — кликабельность. Поиск: >2%, баннеры: >0.1%, email: >20%.' },
+  ctr:            { title: 'CTR калькулятор — Click-Through Rate', desc: 'CTR = Клики / Показы × 100%. Норма поиск 2–5%, баннеры 0.5–1.5%.', q: 'Что такое CTR?', a: 'Click-Through Rate — кликабельность. Поиск: >2%, баннеры: >0.1%, email: >3% (клики / доставленные).' },
   bounceRate:     { title: 'Bounce Rate калькулятор — формула и нормы', desc: 'Bounce Rate = Однострочные сессии / Все × 100%. E-com норма <55%, SaaS <60%.', q: 'Что такое Bounce Rate?', a: 'Bounce Rate — процент сессий с одной страницей. E-com норма <55%, SaaS <60%, медиа <80%.' },
   // QA
   bugRate:        { title: 'Bug Rate Calculator — плотность багов', desc: 'Bug Rate = Баги / KLOC или спринт. Норма <2 на KLOC.', q: 'Что такое Bug Rate?', a: 'Bug Rate — плотность дефектов на 1000 строк кода или на спринт. Норма <2/KLOC, хорошо <1/KLOC.' },
@@ -544,6 +544,8 @@ function applyHead(html, { title, desc, url, lang }) {
     html = html.replace(/\n[ \t]*<meta name="keywords"[^>]*>/, '');
     html = html.replace(/<h1>MetricTree — [^<]*<\/h1>/, `<h1>${esc(L.h1)}</h1>`);
     html = html.replace(/"inLanguage": "ru"/, `"inLanguage": "${lang}"`);
+    // Footer "Blog" link → the localized blog index (/en/blog/, /uz/blog/).
+    html = html.replace('<a href="/blog/">Blog</a>', `<a href="/${lang}/blog/">Blog</a>`);
   }
   return html;
 }
@@ -705,24 +707,45 @@ function generateSitemap() {
   const enBlogSlugs = [...new Set(
     [...vercel.matchAll(/"source":\s*"\/en\/blog\/([a-z0-9-]+)"/g)].map(m => m[1])
   )].filter(s => s !== 'index');
+  const uzBlogSlugs = [...new Set(
+    [...vercel.matchAll(/"source":\s*"\/uz\/blog\/([a-z0-9-]+)"/g)].map(m => m[1])
+  )].filter(s => s !== 'index');
   const enBlogSet = new Set(enBlogSlugs);
-  // hreflang alternates for a blog slug that exists in both languages.
-  const blogAlts = (slug) => [
-    { lang: 'ru', href: `${SITE}/blog/${slug}` },
-    { lang: 'en', href: `${SITE}/en/blog/${slug}` },
-    { lang: 'x-default', href: `${SITE}/blog/${slug}` },
-  ];
+  const uzBlogSet = new Set(uzBlogSlugs);
+  const ruBlogSet = new Set(blogSlugs);
+  // hreflang alternates for a blog slug: every language that has the post
+  // (ru / en / uz), x-default → ru. null when the post exists in one language only.
+  const blogAlts = (slug) => {
+    const alts = [];
+    if (ruBlogSet.has(slug)) alts.push({ lang: 'ru', href: `${SITE}/blog/${slug}` });
+    if (enBlogSet.has(slug)) alts.push({ lang: 'en', href: `${SITE}/en/blog/${slug}` });
+    if (uzBlogSet.has(slug)) alts.push({ lang: 'uz', href: `${SITE}/uz/blog/${slug}` });
+    if (alts.length < 2) return null;
+    alts.push({ lang: 'x-default', href: alts[0].href });
+    return alts;
+  };
   for (const slug of blogSlugs) {
     const opts = { priority: '0.7', changefreq: 'monthly', src: [`blog-src/${slug}.md`] };
-    if (enBlogSet.has(slug)) opts.alts = blogAlts(slug);
+    const alts = blogAlts(slug);
+    if (alts) opts.alts = alts;
     urls.push(urlNode(`${SITE}/blog/${slug}`, opts));
   }
   if (enBlogSlugs.length) {
     urls.push(urlNode(`${SITE}/en/blog`, { priority: '0.7', changefreq: 'weekly', src: ['blog-src/en', 'build-blog.mjs'] }));
     for (const slug of enBlogSlugs) {
       const opts = { priority: '0.6', changefreq: 'monthly', src: [`blog-src/en/${slug}.md`] };
-      if (blogSlugs.includes(slug)) opts.alts = blogAlts(slug);
+      const alts = blogAlts(slug);
+      if (alts) opts.alts = alts;
       urls.push(urlNode(`${SITE}/en/blog/${slug}`, opts));
+    }
+  }
+  if (uzBlogSlugs.length) {
+    urls.push(urlNode(`${SITE}/uz/blog`, { priority: '0.7', changefreq: 'weekly', src: ['blog-src/uz', 'build-blog.mjs'] }));
+    for (const slug of uzBlogSlugs) {
+      const opts = { priority: '0.6', changefreq: 'monthly', src: [`blog-src/uz/${slug}.md`] };
+      const alts = blogAlts(slug);
+      if (alts) opts.alts = alts;
+      urls.push(urlNode(`${SITE}/uz/blog/${slug}`, opts));
     }
   }
 

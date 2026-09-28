@@ -14,6 +14,7 @@
 <meta property="og:title" content="Gross Margin в SaaS — почему 80% это стандарт и что входит в COGS">
 <meta property="og:description" content="Gross Margin = (Выручка − COGS) / Выручка. Почему у SaaS норма 75-85%, что включать в COGS, и как маржа влияет на Rule of 40, CAC Payback и оценку компании.">
 <meta property="og:type" content="article">
+<meta property="og:locale" content="ru_RU">
 <meta property="og:url" content="https://metricstree.vercel.app/blog/gross-margin-saas">
 <meta property="og:image" content="https://metricstree.vercel.app/blog-og/gross-margin-saas.png">
 <meta property="article:published_time" content="2026-05-19">
@@ -111,14 +112,14 @@ em { color: var(--text-1); }
 
 <p>В отличие от физических товаров, доставка ещё одной копии софта стоит почти ничего. Поэтому SaaS — один из самых высокомаржинальных бизнесов в мире:</p>
 
-<table><thead><tr><th>Тип бизнеса</th><th>Типичный Gross Margin</th></tr></thead><tbody><tr><td></td><td><strong>SaaS (зрелый)</strong></td><td>75-85%</td><td></td></tr><tr><td></td><td><strong>SaaS (top-tier)</strong></td><td>85-90%</td><td></td></tr><tr><td></td><td><strong>Marketplace</strong></td><td>50-70%</td><td></td></tr><tr><td></td><td><strong>E-commerce</strong></td><td>20-40%</td><td></td></tr><tr><td></td><td><strong>Hardware</strong></td><td>20-35%</td><td></td></tr><tr><td></td><td><strong>Услуги / агентства</strong></td><td>30-50%</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Тип бизнеса</th><th>Типичный Gross Margin</th></tr></thead><tbody><tr><td><strong>SaaS (зрелый)</strong></td><td>75-85%</td></tr><tr><td><strong>SaaS (top-tier)</strong></td><td>85-90%</td></tr><tr><td><strong>Marketplace</strong></td><td>50-70%</td></tr><tr><td><strong>E-commerce</strong></td><td>20-40%</td></tr><tr><td><strong>Hardware</strong></td><td>20-35%</td></tr><tr><td><strong>Услуги / агентства</strong></td><td>30-50%</td></tr></tbody></table>
 <strong>Норма для SaaS — 80%.</strong> Ниже 70% — инвесторы насторожатся: либо высокие хостинг-затраты, либо в выручке скрыты услуги/имплементация с низкой маржой.
 
 <h2>Что входит в COGS у SaaS</h2>
 
 <p>Главная ошибка — путать COGS с операционными расходами. В COGS идёт только то, что <strong>напрямую</strong> нужно для работы сервиса:</p>
 
-<table><thead><tr><th>Входит в COGS ✓</th><th>НЕ входит (это OpEx) ✗</th></tr></thead><tbody><tr><td></td><td>Хостинг / облако (AWS, GCP)</td><td>Sales & Marketing</td><td></td></tr><tr><td></td><td>Сторонние API в составе продукта</td><td>R&D / разработка фич</td><td></td></tr><tr><td></td><td>Поддержка клиентов (часть)</td><td>G&A (офис, юристы, финансы)</td><td></td></tr><tr><td></td><td>Customer Success (часть)</td><td>Зарплаты разработчиков</td><td></td></tr><tr><td></td><td>Платёжные комиссии</td><td>Реклама</td><td></td></tr><tr><td></td><td>Доставка контента (CDN)</td><td>Менеджмент</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Входит в COGS ✓</th><th>НЕ входит (это OpEx) ✗</th></tr></thead><tbody><tr><td>Хостинг / облако (AWS, GCP)</td><td>Sales & Marketing</td></tr><tr><td>Сторонние API в составе продукта</td><td>R&D / разработка фич</td></tr><tr><td>Поддержка клиентов (часть)</td><td>G&A (офис, юристы, финансы)</td></tr><tr><td>Customer Success (часть)</td><td>Зарплаты разработчиков</td></tr><tr><td>Платёжные комиссии</td><td>Реклама</td></tr><tr><td>Доставка контента (CDN)</td><td>Менеджмент</td></tr></tbody></table>
 <strong>Серая зона</strong> — Customer Success и Support. Часть, обеспечивающая базовую работу клиента, — это COGS; часть, занимающаяся upsell, — это Sales. Раздели последовательно и не меняй методику между периодами.
 
 <h2>Пример расчёта</h2>
@@ -164,7 +165,7 @@ Gross/EBITDA margin — половина формулы R40. +5pp маржи = +
 
 <h2>Связь с другими метриками</h2>
 
-<table><thead><tr><th>Метрика</th><th>Связь с Gross Margin</th></tr></thead><tbody><tr><td></td><td><strong>Rule of 40</strong></td><td>Маржа — половина формулы</td><td></td></tr><tr><td></td><td><strong>CAC Payback</strong></td><td>Маржа — множитель в знаменателе</td><td></td></tr><tr><td></td><td><strong>LTV</strong></td><td>Net LTV считается после вычета COGS</td><td></td></tr><tr><td></td><td><strong>Burn Multiple</strong></td><td>Выше маржа → ниже burn на единицу роста</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Метрика</th><th>Связь с Gross Margin</th></tr></thead><tbody><tr><td><strong>Rule of 40</strong></td><td>Маржа — половина формулы</td></tr><tr><td><strong>CAC Payback</strong></td><td>Маржа — множитель в знаменателе</td></tr><tr><td><strong>LTV</strong></td><td>Net LTV считается после вычета COGS</td></tr><tr><td><strong>Burn Multiple</strong></td><td>Выше маржа → ниже burn на единицу роста</td></tr></tbody></table>
 <h2>Итог</h2>
 
 <p>Gross Margin — это <strong>фундамент юнит-экономики SaaS</strong>. Целься в 75-85%, считай COGS последовательно (хостинг + базовая поддержка + комиссии, без S&M и R&D), и помни: маржа усиливает или ослабляет каждую другую метрику. Поднять маржу на 5-10pp — один из самых дешёвых способов улучшить сразу R40, CAC Payback и runway.</p>

@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>CAC vs CPA vs CPL — в чём разница и какую метрику оптимизировать | MetricTree Blog</title>
+<meta name="description" content="CPL — цена лида, CPA — цена целевого действия, CAC — полная цена платящего клиента. Формулы, пример расчёта на одной воронке, нормы по индустриям и типичные ошибки.">
+<meta name="keywords" content="cac vs cpa, cpa vs cpl, cac cpa cpl разница, стоимость лида, стоимость привлечения клиента, cost per acquisition, cost per lead, формула cac">
+<link rel="canonical" href="https://metricstree.vercel.app/blog/cac-vs-cpa-vs-cpl">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/cac-vs-cpa-vs-cpl">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/cac-vs-cpa-vs-cpl">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/cac-vs-cpa-vs-cpl">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="CAC vs CPA vs CPL — в чём разница и какую метрику оптимизировать">
+<meta property="og:description" content="CPL — цена лида, CPA — цена целевого действия, CAC — полная цена платящего клиента. Формулы, пример расчёта на одной воронке, нормы по индустриям и типичные ошибки.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:url" content="https://metricstree.vercel.app/blog/cac-vs-cpa-vs-cpl">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-09-26">
+<meta property="article:author" content="Родион Латыпов">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CAC vs CPA vs CPL — в чём разница и какую метрику оптимизировать">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "CAC vs CPA vs CPL — в чём разница и какую метрику оптимизировать",
+  "description": "CPL — цена лида, CPA — цена целевого действия, CAC — полная цена платящего клиента. Формулы, пример расчёта на одной воронке, нормы по индустриям и типичные ошибки.",
+  "datePublished": "2026-09-26",
+  "author": {
+    "@type": "Person",
+    "name": "Родион Латыпов",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/blog/cac-vs-cpa-vs-cpl"
+  },
+  "keywords": "cac vs cpa, cpa vs cpl, cac cpa cpl разница, стоимость лида, стоимость привлечения клиента, cost per acquisition, cost per lead, формула cac",
+  "inLanguage": "ru"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js?v=ec79991f" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/blog/">Blog</a> · <a href="/">Калькулятор →</a></div>
+</nav>
+<article>
+<h1>CAC vs CPA vs CPL — в чём разница и какую метрику оптимизировать</h1>
+<div class="meta">2026-09-26 · автор: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a></div>
+<h1>CAC vs CPA vs CPL — в чём разница и какую метрику оптимизировать</h1>
+
+<p>«CPL упал вдвое, маркетинг молодец» — а через два месяца выясняется, что клиентов стало меньше, а CAC вырос. Так бывает, когда три похожие метрики стоимости путают между собой. CPL, CPA и CAC измеряют разные точки воронки, и оптимизация одной из них легко ухудшает другую.</p>
+
+<h2>Определения и формулы</h2>
+
+<p><strong>CPL (Cost per Lead) = Затраты на канал / Количество лидов</strong></p>
+
+<p>Лид — контакт, который оставил данные: форма, заявка, подписка, скачивание материала. CPL отвечает на вопрос «сколько стоит попасть в воронку».</p>
+
+<p><strong>CPA (Cost per Action) = Затраты / Количество целевых действий</strong></p>
+
+<p>Целевое действие вы задаёте сами: регистрация, триал, демо, первая покупка, установка. CPA — самая гибкая метрика из трёх, поэтому её всегда нужно уточнять: CPA <em>чего именно</em>.</p>
+
+<p><strong>CAC (Customer Acquisition Cost) = Все затраты на привлечение / Количество новых платящих клиентов</strong></p>
+
+<p>В числителе — не только реклама, но и зарплаты маркетинга и продаж, агентства, инструменты, креатив. В знаменателе — только те, кто заплатил. CAC — единственная из трёх метрик, которую можно напрямую сравнивать с LTV.</p>
+
+<p>Все три связаны через конверсию:</p>
+
+<p><strong>CAC (по рекламе) = CPL / CR лида в клиента</strong></p>
+
+<h2>Пример: одна воронка — три цифры</h2>
+
+<p>B2B SaaS за месяц:<br><ul><li>Рекламный бюджет: <strong>$20 000</strong></li><li>Зарплаты SDR и маркетинга, инструменты: <strong>$16 000</strong> (итого затраты на привлечение <strong>$36 000</strong>)</li><li>Лидов (заявок с сайта): <strong>400</strong></li><li>Проведённых демо (целевое действие): <strong>80</strong></li><li>Новых платящих клиентов: <strong>24</strong></li></ul></p>
+
+<p>CPL = 20 000 / 400 = <strong>$50</strong><br>CPA (демо) = 20 000 / 80 = <strong>$250</strong><br>CAC (только реклама) = 20 000 / 24 = <strong>$833</strong><br>CAC (полный) = 36 000 / 24 = <strong>$1 500</strong></p>
+
+<p>Проверка через конверсию: лид → клиент = 24 / 400 = 6%. $50 / 0.06 = $833 ✓</p>
+
+<p>Одна и та же воронка даёт цифры от $50 до $1 500. Все они верны — просто отвечают на разные вопросы.</p>
+
+<p>Как их оценить по порогам MetricTree для SaaS:<br><ul><li>CPL <strong>$50</strong> — в пределах ориентира $20–$200 за MQL.</li><li>CPA <strong>$250</strong> за демо — выше ориентира $30–$150 для trial/демо. Узкое место — конверсия лида в демо (20%).</li><li>CAC в SaaS оценивают через окупаемость. При ARPA $150/мес и gross margin 80% CAC Payback = 1 500 / (150 × 0.8) ≈ <strong>12.5 мес</strong> — это норма (6–18 мес), но не «отлично» (<6 мес).</li></ul></p>
+
+<h2>Почему дешёвый CPL ≠ дешёвый клиент</h2>
+
+<p>Добавим второй канал: лид-магнит с чек-листом. Бюджет те же $20 000, но лидов уже <strong>1 000</strong> — CPL всего <strong>$20</strong>. Правда, в клиентов конвертируется только 1.5%, то есть <strong>15</strong> клиентов.</p>
+
+<table><thead><tr><th>Канал</th><th>CPL</th><th>CR лид → клиент</th><th>Клиентов</th><th>CAC (реклама)</th></tr></thead><tbody><tr><td>Заявки на демо</td><td>$50</td><td>6%</td><td>24</td><td>$833</td></tr><tr><td>Лид-магнит</td><td>$20</td><td>1.5%</td><td>15</td><td>$1 333</td></tr></tbody></table>
+По CPL второй канал выглядит в 2.5 раза лучше. По CAC — на 60% хуже. Если бонус маркетинга привязан к CPL, команда будет масштабировать не тот канал.
+
+<h2>Сравнительная таблица</h2>
+
+<table><thead><tr><th>CPL</th><th>CPA</th><th>CAC</th></tr></thead><tbody><tr><td>Что в знаменателе</td><td>Лиды</td><td>Любое целевое действие</td><td>Новые платящие клиенты</td></tr><tr><td>Что в числителе</td><td>Обычно только медиа</td><td>Обычно только медиа</td><td>Все затраты на привлечение</td></tr><tr><td>Стадия воронки</td><td>Верх</td><td>Середина (или низ)</td><td>Результат</td></tr><tr><td>Для чего</td><td>Оценка креативов и площадок</td><td>Оптимизация кампаний в рекламном кабинете</td><td>Юнит-экономика, сравнение с LTV</td></tr><tr><td>Кто владеет</td><td>Performance-маркетинг</td><td>Performance-маркетинг</td><td>Маркетинг + продажи + финансы</td></tr></tbody></table>
+<h2>Нормы по индустриям</h2>
+
+<p>Ориентиры из отраслевых порогов калькуляторов MetricTree:</p>
+
+<table><thead><tr><th>Индустрия</th><th>CPL</th><th>CPA</th><th>CAC</th></tr></thead><tbody><tr><td><strong>SaaS</strong></td><td>$20–$200 за MQL</td><td>$30–$150 за trial/демо</td><td>окупаемость: <6 мес отлично, 6–18 мес норма, >18 мес плохо</td></tr><tr><td><strong>E-commerce</strong></td><td>менее релевантно</td><td>$5–$40 за покупку</td><td><$30 отлично, $30–$100 норма, >$100 плохо</td></tr><tr><td><strong>Мобильные приложения</strong></td><td>менее релевантно (считают CPI)</td><td>$1–$20 за регистрацию/первую покупку</td><td><$20 отлично, $20–$60 норма, >$60 плохо (платящий пользователь)</td></tr><tr><td><strong>Медиа</strong></td><td>$1–$15 за лид на подписку/рассылку</td><td>$2–$25 за подписку/регистрацию</td><td><$2 отлично, $2–$10 норма, >$10 плохо</td></tr></tbody></table>
+Универсальная шкала CAC — <$300 хорошо, $300–$800 средне, >$800 плохо — но главное правило одно: CAC должен быть как минимум в 3 раза меньше LTV.
+
+<h2>Когда какую метрику использовать</h2>
+
+<ul><li><strong>CPL</strong> — сравнить креативы, площадки и офферы внутри одного канала, когда до оплаты ещё далеко (длинный B2B-цикл).</li><li><strong>CPA</strong> — настроить автостратегию в рекламном кабинете. Выбирайте действие как можно ближе к оплате: «оплаченный триал» лучше «регистрации».</li><li><strong>CAC</strong> — решить, сколько вообще можно тратить на привлечение, сравнить каналы между собой и посчитать <a href="/ltv_cac">LTV:CAC</a> и <a href="/cacPayback">окупаемость</a>.</li></ul>
+
+<h2>Типичные ошибки</h2>
+
+<h3>1. Называть CPA «CAC»</h3>
+Если в знаменателе регистрации, а не оплаты — это CPA. Сравнивать его с LTV нельзя: вы делите ценность клиента на стоимость человека, который может никогда не заплатить.
+
+<h3>2. Считать CAC только по рекламе</h3>
+Зарплаты продаж и маркетинга в B2B часто больше медиабюджета. «Рекламный» CAC полезен для сравнения каналов, но для юнит-экономики нужен полный.
+
+<h3>3. Премировать за CPL</h3>
+Команда быстро научится покупать дешёвые и бесполезные лиды. Добавьте в KPI конверсию лида в сделку или сразу CAC.
+
+<h3>4. Игнорировать задержку</h3>
+Лиды марта превращаются в клиентов в мае. Делить мартовский бюджет на мартовских клиентов — значит смешивать разные когорты. Для длинного цикла считайте CAC по когорте лидов.
+
+<h3>5. Смешивать новых и вернувшихся</h3>
+Реактивированные клиенты и апселлы — не «новые». Если их включить, CAC окажется заниженным.
+
+<h2>Частые вопросы</h2>
+
+<h3>CPA и CAC — это одно и то же?</h3>
+Только если целевое действие — первая оплата и в числитель включены все затраты на привлечение. В остальных случаях CPA меньше CAC.
+
+<h3>Какой CPL считается хорошим?</h3>
+Тот, при котором CAC после всех конверсий окупается. Для B2B SaaS ориентир — $20–$200 за MQL, но оценивать CPL без конверсии в клиента бессмысленно.
+
+<h2>Итог</h2>
+
+<p>CPL и CPA — операционные метрики для настройки рекламы. CAC — финансовая метрика для решения, сколько тратить на рост. Связь между ними всегда проходит через конверсию: снижая CPL, проверяйте, что CAC не растёт.</p>
+
+<p><strong>Посчитайте свой CAC в калькуляторе ниже</strong> и сравните его с LTV. Формулы и пороги для CAC, CPA, CPL и ещё 66 метрик собраны в бесплатной <a href="/benchmarks">PDF-шпаргалке</a>.</p>
+
+<p>---</p>
+
+<h3>Дополнительные ресурсы</h3>
+
+<ul><li><a href="/cpl">/cpl</a> — калькулятор CPL</li><li><a href="/cpa">/cpa</a> — калькулятор CPA</li><li><a href="/ltv_cac">/ltv_cac</a> — соотношение LTV:CAC</li><li><a href="/cacPayback">/cacPayback</a> — окупаемость CAC</li><li><a href="/blog/cac-by-channel">/blog/cac-by-channel</a> — CAC по каналам: как посчитать для каждого</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Считай прямо здесь:</strong>
+  <iframe src="https://metricstree.vercel.app/cac?embed=1" width="100%" height="650" loading="lazy" title="MetricTree cac калькулятор"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Открыть в полной версии: <a href="https://metricstree.vercel.app/cac" target="_blank">https://metricstree.vercel.app/cac</a></p>
+</div>
+<div class="share-row">
+  Поделиться:
+  <a href="https://twitter.com/intent/tweet?text=CAC%20vs%20CPA%20vs%20CPL%20%E2%80%94%20%D0%B2%20%D1%87%D1%91%D0%BC%20%D1%80%D0%B0%D0%B7%D0%BD%D0%B8%D1%86%D0%B0%20%D0%B8%20%D0%BA%D0%B0%D0%BA%D1%83%D1%8E%20%D0%BC%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D1%83%20%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fcac-vs-cpa-vs-cpl" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fcac-vs-cpa-vs-cpl" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fblog%2Fcac-vs-cpa-vs-cpl&text=CAC%20vs%20CPA%20vs%20CPL%20%E2%80%94%20%D0%B2%20%D1%87%D1%91%D0%BC%20%D1%80%D0%B0%D0%B7%D0%BD%D0%B8%D1%86%D0%B0%20%D0%B8%20%D0%BA%D0%B0%D0%BA%D1%83%D1%8E%20%D0%BC%D0%B5%D1%82%D1%80%D0%B8%D0%BA%D1%83%20%D0%BE%D0%BF%D1%82%D0%B8%D0%BC%D0%B8%D0%B7%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Родион Латыпов</a> · <a href="/blog/">Все посты</a> · <a href="/">Калькулятор</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

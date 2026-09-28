@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Gross margin vs contribution margin — what's the difference and which one to use | MetricTree Blog</title>
+<meta name="description" content="Gross margin subtracts only cost of goods sold (COGS) from revenue; contribution margin subtracts all variable costs. Formulas, e-commerce and SaaS examples, industry benchmarks, break-even ROAS and common mistakes.">
+<meta name="keywords" content="gross margin vs contribution margin, contribution margin formula, gross margin formula, contribution margin vs gross margin, variable costs, cogs, break-even roas">
+<link rel="canonical" href="https://metricstree.vercel.app/en/blog/gross-margin-vs-contribution-margin">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/gross-margin-vs-contribution-margin">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/gross-margin-vs-contribution-margin">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/gross-margin-vs-contribution-margin">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Gross margin vs contribution margin — what's the difference and which one to use">
+<meta property="og:description" content="Gross margin subtracts only cost of goods sold (COGS) from revenue; contribution margin subtracts all variable costs. Formulas, e-commerce and SaaS examples, industry benchmarks, break-even ROAS and common mistakes.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://metricstree.vercel.app/en/blog/gross-margin-vs-contribution-margin">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-09-27">
+<meta property="article:author" content="Rodion Latipov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gross margin vs contribution margin — what's the difference and which one to use">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Gross margin vs contribution margin — what's the difference and which one to use",
+  "description": "Gross margin subtracts only cost of goods sold (COGS) from revenue; contribution margin subtracts all variable costs. Formulas, e-commerce and SaaS examples, industry benchmarks, break-even ROAS and common mistakes.",
+  "datePublished": "2026-09-27",
+  "author": {
+    "@type": "Person",
+    "name": "Rodion Latipov",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/en/blog/gross-margin-vs-contribution-margin"
+  },
+  "keywords": "gross margin vs contribution margin, contribution margin formula, gross margin formula, contribution margin vs gross margin, variable costs, cogs, break-even roas",
+  "inLanguage": "en"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js?v=ec79991f" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/en" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/en/blog/">Blog</a> · <a href="/en">Calculator →</a></div>
+</nav>
+<article>
+<h1>Gross margin vs contribution margin — what's the difference and which one to use</h1>
+<div class="meta">2026-09-27 · by <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a></div>
+<h1>Gross margin vs contribution margin — what's the difference and which one to use</h1>
+
+<p>An online store with a 46% gross margin looks healthy. But after shipping, payment fees, packaging and returns, each $100 of revenue leaves not $46 but $32. Subtract advertising and it's $17. That gap decides what CAC and what ROAS you can afford. Gross margin and contribution margin are often used interchangeably, but they answer different questions.</p>
+
+<h2>Definitions and formulas</h2>
+
+<p><strong>Gross Margin = (Revenue − COGS) / Revenue × 100%</strong></p>
+
+<p>COGS (cost of goods sold) is the direct cost of the product: purchased inventory and inbound freight for a store, hosting and support for SaaS. Gross margin shows how profitable the product itself is.</p>
+
+<p><strong>Contribution Margin = (Revenue − Variable costs) / Revenue × 100%</strong></p>
+
+<p>Variable costs are everything that grows with each sale: COGS plus outbound shipping, payment fees, packaging, returns, marketplace and partner commissions. Contribution margin shows how much each sale contributes toward fixed costs and profit.</p>
+
+<p>Fixed costs — rent, engineering and office salaries, shared tools — are in neither metric.</p>
+
+<p>Exactly where the line between COGS and other variable costs falls depends on accounting policy: some companies include shipping in COGS. What matters is choosing a rule and sticking to it.</p>
+
+<h2>Worked example: an online store</h2>
+
+<p>One month:<br><ul><li>Revenue (net of returns): <strong>$100,000</strong></li><li>COGS (inventory): <strong>$54,000</strong></li><li>Outbound shipping: <strong>$8,000</strong></li><li>Payment processing: <strong>$2,500</strong></li><li>Packaging: <strong>$1,500</strong></li><li>Returns handling: <strong>$2,000</strong></li><li>Performance advertising: <strong>$15,000</strong></li></ul></p>
+
+<p>Gross margin = (100,000 − 54,000) / 100,000 = <strong>46%</strong><br>Variable costs before ads = 54,000 + 8,000 + 2,500 + 1,500 + 2,000 = $68,000<br>Contribution margin = (100,000 − 68,000) / 100,000 = <strong>32%</strong><br>Contribution margin after advertising = (32,000 − 15,000) / 100,000 = <strong>17%</strong></p>
+
+<p>By MetricTree's thresholds:<br><ul><li>Gross margin of <strong>46%</strong> is "good" for e-commerce (>45%).</li><li>Contribution margin of <strong>32%</strong> is "average" on the universal scale (20–40%). The guideline for fashion is 35–55%, for electronics 15–30%.</li><li>After ads, 17% is left — on the same scale that's already the "poor" zone (<20%). A store with a "good" gross margin earns less per sale than it seems.</li></ul></p>
+
+<h2>Why it matters: break-even ROAS</h2>
+
+<p>The minimum ROAS at which advertising pays for itself is calculated from margin:</p>
+
+<p><strong>Break-even ROAS = 1 / Margin</strong></p>
+
+<table><thead><tr><th>Which margin you use</th><th>Break-even ROAS</th></tr></thead><tbody><tr><td>Gross margin 46%</td><td>2.17x</td></tr><tr><td>Contribution margin 32%</td><td>3.13x</td></tr></tbody></table>
+If a marketer works from gross margin, a campaign at 2.5x ROAS looks profitable. In reality it loses money: each ad dollar brings back $2.50 of revenue, and after all variable costs 2.5 × 0.32 = $0.80 is left. For decisions about ads and CAC you need contribution margin.
+
+<h2>Worked example: SaaS</h2>
+
+<ul><li>MRR: <strong>$50,000</strong></li><li>Hosting: <strong>$4,000</strong>, support: <strong>$3,000</strong>, third-party APIs: <strong>$1,500</strong> → COGS = $8,500</li><li>Payment fees: <strong>$1,500</strong></li></ul>
+
+<p>Gross margin = (50,000 − 8,500) / 50,000 = <strong>83%</strong> — "good" for SaaS (75–85%).<br>Contribution margin = (50,000 − 8,500 − 1,500) / 50,000 = <strong>80%</strong> — within the typical SaaS range of 70–85%.</p>
+
+<p>In SaaS the two metrics nearly coincide: there are few variable costs outside COGS. In e-commerce and marketplaces a 10–20 percentage-point gap is normal.</p>
+
+<h2>Comparison table</h2>
+
+<table><thead><tr><th>Gross Margin</th><th>Contribution Margin</th></tr></thead><tbody><tr><td>What's subtracted</td><td>COGS only</td><td>All variable costs</td></tr><tr><td>Shipping, payment fees, returns</td><td>Usually not</td><td>Yes</td></tr><tr><td>Advertising</td><td>No</td><td>Debatable: calculate a separate "after marketing" version</td></tr><tr><td>Answers</td><td>Is the product profitable on its own?</td><td>How much does each sale bring in?</td></tr><tr><td>Used for</td><td>Valuation, market comparison, Rule of 40</td><td>Break-even ROAS, affordable CAC, LTV, break-even point</td></tr><tr><td>Typical gap in SaaS</td><td>—</td><td>1–5 pp below gross margin</td></tr><tr><td>Typical gap in e-commerce</td><td>—</td><td>10–20 pp below gross margin</td></tr></tbody></table>
+<h2>Benchmarks by industry</h2>
+
+<p>Guidelines from the industry thresholds in MetricTree's calculators:</p>
+
+<table><thead><tr><th>Industry</th><th>Gross Margin</th><th>Contribution Margin</th></tr></thead><tbody><tr><td><strong>SaaS</strong></td><td><60% poor, 60–75% normal, 75–85% good, >85% excellent</td><td>usually 70–85%</td></tr><tr><td><strong>E-commerce</strong></td><td><30% poor, 30–45% normal, >45% good</td><td>fashion 35–55%, beauty 50–70%, electronics 15–30%</td></tr><tr><td><strong>Mobile apps</strong></td><td><50% poor, 50–70% normal, >70% good</td><td>F2P: 60–80% after store and payment fees</td></tr><tr><td><strong>Media</strong></td><td><40% poor, 40–60% normal, >60% good</td><td>subscription 60–80%, advertising 50–70%</td></tr></tbody></table>
+The universal contribution margin scale: <20% poor, 20–40% average, 40–60% good, >60% excellent.
+
+<h2>Common mistakes</h2>
+
+<h3>1. Calculating e-commerce LTV on gross margin</h3>
+LTV = customer revenue × margin. Use 46% instead of 32% and LTV is inflated by almost 1.5x — and affordable CAC along with it.
+
+<h3>2. Forgetting returns</h3>
+In fashion, returns can eat a noticeable share of revenue. Calculate margin on net revenue and include the cost of handling returns in variable costs.
+
+<h3>3. One margin for the whole catalog</h3>
+Ads often sell the cheapest, lowest-margin products. The store's average margin overstates how well those campaigns pay back.
+
+<h3>4. Mixing fixed and variable costs</h3>
+Warehouse staff on a fixed salary are a fixed cost; a per-order picking fee is variable. This determines how margin behaves as you grow.
+
+<h3>5. Comparing gross margins across companies without checking accounting policy</h3>
+One company puts shipping in COGS, another doesn't. When comparing with the market, check what's included in cost of goods.
+
+<h2>Bottom line</h2>
+
+<p>Gross margin tells you whether the product is good. Contribution margin tells you how much each sale actually earns — and that's what break-even ROAS, affordable CAC and LTV should be based on. In SaaS the difference is small; in e-commerce it can flip your conclusions.</p>
+
+<p><strong>Calculate your contribution margin in the calculator below</strong>, and gross margin at <a href="/en/grossMargin">/en/grossMargin</a>. Formulas and thresholds for both metrics, ROAS and 66 more metrics are in the free <a href="/benchmarks">PDF cheat sheet</a>.</p>
+
+<p>---</p>
+
+<h3>Further resources</h3>
+
+<ul><li><a href="/en/grossMargin">/en/grossMargin</a> — Gross Margin calculator</li><li><a href="/en/roas">/en/roas</a> — ROAS and ad payback</li><li><a href="/en/ltv">/en/ltv</a> — margin-adjusted LTV</li><li><a href="/en/cacPayback">/en/cacPayback</a> — CAC payback period</li><li><a href="/en/blog/gross-margin-saas">/en/blog/gross-margin-saas</a> — why SaaS gross margin is 80%</li><li><a href="/en/blog/roas-vs-romi">/en/blog/roas-vs-romi</a> — ROAS vs ROMI and break-even ROAS</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Calculate it right here:</strong>
+  <iframe src="https://metricstree.vercel.app/contributionMargin?embed=1" width="100%" height="650" loading="lazy" title="MetricTree contributionMargin calculator"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">Open the full version: <a href="https://metricstree.vercel.app/contributionMargin" target="_blank">https://metricstree.vercel.app/contributionMargin</a></p>
+</div>
+<div class="share-row">
+  Share:
+  <a href="https://twitter.com/intent/tweet?text=Gross%20margin%20vs%20contribution%20margin%20%E2%80%94%20what's%20the%20difference%20and%20which%20one%20to%20use&url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fgross-margin-vs-contribution-margin" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fgross-margin-vs-contribution-margin" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fen%2Fblog%2Fgross-margin-vs-contribution-margin&text=Gross%20margin%20vs%20contribution%20margin%20%E2%80%94%20what's%20the%20difference%20and%20which%20one%20to%20use" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/en/blog/">All posts</a> · <a href="/en">Calculator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Internet-do‘kon konversiyasi — e-commerce voronkasi bosqichlari bo‘yicha normalar va uni qanday hisoblash mumkin | MetricTree Blog</title>
+<meta name="description" content="Internet-do‘kon uchun qanday konversiya normal hisoblanadi: CR formulasi, sessiyadan buyurtmagacha voronka, hisoblash misoli, konversiya, tashlab ketilgan savatlar va rad etishlar bo‘yicha normalar, odatiy xatolar.">
+<meta name="keywords" content="konversiya nima, internet-do‘kon konversiyasi, e-commerce konversiya, sayt konversiyasi normasi, internet-do‘kon voronkasi, xaridga konversiya, tashlab ketilgan savatlar, conversion rate">
+<link rel="canonical" href="https://metricstree.vercel.app/uz/blog/ecommerce-conversion-rate-benchmarks">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/ecommerce-conversion-rate-benchmarks">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/ecommerce-conversion-rate-benchmarks">
+<link rel="alternate" hreflang="uz" href="https://metricstree.vercel.app/uz/blog/ecommerce-conversion-rate-benchmarks">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/ecommerce-conversion-rate-benchmarks">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Internet-do‘kon konversiyasi — e-commerce voronkasi bosqichlari bo‘yicha normalar va uni qanday hisoblash mumkin">
+<meta property="og:description" content="Internet-do‘kon uchun qanday konversiya normal hisoblanadi: CR formulasi, sessiyadan buyurtmagacha voronka, hisoblash misoli, konversiya, tashlab ketilgan savatlar va rad etishlar bo‘yicha normalar, odatiy xatolar.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="uz_UZ">
+<meta property="og:url" content="https://metricstree.vercel.app/uz/blog/ecommerce-conversion-rate-benchmarks">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-09-25">
+<meta property="article:author" content="Rodion Latipov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Internet-do‘kon konversiyasi — e-commerce voronkasi bosqichlari bo‘yicha normalar va uni qanday hisoblash mumkin">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Internet-do‘kon konversiyasi — e-commerce voronkasi bosqichlari bo‘yicha normalar va uni qanday hisoblash mumkin",
+  "description": "Internet-do‘kon uchun qanday konversiya normal hisoblanadi: CR formulasi, sessiyadan buyurtmagacha voronka, hisoblash misoli, konversiya, tashlab ketilgan savatlar va rad etishlar bo‘yicha normalar, odatiy xatolar.",
+  "datePublished": "2026-09-25",
+  "author": {
+    "@type": "Person",
+    "name": "Rodion Latipov",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/uz/blog/ecommerce-conversion-rate-benchmarks"
+  },
+  "keywords": "konversiya nima, internet-do‘kon konversiyasi, e-commerce konversiya, sayt konversiyasi normasi, internet-do‘kon voronkasi, xaridga konversiya, tashlab ketilgan savatlar, conversion rate",
+  "inLanguage": "uz"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js?v=ec79991f" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/uz" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/uz/blog/">Blog</a> · <a href="/uz">Kalkulyator →</a></div>
+</nav>
+<article>
+<h1>Internet-do‘kon konversiyasi — e-commerce voronkasi bosqichlari bo‘yicha normalar va uni qanday hisoblash mumkin</h1>
+<div class="meta">2026-yil 25-sentabr · muallif: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a></div>
+<h1>Internet-do‘kon konversiyasi — e-commerce voronkasi bosqichlari bo‘yicha normalar va uni qanday hisoblash mumkin</h1>
+
+<p>«Internet-do‘kon uchun qanday konversiya normal?» — e-commerce’dagi eng ko‘p beriladigan savollardan biri. Qisqa javob: sessiyalarning 1–4% i buyurtma bilan tugaydi. Uzun javob foydaliroq: bitta yakuniy raqam xaridorlarni qayerda yo‘qotayotganingiz haqida deyarli hech narsa demaydi. Voronkaga bosqichma-bosqich qarash kerak.</p>
+
+<h2>Formula</h2>
+
+<p><strong>Konversiya (CR) = Buyurtmalar / Sessiyalar × 100%</strong></p>
+
+<p>Ba’zan sessiyalarga emas, foydalanuvchilarga nisbatan hisoblashadi — unda raqam yuqoriroq, chunki bitta odam xariddan oldin bir necha marta kiradi. Asosiysi — bitta ta’rifni tanlash va uni o‘zgartirmaslik.</p>
+
+<p><a href="/uz/cr">/uz/cr</a> kalkulyatori asosiy variantni hisoblaydi: maqsadli harakatlar / tashrif buyuruvchilar.</p>
+
+<h2>E-commerce voronkasi bosqichma-bosqich</h2>
+
+<p>Internet-do‘konning odatiy voronkasi:</p>
+
+<ul><li><strong>Sessiya</strong> → tashrif buyuruvchi saytga kirdi</li><li><strong>Tovar kartochkasini ko‘rish</strong></li><li><strong>Savatga qo‘shish</strong></li><li><strong>Buyurtmani rasmiylashtirishni boshlash</strong> (checkout)</li><li><strong>Buyurtma</strong></li></ul>
+
+<p>Har bir bosqichning o‘z konversiyasi va yo‘qotish sabablari bor: birinchi bosqichda — nomuvofiq trafik va sekin yuklanish, kartochkada — rasm, narx va sharhlar, savatda — yetkazib berish narxi va kutilmagan to‘lovlar, rasmiylashtirishda — uzun formalar va majburiy ro‘yxatdan o‘tish.</p>
+
+<h2>Hisoblash misoli</h2>
+
+<p>Do‘kon, bir oy:</p>
+
+<table><thead><tr><th>Bosqich</th><th>Soni</th><th>Bosqich konversiyasi</th><th>Sessiyalardan</th></tr></thead><tbody><tr><td>Sessiyalar</td><td>100 000</td><td>—</td><td>100%</td></tr><tr><td>Kartochkani ko‘rish</td><td>55 000</td><td>55%</td><td>55%</td></tr><tr><td>Savatga qo‘shish</td><td>8 000</td><td>14.5%</td><td>8%</td></tr><tr><td>Rasmiylashtirishni boshlash</td><td>4 000</td><td>50%</td><td>4%</td></tr><tr><td>Buyurtma</td><td>2 200</td><td>55%</td><td>2.2%</td></tr></tbody></table>
+<strong>CR = 2 200 / 100 000 = 2.2%</strong> — e-commerce uchun norma doirasida.
+
+<p><strong>Tashlab ketilgan savatlar = 1 − 2 200 / 8 000 = 72.5%</strong> — bozor o‘rtachasi atrofida, 70% dan biroz yomonroq.</p>
+
+<p>O‘rtacha chek $60 bo‘lganda tushum = 2 200 × $60 = <strong>$132 000</strong>.</p>
+
+<p>Endi ssenariy: yetkazib berish narxi bilan bog‘liq kutilmagan holatni olib tashlaymiz (uni kartochkada ko‘rsatamiz) va mehmon sifatida rasmiylashtirishni yoqamiz. Aytaylik, tashlab ketilgan savatlar ulushi <strong>65%</strong> gacha tushdi:</p>
+
+<p>Buyurtmalar = 8 000 × 0.35 = <strong>2 800</strong> → CR = <strong>2.8%</strong>, tushum = <strong>$168 000</strong> (+$36 000, +27%) — trafikka birorta ham qo‘shimcha dollar sarflamasdan.</p>
+
+<h2>E-commerce uchun normalar</h2>
+
+<p>MetricTree e-commerce sohasi uchun ishlatadigan chegaralar:</p>
+
+<table><thead><tr><th>Metrika</th><th>Yomon</th><th>Norma</th><th>Yaxshi</th></tr></thead><tbody><tr><td><strong>Buyurtmaga konversiya (CR)</strong></td><td><1%</td><td>1–4%</td><td>>4%</td></tr><tr><td><strong>Tashlab ketilgan savatlar</strong></td><td>>75% (xavotirli)</td><td>~70% (o‘rtacha)</td><td><60%</td></tr><tr><td><strong>Rad etishlar ko‘rsatkichi</strong></td><td>>55%</td><td>30–55%</td><td><30%</td></tr><tr><td><strong>Takroriy xaridlar</strong></td><td><10%</td><td>20–30%</td><td>30–50% (>50% a’lo)</td></tr></tbody></table>
+Kategoriyalar bo‘yicha tashlab ketilgan savatlar: fashion 68–72%, beauty 65–70%, elektronika 75–82%. Mobil veb’da tashlab ketilgan savatlar ulushi desktop’ga qaraganda yuqori: 78–85% — odatiy.
+
+<p>Taxminan 70% lik o‘rtacha qiymat Baymard Institute’ning ko‘p yillik tadqiqotlari bilan mos keladi — bu tashlab ketilgan savatlar va buyurtma rasmiylashtirish UX’i bo‘yicha eng ko‘p iqtibos keltiriladigan manba. U yerda sabablar ham batafsil tahlil qilingan: rasmiylashtirish bosqichidagi qo‘shimcha xarajatlar, majburiy ro‘yxatdan o‘tish, uzoq yetkazib berish, uzun forma.</p>
+
+<p>Nega turli do‘konlarda konversiya bir necha baravar farq qiladi:<br><ul><li><strong>O‘rtacha chek.</strong> Qimmat xaridlar (elektronika, mebel) uzoqroq o‘ylanadi — CR pastroq, lekin AOV ham yuqoriroq.</li><li><strong>Trafik.</strong> Brend va email-trafik sovuq targetga qaraganda bir necha baravar yaxshi konvertatsiya qilinadi.</li><li><strong>Qurilma.</strong> Mobil trafik sessiyalar ulushi kattaroq bo‘lsa-da, odatda desktop’dan yomonroq konvertatsiya qilinadi.</li><li><strong>Takroriy xaridorlar.</strong> Qaytib keladigan mijozlar ulushi yuqori bo‘lgan do‘konda CR yuqoriroq.</li></ul></p>
+
+<h2>Odatiy xatolar</h2>
+
+<h3>1. O‘zini boshqa nisha bilan solishtirish</h3>
+Mebelda CR 1.5% a’lo natija bo‘lishi mumkin, sarf materiallarida esa — zaif. O‘z kategoriyangiz normasi va o‘z dinamikangiz bilan solishtiring.
+
+<h3>2. CR’ga o‘rtacha cheksiz qarash</h3>
+Chegirmalar hisobiga konversiya o‘sishi ko‘pincha AOV va marja tushishi bilan birga keladi. Sessiyaga tushumga qarang = CR × AOV (<a href="/uz/aov">/uz/aov</a>).
+
+<h3>3. Tashlab ketilgan savatlarni sessiyalardan hisoblash</h3>
+To‘g‘ri baza — barcha tashriflar emas, yaratilgan savatlar. Aks holda savat muammolarini kartochka va trafik muammolari bilan aralashtirib yuborasiz. Kalkulyator — <a href="/uz/cartAbandonment">/uz/cartAbandonment</a>.
+
+<h3>4. Botlar va ichki trafikni tozalamaslik</h3>
+Botlar, xodimlar va test buyurtmalari CR’ni pasaytiradi yoki oshiradi. Hisoblashdan oldin ularni analitikada filtrlang.
+
+<h3>5. Barcha manbalar va qurilmalarni o‘rtachalash</h3>
+2.2% o‘rtacha konversiya desktop’dagi 4% va mobil’dagi 1.2% dan tashkil topishi mumkin. Mobil rasmiylashtirishdagi muammo o‘rtachada ko‘rinmaydi.
+
+<h3>6. Mavsumiylikni e’tiborsiz qoldirish</h3>
+Noyabrdagi chegirmalar paytidagi va fevraldagi konversiya — turli bozorlar. Yilni yilga yoki sirg‘aluvchi o‘rtacha bilan solishtiring.
+
+<h2>Konversiyani eng tez nima oshiradi</h2>
+
+<ul><li>Savatgacha <strong>shaffof yetkazib berish narxi</strong> — tashlab ketilgan savatlarning asosiy sababi.</li><li>Majburiy ro‘yxatdan o‘tishsiz <strong>mehmon sifatida rasmiylashtirish</strong>.</li><li><strong>Qisqa forma va manzilni avtoto‘ldirish</strong>, ommabop to‘lov usullari.</li><li>Mobil qurilmalarda kartochka va savatning <strong>yuklanish tezligi</strong>.</li><li>Kartochkadagi <strong>sharhlar va rasmlar</strong> — «ko‘rish → savat» bosqichida ishlaydi.</li><li><strong>Tashlab ketilgan savat haqidagi xatlar</strong> — xaridorlarning bir qismini deyarli bepul qaytaradi.</li></ul>
+
+<h2>Voronkadagi tor joyni qanday topish mumkin</h2>
+
+<p>Yakuniy konversiyani emas, har bir bosqichni o‘z tarixingiz va qo‘shni segmentlar bilan solishtiring:</p>
+
+<ul><li>Normal trafikda <strong>kartochkalar kam ko‘rilsa</strong> — trafik muvofiqligi yoki navigatsiya va katalog bo‘yicha qidiruvda muammo.</li><li><strong>Savatga kam qo‘shilsa</strong> — kartochkadagi narx, rasm, sharhlar, o‘lchamlar mavjudligi, yetkazib berish muddatlari.</li><li><strong>Tashlab ketilgan savatlar ko‘p bo‘lsa</strong> — kutilmagan xarajatlar, majburiy ro‘yxatdan o‘tish, to‘lov usullari kam.</li><li><strong>Rasmiylashtirish konversiyasi past bo‘lsa</strong> — uzun forma, validatsiya xatolari, sekin to‘lov sahifasi.</li></ul>
+
+<p>Qulay usul — potensial samarani hisoblash: bitta bosqichni norma darajasiga ko‘tarsangiz, qancha buyurtma olasiz. Yuqoridagi misolda tashlab ketilgan savatlarni 7.5 p.p. ga kamaytirish tushumga +27% berdi. O‘zgartirish narxi minimal bo‘lganda bunday o‘sish maksimal bo‘lgan bosqichdan boshlang.</p>
+
+<h2>Ko‘p beriladigan savollar</h2>
+
+<h3>Internet-do‘konning o‘rtacha konversiyasi qancha?</h3>
+Sessiyalarning taxminan 1–4% i; 1% dan past — muammo qidirish uchun sabab, 4% dan yuqori — yaxshi natija. Kategoriya, o‘rtacha chek va trafik manbaiga qattiq bog‘liq.
+
+<h3>Konversiyani sessiyalardan yoki foydalanuvchilardan hisoblash kerakmi?</h3>
+Ikkala variant ham to‘g‘ri. Sessiya konversiyasi pastroq va veb-analitikada ko‘proq ishlatiladi. Asosiysi — davrlarni solishtirishda ularni aralashtirmaslik.
+
+<h3>Nega mobil qurilmalarda konversiya pastroq?</h3>
+Kichik ekran, manzil va karta ma’lumotlarini kiritish noqulayligi, sekin yuklanish va tovarni telefondan «ko‘z ostiga olib», kompyuterdan sotib olish odati. Mobil sessiyalarning bir qismi keyinroq boshqa qurilmada konvertatsiya qilinadi — shuning uchun faqat mobil CR’ga emas, kross-qurilma atributsiyasiga ham qarang.
+
+<h2>Xulosa</h2>
+
+<p>Internet-do‘konning normal konversiyasi — 1–4%, yaxshisi — 4% dan yuqori, lekin yakuniy raqam bosqichma-bosqich voronkadan kamroq muhim. Normaga nisbatan eng katta yo‘qotish bo‘lgan bosqichni toping, uni tuzating va samarani faqat konversiya foizida emas, sessiyaga tushumda hisoblang.</p>
+
+<p><strong>Do‘koningiz konversiyasini quyidagi kalkulyatorda hisoblang</strong>, keyin <a href="/uz/cartAbandonment">tashlab ketilgan savatlar</a> va <a href="/uz/bounceRate">rad etishlar</a>ni tekshiring. 69 ta metrika formulalari va normalari jamlangan bepul <a href="/benchmarks">PDF-shpargalka</a> to‘liq voronka dashboard’ini yig‘ishga yordam beradi.</p>
+
+<p>---</p>
+
+<h3>Qo‘shimcha resurslar</h3>
+
+<ul><li><a href="/uz/cr">/uz/cr</a> — konversiya kalkulyatori</li><li><a href="/uz/cartAbandonment">/uz/cartAbandonment</a> — tashlab ketilgan savatlar</li><li><a href="/uz/aov">/uz/aov</a> — o‘rtacha chek</li><li><a href="/uz/repeatPurchaseRate">/uz/repeatPurchaseRate</a> — takroriy xaridlar ulushi</li><li><a href="/blog/aov-ecommerce-growth">/blog/aov-ecommerce-growth</a> — o‘rtacha chekni qanday oshirish mumkin (rus tilida)</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Shu yerning o‘zida hisoblang:</strong>
+  <iframe src="https://metricstree.vercel.app/uz/cr?embed=1" width="100%" height="650" loading="lazy" title="MetricTree cr kalkulyatori"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">To‘liq versiyasini ochish: <a href="https://metricstree.vercel.app/uz/cr" target="_blank">https://metricstree.vercel.app/uz/cr</a></p>
+</div>
+<div class="share-row">
+  Ulashish:
+  <a href="https://twitter.com/intent/tweet?text=Internet-do%E2%80%98kon%20konversiyasi%20%E2%80%94%20e-commerce%20voronkasi%20bosqichlari%20bo%E2%80%98yicha%20normalar%20va%20uni%20qanday%20hisoblash%20mumkin&url=https%3A%2F%2Fmetricstree.vercel.app%2Fuz%2Fblog%2Fecommerce-conversion-rate-benchmarks" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fuz%2Fblog%2Fecommerce-conversion-rate-benchmarks" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fuz%2Fblog%2Fecommerce-conversion-rate-benchmarks&text=Internet-do%E2%80%98kon%20konversiyasi%20%E2%80%94%20e-commerce%20voronkasi%20bosqichlari%20bo%E2%80%98yicha%20normalar%20va%20uni%20qanday%20hisoblash%20mumkin" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/uz/blog/">Barcha maqolalar</a> · <a href="/uz">Kalkulyator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

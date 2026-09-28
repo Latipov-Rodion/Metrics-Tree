@@ -9,11 +9,13 @@
 <link rel="canonical" href="https://metricstree.vercel.app/blog/cac-by-channel">
 <link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/cac-by-channel">
 <link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/cac-by-channel">
+<link rel="alternate" hreflang="uz" href="https://metricstree.vercel.app/uz/blog/cac-by-channel">
 <link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/cac-by-channel">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <meta property="og:title" content="CAC по каналам — как посчитать стоимость привлечения клиента для каждого канала">
 <meta property="og:description" content="Как считать CAC по каналам (контекст, соцсети, SEO, outbound, рефералы): формула, какие затраты включать, пример расчёта для SaaS, окупаемость по каналам, нормы и типичные ошибки.">
 <meta property="og:type" content="article">
+<meta property="og:locale" content="ru_RU">
 <meta property="og:url" content="https://metricstree.vercel.app/blog/cac-by-channel">
 <meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
 <meta property="article:published_time" content="2026-09-24">
@@ -111,12 +113,12 @@ em { color: var(--text-1); }
 
 <p>Отсюда три разных CAC, которые важно не путать:</p>
 
-<table><thead><tr><th>Вид</th><th>Что в числителе</th><th>Для чего</th></tr></thead><tbody><tr><td></td><td><strong>Blended CAC</strong></td><td>Все затраты на маркетинг и продажи / все новые клиенты (включая органику)</td><td>Юнит-экономика компании, отчёт инвестору</td><td></td></tr><tr><td></td><td><strong>Paid CAC</strong></td><td>Затраты на платные каналы / клиенты из платных каналов</td><td>Решения о рекламном бюджете</td><td></td></tr><tr><td></td><td><strong>CAC канала</strong></td><td>Затраты конкретного канала / его клиенты</td><td>Перераспределение бюджета между каналами</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Вид</th><th>Что в числителе</th><th>Для чего</th></tr></thead><tbody><tr><td><strong>Blended CAC</strong></td><td>Все затраты на маркетинг и продажи / все новые клиенты (включая органику)</td><td>Юнит-экономика компании, отчёт инвестору</td></tr><tr><td><strong>Paid CAC</strong></td><td>Затраты на платные каналы / клиенты из платных каналов</td><td>Решения о рекламном бюджете</td></tr><tr><td><strong>CAC канала</strong></td><td>Затраты конкретного канала / его клиенты</td><td>Перераспределение бюджета между каналами</td></tr></tbody></table>
 Blended CAC всегда выглядит лучше paid CAC, потому что органические клиенты «бесплатно» снижают среднее. Показывать инвестору только blended, не упоминая paid, — частая и заметная ошибка.
 
 <h2>Пример расчёта: B2B SaaS за квартал</h2>
 
-<table><thead><tr><th>Канал</th><th>Затраты</th><th>Новые клиенты</th><th>CAC</th></tr></thead><tbody><tr><td></td><td>Контекстная реклама (бюджет $30 000 + агентство $3 000)</td><td>$33 000</td><td>60</td><td><strong>$550</strong></td><td></td></tr><tr><td></td><td>LinkedIn Ads</td><td>$20 000</td><td>16</td><td><strong>$1 250</strong></td><td></td></tr><tr><td></td><td>SEO и контент (авторы $9 000 + инструменты $1 000 + 0.5 ставки $9 000)</td><td>$19 000</td><td>38</td><td><strong>$500</strong></td><td></td></tr><tr><td></td><td>Outbound (2 SDR $30 000 + инструменты $3 000)</td><td>$33 000</td><td>22</td><td><strong>$1 500</strong></td><td></td></tr><tr><td></td><td>Реферальная программа (вознаграждения)</td><td>$4 000</td><td>20</td><td><strong>$200</strong></td><td></td></tr><tr><td></td><td><strong>Итого (blended)</strong></td><td><strong>$109 000</strong></td><td><strong>156</strong></td><td><strong>≈ $699</strong></td><td></td></tr></tbody></table>
+<table><thead><tr><th>Канал</th><th>Затраты</th><th>Новые клиенты</th><th>CAC</th></tr></thead><tbody><tr><td>Контекстная реклама (бюджет $30 000 + агентство $3 000)</td><td>$33 000</td><td>60</td><td><strong>$550</strong></td></tr><tr><td>LinkedIn Ads</td><td>$20 000</td><td>16</td><td><strong>$1 250</strong></td></tr><tr><td>SEO и контент (авторы $9 000 + инструменты $1 000 + 0.5 ставки $9 000)</td><td>$19 000</td><td>38</td><td><strong>$500</strong></td></tr><tr><td>Outbound (2 SDR $30 000 + инструменты $3 000)</td><td>$33 000</td><td>22</td><td><strong>$1 500</strong></td></tr><tr><td>Реферальная программа (вознаграждения)</td><td>$4 000</td><td>20</td><td><strong>$200</strong></td></tr><tr><td><strong>Итого (blended)</strong></td><td><strong>$109 000</strong></td><td><strong>156</strong></td><td><strong>≈ $699</strong></td></tr></tbody></table>
 Blended CAC ≈ $699 — это «средне» по базовой шкале калькулятора MetricTree ($300–$800; хорошо — <$300, плохо — >$800). Но разброс между каналами — больше чем в 7 раз.
 
 <h2>CAC сам по себе не говорит, какой канал лучше</h2>
@@ -127,7 +129,7 @@ Blended CAC ≈ $699 — это «средне» по базовой шкале 
 
 <p>Допустим, валовая маржа 80%, большинство каналов приводят клиентов с MRR $120 (маржинальный доход $96/мес), а outbound — более крупных клиентов с MRR $300 ($240/мес):</p>
 
-<table><thead><tr><th>Канал</th><th>CAC</th><th>MRR клиента</th><th>Окупаемость</th></tr></thead><tbody><tr><td></td><td>Реферальная программа</td><td>$200</td><td>$120</td><td><strong>2.1 мес</strong></td><td></td></tr><tr><td></td><td>SEO и контент</td><td>$500</td><td>$120</td><td><strong>5.2 мес</strong></td><td></td></tr><tr><td></td><td>Контекстная реклама</td><td>$550</td><td>$120</td><td><strong>5.7 мес</strong></td><td></td></tr><tr><td></td><td>Outbound</td><td>$1 500</td><td>$300</td><td><strong>6.3 мес</strong></td><td></td></tr><tr><td></td><td>LinkedIn Ads</td><td>$1 250</td><td>$120</td><td><strong>13.0 мес</strong></td><td></td></tr></tbody></table>
+<table><thead><tr><th>Канал</th><th>CAC</th><th>MRR клиента</th><th>Окупаемость</th></tr></thead><tbody><tr><td>Реферальная программа</td><td>$200</td><td>$120</td><td><strong>2.1 мес</strong></td></tr><tr><td>SEO и контент</td><td>$500</td><td>$120</td><td><strong>5.2 мес</strong></td></tr><tr><td>Контекстная реклама</td><td>$550</td><td>$120</td><td><strong>5.7 мес</strong></td></tr><tr><td>Outbound</td><td>$1 500</td><td>$300</td><td><strong>6.3 мес</strong></td></tr><tr><td>LinkedIn Ads</td><td>$1 250</td><td>$120</td><td><strong>13.0 мес</strong></td></tr></tbody></table>
 Outbound по CAC — самый дорогой канал, а по окупаемости — в одной группе с контекстом. А LinkedIn с окупаемостью 13 месяцев попадает в «норму» для SaaS (хорошо — <12 мес, норма — 12–18, плохо — >18), но это первый кандидат на оптимизацию. Посчитать окупаемость — <a href="/cacPayback">/cacPayback</a>.
 
 <p>Итоговый критерий — отношение LTV к CAC по каналу: ориентир для большинства моделей — LTV > 3× CAC (<a href="/ltv_cac">/ltv_cac</a>).</p>

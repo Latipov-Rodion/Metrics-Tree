@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Burn Multiple nima va qanday hisoblanadi — 2026-yilda SaaS investorining asosiy metrikasi | MetricTree Blog</title>
+<meta name="description" content="David Sacks’ning Burn Multiple metrikasi nima, qanday hisoblanadi, seed/Series A/B+ uchun normalar va nega u ZIRP davridan keyin VC jarayonlarida Magic Number’ni siqib chiqardi.">
+<meta name="keywords" content="burn multiple nima, burn multiple formulasi, david sacks, saas metrikalari, kapital samaradorligi, capital efficiency">
+<link rel="canonical" href="https://metricstree.vercel.app/uz/blog/burn-multiple-saas-2026">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/burn-multiple-saas-2026">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/burn-multiple-saas-2026">
+<link rel="alternate" hreflang="uz" href="https://metricstree.vercel.app/uz/blog/burn-multiple-saas-2026">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/burn-multiple-saas-2026">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Burn Multiple nima va qanday hisoblanadi — 2026-yilda SaaS investorining asosiy metrikasi">
+<meta property="og:description" content="David Sacks’ning Burn Multiple metrikasi nima, qanday hisoblanadi, seed/Series A/B+ uchun normalar va nega u ZIRP davridan keyin VC jarayonlarida Magic Number’ni siqib chiqardi.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="uz_UZ">
+<meta property="og:url" content="https://metricstree.vercel.app/uz/blog/burn-multiple-saas-2026">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-05-17">
+<meta property="article:author" content="Rodion Latipov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Burn Multiple nima va qanday hisoblanadi — 2026-yilda SaaS investorining asosiy metrikasi">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Burn Multiple nima va qanday hisoblanadi — 2026-yilda SaaS investorining asosiy metrikasi",
+  "description": "David Sacks’ning Burn Multiple metrikasi nima, qanday hisoblanadi, seed/Series A/B+ uchun normalar va nega u ZIRP davridan keyin VC jarayonlarida Magic Number’ni siqib chiqardi.",
+  "datePublished": "2026-05-17",
+  "author": {
+    "@type": "Person",
+    "name": "Rodion Latipov",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/uz/blog/burn-multiple-saas-2026"
+  },
+  "keywords": "burn multiple nima, burn multiple formulasi, david sacks, saas metrikalari, kapital samaradorligi, capital efficiency",
+  "inLanguage": "uz"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js?v=ec79991f" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/uz" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/uz/blog/">Blog</a> · <a href="/uz">Kalkulyator →</a></div>
+</nav>
+<article>
+<h1>Burn Multiple nima va qanday hisoblanadi — 2026-yilda SaaS investorining asosiy metrikasi</h1>
+<div class="meta">2026-yil 17-may · muallif: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a></div>
+<h1>Burn Multiple nima va qanday hisoblanadi — 2026-yilda SaaS investorining asosiy metrikasi</h1>
+
+<p>2020-yilda David Sacks (Craft Ventures, PayPal’ning sobiq COO’si) SaaS-industriyani o‘zgartirib yuborgan qisqa esse chop etdi. U oddiy formulani taklif qildi:</p>
+
+<p>> <strong>Burn Multiple = Net Burn / Net New ARR</strong></p>
+
+<p>$1 yangi yillik daromad yaratish uchun kompaniya necha dollar sarflaydi.</p>
+
+<p>Bu barcha marketing illyuziyalarini olib tashladi. Qancha o‘sishingiz muhim emas — bu o‘sishni <strong>qanday samaradorlik bilan</strong> sotib olayotganingiz muhim.</p>
+
+<h2>Nega aynan hozir Burn Multiple har qachongidan muhim</h2>
+
+<p>2022-yilgacha, ZIRP (zero interest rate policy) davrida venchur pullari deyarli tekin edi. Fondlar Burn Multiple’i 5x, 8x, ba’zan 15x bo‘lgan kompaniyalarga kapital tarqatardi — faqat o‘sish bo‘lsa bo‘ldi. «Grow at all costs» shior edi.</p>
+
+<p>Hozir hammasi o‘zgardi. Fondlar kapital samaradorligiga gigiyena sifatida qaraydi:</p>
+
+<table><thead><tr><th>Davr</th><th>Series A uchun maqbul Burn Multiple</th></tr></thead><tbody><tr><td>2019–2021</td><td>3-5× gacha</td></tr><tr><td>2022–2023 (korreksiya)</td><td>2× gacha</td></tr><tr><td>2024–2026</td><td><strong><1.5×</strong> — aks holda raund yig‘ish qiyin</td></tr></tbody></table>
+<h2>Formula batafsil</h2>
+
+<p><strong>Net Burn</strong> = Davr (odatda chorak) mobaynidagi cash xarajatlar − cash daromadlar.</p>
+
+<p><strong>Net New ARR</strong> = New ARR + Expansion ARR − Churn ARR − Contraction ARR.</p>
+
+<p>Odatda chorak uchun hisoblanadi, keyin normallashtiriladi. Misol:<br><ul><li>Q1 uchun Net Burn: $500,000</li><li>Q1 uchun Net New ARR: $600,000</li><li>Burn Multiple = 500 / 600 = <strong>0.83×</strong> → a’lo</li></ul></p>
+
+<h2>David Sacks benchmarklari</h2>
+
+<table><thead><tr><th>Burn Multiple</th><th>Baho</th></tr></thead><tbody><tr><td><1×</td><td>Amazing (PayPal darajasi)</td></tr><tr><td>1–1.5×</td><td>Great</td></tr><tr><td>1.5–2×</td><td>Good</td></tr><tr><td>2–3×</td><td>Suspect</td></tr><tr><td>>3×</td><td>Bad — kompaniya kapitalni samarasiz sarflayapti</td></tr></tbody></table>
+Top SaaS-kompaniyalar (Snowflake, Datadog, Crowdstrike, Cloudflare) ommaviy savdodagi o‘sish bosqichida Burn Multiple’ni <strong>0.5–1.2×</strong> da ushlab turadi.
+
+<h2>Burn Multiple Magic Number’dan nimasi bilan yaxshiroq?</h2>
+
+<p><strong>Magic Number</strong> (Scale Venture Partners) faqat Sales & Marketing samaradorligini hisoblaydi:</p>
+
+<pre><code class="language-">Magic Number = (Net New ARR × 4) / Chorakdagi S&amp;M xarajatlari
+</code></pre>
+
+<p>Voronkani optimallashtirish uchun yaxshi. Lekin R&D, G&A va operatsiyalarni qamrab olmaydi — ya’ni erta bosqichdagi SaaS-kompaniya xarajatlarining asosiy qismini.</p>
+
+<p><strong>Burn Multiple hammasini qamrab oladi.</strong> Bu butun kompaniya samaradorligining yakuniy ko‘rsatkichi. Magic Number qismni optimallashtiradi, Burn Multiple — butunni.</p>
+
+<p>Odatiy SaaS-biznesda:<br><ul><li>Burn’ning 40% i = S&M</li><li>35% = R&D</li><li>15% = G&A</li><li>10% = COGS (gross margin’ga kirmagan bo‘lsa)</li></ul></p>
+
+<p>Magic Number 40% ni ko‘radi. Burn Multiple — 100% ni.</p>
+
+<h2>Burn Multiple’ni yaxshilashning 4 ta usuli</h2>
+
+<h3>1. Sales & Marketing samaradorligi</h3>
+<strong>CAC</strong>’ni kamaytiring:
+<ul><li>Pullik kanallar o‘rniga organik kanallar (SEO, kontent, referallar)</li><li>ICP’ga fokus — konversiyasi yomon segmentlarga sochilmang</li><li>SMB uchun self-serve onboarding (sales xarajatlarini olib tashlaydi)</li><li>Voronkadagi CR’ni optimallashtiring — har +10% multiplikativ samara beradi</li></ul>
+
+<h3>2. Expansion ARR (NRR orqali)</h3>
+Mavjud mijozdan olingan har bir dollar yangisidan arzonroq:
+<ul><li>Seat-based yoki usage-based pricing</li><li>Bosqichli funksiyalar → tabiiy upgrade yo‘llari</li><li>Yuqori ARR mijozlar uchun account-management</li><li>Proaktiv expansion uchun customer health-scoring</li></ul>
+
+<h3>3. R&D samaradorligi</h3>
+<ul><li>Kamroq parallel yo‘nalishlar — 1-2 ta ICP’ga fokus</li><li>PRD/QA avtomatizatsiyasi uchun AI/no-code</li><li>Senior’lardan iborat jamoa (SaaS’da 3 senior > 6 mid)</li></ul>
+
+<h3>4. Churn’ni kamaytirish</h3>
+Churn’ning har bir foizi = kompensatsiya uchun CAC’ning ikki baravar oshishi:
+<ul><li>Onboarding — birinchi hafta kelajakdagi churn’ning 80% ini belgilaydi</li><li>Annual prepay shartnomalar (matematik jihatdan churn’ni ×12 pasaytiradi)</li><li>Health-scoring + proaktiv aloqa</li></ul>
+
+<h2>Real misol</h2>
+
+<p><strong>Quyidagi ko‘rsatkichlarga ega SaaS-startap:</strong><br><ul><li>ARR: $2M, MoM o‘sish 8%</li><li>Net Burn: $250k/oy (=$750k/chorak)</li><li>Chorakdagi Net New ARR: $500k</li></ul></p>
+
+<p><strong>Burn Multiple</strong> = 750 / 500 = <strong>1.5×</strong> → Good, lekin o‘sish uchun joy bor.</p>
+
+<p><strong>«1.0× gacha tushirish» ssenariysi:</strong><br><ul><li>Burn’ni chorakda $250k ga kamaytirish = -33% (xodimlarni qisqartirish? Ops’ni autsorsga berish?)</li><li>YOKI ARR o‘sishini chorakda $750k gacha tezlashtirish = +50% (yangi kanal? Yaxshiroq pricing?)</li><li>YOKI kombinatsiya: -15% burn + +20% ARR = 1.05× ga erishamiz</li></ul></p>
+
+<p>Ssenariyingizni chamalab ko‘rish uchun quyidagi kalkulyatordan foydalaning.</p>
+
+<h2>Burn Multiple qachon CHALG‘ITADI</h2>
+
+<p>Metrika panatseya emas. Quyidagi hollarda uni e’tiborsiz qoldiring yoki ehtiyotkorlik bilan talqin qiling:</p>
+
+<p>1. <strong>Pre-revenue bosqichi</strong> — maxraj = 0, metrika cheksiz<br>2. <strong>Bitta yirik shartnoma chorakni buzgan</strong> — rolling 4 chorakka normallashtiring<br>3. <strong>Uzoq muddatli mahsulotga investitsiya qilyapsiz</strong> (deep tech, hardware-software) — qisqa muddatli Burn Multiple dizayn bo‘yicha yomon<br>4. <strong>Mavsumiy bizneslar</strong> — Q4 e-commerce va Q1 SaaS</p>
+
+<h2>Xulosa</h2>
+
+<p>Agar siz 2026-yilda SaaS-asoschi bo‘lsangiz — Burn Multiple investor keyingi raund uchrashuvida <strong>birinchi</strong> so‘raydigan raqam. O‘zingiznikini biling, uni chorak bo‘yicha <1.5× gacha optimallashtiring, va fandreyzing bir necha barobar osonlashadi.</p>
+
+<p><strong>Burn Multiple’ingizni quyida hisoblang</strong> — o‘rnatilgan kalkulyator natija, benchmark va talqinni bir zumda ko‘rsatadi.</p>
+
+<p>---</p>
+
+<h3>Qo‘shimcha resurslar</h3>
+
+<ul><li><a href="https://sacks.substack.com/">David Sacks original essay</a> — esse originali</li><li><a href="https://www.bvp.com/atlas/state-of-the-cloud">Bessemer 'State of the Cloud' annual report</a> — ommaviy SaaS benchmarklari</li><li><a href="/uz/ruleOf40">/uz/ruleOf40</a> — Rule of 40 kalkulyatori, qo‘shimcha metrika</li><li><a href="/uz/magicNumber">/uz/magicNumber</a> — S&M’ni alohida optimallashtirish uchun Magic Number</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Shu yerning o‘zida hisoblang:</strong>
+  <iframe src="https://metricstree.vercel.app/uz/burnMultiple?embed=1" width="100%" height="650" loading="lazy" title="MetricTree burnMultiple kalkulyatori"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">To‘liq versiyasini ochish: <a href="https://metricstree.vercel.app/uz/burnMultiple" target="_blank">https://metricstree.vercel.app/uz/burnMultiple</a></p>
+</div>
+<div class="share-row">
+  Ulashish:
+  <a href="https://twitter.com/intent/tweet?text=Burn%20Multiple%20nima%20va%20qanday%20hisoblanadi%20%E2%80%94%202026-yilda%20SaaS%20investorining%20asosiy%20metrikasi&url=https%3A%2F%2Fmetricstree.vercel.app%2Fuz%2Fblog%2Fburn-multiple-saas-2026" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fuz%2Fblog%2Fburn-multiple-saas-2026" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fuz%2Fblog%2Fburn-multiple-saas-2026&text=Burn%20Multiple%20nima%20va%20qanday%20hisoblanadi%20%E2%80%94%202026-yilda%20SaaS%20investorining%20asosiy%20metrikasi" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/uz/blog/">Barcha maqolalar</a> · <a href="/uz">Kalkulyator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>
