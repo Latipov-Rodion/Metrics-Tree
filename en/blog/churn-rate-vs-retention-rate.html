@@ -142,19 +142,19 @@ em { color: var(--text-1); }
 
 <p><strong>Annual retention = (1 − monthly churn)^12</strong></p>
 
-<table><thead><tr><th>Monthly churn</th><th>12-month retention</th><th>Annual churn</th></tr></thead><tbody><tr><td></td><td>1%</td><td>88.6%</td><td>11.4%</td><td></td></tr><tr><td></td><td>2%</td><td>78.5%</td><td>21.5%</td><td></td></tr><tr><td></td><td>3%</td><td>69.4%</td><td>30.6%</td><td></td></tr><tr><td></td><td>5%</td><td>54.0%</td><td>46.0%</td><td></td></tr><tr><td></td><td>10%</td><td>28.2%</td><td>71.8%</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Monthly churn</th><th>12-month retention</th><th>Annual churn</th></tr></thead><tbody><tr><td>1%</td><td>88.6%</td><td>11.4%</td></tr><tr><td>2%</td><td>78.5%</td><td>21.5%</td></tr><tr><td>3%</td><td>69.4%</td><td>30.6%</td></tr><tr><td>5%</td><td>54.0%</td><td>46.0%</td></tr><tr><td>10%</td><td>28.2%</td><td>71.8%</td></tr></tbody></table>
 In our example, 97% per month is under 70% per year. Average customer lifetime ≈ 1 / monthly churn = 1 / 0.03 ≈ <strong>33 months</strong> — this number feeds straight into <a href="/en/ltv">LTV</a>.
 
 <p>The same applies to revenue: GRR and NRR benchmarks are usually quoted annually. A 95% monthly GRR, if the pace holds, is roughly 0.95^12 ≈ 54% for the year — far below the SaaS norm of 85–95%.</p>
 
 <h2>Comparison table</h2>
 
-<table><thead><tr><th>Metric</th><th>What it measures</th><th>Can exceed 100%?</th><th>Used for</th></tr></thead><tbody><tr><td></td><td>Customer churn</td><td>Share of customers lost</td><td>No</td><td>Health of the base, LTV</td><td></td></tr><tr><td></td><td>Customer retention (CRR)</td><td>Share of customers kept</td><td>No (if new customers are excluded)</td><td>The same, framed positively</td><td></td></tr><tr><td></td><td>Gross revenue churn / GRR</td><td>Revenue lost, excluding upsells</td><td>GRR — no</td><td>Product and retention quality in money</td><td></td></tr><tr><td></td><td>NRR</td><td>Revenue from the base including upsells</td><td>Yes</td><td>Growth without new sales, SaaS valuation</td><td></td></tr><tr><td></td><td>Cohort retention</td><td>Cohort activity after N days</td><td>No</td><td>Product, onboarding, habit</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Metric</th><th>What it measures</th><th>Can exceed 100%?</th><th>Used for</th></tr></thead><tbody><tr><td>Customer churn</td><td>Share of customers lost</td><td>No</td><td>Health of the base, LTV</td></tr><tr><td>Customer retention (CRR)</td><td>Share of customers kept</td><td>No (if new customers are excluded)</td><td>The same, framed positively</td></tr><tr><td>Gross revenue churn / GRR</td><td>Revenue lost, excluding upsells</td><td>GRR — no</td><td>Product and retention quality in money</td></tr><tr><td>NRR</td><td>Revenue from the base including upsells</td><td>Yes</td><td>Growth without new sales, SaaS valuation</td></tr><tr><td>Cohort retention</td><td>Cohort activity after N days</td><td>No</td><td>Product, onboarding, habit</td></tr></tbody></table>
 <h2>Benchmarks by industry</h2>
 
 <p>Monthly customer churn by MetricTree's thresholds:</p>
 
-<table><thead><tr><th>Industry</th><th>Excellent</th><th>Normal</th><th>Poor</th></tr></thead><tbody><tr><td></td><td><strong>SaaS</strong></td><td><0.5%</td><td>0.5–2%</td><td>>2%</td><td></td></tr><tr><td></td><td><strong>E-commerce</strong></td><td><3%</td><td>3–8%</td><td>>8%</td><td></td></tr><tr><td></td><td><strong>Mobile apps</strong></td><td><5%</td><td>5–15%</td><td>>15%</td><td></td></tr><tr><td></td><td><strong>Media</strong></td><td><2%</td><td>2–7%</td><td>>7%</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Industry</th><th>Excellent</th><th>Normal</th><th>Poor</th></tr></thead><tbody><tr><td><strong>SaaS</strong></td><td><0.5%</td><td>0.5–2%</td><td>>2%</td></tr><tr><td><strong>E-commerce</strong></td><td><3%</td><td>3–8%</td><td>>8%</td></tr><tr><td><strong>Mobile apps</strong></td><td><5%</td><td>5–15%</td><td>>15%</td></tr><tr><td><strong>Media</strong></td><td><2%</td><td>2–7%</td><td>>7%</td></tr></tbody></table>
 GRR for SaaS: <85% poor, 85–95% normal, >95% good, >97% excellent. NRR for SaaS: <90% poor, 90–100% normal, 100–120% good, >130% excellent.
 
 <p>The <a href="/en/retention">Retention</a> calculator has its own scale (<30% poor, 30–60% average, >60% good). It describes cohort retention over a period, not monthly CRR. Comparing a 97% monthly CRR against that scale is wrong — they're different metrics.</p>

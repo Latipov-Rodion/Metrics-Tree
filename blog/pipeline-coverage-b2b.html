@@ -112,12 +112,12 @@ em { color: var(--text-1); }
 
 <p>Математика проста: <strong>B2B SaaS average win rate = 25%</strong>. Чтобы закрыть $1, нужно $4 в pipeline.</p>
 
-<table><thead><tr><th>Win Rate</th><th>Required Coverage</th></tr></thead><tbody><tr><td></td><td>50%</td><td>2.0×</td><td></td></tr><tr><td></td><td>33%</td><td>3.0×</td><td></td></tr><tr><td></td><td>25%</td><td>4.0× ← Average B2B SaaS</td><td></td></tr><tr><td></td><td>20%</td><td>5.0×</td><td></td></tr><tr><td></td><td>15%</td><td>6.7×</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Win Rate</th><th>Required Coverage</th></tr></thead><tbody><tr><td>50%</td><td>2.0×</td></tr><tr><td>33%</td><td>3.0×</td></tr><tr><td>25%</td><td>4.0× ← Average B2B SaaS</td></tr><tr><td>20%</td><td>5.0×</td></tr><tr><td>15%</td><td>6.7×</td></tr></tbody></table>
 <strong>Coverage = 1 / Win Rate.</strong> Если ты win 25% — нужно coverage 4×.
 
 <h2>Бенчмарки</h2>
 
-<table><thead><tr><th>Coverage</th><th>Статус</th></tr></thead><tbody><tr><td></td><td><strong><2×</strong></td><td>Critical — quarter at risk, urgent action</td><td></td></tr><tr><td></td><td><strong>2-3×</strong></td><td>Tight — possible to make number, нужно push deals</td><td></td></tr><tr><td></td><td><strong>3-4×</strong></td><td><strong>Healthy norm</strong> для standard SaaS</td><td></td></tr><tr><td></td><td><strong>4-5×</strong></td><td>Strong — high confidence quarter delivers</td><td></td></tr><tr><td></td><td><strong>>5×</strong></td><td>Surplus — либо pipeline padded, либо AEs underloaded</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Coverage</th><th>Статус</th></tr></thead><tbody><tr><td><strong><2×</strong></td><td>Critical — quarter at risk, urgent action</td></tr><tr><td><strong>2-3×</strong></td><td>Tight — possible to make number, нужно push deals</td></tr><tr><td><strong>3-4×</strong></td><td><strong>Healthy norm</strong> для standard SaaS</td></tr><tr><td><strong>4-5×</strong></td><td>Strong — high confidence quarter delivers</td></tr><tr><td><strong>>5×</strong></td><td>Surplus — либо pipeline padded, либо AEs underloaded</td></tr></tbody></table>
 <h2>Что считается «pipeline»</h2>
 
 <p>3 standard definitions:</p>
@@ -136,7 +136,7 @@ em { color: var(--text-1); }
 
 <p>Но: разбей по stages.</p>
 
-<table><thead><tr><th>Stage</th><th>Pipeline</th><th>Probability</th><th>Forecast contribution</th></tr></thead><tbody><tr><td></td><td>Discovery</td><td>$500k</td><td>10%</td><td>$50k</td><td></td></tr><tr><td></td><td>Demo</td><td>$400k</td><td>25%</td><td>$100k</td><td></td></tr><tr><td></td><td>Proposal</td><td>$500k</td><td>50%</td><td>$250k</td><td></td></tr><tr><td></td><td>Negotiation</td><td>$250k</td><td>75%</td><td>$187k</td><td></td></tr><tr><td></td><td>Verbal</td><td>$150k</td><td>90%</td><td>$135k</td><td></td></tr><tr><td></td><td><strong>Total</strong></td><td><strong>$1.8M</strong></td><td>—</td><td><strong>$722k</strong></td><td></td></tr></tbody></table>
+<table><thead><tr><th>Stage</th><th>Pipeline</th><th>Probability</th><th>Forecast contribution</th></tr></thead><tbody><tr><td>Discovery</td><td>$500k</td><td>10%</td><td>$50k</td></tr><tr><td>Demo</td><td>$400k</td><td>25%</td><td>$100k</td></tr><tr><td>Proposal</td><td>$500k</td><td>50%</td><td>$250k</td></tr><tr><td>Negotiation</td><td>$250k</td><td>75%</td><td>$187k</td></tr><tr><td>Verbal</td><td>$150k</td><td>90%</td><td>$135k</td></tr><tr><td><strong>Total</strong></td><td><strong>$1.8M</strong></td><td>—</td><td><strong>$722k</strong></td></tr></tbody></table>
 <strong>Weighted forecast = $722k > quota $500k.</strong> Even ahead.
 
 <h2>Почему один coverage недостаточен</h2>
@@ -198,7 +198,7 @@ em { color: var(--text-1); }
 
 <h2>Связь с другими B2B-метриками</h2>
 
-<table><thead><tr><th>Метрика</th><th>Связь с Coverage</th></tr></thead><tbody><tr><td></td><td><strong>Sales Velocity</strong></td><td>Velocity = function of pipeline. Coverage gives pipeline volume</td><td></td></tr><tr><td></td><td><strong>Win Rate</strong></td><td>Determines required coverage (1 / Win Rate)</td><td></td></tr><tr><td></td><td><strong>Sales Cycle Length</strong></td><td>Долгий cycle требует higher coverage (delay between create → close)</td><td></td></tr><tr><td></td><td><strong>Lead-to-Opp CR</strong></td><td>Determines required lead intake для target coverage</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Метрика</th><th>Связь с Coverage</th></tr></thead><tbody><tr><td><strong>Sales Velocity</strong></td><td>Velocity = function of pipeline. Coverage gives pipeline volume</td></tr><tr><td><strong>Win Rate</strong></td><td>Determines required coverage (1 / Win Rate)</td></tr><tr><td><strong>Sales Cycle Length</strong></td><td>Долгий cycle требует higher coverage (delay between create → close)</td></tr><tr><td><strong>Lead-to-Opp CR</strong></td><td>Determines required lead intake для target coverage</td></tr></tbody></table>
 <h2>Когда Coverage ВВОДИТ В ЗАБЛУЖДЕНИЕ</h2>
 
 <p>1. <strong>One mega-deal</strong> — $1M opportunity в pipeline на $500k quota = coverage 2×. Но если win = quota done. Если lose = quarter dead. Single-deal risk.</p>

@@ -111,14 +111,14 @@ em { color: var(--text-1); }
 
 <h2>Бенчмарки 2026</h2>
 
-<table><thead><tr><th>Сегмент</th><th>Healthy monthly churn</th><th>Excellent</th></tr></thead><tbody><tr><td></td><td><strong>SMB SaaS</strong></td><td>3-5%</td><td><2%</td><td></td></tr><tr><td></td><td><strong>Mid-market</strong></td><td>1-2%</td><td><1%</td><td></td></tr><tr><td></td><td><strong>Enterprise</strong></td><td><1%</td><td><0.5%</td><td></td></tr><tr><td></td><td><strong>B2C subscription</strong></td><td>5-8%</td><td><4%</td><td></td></tr><tr><td></td><td><strong>Mobile apps</strong></td><td>8-12%</td><td><6%</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Сегмент</th><th>Healthy monthly churn</th><th>Excellent</th></tr></thead><tbody><tr><td><strong>SMB SaaS</strong></td><td>3-5%</td><td><2%</td></tr><tr><td><strong>Mid-market</strong></td><td>1-2%</td><td><1%</td></tr><tr><td><strong>Enterprise</strong></td><td><1%</td><td><0.5%</td></tr><tr><td><strong>B2C subscription</strong></td><td>5-8%</td><td><4%</td></tr><tr><td><strong>Mobile apps</strong></td><td>8-12%</td><td><6%</td></tr></tbody></table>
 <strong>Правило</strong>: чем меньше клиент, тем выше natural churn. SMB churn 3% — норма; enterprise churn 3% — катастрофа.
 
 <h2>Customer Churn vs Revenue Churn</h2>
 
 <p>Это две разные метрики, и путать их опасно:</p>
 
-<table><thead><tr><th>Тип</th><th>Что считает</th><th>Когда смотреть</th></tr></thead><tbody><tr><td></td><td><strong>Customer Churn</strong></td><td>% ушедших клиентов</td><td>Здоровье продукта в целом</td><td></td></tr><tr><td></td><td><strong>Revenue Churn</strong></td><td>% потерянной выручки (MRR)</td><td>Финансовое влияние</td><td></td></tr><tr><td></td><td><strong>Net Revenue Churn</strong></td><td>Revenue Churn − Expansion</td><td>Реальная динамика (может быть отрицательной!)</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Тип</th><th>Что считает</th><th>Когда смотреть</th></tr></thead><tbody><tr><td><strong>Customer Churn</strong></td><td>% ушедших клиентов</td><td>Здоровье продукта в целом</td></tr><tr><td><strong>Revenue Churn</strong></td><td>% потерянной выручки (MRR)</td><td>Финансовое влияние</td></tr><tr><td><strong>Net Revenue Churn</strong></td><td>Revenue Churn − Expansion</td><td>Реальная динамика (может быть отрицательной!)</td></tr></tbody></table>
 Если уходят мелкие клиенты, а крупные растут — Customer Churn высокий, но Revenue Churn низкий. Для финансов важнее второй. Идеал: <strong>negative net revenue churn</strong> (expansion перекрывает потери).
 
 <h2>Почему 1pp churn удваивает потребность в CAC</h2>
@@ -164,7 +164,7 @@ Recently-churned клиенты конвертируются обратно в 2
 
 <h2>Связь с другими метриками</h2>
 
-<table><thead><tr><th>Метрика</th><th>Связь с Churn</th></tr></thead><tbody><tr><td></td><td><strong>LTV</strong></td><td>LTV = ARPA / churn rate — churn в знаменателе, влияет напрямую</td><td></td></tr><tr><td></td><td><strong>NRR</strong></td><td>Low churn → NRR ближе к 100%+, expansion работает на тебя</td><td></td></tr><tr><td></td><td><strong>Quick Ratio</strong></td><td>Churn — знаменатель Quick Ratio</td><td></td></tr><tr><td></td><td><strong>CAC Payback</strong></td><td>Высокий churn = клиент не доживает до payback</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Метрика</th><th>Связь с Churn</th></tr></thead><tbody><tr><td><strong>LTV</strong></td><td>LTV = ARPA / churn rate — churn в знаменателе, влияет напрямую</td></tr><tr><td><strong>NRR</strong></td><td>Low churn → NRR ближе к 100%+, expansion работает на тебя</td></tr><tr><td><strong>Quick Ratio</strong></td><td>Churn — знаменатель Quick Ratio</td></tr><tr><td><strong>CAC Payback</strong></td><td>Высокий churn = клиент не доживает до payback</td></tr></tbody></table>
 <h2>Итог</h2>
 
 <p>Churn — это <strong>скрытый налог на рост</strong>. Сначала почини onboarding и health scoring (самые быстрые рычаги), потом pricing и win-back. Цель для B2B SaaS: <strong>monthly churn <2%</strong>. Снижение оттока на 1pp часто эквивалентно месяцам маркетинговых усилий — но бесплатно.</p>

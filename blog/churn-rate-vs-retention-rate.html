@@ -142,19 +142,19 @@ em { color: var(--text-1); }
 
 <p><strong>Годовой retention = (1 − месячный churn)^12</strong></p>
 
-<table><thead><tr><th>Месячный churn</th><th>Удержание за 12 месяцев</th><th>Годовой churn</th></tr></thead><tbody><tr><td></td><td>1%</td><td>88.6%</td><td>11.4%</td><td></td></tr><tr><td></td><td>2%</td><td>78.5%</td><td>21.5%</td><td></td></tr><tr><td></td><td>3%</td><td>69.4%</td><td>30.6%</td><td></td></tr><tr><td></td><td>5%</td><td>54.0%</td><td>46.0%</td><td></td></tr><tr><td></td><td>10%</td><td>28.2%</td><td>71.8%</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Месячный churn</th><th>Удержание за 12 месяцев</th><th>Годовой churn</th></tr></thead><tbody><tr><td>1%</td><td>88.6%</td><td>11.4%</td></tr><tr><td>2%</td><td>78.5%</td><td>21.5%</td></tr><tr><td>3%</td><td>69.4%</td><td>30.6%</td></tr><tr><td>5%</td><td>54.0%</td><td>46.0%</td></tr><tr><td>10%</td><td>28.2%</td><td>71.8%</td></tr></tbody></table>
 В нашем примере 97% в месяц — это меньше 70% за год. Средняя «жизнь» клиента ≈ 1 / месячный churn = 1 / 0.03 ≈ <strong>33 месяца</strong> — эта цифра напрямую идёт в <a href="/ltv">LTV</a>.
 
 <p>То же касается выручки: пороги GRR и NRR обычно приводят для года. GRR 95% в месяц при сохранении темпа — это примерно 0.95^12 ≈ 54% за год, что гораздо ниже нормы для SaaS (85–95%).</p>
 
 <h2>Сравнительная таблица</h2>
 
-<table><thead><tr><th>Метрика</th><th>Что считает</th><th>Может быть >100%?</th><th>Для чего</th></tr></thead><tbody><tr><td></td><td>Customer churn</td><td>Долю ушедших клиентов</td><td>Нет</td><td>Здоровье базы, расчёт LTV</td><td></td></tr><tr><td></td><td>Customer retention (CRR)</td><td>Долю оставшихся клиентов</td><td>Нет (если вычесть новых)</td><td>То же, в позитивной формулировке</td><td></td></tr><tr><td></td><td>Gross revenue churn / GRR</td><td>Потерю выручки без апселлов</td><td>GRR — нет</td><td>Качество продукта и удержания в деньгах</td><td></td></tr><tr><td></td><td>NRR</td><td>Выручку базы с апселлами</td><td>Да</td><td>Рост без новых продаж, оценка SaaS</td><td></td></tr><tr><td></td><td>Когортный retention</td><td>Активность когорты через N дней</td><td>Нет</td><td>Продукт, онбординг, привычка</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Метрика</th><th>Что считает</th><th>Может быть >100%?</th><th>Для чего</th></tr></thead><tbody><tr><td>Customer churn</td><td>Долю ушедших клиентов</td><td>Нет</td><td>Здоровье базы, расчёт LTV</td></tr><tr><td>Customer retention (CRR)</td><td>Долю оставшихся клиентов</td><td>Нет (если вычесть новых)</td><td>То же, в позитивной формулировке</td></tr><tr><td>Gross revenue churn / GRR</td><td>Потерю выручки без апселлов</td><td>GRR — нет</td><td>Качество продукта и удержания в деньгах</td></tr><tr><td>NRR</td><td>Выручку базы с апселлами</td><td>Да</td><td>Рост без новых продаж, оценка SaaS</td></tr><tr><td>Когортный retention</td><td>Активность когорты через N дней</td><td>Нет</td><td>Продукт, онбординг, привычка</td></tr></tbody></table>
 <h2>Нормы по индустриям</h2>
 
 <p>Месячный customer churn по порогам MetricTree:</p>
 
-<table><thead><tr><th>Индустрия</th><th>Отлично</th><th>Норма</th><th>Плохо</th></tr></thead><tbody><tr><td></td><td><strong>SaaS</strong></td><td><0.5%</td><td>0.5–2%</td><td>>2%</td><td></td></tr><tr><td></td><td><strong>E-commerce</strong></td><td><3%</td><td>3–8%</td><td>>8%</td><td></td></tr><tr><td></td><td><strong>Мобильные приложения</strong></td><td><5%</td><td>5–15%</td><td>>15%</td><td></td></tr><tr><td></td><td><strong>Медиа</strong></td><td><2%</td><td>2–7%</td><td>>7%</td><td></td></tr></tbody></table>
+<table><thead><tr><th>Индустрия</th><th>Отлично</th><th>Норма</th><th>Плохо</th></tr></thead><tbody><tr><td><strong>SaaS</strong></td><td><0.5%</td><td>0.5–2%</td><td>>2%</td></tr><tr><td><strong>E-commerce</strong></td><td><3%</td><td>3–8%</td><td>>8%</td></tr><tr><td><strong>Мобильные приложения</strong></td><td><5%</td><td>5–15%</td><td>>15%</td></tr><tr><td><strong>Медиа</strong></td><td><2%</td><td>2–7%</td><td>>7%</td></tr></tbody></table>
 GRR для SaaS: <85% плохо, 85–95% норма, >95% хорошо, >97% отлично. NRR для SaaS: <90% плохо, 90–100% норма, 100–120% хорошо, >130% отлично.
 
 <p>Отдельно — шкала калькулятора <a href="/retention">Retention</a> (<30% плохо, 30–60% средне, >60% хорошо). Она описывает когортное удержание за период, а не месячный CRR. Сравнивать 97% месячного CRR с этой шкалой некорректно — это разные метрики.</p>
