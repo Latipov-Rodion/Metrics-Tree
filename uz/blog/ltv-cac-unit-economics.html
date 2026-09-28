@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>LTV va CAC nima va qanday hisoblanadi — startap unit-iqtisodiyoti bosqichma-bosqich | MetricTree Blog</title>
+<meta name="description" content="LTV va CAC ni to‘g‘ri hisoblash, LTV:CAC nisbatining normasi (3:1, 5:1) va nega yaxshi LTV:CAC to‘g‘ri payback bo‘lmasa sog‘lom biznes degani emas.">
+<meta name="keywords" content="ltv nima, cac nima, ltv qanday hisoblanadi, ltv:cac, unit iqtisodiyot, unit-iqtisodiyot hisoblash, startap metrikalari">
+<link rel="canonical" href="https://metricstree.vercel.app/uz/blog/ltv-cac-unit-economics">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/ltv-cac-unit-economics">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/ltv-cac-unit-economics">
+<link rel="alternate" hreflang="uz" href="https://metricstree.vercel.app/uz/blog/ltv-cac-unit-economics">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/ltv-cac-unit-economics">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="LTV va CAC nima va qanday hisoblanadi — startap unit-iqtisodiyoti bosqichma-bosqich">
+<meta property="og:description" content="LTV va CAC ni to‘g‘ri hisoblash, LTV:CAC nisbatining normasi (3:1, 5:1) va nega yaxshi LTV:CAC to‘g‘ri payback bo‘lmasa sog‘lom biznes degani emas.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="uz_UZ">
+<meta property="og:url" content="https://metricstree.vercel.app/uz/blog/ltv-cac-unit-economics">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-05-10">
+<meta property="article:author" content="Rodion Latipov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="LTV va CAC nima va qanday hisoblanadi — startap unit-iqtisodiyoti bosqichma-bosqich">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "LTV va CAC nima va qanday hisoblanadi — startap unit-iqtisodiyoti bosqichma-bosqich",
+  "description": "LTV va CAC ni to‘g‘ri hisoblash, LTV:CAC nisbatining normasi (3:1, 5:1) va nega yaxshi LTV:CAC to‘g‘ri payback bo‘lmasa sog‘lom biznes degani emas.",
+  "datePublished": "2026-05-10",
+  "author": {
+    "@type": "Person",
+    "name": "Rodion Latipov",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/uz/blog/ltv-cac-unit-economics"
+  },
+  "keywords": "ltv nima, cac nima, ltv qanday hisoblanadi, ltv:cac, unit iqtisodiyot, unit-iqtisodiyot hisoblash, startap metrikalari",
+  "inLanguage": "uz"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js?v=ec79991f" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/uz" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/uz/blog/">Blog</a> · <a href="/uz">Kalkulyator →</a></div>
+</nav>
+<article>
+<h1>LTV va CAC nima va qanday hisoblanadi — startap unit-iqtisodiyoti bosqichma-bosqich</h1>
+<div class="meta">2026-yil 10-may · muallif: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a></div>
+<h1>LTV va CAC nima va qanday hisoblanadi — startap unit-iqtisodiyoti bosqichma-bosqich</h1>
+
+<p>LTV:CAC — ehtimol SaaS dunyosidagi <strong>eng ko‘p tilga olinadigan va eng ko‘p noto‘g‘ri hisoblanadigan</strong> metrika. Men pitch deck’da LTV:CAC = 8 deb yozgan, lekin bu raqamga qanday kelganini tushuntira olmagan startaplarni ko‘rganman.</p>
+
+<p>Keling, bosqichma-bosqich to‘g‘ri hisoblashni ko‘rib chiqamiz.</p>
+
+<h2>1. LTV (Lifetime Value) — bu nima va qanday hisoblanadi</h2>
+
+<p>LTV — bu <strong>mijoz sizning mijozingiz bo‘lib turgan butun davr mobaynida qancha daromad keltirishi</strong>.</p>
+
+<p><strong>B2C / e-commerce</strong> uchun oddiy formula:</p>
+
+<pre><code class="language-">LTV = AOV × Yiliga xaridlar soni × Mijozning "umri" (yil)
+</code></pre>
+
+<p>Misol:<br><ul><li>AOV = $250</li><li>Yiliga 4 ta xarid</li><li>Mijoz umri = 3 yil</li></ul></p>
+
+<p>LTV = 250 × 4 × 3 = <strong>$3 000</strong></p>
+
+<p><strong>B2B SaaS</strong> uchun formula:</p>
+
+<pre><code class="language-">LTV = ARPA / Monthly Churn Rate
+</code></pre>
+
+<p>Bu yerda ARPA = Average Revenue Per Account (bitta mijozga to‘g‘ri keladigan MRR). Misol:<br><ul><li>ARPA = $200/oy</li><li>Monthly Churn = 2%</li></ul></p>
+
+<p>LTV = 200 / 0.02 = <strong>$10 000</strong></p>
+
+<p><strong>1-tuzoq:</strong> Customer Churn va Revenue Churn’ni adashtirmang. Agar Customer Churn = 5%, lekin Revenue Churn = 2% bo‘lsa (ya’ni kichik mijozlar ketyapti, kattalari qolyapti + upsell’lar), LTV uchun Revenue Churn’dan foydalaning.</p>
+
+<p><strong>2-tuzoq:</strong> agar tarixingiz qisqa bo‘lsa (<24 oy), LTV — bu fakt emas, prognoz. Kamtar bo‘ling: conservative estimate uchun prognoz LTV’ni 0.7-0.8 ga ko‘paytiring.</p>
+
+<h2>2. CAC (Customer Acquisition Cost) — nimalarni kiritish kerak</h2>
+
+<p><strong>CAC</strong> = (Marketing + Sales xarajatlari) / Davr mobaynida jalb qilingan yangi to‘lovchi mijozlar soni.</p>
+
+<p>Marketing + Sales ichiga <strong>hammasini</strong> kiriting:<br><ul><li>Reklama (Facebook, Google Ads, LinkedIn)</li><li>Sales va marketing jamoasining ish haqi</li><li>Tools (CRM, marketing automation, attribution)</li><li>Pudratchilar (contractor) va konsultantlar to‘lovlari</li><li>Kontent, dizayn, video ishlab chiqarish</li></ul></p>
+
+<p><strong>Tuzoq:</strong> Blended CAC va Paid CAC.</p>
+
+<table><thead><tr><th>Turi</th><th>Nimani o‘z ichiga oladi</th><th>Qachon ko‘rsatish kerak</th></tr></thead><tbody><tr><td></td><td>Blended CAC</td><td>Barcha xarajatlar / Barcha yangi mijozlar (organika bilan birga)</td><td>Investor pitch (yaxshiroq ko‘rinadi)</td><td></td></tr><tr><td></td><td>Paid CAC</td><td>Faqat pullik kanallar / Faqat pullik kanaldan kelgan mijozlar</td><td>Operatsion qarorlar (real holat)</td><td></td></tr></tbody></table>
+<strong>Blended har doim Paid’dan past.</strong> Agar pitch’da Blended’dan foydalansangiz — Paid’ni ham tushuntirishga tayyor bo‘ling. Top VC fondlar ikkalasini ham so‘raydi.
+
+<h2>3. LTV:CAC — qanday nisbat normal hisoblanadi</h2>
+
+<table><thead><tr><th>LTV:CAC</th><th>Bu nimani anglatadi</th></tr></thead><tbody><tr><td></td><td><strong><1</strong></td><td>Har bir yangi mijoz — zarar. Biznes-model buzilgan</td><td></td></tr><tr><td></td><td><strong>1-3</strong></td><td>Normadan past. Faqat o‘sish unit-iqtisodiyotdan muhimroq bo‘lganda maqbul (early stage)</td><td></td></tr><tr><td></td><td><strong>≥3</strong></td><td>Sog‘lom SaaS unit-iqtisodiyoti</td><td></td></tr><tr><td></td><td><strong>>5</strong></td><td>A’lo, lekin ehtimol marketingga kam investitsiya qilyapsiz — raqobatchilar bozorni egallab oladi</td><td></td></tr><tr><td></td><td><strong>>8-10</strong></td><td>Aniq kam investitsiya qilyapsiz. Zudlik bilan sales/marketing yollang</td><td></td></tr></tbody></table>
+<strong>Sehrli raqam 3</strong> ni 2010-yilda David Skok (<a href="https://www.forentrepreneurs.com/">forentrepreneurs.com</a>) kiritgan. Minglab SaaS keyslarida empirik tasdiqlangan.
+
+<p>Nega aynan <strong>3</strong>, 2 yoki 4 emas? Chunki:<br><ul><li>1× — break-even (COGS, support, churn hisobga olinmagan — qog‘ozda)</li><li>2× — real xarajatlardan keyin break-even</li><li>3× — oldindan aytib bo‘lmaydigan churn / margin qisqarishi uchun zaxira</li><li>≥3 = barqaror o‘sish</li></ul></p>
+
+<h2>4. <strong>CAC Payback Period</strong> — nega LTV:CAC yetarli emas</h2>
+
+<p>LTV:CAC = 5 ajoyib eshitiladi. Lekin payback = 36 oy bo‘lsa — mijoz o‘zini oqlagunicha sizda pul tanqisligi (cash crunch) boshlanadi.</p>
+
+<pre><code class="language-">CAC Payback = CAC / (Bitta mijozga MRR × Gross Margin)
+</code></pre>
+
+<p>Benchmarklar:<br><ul><li>B2B SaaS SMB: <12 oy</li><li>B2B SaaS Mid-market: 12-18 oy</li><li>B2B SaaS Enterprise: 18-24 oy</li><li>B2C: odatda <6 oy</li></ul></p>
+
+<p><strong>Real misol:</strong><br><ul><li>LTV = $10 000</li><li>CAC = $2 000 → LTV:CAC = 5× ✓</li><li>Bitta mijozga MRR = $200</li><li>Gross Margin = 80%</li></ul></p>
+
+<p>Payback = 2000 / (200 × 0.80) = 2000 / 160 = <strong>12.5 oy</strong></p>
+
+<p>Sog‘lom SaaS. Agar payback >24 oy bo‘lsa — LTV:CAC = 5 bo‘lsa ham cash flow muammoli.</p>
+
+<h2>5. Goal mode — teskari hisob</h2>
+
+<p>Ko‘pincha foydali savol: «<strong>Target LTV:CAC = 3 va mening LTV’im $5000 bo‘lsa, maksimal qancha CAC’ga yo‘l qo‘ya olaman?</strong>»</p>
+
+<p>Javob: $5000 / 3 = <strong>$1 667</strong></p>
+
+<p>Agar haqiqiy CAC bundan yuqori bo‘lsa — yoki uni pasaytirish, yoki LTV’ni oshirish kerak.</p>
+
+<p>Quyidagi kalkulyator teskari hisoblay oladi — target LTV:CAC’ni kiriting, u sizning LTV’ingizda qancha CAC kerakligini ko‘rsatadi.</p>
+
+<h2>6. LTV:CAC’ni qanday yaxshilash mumkin</h2>
+
+<h3>CAC’ni pasaytirish</h3>
+1. <strong>Organik kanallar</strong> — SEO, kontent, ulashish, referral’lar. Bu masshtabda blended CAC’ni pasaytiradi
+2. <strong>Referral dasturlar</strong> — referral CAC odatda paid CAC’ning 30-50% ini tashkil qiladi
+3. <strong>Conversion optimization</strong> — voronka CR’iga har +10% = CAC’ga -10%
+4. <strong>Brend tanilishi</strong> — brend pullik kanallarda CPC va CPM’ni pasaytiradi
+5. <strong>SMB uchun self-serve onboarding</strong> — sales xarajatlarini olib tashlaydi
+
+<h3>LTV’ni oshirish</h3>
+1. <strong>Churn’ni pasaytirish</strong> — onboarding, customer success, health scoring
+2. <strong>AOV / ARPA’ni oshirish</strong> — upsell’lar, bandl’lar, premium tariflar
+3. <strong>Frequency’ni oshirish</strong> — email-flow’lar, retention-kampaniyalar
+4. <strong>Uzoq muddatli shartnomalar</strong> — annual prepay churn’ni ×12 pasaytiradi
+5. <strong>Expansion revenue</strong> — NRR orqali o‘sish (alohida maqolaga qarang)
+
+<h2>7. LTV:CAC qachon CHALG‘ITADI</h2>
+
+<ul><li><strong>Tarix juda qisqa</strong> — LTV 12 oylik ma’lumotda hisoblangan, lekin mijozlar 18 oydan keyin ketishi mumkin</li><li><strong>Marja hisobga olinmagan</strong> — gross LTV va net LTV (COGS’dan keyin)</li><li><strong>Discount rate</strong> — kelajakdagi $1 bugungisidan arzonroq; uzoq muddatli LTV uchun NPV qo‘llang</li><li><strong>Cohort skew</strong> — bitta yirik mijoz barcha mijozlar bo‘yicha o‘rtachani buzadi</li></ul>
+
+<h2>Real hayot: odatiy xatolar</h2>
+
+<p><strong>1-xato:</strong> «Bizda LTV:CAC = 8»<br>→ So‘rang: blended’mi yoki paid? Paid odatda ancha past.</p>
+
+<p><strong>2-xato:</strong> «Biz eksponensial o‘syapmiz, LTV:CAC muhim emas»<br>→ Muhim. Sog‘lom LTV:CAC bo‘lmasa, o‘sish = bankrotlikka tezlashish. (RIP Casper, MoviePass.)</p>
+
+<p><strong>3-xato:</strong> «LTV:CAC = 12 — ajoyib!»<br>→ Katta ehtimol bilan CAC kamaytirib ko‘rsatilgan (sales jamoasi kiritilmagan) yoki LTV noto‘g‘ri hisoblangan (churn hisobga olinmagan).</p>
+
+<h2>Xulosa</h2>
+
+<p>LTV:CAC — <strong>oddiy, lekin hal qiluvchi</strong> metrika. Ikkalasini ham hisoblang: gross + paid CAC. CAC Payback Period bilan solishtiring. Agar LTV:CAC ≥3 VA Payback <18 oy bo‘lsa → sizda sog‘lom SaaS unit-iqtisodiyoti bor, masshtablash mumkin.</p>
+
+<p><strong>LTV:CAC’ingizni quyida hisoblang</strong> — o‘rnatilgan kalkulyator nisbatni, benchmarkni va teskari hisobni (target LTV:CAC → kerakli CAC) ko‘rsatadi.</p>
+
+<p>---</p>
+
+<h3>Qo‘shimcha resurslar</h3>
+
+<ul><li><a href="/uz/ltv">/uz/ltv</a> — LTV kalkulyatori alohida</li><li><a href="/uz/cac">/uz/cac</a> — CAC kalkulyatori alohida</li><li><a href="/uz/cacPayback">/uz/cacPayback</a> — CAC Payback Period</li><li><a href="https://www.forentrepreneurs.com/saas-metrics-2/">David Skok original post on LTV:CAC</a></li><li><a href="/uz/burnMultiple">/uz/burnMultiple</a> — Burn Multiple — kapital samaradorligining makro-metrikasi</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Shu yerning o‘zida hisoblang:</strong>
+  <iframe src="https://metricstree.vercel.app/uz/ltv_cac?embed=1" width="100%" height="650" loading="lazy" title="MetricTree ltv_cac kalkulyatori"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">To‘liq versiyasini ochish: <a href="https://metricstree.vercel.app/uz/ltv_cac" target="_blank">https://metricstree.vercel.app/uz/ltv_cac</a></p>
+</div>
+<div class="share-row">
+  Ulashish:
+  <a href="https://twitter.com/intent/tweet?text=LTV%20va%20CAC%20nima%20va%20qanday%20hisoblanadi%20%E2%80%94%20startap%20unit-iqtisodiyoti%20bosqichma-bosqich&url=https%3A%2F%2Fmetricstree.vercel.app%2Fuz%2Fblog%2Fltv-cac-unit-economics" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fuz%2Fblog%2Fltv-cac-unit-economics" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fuz%2Fblog%2Fltv-cac-unit-economics&text=LTV%20va%20CAC%20nima%20va%20qanday%20hisoblanadi%20%E2%80%94%20startap%20unit-iqtisodiyoti%20bosqichma-bosqich" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/uz/blog/">Barcha maqolalar</a> · <a href="/uz">Kalkulyator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

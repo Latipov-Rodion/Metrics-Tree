@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Kanallar bo‘yicha CAC — har bir kanal uchun mijozni jalb qilish narxini qanday hisoblash mumkin | MetricTree Blog</title>
+<meta name="description" content="CAC kanallar bo‘yicha qanday hisoblanadi (kontekst reklama, ijtimoiy tarmoqlar, SEO, outbound, referallar): formula, qaysi xarajatlarni kiritish kerak, SaaS uchun misol, kanallar bo‘yicha qoplanish, normalar va odatiy xatolar.">
+<meta name="keywords" content="cac nima, kanallar bo‘yicha cac, mijozni jalb qilish narxi, cac qanday hisoblanadi, cac formulasi, blended cac, paid cac, cac benchmark">
+<link rel="canonical" href="https://metricstree.vercel.app/uz/blog/cac-by-channel">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/cac-by-channel">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/cac-by-channel">
+<link rel="alternate" hreflang="uz" href="https://metricstree.vercel.app/uz/blog/cac-by-channel">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/cac-by-channel">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Kanallar bo‘yicha CAC — har bir kanal uchun mijozni jalb qilish narxini qanday hisoblash mumkin">
+<meta property="og:description" content="CAC kanallar bo‘yicha qanday hisoblanadi (kontekst reklama, ijtimoiy tarmoqlar, SEO, outbound, referallar): formula, qaysi xarajatlarni kiritish kerak, SaaS uchun misol, kanallar bo‘yicha qoplanish, normalar va odatiy xatolar.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="uz_UZ">
+<meta property="og:url" content="https://metricstree.vercel.app/uz/blog/cac-by-channel">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-09-24">
+<meta property="article:author" content="Rodion Latipov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kanallar bo‘yicha CAC — har bir kanal uchun mijozni jalb qilish narxini qanday hisoblash mumkin">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Kanallar bo‘yicha CAC — har bir kanal uchun mijozni jalb qilish narxini qanday hisoblash mumkin",
+  "description": "CAC kanallar bo‘yicha qanday hisoblanadi (kontekst reklama, ijtimoiy tarmoqlar, SEO, outbound, referallar): formula, qaysi xarajatlarni kiritish kerak, SaaS uchun misol, kanallar bo‘yicha qoplanish, normalar va odatiy xatolar.",
+  "datePublished": "2026-09-24",
+  "author": {
+    "@type": "Person",
+    "name": "Rodion Latipov",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/uz/blog/cac-by-channel"
+  },
+  "keywords": "cac nima, kanallar bo‘yicha cac, mijozni jalb qilish narxi, cac qanday hisoblanadi, cac formulasi, blended cac, paid cac, cac benchmark",
+  "inLanguage": "uz"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js?v=ec79991f" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/uz" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/uz/blog/">Blog</a> · <a href="/uz">Kalkulyator →</a></div>
+</nav>
+<article>
+<h1>Kanallar bo‘yicha CAC — har bir kanal uchun mijozni jalb qilish narxini qanday hisoblash mumkin</h1>
+<div class="meta">2026-yil 24-sentabr · muallif: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a></div>
+<h1>Kanallar bo‘yicha CAC — har bir kanal uchun mijozni jalb qilish narxini qanday hisoblash mumkin</h1>
+
+<p>Kompaniya bo‘yicha o‘rtacha CAC — investor uchun foydali raqam, lekin marketolog uchun deyarli foydasiz. Uning ortida mijozlarni $200 dan olib keladigan kanal ham, har bir mijozi $1 500 turadigan kanal ham yashiringan. Byudjet bo‘yicha qarorlar kanallar kesimida qabul qilinadi — demak, CAC ham kanallar bo‘yicha hisoblanishi kerak.</p>
+
+<h2>Formula</h2>
+
+<p><strong>Kanal CAC’i = Davr mobaynida kanalga ketgan barcha xarajatlar / Xuddi shu davrda kanaldan kelgan yangi to‘lovchi mijozlar</strong></p>
+
+<p>«Barcha xarajatlar» — bu faqat reklama byudjeti emas:<br><ul><li>media-xarajatlar (kliklar, ko‘rsatishlar, joylashtirishlar);</li><li>agentlik va frilanserlar;</li><li>kontent va kreativlar ishlab chiqarish;</li><li>vositalar (SEO-servislar, CRM, kontaktlar bazalari);</li><li>shu kanal uchun ishlaydigan jamoa ish haqining ulushi.</li></ul></p>
+
+<p>Shundan kelib chiqib, adashtirmaslik kerak bo‘lgan uchta turli CAC:</p>
+
+<table><thead><tr><th>Turi</th><th>Suratda nima bor</th><th>Nima uchun</th></tr></thead><tbody><tr><td></td><td><strong>Blended CAC</strong></td><td>Marketing va sotuvga barcha xarajatlar / barcha yangi mijozlar (organika bilan birga)</td><td>Kompaniya unit-iqtisodiyoti, investorga hisobot</td><td></td></tr><tr><td></td><td><strong>Paid CAC</strong></td><td>Pullik kanallarga xarajatlar / pullik kanallardan kelgan mijozlar</td><td>Reklama byudjeti bo‘yicha qarorlar</td><td></td></tr><tr><td></td><td><strong>Kanal CAC’i</strong></td><td>Aniq kanal xarajatlari / uning mijozlari</td><td>Byudjetni kanallar o‘rtasida qayta taqsimlash</td><td></td></tr></tbody></table>
+Blended CAC har doim paid CAC’dan yaxshiroq ko‘rinadi, chunki organik mijozlar o‘rtachani «bepul» pasaytiradi. Investorga paid’ni tilga olmay faqat blended’ni ko‘rsatish — keng tarqalgan va ko‘zga tashlanadigan xato.
+
+<h2>Hisoblash misoli: bir chorakdagi B2B SaaS</h2>
+
+<table><thead><tr><th>Kanal</th><th>Xarajatlar</th><th>Yangi mijozlar</th><th>CAC</th></tr></thead><tbody><tr><td></td><td>Kontekst reklama (byudjet $30 000 + agentlik $3 000)</td><td>$33 000</td><td>60</td><td><strong>$550</strong></td><td></td></tr><tr><td></td><td>LinkedIn Ads</td><td>$20 000</td><td>16</td><td><strong>$1 250</strong></td><td></td></tr><tr><td></td><td>SEO va kontent (mualliflar $9 000 + vositalar $1 000 + 0.5 shtat $9 000)</td><td>$19 000</td><td>38</td><td><strong>$500</strong></td><td></td></tr><tr><td></td><td>Outbound (2 SDR $30 000 + vositalar $3 000)</td><td>$33 000</td><td>22</td><td><strong>$1 500</strong></td><td></td></tr><tr><td></td><td>Referal dastur (mukofotlar)</td><td>$4 000</td><td>20</td><td><strong>$200</strong></td><td></td></tr><tr><td></td><td><strong>Jami (blended)</strong></td><td><strong>$109 000</strong></td><td><strong>156</strong></td><td><strong>≈ $699</strong></td><td></td></tr></tbody></table>
+Blended CAC ≈ $699 — MetricTree kalkulyatorining asosiy shkalasi bo‘yicha «o‘rtacha» ($300–$800; yaxshi — <$300, yomon — >$800). Lekin kanallar o‘rtasidagi farq 7 baravardan ko‘p.
+
+<h2>CAC o‘zi qaysi kanal yaxshiroq ekanini aytmaydi</h2>
+
+<p>Qimmat kanal, agar qimmatliroq mijozlarni olib kelsa, eng yaxshisi bo‘lishi mumkin. Shuning uchun kanal CAC’i har doim <strong>qoplanish muddatiga</strong> o‘tkaziladi:</p>
+
+<p><strong>CAC Payback = CAC / (Bitta mijozga MRR × yalpi marja)</strong></p>
+
+<p>Aytaylik, yalpi marja 80%, ko‘pchilik kanallar MRR’i $120 bo‘lgan mijozlarni olib keladi (marjinal daromad $96/oy), outbound esa MRR’i $300 bo‘lgan yirikroq mijozlarni ($240/oy):</p>
+
+<table><thead><tr><th>Kanal</th><th>CAC</th><th>Mijoz MRR’i</th><th>Qoplanish</th></tr></thead><tbody><tr><td></td><td>Referal dastur</td><td>$200</td><td>$120</td><td><strong>2.1 oy</strong></td><td></td></tr><tr><td></td><td>SEO va kontent</td><td>$500</td><td>$120</td><td><strong>5.2 oy</strong></td><td></td></tr><tr><td></td><td>Kontekst reklama</td><td>$550</td><td>$120</td><td><strong>5.7 oy</strong></td><td></td></tr><tr><td></td><td>Outbound</td><td>$1 500</td><td>$300</td><td><strong>6.3 oy</strong></td><td></td></tr><tr><td></td><td>LinkedIn Ads</td><td>$1 250</td><td>$120</td><td><strong>13.0 oy</strong></td><td></td></tr></tbody></table>
+Outbound CAC bo‘yicha eng qimmat kanal, qoplanish bo‘yicha esa kontekst reklama bilan bir guruhda. LinkedIn esa 13 oylik qoplanish bilan SaaS uchun «norma»ga tushadi (yaxshi — <12 oy, norma — 12–18, yomon — >18), lekin optimallashtirish uchun birinchi nomzod. Qoplanishni hisoblash — <a href="/uz/cacPayback">/uz/cacPayback</a>.
+
+<p>Yakuniy mezon — kanal bo‘yicha LTV ning CAC ga nisbati: ko‘pchilik modellar uchun mo‘ljal — LTV > 3× CAC (<a href="/uz/ltv_cac">/uz/ltv_cac</a>).</p>
+
+<h2>Kanallar o‘rtasidagi odatiy farqlar</h2>
+
+<p>CAC’ning mutlaq raqamlari nisha, geografiya va chek hajmiga qattiq bog‘liq, shuning uchun universal «kanallar bo‘yicha normalar» mavjud emas. Lekin qonuniyatlar barqaror:</p>
+
+<ul><li><strong>Referallar va og‘zaki tavsiya</strong> — odatda eng arzon CAC va eng yaxshi retention, lekin xohlaganingizcha masshtablanmaydi.</li><li><strong>SEO va kontent</strong> — bir yil ufqida past CAC, lekin dastlabki oylarda xarajatlar mijozlarsiz ketadi. CAC’ni kechikishni hisobga olib hisoblang.</li><li><strong>Kontekst reklama</strong> — tez masshtablanadi, CAC byudjet va auksiondagi raqobat bilan birga o‘sadi.</li><li><strong>Ijtimoiy tarmoqlarda target</strong> — arzon klik, B2B’da ko‘pincha to‘lovchiga konversiya pastroq.</li><li><strong>Outbound va sotuvlar</strong> — yuqori CAC, lekin chek ham kattaroq; faqat qoplanish orqali baholang.</li></ul>
+
+<p>B2B SaaS uchun MetricTree kalkulyatorlaridan oraliq mo‘ljallar: CPC — $2–$8 norma, CPL — MQL uchun $20–$200, trial yoki demo uchun CPA — $30–$150. Ularning o‘zi hech narsani hal qilmaydi: mijozga aylanmaydigan arzon lid aylanadigan qimmat liddan qimmatroq. Sohalar va kanallar bo‘yicha CAC hisobotlarini, masalan, First Page Sage va HubSpot (State of Marketing) chop etadi — ulardan faqat taxminiy mo‘ljal sifatida foydalaning: hisoblash metodikalari hammada har xil.</p>
+
+<h2>Odatiy xatolar</h2>
+
+<h3>1. Faqat reklama byudjetini hisoblash</h3>
+Ish haqi, agentlik va vositalarsiz SEO va outbound deyarli bepul ko‘rinadi. To‘g‘ri kanal CAC’i kanal o‘chirilsa yo‘qoladigan hamma narsani o‘z ichiga oladi.
+
+<h3>2. To‘lovchi mijozlar o‘rniga lidlar va triallar</h3>
+CAC — bu <strong>mijoz</strong> narxi. Lid narxi — bu CPL (<a href="/uz/cpl">/uz/cpl</a>), harakat narxi — CPA (<a href="/uz/cpa">/uz/cpa</a>).
+
+<h3>3. Kechikishni e’tiborsiz qoldirish</h3>
+Yanvardagi SEO xarajatlari mijozlarni may oyida olib keladi, outbound-bitim 2–3 oyda yopiladi. Xarajatlar va mijozlarni bitim siklini hisobga olib solishtiring, aks holda yangi kanal doim muvaffaqiyatsiz, yopilayotgani esa ajoyib ko‘rinadi.
+
+<h3>4. Last-click atributsiya</h3>
+Mijoz maqolani o‘qidi, retargetingni ko‘rdi va brend so‘rovi orqali keldi. Last-click hammasini kontekst reklamaga beradi, SEO esa kam baholanadi. Ikkinchi manba sifatida hech bo‘lmasa «biz haqimizda qayerdan bildingiz» so‘rovidan foydalaning.
+
+<h3>5. Chegaraviy CAC o‘rniga o‘rtacha CAC</h3>
+Agar kanal mijozlarni $550 dan olib kelsa, bu keyingi $10 000 byudjet ham ularni shu narxda beradi degani emas. Byudjet o‘sishi bilan CAC deyarli har doim o‘sadi. Masshtablashni bosqichma-bosqich sinab ko‘ring.
+
+<h3>6. Barcha kanallar uchun bitta MRR</h3>
+Kanallar turli mijozlarni olib keladi. ARPA va retention’ni kanallar bo‘yicha hisoblang — aks holda qoplanish noto‘g‘ri chiqadi.
+
+<h2>Ko‘p beriladigan savollar</h2>
+
+<h3>Ish haqini CAC’ga kiritish kerakmi?</h3>
+Ha — xodimlar jalb qilish uchun ishlaydigan ulushda. Ish haqisiz qo‘l mehnati ko‘p bo‘lgan kanallar (SEO, outbound) CAC’i bir necha baravar kam ko‘rsatiladi.
+
+<h3>Kanallar bo‘yicha CAC’ni qanchalik tez-tez qayta hisoblash kerak?</h3>
+Pullik kanallar uchun har oy, xarajatlar va mijozlar o‘rtasidagi kechikish uzunroq bo‘lgan SEO va outbound uchun har chorakda.
+
+<h2>Xulosa</h2>
+
+<p>CAC’ni har bir kanal bo‘yicha alohida hisoblang, unga barcha xarajatlarni kiriting, kechikishni hisobga olib to‘lovchi mijozlar bilan solishtiring — va qarorlarni CAC’ning o‘ziga emas, qoplanish va LTV:CAC’ga qarab qabul qiling. Blended CAC’ni investorga hisobot uchun qoldiring, byudjetni esa kanallar jadvali bo‘yicha taqsimlang.</p>
+
+<p><strong>Har bir kanal CAC’ini quyidagi kalkulyatorda hisoblang</strong>, keyin qoplanishni — <a href="/uz/cacPayback">/uz/cacPayback</a> da. CAC, CPL, CPA, LTV:CAC va yana 65 ta metrika formulalari va chegaralari bepul <a href="/benchmarks">PDF-shpargalka</a>da jamlangan.</p>
+
+<p>---</p>
+
+<h3>Qo‘shimcha resurslar</h3>
+
+<ul><li><a href="/uz/cac">/uz/cac</a> — CAC kalkulyatori</li><li><a href="/uz/cacPayback">/uz/cacPayback</a> — CAC qoplanishi</li><li><a href="/uz/ltv_cac">/uz/ltv_cac</a> — LTV:CAC nisbati</li><li><a href="/uz/cpl">/uz/cpl</a> — lid narxi</li><li><a href="/blog/cac-payback-period">/blog/cac-payback-period</a> — nega CAC Payback LTV:CAC’dan muhimroq (rus tilida)</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Shu yerning o‘zida hisoblang:</strong>
+  <iframe src="https://metricstree.vercel.app/uz/cac?embed=1" width="100%" height="650" loading="lazy" title="MetricTree cac kalkulyatori"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">To‘liq versiyasini ochish: <a href="https://metricstree.vercel.app/uz/cac" target="_blank">https://metricstree.vercel.app/uz/cac</a></p>
+</div>
+<div class="share-row">
+  Ulashish:
+  <a href="https://twitter.com/intent/tweet?text=Kanallar%20bo%E2%80%98yicha%20CAC%20%E2%80%94%20har%20bir%20kanal%20uchun%20mijozni%20jalb%20qilish%20narxini%20qanday%20hisoblash%20mumkin&url=https%3A%2F%2Fmetricstree.vercel.app%2Fuz%2Fblog%2Fcac-by-channel" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fuz%2Fblog%2Fcac-by-channel" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fuz%2Fblog%2Fcac-by-channel&text=Kanallar%20bo%E2%80%98yicha%20CAC%20%E2%80%94%20har%20bir%20kanal%20uchun%20mijozni%20jalb%20qilish%20narxini%20qanday%20hisoblash%20mumkin" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/uz/blog/">Barcha maqolalar</a> · <a href="/uz">Kalkulyator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>

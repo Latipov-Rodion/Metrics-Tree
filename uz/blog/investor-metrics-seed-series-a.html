@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Investor uchun metrikalar — seed va Series A’da nima so‘raladi va qaysi raqamlar kuchli hisoblanadi | MetricTree Blog</title>
+<meta name="description" content="Seed va Series A’da investorga qaysi metrikalarni ko‘rsatish kerak: MRR o‘sish sur’ati, NRR, Burn Multiple, CAC Payback, yalpi marja, runway. Formulalar, SaaS-startap uchun hisoblash misoli, normalar va pitch’dagi xatolar.">
+<meta name="keywords" content="investor uchun metrikalar, startap metrikalari, pitch uchun metrikalar, seed raund metrikalari, series a metrikalari, saas metrikalari investorlar uchun, pitch deck metrikalari, investitsiya jalb qilish">
+<link rel="canonical" href="https://metricstree.vercel.app/uz/blog/investor-metrics-seed-series-a">
+<link rel="alternate" hreflang="ru" href="https://metricstree.vercel.app/blog/investor-metrics-seed-series-a">
+<link rel="alternate" hreflang="en" href="https://metricstree.vercel.app/en/blog/investor-metrics-seed-series-a">
+<link rel="alternate" hreflang="uz" href="https://metricstree.vercel.app/uz/blog/investor-metrics-seed-series-a">
+<link rel="alternate" hreflang="x-default" href="https://metricstree.vercel.app/blog/investor-metrics-seed-series-a">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta property="og:title" content="Investor uchun metrikalar — seed va Series A’da nima so‘raladi va qaysi raqamlar kuchli hisoblanadi">
+<meta property="og:description" content="Seed va Series A’da investorga qaysi metrikalarni ko‘rsatish kerak: MRR o‘sish sur’ati, NRR, Burn Multiple, CAC Payback, yalpi marja, runway. Formulalar, SaaS-startap uchun hisoblash misoli, normalar va pitch’dagi xatolar.">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="uz_UZ">
+<meta property="og:url" content="https://metricstree.vercel.app/uz/blog/investor-metrics-seed-series-a">
+<meta property="og:image" content="https://metricstree.vercel.app/og-image.png">
+<meta property="article:published_time" content="2026-09-23">
+<meta property="article:author" content="Rodion Latipov">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Investor uchun metrikalar — seed va Series A’da nima so‘raladi va qaysi raqamlar kuchli hisoblanadi">
+<meta name="twitter:image" content="https://metricstree.vercel.app/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Investor uchun metrikalar — seed va Series A’da nima so‘raladi va qaysi raqamlar kuchli hisoblanadi",
+  "description": "Seed va Series A’da investorga qaysi metrikalarni ko‘rsatish kerak: MRR o‘sish sur’ati, NRR, Burn Multiple, CAC Payback, yalpi marja, runway. Formulalar, SaaS-startap uchun hisoblash misoli, normalar va pitch’dagi xatolar.",
+  "datePublished": "2026-09-23",
+  "author": {
+    "@type": "Person",
+    "name": "Rodion Latipov",
+    "url": "https://www.linkedin.com/in/rodion-latipov"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "MetricTree",
+    "url": "https://metricstree.vercel.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://metricstree.vercel.app/og-image.png"
+    }
+  },
+  "image": "https://metricstree.vercel.app/og-image.png",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://metricstree.vercel.app/uz/blog/investor-metrics-seed-series-a"
+  },
+  "keywords": "investor uchun metrikalar, startap metrikalari, pitch uchun metrikalar, seed raund metrikalari, series a metrikalari, saas metrikalari investorlar uchun, pitch deck metrikalari, investitsiya jalb qilish",
+  "inLanguage": "uz"
+}
+</script>
+<style>
+:root { color-scheme: light dark; --bg:#0A0C0E; --bg-card:#1A1C1F; --border:#2C2F33; --text-1:#E8EAED; --text-2:#B0B3B8; --text-3:#85898f; --accent:#2A6DF4; --green:#4CAF50; }
+html[data-theme="light"] { --bg:#F0F2F5; --bg-card:#fff; --border:#E1E4E8; --text-1:#1A1C1F; --text-2:#4A4E55; --text-3:#6e6e6e; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--text-1); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif; line-height:1.7; }
+.nav { display:flex; justify-content:space-between; align-items:center; padding:1rem 1.25rem; max-width:760px; margin:0 auto; }
+.brand { display:flex; align-items:center; gap:0.5rem; font-weight:700; font-size:1.05rem; text-decoration:none; color:var(--text-1); }
+.brand-mark { width:24px; height:24px; background:var(--accent); border-radius:6px; }
+.nav a { color:var(--text-2); text-decoration:none; }
+article { max-width: 760px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+h1 { font-size: 2.2rem; line-height:1.2; margin: 0.5rem 0 0.5rem; letter-spacing:-0.02em; }
+.meta { color: var(--text-3); font-size: 0.9rem; margin-bottom: 2rem; }
+h2 { font-size: 1.4rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.1rem; margin: 1.4rem 0 0.4rem; }
+p { margin: 0.85rem 0; }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+article a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+ul, ol { padding-left: 1.4rem; }
+li { margin: 0.3rem 0; }
+code { background: rgba(0,0,0,0.3); padding: 0.12rem 0.4rem; border-radius: 0.25rem; font-size: 0.92em; }
+pre { background: #0d1117; padding: 0.9rem 1rem; border-radius: 0.6rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; border:1px solid var(--border); }
+pre code { background:none; padding:0; }
+blockquote { border-left: 3px solid var(--accent); padding: 0.3rem 0 0.3rem 1rem; margin: 1.2rem 0; color: var(--text-2); }
+table { width:100%; border-collapse: collapse; margin: 1.2rem 0; font-size: 0.92rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; overflow:hidden; }
+th, td { padding: 0.5rem 0.8rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { background: rgba(42,109,244,0.06); font-weight: 700; }
+tr:last-child td { border-bottom: 0; }
+strong { color: var(--text-1); font-weight: 700; }
+em { color: var(--text-1); }
+.embed-cta { background: var(--bg-card); border:1px solid var(--border); border-radius: 0.75rem; padding: 1.25rem 1.4rem; margin: 2rem 0 1rem; }
+.embed-cta a.btn { display:inline-block; background:var(--accent); color:#fff; padding:0.55rem 1rem; border-radius:0.5rem; font-weight:600; text-decoration:none; margin-top:0.4rem; }
+.embed-cta iframe { border:1px solid var(--border); border-radius:0.5rem; margin-top: 0.8rem; }
+.footer { text-align:center; color:var(--text-3); margin-top:3rem; padding-top:1.5rem; border-top:1px solid var(--border); font-size:0.85rem; }
+.share-row { margin: 1.5rem 0; padding: 0.85rem 1rem; background: var(--bg-card); border:1px solid var(--border); border-radius: 0.5rem; display:flex; gap: 0.8rem; align-items:center; flex-wrap:wrap; }
+.share-row a { background:transparent; padding: 0.3rem 0.7rem; border:1px solid var(--border); border-radius: 0.4rem; font-size: 0.85rem; }
+.share-row a:hover { border-color: var(--accent); }
+</style>
+<script src="/theme-sync.js?v=ec79991f" defer></script>
+</head>
+<body>
+<nav class="nav">
+  <a href="/uz" class="brand"><span class="brand-mark"></span> MetricTree</a>
+  <div><a href="/uz/blog/">Blog</a> · <a href="/uz">Kalkulyator →</a></div>
+</nav>
+<article>
+<h1>Investor uchun metrikalar — seed va Series A’da nima so‘raladi va qaysi raqamlar kuchli hisoblanadi</h1>
+<div class="meta">2026-yil 23-sentabr · muallif: <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a></div>
+<h1>Investor uchun metrikalar — seed va Series A’da nima so‘raladi va qaysi raqamlar kuchli hisoblanadi</h1>
+
+<p>Investor 20 daqiqalik pitch davomida uchta narsani tushunishga harakat qiladi: biznes o‘syaptimi, mijozlar qolyaptimi va o‘sishning har bir dollariga qancha pul yondirilyapti. Qolgani — tafsilotlar. Yaxshi xabar: bu uchta javob 6–8 ta metrikaga sig‘adi va ularni oldindan hisoblash mumkin.</p>
+
+<h2>Bosqichdan bosqichga nima o‘zgaradi</h2>
+
+<p><strong>Pre-seed / seed</strong> — potensial sotiladi. Investor product-market fit belgilarini qidiradi:<br><ul><li>o‘sish sur’ati (MoM) va uning barqarorligi;</li><li>birinchi kogortalar retention’i — egri chiziq plato’ga chiqyaptimi;</li><li>unit-iqtisodiyotning ilk signallari: mijoz qancha turadi va u qancha to‘laydi.</li></ul></p>
+
+<p><strong>Series A</strong> — takrorlanadigan o‘sish mashinasi sotiladi. Bu yerda allaqachon quyidagilar kerak:<br><ul><li>tushum masshtabi (ARR) va o‘sish traektoriyasi;</li><li>NRR va GRR — tushum baza ichida o‘syaptimi;</li><li>samaradorlik: Burn Multiple, CAC Payback;</li><li>bu xizmatlar emas, dasturiy biznes ekanini tasdiqlaydigan yalpi marja.</li></ul></p>
+
+<p>SaaS’da Series A uchun tez-tez tilga olinadigan bozor mo‘ljali — tez o‘sish bilan taxminan $1–2M ARR, lekin chegara bozor, segment va yilga qattiq bog‘liq. Quyidagi raqamlar mutlaq ARR’dan muhimroq: kichikroq masshtabdagi kuchli samaradorlik ko‘pincha katta, lekin «qimmat» ARR’dan ko‘ra ko‘proq ishontiradi.</p>
+
+<h2>Albatta so‘raladigan 7 ta metrika</h2>
+
+<table><thead><tr><th>Metrika</th><th>Formula</th><th>SaaS uchun normalar</th></tr></thead><tbody><tr><td></td><td><strong>MRR growth (MoM)</strong></td><td>(Oxirgi MRR − Boshlang‘ich MRR) / Boshlang‘ich MRR</td><td><5% past, 5–10% norma, 10–20% yaxshi, >20% a’lo</td><td></td></tr><tr><td></td><td><strong>NRR</strong></td><td>(Boshlang‘ich MRR + upsell’lar − churn) / Boshlang‘ich MRR</td><td><90% yomon, 90–100% norma, 100–120% yaxshi, >130% a’lo</td><td></td></tr><tr><td></td><td><strong>GRR</strong></td><td>(Boshlang‘ich MRR − churn va downgrade’lar) / Boshlang‘ich MRR</td><td><85% yomon, 85–95% norma, >95% yaxshi</td><td></td></tr><tr><td></td><td><strong>Burn Multiple</strong></td><td>Net Burn / Net New ARR</td><td><1 a’lo, 1–1.5 yaxshi, 1.5–2 norma, 2–3 yomon, >3 juda yomon</td><td></td></tr><tr><td></td><td><strong>CAC Payback</strong></td><td>CAC / (Bitta mijozga MRR × yalpi marja)</td><td><12 oy yaxshi, 12–18 norma, >18 yomon</td><td></td></tr><tr><td></td><td><strong>Yalpi marja</strong></td><td>(Tushum − COGS) / Tushum</td><td><60% yomon, 60–75% norma, 75–85% yaxshi, >85% a’lo</td><td></td></tr><tr><td></td><td><strong>Runway</strong></td><td>Cash / oylik Net Burn</td><td>Seed: 18–24 oy — norma; Series A+: >18 oy</td><td></td></tr></tbody></table>
+Bular MetricTree kalkulyatori SaaS sohasi uchun ishlatadigan chegaralarning o‘zi. Keyingi bosqichlarda ularga <strong>Rule of 40</strong> (o‘sish + marja ≥ 40%) qo‘shiladi — <a href="/uz/ruleOf40">/uz/ruleOf40</a>.
+
+<p>Burn Multiple shkalasi — Devid Saksning (Craft Ventures) freymvorki, 2020-yildan keyin standartga aylangan. O‘sish traektoriyasi uchun investorlar ko‘pincha <strong>T2D3</strong> ni eslashadi (Niraj Agraval, Battery Ventures): ARR’ni ketma-ket ikki yil uch baravar oshirish, keyin uch yil ikki baravar.</p>
+
+<h2>Misol: seed-startap Series A’ga tayyorlanyapti</h2>
+
+<p>B2B SaaS, oxirgi chorak:<br><ul><li>3 oy oldin MRR: <strong>$60 000</strong>, hozir: <strong>$80 000</strong></li><li>Chorakdagi Net Burn: <strong>$360 000</strong> (oyiga $120 000)</li><li>Hisobdagi cash: <strong>$2.4M</strong></li><li>CAC: <strong>$4 000</strong>, bitta mijozga MRR: <strong>$400</strong>, yalpi marja <strong>80%</strong></li><li>Bir yil oldin bo‘lgan mijozlar: <strong>$30 000</strong> MRR to‘lashardi, hozir <strong>$33 600</strong> to‘lashyapti (upsell’lar +$5 100, churn va downgrade’lar −$1 500)</li></ul></p>
+
+<p>Hisoblaymiz:</p>
+
+<p><strong>O‘sish sur’ati.</strong> Chorakda MRR 33% ga o‘sdi. O‘rtacha oylik (CMGR) = (80 / 60)^(1/3) − 1 ≈ <strong>10.1% MoM</strong> → «yaxshi».</p>
+
+<p><strong>Burn Multiple.</strong> Chorakdagi Net New ARR = (80 000 − 60 000) × 12 = $240 000. Burn Multiple = 360 000 / 240 000 = <strong>1.5</strong> → «yaxshi / norma» chegarasi.</p>
+
+<p><strong>NRR</strong> = 33 600 / 30 000 = <strong>112%</strong> → «yaxshi». <strong>GRR</strong> = (30 000 − 1 500) / 30 000 = <strong>95%</strong> → «norma / yaxshi» chegarasi.</p>
+
+<p><strong>CAC Payback</strong> = 4 000 / (400 × 0.8) = 4 000 / 320 = <strong>12.5 oy</strong> → «norma».</p>
+
+<p><strong>Runway</strong> = 2 400 000 / 120 000 = <strong>20 oy</strong> → seed uchun norma, raund uchun vaqt bor.</p>
+
+<p>Pitch uchun xulosa: o‘sish va ushlab qolish — kuchli tomonlar, ularni raqamlar bilan birinchi slaydga chiqaramiz. Samaradorlik — «norma»: CAC Payback 12 oydan qanday pastga tushishi rejasini ko‘rsatish kerak (pricing, yillik oldindan to‘lovlar, organik kanallar).</p>
+
+<h2>Metrikalarni pitch’da qanday ko‘rsatish kerak</h2>
+
+<ul><li><strong>Jamlanma grafik emas, oylik dinamika.</strong> Kumulyativ tushum har doim o‘sadi — investorlar buni biladi va bunday grafikni sekinlashuvni yashirishga urinish deb o‘qiydi.</li><li><strong>O‘rtachalar emas, kogortalar.</strong> Kogortalar bo‘yicha retention jadvali bitta churn raqamidan kuchliroq ishontiradi.</li><li><strong>Slayddagi ta’riflar.</strong> «ARR = obunalar MRR’i × 12, bir martalik xizmatlarsiz». Bitta satr due diligence’dagi savollarning yarmini olib tashlaydi.</li><li><strong>Bozor bilan solishtirish.</strong> Ommaviy benchmarklarga nisbatan qayerda ekaningizni ko‘rsating. Buning uchun Bessemer State of the Cloud, OpenView SaaS Benchmarks, KeyBanc SaaS Survey hisobotlari mos keladi; ta’riflar bo‘yicha yaxshi shpargalka — a16z’ning «16 Startup Metrics» maqolasi.</li><li><strong>Zaif metrikani — reja bilan.</strong> Investor baribir uni topadi. Bu haqda bilishingizni va u bilan nima qilayotganingizni ko‘rsatgan ma’qul.</li></ul>
+
+<h2>Pitch’dagi odatiy xatolar</h2>
+
+<h3>1. Biznes-metrikalar o‘rniga vanity-metrikalar</h3>
+Ro‘yxatdan o‘tishlar, yuklab olishlar, take rate’siz GMV. Investor bundan qanchasi tushum ekanini qayta so‘raydi.
+
+<h3>2. ARR ichidagi bir martalik tushum</h3>
+Joriy etish, konsalting, bir oy uchun MRR × 12 sifatida hisoblangan yillik shartnoma. Due diligence’da bu yuzaga chiqadi va boshqa barcha raqamlarga ishonchni yo‘qotadi.
+
+<h3>3. Bitta omadli oydan yillik o‘sish</h3>
+Bitta sakrash × 12 — trend emas. 3–6 oy uchun CMGR’ni ko‘rsating.
+
+<h3>4. Net burn o‘rniga gross burn (yoki izohsiz aksincha)</h3>
+Burn Multiple va runway net burn bo‘yicha hisoblanadi. Aynan nimani ko‘rsatayotganingizni yozib qo‘ying.
+
+<h3>5. Qoplanish muddatisiz LTV:CAC</h3>
+Prognoz LTV’dagi LTV:CAC = 5 haqiqiy ma’lumotlardagi 10 oylik CAC Payback’dan kuchsizroq ishontiradi. Batafsil — <a href="/blog/cac-payback-period">CAC Payback</a> tahlilida (rus tilida).
+
+<h3>6. Runway-rejaning yo‘qligi</h3>
+Raund yarim yilga kechiksa nima bo‘lishi ssenariysisiz «Bizga 20 oyga yetadi» — qizil bayroq. Tahlil — <a href="/uz/blog/runway-when-fundraise">raundni qachon yig‘ish kerak</a>.
+
+<h2>Ko‘p beriladigan savollar</h2>
+
+<h3>Series A uchun qanday o‘sish sur’ati kerak?</h3>
+Bir necha chorak davomida oyiga 10% dan yuqori barqaror MRR o‘sishi kuchli signal hisoblanadi; 5–10% — samaradorlik va ushlab qolish bilan mustahkamlash kerak bo‘lgan norma.
+
+<h3>Nima muhimroq — o‘sishmi yoki samaradorlikmi?</h3>
+2022-yildan keyin — muvozanat. Yaxshi o‘sishda 1.5 dan past Burn Multiple har qanday narxdagi o‘sishdan ko‘ra ko‘proq ishontiradi.
+
+<h2>Xulosa</h2>
+
+<p>Seed’da investorga o‘sish va ushlab qolish kerak, Series A’da — samaradorlik ham. Yuqoridagi yetti metrikani oldindan hisoblang, o‘z bosqichingiz normalari bilan solishtiring va kuchli tomonlarni pitch boshiga chiqaring. Zaiflarini — tuzatish rejasi bilan ko‘rsating.</p>
+
+<p><strong>MRR o‘sish sur’atingizni quyidagi kalkulyatorda hisoblang</strong>, keyin <a href="/uz/burnMultiple">Burn Multiple</a>, <a href="/uz/nrr">NRR</a>, <a href="/uz/cacPayback">CAC Payback</a> va <a href="/uz/runway">runway</a>ni tekshiring. Barcha formulalar va chegaralar bitta hujjatda — bepul <a href="/benchmarks">69 ta metrika bo‘yicha PDF-shpargalka</a>da, deck tayyorlashda qo‘l ostida saqlash qulay.</p>
+
+<p>---</p>
+
+<h3>Qo‘shimcha resurslar</h3>
+
+<ul><li><a href="/uz/mrrGrowthRate">/uz/mrrGrowthRate</a> — MRR o‘sish sur’ati</li><li><a href="/uz/burnMultiple">/uz/burnMultiple</a> — Burn Multiple</li><li><a href="/uz/nrr">/uz/nrr</a> — Net Revenue Retention</li><li><a href="/uz/grossMargin">/uz/grossMargin</a> — yalpi marja</li><li><a href="/uz/blog/burn-multiple-saas-2026">/uz/blog/burn-multiple-saas-2026</a> — 2026-yilda Burn Multiple</li></ul>
+
+<div class="embed-cta">
+  <strong>🧮 Shu yerning o‘zida hisoblang:</strong>
+  <iframe src="https://metricstree.vercel.app/uz/mrrGrowthRate?embed=1" width="100%" height="650" loading="lazy" title="MetricTree mrrGrowthRate kalkulyatori"></iframe>
+  <p style="font-size:0.85rem;color:var(--text-3);margin-top:0.6rem;">To‘liq versiyasini ochish: <a href="https://metricstree.vercel.app/uz/mrrGrowthRate" target="_blank">https://metricstree.vercel.app/uz/mrrGrowthRate</a></p>
+</div>
+<div class="share-row">
+  Ulashish:
+  <a href="https://twitter.com/intent/tweet?text=Investor%20uchun%20metrikalar%20%E2%80%94%20seed%20va%20Series%20A%E2%80%99da%20nima%20so%E2%80%98raladi%20va%20qaysi%20raqamlar%20kuchli%20hisoblanadi&url=https%3A%2F%2Fmetricstree.vercel.app%2Fuz%2Fblog%2Finvestor-metrics-seed-series-a" target="_blank">𝕏 / Twitter</a>
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fmetricstree.vercel.app%2Fuz%2Fblog%2Finvestor-metrics-seed-series-a" target="_blank">LinkedIn</a>
+  <a href="https://t.me/share/url?url=https%3A%2F%2Fmetricstree.vercel.app%2Fuz%2Fblog%2Finvestor-metrics-seed-series-a&text=Investor%20uchun%20metrikalar%20%E2%80%94%20seed%20va%20Series%20A%E2%80%99da%20nima%20so%E2%80%98raladi%20va%20qaysi%20raqamlar%20kuchli%20hisoblanadi" target="_blank">Telegram</a>
+</div>
+</article>
+<div class="footer">
+  © 2026 <a href="https://www.linkedin.com/in/rodion-latipov" target="_blank">Rodion Latipov</a> · <a href="/uz/blog/">Barcha maqolalar</a> · <a href="/uz">Kalkulyator</a> · <a href="https://github.com/Latipov-Rodion/Metrics-Tree" target="_blank">GitHub</a>
+</div>
+</body>
+</html>
