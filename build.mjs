@@ -544,6 +544,8 @@ function applyHead(html, { title, desc, url, lang }) {
     html = html.replace(/\n[ \t]*<meta name="keywords"[^>]*>/, '');
     html = html.replace(/<h1>MetricTree — [^<]*<\/h1>/, `<h1>${esc(L.h1)}</h1>`);
     html = html.replace(/"inLanguage": "ru"/, `"inLanguage": "${lang}"`);
+    // Footer "Blog" link → the localized blog index (/en/blog/, /uz/blog/).
+    html = html.replace('<a href="/blog/">Blog</a>', `<a href="/${lang}/blog/">Blog</a>`);
   }
   return html;
 }
@@ -705,24 +707,45 @@ function generateSitemap() {
   const enBlogSlugs = [...new Set(
     [...vercel.matchAll(/"source":\s*"\/en\/blog\/([a-z0-9-]+)"/g)].map(m => m[1])
   )].filter(s => s !== 'index');
+  const uzBlogSlugs = [...new Set(
+    [...vercel.matchAll(/"source":\s*"\/uz\/blog\/([a-z0-9-]+)"/g)].map(m => m[1])
+  )].filter(s => s !== 'index');
   const enBlogSet = new Set(enBlogSlugs);
-  // hreflang alternates for a blog slug that exists in both languages.
-  const blogAlts = (slug) => [
-    { lang: 'ru', href: `${SITE}/blog/${slug}` },
-    { lang: 'en', href: `${SITE}/en/blog/${slug}` },
-    { lang: 'x-default', href: `${SITE}/blog/${slug}` },
-  ];
+  const uzBlogSet = new Set(uzBlogSlugs);
+  const ruBlogSet = new Set(blogSlugs);
+  // hreflang alternates for a blog slug: every language that has the post
+  // (ru / en / uz), x-default → ru. null when the post exists in one language only.
+  const blogAlts = (slug) => {
+    const alts = [];
+    if (ruBlogSet.has(slug)) alts.push({ lang: 'ru', href: `${SITE}/blog/${slug}` });
+    if (enBlogSet.has(slug)) alts.push({ lang: 'en', href: `${SITE}/en/blog/${slug}` });
+    if (uzBlogSet.has(slug)) alts.push({ lang: 'uz', href: `${SITE}/uz/blog/${slug}` });
+    if (alts.length < 2) return null;
+    alts.push({ lang: 'x-default', href: alts[0].href });
+    return alts;
+  };
   for (const slug of blogSlugs) {
     const opts = { priority: '0.7', changefreq: 'monthly', src: [`blog-src/${slug}.md`] };
-    if (enBlogSet.has(slug)) opts.alts = blogAlts(slug);
+    const alts = blogAlts(slug);
+    if (alts) opts.alts = alts;
     urls.push(urlNode(`${SITE}/blog/${slug}`, opts));
   }
   if (enBlogSlugs.length) {
     urls.push(urlNode(`${SITE}/en/blog`, { priority: '0.7', changefreq: 'weekly', src: ['blog-src/en', 'build-blog.mjs'] }));
     for (const slug of enBlogSlugs) {
       const opts = { priority: '0.6', changefreq: 'monthly', src: [`blog-src/en/${slug}.md`] };
-      if (blogSlugs.includes(slug)) opts.alts = blogAlts(slug);
+      const alts = blogAlts(slug);
+      if (alts) opts.alts = alts;
       urls.push(urlNode(`${SITE}/en/blog/${slug}`, opts));
+    }
+  }
+  if (uzBlogSlugs.length) {
+    urls.push(urlNode(`${SITE}/uz/blog`, { priority: '0.7', changefreq: 'weekly', src: ['blog-src/uz', 'build-blog.mjs'] }));
+    for (const slug of uzBlogSlugs) {
+      const opts = { priority: '0.6', changefreq: 'monthly', src: [`blog-src/uz/${slug}.md`] };
+      const alts = blogAlts(slug);
+      if (alts) opts.alts = alts;
+      urls.push(urlNode(`${SITE}/uz/blog/${slug}`, opts));
     }
   }
 
