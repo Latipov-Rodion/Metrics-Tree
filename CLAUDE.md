@@ -11,7 +11,7 @@ Guidance for AI assistants (Claude Code and others) working in this repository.
 > `DEEP_CONTENT`, `BENCHMARK_SOURCES`, `SCENARIO_TEMPLATES`) now live in **`/app.js`**, loaded by
 > `index.html` — they are **no longer inlined in `index.html`**. `build.mjs` generates **69**
 > per-metric pages + `sitemap.xml` + `benchmarks.html` from its `META` map. Parts of the layout
-> description below predate this refactor — trust `PROJECT_STATE.md` where they disagree.
+> description below were updated on 2026-11-03 — still trust `PROJECT_STATE.md` where they disagree.
 
 ## What this project is
 
@@ -21,11 +21,11 @@ industry benchmarks, and result interpretation. It targets product managers,
 marketers, analysts, and founders. UI is trilingual: **Russian (default), English,
 Uzbek (Latin)**.
 
-It is a **zero-framework, no-bundler static site**. The entire web app —
-HTML + CSS + JS + all metric definitions + i18n strings — lives inline in a single
-file, `index.html` (~8,400 lines). There is **no `package.json`, no `node_modules`,
-no build framework, no test suite.** Build steps are plain Node ESM scripts run
-directly with `node`.
+It is a **zero-framework, no-bundler static site**. All app JS and all metric data live
+in **`/app.js`** (~8,000 lines); `index.html` is only the shell (head/SEO + markup).
+There is **no `package.json`, no `node_modules`, no build framework** — this is deliberate,
+do not propose React, a bundler or npm dependencies. Build steps are plain Node ESM scripts;
+tests use the built-in `node --test` (`test/*.test.mjs`).
 
 The project is deployed on **Vercel** as static files plus a few **Edge Functions**
 under `api/`. A companion **Telegram bot** (`bot.py`) is a separate Python process.
@@ -33,97 +33,34 @@ under `api/`. A companion **Telegram bot** (`bot.py`) is a separate Python proce
 Note: most user-facing comments, content, and commit history are in **Russian**.
 Match the existing language when editing content; keep code identifiers in English.
 
-## Repository layout
+## Repository layout & changing metrics
 
-```
-index.html              ← THE app. HTML+CSS+JS+69 metric defs+i18n, all inline. Source of truth.
-build.mjs               ← Generates 49 per-metric SEO pages (dau.html, ltv.html, …) from index.html
-build-blog.mjs          ← Converts blog-src/*.md → blog/*.html (Markdown → static HTML)
-bot.py                  ← Telegram bot companion (python-telegram-bot v21), standalone process
-generate_og.py          ← Generates og-image.png via Pillow
-check-indexing.mjs      ← Checks Google indexing status of URLs
-notify-indexnow.mjs     ← Pings IndexNow API after deploy
+See `PROJECT_STATE.md` for the authoritative layout, the data structures in `app.js`,
+the 12-step "add a metric" checklist and the CI gates. Short version:
 
-api/                    ← Vercel Edge Functions (serverless)
-  calc.js               ← Public calculator API: GET/POST /api/calc
-  lead.js               ← Lead capture → Telegram + Resend email
-  leads.js              ← Admin: read leads from Vercel KV (secret-protected)
+- `app.js` — the app: `metricsData`, i18n tables, benchmarks, goal-mode, deep content.
+- `build.mjs` — generates 69 per-metric pages (`<id>.html`, `en/<id>.html`, `uz/<id>.html`),
+  `sitemap.xml`, `benchmarks.html` from its `META` map + `metricsData` read from `app.js`.
+  Generated pages, `blog/*.html`, `sitemap.xml`, `benchmarks.html` are artifacts — never hand-edit.
+- Hand-authored pages: `admin.html`, `press.html`, `embed.html`, `changelog.html`,
+  `api-docs.html`, `vs-*.html`, `tree.html`, `report.html`, `quiz.html` etc.
+- `api/` — Vercel Edge Functions (`calc.js`, `lead.js`, `leads.js`, `insight.js`).
+- `vercel.json` — hand-written rewrites (`cleanUrls:false`), headers, caching.
 
-blog-src/*.md           ← Blog post SOURCES (edit these)
-blog/*.html             ← Generated blog output (build artifacts, do not hand-edit)
-marketing/              ← GTM docs: GSC_YANDEX_SETUP.md, OUTREACH_EMAILS.md, SOCIAL_POSTS.md
-
-vercel.json             ← URL rewrites (clean RU/EN/UZ URLs) + security headers + caching
-sitemap.xml, robots.txt, manifest.webmanifest, favicon.svg
-
-*.html (root)           ← MIXED. Two kinds — see below.
-```
-
-### Two kinds of root `*.html` files (important)
-
-1. **Generated per-metric pages** — `dau.html`, `ltv.html`, `cac.html`, `runway.html`,
-   etc. (~49 files). These are **build artifacts from `build.mjs`** and must NOT be
-   hand-edited. They are full copies of `index.html` with only the `<head>` meta
-   (title, description, OG, canonical, FAQ/HowTo JSON-LD, hreflang) swapped per metric.
-2. **Hand-authored standalone pages** — `admin.html`, `press.html`, `embed.html`,
-   `changelog.html`, `api-docs.html`, `vs-profitwell.html`, `vs-baremetrics.html`,
-   `vs-causal.html`, `vs-chartmogul.html`. Edit these directly.
-
-To tell them apart: generated pages are ~590 KB (full app); standalone pages are tens of KB.
-
-## How to make changes
-
-### Changing the app, a calculation, or a metric → edit `index.html`, then rebuild
-
-All metric logic lives in the `metricsData` object in `index.html` (starts ~line 3761).
-It is keyed by **section**, and each section has `name` + a `metrics[]` array:
-
-```js
-const metricsData = {
-  b2c:    { name: 'B2C',    metrics: [ … ] },
-  b2b:    { name: 'B2B',    metrics: [ … ] },
-  sales:  { name: 'AARRR',  metrics: [ … ] },   // note: key `sales` → display name "AARRR"
-  finance:{ name: 'Finance',metrics: [ … ] },
-  growth: { name: 'Growth', metrics: [ … ] },
-  qa:     { name: 'QA',     metrics: [ … ] },
-  support:{ name: 'Support',metrics: [ … ] },
-};
-```
-
-Each metric object looks like:
-
-```js
-{
-  id: 'ltv', name: 'LTV',
-  formula: 'AOV × частота × время жизни',
-  description: '…',
-  threshold: 'Плохо: …, Средне: …, Хорошо: …',
-  inputs: [ { label, placeholder, key, min, help? }, … ],   // key is used in share URLs
-  calculate: v => { … return value or null; },              // uses sanitizeNumber(v.<key>)
-  unit: '$',
-  insight: val => ({ color, text }),                        // color-coded interpretation
-}
-```
-
-**After editing any metric in `index.html`, regenerate the per-metric pages:**
+Full build chain (CI fails if artifacts drift):
 
 ```bash
-node build.mjs       # rewrites the 49 *.html per-metric files; prints "✓ Generated N"
+node build-industries.mjs && node build-glossary.mjs && node build.mjs && node build-blog.mjs && node inject-theme-sync.mjs
+node --check app.js && node --test test/*.test.mjs && node validate-site.mjs
 ```
 
-If you add or remove a metric, you must keep these in sync:
-- the `metricsData` entry in `index.html`,
-- the `META` map in `build.mjs` (per-metric `title`/`desc`/FAQ — currently 69 entries),
-- `RELATED`, `SHORT_NAME` maps in `build.mjs` (related-metric links),
-- the corresponding calculator in `api/calc.js` (only ~22 metrics are exposed via API),
-- `sitemap.xml` and the `rewrites` in `vercel.json` (RU + `/en/` + `/uz/` URLs),
-- i18n entries in `index.html` (`I18N_M[metricId]` for EN/UZ name/formula/description).
-
-### i18n / translations → edit `index.html`
+### i18n / translations → edit `app.js`
 
 - `I18N_UI[lang][key]` — UI string translations (search `I18N` around line 2365).
 - `I18N_M[metricId][lang]` — per-metric `{ name, formula, description }` for `en`/`uz`.
 - Russian is the default and lives directly in `metricsData` (no separate table).
+- Benchmark/insight/goal strings (`I18N_THRESH`, `I18N_INSIGHTS`, `I18N_GOAL`) are keyed by the
+  exact Russian text — change the RU string, update the key.
 - Missing translations fall back to Russian.
 
 ### Blog → edit `blog-src/*.md`, then rebuild
@@ -162,8 +99,8 @@ python -m http.server 5173      # then open http://localhost:5173
 # or: just open index.html in a browser
 ```
 
-After editing `index.html` or `blog-src/`, run the relevant generator
-(`node build.mjs` / `node build-blog.mjs`) before committing so artifacts stay current.
+After editing `app.js`, `build.mjs` or `blog-src/`, run the full build chain (above)
+before committing so artifacts stay current.
 
 ## Deployment
 
@@ -179,12 +116,12 @@ Share URLs encode field values by each input's `key`, e.g. `/ltv?aov=2500&freq=4
 
 ## Conventions & gotchas
 
-- **`index.html` is the single source of truth** for the app. Never hand-edit a
+- **`app.js` is the single source of truth** for the app. Never hand-edit a
   generated per-metric `*.html` or `blog/*.html` — your change will be overwritten on
   the next build. Edit the source, then run the generator.
-- **Always rebuild after editing source**: `node build.mjs` (and/or `node build-blog.mjs`)
-  so the committed artifacts match `index.html`. Commits typically include both the
-  source change and the regenerated `*.html` files.
+- **Always rebuild after editing source**: run the full chain, `inject-theme-sync.mjs` last
+  (it versions `/app.js`, `/app.css` by hash in every page). Commit source + regenerated files;
+  a second run must produce zero diff.
 - **No framework / no transpile**: vanilla HTML/CSS/JS only. Don't introduce a bundler,
   npm dependencies, or a `package.json` unless explicitly asked — it's a deliberate
   "no build step" project.
@@ -197,7 +134,8 @@ Share URLs encode field values by each input's `key`, e.g. `/ltv?aov=2500&freq=4
 
 ## Git workflow
 
-- This branch: develop on `claude/claude-md-docs-ZLf4t` (or the branch assigned to the task).
+- Branch from fresh main: `git fetch origin main && git checkout -b feat/<x> origin/main`
+  (`feat/` or `fix/`). Squash-merge on green CI; recreate the branch from main after a squash.
 - Write clear, descriptive commit messages; the repo follows a loose Conventional-Commits
   style (`feat:`, `fix(ux):`, `docs(seo):`, …).
 - After pushing, open a PR as ready for review.
