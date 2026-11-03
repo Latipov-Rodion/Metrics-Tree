@@ -1,28 +1,24 @@
 # PROJECT_STATE — состояние проекта MetricTree
 
 > Заметка-хендофф для продолжения работы в новом чате (Claude Code / люди).
-> Обновлено: 2026-09-28. Продукт: **metricstree.vercel.app**, репо: `Latipov-Rodion/Metrics-Tree`.
+> Обновлено: 2026-11-03. Продукт: **metricstree.vercel.app**, репо: `Latipov-Rodion/Metrics-Tree`.
 
-## 🔴 Актуально на 2026-09-28 (читать первым)
+## 🔴 Актуально на 2026-11-03 (читать первым)
 
-**Прод отстаёт от репозитория.** `main` = `52d2a43` (PR #24). PR #25 (`claude/claude-md-docs-ZLf4t`) уже включает PR #26 и **не смержен** (мерж без ревью заблокирован политикой агента — мержит владелец). Ветка `claude/metrictree-prod-fixes-erz2nn` идёт поверх #25 и добавляет:
-- **SEO:** физические страницы `en/<id>.html`, `uz/<id>.html`, `en/`, `uz/` с локализованными title/description/canonical/JSON-LD (раньше 140 EN/UZ URL отдавали русский `<title>` и canonical на RU = дубли). `updatePageTitle()` больше не затирает SEO-title на странице входа. `<lastmod>` — из git-истории источников (CI: `fetch-depth: 0`). 404.html. IndexNow шлёт только изменённые URL.
-- **Кэш:** `inject-theme-sync.mjs` ставит `?v=<sha256[:8]>` на `/app.js`, `/app.css`, `/theme-sync.js`, `/ab-test.js`; версионированные URL — `immutable` на год.
-- **i18n:** `I18N_INPUTS` (подписи/подсказки всех полей, ключ = metricId+inputKey — НЕ русский текст), `I18N_UNITS`, панели What-if/шаблоны/Compare-2, `/tree`, `/report`. Тест `test/i18n-drift.test.mjs`.
-- **Расчёты:** аудит 69 метрик (вердикты vs бенчмарки, обратный расчёт, пресеты, API, бот). Тест `test/metrics.test.mjs`.
-- **Доступность:** контраст вердиктов AA (токены `--v-good/--v-warn/--v-bad/--accent-text`), модалки с фокус-ловушкой, карточки — role=button.
-- **Контент:** 6 статей RU+EN. **Бенчмарки CAC** ecom/mobile исправлены. Embed-сниппеты несут backlink.
+`main` = `3702578` (PR #29), выкачено в прод. PR #25–#29 смержены. Аудит-свип закрыт: уникальный SEO-контент на 69 страницах (build.mjs читает `metricsData` из `app.js`), Magic Number исправлен (был завышен вчетверо), закрыты две DOM-XSS через share-ссылки, устранены противоречия «вердикт против подписи» у 8 метрик, 386 строк бенчмарков переведены на EN/UZ, доступность WCAG AA, property-тесты на все 69 калькуляторов.
 
-**Измерений нет.** Vercel Web Analytics выключен (API: «Web Analytics not found»); разметка готова. Кастомные события `window.track(...)` — только на Pro. Логи функций за 30 дней пусты.
+**Измерений нет.** Vercel Web Analytics выключен (API: «Web Analytics not found»). Разметка событий (`calc`, `share`, `ai_insight`, `lead`, `embed_copy`) уже в коде, скрипт грузится с `/_vercel/insights/script.js`. Кастомные события `window.track(...)` — только на Pro.
 
-**Только владелец:** смержить #25, затем PR этой ветки; включить Web Analytics; верифицировать Google Search Console и Яндекс.Вебмастер (`marketing/GSC_YANDEX_SETUP.md`).
+**Только владелец:** включить Web Analytics; верифицировать Google Search Console (мета-тега `google-site-verification` в репо нет) и отправить sitemap; Яндекс подключён (`adc339db….txt`). Уборка смерженных веток — через GitHub UI (из песочницы `git push --delete` → 403).
+
+**Методика аудита:** часть верификаторов прошлого аудита упала по лимиту API, ~48 находок остались «неизвестно»; из 10 проверенных вручную настоящими оказались все 10. Не считать их ложными — при ревизии качества прогнать аудит заново.
 
 **Грабли:**
-- `I18N_THRESH` / `I18N_INSIGHTS` / `I18N_GOAL` привязаны к точному русскому тексту — меняешь RU-строку, обнови ключ (тесты `i18n-drift` и `metrics` это ловят).
-- Порядок генераторов фиксирован, `inject-theme-sync.mjs` — последним. После изменения `app.js`/`app.css` меняются хеши во ВСЕХ страницах → прогоняй цепочку и коммить результат. Повторный прогон должен давать 0 изменений.
-- Не запускай цепочку в основной копии, пока агенты работают в `.claude/worktrees/*` (исправлено: injector теперь пропускает dot-директории).
-- Воркtree агентов создаются от `main`, а не от текущей ветки — сразу `git reset --hard <нужный SHA>`.
-- После squash-мержа ветку пересоздавать от `main`.
+- `I18N_THRESH` / `I18N_INSIGHTS` / `I18N_GOAL` привязаны к точному русскому тексту — меняешь RU-строку, обнови ключ, иначе EN/UZ молча откатываются на русский (тесты `i18n-drift` и `metrics` это ловят).
+- Порядок генераторов фиксирован, `inject-theme-sync.mjs` — последним; коммитить пост-inject состояние. Повторный прогон должен давать 0 изменений. Даты в `sitemap.xml`/`benchmarks.html` CI игнорирует через `git diff -I`.
+- После squash-мержа ветку пересоздавать от `main` (до-squash коммиты несут то же содержимое под другими SHA).
+- Не ветвиться от устаревшей базы: `git fetch origin main && git checkout -b <branch> origin/main`.
+- Не запускай цепочку в основной копии, пока агенты работают в `.claude/worktrees/*`.
 
 ## Снимок на сейчас
 
@@ -34,7 +30,7 @@
 
 После перф-рефактора (PR #8/#9 в истории) приложение **больше не инлайнится целиком в `index.html`**:
 
-- **`/app.js`** (~6000 строк) — ВЕСЬ JS и ВСЕ данные метрик. Грузится из `index.html` как `<script src="/app.js">` (общий глобальный scope с инлайн-скриптами index.html).
+- **`/app.js`** (~8000 строк) — ВЕСЬ JS и ВСЕ данные метрик. Грузится из `index.html` как `<script src="/app.js">` (общий глобальный scope с инлайн-скриптами index.html).
 - **`/app.css`** — общие стили. **`/theme-sync.js`** — синхронизация темы (инъектится скриптом `inject-theme-sync.mjs` во все HTML).
 - **`index.html`** — теперь оболочка: `<head>` (SEO/мета/JSON-LD) + разметка + подключение `/app.js`,`/app.css`. Данных метрик тут НЕТ.
 
@@ -44,10 +40,10 @@
 | `const metricsData` | ядро: секции `b2c, b2b, sales(=AARRR), finance, growth, qa, support`; метрика = `{id,name,formula,description,threshold,inputs:[{label,placeholder,key,min,help?}],calculate:v=>…,unit,insight:val=>({color,text})}`. Хелпер `sanitizeNumber(v.key)`. |
 | `window.I18N_M` | i18n метрики: `slug:{ en:{name,formula,description}, uz:{…} }` |
 | `window.I18N_INSIGHTS` | словарь переводов инсайтов: `'<RU текст>':{ en, uz }` |
-| `const INDUSTRY_THRESHOLDS` | бенчмарки по 5 индустриям (`universal/saas/ecom/mobile/media`). Сейчас **61** метрика. |
+| `const INDUSTRY_THRESHOLDS` | бенчмарки по 5 индустриям (`universal/saas/ecom/mobile/media`). Сейчас **69** метрик (все). |
 | `const RELATED` | граф связей: `slug:[{ s:'<секция>', id:'<метрика>', note }]` |
-| `const GOAL_QUESTIONS` | goal-mode (обратный расчёт). Сейчас **14** метрик / ~21 сценарий. |
-| `DEEP_CONTENT` | лонгрид по метрике `{ ru, en, uz }` (рендерится клиентски) |
+| `const GOAL_QUESTIONS` | goal-mode (обратный расчёт). Сейчас **25** метрик. |
+| `DEEP_CONTENT` | лонгрид по метрике `{ ru, en, uz }` (рендерится клиентски). Сейчас **30** из 69. |
 | `BENCHMARK_SOURCES` | источники бенчмарков `slug:[{label,url}]` |
 | `SCENARIO_TEMPLATES` | 5 шаблонов (`startup_saas, mature_saas, ecom, mobile, media`), `values:{ slug:{key:value} }` |
 
@@ -92,7 +88,8 @@ node --check app.js && node --test test/*.test.mjs && node validate-site.mjs
 ## Что отложено / идеи на следующее
 
 - **Benchmark-режим «где ты на рынке»** — перцентиль-гейдж по стадии/вертикали (отложенный флагман, высокий приоритет).
-- **Goal-mode для новых метрик** — сейчас обратный расчёт только у 14 метрик; новые 20 без него.
+- **Goal-mode** — обратный расчёт у 25 из 69 метрик.
+- **DEEP_CONTENT** — лонгрид есть у 30 из 69 метрик.
 - **Уборка веток** — заблокирована средой (sandbox даёт 403 на `git push --delete`, MCP-инструмента нет). Удалять смерженные ветки через GitHub UI.
 - Возможный аудит: покрытие `SCENARIO_TEMPLATES`/контента у «средних» метрик.
 
